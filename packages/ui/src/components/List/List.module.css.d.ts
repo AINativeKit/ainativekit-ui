@@ -1,0 +1,37 @@
+declare const styles: {
+  readonly listContainer: string;
+  readonly listHeader: string;
+  readonly headerRow: string;
+  readonly headerMedia: string;
+  readonly headerMediaImage: string;
+  readonly headerText: string;
+  readonly headerTitle: string;
+  readonly headerSubtitle: string;
+  readonly headerActionDesktop: string;
+  readonly headerActionMobile: string;
+  readonly listItems: string;
+  readonly emptyState: string;
+  readonly errorContainer: string;
+  readonly emptyContainer: string;
+  readonly emptyContent: string;
+  readonly emptyTitle: string;
+  readonly emptyMessage: string;
+  readonly listItemWrapper: string;
+  readonly listItem: string;
+  readonly itemMedia: string;
+  readonly itemMediaImage: string;
+  readonly itemTitle: string;
+  readonly itemBody: string;
+  readonly itemTrailing: string;
+  readonly itemHeader: string;
+  readonly itemSubtitleRow: string;
+  readonly itemMetadataInline: string;
+  readonly itemSubtitleText: string;
+  readonly itemFeature: string;
+  readonly featureIcon: string;
+  readonly itemRank: string;
+  readonly itemMetadataDesktop: string;
+  readonly itemAction: string;
+};
+
+export default styles;

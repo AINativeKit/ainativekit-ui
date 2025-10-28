@@ -1,0 +1,106 @@
+/* Film Strip Container */
+.filmStrip {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--ai-color-bg-primary);
+  pointer-events: auto;
+}
+
+/* Thumbnail List - Scrollable */
+.thumbnailList {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ai-spacing-10);
+  gap: var(--ai-spacing-10);
+  scrollbar-width: thin;
+  box-sizing: border-box;
+}
+
+.thumbnailList::-webkit-scrollbar {
+  width: 4px;
+}
+
+.thumbnailList::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.thumbnailList::-webkit-scrollbar-thumb {
+  background: var(--ai-color-border-default);
+  border-radius: 2px;
+}
+
+.thumbnailList::-webkit-scrollbar-thumb:hover {
+  background: var(--ai-color-border-heavy);
+}
+
+/* Thumbnail Button */
+.thumbnail {
+  display: block;
+  width: 100%;
+  padding: 1px;
+  border: 1px solid transparent;
+  border-radius: var(--ai-radius-md);
+  background: transparent;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    opacity 0.2s ease;
+  opacity: 0.6;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.thumbnail:hover {
+  opacity: 1;
+  border-color: var(--ai-color-border-default);
+}
+
+.thumbnail:focus-visible {
+  outline: 2px solid var(--ai-color-accent-blue);
+  outline-offset: 2px;
+}
+
+/* Selected Thumbnail */
+.thumbnailSelected {
+  border-color: var(--ai-color-text-primary);
+  opacity: 1;
+}
+
+.thumbnailSelected:hover {
+  border-color: var(--ai-color-text-primary);
+}
+
+/* Thumbnail Image Wrapper */
+.thumbnailImageWrapper {
+  aspect-ratio: 5 / 3;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+  background: var(--ai-color-bg-secondary);
+}
+
+/* Thumbnail Image */
+.thumbnailImage {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Dark Mode */
+:global([data-theme='dark']) .filmStrip {
+  background: var(--ai-color-bg-primary);
+}
+
+:global([data-theme='dark']) .thumbnailImageWrapper {
+  background: var(--ai-color-bg-secondary);
+}

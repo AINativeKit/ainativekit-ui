@@ -1,0 +1,331 @@
+/**
+ * Design Token CSS Custom Properties
+ * AI Native Kit - @ainativekit/ui
+ */
+
+:root {
+  /* Light Theme Colors (default) */
+  --ai-color-bg-primary: #ffffff;
+  --ai-color-bg-secondary: #e8e8e8;
+  --ai-color-bg-tertiary: #f3f3f3;
+  --ai-color-text-primary: #0d0d0d;
+  --ai-color-text-secondary: #5d5d5d;
+  --ai-color-text-tertiary: #8f8f8f;
+  --ai-color-text-inverted: #1b1b1f;
+  --ai-color-icon-primary: #0d0d0d;
+  --ai-color-icon-secondary: #5d5d5d;
+  --ai-color-icon-tertiary: #8f8f8f;
+  --ai-color-icon-inverted: #1b1b1f;
+  --ai-color-accent-blue: #0285ff;
+  --ai-color-accent-red: #e02e2a;
+  --ai-color-accent-orange: #e25507;
+  --ai-color-accent-green: #008635;
+  --ai-color-outline: #79747e;
+  --ai-color-border-light: rgba(13, 13, 13, 0.05);
+  --ai-color-border-default: rgba(13, 13, 13, 0.1);
+  --ai-color-border-heavy: rgba(13, 13, 13, 0.15);
+
+  /* Interactive State Tokens */
+  --ai-state-hover-background: rgba(13, 13, 13, 0.08);
+  --ai-state-hover-opacity: 0.9;
+  --ai-state-active-opacity: 1;
+  --ai-state-active-scale: 0.98;
+  --ai-state-disabled-opacity: 0.4;
+  --ai-state-focus-outline: #0285ff;
+  --ai-state-focus-offset: 2px;
+
+  /* Typography */
+  --ai-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  --ai-font-size-h1: 36px;
+  --ai-line-height-h1: 40px;
+  --ai-font-weight-h1: 600;
+  --ai-letter-spacing-h1: -0.1px;
+
+  --ai-font-size-h2: 24px;
+  --ai-line-height-h2: 28px;
+  --ai-font-weight-h2: 600;
+  --ai-letter-spacing-h2: -0.25px;
+
+  --ai-font-size-h3: 18px;
+  --ai-line-height-h3: 26px;
+  --ai-font-weight-h3: 600;
+  --ai-letter-spacing-h3: -0.45px;
+
+  --ai-font-size-body: 16px;
+  --ai-line-height-body: 26px;
+  --ai-font-weight-body: 400;
+  --ai-letter-spacing-body: -0.4px;
+
+  --ai-font-size-body-emph: 16px;
+  --ai-line-height-body-emph: 26px;
+  --ai-font-weight-body-emph: 600;
+  --ai-letter-spacing-body-emph: -0.4px;
+
+  --ai-font-size-body-small: 14px;
+  --ai-line-height-body-small: 18px;
+  --ai-font-weight-body-small: 400;
+  --ai-letter-spacing-body-small: -0.3px;
+
+  --ai-font-size-body-small-emph: 14px;
+  --ai-line-height-body-small-emph: 18px;
+  --ai-font-weight-body-small-emph: 600;
+  --ai-letter-spacing-body-small-emph: -0.3px;
+
+  --ai-font-size-caption: 12px;
+  --ai-line-height-caption: 16px;
+  --ai-font-weight-caption: 400;
+  --ai-letter-spacing-caption: -0.1px;
+
+  --ai-font-size-caption-emph: 12px;
+  --ai-line-height-caption-emph: 16px;
+  --ai-font-weight-caption-emph: 600;
+  --ai-letter-spacing-caption-emph: -0.1px;
+
+  --ai-font-size-button: 15px;
+  --ai-line-height-button: 24px;
+  --ai-font-weight-button: 500;
+  --ai-letter-spacing-button: -0.24px;
+
+  --ai-font-size-badge: 14px;
+  --ai-line-height-badge: 18px;
+  --ai-font-weight-badge: 600;
+  --ai-letter-spacing-badge: 0px;
+
+  /* Spacing */
+  --ai-spacing-0: 0px;
+  --ai-spacing-1: 2px;
+  --ai-spacing-2: 4px;
+  --ai-spacing-4: 8px;
+  --ai-spacing-6: 12px;
+  --ai-spacing-8: 16px;
+  --ai-spacing-10: 20px;
+  --ai-spacing-12: 24px;
+  --ai-spacing-16: 32px;
+  --ai-spacing-20: 40px;
+  --ai-spacing-24: 48px;
+  --ai-spacing-32: 64px;
+  --ai-spacing-64: 128px;
+
+  /* Radius */
+  --ai-radius-none: 0px;
+  --ai-radius-sm: 4px;
+  --ai-radius-md: 8px;
+  --ai-radius-base: 12px;
+  --ai-radius-lg: 16px;
+  --ai-radius-xl: 24px;
+  --ai-radius-full: 9999px;
+
+  /* Elevation */
+  --ai-elevation-0-shadow: none;
+  --ai-elevation-0-overlay: rgba(0, 0, 0, 0);
+  --ai-elevation-0: var(--ai-elevation-0-shadow);
+
+  --ai-elevation-1-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
+  --ai-elevation-1-overlay: rgba(0, 0, 0, 0);
+  --ai-elevation-1: var(--ai-elevation-1-shadow);
+
+  --ai-elevation-2-shadow: 0px 6px 24px rgba(0, 0, 0, 0.08);
+  --ai-elevation-2-overlay: rgba(0, 0, 0, 0);
+  --ai-elevation-2: var(--ai-elevation-2-shadow);
+
+  --ai-elevation-3-shadow: 0px 10px 32px rgba(0, 0, 0, 0.10);
+  --ai-elevation-3-overlay: rgba(0, 0, 0, 0);
+  --ai-elevation-3: var(--ai-elevation-3-shadow);
+
+  --ai-elevation-4-shadow: 0px 12px 40px rgba(0, 0, 0, 0.12);
+  --ai-elevation-4-overlay: rgba(0, 0, 0, 0);
+  --ai-elevation-4: var(--ai-elevation-4-shadow);
+
+  --ai-elevation-5-shadow: 0px 16px 48px rgba(0, 0, 0, 0.14);
+  --ai-elevation-5-overlay: rgba(0, 0, 0, 0);
+  --ai-elevation-5: var(--ai-elevation-5-shadow);
+
+  /* Opacity */
+  --ai-opacity-full: 1;
+  --ai-opacity-subtle: 0.7;
+  --ai-opacity-muted: 0.5;
+  --ai-opacity-disabled: 0.3;
+}
+
+[data-theme='dark'] {
+  /* Dark Theme Colors */
+  --ai-color-bg-primary: #212121;
+  --ai-color-bg-secondary: #303030;
+  --ai-color-bg-tertiary: #414141;
+  --ai-color-text-primary: #ffffff;
+  --ai-color-text-secondary: #cdcdcd;
+  --ai-color-text-tertiary: #afafaf;
+  --ai-color-text-inverted: #ffffff;
+  --ai-color-icon-primary: #ffffff;
+  --ai-color-icon-secondary: #cdcdcd;
+  --ai-color-icon-tertiary: #afafaf;
+  --ai-color-icon-inverted: #ffffff;
+  --ai-color-accent-blue: #0285ff;
+  --ai-color-accent-red: #ff8583;
+  --ai-color-accent-orange: #ff9e6c;
+  --ai-color-accent-green: #40c977;
+  --ai-color-outline: #938f99;
+  --ai-color-border-light: rgba(255, 255, 255, 0.08);
+  --ai-color-border-default: rgba(255, 255, 255, 0.12);
+  --ai-color-border-heavy: rgba(255, 255, 255, 0.16);
+
+  /* Interactive State Tokens - Dark Mode */
+  --ai-state-hover-background: rgba(255, 255, 255, 0.08);
+  --ai-state-hover-opacity: 0.9;
+  --ai-state-active-opacity: 1;
+  --ai-state-active-scale: 0.98;
+  --ai-state-disabled-opacity: 0.4;
+  --ai-state-focus-outline: #0285ff;
+  --ai-state-focus-offset: 2px;
+
+  --ai-elevation-0-shadow: none;
+  --ai-elevation-1-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
+  --ai-elevation-2-shadow: 0px 6px 24px rgba(0, 0, 0, 0.08);
+  --ai-elevation-3-shadow: 0px 10px 32px rgba(0, 0, 0, 0.1);
+  --ai-elevation-4-shadow: 0px 12px 40px rgba(0, 0, 0, 0.12);
+  --ai-elevation-5-shadow: 0px 16px 48px rgba(0, 0, 0, 0.14);
+
+  --ai-elevation-0-overlay: rgba(255, 255, 255, 0);
+  --ai-elevation-1-overlay: rgba(255, 255, 255, 0.05);
+  --ai-elevation-2-overlay: rgba(255, 255, 255, 0.07);
+  --ai-elevation-3-overlay: rgba(255, 255, 255, 0.08);
+  --ai-elevation-4-overlay: rgba(255, 255, 255, 0.09);
+  --ai-elevation-5-overlay: rgba(255, 255, 255, 0.12);
+}
+
+/* Typography Utility Classes */
+.ai-heading1 {
+  font-family: var(--ai-font-family);
+  font-size: var(--ai-font-size-h1);
+  line-height: var(--ai-line-height-h1);
+  font-weight: var(--ai-font-weight-h1);
+  letter-spacing: var(--ai-letter-spacing-h1);
+}
+
+.ai-heading2 {
+  font-family: var(--ai-font-family);
+  font-size: var(--ai-font-size-h2);
+  line-height: var(--ai-line-height-h2);
+  font-weight: var(--ai-font-weight-h2);
+  letter-spacing: var(--ai-letter-spacing-h2);
+}
+
+.ai-heading3 {
+  font-family: var(--ai-font-family);
+  font-size: var(--ai-font-size-h3);
+  line-height: var(--ai-line-height-h3);
+  font-weight: var(--ai-font-weight-h3);
+  letter-spacing: var(--ai-letter-spacing-h3);
+}
+
+.ai-body {
+  font-family: var(--ai-font-family);
+  font-size: var(--ai-font-size-body);
+  line-height: var(--ai-line-height-body);
+  font-weight: var(--ai-font-weight-body);
+  letter-spacing: var(--ai-letter-spacing-body);
+}
+
+.ai-body-emph {
+  font-family: var(--ai-font-family);
+  font-size: var(--ai-font-size-body-emph);
+  line-height: var(--ai-line-height-body-emph);
+  font-weight: var(--ai-font-weight-body-emph);
+  letter-spacing: var(--ai-letter-spacing-body-emph);
+}
+
+.ai-body-small {
+  font-family: var(--ai-font-family);
+  font-size: var(--ai-font-size-body-small);
+  line-height: var(--ai-line-height-body-small);
+  font-weight: var(--ai-font-weight-body-small);
+  letter-spacing: var(--ai-letter-spacing-body-small);
+}
+
+.ai-body-small-emph {
+  font-family: var(--ai-font-family);
+  font-size: var(--ai-font-size-body-small-emph);
+  line-height: var(--ai-line-height-body-small-emph);
+  font-weight: var(--ai-font-weight-body-small-emph);
+  letter-spacing: var(--ai-letter-spacing-body-small-emph);
+}
+
+.ai-caption {
+  font-family: var(--ai-font-family);
+  font-size: var(--ai-font-size-caption);
+  line-height: var(--ai-line-height-caption);
+  font-weight: var(--ai-font-weight-caption);
+  letter-spacing: var(--ai-letter-spacing-caption);
+}
+
+.ai-caption-emph {
+  font-family: var(--ai-font-family);
+  font-size: var(--ai-font-size-caption-emph);
+  line-height: var(--ai-line-height-caption-emph);
+  font-weight: var(--ai-font-weight-caption-emph);
+  letter-spacing: var(--ai-letter-spacing-caption-emph);
+}
+
+.ai-button {
+  font-family: var(--ai-font-family);
+  font-size: var(--ai-font-size-button);
+  line-height: var(--ai-line-height-button);
+  font-weight: var(--ai-font-weight-button);
+  letter-spacing: var(--ai-letter-spacing-button);
+}
+
+.ai-badge {
+  font-family: var(--ai-font-family);
+  font-size: var(--ai-font-size-badge);
+  line-height: var(--ai-line-height-badge);
+  font-weight: var(--ai-font-weight-badge);
+  letter-spacing: var(--ai-letter-spacing-badge);
+}
+
+/* ========================================
+   Elevation Utility Classes
+   ======================================== */
+
+/**
+ * Elevation utility classes apply the complete elevation effect (shadow + overlay).
+ * Similar to typography classes, they provide a single-class solution.
+ * 
+ * Usage:
+ * - Direct: <div className="ai-elevation-1">...</div>
+ * - Type-safe: <div className={elevation['1'].className}>...</div>
+ * - For Cards: <Card elevationLevel="1">...</Card> (recommended)
+ * 
+ * Note: These classes set background using color-mix. If you need a custom background
+ * color with elevation, use the Card component or apply shadow/overlay separately.
+ */
+
+.ai-elevation-0 {
+  box-shadow: var(--ai-elevation-0-shadow);
+  background: color-mix(in srgb, var(--ai-color-bg-primary) 100%, var(--ai-elevation-0-overlay));
+}
+
+.ai-elevation-1 {
+  box-shadow: var(--ai-elevation-1-shadow);
+  background: color-mix(in srgb, var(--ai-color-bg-primary) 92%, var(--ai-elevation-1-overlay));
+}
+
+.ai-elevation-2 {
+  box-shadow: var(--ai-elevation-2-shadow);
+  background: color-mix(in srgb, var(--ai-color-bg-primary) 90%, var(--ai-elevation-2-overlay));
+}
+
+.ai-elevation-3 {
+  box-shadow: var(--ai-elevation-3-shadow);
+  background: color-mix(in srgb, var(--ai-color-bg-primary) 88%, var(--ai-elevation-3-overlay));
+}
+
+.ai-elevation-4 {
+  box-shadow: var(--ai-elevation-4-shadow);
+  background: color-mix(in srgb, var(--ai-color-bg-primary) 85%, var(--ai-elevation-4-overlay));
+}
+
+.ai-elevation-5 {
+  box-shadow: var(--ai-elevation-5-shadow);
+  background: color-mix(in srgb, var(--ai-color-bg-primary) 82%, var(--ai-elevation-5-overlay));
+}

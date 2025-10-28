@@ -1,0 +1,285 @@
+/* SummaryCard Container */
+.summaryCard {
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Image Section */
+.imageSection {
+  margin: var(--ai-spacing-4) var(--ai-spacing-4) 0 var(--ai-spacing-4); /* 16px top/sides, 0 bottom */
+}
+
+.imageSingle {
+  width: 100%;
+  height: 244px;
+  display: block;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.imageGrid {
+  display: grid;
+  gap: var(--ai-spacing-2);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* 2 images: 2 columns, 1 row */
+.imageGrid[data-image-count='2'] {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 196px;
+  height: 196px;
+}
+
+/* 3 images: Large left, 2 small right (existing layout) */
+.imageGrid[data-image-count='3'] {
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 96px 96px;
+  height: 196px;
+}
+
+/* 4 images: 2x2 grid */
+.imageGrid[data-image-count='4'] {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 96px 96px;
+  height: 196px;
+}
+
+.imageGridItem {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--ai-spacing-2);
+}
+
+/* Layout for 2 images */
+.imageGrid[data-image-count='2'] .imageGridItem:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.imageGrid[data-image-count='2'] .imageGridItem:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+/* Layout for 3 images - First image spans left column, both rows (large) */
+.imageGrid[data-image-count='3'] .imageGridItem:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+
+/* Second image spans right column, first row (small) */
+.imageGrid[data-image-count='3'] .imageGridItem:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+/* Third image spans right column, second row (small) */
+.imageGrid[data-image-count='3'] .imageGridItem:nth-child(3) {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+/* Layout for 4 images - standard 2x2 grid */
+.imageGrid[data-image-count='4'] .imageGridItem:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.imageGrid[data-image-count='4'] .imageGridItem:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.imageGrid[data-image-count='4'] .imageGridItem:nth-child(3) {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.imageGrid[data-image-count='4'] .imageGridItem:nth-child(4) {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+/* Overflow indicator for 5+ images */
+.overflowIndicator {
+  position: absolute;
+  bottom: var(--ai-spacing-2);
+  right: var(--ai-spacing-2);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: var(--ai-spacing-1) var(--ai-spacing-2);
+  border-radius: var(--ai-spacing-1);
+  font-size: var(--ai-font-size-body-small);
+  font-weight: var(--ai-font-weight-semibold);
+  pointer-events: none;
+}
+
+/* Header Section */
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--ai-spacing-8);
+  margin: var(--ai-spacing-4) var(--ai-spacing-8) 0 var(--ai-spacing-8); /* 16px top, 32px sides, 0 bottom */
+}
+
+/* Add spacing from image if image exists */
+.imageSection + .header {
+  margin-top: var(--ai-spacing-4); /* 16px from image */
+}
+
+/* Add bottom margin when header is the last element (no description or button) */
+.header:last-child {
+  margin-bottom: var(--ai-spacing-4); /* 16px bottom */
+}
+
+.headerText {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-size: var(--ai-font-size-h3);
+  line-height: var(--ai-line-height-h3);
+  font-weight: var(--ai-font-weight-h3);
+  letter-spacing: var(--ai-letter-spacing-h3);
+  color: var(--ai-color-text-primary);
+  margin: 0;
+
+  /* Truncate to single line with ellipsis */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.subtitle {
+  font-size: var(--ai-font-size-body-small);
+  line-height: var(--ai-line-height-body-small);
+  font-weight: var(--ai-font-weight-body-small);
+  letter-spacing: var(--ai-letter-spacing-body-small);
+  color: var(--ai-color-text-primary);
+  margin: var(--ai-spacing-2) 0 0 0;
+
+  /* Truncate to single line with ellipsis */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.badge {
+  flex-shrink: 0;
+}
+
+/* Description Section */
+.description {
+  font-size: var(--ai-font-size-body-small);
+  line-height: var(--ai-line-height-body-small);
+  font-weight: var(--ai-font-weight-body-small);
+  letter-spacing: var(--ai-letter-spacing-body-small);
+  color: var(--ai-color-text-secondary);
+  margin: var(--ai-spacing-2) var(--ai-spacing-8) 0 var(--ai-spacing-8); /* 8px top, 32px sides */
+
+  /* Clamp to 2 lines with ellipsis */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Add spacing from header if header exists */
+.header + .description {
+  margin-top: var(--ai-spacing-2); /* 8px from header */
+}
+
+/* Add bottom padding when description is the last element (no button) */
+.description:last-child {
+  margin-bottom: var(--ai-spacing-4); /* 16px bottom */
+}
+
+/* Button Container */
+.buttonContainer {
+  margin: var(--ai-spacing-6) var(--ai-spacing-4) var(--ai-spacing-4) var(--ai-spacing-4); /* 24px top, 16px sides, 16px bottom */
+}
+
+/* Add spacing from description if description exists */
+.description + .buttonContainer {
+  margin-top: var(--ai-spacing-6); /* 24px from description */
+}
+
+/* Add spacing from header if no description */
+.header + .buttonContainer {
+  margin-top: var(--ai-spacing-6); /* 24px from header */
+}
+
+/* Add spacing from image if only button (no header or description) */
+.imageSection + .buttonContainer {
+  margin-top: var(--ai-spacing-6); /* 24px from image */
+}
+
+.button {
+  width: 100%;
+}
+
+/* Error State */
+.errorContainer {
+  padding: var(--ai-spacing-8);
+}
+
+/* Loading State */
+.loadingContainer {
+  padding: 0;
+}
+
+/* Add bottom padding to loading state elements when they're last visible element (before visuallyHidden span) */
+.loadingContainer > .header:nth-last-child(2),
+.loadingContainer > div:nth-last-child(2):not(.buttonContainer) {
+  margin-bottom: var(--ai-spacing-4); /* 16px bottom */
+}
+
+/* Empty State */
+.emptyContainer {
+  padding: var(--ai-spacing-8);
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--ai-spacing-16) var(--ai-spacing-8);
+  min-height: 200px;
+}
+
+.emptyTitle {
+  font-size: var(--ai-font-size-body);
+  line-height: var(--ai-line-height-body);
+  font-weight: var(--ai-font-weight-semibold);
+  color: var(--ai-color-text-primary);
+  margin: 0 0 var(--ai-spacing-2) 0;
+}
+
+.emptyMessage {
+  font-size: var(--ai-font-size-body-small);
+  line-height: var(--ai-line-height-body-small);
+  font-weight: var(--ai-font-weight-body-small);
+  color: var(--ai-color-text-secondary);
+  margin: 0;
+  max-width: 300px;
+}
+
+/* Visually hidden for screen readers */
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

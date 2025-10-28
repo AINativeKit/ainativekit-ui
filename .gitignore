@@ -1,0 +1,106 @@
+# ===========================================
+# 🧠 Core - Node & build artifacts
+# ===========================================
+node_modules/
+dist/
+build/
+lib/
+.cache/
+coverage/
+*.log
+*.tmp
+.DS_Store
+
+# ===========================================
+# 🧪 TypeScript
+# ===========================================
+*.tsbuildinfo
+
+# ===========================================
+# 📦 Package managers
+# ===========================================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+bun.lockb
+
+# ===========================================
+# 📚 Storybook
+# ===========================================
+storybook-static/
+.out/
+.storybook-out/
+
+# ===========================================
+# 🔨 Vite / Webpack / Rollup build outputs
+# ===========================================
+.vite/
+vite.config.ts.timestamp-*
+
+# ===========================================
+# 🧪 Tests
+# ===========================================
+coverage/
+.nyc_output/
+.jest/
+jest-cache/
+jest-stare/
+
+# ===========================================
+# 📦 Monorepo workspaces
+# ===========================================
+/packages/**/node_modules/
+/packages/**/dist/
+/packages/**/build/
+/packages/**/coverage/
+
+# ===========================================
+# 🧰 Development tooling (dev-only, auto-generated)
+# ===========================================
+.cursor/
+.claude/
+.gemini/
+.vscode/
+.github/chatmodes
+
+# ===========================================
+# 📦 Web bundles (build outputs for ChatGPT, Claude, Gemini)
+# ===========================================
+web-bundles/
+
+# ===========================================
+# 📚 Reference examples
+# ===========================================
+examples/
+
+# ===========================================
+# 📚 Documentation build outputs
+# ===========================================
+docs/.vitepress/dist/
+docs/.docusaurus/
+docs/build/
+planning/.cache/
+
+# ===========================================
+# 🧪 Local environment & secrets
+# ===========================================
+.env
+.env.*
+!.env.example
+
+# ===========================================
+# 🔥 OS / Editor junk
+# ===========================================
+*.swp
+*.swo
+Thumbs.db
+.idea/
+*.iml
+
+# ===========================================
+# ✅ Optional: Ignore lock files if using multiple package managers
+# ===========================================
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml

@@ -1,0 +1,205 @@
+/* Content Wrapper - prevents Card gap from affecting layout */
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  /* No gap - ListCard manages its own internal spacing */
+}
+
+/* Top Image Section */
+.topImageContainer {
+  width: 100%;
+  height: 210px;
+  overflow: hidden;
+  border-radius: var(--ai-radius-base) var(--ai-radius-base) 0 0;
+}
+
+.topImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Header Section */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  padding: 0 var(--ai-spacing-8);
+}
+
+.headerTitle {
+  margin: 0;
+  font-size: var(--ai-font-size-body-emph);
+  line-height: var(--ai-line-height-body-emph);
+  font-weight: var(--ai-font-weight-body-emph);
+  letter-spacing: var(--ai-letter-spacing-body-emph);
+  color: var(--ai-color-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.headerActionButton {
+  margin-left: var(--ai-spacing-4);
+}
+
+/* List Container */
+.listContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.listBottomPadding {
+  padding-bottom: var(--ai-spacing-8);
+}
+
+/* List Item */
+.listItem {
+  padding: var(--ai-spacing-6) var(--ai-spacing-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ai-spacing-4);
+}
+
+.itemHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--ai-spacing-6);
+}
+
+.itemImage {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 12px;
+  object-fit: cover;
+  display: block;
+}
+
+.itemTextContent {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ai-spacing-1);
+}
+
+.itemTitle {
+  font-size: var(--ai-font-size-body);
+  line-height: var(--ai-line-height-body);
+  font-weight: var(--ai-font-weight-body);
+  letter-spacing: var(--ai-letter-spacing-body);
+  color: var(--ai-color-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.itemSubtitle {
+  font-size: var(--ai-font-size-body-small);
+  line-height: var(--ai-line-height-body-small);
+  font-weight: var(--ai-font-weight-body-small);
+  letter-spacing: var(--ai-letter-spacing-body-small);
+  color: var(--ai-color-text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.itemActionButton {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.itemDescription {
+  font-size: var(--ai-font-size-body-small);
+  line-height: var(--ai-line-height-body-small);
+  font-weight: var(--ai-font-weight-body-small);
+  letter-spacing: var(--ai-letter-spacing-body-small);
+  color: var(--ai-color-text-primary);
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background-color: var(--ai-color-border-light);
+  margin: 0;
+}
+
+/* Action Button Section */
+.buttonContainer {
+  padding: var(--ai-spacing-8);
+}
+
+/* Loading State */
+.loadingContainer {
+  padding: 0;
+  min-height: 200px;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Error State */
+.errorContainer {
+  padding: var(--ai-spacing-16);
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Empty State */
+.emptyContainer {
+  min-height: 200px;
+}
+
+.emptyState {
+  padding: var(--ai-spacing-16);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 160px;
+}
+
+.emptyIcon {
+  margin-bottom: var(--ai-spacing-8);
+  color: var(--ai-color-text-secondary);
+  opacity: var(--ai-opacity-subtle);
+}
+
+.emptyTitle {
+  margin: 0;
+  font-size: var(--ai-font-size-body-emph);
+  line-height: var(--ai-line-height-body-emph);
+  font-weight: var(--ai-font-weight-body-emph);
+  letter-spacing: var(--ai-letter-spacing-body-emph);
+  color: var(--ai-color-text-primary);
+}
+
+.emptyMessage {
+  margin: var(--ai-spacing-2) 0 0 0;
+  font-size: var(--ai-font-size-body-small);
+  line-height: var(--ai-line-height-body-small);
+  font-weight: var(--ai-font-weight-body-small);
+  letter-spacing: var(--ai-letter-spacing-body-small);
+  color: var(--ai-color-text-secondary);
+  max-width: 280px;
+}

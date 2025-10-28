@@ -1,0 +1,13 @@
+dist
+node_modules
+.turbo
+coverage
+*.config.js
+*.config.ts
+.bmad-core
+.claude
+.cursor
+.gemini
+.vscode
+.github
+docs

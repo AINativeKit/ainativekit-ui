@@ -1,0 +1,243 @@
+/* LocationCard Container */
+.locationCard {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--ai-spacing-6);
+  padding: var(--ai-spacing-6);
+  background-color: var(--ai-color-bg-primary);
+  border-radius: var(--ai-radius-xl);
+  border: 1px solid var(--ai-color-border-light);
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+  min-width: 280px;
+  max-width: 330px;
+}
+
+.locationCard:hover {
+  background-color: var(--ai-color-bg-tertiary);
+}
+
+.locationCard:focus-visible {
+  outline: 2px solid var(--ai-color-accent-blue);
+  outline-offset: 2px;
+}
+
+/* Selected State */
+.selected,
+.locationCard.selected {
+  background-color: var(--ai-color-bg-tertiary);
+  border-color: var(--ai-color-accent-blue);
+  box-shadow: var(--ai-elevation-1-shadow);
+}
+
+/* Loading State */
+.loadingCard {
+  cursor: default;
+  pointer-events: none;
+}
+
+.loadingCard:hover {
+  background-color: var(--ai-color-bg-primary);
+}
+
+/* Error State */
+.errorCard {
+  cursor: default;
+  pointer-events: auto;
+  min-height: 100px;
+  padding: var(--ai-spacing-8);
+}
+
+.errorContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ai-spacing-4);
+  text-align: center;
+}
+
+/* Empty State */
+.emptyCard {
+  cursor: default;
+  pointer-events: none;
+  min-height: 100px;
+  justify-content: center;
+  padding: var(--ai-spacing-8);
+}
+
+.emptyContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ai-spacing-2);
+  text-align: center;
+}
+
+.emptyTitle {
+  font-size: var(--ai-font-size-body);
+  line-height: var(--ai-line-height-body);
+  font-weight: var(--ai-font-weight-body-emph);
+  color: var(--ai-color-text-tertiary);
+}
+
+.emptyMessage {
+  font-size: var(--ai-font-size-caption);
+  line-height: var(--ai-line-height-caption);
+  color: var(--ai-color-text-tertiary);
+}
+
+/* Thumbnail Container */
+.thumbnailContainer {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+}
+
+/* Thumbnail */
+.thumbnail {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--ai-radius-md);
+  object-fit: cover;
+  border: 1px solid var(--ai-color-border-light);
+}
+
+/* Skeleton Styles */
+.skeletonThumbnail {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  border-radius: var(--ai-radius-md);
+}
+
+.skeletonTitle {
+  margin-bottom: var(--ai-spacing-2);
+}
+
+.skeletonSubtitle {
+  margin-bottom: 0;
+}
+
+/* Badge Positioning - Always positioned at top-right with margin */
+.badge {
+  position: absolute;
+  top: var(--ai-spacing-2);
+  right: var(--ai-spacing-2);
+  z-index: 1;
+}
+
+/* Chip needs more right spacing since it's wider than Badge */
+.badgeChip {
+  right: var(--ai-spacing-4);
+}
+
+/* Content */
+.content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ai-spacing-2);
+}
+
+/* Title - body emphasis */
+.title {
+  font-size: var(--ai-font-size-body-emph);
+  line-height: var(--ai-line-height-body-emph);
+  font-weight: var(--ai-font-weight-body-emph);
+  letter-spacing: var(--ai-letter-spacing-body-emph);
+  color: var(--ai-color-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Multi-line Title Support */
+.titleLines2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+.titleLines3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+/* Subtitle - caption regular, secondary color */
+.subtitle {
+  font-size: var(--ai-font-size-caption);
+  line-height: var(--ai-line-height-caption);
+  font-weight: var(--ai-font-weight-caption);
+  letter-spacing: var(--ai-letter-spacing-caption);
+  color: var(--ai-color-text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Multi-line Subtitle Support */
+.subtitleLines2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+.subtitleLines3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+/* Features - caption regular, secondary color */
+.features {
+  display: flex;
+  align-items: center;
+  gap: var(--ai-spacing-2);  font-size: var(--ai-font-size-caption);
+  line-height: var(--ai-line-height-caption);
+  font-weight: var(--ai-font-weight-caption);
+  letter-spacing: var(--ai-letter-spacing-caption);
+  color: var(--ai-color-text-secondary);
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: var(--ai-spacing-1);
+}
+
+.featureIcon {
+  flex-shrink: 0;
+}
+
+.separator {
+  color: var(--ai-color-text-tertiary);
+  padding: 0 2px;
+}
+
+/* Accessibility */
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

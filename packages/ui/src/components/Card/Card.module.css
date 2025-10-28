@@ -1,0 +1,59 @@
+/* Base Card container */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ai-spacing-6); /* 12px - default spacing between compound components */
+  box-sizing: border-box;
+  background: color-mix(
+    in srgb,
+    var(--ai-color-bg-primary) 92%,
+    var(--card-overlay-light, rgba(0, 0, 0, 0))
+  );
+  border-radius: var(--ai-radius-xl);
+  border: 0.5px solid var(--card-border-color, var(--ai-color-border-heavy));
+  box-shadow: var(--card-shadow-value, var(--ai-elevation-1-shadow));
+  padding: var(--ai-spacing-16);
+  overflow: hidden;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.card[data-interactive='true']:hover {
+  border-color: color-mix(in srgb, var(--ai-color-text-primary) 25%, transparent);
+  background: color-mix(
+    in srgb,
+    var(--ai-color-bg-primary) 88%,
+    var(--card-overlay-light, rgba(255, 255, 255, 0.08))
+  );
+  box-shadow: var(
+    --card-hover-shadow-value,
+    var(--card-shadow-value, var(--ai-elevation-1-shadow))
+  );
+}
+
+:global([data-theme='dark']) .card[data-interactive='true']:hover {
+  border-color: color-mix(in srgb, var(--ai-color-text-primary) 24%, transparent);
+  background: color-mix(
+    in srgb,
+    var(--ai-color-bg-primary) 88%,
+    var(--card-overlay-dark, rgba(255, 255, 255, 0.12))
+  );
+  box-shadow: var(--ai-elevation-2-shadow);
+}
+
+:global([data-theme='dark']) .card {
+  background: color-mix(
+    in srgb,
+    var(--ai-color-bg-primary) 92%,
+    var(--card-overlay-dark, rgba(255, 255, 255, 0))
+  );
+  border-color: var(--card-border-color, var(--ai-color-border-heavy));
+}
+
+.card[data-interactive='true'] {
+  cursor: pointer;
+}

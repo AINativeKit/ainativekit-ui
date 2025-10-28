@@ -1,0 +1,12 @@
+dist
+node_modules
+.turbo
+coverage
+pnpm-lock.yaml
+.bmad-core
+.claude
+.cursor
+.gemini
+.vscode
+.github
+docs

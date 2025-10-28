@@ -1,0 +1,184 @@
+/* Album Viewer - Fullscreen Overlay */
+.albumViewer {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: var(--ai-color-bg-primary);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header with Close Button */
+.header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 20;
+  padding: var(--ai-spacing-8);
+}
+
+.closeButton {
+  background: var(--ai-color-bg-primary);
+  box-shadow: var(--ai-elevation-2-shadow);
+}
+
+/* Content Area */
+.content {
+  position: relative;
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* Film Strip Container - Desktop Only */
+.filmStripContainer {
+  display: none;
+  width: 160px;
+  flex-shrink: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@media (min-width: 768px) {
+  .filmStripContainer {
+    display: block;
+  }
+}
+
+/* Main Photo Container */
+.photoContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ai-spacing-16);
+  min-width: 0;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .photoContainer {
+    padding: var(--ai-spacing-20);
+    padding-left: var(--ai-spacing-16);
+  }
+}
+
+/* Photo Wrapper */
+.photoWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Photo Image */
+.photo {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--ai-radius-xl);
+  box-shadow: var(--ai-elevation-1-shadow);
+  border: 1px solid var(--ai-color-border-light);
+}
+
+/* No Photo State */
+.noPhoto {
+  color: var(--ai-color-text-secondary);  font-size: var(--ai-font-size-body);
+  line-height: var(--ai-line-height-body);
+  font-weight: var(--ai-font-weight-body);
+  letter-spacing: var(--ai-letter-spacing-body);
+}
+
+/* Navigation Buttons - Mobile */
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 15;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  background-color: var(--ai-color-bg-primary);
+  border-radius: 50%;
+  box-shadow: var(--ai-elevation-1-shadow);
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.navButton:hover {
+  opacity: 0.9;
+}
+
+.navButton:not(:disabled):active {
+  transform: translateY(-50%);
+  opacity: 1;
+}
+
+.navButtonPrev {
+  left: var(--ai-spacing-4);
+}
+
+.navButtonNext {
+  right: var(--ai-spacing-4);
+}
+
+@media (min-width: 768px) {
+  .navButton {
+    display: none;
+  }
+}
+
+/* Footer with Counter */
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  padding: var(--ai-spacing-8);
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.counter {
+  background: var(--ai-color-bg-primary);
+  color: var(--ai-color-text-secondary);
+  padding: var(--ai-spacing-4) var(--ai-spacing-8);
+  border-radius: var(--ai-radius-base);  font-size: var(--ai-font-size-body-small);
+  line-height: var(--ai-line-height-body-small);
+  font-weight: var(--ai-font-weight-body-small);
+  letter-spacing: var(--ai-letter-spacing-body-small);
+  box-shadow: var(--ai-elevation-1-shadow);
+  border: 1px solid var(--ai-color-border-default);
+  pointer-events: auto;
+}
+
+/* Dark Mode */
+:global([data-theme='dark']) .albumViewer {
+  background: var(--ai-color-bg-primary);
+}
+
+:global([data-theme='dark']) .closeButton,
+:global([data-theme='dark']) .navButton {
+  background: var(--ai-color-bg-secondary);
+  box-shadow: var(--ai-elevation-2-shadow);
+}
+
+:global([data-theme='dark']) .photo {
+  box-shadow: var(--ai-elevation-3-shadow);
+  border-color: var(--ai-color-border-default);
+}
+
+:global([data-theme='dark']) .counter {
+  background: var(--ai-color-bg-secondary);
+  box-shadow: var(--ai-elevation-2-shadow);
+}

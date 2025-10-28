@@ -1,0 +1,180 @@
+/* Carousel Container */
+.carouselContainer {
+  position: relative;
+  width: 100%;
+}
+
+/* Phase 1: Error Container */
+.errorContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  padding: var(--ai-spacing-16);
+}
+
+/* Phase 1: Empty Container */
+.emptyContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  padding: var(--ai-spacing-16);
+}
+
+.emptyContent {
+  text-align: center;
+  max-width: 400px;
+}
+
+.emptyTitle {
+  font-size: var(--ai-font-size-body-large);
+  font-weight: var(--ai-font-weight-semibold);
+  color: var(--ai-color-text-primary);
+  margin-bottom: var(--ai-spacing-4);
+}
+
+.emptyMessage {
+  font-size: var(--ai-font-size-body-regular);
+  color: var(--ai-color-text-secondary);
+}
+
+/* Embla Viewport */
+.emblaViewport {
+  position: relative;
+  overflow: hidden;
+  padding: var(--carousel-viewport-padding, var(--ai-spacing-10)) 0;
+}
+
+/* Embla Container (flex container for slides) */
+.emblaContainer {
+  display: flex;
+  align-items: stretch;
+  margin-left: calc(var(--carousel-gap, 0) / -2);
+  margin-right: calc(var(--carousel-gap, 0) / -2);
+  padding-left: var(--carousel-start-inset, 0);
+}
+
+.emblaContainerFlushStart {
+  margin-left: 0;
+  --carousel-start-inset: 0;
+}
+
+/* Embla Slide */
+.emblaSlide {
+  flex: 0 0 auto;
+  min-width: 0;
+  padding-left: calc(var(--carousel-gap, 0) / 2);
+  padding-right: calc(var(--carousel-gap, 0) / 2);
+}
+
+.emblaSlideFlushStart:first-child {
+  padding-left: 0;
+}
+
+/* Edge Gradients */
+.edgeGradient {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  z-index: 5;
+  transition: opacity 0.2s ease;
+}
+
+.edgeGradientLeft {
+  left: 0;
+}
+
+.edgeGradientLeft::before {
+  content: '';
+  display: block;
+  height: 100%;
+  width: 100%;
+  border-left: 1px solid var(--ai-color-border-light);
+  background: linear-gradient(to right, color-mix(in srgb, var(--ai-color-text-primary) var(--ai-opacity-disabled), transparent), transparent);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    white 30%,
+    white 70%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    white 30%,
+    white 70%,
+    transparent 100%
+  );
+}
+
+.edgeGradientRight {
+  right: 0;
+}
+
+.edgeGradientRight::before {
+  content: '';
+  display: block;
+  height: 100%;
+  width: 100%;
+  border-right: 1px solid var(--ai-color-border-light);
+  background: linear-gradient(to left, color-mix(in srgb, var(--ai-color-text-primary) var(--ai-opacity-disabled), transparent), transparent);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    white 30%,
+    white 70%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    white 30%,
+    white 70%,
+    transparent 100%
+  );
+}
+
+/* Dark mode edge gradients */
+:global([data-theme='dark']) .edgeGradientLeft::before {
+  background: linear-gradient(to right, color-mix(in srgb, var(--ai-color-text-inverted) var(--ai-opacity-disabled), transparent), transparent);
+}
+
+:global([data-theme='dark']) .edgeGradientRight::before {
+  background: linear-gradient(to left, color-mix(in srgb, var(--ai-color-text-inverted) var(--ai-opacity-disabled), transparent), transparent);
+}
+
+/* Navigation Buttons */
+.navButton {
+  position: absolute;
+  top: 30%;
+  z-index: 10;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  background-color: var(--ai-color-bg-primary);
+  border-radius: 50%;
+  box-shadow: var(--ai-elevation-1-shadow);
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.navButton:hover {
+  opacity: 0.9;
+}
+
+.navButton:active {
+  opacity: 1;
+}
+
+.navButtonPrev {
+  left: var(--ai-spacing-4);
+}
+
+.navButtonNext {
+  right: var(--ai-spacing-4);
+}

@@ -1,0 +1,87 @@
+/* Card Header */
+.cardHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ai-spacing-2); /* 4px - tight spacing for header content */
+}
+
+/* Card Body */
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ai-spacing-6); /* 12px - comfortable spacing for main content */
+  flex: 1;
+}
+
+/* Card Footer */
+.cardFooter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ai-spacing-4); /* 8px - moderate spacing for footer content */
+  margin-top: auto;
+}
+
+/* Card Image */
+.cardImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--ai-radius-base); /* 12px - matches our card system */
+  object-fit: cover;
+}
+
+/* Card Actions */
+.cardActions {
+  display: flex;
+  gap: var(--ai-spacing-4); /* 8px - standard button spacing */
+  flex-wrap: wrap; /* Allow buttons to wrap on small screens */
+}
+
+.cardActions[data-align='start'] {
+  justify-content: flex-start;
+}
+
+.cardActions[data-align='center'] {
+  justify-content: center;
+}
+
+.cardActions[data-align='end'] {
+  justify-content: flex-end;
+}
+
+.cardActions[data-align='stretch'] {
+  justify-content: stretch;
+}
+
+.cardActions[data-align='stretch'] > * {
+  flex: 1;
+  min-width: 0; /* Allow flex items to shrink below content size */
+}
+
+/* Card Title */
+.cardTitle {
+  margin: 0;
+  font-size: var(--ai-font-size-body-emph);
+  font-weight: var(--ai-font-weight-body-emph);
+  line-height: var(--ai-line-height-body-emph);
+  letter-spacing: var(--ai-letter-spacing-body-emph);
+  color: var(--ai-color-text-primary);
+  
+  /* Overflow handling for long titles */
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Card Description */
+.cardDescription {
+  margin: 0;
+  font-size: var(--ai-font-size-body);
+  font-weight: var(--ai-font-weight-body);
+  line-height: var(--ai-line-height-body);
+  letter-spacing: var(--ai-letter-spacing-body);
+  color: var(--ai-color-text-secondary);
+  
+  /* Overflow handling for long descriptions */
+  overflow-wrap: break-word;
+  word-break: break-word;
+}

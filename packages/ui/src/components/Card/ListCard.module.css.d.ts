@@ -1,0 +1,30 @@
+declare const styles: {
+  readonly contentWrapper: string;
+  readonly topImageContainer: string;
+  readonly topImage: string;
+  readonly header: string;
+  readonly headerTitle: string;
+  readonly headerActionButton: string;
+  readonly listContainer: string;
+  readonly listBottomPadding: string;
+  readonly listItem: string;
+  readonly itemHeader: string;
+  readonly itemImage: string;
+  readonly itemTextContent: string;
+  readonly itemTitle: string;
+  readonly itemSubtitle: string;
+  readonly itemActionButton: string;
+  readonly itemDescription: string;
+  readonly divider: string;
+  readonly buttonContainer: string;
+  readonly loadingContainer: string;
+  readonly visuallyHidden: string;
+  readonly errorContainer: string;
+  readonly emptyContainer: string;
+  readonly emptyState: string;
+  readonly emptyIcon: string;
+  readonly emptyTitle: string;
+  readonly emptyMessage: string;
+};
+
+export default styles;

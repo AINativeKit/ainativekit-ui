@@ -1,0 +1,166 @@
+/* Map Container */
+.mapContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  overflow: hidden;
+}
+
+/* Leaflet Map */
+.map {
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Marker Styles */
+.marker {
+  backface-visibility: hidden;
+}
+
+.selectedMarker {
+  z-index: 1000;
+  filter: drop-shadow(0px 0px 8px color-mix(in srgb, var(--ai-color-accent-blue) 40%, transparent));
+  backface-visibility: hidden;
+}
+
+/* Popup Styles */
+.popup {
+  font-family: var(--ai-font-family);
+  min-width: 220px;
+  max-width: 320px;
+  padding: var(--ai-spacing-6) var(--ai-spacing-8);
+  background: var(--ai-color-bg-primary);
+  border-radius: var(--ai-radius-xl);
+  box-shadow: var(--ai-elevation-1-shadow);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.popup::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  width: 14px;
+  height: 14px;
+  background: var(--ai-color-bg-primary);
+  transform: translateX(-50%) rotate(45deg);
+  border-radius: 3px;
+  box-shadow: var(--ai-elevation-1-shadow);
+}
+
+.popupTitle {
+  font-size: var(--ai-font-size-body-emph);
+  line-height: var(--ai-line-height-body-emph);
+  font-weight: var(--ai-font-weight-body-emph);
+  letter-spacing: var(--ai-letter-spacing-body-emph);
+  color: var(--ai-color-text-primary);
+  margin: 0;
+}
+
+.popupDescription {
+  font-size: var(--ai-font-size-body-small);
+  line-height: var(--ai-line-height-body-small);
+  font-weight: var(--ai-font-weight-body-small);
+  letter-spacing: var(--ai-letter-spacing-body-small);
+  color: var(--ai-color-text-secondary);
+  margin: 0;
+}
+
+/* Minimal Leaflet container styling */
+:global(.leaflet-container) {
+  font-family: var(--ai-font-family);
+  background-color: var(--ai-color-bg-secondary);
+}
+
+/* Minimal popup wrapper - only positioning */
+:global(.leaflet-popup-content-wrapper) {
+  padding: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+:global(.leaflet-popup-tip) {
+  display: none; /* Hide Leaflet's default tip since we style our own */
+}
+
+/* Zoom controls styling */
+:global(.leaflet-control-zoom) {
+  border: none !important;
+  box-shadow: var(--ai-elevation-1-shadow);
+  background: var(--ai-color-bg-primary);
+  border-radius: var(--ai-radius-base);
+  overflow: hidden;
+}
+
+/* ========== DARK MODE OVERRIDES ========== */
+:global([data-theme='dark']) .popup {
+  background: var(--ai-color-bg-primary);
+  box-shadow: var(--ai-elevation-4-shadow);
+}
+
+:global([data-theme='dark']) .popup::after {
+  background: var(--ai-color-bg-primary);
+  box-shadow: var(--ai-elevation-3-shadow);
+}
+
+:global([data-theme='dark']) .popupTitle {
+  color: var(--ai-color-text-primary);
+}
+
+:global([data-theme='dark']) .popupDescription {
+  color: var(--ai-color-text-secondary);
+}
+
+:global([data-theme='dark']) :global(.leaflet-popup-content-wrapper) {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  position: static !important;
+}
+
+:global(.leaflet-popup-content) {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+:global(.leaflet-popup) {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+:global([data-theme='dark']) :global(.leaflet-popup-content-wrapper) {
+  padding: 0 !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+:global([data-theme='dark']) :global(.leaflet-popup-tip) {
+  display: none;
+}
+
+/* Hide Leaflet's default close button completely */
+:global(.leaflet-popup-close-button) {
+  display: none !important;
+}
+
+/* Hide Leaflet attribution */
+:global(.leaflet-control-attribution) {
+  display: none !important;
+}

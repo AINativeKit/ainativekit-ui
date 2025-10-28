@@ -1,0 +1,24 @@
+/* LocationCarousel Container */
+.locationCarousel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  pointer-events: none;
+  padding-bottom: 12px;
+}
+
+/* Make carousel interactive */
+.locationCarousel > * {
+  pointer-events: auto;
+}
+
+.carousel {
+  width: 100%;
+}
+
+/* Card Wrapper */
+.cardWrapper {
+  flex-shrink: 0;
+}

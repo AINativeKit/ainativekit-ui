@@ -1,0 +1,218 @@
+/* AlbumCard - Button Container */
+.albumCard {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  background: var(--ai-color-bg-primary);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.albumCard:focus-visible {
+  outline: 2px solid var(--ai-color-accent-blue);
+  outline-offset: 2px;
+  border-radius: var(--ai-radius-lg);
+}
+
+/* Loading State */
+.loadingCard {
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Error and Empty States */
+.errorCard,
+.emptyCard {
+  cursor: default;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Image Container */
+.imageContainer {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--ai-radius-lg);
+  box-shadow: var(--ai-elevation-2-shadow);
+  background: var(--ai-color-bg-secondary);
+}
+
+/* Image */
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Content - Title and Subtitle Below Image */
+.content {
+  padding: var(--ai-spacing-6) var(--ai-spacing-4) 0;
+}
+
+/* Title */
+.title {
+  font-size: var(--ai-font-size-body);
+  line-height: var(--ai-line-height-body);
+  font-weight: var(--ai-font-weight-body);
+  letter-spacing: var(--ai-letter-spacing-body);
+  color: var(--ai-color-text-primary);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Subtitle - Photo Count */
+.subtitle {
+  font-size: var(--ai-font-size-body-small);
+  line-height: var(--ai-line-height-body-small);
+  font-weight: var(--ai-font-weight-body-small);
+  letter-spacing: var(--ai-letter-spacing-body-small);
+  color: var(--ai-color-text-secondary);
+  margin-top: var(--ai-spacing-1);
+}
+
+/* Loading State Skeletons */
+.skeletonImage {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+}
+
+.skeletonTitle {
+  margin-bottom: var(--ai-spacing-2);
+}
+
+.skeletonSubtitle {
+  margin-top: var(--ai-spacing-1);
+}
+
+/* Error State Container */
+.errorContainer {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ai-spacing-8);
+  background: var(--ai-color-bg-secondary);
+  border-radius: var(--ai-radius-lg);
+}
+
+/* Empty State Container */
+.emptyContainer {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ai-spacing-8);
+  background: var(--ai-color-bg-secondary);
+  border-radius: var(--ai-radius-lg);
+  text-align: center;
+}
+
+.emptyTitle {
+  font-size: var(--ai-font-size-body-emph);
+  line-height: var(--ai-line-height-body-emph);
+  font-weight: var(--ai-font-weight-body-emph);
+  letter-spacing: var(--ai-letter-spacing-body-emph);
+  color: var(--ai-color-text-primary);
+  margin-bottom: var(--ai-spacing-2);
+}
+
+.emptyMessage {
+  font-size: var(--ai-font-size-body-small);
+  line-height: var(--ai-line-height-body-small);
+  font-weight: var(--ai-font-weight-body-small);
+  letter-spacing: var(--ai-letter-spacing-body-small);
+  color: var(--ai-color-text-secondary);
+}
+
+/* Badge */
+.badge {
+  position: absolute;
+  z-index: 1;
+  margin: var(--ai-spacing-4);
+}
+
+.badgeTopLeft {
+  top: 0;
+  left: 0;
+}
+
+.badgeTopRight {
+  top: 0;
+  right: 0;
+}
+
+/* Multi-line Text Support */
+.titleLines2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: normal;
+}
+
+.titleLines3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: normal;
+}
+
+.subtitleLines2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: normal;
+}
+
+.subtitleLines3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: normal;
+}
+
+/* Visually Hidden for Screen Readers */
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Dark Mode */
+:global([data-theme='dark']) .albumCard {
+  background: var(--ai-color-bg-primary);
+}
+
+:global([data-theme='dark']) .imageContainer {
+  background: var(--ai-color-bg-secondary);
+  box-shadow: var(--ai-elevation-2-shadow);
+}
+
+:global([data-theme='dark']) .title {
+  color: var(--ai-color-text-primary);
+}
+
+:global([data-theme='dark']) .subtitle {
+  color: var(--ai-color-text-secondary);
+}

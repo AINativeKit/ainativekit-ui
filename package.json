@@ -1,0 +1,38 @@
+{
+  "name": "@ainativekit/root",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "AI Native Kit - UI library for ChatGPT Apps SDK",
+  "scripts": {
+    "build": "pnpm --filter @ainativekit/ui build",
+    "test": "pnpm --filter @ainativekit/ui test",
+    "test:watch": "pnpm --filter @ainativekit/ui test:watch",
+    "test:coverage": "pnpm --filter @ainativekit/ui test:coverage",
+    "lint": "pnpm --filter @ainativekit/ui lint",
+    "lint:fix": "pnpm --filter @ainativekit/ui lint:fix",
+    "storybook": "pnpm --filter @ainativekit/ui storybook",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@types/leaflet": "^1.9.21",
+    "@types/react": "^18.3.26",
+    "@types/react-dom": "^18.3.7",
+    "eslint-plugin-local-rules": "^3.0.2",
+    "prettier": "^3.3.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.6.0"
+  },
+  "engines": {
+    "node": ">=20.19.2",
+    "pnpm": ">=9.0.0"
+  },
+  "dependencies": {
+    "framer-motion": "^12.23.24",
+    "leaflet": "^1.9.4",
+    "react-leaflet": "^4.2.1"
+  }
+}

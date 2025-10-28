@@ -1,0 +1,190 @@
+.sidebar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 20;
+  width: 340px; /* Design-specific sidebar width */
+  max-width: 75%;
+  pointer-events: auto;
+  display: none;
+}
+
+/* Show sidebar on desktop, hide on mobile */
+@media (min-width: 1024px) {
+  .sidebar {
+    display: block;
+  }
+}
+
+.scrollContainer {
+  position: relative;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: var(--ai-color-bg-primary);
+  color: var(--ai-color-text-primary);
+  padding: 0 var(--ai-spacing-4);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--ai-spacing-8) var(--ai-spacing-6);
+  position: sticky;
+  top: 0;
+  background-color: var(--ai-color-bg-primary);
+  z-index: 1;  font-size: var(--ai-font-size-body-small-emph);
+  line-height: var(--ai-line-height-body-small-emph);
+  font-weight: var(--ai-font-weight-body-small-emph);
+  letter-spacing: var(--ai-letter-spacing-body-small-emph);
+}
+
+.resultsCount {
+  font-weight: 500;
+}
+
+.settingsIcon {
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.settingsIcon:hover {
+  opacity: 1;
+}
+
+.list {
+  padding-bottom: var(--ai-spacing-8);
+}
+
+.listItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ai-spacing-6);
+  width: 100%;
+  padding: var(--ai-spacing-6);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+  text-align: left;
+  border-radius: 0;
+}
+
+.listItem:hover {
+  background-color: var(--ai-color-bg-tertiary);
+  border-radius: var(--ai-radius-xl);
+}
+
+.listItem.selected {
+  background-color: var(--ai-color-bg-secondary);
+  border-radius: var(--ai-radius-xl);
+}
+
+.thumbnail {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: var(--ai-radius-base);
+  object-fit: cover;
+}
+
+.itemContent {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ai-spacing-2);
+}
+
+.itemTitle {
+  font-size: var(--ai-font-size-body-small-emph);
+  line-height: var(--ai-line-height-body-small-emph);
+  font-weight: var(--ai-font-weight-body-small-emph);
+  letter-spacing: var(--ai-letter-spacing-body-small-emph);
+  color: var(--ai-color-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.itemSubtitle {
+  font-size: var(--ai-font-size-caption);
+  line-height: var(--ai-line-height-caption);
+  font-weight: var(--ai-font-weight-caption);
+  letter-spacing: var(--ai-letter-spacing-caption);
+  color: var(--ai-color-text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.itemFeatures {
+  display: flex;
+  align-items: center;
+  gap: var(--ai-spacing-2);  font-size: var(--ai-font-size-caption);
+  line-height: var(--ai-line-height-caption);
+  font-weight: var(--ai-font-weight-caption);
+  letter-spacing: var(--ai-letter-spacing-caption);
+  color: var(--ai-color-text-secondary);
+  flex-wrap: wrap;
+}
+
+.itemFeature {
+  display: flex;
+  align-items: center;
+  gap: var(--ai-spacing-1);
+}
+
+.featureIcon {
+  flex-shrink: 0;
+}
+
+.featureSeparator {
+  color: var(--ai-color-text-tertiary);
+  margin: 0 var(--ai-spacing-1);
+}
+
+.divider {
+  height: 1px;
+  background-color: var(--ai-color-border-light);
+  margin: 0 var(--ai-spacing-6);
+}
+
+.bottomFade {
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 36px;
+  z-index: 10;
+}
+
+.fadeGradient {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, currentColor 15%, transparent),
+    transparent
+  );
+  border-bottom: 1px solid var(--ai-color-border-heavy);
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--ai-color-text-primary) var(--ai-opacity-muted), transparent) 25%,
+    color-mix(in srgb, var(--ai-color-text-primary) var(--ai-opacity-muted), transparent) 75%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--ai-color-text-primary) var(--ai-opacity-muted), transparent) 25%,
+    color-mix(in srgb, var(--ai-color-text-primary) var(--ai-opacity-muted), transparent) 75%,
+    transparent 100%
+  );
+}

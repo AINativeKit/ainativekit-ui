@@ -1,0 +1,272 @@
+/* Base inspector styles */
+.inspector {
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+}
+
+/* Modal variant (mobile default) */
+.inspector.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Sidebar variant (desktop) */
+.inspector.sidebar {
+  position: absolute;
+  width: 356px;
+  right: calc(var(--ai-spacing-4) + var(--ai-spacing-6));
+  top: calc(var(--ai-spacing-4) + var(--ai-spacing-6));
+  bottom: var(--ai-spacing-6);
+  left: auto;
+  max-height: none;
+  z-index: 25;
+}
+
+/* Responsive overrides - media queries take precedence over JS classes */
+
+/* Backdrop for mobile modal */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  pointer-events: auto;
+}
+
+.closeButton {
+  position: absolute;
+  top: var(--ai-spacing-6);
+  right: var(--ai-spacing-6);
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  padding: var(--ai-spacing-4);
+  background-color: var(--ai-color-bg-primary);
+  box-shadow: var(--ai-elevation-2-shadow);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.closeButton:hover {
+  background-color: var(--ai-color-bg-secondary);
+}
+
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--ai-color-bg-primary);
+  color: var(--ai-color-text-primary);
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Modal content styling */
+.inspector.modal .content {
+  width: min(90vw, 356px);
+  max-width: 356px;
+  max-height: min(85vh, 600px);
+  border-radius: var(--ai-radius-xl);
+  border: 1px solid var(--ai-color-border-default);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Sidebar content styling */
+.inspector.sidebar .content {
+  width: 100%;
+  height: auto;
+  max-width: none;
+  max-height: calc(100vh - 60px);
+  border-radius: var(--ai-radius-xl);
+  border: none;
+}
+
+.scrollableContent {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.imageContainer {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detailsSection {
+  padding: var(--ai-spacing-8) var(--ai-spacing-10) 0;
+  margin-bottom: var(--ai-spacing-12);
+}
+
+.title {
+  font-size: var(--ai-font-size-h2);
+  line-height: var(--ai-line-height-h2);
+  font-weight: var(--ai-font-weight-h2);
+  letter-spacing: var(--ai-letter-spacing-h2);
+  margin-bottom: var(--ai-spacing-4);
+  word-wrap: break-word;
+  color: var(--ai-color-text-primary);
+}
+
+.subtitle {
+  font-size: var(--ai-font-size-body-small);
+  line-height: var(--ai-line-height-body-small);
+  font-weight: var(--ai-font-weight-body-small);
+  letter-spacing: var(--ai-letter-spacing-body-small);
+  margin-bottom: var(--ai-spacing-6);
+  color: var(--ai-color-text-secondary);
+}
+
+.features {
+  display: flex;
+  align-items: center;
+  gap: var(--ai-spacing-2);
+  font-size: var(--ai-font-size-body-small);
+  line-height: var(--ai-line-height-body-small);
+  font-weight: var(--ai-font-weight-body-small);
+  letter-spacing: var(--ai-letter-spacing-body-small);
+  margin-top: var(--ai-spacing-2);
+  color: var(--ai-color-text-secondary);
+  flex-wrap: wrap;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: var(--ai-spacing-1);
+}
+
+.featureIcon {
+  opacity: 0.8;
+}
+
+.separator {
+  margin: 0 var(--ai-spacing-2);
+  color: var(--ai-color-text-secondary);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--ai-spacing-6);
+  margin-top: var(--ai-spacing-8);
+  font-weight: var(--ai-font-weight-button);
+}
+
+.primaryButton {
+  /* Primary Button - using Button component tokens */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ai-spacing-4);
+  min-width: 88px;
+  height: 44px;
+  padding: 0 var(--ai-spacing-12);  font-size: var(--ai-font-size-button);
+  line-height: var(--ai-line-height-button);
+  font-weight: var(--ai-font-weight-button);
+  letter-spacing: var(--ai-letter-spacing-button);
+  border-radius: 22px;
+  border: none;
+  background-color: var(--ai-color-accent-blue);
+  color: #ffffff; /* White text on colored background */
+
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, opacity 0.15s ease, transform 0.1s ease;
+}
+
+.primaryButton:not(:disabled):hover {
+  opacity: 0.9;
+}
+
+.primaryButton:not(:disabled):active {
+  transform: scale(0.98);
+  opacity: 1;
+}
+
+.primaryButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.secondaryButton {
+  /* Secondary Button - using Button component tokens */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ai-spacing-4);
+  min-width: 88px;
+  height: 44px;
+  padding: 0 var(--ai-spacing-12);
+  font-size: var(--ai-font-size-button);
+  line-height: var(--ai-line-height-button);
+  font-weight: var(--ai-font-weight-button);
+  letter-spacing: var(--ai-letter-spacing-button);
+  border-radius: 22px;
+  border: 1.5px solid var(--ai-color-border-heavy);
+  background-color: transparent;
+  color: var(--ai-color-text-primary);
+
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease, transform 0.1s ease;
+}
+
+.secondaryButton:not(:disabled):hover {
+  border-color: var(--ai-color-text-secondary);
+  background-color: var(--ai-color-bg-secondary);
+}
+
+.secondaryButton:not(:disabled):active {
+  border-color: var(--ai-color-text-primary);
+  background-color: var(--ai-color-bg-tertiary);
+  transform: scale(0.98);
+}
+
+.secondaryButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.description {
+  font-size: var(--ai-font-size-body);
+  line-height: var(--ai-line-height-body);
+  font-weight: var(--ai-font-weight-body);
+  letter-spacing: var(--ai-letter-spacing-body);
+  margin-top: var(--ai-spacing-8);
+  color: var(--ai-color-text-primary);
+}

@@ -1,0 +1,32 @@
+declare const styles: {
+  readonly locationCard: string;
+  readonly selected: string;
+  readonly loadingCard: string;
+  readonly errorCard: string;
+  readonly errorContainer: string;
+  readonly emptyCard: string;
+  readonly emptyContainer: string;
+  readonly emptyTitle: string;
+  readonly emptyMessage: string;
+  readonly thumbnailContainer: string;
+  readonly thumbnail: string;
+  readonly skeletonThumbnail: string;
+  readonly skeletonTitle: string;
+  readonly skeletonSubtitle: string;
+  readonly badge: string;
+  readonly badgeChip: string;
+  readonly content: string;
+  readonly title: string;
+  readonly titleLines2: string;
+  readonly titleLines3: string;
+  readonly subtitle: string;
+  readonly subtitleLines2: string;
+  readonly subtitleLines3: string;
+  readonly features: string;
+  readonly feature: string;
+  readonly featureIcon: string;
+  readonly separator: string;
+  readonly visuallyHidden: string;
+};
+
+export default styles;
