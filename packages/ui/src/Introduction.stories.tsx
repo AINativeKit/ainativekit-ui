@@ -710,36 +710,16 @@ const IntroductionPage = () => {
           <strong>Explore next:</strong> Check the Storybook menu for:
           <ul style={{ margin: '8px 0', paddingLeft: '20px' }}>
             <li>
-              <strong>
-                <a href="?path=/story/gallery" style={{ color: 'var(--ai-color-text-primary)', textDecoration: 'underline' }}>
-                  Gallery
-                </a>
-              </strong>
-              : Complete interactive examples and real-world use cases
+              <strong>Gallery</strong>: Complete interactive examples and real-world use cases
             </li>
             <li>
-              <strong>
-                <a href="?path=/story/design-tokens" style={{ color: 'var(--ai-color-text-primary)', textDecoration: 'underline' }}>
-                  Design Tokens
-                </a>
-              </strong>
-              : Customizable colors, typography, spacing, and elevation
+              <strong>Design Tokens</strong>: Customizable colors, typography, spacing, and elevation
             </li>
             <li>
-              <strong>
-                <a href="?path=/story/primitive-components" style={{ color: 'var(--ai-color-text-primary)', textDecoration: 'underline' }}>
-                  Core Components
-                </a>
-              </strong>
-              : Essential building blocks - Button, Icon, Badge, Chip, Alert, Skeleton
+              <strong>Core Components</strong>: Essential building blocks - Button, Icon, Badge, Chip, Alert, Skeleton
             </li>
             <li>
-              <strong>
-                <a href="?path=/story/composed-components" style={{ color: 'var(--ai-color-text-primary)', textDecoration: 'underline' }}>
-                  Patterns
-                </a>
-              </strong>
-              : Pre-built layouts - Card, Carousel, List, Album, Map
+              <strong>Patterns</strong>: Pre-built layouts - Card, Carousel, List, Album, Map
             </li>
           </ul>
         </div>
