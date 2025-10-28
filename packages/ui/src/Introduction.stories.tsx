@@ -742,6 +742,11 @@ const IntroductionPage = () => {
               : Pre-built layouts - Card, Carousel, List, Album, Map
             </li>
           </ul>
+        </div>
+        <div style={assistantParagraphStyle}>
+          <strong>We're open source! 🌟</strong> Check us out on <a href="https://github.com/ainativekit/ainativekit-ui" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ai-color-text-primary)', textDecoration: 'underline' }}>GitHub</a> and find us on <a href="https://www.npmjs.com/package/@ainativekit/ui" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ai-color-text-primary)', textDecoration: 'underline' }}>npm</a>. Star us, contribute, or report issues - we'd love your feedback!
+        </div>
+        <div style={{ ...assistantFooterStyle, marginTop: '12px' }}>
           Happy building! 🎉
         </div>
         <ActionButtons />
