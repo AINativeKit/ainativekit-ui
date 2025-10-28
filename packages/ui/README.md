@@ -5,13 +5,13 @@
 [![npm version](https://img.shields.io/npm/v/@ainativekit/ui.svg)](https://www.npmjs.com/package/@ainativekit/ui)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-%233178C6.svg?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Storybook](https://img.shields.io/badge/Storybook-%23FF4785.svg?logo=storybook&logoColor=white)](https://ainativekit.github.io/ainativekit-ui)
+[![Storybook](https://img.shields.io/badge/Storybook-%23FF4785.svg?logo=storybook&logoColor=white)](https://www.ainativekit.com)
 
 ## 🔍 Overview
 
 AI Native Kit UI bridges the gap between structured JSON outputs from your MCP tools and beautiful, accessible UI components tailored for ChatGPT apps. Designed specifically for the [ChatGPT Apps SDK](https://developers.openai.com/apps-sdk), this React component library lets you map JSON data directly to interactive, Figma-aligned UI elements, no manual wiring required. Build rich ChatGPT experiences faster with production-ready components, example patterns, and a comprehensive design system.
 
-**[🎪 See Live Demos in Our Storybook →](https://ainativekit.github.io/ainativekit-ui/?path=/docs/introduction--docs)**
+**[🎪 See Live Demos in Our Storybook →](https://www.ainativekit.com)**
 
 ## 💡 Why You’ll Love It
 
