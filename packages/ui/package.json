@@ -12,21 +12,6 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./primitives": {
-      "types": "./dist/primitives/index.d.ts",
-      "import": "./dist/primitives/index.js",
-      "require": "./dist/primitives/index.cjs"
-    },
-    "./composed": {
-      "types": "./dist/composed/index.d.ts",
-      "import": "./dist/composed/index.js",
-      "require": "./dist/composed/index.cjs"
-    },
-    "./patterns": {
-      "types": "./dist/patterns/index.d.ts",
-      "import": "./dist/patterns/index.js",
-      "require": "./dist/patterns/index.cjs"
-    },
     "./tokens": {
       "types": "./dist/tokens/index.d.ts",
       "import": "./dist/tokens/index.js",
@@ -42,7 +27,8 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "keywords": [
     "chatgpt",
