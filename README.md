@@ -9,6 +9,8 @@
 [![Storybook](https://img.shields.io/badge/Storybook-%23FF4785.svg?logo=storybook&logoColor=white)](https://www.ainativekit.com)
 [![GitHub stars](https://img.shields.io/github/stars/AINativeKit/ainativekit-ui?style=social)](https://github.com/AINativeKit/ainativekit-ui)
 
+![AINativeKit UI demo](./assets/ainativekit-ui-demo.gif)
+
 <p align="center">
   <b><a href="https://www.ainativekit.com">🎪 Live Storybook</a></b> ·
   <b><a href="#-quick-start">⚡ Quick Start</a></b> ·
@@ -16,18 +18,14 @@
   <b><a href="#-components">🧱 Components</a></b>
 </p>
 
----
-
 ## 🔍 Overview
 
-**AI Native Kit UI** bridges the gap between **structured MCP JSON** and **beautiful, accessible UI** for ChatGPT apps. Designed for the **Apps SDK**, it maps model/tool results directly to **interactive, Figma‑aligned components**—so you stop hand‑wiring UI and start shipping.
+**AI Native Kit UI** bridges the gap between **structured MCP JSON** and **beautiful, accessible UI** for ChatGPT apps. Designed for the **Apps SDK**, it maps model/tool results directly to **interactive, Figma‑aligned components**, so you stop hand‑wiring UI and start shipping.
 
 - ✨ **What you get:** Production‑ready React components, example patterns, hooks for Apps SDK, and a rich design‑token system.
 - 🧭 **Who it’s for:** Developers building **ChatGPT Apps** who want consistent, on‑brand UI without reinventing the wheel.
 
 > **Why now?** ChatGPT Apps (via the Apps SDK) expose results + UI metadata. This kit renders those results as native widgets with minimal code.
-
----
 
 ## 💡 Why You’ll Love It
 
@@ -39,8 +37,6 @@
 | Accessibility concerns | **WCAG 2.1 AA** mindful components with ARIA support |
 | Poor developer experience | 100% **TypeScript**, IntelliSense, Storybook docs |
 
----
-
 ## 🚀 Core Features
 
 - 🎯 **Apps SDK Optimized:** Components designed to work seamlessly with ChatGPT Apps SDK
@@ -51,8 +47,6 @@
 - 🧩 **Production‑Ready Blocks:** Cards, lists, carousel, album, map, and more
 - 🪝 **OpenAI Hooks:** `useOpenAiGlobal`, `useWidgetState`, `useMaxHeight`
 - 📦 **Tree‑Shakeable & Type‑Safe:** Import only what you need
-
----
 
 ## ⚡ Quick Start
 
@@ -98,9 +92,7 @@ export function WeatherWidget() {
 }
 ```
 
-> 📚 Explore many more examples in **Storybook** → https://www.ainativekit.com
-
----
+> 📚 Explore many more examples in **Storybook** -> https://www.ainativekit.com
 
 ## 🧪 Examples
 
@@ -112,15 +104,11 @@ export function WeatherWidget() {
 
 > Tip: Copy any example from Storybook into your app and tweak the props.
 
----
-
 ## 🧱 Components
 
 **Core:** `Button` (primary/secondary/tertiary/ghost) · `Icon` · `Badge` · `Chip` · `Alert` · `Skeleton` · `Card`
 
 **Patterns:** Card variants · Carousel · List · Album · Map
-
----
 
 ## 🎨 Design System
 
@@ -150,8 +138,6 @@ import { SettingsCog, Terminal, Star } from '@ainativekit/ui/icons';
 <Icon name="settings-cog" size="lg" />
 ```
 
----
-
 ## 🪝 OpenAI Hooks
 
 Utilities to integrate with the **ChatGPT Apps SDK** runtime.
@@ -167,8 +153,6 @@ function MyChatGPTWidget() {
   return <div style={{ maxHeight }}>{/* your widget */}</div>;
 }
 ```
-
----
 
 ## 🧰 Development
 
@@ -190,16 +174,12 @@ pnpm lint             # lint
 └── /styles         # CSS styles
 ```
 
----
-
 ## ✅ Compatibility
 
 - **React** ≥ 18
 - **TypeScript** ≥ 5 (recommended)
 - **ChatGPT Apps SDK** (preview)
 - Works with modern bundlers (Vite, Next.js, etc.)
-
----
 
 ## 🗺️ Roadmap (high‑level)
 
@@ -210,19 +190,15 @@ pnpm lint             # lint
 
 Have ideas? Please open an issue or PR!
 
----
-
 ## 🤝 Contributing
 
 Contributions welcome! Please:
 
 1. **Star** the repo to support visibility 🙌
 2. **Open an issue** to discuss new features/bugs
-3. **Fork** → create a feature branch → open a **PR**
+3. **Fork** -> create a feature branch -> open a **PR**
 
 See [`CONTRIBUTING.md`](./CONTRIBUTING.md) (coming soon) for guidelines.
-
----
 
 ## 🔗 Links
 
@@ -231,13 +207,9 @@ See [`CONTRIBUTING.md`](./CONTRIBUTING.md) (coming soon) for guidelines.
 - **GitHub:** https://github.com/AINativeKit/ainativekit-ui
 - **Issues:** https://github.com/AINativeKit/ainativekit-ui/issues
 
----
-
 ## 🙏 Acknowledgments
 
 Built for the **OpenAI Apps SDK** community. Inspired by ChatGPT App examples, OpenAI Figma design, Apple HIG, Material UI, Chakra UI, and Ant Design.
-
----
 
 **Made with ❤️ by and for ChatGPT App developers.**
 
