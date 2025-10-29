@@ -7,7 +7,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-%233178C6.svg?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Storybook](https://img.shields.io/badge/Storybook-%23FF4785.svg?logo=storybook&logoColor=white)](https://www.ainativekit.com)
-[![GitHub stars](https://img.shields.io/github/stars/AINativeKit/ainativekit-ui?style=social)](https://github.com/AINativeKit/ainativekit-ui)
 
 ![AINativeKit UI demo](https://raw.githubusercontent.com/AINativeKit/ainativekit-ui/main/assets/ainativekit-ui-demo.gif)
 
