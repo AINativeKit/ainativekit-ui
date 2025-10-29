@@ -11,7 +11,7 @@
 
 ![AINativeKit UI demo](./assets/ainativekit-ui-demo.gif)
 
-<p align="center">
+<p>
   <b><a href="https://www.ainativekit.com">🎪 Live Storybook</a></b> ·
   <b><a href="#-quick-start">⚡ Quick Start</a></b> ·
   <b><a href="#-examples">🧪 Examples</a></b> ·
