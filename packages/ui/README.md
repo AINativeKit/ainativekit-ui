@@ -9,7 +9,7 @@
 [![Storybook](https://img.shields.io/badge/Storybook-%23FF4785.svg?logo=storybook&logoColor=white)](https://www.ainativekit.com)
 [![GitHub stars](https://img.shields.io/github/stars/AINativeKit/ainativekit-ui?style=social)](https://github.com/AINativeKit/ainativekit-ui)
 
-![AINativeKit UI demo](./assets/ainativekit-ui-demo.gif)
+![AINativeKit UI demo](https://raw.githubusercontent.com/AINativeKit/ainativekit-ui/main/assets/ainativekit-ui-demo.gif)
 
 <p>
   <b><a href="https://www.ainativekit.com">🎪 Live Storybook</a></b> ·
