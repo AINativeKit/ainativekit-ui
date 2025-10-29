@@ -421,6 +421,19 @@ const IntroductionPage = () => {
   const [selectedPlaces, setSelectedPlaces] = useState<string[]>([]);
   const [selectedLocationId, setSelectedLocationId] = useState<string | undefined>(undefined);
   const [isMapFullscreen, setIsMapFullscreen] = useState(false);
+  const scrollPositionRef = useState({ current: 0 })[0];
+
+  const handleExitFullscreen = () => {
+    setIsMapFullscreen(false);
+    requestAnimationFrame(() => {
+      window.scrollTo(0, scrollPositionRef.current);
+    });
+  };
+
+  const handleEnterFullscreen = () => {
+    scrollPositionRef.current = window.scrollY;
+    setIsMapFullscreen(true);
+  };
 
   if (isMapFullscreen) {
     return (
@@ -430,7 +443,7 @@ const IntroductionPage = () => {
             locations={sampleLocations}
             selectedId={selectedLocationId}
             onLocationSelect={(id) => setSelectedLocationId(id)}
-            onCollapse={() => setIsMapFullscreen(false)}
+            onCollapse={handleExitFullscreen}
             defaultCenter={[37.7949, -122.4094]}
             defaultZoom={13}
           />
@@ -659,7 +672,13 @@ const IntroductionPage = () => {
               selectedId={selectedLocationId}
               onLocationSelect={setSelectedLocationId}
               isFullscreen={isMapFullscreen}
-              onToggleFullscreen={setIsMapFullscreen}
+              onToggleFullscreen={(fullscreen) => {
+                if (fullscreen) {
+                  handleEnterFullscreen();
+                } else {
+                  handleExitFullscreen();
+                }
+              }}
               defaultCenter={[37.7949, -122.4094]}
               defaultZoom={13}
             />
