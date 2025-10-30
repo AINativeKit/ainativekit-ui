@@ -52,11 +52,11 @@ const AlertShowcaseComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ 
-          display: 'grid', 
+        <div style={{
+          display: 'grid',
           gridTemplateColumns: '1fr',
-          gap: '16px',
-          maxWidth: '600px'
+          gap: '12px',
+          maxWidth: '400px'
         }}>
           <Alert 
             variant="error"
@@ -96,11 +96,11 @@ const AlertShowcaseComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ 
-          display: 'grid', 
+        <div style={{
+          display: 'grid',
           gridTemplateColumns: '1fr',
-          gap: '16px',
-          maxWidth: '600px'
+          gap: '12px',
+          maxWidth: '400px'
         }}>
           <Alert 
             variant="error"
@@ -133,11 +133,11 @@ const AlertShowcaseComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ 
-          display: 'grid', 
+        <div style={{
+          display: 'grid',
           gridTemplateColumns: '1fr',
-          gap: '16px',
-          maxWidth: '600px'
+          gap: '12px',
+          maxWidth: '400px'
         }}>
           <Alert 
             variant="error"
@@ -237,11 +237,11 @@ const AlertShowcaseComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ 
-          display: 'grid', 
+        <div style={{
+          display: 'grid',
           gridTemplateColumns: '1fr',
-          gap: '16px',
-          maxWidth: '600px'
+          gap: '12px',
+          maxWidth: '400px'
         }}>
           <Alert 
             variant="error"
@@ -278,7 +278,7 @@ const AlertShowcaseComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ maxWidth: '600px' }}>
+        <div style={{ maxWidth: '400px' }}>
           <Alert 
             variant="info"
             icon={

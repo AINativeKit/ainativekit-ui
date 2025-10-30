@@ -2,6 +2,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ImageCard } from './ImageCard';
 import { PropsTable } from '../../tokens/PropsTable';
+import { codeBlockStyles } from '../storybook/codeBlockStyles';
 
 const meta: Meta<typeof ImageCard> = {
   title: 'Composed Components/Cards/Image Cards',
@@ -506,14 +507,7 @@ const ImageCardsComponent: React.FC = () => {
 
         <details style={{ marginBottom: '16px', cursor: 'pointer' }}>
           <summary style={{ fontWeight: 600, marginBottom: '12px' }}>Basic ImageCard</summary>
-          <pre style={{ 
-            background: 'var(--ai-color-surface-secondary)', 
-            padding: '16px', 
-            borderRadius: '8px', 
-            overflow: 'auto',
-            fontSize: '13px',
-            lineHeight: '1.5'
-          }}>{`import { ImageCard } from '@ainativekit/ui';
+          <pre style={codeBlockStyles.primary}>{`import { ImageCard } from '@ainativekit/ui';
 
 function Component() {
   return (
@@ -528,14 +522,7 @@ function Component() {
 
         <details style={{ marginBottom: '16px', cursor: 'pointer' }}>
           <summary style={{ fontWeight: 600, marginBottom: '12px' }}>With Action Button</summary>
-          <pre style={{ 
-            background: 'var(--ai-color-surface-secondary)', 
-            padding: '16px', 
-            borderRadius: '8px', 
-            overflow: 'auto',
-            fontSize: '13px',
-            lineHeight: '1.5'
-          }}>{`<ImageCard
+          <pre style={codeBlockStyles.primary}>{`<ImageCard
   image="/image.jpg"
   title="Title"
   subtitle="Description text"
@@ -547,14 +534,7 @@ function Component() {
 
         <details style={{ marginBottom: '16px', cursor: 'pointer' }}>
           <summary style={{ fontWeight: 600, marginBottom: '12px' }}>Image Position Variations</summary>
-          <pre style={{ 
-            background: 'var(--ai-color-surface-secondary)', 
-            padding: '16px', 
-            borderRadius: '8px', 
-            overflow: 'auto',
-            fontSize: '13px',
-            lineHeight: '1.5'
-          }}>{`// Center position (default)
+          <pre style={codeBlockStyles.primary}>{`// Center position (default)
 <ImageCard imagePosition="center" {...props} />
 
 // Top position  
@@ -566,14 +546,7 @@ function Component() {
 
         <details style={{ marginBottom: '16px', cursor: 'pointer' }}>
           <summary style={{ fontWeight: 600, marginBottom: '12px' }}>Loading & Error States</summary>
-          <pre style={{ 
-            background: 'var(--ai-color-surface-secondary)', 
-            padding: '16px', 
-            borderRadius: '8px', 
-            overflow: 'auto',
-            fontSize: '13px',
-            lineHeight: '1.5'
-          }}>{`// Loading state
+          <pre style={codeBlockStyles.primary}>{`// Loading state
 <ImageCard loading {...props} />
 
 // Error state
@@ -588,14 +561,7 @@ function Component() {
 
         <details style={{ marginBottom: '16px', cursor: 'pointer' }}>
           <summary style={{ fontWeight: 600, marginBottom: '12px' }}>With Accessibility</summary>
-          <pre style={{ 
-            background: 'var(--ai-color-surface-secondary)', 
-            padding: '16px', 
-            borderRadius: '8px', 
-            overflow: 'auto',
-            fontSize: '13px',
-            lineHeight: '1.5'
-          }}>{`// Using object format for alt text
+          <pre style={codeBlockStyles.primary}>{`// Using object format for alt text
 <ImageCard
   image={{
     src: '/image.jpg',
@@ -609,14 +575,7 @@ function Component() {
 
         <details style={{ cursor: 'pointer' }}>
           <summary style={{ fontWeight: 600, marginBottom: '12px' }}>Custom Sizing</summary>
-          <pre style={{ 
-            background: 'var(--ai-color-surface-secondary)', 
-            padding: '16px', 
-            borderRadius: '8px', 
-            overflow: 'auto',
-            fontSize: '13px',
-            lineHeight: '1.5'
-          }}>{`// Custom aspect ratio and min-height
+          <pre style={codeBlockStyles.primary}>{`// Custom aspect ratio and min-height
 <ImageCard
   image="/image.jpg"
   title="16:9 Wide Card"
@@ -818,8 +777,8 @@ function Component() {
           <div style={{ background: 'var(--ai-color-bg-secondary)', border: '1px solid var(--ai-color-border-default)', borderRadius: '8px', padding: '16px' }}>
             <strong style={{ display: 'block', marginBottom: '8px', color: 'var(--ai-color-text-primary)' }}>✅ Badge Best Practices</strong>
             <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '13px', color: 'var(--ai-color-text-secondary)', lineHeight: '1.6' }}>
-              <li>Use <code style={{ background: 'var(--ai-color-bg-tertiary)', padding: '1px 4px', borderRadius: '3px' }}>badgeVariant="filled"</code> for maximum contrast on images</li>
-              <li>Use <code style={{ background: 'var(--ai-color-bg-tertiary)', padding: '1px 4px', borderRadius: '3px' }}>badgeVariant="neutral"</code> for subtle status indicators</li>
+              <li>Use <code style={{background: "var(--ai-color-bg-tertiary)", padding: "2px 6px", borderRadius: "4px", fontFamily: "monospace", fontSize: "12px"}}>badgeVariant="filled"</code> for maximum contrast on images</li>
+              <li>Use <code style={{background: "var(--ai-color-bg-tertiary)", padding: "2px 6px", borderRadius: "4px", fontFamily: "monospace", fontSize: "12px"}}>badgeVariant="neutral"</code> for subtle status indicators</li>
               <li>Avoid transparent variants (default, success, warning, error) on images due to low contrast</li>
               <li>Keep badge text short: "New", "Sale", "Featured" or single characters</li>
               <li>Use numeric badges sparingly (e.g., counts, ratings)</li>
@@ -851,7 +810,7 @@ function Component() {
           <div style={{ background: 'var(--ai-color-bg-secondary)', border: '1px solid var(--ai-color-border-default)', borderRadius: '8px', padding: '16px' }}>
             <strong style={{ display: 'block', marginBottom: '8px', color: 'var(--ai-color-text-primary)' }}>✅ Interaction Patterns</strong>
             <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '13px', color: 'var(--ai-color-text-secondary)', lineHeight: '1.6' }}>
-              <li>Use <code style={{ background: 'var(--ai-color-bg-tertiary)', padding: '1px 4px', borderRadius: '3px' }}>interactive</code> for hover effects</li>
+              <li>Use <code style={{background: "var(--ai-color-bg-tertiary)", padding: "2px 6px", borderRadius: "4px", fontFamily: "monospace", fontSize: "12px"}}>interactive</code> for hover effects</li>
               <li>Action buttons for primary interactions (add, favorite)</li>
               <li>Card click for navigation or selection</li>
               <li>Combine with loading and error states for better UX</li>

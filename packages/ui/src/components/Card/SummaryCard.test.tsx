@@ -551,6 +551,100 @@ describe('SummaryCard', () => {
     });
   });
 
+  describe('Metadata', () => {
+    it('renders metadata items when provided', () => {
+      render(
+        <SummaryCard
+          title="Article"
+          metadata={[
+            { label: '10 min read' },
+            { label: 'October 30, 2025' }
+          ]}
+        />
+      );
+      expect(screen.getByText('10 min read')).toBeInTheDocument();
+      expect(screen.getByText('October 30, 2025')).toBeInTheDocument();
+    });
+
+    it('renders metadata with icons', () => {
+      render(
+        <SummaryCard
+          title="Article"
+          metadata={[
+            { icon: 'clock', label: '10 min read' },
+            { icon: 'calendar-today', label: 'October 30, 2025' }
+          ]}
+        />
+      );
+      expect(screen.getByText('10 min read')).toBeInTheDocument();
+      expect(screen.getByText('October 30, 2025')).toBeInTheDocument();
+    });
+
+    it('does not render metadata section when metadata is empty', () => {
+      const { container } = render(<SummaryCard title="Article" metadata={[]} />);
+      // Check that metadata section is not present
+      expect(screen.getByText('Article')).toBeInTheDocument();
+    });
+
+    it('does not render metadata section when metadata is not provided', () => {
+      const { container } = render(<SummaryCard title="Article" />);
+      expect(screen.getByText('Article')).toBeInTheDocument();
+    });
+
+    it('renders metadata after description', () => {
+      render(
+        <SummaryCard
+          title="Article"
+          description="Test description"
+          metadata={[
+            { label: '5 min read' }
+          ]}
+        />
+      );
+      expect(screen.getByText('Test description')).toBeInTheDocument();
+      expect(screen.getByText('5 min read')).toBeInTheDocument();
+    });
+
+    it('renders multiple metadata items with proper spacing', () => {
+      render(
+        <SummaryCard
+          title="Article"
+          metadata={[
+            { icon: 'clock', label: '10 min read' },
+            { icon: 'calendar-today', label: 'October 30, 2025' },
+            { icon: 'user', label: 'John Doe' }
+          ]}
+        />
+      );
+      expect(screen.getByText('10 min read')).toBeInTheDocument();
+      expect(screen.getByText('October 30, 2025')).toBeInTheDocument();
+      expect(screen.getByText('John Doe')).toBeInTheDocument();
+    });
+
+    it('renders article card with metadata and button', () => {
+      const handleClick = vi.fn();
+      render(
+        <SummaryCard
+          images="article.jpg"
+          title="Building AI-Native UIs"
+          description="Build modern, accessible UI with AINativeKit."
+          metadata={[
+            { icon: 'clock', label: '10 min read' },
+            { icon: 'calendar-today', label: 'October 30, 2025' }
+          ]}
+          buttonText="Explore Docs"
+          onButtonClick={handleClick}
+        />
+      );
+
+      expect(screen.getByText('Building AI-Native UIs')).toBeInTheDocument();
+      expect(screen.getByText('Build modern, accessible UI with AINativeKit.')).toBeInTheDocument();
+      expect(screen.getByText('10 min read')).toBeInTheDocument();
+      expect(screen.getByText('October 30, 2025')).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: 'Explore Docs' })).toBeInTheDocument();
+    });
+  });
+
   describe('Image Callbacks', () => {
     it('calls onImageLoad when single image loads', () => {
       const handleLoad = vi.fn();

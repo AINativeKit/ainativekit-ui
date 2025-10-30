@@ -168,24 +168,26 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) =
       data-testid={testId}
       {...rest}
     >
-      {displayIcon && (
-        <div className={styles.alert__icon}>
-          {displayIcon}
-        </div>
-      )}
-      
-      <div className={styles.alert__content}>
+      <div className={styles.alert__header}>
+        {displayIcon && (
+          <div className={styles.alert__icon}>
+            {displayIcon}
+          </div>
+        )}
+
         <h3 className={styles.alert__title}>
           {displayTitle}
         </h3>
-        
-        {message && (
+      </div>
+
+      {message && (
+        <div className={styles.alert__content}>
           <p className={styles.alert__message}>
             {message}
           </p>
-        )}
-      </div>
-      
+        </div>
+      )}
+
       {onAction && (
         <div className={styles.alert__actions}>
           <Button

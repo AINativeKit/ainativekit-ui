@@ -59,32 +59,76 @@ pnpm add @ainativekit/ui
 yarn add @ainativekit/ui
 ```
 
-### 2) Use: turn MCP JSON into UI
+### 2) Turn MCP JSON into UI
 
 ```tsx
-import { Card, Badge } from '@ainativekit/ui';
+import { SummaryCard } from '@ainativekit/ui';
 import '@ainativekit/ui/styles';
 
-// Example MCP/tool JSON (simplified)
-const weatherData = {
-  city: 'San Francisco',
-  temp: '72°F',
-  condition: 'Sunny',
-  image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4'
+// Example MCP/tool JSON from your backend
+const restaurantData = {
+  title: "Little Nona's",
+  subtitle: "1427 Via Campania",
+  rating: "9.2",
+  description: "A tiny, brick-walled trattoria tucked down a side street. The windows glow warm gold at night.",
+  images: [ // Display up to 4 images
+    { src: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400", alt: "Pizza" },
+    { src: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400", alt: "Pasta" },
+    { src: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400", alt: "Salad" }
+  ]
 };
 
-export function WeatherWidget() {
+export function RestaurantListing() {
   return (
-    <Card>
-      <Card.Image src={weatherData.image} alt={weatherData.city} />
+    <SummaryCard
+      images={restaurantData.images}
+      title={restaurantData.title}
+      subtitle={restaurantData.subtitle}
+      badge={restaurantData.rating}
+      badgeVariant="success"
+      description={restaurantData.description}
+      buttonText="Add to Order"
+      onButtonClick={() => navigate(`/restaurant/${restaurantData.id}`)}
+    />
+  );
+}
+```
+
+### 3) Compose Flexible and Customizable Layouts
+
+```tsx
+import { Card, Features } from '@ainativekit/ui';
+import '@ainativekit/ui/styles';
+
+export function DocumentCard() {
+  return (
+     <Card elevationLevel="1" interactive>
+      <Card.Header>
+        <Card.ChipGroup>
+          <Card.Chip variant="neutral" size="sm">AINativeKit UI</Card.Chip>
+          <Card.Chip variant="neutral" size="sm">Guide</Card.Chip>
+        </Card.ChipGroup>
+      </Card.Header>
+      <Card.Image
+        src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400&h=200&fit=crop"
+        alt="AINativeKit UI library documentation"
+      />
       <Card.Body>
-        <Card.Title>{weatherData.city}</Card.Title>
+        <Card.Title as="h3">Building AI-Native UIs</Card.Title>
         <Card.Description>
-          {weatherData.temp} · {weatherData.condition}
+          Build modern, accessible UI with AINativeKit. Master reusable component patterns that scale.
         </Card.Description>
+        <Card.Meta>
+          <Features items={[
+            { icon: 'clock', label: '10 min read' },
+            { icon: 'calendar-today', label: 'October 30, 2025' }
+          ]} iconSize={12} />
+        </Card.Meta>
       </Card.Body>
       <Card.Footer>
-        <Badge variant="success">Live</Badge>
+        <Card.Actions align="start">
+          <Card.ActionButton variant="primary">Explore Docs</Card.ActionButton>
+        </Card.Actions>
       </Card.Footer>
     </Card>
   );

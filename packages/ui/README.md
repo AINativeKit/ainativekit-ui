@@ -1,6 +1,6 @@
 # 🧩 AI Native Kit UI
 
-> **Instantly turn MCP JSON results into polished ChatGPT App UIs.**  
+> **Instantly turn MCP JSON results into polished ChatGPT App UIs.**
 > OpenAI Figma‑aligned **React** components purpose‑built for the [ChatGPT Apps SDK](https://developers.openai.com/apps-sdk).
 
 [![npm version](https://img.shields.io/npm/v/@ainativekit/ui.svg)](https://www.npmjs.com/package/@ainativekit/ui)
@@ -22,11 +22,11 @@
 **AI Native Kit UI** bridges the gap between **structured MCP JSON** and **beautiful, accessible UI** for ChatGPT apps. Designed for the **Apps SDK**, it maps model/tool results directly to **interactive, Figma‑aligned components**, so you stop hand‑wiring UI and start shipping.
 
 - ✨ **What you get:** Production‑ready React components, example patterns, hooks for Apps SDK, and a rich design‑token system.
-- 🧭 **Who it’s for:** Developers building **ChatGPT Apps** who want consistent, on‑brand UI without reinventing the wheel.
+- 🧭 **Who it's for:** Developers building **ChatGPT Apps** who want consistent, on‑brand UI without reinventing the wheel.
 
 > **Why now?** ChatGPT Apps (via the Apps SDK) expose results + UI metadata. This kit renders those results as native widgets with minimal code.
 
-## 💡 Why You’ll Love It
+## 💡 Why You'll Love It
 
 | Developer Pain Point | How AINativeKit UI Helps |
 |---|---|
@@ -59,32 +59,76 @@ pnpm add @ainativekit/ui
 yarn add @ainativekit/ui
 ```
 
-### 2) Use: turn MCP JSON into UI
+### 2) Turn MCP JSON into UI
 
 ```tsx
-import { Card, Badge } from '@ainativekit/ui';
+import { SummaryCard } from '@ainativekit/ui';
 import '@ainativekit/ui/styles';
 
-// Example MCP/tool JSON (simplified)
-const weatherData = {
-  city: 'San Francisco',
-  temp: '72°F',
-  condition: 'Sunny',
-  image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4'
+// Example MCP/tool JSON from your backend
+const restaurantData = {
+  title: "Little Nona's",
+  subtitle: "1427 Via Campania",
+  rating: "9.2",
+  description: "A tiny, brick-walled trattoria tucked down a side street. The windows glow warm gold at night.",
+  images: [ // Display up to 4 images
+    { src: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400", alt: "Pizza" },
+    { src: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400", alt: "Pasta" },
+    { src: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400", alt: "Salad" }
+  ]
 };
 
-export function WeatherWidget() {
+export function RestaurantListing() {
   return (
-    <Card>
-      <Card.Image src={weatherData.image} alt={weatherData.city} />
+    <SummaryCard
+      images={restaurantData.images}
+      title={restaurantData.title}
+      subtitle={restaurantData.subtitle}
+      badge={restaurantData.rating}
+      badgeVariant="success"
+      description={restaurantData.description}
+      buttonText="Add to Order"
+      onButtonClick={() => navigate(`/restaurant/${restaurantData.id}`)}
+    />
+  );
+}
+```
+
+### 3) Compose Flexible and Customizable Layouts
+
+```tsx
+import { Card, Features } from '@ainativekit/ui';
+import '@ainativekit/ui/styles';
+
+export function DocumentCard() {
+  return (
+     <Card elevationLevel="1" interactive>
+      <Card.Header>
+        <Card.ChipGroup>
+          <Card.Chip variant="neutral" size="sm">AINativeKit UI</Card.Chip>
+          <Card.Chip variant="neutral" size="sm">Guide</Card.Chip>
+        </Card.ChipGroup>
+      </Card.Header>
+      <Card.Image
+        src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400&h=200&fit=crop"
+        alt="AINativeKit UI library documentation"
+      />
       <Card.Body>
-        <Card.Title>{weatherData.city}</Card.Title>
+        <Card.Title as="h3">Building AI-Native UIs</Card.Title>
         <Card.Description>
-          {weatherData.temp} · {weatherData.condition}
+          Build modern, accessible UI with AINativeKit. Master reusable component patterns that scale.
         </Card.Description>
+        <Card.Meta>
+          <Features items={[
+            { icon: 'clock', label: '10 min read' },
+            { icon: 'calendar-today', label: 'October 30, 2025' }
+          ]} iconSize={12} />
+        </Card.Meta>
       </Card.Body>
       <Card.Footer>
-        <Badge variant="success">Live</Badge>
+        <Card.Actions align="start">
+          <Card.ActionButton variant="primary">Explore Docs</Card.ActionButton>
+        </Card.Actions>
       </Card.Footer>
     </Card>
   );
@@ -111,7 +155,7 @@ export function WeatherWidget() {
 
 ## 🎨 Design System
 
-Use consistent **colors**, **typography**, **spacing**, and **elevation** derived from OpenAI’s Figma system.
+Use consistent **colors**, **typography**, **spacing**, and **elevation** derived from OpenAI's Figma system.
 
 ```tsx
 import { colors, typography, spacing, elevation } from '@ainativekit/ui';

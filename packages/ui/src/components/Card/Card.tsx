@@ -10,6 +10,8 @@ import { CardImage } from './CardImage';
 import { CardActions, CardActionButton } from './CardActions';
 import { CardTitle } from './CardTitle';
 import { CardDescription } from './CardDescription';
+import { CardMeta } from './CardMeta';
+import { CardChipGroup } from './CardChipGroup';
 import { CardBadge } from './CardBadge';
 import { CardChip } from './CardChip';
 import { Skeleton } from '../Skeleton';
@@ -40,7 +42,7 @@ export interface CardProps extends Omit<ComponentPropsWithoutRef<'div'>, 'color'
   interactive?: boolean;
   /**
    * Padding for the card. Can be a CSS value string or number (in px).
-   * @default 'var(--ai-spacing-16)'
+   * @default 'var(--ai-spacing-12)'
    */
   padding?: string | number;
   /**
@@ -100,7 +102,7 @@ const CardBase = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
     border = 'heavy',
     hoverElevationLevel,
     interactive = false,
-    padding = 'var(--ai-spacing-16)',
+    padding = 'var(--ai-spacing-12)',
     loading = false,
     skeleton,
     error = false,
@@ -188,6 +190,8 @@ const CardWithCompounds = Object.assign(CardBase, {
   ActionButton: CardActionButton,
   Title: CardTitle,
   Description: CardDescription,
+  Meta: CardMeta,
+  ChipGroup: CardChipGroup,
   Badge: CardBadge,
   Chip: CardChip,
 });

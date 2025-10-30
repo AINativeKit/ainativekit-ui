@@ -4,6 +4,7 @@ import { colors, spacing, typography, radius, elevation } from './index';
 import type { ElevationLevel } from './elevation';
 import { Card } from '../components/Card';
 import { PropsTable } from './PropsTable';
+import { codeBlockStyles } from '../components/storybook/codeBlockStyles';
 
 const meta: Meta = {
   title: 'Design Tokens',
@@ -167,23 +168,12 @@ const ColorsComponent: React.FC = () => {
       {/* Usage Section */}
       <section style={{ marginBottom: '64px' }}>
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Usage</h2>
-        <div
-          style={{
-            backgroundColor: 'var(--ai-color-bg-secondary)',
-            padding: '16px',
-            borderRadius: '8px',
-            fontSize: '14px',
-            overflow: 'auto',
-            marginBottom: '24px',
-            fontFamily: 'monospace',
-            whiteSpace: 'pre',
-          }}
-        >
+        <pre style={{ ...codeBlockStyles.primary, marginBottom: '24px', whiteSpace: 'pre' }}>
           <code>{`/* In your CSS */
 color: var(--ai-color-text-primary);
 background: var(--ai-color-bg-primary);
 border: 1px solid var(--ai-color-outline-default);`}</code>
-        </div>
+        </pre>
       </section>
 
       {/* Props/Reference Section */}
@@ -301,18 +291,7 @@ const TypographyComponent = () => {
       {/* Usage Section */}
       <section style={{ marginBottom: '64px' }}>
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Usage</h2>
-        <div
-          style={{
-            backgroundColor: 'var(--ai-color-bg-secondary)',
-            padding: '16px',
-            borderRadius: '8px',
-            fontSize: '14px',
-            overflow: 'auto',
-            marginBottom: '24px',
-            fontFamily: 'monospace',
-            whiteSpace: 'pre',
-          }}
-        >
+        <pre style={{ ...codeBlockStyles.primary, marginBottom: '24px', whiteSpace: 'pre' }}>
           <code>{`/* Method 1: Direct class usage (RECOMMENDED - Simple & Clear) */
 <h1 className="ai-heading1">Page Title</h1>
 <p className="ai-body">Body text</p>
@@ -337,7 +316,7 @@ import { typography } from '@ainativekit/ui/tokens';
 import { typography } from '@ainativekit/ui/tokens';
 const fontSize = typography.heading1.fontSize; // '36px'
 const className = typography.heading1.className; // 'ai-heading1'`}</code>
-        </div>
+        </pre>
       </section>
 
       {/* Props Section */}
@@ -531,18 +510,7 @@ const SpacingComponent = () => {
       {/* Usage Section */}
       <section style={{ marginBottom: '64px' }}>
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Usage</h2>
-        <div
-          style={{
-            backgroundColor: 'var(--ai-color-bg-secondary)',
-            padding: '16px',
-            borderRadius: '8px',
-            fontSize: '14px',
-            overflow: 'auto',
-            marginBottom: '24px',
-            fontFamily: 'monospace',
-            whiteSpace: 'pre',
-          }}
-        >
+        <pre style={{ ...codeBlockStyles.primary, marginBottom: '24px', whiteSpace: 'pre' }}>
           <code>{`/* Use spacing variables for consistent layout */
 .container {
   padding: var(--ai-spacing-16); /* 32px */
@@ -553,13 +521,13 @@ const SpacingComponent = () => {
 /* For dynamic spacing in JavaScript/TypeScript */
 import { spacing } from '@ainativekit/ui';
 const padding = spacing['space-16']; // '32px'`}</code>
-        </div>
+        </pre>
       </section>
 
       {/* Props Section */}
       <section style={{ marginBottom: '64px' }}>
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Reference</h2>
-        <PropsTable 
+        <PropsTable
           hideThemeColumn
           rows={[
             {
@@ -701,18 +669,7 @@ const RadiusComponent = () => {
       {/* Usage Section */}
       <section style={{ marginBottom: '64px' }}>
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Usage</h2>
-        <div
-          style={{
-            backgroundColor: 'var(--ai-color-bg-secondary)',
-            padding: '16px',
-            borderRadius: '8px',
-            fontSize: '14px',
-            overflow: 'auto',
-            marginBottom: '24px',
-            fontFamily: 'monospace',
-            whiteSpace: 'pre',
-          }}
-        >
+        <pre style={{ ...codeBlockStyles.primary, marginBottom: '24px', whiteSpace: 'pre' }}>
           <code>{`/* Use radius variables for consistent rounded corners */
 .card {
   border-radius: var(--ai-radius-xl); /* 24px */
@@ -729,13 +686,13 @@ const RadiusComponent = () => {
 /* For dynamic radius in JavaScript/TypeScript */
 import { radius } from '@ainativekit/ui';
 const cardRadius = radius.xl; // '24px'`}</code>
-        </div>
+        </pre>
       </section>
 
       {/* Props Section */}
       <section style={{ marginBottom: '64px' }}>
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Reference</h2>
-        <PropsTable 
+        <PropsTable
           hideThemeColumn
           rows={[
             {
@@ -887,18 +844,7 @@ const ElevationComponent: React.FC = () => {
       {/* Usage Section */}
       <section style={{ marginBottom: '64px' }}>
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Usage</h2>
-        <div
-          style={{
-            backgroundColor: 'var(--ai-color-bg-secondary)',
-            padding: '16px',
-            borderRadius: '8px',
-            fontSize: '14px',
-            overflow: 'auto',
-            marginBottom: '24px',
-            fontFamily: 'monospace',
-            whiteSpace: 'pre',
-          }}
-        >
+        <pre style={{ ...codeBlockStyles.primary, marginBottom: '24px', whiteSpace: 'pre' }}>
           <code>{`/* Method 1: Direct class usage (RECOMMENDED - Simple & Clear) */
 <div className="ai-elevation-1">Card content</div>
 <div className="ai-elevation-3">Dropdown menu</div>
@@ -924,8 +870,8 @@ import { elevation } from '@ainativekit/ui/tokens';
 /* Or apply shadow + overlay to custom color */
 .custom-tinted-card {
   box-shadow: var(--ai-elevation-2-shadow);
-  background: color-mix(in srgb, 
-    #667eea 92%, 
+  background: color-mix(in srgb,
+    #667eea 92%,
     var(--ai-elevation-2-overlay));
 }
 
@@ -935,7 +881,7 @@ const shadow = elevation['1'].shadow; // '0px 4px 16px rgba(0,0,0,0.05)'
 const darkOverlay = elevation['1'].darkOverlay; // 'rgba(255,255,255,0.05)'
 const lightOverlay = elevation['1'].lightOverlay; // 'rgba(0,0,0,0)'
 const className = elevation['1'].className; // 'ai-elevation-1'`}</code>
-        </div>
+        </pre>
         <p style={{ marginTop: '16px', fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
           <strong>Note:</strong> Utility classes (.ai-elevation-*) now apply both shadow AND overlay (using bg-primary + overlay tint). For custom background colors, use Method 4 to manually apply shadow to your color.
         </p>

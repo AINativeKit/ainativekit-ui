@@ -185,6 +185,26 @@ const SummaryCardsComponent: React.FC = () => {
             buttonText="Learn More"
             style={{ maxWidth: `${CARD_WIDTH}px` }}
           />
+          <SummaryCard
+            images={SAMPLE_IMAGES.restaurant}
+            title="With Metadata"
+            description="Card with structured metadata items"
+            metadata={[
+              { icon: 'clock', label: '10 min read' },
+              { icon: 'calendar-today', label: 'October 30, 2025' }
+            ]}
+            style={{ maxWidth: `${CARD_WIDTH}px` }}
+          />
+          <SummaryCard
+            title="With Multiple Metadata"
+            description="Display multiple metadata items with icons"
+            metadata={[
+              { icon: 'star', label: '9.2' },
+              { icon: 'map-pin', label: 'San Francisco' },
+              { icon: 'clock', label: 'Open now' }
+            ]}
+            style={{ maxWidth: `${CARD_WIDTH}px` }}
+          />
         </div>
       </section>
 
@@ -421,15 +441,19 @@ const SummaryCardsComponent: React.FC = () => {
               { src: SAMPLE_IMAGES.pizza, alt: 'Signature Pizza' },
               { src: SAMPLE_IMAGES.pasta, alt: 'Fresh Pasta' },
               { src: SAMPLE_IMAGES.salad, alt: 'Garden Salad' },
-              { src: SAMPLE_IMAGES.dessert, alt: 'Tiramisu' },
             ]}
             title="Little Nona's"
-            subtitle="1427 Via Campania"
+            subtitle="1427 Via Campania, North Beach"
             badge="9.2"
             badgeVariant="success"
             description="A tiny, brick-walled trattoria tucked down a side street near Washington Square Park. The windows glow warm gold at night, and the smell of slow-simmered tomato sauce drifts out onto the sidewalk."
-            buttonText="Add to Order"
-            onButtonClick={() => console.log('Add to order')}
+            metadata={[
+              { icon: 'star', label: '9.2 rating' },
+              { icon: 'map-pin', label: 'North Beach' },
+              { icon: 'clock', label: 'Open now' }
+            ]}
+            buttonText="Reserve"
+            onButtonClick={() => console.log('Reserve')}
             onImagesLoad={(index, _e) => console.log(`Image ${index} loaded`)}
             onImagesError={(index, _e) => console.log(`Image ${index} error`)}
           />
@@ -477,6 +501,11 @@ const SummaryCardsComponent: React.FC = () => {
               name: 'description',
               type: 'string',
               description: 'Main description text content',
+            },
+            {
+              name: 'metadata',
+              type: 'Array<{ icon?: IconName, label: string }>',
+              description: 'Metadata items to display below description (e.g., read time, date with icons)',
             },
             {
               name: 'buttonText',

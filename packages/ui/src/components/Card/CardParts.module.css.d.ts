@@ -5,3 +5,5 @@ export const cardImage: string;
 export const cardActions: string;
 export const cardTitle: string;
 export const cardDescription: string;
+export const cardMeta: string;
+export const cardChipGroup: string;

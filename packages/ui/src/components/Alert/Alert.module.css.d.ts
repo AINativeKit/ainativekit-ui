@@ -6,6 +6,7 @@ export type AlertModuleCss = {
   readonly 'alert--warning': string;
   readonly 'alert--info': string;
   readonly 'alert--success': string;
+  readonly alert__header: string;
   readonly alert__icon: string;
   readonly alert__content: string;
   readonly alert__title: string;

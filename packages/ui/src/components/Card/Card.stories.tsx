@@ -2,7 +2,9 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Card } from './Card';
 import { Skeleton } from '../Skeleton';
+import { Features } from '../Feature/Features';
 import { PropsTable } from '../../tokens/PropsTable';
+import { codeBlockStyles } from '../storybook/codeBlockStyles';
 
 const meta: Meta<typeof Card> = {
   title: 'Composed Components/Cards/Cards',
@@ -301,24 +303,30 @@ const CardsComponent: React.FC = () => {
             </Card.Footer>
           </Card>
 
-          {/* Article Card */}
+          {/* Article Card - Documentation Example */}
           <Card elevationLevel="1" interactive>
-            <Card.Image 
-              src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400&h=200&fit=crop" 
-              alt="Article cover"
+            <Card.Header>
+              <Card.ChipGroup>
+                <Card.Chip variant="neutral" size="sm">ChatGPT Apps</Card.Chip>
+                <Card.Chip variant="neutral" size="sm">AI-Native</Card.Chip>
+                <Card.Chip variant="neutral" size="sm">UI Components</Card.Chip>
+              </Card.ChipGroup>
+            </Card.Header>
+            <Card.Image
+              src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400&h=200&fit=crop"
+              alt="AINativeKit UI library documentation"
             />
             <Card.Body>
-              <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
-                <Card.Chip variant="neutral" size="sm">Design</Card.Chip>
-                <Card.Chip variant="neutral" size="sm">Systems</Card.Chip>
-              </div>
-              <Card.Title as="h3">Building Scalable Design Systems</Card.Title>
+              <Card.Title as="h3">Building AI-Native UIs</Card.Title>
               <Card.Description>
-                Learn how to create and maintain design systems that scale with your organization.
+                Build modern, accessible UI with AINativeKit. Master reusable component patterns that scale.
               </Card.Description>
-              <div style={{ marginTop: '12px', fontSize: '13px', color: 'var(--ai-color-text-tertiary)' }}>
-                <span>5 min read</span> • <span>March 15, 2024</span>
-              </div>
+              <Card.Meta>
+                <Features items={[
+                  { icon: 'clock', label: '10 min read' },
+                  { icon: 'calendar-today', label: 'October 30, 2025' }
+                ]} iconSize={12} />
+              </Card.Meta>
             </Card.Body>
             <Card.Footer>
               <Card.Actions align="start">
@@ -356,6 +364,100 @@ const CardsComponent: React.FC = () => {
               <Card.Actions align="stretch">
                 <Card.ActionButton variant="secondary">Follow</Card.ActionButton>
                 <Card.ActionButton variant="primary">Message</Card.ActionButton>
+              </Card.Actions>
+            </Card.Footer>
+          </Card>
+
+          {/* Venue/Restaurant Card with Features Meta */}
+          <Card elevationLevel="1" interactive>
+            <Card.Image
+              src="https://images.unsplash.com/photo-1686836715835-65af22ea5cd4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=400&h=200"
+              alt="Artisan Bistro"
+            />
+            <Card.Body>
+              <Card.Title as="h3">Artisan Bistro</Card.Title>
+              <Card.Description>
+                Cozy French bistro with locally-sourced ingredients and an extensive wine selection.
+              </Card.Description>
+              <Card.Meta>
+                <Features items={[
+                  { icon: 'chat', label: '4.8★' },
+                  '128 reviews',
+                  '$$',
+                  'Open now'
+                ]} iconSize={12} />
+              </Card.Meta>
+            </Card.Body>
+            <Card.Footer>
+              <Card.Actions align="stretch">
+                <Card.ActionButton variant="secondary">Details</Card.ActionButton>
+                <Card.ActionButton variant="primary">Book Table</Card.ActionButton>
+              </Card.Actions>
+            </Card.Footer>
+          </Card>
+
+          {/* Project/Case Study Card */}
+          <Card elevationLevel="1" interactive>
+            <Card.Image
+              src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=200&fit=crop"
+              alt="Project showcase"
+            />
+            <Card.Header>
+              <Card.ChipGroup>
+                <Card.Chip variant="success" size="sm">Completed</Card.Chip>
+                <Card.Chip variant="filled" size="sm">2024</Card.Chip>
+              </Card.ChipGroup>
+            </Card.Header>
+            <Card.Body>
+              <Card.Title as="h3">Design System Overhaul</Card.Title>
+              <Card.Description>
+                Modernized component library and documentation, improving developer experience by 40%.
+              </Card.Description>
+              <Card.Meta>
+                <Features items={[
+                  { icon: 'calendar-today', label: '6 months' },
+                  '8 people'
+                ]} iconSize={12} />
+              </Card.Meta>
+            </Card.Body>
+            <Card.Footer>
+              <Card.Actions align="start">
+                <Card.ActionButton variant="primary">View Case Study</Card.ActionButton>
+              </Card.Actions>
+            </Card.Footer>
+          </Card>
+
+          {/* Team Member Card */}
+          <Card elevationLevel="1" interactive>
+            <Card.Header>
+              <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                <img
+                  src="https://i.pravatar.cc/100?img=12"
+                  alt="Team member avatar"
+                  style={{ width: '64px', height: '64px', borderRadius: '50%', flexShrink: 0 }}
+                />
+                <div style={{ flex: 1 }}>
+                  <Card.Title as="h3">Alex Martinez</Card.Title>
+                  <Card.Description>Frontend Engineer</Card.Description>
+                </div>
+              </div>
+            </Card.Header>
+            <Card.Body>
+              <div style={{ marginBottom: '12px' }}>
+                <p style={{ fontSize: '13px', color: 'var(--ai-color-text-secondary)', margin: '0 0 8px 0' }}>
+                  Specialized in React and design systems with 5+ years experience.
+                </p>
+              </div>
+              <Card.ChipGroup>
+                <Card.Chip variant="filled" size="sm">React</Card.Chip>
+                <Card.Chip variant="filled" size="sm">TypeScript</Card.Chip>
+                <Card.Chip variant="filled" size="sm">Design Systems</Card.Chip>
+              </Card.ChipGroup>
+            </Card.Body>
+            <Card.Footer>
+              <Card.Actions align="stretch">
+                <Card.ActionButton variant="secondary">View Profile</Card.ActionButton>
+                <Card.ActionButton variant="primary">Contact</Card.ActionButton>
               </Card.Actions>
             </Card.Footer>
           </Card>
@@ -424,21 +526,29 @@ const CardsComponent: React.FC = () => {
             </div>
           </Card>
 
-          {/* Multiple Chips */}
-          <Card>
+          {/* Event Card with Features Meta */}
+          <Card interactive>
             <Card.Header>
-              <Card.Title as="h4">Product with Tags</Card.Title>
-              <div style={{ display: 'flex', gap: '6px', marginTop: '8px', flexWrap: 'wrap' }}>
-                <Card.Chip variant="success" size="sm">New</Card.Chip>
-                <Card.Chip variant="filled" size="sm">Popular</Card.Chip>
-                <Card.Chip variant="warning" size="sm">Limited</Card.Chip>
-              </div>
+              <Card.Title as="h4">Design Systems Workshop</Card.Title>
             </Card.Header>
             <Card.Body>
               <Card.Description>
-                Multiple chips can highlight various product attributes and status.
+                Learn best practices for building scalable design systems. Hands-on workshop with live demos.
               </Card.Description>
+              <Card.Meta>
+                <Features items={[
+                  { icon: 'calendar-today', label: 'Oct 30, 2025' },
+                  { icon: 'clock', label: '2:00 PM' },
+                  { icon: 'maps', label: 'Virtual' }
+                ]} iconSize={12} />
+              </Card.Meta>
             </Card.Body>
+            <Card.Footer>
+              <Card.Actions align="stretch">
+                <Card.ActionButton variant="secondary">Details</Card.ActionButton>
+                <Card.ActionButton variant="primary">Register</Card.ActionButton>
+              </Card.Actions>
+            </Card.Footer>
           </Card>
         </div>
       </section>
@@ -502,7 +612,7 @@ const CardsComponent: React.FC = () => {
             <p style={{ marginBottom: '12px', color: 'var(--ai-color-text-secondary)', fontSize: '14px' }}>
               For basic content, use Card as a simple container. Best for custom layouts or simple content.
             </p>
-            <pre style={{ background: 'var(--ai-color-bg-secondary)', padding: '16px', borderRadius: '8px', overflow: 'auto', fontFamily: 'monospace', fontSize: '13px' }}>
+            <pre style={codeBlockStyles.primary}>
               <code>{`<Card elevationLevel="1">
   <h3>Title</h3>
   <p>Content goes here</p>
@@ -515,7 +625,7 @@ const CardsComponent: React.FC = () => {
             <p style={{ marginBottom: '12px', color: 'var(--ai-color-text-secondary)', fontSize: '14px' }}>
               For structured layouts, use compound components. Provides semantic HTML and consistent styling.
             </p>
-            <pre style={{ background: 'var(--ai-color-bg-secondary)', padding: '16px', borderRadius: '8px', overflow: 'auto', fontFamily: 'monospace', fontSize: '13px' }}>
+            <pre style={codeBlockStyles.primary}>
               <code>{`<Card elevationLevel="1" interactive>
   <Card.Header>
     <Card.Title>Product Name</Card.Title>
@@ -576,6 +686,12 @@ const CardsComponent: React.FC = () => {
             </p>
           </div>
           <div style={{ padding: '12px', background: 'var(--ai-color-bg-secondary)', borderRadius: '8px' }}>
+            <strong style={{ fontSize: '14px' }}>Card.Meta</strong>
+            <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: 'var(--ai-color-text-secondary)' }}>
+              Metadata with tertiary styling. Works great with Features component for consistent metadata lists
+            </p>
+          </div>
+          <div style={{ padding: '12px', background: 'var(--ai-color-bg-secondary)', borderRadius: '8px' }}>
             <strong style={{ fontSize: '14px' }}>Card.Actions</strong>
             <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: 'var(--ai-color-text-secondary)' }}>
               Button group with alignment
@@ -588,9 +704,15 @@ const CardsComponent: React.FC = () => {
             </p>
           </div>
           <div style={{ padding: '12px', background: 'var(--ai-color-bg-secondary)', borderRadius: '8px' }}>
+            <strong style={{ fontSize: '14px' }}>Card.ChipGroup</strong>
+            <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: 'var(--ai-color-text-secondary)' }}>
+              Container for grouping chips with automatic spacing and wrapping
+            </p>
+          </div>
+          <div style={{ padding: '12px', background: 'var(--ai-color-bg-secondary)', borderRadius: '8px' }}>
             <strong style={{ fontSize: '14px' }}>Card.Chip</strong>
             <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: 'var(--ai-color-text-secondary)' }}>
-              Chip for tags and status
+              Chip for tags and status (use inside Card.ChipGroup)
             </p>
           </div>
         </div>
@@ -647,7 +769,7 @@ const CardsComponent: React.FC = () => {
         <p style={{ marginBottom: '12px', color: 'var(--ai-color-text-secondary)' }}>
           When Card has <code>interactive</code> prop, it becomes keyboard accessible:
         </p>
-        <pre style={{ background: 'var(--ai-color-bg-secondary)', padding: '16px', borderRadius: '8px', overflow: 'auto', fontFamily: 'monospace', fontSize: '13px', marginBottom: '24px', alignItems: 'start' }}>
+        <pre style={{ ...codeBlockStyles.primary, marginBottom: '24px', alignItems: 'start' }}>
           <code>{`// Interactive cards get hover effects
 <Card interactive onClick={() => navigate('/product')}>
   <Card.Title>Product Name</Card.Title>
@@ -726,7 +848,7 @@ const CardsComponent: React.FC = () => {
 
         <h3 style={{ fontSize: '18px', marginBottom: '12px', marginTop: '32px' }}>Other Compound Components</h3>
         <p style={{ color: 'var(--ai-color-text-secondary)', fontSize: '14px' }}>
-          Card.Header, Card.Body, Card.Footer, Card.Description, Card.Image accept standard HTML props for their respective elements.
+          Card.Header, Card.Body, Card.Footer, Card.Description, Card.Meta, Card.ChipGroup, Card.Image accept standard HTML props for their respective elements.
           Card.Chip inherits all <a href="?path=/story/primitives-chip--chips" style={{ color: 'var(--ai-color-accent-blue)', textDecoration: 'none' }}>Chip props</a>.
         </p>
       </section>

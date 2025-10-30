@@ -4,6 +4,7 @@ import { Skeleton } from './Skeleton';
 import type { SkeletonVariant } from './Skeleton';
 import { Card } from '../Card';
 import { PropsTable } from '../../tokens/PropsTable';
+import { codeBlockStyles } from '../storybook/codeBlockStyles';
 
 const meta: Meta<typeof Skeleton> = {
   title: 'Primitive Components/Skeletons',
@@ -171,7 +172,7 @@ const SkeletonsComponent: React.FC = () => {
             </Card>
             <details style={{ marginTop: '8px', fontSize: '12px', color: 'var(--ai-color-text-secondary)' }}>
               <summary style={{ cursor: 'pointer', userSelect: 'none' }}>View code</summary>
-              <pre style={{ marginTop: '8px', padding: '8px', background: 'var(--ai-color-bg-secondary)', borderRadius: '4px', overflow: 'auto' }}>
+              <pre style={codeBlockStyles.inline}>
                 {`<Skeleton height={180} style={{ marginBottom: 12 }} />
 <Skeleton variant="text" width="60%" style={{ marginBottom: 8 }} />
 <Skeleton variant="text" width="80%" />`}
@@ -193,7 +194,7 @@ const SkeletonsComponent: React.FC = () => {
             </Card>
             <details style={{ marginTop: '8px', fontSize: '12px', color: 'var(--ai-color-text-secondary)' }}>
               <summary style={{ cursor: 'pointer', userSelect: 'none' }}>View code</summary>
-              <pre style={{ marginTop: '8px', padding: '8px', background: 'var(--ai-color-bg-secondary)', borderRadius: '4px', overflow: 'auto' }}>
+              <pre style={codeBlockStyles.inline}>
                 {`<div style={{ display: 'flex', gap: 12 }}>
   <Skeleton variant="circular" width={48} height={48} />
   <div style={{ flex: 1 }}>
@@ -220,7 +221,7 @@ const SkeletonsComponent: React.FC = () => {
             </Card>
             <details style={{ marginTop: '8px', fontSize: '12px', color: 'var(--ai-color-text-secondary)' }}>
               <summary style={{ cursor: 'pointer', userSelect: 'none' }}>View code</summary>
-              <pre style={{ marginTop: '8px', padding: '8px', background: 'var(--ai-color-bg-secondary)', borderRadius: '4px', overflow: 'auto' }}>
+              <pre style={codeBlockStyles.inline}>
                 {`{items.map(item => (
   <div key={item.id} style={{ display: 'flex', gap: 12 }}>
     <Skeleton variant="circular" width={32} height={32} />
@@ -250,7 +251,7 @@ const SkeletonsComponent: React.FC = () => {
             </Card>
             <details style={{ marginTop: '8px', fontSize: '12px', color: 'var(--ai-color-text-secondary)' }}>
               <summary style={{ cursor: 'pointer', userSelect: 'none' }}>View code</summary>
-              <pre style={{ marginTop: '8px', padding: '8px', background: 'var(--ai-color-bg-secondary)', borderRadius: '4px', overflow: 'auto' }}>
+              <pre style={codeBlockStyles.inline}>
                 {`<div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr 1fr', gap: 12 }}>
   <Skeleton variant="text" />
   <Skeleton variant="text" />
@@ -324,6 +325,7 @@ function UserProfile({ loading, user }) {
           </summary>
           <pre style={{ marginTop: '12px', padding: '16px', background: 'var(--ai-color-bg-secondary)', borderRadius: '8px', overflow: 'auto' }}>
             {`import { Skeleton } from '@ainativekit/ui/primitives';
+import { codeBlockStyles } from '../storybook/codeBlockStyles';
 
 function CustomSkeleton() {
   return (

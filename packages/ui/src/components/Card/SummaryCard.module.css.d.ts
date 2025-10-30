@@ -10,6 +10,7 @@ declare const styles: {
   readonly subtitle: string;
   readonly badge: string;
   readonly description: string;
+  readonly metadata: string;
   readonly buttonContainer: string;
   readonly button: string;
   readonly overflowIndicator: string;

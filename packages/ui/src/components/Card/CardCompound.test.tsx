@@ -286,7 +286,7 @@ describe('Card Compound Components', () => {
           <Card.Description data-testid="card-desc">Description Text</Card.Description>
         </Card>
       );
-      
+
       const desc = screen.getByTestId('card-desc');
       expect(desc).toBeInTheDocument();
       expect(desc).toHaveTextContent('Description Text');
@@ -301,7 +301,7 @@ describe('Card Compound Components', () => {
           </Card.Description>
         </Card>
       );
-      
+
       expect(screen.getByTestId('card-desc')).toHaveClass('custom-class');
     });
 
@@ -314,6 +314,119 @@ describe('Card Compound Components', () => {
       );
 
       expect(ref.current).toBeInstanceOf(HTMLParagraphElement);
+    });
+  });
+
+  describe('Card.Meta', () => {
+    it('should render meta with children', () => {
+      render(
+        <Card>
+          <Card.Meta data-testid="card-meta">Meta Text</Card.Meta>
+        </Card>
+      );
+
+      const meta = screen.getByTestId('card-meta');
+      expect(meta).toBeInTheDocument();
+      expect(meta).toHaveTextContent('Meta Text');
+      expect(meta.tagName).toBe('DIV');
+    });
+
+    it('should render metadata like read time and date', () => {
+      render(
+        <Card>
+          <Card.Meta data-testid="card-meta">
+            <span>5 min read</span> • <span>March 15, 2024</span>
+          </Card.Meta>
+        </Card>
+      );
+
+      const meta = screen.getByTestId('card-meta');
+      expect(meta).toHaveTextContent('5 min read');
+      expect(meta).toHaveTextContent('March 15, 2024');
+    });
+
+    it('should apply custom className', () => {
+      render(
+        <Card>
+          <Card.Meta data-testid="card-meta" className="custom-class">
+            Meta
+          </Card.Meta>
+        </Card>
+      );
+
+      expect(screen.getByTestId('card-meta')).toHaveClass('custom-class');
+    });
+
+    it('should forward ref', () => {
+      const ref = { current: null as HTMLDivElement | null };
+      render(
+        <Card>
+          <Card.Meta ref={ref}>Meta</Card.Meta>
+        </Card>
+      );
+
+      expect(ref.current).toBeInstanceOf(HTMLDivElement);
+    });
+  });
+
+  describe('Card.ChipGroup', () => {
+    it('should render chip group with children', () => {
+      render(
+        <Card>
+          <Card.ChipGroup data-testid="card-chip-group">
+            <Card.Chip>Chip 1</Card.Chip>
+            <Card.Chip>Chip 2</Card.Chip>
+          </Card.ChipGroup>
+        </Card>
+      );
+
+      const chipGroup = screen.getByTestId('card-chip-group');
+      expect(chipGroup).toBeInTheDocument();
+      expect(screen.getByText('Chip 1')).toBeInTheDocument();
+      expect(screen.getByText('Chip 2')).toBeInTheDocument();
+    });
+
+    it('should render multiple chips', () => {
+      render(
+        <Card>
+          <Card.ChipGroup data-testid="card-chip-group">
+            <Card.Chip variant="neutral" size="sm">Design</Card.Chip>
+            <Card.Chip variant="neutral" size="sm">Systems</Card.Chip>
+            <Card.Chip variant="success" size="sm">New</Card.Chip>
+          </Card.ChipGroup>
+        </Card>
+      );
+
+      const chipGroup = screen.getByTestId('card-chip-group');
+      expect(chipGroup).toBeInTheDocument();
+      expect(screen.getByText('Design')).toBeInTheDocument();
+      expect(screen.getByText('Systems')).toBeInTheDocument();
+      expect(screen.getByText('New')).toBeInTheDocument();
+    });
+
+    it('should apply custom className', () => {
+      render(
+        <Card>
+          <Card.ChipGroup data-testid="card-chip-group" className="custom-class">
+            Chip Group
+          </Card.ChipGroup>
+        </Card>
+      );
+
+      expect(screen.getByTestId('card-chip-group')).toHaveClass('custom-class');
+    });
+
+    it('should forward ref', () => {
+      const ref = { current: null as HTMLDivElement | null };
+      render(
+        <Card>
+          <Card.ChipGroup ref={ref}>
+            <Card.Chip>Chip</Card.Chip>
+          </Card.ChipGroup>
+        </Card>
+      );
+
+      expect(ref.current).toBeInstanceOf(HTMLDivElement);
     });
   });
 

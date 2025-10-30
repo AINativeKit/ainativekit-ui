@@ -1,6 +1,7 @@
 import type { Meta } from '@storybook/react';
 import { DiscoveryCard } from './DiscoveryCard';
 import { PropsTable } from '../../tokens/PropsTable';
+import { codeBlockStyles } from '../storybook/codeBlockStyles';
 
 const meta: Meta<typeof DiscoveryCard> = {
   title: 'Composed Components/Cards',
@@ -85,24 +86,8 @@ export const DiscoveryCards = () => (
           />
 
           {/* Code Display */}
-          <div
-            style={{
-              flex: 1,
-              background: '#1e1e1e',
-              color: '#d4d4d4',
-              padding: '24px',
-              borderRadius: '12px',
-              fontFamily: 'monospace',
-              fontSize: '13px',
-              overflow: 'auto',
-            }}
-          >
-            <pre
-              style={{
-                margin: 0,
-                lineHeight: '1.6',
-              }}
-            >
+          <pre style={{ ...codeBlockStyles.primary, flex: 1 }}>
+            <code>
 {`<DiscoveryCard
   width="220px"
   image="https://..."
@@ -116,8 +101,8 @@ export const DiscoveryCards = () => (
   buttonText="Order now"
   onButtonClick={() => handleOrder()}
 />`}
-            </pre>
-          </div>
+            </code>
+          </pre>
         </div>
       </section>
 

@@ -4,6 +4,8 @@ import { Card, type CardProps } from './Card';
 import { Badge, type BadgeVariant } from '../Badge/Badge';
 import { Chip, type ChipVariant } from '../Chip/Chip';
 import { Button } from '../Button/Button';
+import { Icon } from '../Icon';
+import type { IconName } from '../../tokens/icons';
 import { Skeleton } from '../Skeleton';
 import { Alert } from '../Alert';
 import styles from './SummaryCard.module.css';
@@ -50,6 +52,15 @@ export interface SummaryCardProps extends Omit<CardProps, 'children'> {
    * Description text using bodySmall with secondary color.
    */
   description?: string;
+
+  /**
+   * Metadata items to display below description (e.g., read time, date).
+   * Array of items with optional icon and label.
+   */
+  metadata?: Array<{
+    icon?: IconName;
+    label: string;
+  }>;
 
   /**
    * Button text. If provided, button will be displayed.
@@ -195,6 +206,7 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
     badge,
     badgeVariant = 'default',
     description,
+    metadata,
     buttonText,
     onButtonClick,
     buttonDisabled = false,
@@ -481,6 +493,18 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
       {/* Description Section */}
       {hasDescription && (
         <p className={styles.description}>{description}</p>
+      )}
+
+      {/* Metadata Section */}
+      {metadata && metadata.length > 0 && (
+        <div className={styles.metadata}>
+          {metadata.map((item, index) => (
+            <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              {item.icon && <Icon name={item.icon} size="sm" tone="secondary" />}
+              <span>{item.label}</span>
+            </div>
+          ))}
+        </div>
       )}
 
       {/* Action Button */}

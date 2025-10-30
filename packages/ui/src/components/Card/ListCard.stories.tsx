@@ -2,6 +2,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ListCard } from './ListCard';
 import { PropsTable } from '../../tokens/PropsTable';
+import { codeBlockStyles } from '../storybook/codeBlockStyles';
 
 const meta: Meta<typeof ListCard> = {
   title: 'Composed Components/Cards/List Cards',
@@ -289,14 +290,7 @@ const ListCardsComponent: React.FC = () => {
 
         <details style={{ marginBottom: '16px', cursor: 'pointer' }}>
           <summary style={{ fontWeight: 600, marginBottom: '12px' }}>Basic ListCard</summary>
-          <pre style={{ 
-            background: 'var(--ai-color-surface-secondary)', 
-            padding: '16px', 
-            borderRadius: '8px', 
-            overflow: 'auto',
-            fontSize: '13px',
-            lineHeight: '1.5'
-          }}>{`import { ListCard } from '@ainativekit/ui';
+          <pre style={codeBlockStyles.primary}>{`import { ListCard } from '@ainativekit/ui';
 
 function Component() {
   return (
@@ -315,14 +309,7 @@ function Component() {
 
         <details style={{ marginBottom: '16px', cursor: 'pointer' }}>
           <summary style={{ fontWeight: 600, marginBottom: '12px' }}>With Images and Actions</summary>
-          <pre style={{ 
-            background: 'var(--ai-color-surface-secondary)', 
-            padding: '16px', 
-            borderRadius: '8px', 
-            overflow: 'auto',
-            fontSize: '13px',
-            lineHeight: '1.5'
-          }}>{`<ListCard
+          <pre style={codeBlockStyles.primary}>{`<ListCard
   topImage="/hero-image.jpg"
   headerTitle="Featured Items"
   headerActionLabel="Edit items"
@@ -341,14 +328,7 @@ function Component() {
 
         <details style={{ marginBottom: '16px', cursor: 'pointer' }}>
           <summary style={{ fontWeight: 600, marginBottom: '12px' }}>Loading & Error States</summary>
-          <pre style={{ 
-            background: 'var(--ai-color-surface-secondary)', 
-            padding: '16px', 
-            borderRadius: '8px', 
-            overflow: 'auto',
-            fontSize: '13px',
-            lineHeight: '1.5'
-          }}>{`// Loading state
+          <pre style={codeBlockStyles.primary}>{`// Loading state
 <ListCard 
   loading 
   loadingItemCount={3}
@@ -375,14 +355,7 @@ function Component() {
 
         <details style={{ marginBottom: '16px', cursor: 'pointer' }}>
           <summary style={{ fontWeight: 600, marginBottom: '12px' }}>With Accessibility</summary>
-          <pre style={{ 
-            background: 'var(--ai-color-surface-secondary)', 
-            padding: '16px', 
-            borderRadius: '8px', 
-            overflow: 'auto',
-            fontSize: '13px',
-            lineHeight: '1.5'
-          }}>{`// All action buttons need descriptive labels
+          <pre style={codeBlockStyles.primary}>{`// All action buttons need descriptive labels
 <ListCard
   headerTitle="Cart"
   headerActionLabel="Edit cart items"
@@ -399,14 +372,7 @@ function Component() {
 
         <details style={{ cursor: 'pointer' }}>
           <summary style={{ fontWeight: 600, marginBottom: '12px' }}>Performance Optimization</summary>
-          <pre style={{ 
-            background: 'var(--ai-color-surface-secondary)', 
-            padding: '16px', 
-            borderRadius: '8px', 
-            overflow: 'auto',
-            fontSize: '13px',
-            lineHeight: '1.5'
-          }}>{`// Native lazy loading (enabled by default)
+          <pre style={codeBlockStyles.primary}>{`// Native lazy loading (enabled by default)
 <ListCard
   topImage="/large-image.jpg"
   topImageLazy={true}

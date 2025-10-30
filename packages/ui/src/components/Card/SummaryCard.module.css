@@ -199,6 +199,25 @@
   margin-bottom: var(--ai-spacing-4); /* 16px bottom */
 }
 
+/* Metadata Section */
+.metadata {
+  font-size: var(--ai-font-size-body-small);
+  color: var(--ai-color-text-secondary);
+  display: flex;
+  gap: var(--ai-spacing-4);
+  margin: var(--ai-spacing-2) var(--ai-spacing-8) 0 var(--ai-spacing-8); /* 8px top, 32px sides, 0 bottom */
+}
+
+/* Add spacing from description if description exists */
+.description + .metadata {
+  margin-top: var(--ai-spacing-2); /* 8px from description */
+}
+
+/* Add bottom padding when metadata is the last element (no button) */
+.metadata:last-child {
+  margin-bottom: var(--ai-spacing-4); /* 16px bottom */
+}
+
 /* Button Container */
 .buttonContainer {
   margin: var(--ai-spacing-6) var(--ai-spacing-4) var(--ai-spacing-4) var(--ai-spacing-4); /* 24px top, 16px sides, 16px bottom */

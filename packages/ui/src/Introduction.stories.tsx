@@ -6,10 +6,13 @@ import type { Album as AlbumType } from './components/Album/types';
 import { Carousel as CarouselComponent } from './components/Carousel';
 import { DiscoveryCard } from './components/Card/DiscoveryCard';
 import { Card } from './components/Card';
+import { SummaryCard } from './components/Card/SummaryCard';
 import { List, ListItem } from './components/List';
 import { Button } from './components/Button';
 import { Map, FullscreenMap } from './components/Map';
 import { Icon } from './components/Icon';
+import { Features } from './components/Feature/Features';
+import { codeBlockStyles } from './components/storybook/codeBlockStyles';
 import type { LocationData } from './components/Map/types';
 
 type PizzaRestaurant = {
@@ -366,14 +369,8 @@ const mapContainerStyle: CSSProperties = {
   boxShadow: 'var(--ai-elevation-2-shadow)',
 };
 
-const codeBlockStyle: CSSProperties = {
-  background: 'var(--ai-color-bg-secondary)',
-  padding: '12px',
-  borderRadius: '6px',
-  fontFamily: 'monospace',
-  fontSize: '13px',
-  marginTop: '8px',
-};
+// Use unified code block styles (primary for main examples, terminal for CLI commands)
+const codeBlockStyle = codeBlockStyles.primary;
 
 const assistantFooterStyle: CSSProperties = {
   marginTop: '16px',
@@ -487,62 +484,49 @@ const IntroductionPage = () => {
           Let's start simple! Here's how you transform JSON data into beautiful <strong>Cards</strong> 🎴
         </div>
         <div style={assistantParagraphStyle}>
-          Perfect for displaying products, articles, or any structured content. Cards support images, actions, badges, and chips:
+          Just pass your data (products, articles, restaurants) and we'll render beautiful Cards automatically. No layout work needed! Here are examples with different data types:
         </div>
         <div style={{ ...contentSectionStyle, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
-          {/* Product Card */}
-          <Card elevationLevel="1" interactive>
-            <Card.Header>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <Card.Title>Premium Headphones</Card.Title>
-                <Card.Badge variant="success">New</Card.Badge>
-              </div>
-            </Card.Header>
-            <Card.Image
-              src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop"
-              alt="Premium headphones"
-            />
-            <Card.Body>
-              <Card.Description>
-                Wireless headphones with noise cancellation and 30-hour battery.
-              </Card.Description>
-            </Card.Body>
-            <Card.Footer>
-              <Card.Actions align="stretch">
-                <Card.ActionButton variant="secondary">Details</Card.ActionButton>
-                <Card.ActionButton variant="primary">Add to Cart</Card.ActionButton>
-              </Card.Actions>
-            </Card.Footer>
-          </Card>
+          {/* Restaurant from JSON - Real-World Example */}
+          <SummaryCard
+            elevationLevel="1"
+            interactive
+            images={[
+              { src: 'https://persistent.oaistatic.com/pizzaz/pizzaz-1.png', alt: 'Signature Pizza' },
+              { src: 'https://persistent.oaistatic.com/pizzaz/pizzaz-2.png', alt: 'Fresh Pasta' },
+              { src: 'https://persistent.oaistatic.com/pizzaz/pizzaz-3.png', alt: 'Garden Salad' },
+            ]}
+            title="Little Nona's"
+            subtitle="1427 Via Campania, North Beach"
+            badge="9.2"
+            badgeVariant="success"
+            description="A tiny, brick-walled trattoria tucked down a side street near Washington Square Park. The windows glow warm gold at night."
+            metadata={[
+              { icon: 'star', label: '9.2 rating' },
+              { icon: 'map-pin', label: 'North Beach' },
+              { icon: 'clock', label: 'Open now' }
+            ]}
+            buttonText="Reserve"
+            onButtonClick={() => {}}
+          />
 
-          {/* Article Card */}
-          <Card elevationLevel="1" interactive>
-            <Card.Image
-              src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400&h=200&fit=crop"
-              alt="Article cover"
-            />
-            <Card.Body>
-              <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
-                <Card.Chip variant="neutral" size="sm">Design</Card.Chip>
-                <Card.Chip variant="neutral" size="sm">Systems</Card.Chip>
-              </div>
-              <Card.Title as="h3">Building Scalable Design Systems</Card.Title>
-              <Card.Description>
-                Learn how to create and maintain design systems that scale with your organization.
-              </Card.Description>
-              <div style={{ marginTop: '12px', fontSize: '13px', color: 'var(--ai-color-text-tertiary)' }}>
-                <span>5 min read</span> • <span>March 15, 2024</span>
-              </div>
-            </Card.Body>
-            <Card.Footer>
-              <Card.Actions align="start">
-                <Card.ActionButton variant="primary">Read More</Card.ActionButton>
-              </Card.Actions>
-            </Card.Footer>
-          </Card>
+          {/* Article from JSON */}
+          <SummaryCard
+            elevationLevel="1"
+            interactive
+            images="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400&h=200&fit=crop"
+            title="Building AI-Native UIs"
+            description="Build modern, accessible UI with AINativeKit. Master reusable component patterns that scale."
+            metadata={[
+              { icon: 'clock', label: '10 min read' },
+              { icon: 'calendar-today', label: 'October 30, 2025' }
+            ]}
+            buttonText="Explore"
+            onButtonClick={() => {}}
+          />
         </div>
         <div style={assistantParagraphStyle}>
-          From simple to complex, Cards adapt to your content. Compound components give you total flexibility! 🎨
+          Cards are just the beginning! We have specialized components for every use case - galleries, carousels, lists, maps, and more:
         </div>
         <ActionButtons />
       </AssistantMessage>
@@ -603,14 +587,14 @@ const IntroductionPage = () => {
         <ActionButtons />
       </AssistantMessage>
 
-      <UserMessage>How about rankings or search results?</UserMessage>
+      <UserMessage>How about rankings or search results in vertical lists?</UserMessage>
 
       <AssistantMessage>
         <div style={assistantIntroStyle}>
           The <strong>List</strong> component handles that beautifully 📋
         </div>
         <div style={assistantParagraphStyle}>
-          Perfect for rankings, search results, or structured data. Features headers, media, metadata, and actions. Try clicking the + buttons:
+          Perfect for vertical rankings, search results, or any structured data. Features headers, media, metadata, and actions. Try clicking the + buttons:
         </div>
         <div style={{ ...contentSectionStyle, maxWidth: '100%' }}>
           <List
@@ -691,62 +675,179 @@ const IntroductionPage = () => {
 
       <AssistantMessage>
         <div style={assistantParagraphStyle}>
-          <strong>You're a few minutes away from shipping!</strong> Here's all you need:
+          <strong>You're minutes away from shipping production-ready UIs!</strong> Here are two powerful patterns:
+        </div>
+
+        <div style={assistantParagraphStyle}>
+          <strong>Pattern 1: Map MCP JSON to UI (Simple & Data-Driven)</strong>
+        </div>
+        <div style={assistantParagraphStyle}>
+          Perfect when you have structured data from your backend. The SummaryCard automatically handles layouts, images, and actions. Here's the library docs rendered as data:
+        </div>
+        <div style={codeBlockStyle}>
+          import {'{'}SummaryCard{'}'} from '@ainativekit/ui';<br />
+          <br />
+          {'const articleData = {'}<br />
+          &nbsp;&nbsp;title: "Building AI-Native UIs",<br />
+          &nbsp;&nbsp;image: "https://images.unsplash.com/...",<br />
+          &nbsp;&nbsp;description: "Build modern, accessible UI with AINativeKit...",<br />
+          &nbsp;&nbsp;metadata: [<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;{'{'}icon: 'clock', label: '10 min read{'}'},<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;{'{'}icon: 'calendar-today', label: 'October 30, 2025{'}'}<br />
+          &nbsp;&nbsp;]<br />
+          {'}'};<br />
+          <br />
+          {'<SummaryCard'}<br />
+          &nbsp;&nbsp;images={'{articleData.image}'}<br />
+          &nbsp;&nbsp;title={'{articleData.title}'}<br />
+          &nbsp;&nbsp;description={'{articleData.description}'}<br />
+          &nbsp;&nbsp;metadata={'{articleData.metadata}'}<br />
+          &nbsp;&nbsp;buttonText="Explore Docs"<br />
+          {'/>'}<br />
+        </div>
+        <div style={{ ...contentSectionStyle, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', maxWidth: '360px' }}>
+          {/* Article Card using SummaryCard - shows what it looks like */}
+          <SummaryCard
+            elevationLevel="1"
+            interactive
+            images="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400&h=200&fit=crop"
+            title="Building AI-Native UIs"
+            description="Build modern, accessible UI with AINativeKit. Master reusable component patterns that scale."
+            metadata={[
+              { icon: 'clock', label: '10 min read' },
+              { icon: 'calendar-today', label: 'October 30, 2025' }
+            ]}
+            buttonText="Explore Docs"
+            onButtonClick={() => {}}
+          />
+        </div>
+
+        <div style={{ ...assistantParagraphStyle, marginTop: '32px', paddingTop: '24px', borderTop: '1px solid var(--ai-color-border-light)' }}>
+          <strong>See how the same data adapts to different layouts?</strong> Pattern 1 is fast, Pattern 2 is flexible. Pick what works for your use case.
+        </div>
+
+        <div style={{ ...assistantParagraphStyle, marginTop: '24px' }}>
+          <strong>Pattern 2: Build Custom Layouts (Advanced & Flexible)</strong>
+        </div>
+        <div style={assistantParagraphStyle}>
+          Need more control? Use compound Card components for rich customization. Same data, but with custom tags, advanced metadata, and full styling control:
+        </div>
+        <div style={codeBlockStyle}>
+          {'<Card elevationLevel="1" interactive>'}<br />
+          &nbsp;&nbsp;{'<Card.Header>'}<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;{'<Card.ChipGroup>'}<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'<Card.Chip variant="neutral" size="sm">ChatGPT Apps SDK</Card.Chip>'}<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'<Card.Chip variant="neutral" size="sm">UI Components</Card.Chip>'}<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;{'</Card.ChipGroup>'}<br />
+          &nbsp;&nbsp;{'</Card.Header>'}<br />
+          &nbsp;&nbsp;{'<Card.Image src="..." />'}<br />
+          &nbsp;&nbsp;{'<Card.Body>'}<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;{'<Card.Title as="h3">Building AI-Native UIs</Card.Title>'}<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;{'<Card.Description>'}<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Build modern, accessible UI with AINativeKit...<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;{'</Card.Description>'}<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;{'<Card.Meta>'}<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'<Features items={['}<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'{'}icon: 'clock', label: '10 min read{'}'},<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'{'}icon: 'calendar-today', label: 'Oct 30, 2025{'}'}<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{']} />'}<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;{'</Card.Meta>'}<br />
+          &nbsp;&nbsp;{'</Card.Body>'}<br />
+          &nbsp;&nbsp;{'<Card.Footer>'}<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;{'<Card.Actions align="start">'}<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'<Card.ActionButton variant="primary">Explore Docs</Card.ActionButton>'}<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;{'</Card.Actions>'}<br />
+          &nbsp;&nbsp;{'</Card.Footer>'}<br />
+          {'</Card>'}
+        </div>
+        <div style={{ ...contentSectionStyle, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px', maxWidth: '360px' }}>
+          {/* Documentation Card Example - shows what it looks like */}
+          <Card elevationLevel="1" interactive>
+            <Card.Header>
+              <Card.ChipGroup>
+                <Card.Chip variant="neutral" size="sm">ChatGPT Apps SDK</Card.Chip>
+                <Card.Chip variant="neutral" size="sm">UI Components</Card.Chip>
+              </Card.ChipGroup>
+            </Card.Header>
+            <Card.Image
+              src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400&h=200&fit=crop"
+              alt="Building AI-Native UIs"
+            />
+            <Card.Body>
+              <Card.Title as="h3">Building AI-Native UIs</Card.Title>
+              <Card.Description>
+                Build modern, accessible UI with AINativeKit. Master reusable component patterns that scale.
+              </Card.Description>
+              <Card.Meta>
+                <Features items={[
+                  { icon: 'clock', label: '10 min read' },
+                  { icon: 'calendar-today', label: 'October 30, 2025' }
+                ]} iconSize={12} />
+              </Card.Meta>
+            </Card.Body>
+            <Card.Footer>
+              <Card.Actions align="start">
+                <Card.ActionButton variant="primary">Explore Docs</Card.ActionButton>
+              </Card.Actions>
+            </Card.Footer>
+          </Card>
+        </div>
+
+        <div style={{ ...assistantParagraphStyle, marginTop: '32px', paddingTop: '24px', borderTop: '1px solid var(--ai-color-border-light)' }}>
+          <strong>That's the power of AINativeKit UI:</strong> simplicity when you need it, flexibility when you want it.
+        </div>
+
+        <div style={{ ...assistantParagraphStyle, marginTop: '32px' }}>
+          <strong>Ready? Three simple steps:</strong>
         </div>
         <div style={assistantParagraphStyle}>
           <strong>1. Install:</strong>
-          <div style={codeBlockStyle}>npm install @ainativekit/ui</div>
+          <div style={codeBlockStyles.terminal}>npm install @ainativekit/ui</div>
         </div>
         <div style={assistantParagraphStyle}>
-          <strong>2. Import and use:</strong>
-          <div style={codeBlockStyle}>
-            import '@ainativekit/ui/styles'; // Import once in your app root<br />
-            import {'{'}Card, Badge{'}'} from '@ainativekit/ui';<br />
-            <br />
-            {'<Card>'}<br />
-            &nbsp;&nbsp;{'<Card.Image src={weatherData.image} alt="San Francisco" />'}<br />
-            &nbsp;&nbsp;{'<Card.Body>'}<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;{'<Card.Title>San Francisco</Card.Title>'}<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;{'<Card.Description>72°F · Sunny</Card.Description>'}<br />
-            &nbsp;&nbsp;{'</Card.Body>'}<br />
-            &nbsp;&nbsp;{'<Card.Footer>'}<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;{'<Badge variant="success">Live</Badge>'}<br />
-            &nbsp;&nbsp;{'</Card.Footer>'}<br />
-            {'</Card>'}
+          <strong>2. Import:</strong>
+          <div style={codeBlockStyles.terminal}>
+            import '@ainativekit/ui/styles';<br />
+            import {'{'}SummaryCard, Card{'}'} from '@ainativekit/ui';
           </div>
         </div>
         <div style={assistantParagraphStyle}>
-          <strong>That's it!</strong> Everything works out of the box:
+          <strong>3. Use one of the patterns above and ship! 🚀</strong>
         </div>
+
         <div style={assistantParagraphStyle}>
-          ✓ Full TypeScript support<br />
-          ✓ Dark & light mode<br />
+          <strong>Everything included:</strong><br />
+          ✓ Full TypeScript with IntelliSense<br />
+          ✓ Dark & light mode (automatic)<br />
           ✓ WCAG 2.1 AA accessible<br />
           ✓ Mobile-responsive<br />
-          ✓ Zero configuration
+          ✓ Zero configuration needed
         </div>
+
         <div style={assistantFooterStyle}>
-          <strong>Explore next:</strong> Check the Storybook menu for:
+          <strong>Dive deeper:</strong> Check the Storybook menu for:
           <ul style={{ margin: '8px 0', paddingLeft: '20px' }}>
             <li>
-              <strong>Gallery</strong>: Complete interactive examples and real-world use cases
+              <strong>Gallery</strong>: Real-world examples for restaurants, products, articles, and more
             </li>
             <li>
-              <strong>Design Tokens</strong>: Customizable colors, typography, spacing, and elevation
+              <strong>Cards</strong>: SummaryCard, ImageCard, ListCard, DiscoveryCard with all variants
             </li>
             <li>
-              <strong>Core Components</strong>: Essential building blocks - Button, Icon, Badge, Chip, Alert, Skeleton
+              <strong>Patterns</strong>: Carousel, List, Album, Map with complete examples
             </li>
             <li>
-              <strong>Patterns</strong>: Pre-built layouts - Card, Carousel, List, Album, Map
+              <strong>Design Tokens</strong>: Colors, typography, spacing, elevation - all customizable
             </li>
           </ul>
         </div>
+
         <div style={assistantParagraphStyle}>
-          <strong>We're open source! 🌟</strong> Check us out on <a href="https://github.com/ainativekit/ainativekit-ui" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ai-color-text-primary)', textDecoration: 'underline' }}>GitHub</a> and find us on <a href="https://www.npmjs.com/package/@ainativekit/ui" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ai-color-text-primary)', textDecoration: 'underline' }}>npm</a>. Star us, contribute, or report issues - we'd love your feedback!
+          <strong>We're open source! 🌟</strong> Join us on <a href="https://github.com/AINativeKit/ainativekit-ui" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ai-color-text-primary)', textDecoration: 'underline' }}>GitHub</a> and <a href="https://www.npmjs.com/package/@ainativekit/ui" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ai-color-text-primary)', textDecoration: 'underline' }}>npm</a>. Star ⭐ us, contribute, or report issues - we'd love your feedback!
         </div>
+
         <div style={{ ...assistantFooterStyle, marginTop: '12px' }}>
-          Happy building! 🎉
+          <strong>Stop rebuilding the same components. Start shipping AI-Native experiences today! 🚀</strong>
         </div>
         <ActionButtons />
       </AssistantMessage>
