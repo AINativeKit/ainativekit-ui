@@ -4,6 +4,7 @@ import { Map } from './Map';
 import { MapView } from './MapView';
 import type { LocationData } from './types';
 import { PropsTable } from '../../tokens/PropsTable';
+import { codeBlockStyles } from '../storybook/codeBlockStyles';
 
 // Sample location data - San Francisco pizza places
 const sampleLocations: LocationData[] = [
@@ -460,19 +461,15 @@ const MapSystemComponent: React.FC = () => {
           </p>
         </div>
 
-        <div
-          style={{
-            backgroundColor: 'var(--ai-color-bg-secondary)',
-            borderRadius: '8px',
-            padding: '16px',
-            marginBottom: '24px',
-            fontFamily: 'monospace',
-            fontSize: '12px',
-            overflow: 'auto',
-            color: 'var(--ai-color-text-secondary)',
-          }}
-        >
-          <pre style={{ margin: 0, whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>
+        <div style={codeBlockStyles.primary}>
+          <pre
+            style={{
+              margin: 0,
+              color: 'var(--ai-color-text-primary)',
+              whiteSpace: 'pre-wrap',
+              wordBreak: 'break-word',
+            }}
+          >
 {`// ChatGPT Apps integration (controlled mode)
 const [isMapFullscreen, setIsMapFullscreen] = useState(false);
 
