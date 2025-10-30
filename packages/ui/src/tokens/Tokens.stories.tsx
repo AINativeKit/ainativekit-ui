@@ -176,9 +176,9 @@ border: 1px solid var(--ai-color-outline-default);`}</code>
         </pre>
       </section>
 
-      {/* Props/Reference Section */}
+      {/* Reference Section */}
       <section style={{ marginBottom: '64px' }}>
-        <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Props</h2>
+        <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Reference</h2>
         <PropsTable rows={[
           {
             name: 'background',
@@ -319,7 +319,7 @@ const className = typography.heading1.className; // 'ai-heading1'`}</code>
         </pre>
       </section>
 
-      {/* Props Section */}
+      {/* Reference Section */}
       <section style={{ marginBottom: '64px' }}>
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Reference</h2>
         <PropsTable 
@@ -524,7 +524,7 @@ const padding = spacing['space-16']; // '32px'`}</code>
         </pre>
       </section>
 
-      {/* Props Section */}
+      {/* Reference Section */}
       <section style={{ marginBottom: '64px' }}>
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Reference</h2>
         <PropsTable
@@ -689,7 +689,7 @@ const cardRadius = radius.xl; // '24px'`}</code>
         </pre>
       </section>
 
-      {/* Props Section */}
+      {/* Reference Section */}
       <section style={{ marginBottom: '64px' }}>
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Reference</h2>
         <PropsTable
@@ -887,7 +887,7 @@ const className = elevation['1'].className; // 'ai-elevation-1'`}</code>
         </p>
       </section>
 
-      {/* Props Section */}
+      {/* Reference Section */}
       <section style={{ marginBottom: '64px' }}>
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Reference</h2>
         <PropsTable 
