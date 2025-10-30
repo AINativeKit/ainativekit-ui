@@ -308,7 +308,9 @@ export const ImageCard = React.forwardRef<HTMLDivElement, ImageCardProps>((props
       />
 
       {/* Loading State Overlay */}
-      {isLoading && !hasError && (
+      {/* Show skeleton when loading prop is explicitly true (takes precedence over image error),
+          or when naturally loading without errors (and loading prop is not explicitly set) */}
+      {((loading && !error) || (!loading && isLoading && !hasError)) && (
         <div className={styles.loadingContainer} role="status" aria-live="polite">
           <Skeleton width="100%" height="100%" animation />
           <span className={styles.visuallyHidden}>Loading image: {title || 'content'}</span>
@@ -316,7 +318,8 @@ export const ImageCard = React.forwardRef<HTMLDivElement, ImageCardProps>((props
       )}
 
       {/* Error State Overlay */}
-      {hasError && !isLoading && (
+      {/* Show error when there's an error and not in explicit loading state (loading prop takes precedence) */}
+      {hasError && !loading && (
         <div className={styles.errorContainer}>
           <Alert
             layout="card"
