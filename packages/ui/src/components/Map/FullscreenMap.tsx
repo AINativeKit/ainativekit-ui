@@ -5,8 +5,9 @@ import { MapInspector } from './MapInspector';
 import { LocationCarousel } from './LocationCarousel';
 import { MapView } from './MapView';
 import { Button } from '../Button';
-import { Alert } from '../Alert';
 import { Skeleton } from '../Skeleton';
+import { ErrorStateDisplay } from './ErrorStateDisplay';
+import { getErrorState, resolveErrorStateValues } from './useErrorState';
 import { cn } from '../../utils/cn';
 import type { LocationData } from './types';
 import type { MapViewProps } from './MapView';
@@ -126,43 +127,33 @@ export const FullscreenMap: React.FC<FullscreenMapProps> = ({
   };
 
   // State Priority: Loading > Error > Empty > Content
+  const { isLoading, isError, isEmpty } = getErrorState({
+    loading,
+    error,
+    isEmpty: locations.length === 0,
+  });
+
+  const resolvedValues = resolveErrorStateValues(
+    { errorTitle, errorMessage, emptyTitle, emptyMessage, onErrorRetry },
+    {
+      errorTitle: 'Failed to load map',
+      errorMessage: 'Unable to retrieve location data. Please try again.',
+      emptyTitle: 'No locations',
+      emptyMessage: 'No locations to display',
+    }
+  );
 
   // Loading State
-  if (loading || !isMounted || typeof window === 'undefined') {
+  if (isLoading || !isMounted || typeof window === 'undefined') {
     return <LoadingFallback height={height} />;
   }
 
-  // Error State  
-  if (error) {
-    return (
-      <div className={cn(styles.container, className)} style={{ height }}>
-        <div className={styles.fallbackLayout}>
-          <MapView
-            locations={[]}
-            selectedId={undefined}
-            loading={false}
-            error={false}
-            className={styles.fallbackMap}
-          />
-          <div className={styles.fallbackOverlay}>
-            <Alert
-              variant="error"
-              hideIcon
-              layout="card"
-              title={errorTitle}
-              message={errorMessage ?? 'Unable to retrieve location data. Please try again.'}
-              onAction={onErrorRetry}
-              actionLabel={onErrorRetry ? 'Try again' : undefined}
-              className={styles.fallbackOverlayContent}
-            />
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // Error or Empty State
+  if (isError || isEmpty) {
+    const stateType = isError ? 'error' : 'empty';
+    const stateTitle = isError ? resolvedValues.errorTitle : resolvedValues.emptyTitle;
+    const stateMessage = isError ? resolvedValues.errorMessage : resolvedValues.emptyMessage;
 
-  // Empty State
-  if (locations.length === 0) {
     return (
       <div className={cn(styles.container, className)} style={{ height }}>
         <div className={styles.fallbackLayout}>
@@ -174,12 +165,12 @@ export const FullscreenMap: React.FC<FullscreenMapProps> = ({
             className={styles.fallbackMap}
           />
           <div className={styles.fallbackOverlay}>
-            <Alert
-              variant="info"
-              hideIcon
-              layout="card"
-              title={emptyTitle}
-              message={emptyMessage}
+            <ErrorStateDisplay
+              state={stateType}
+              title={stateTitle}
+              message={stateMessage}
+              onAction={isError ? resolvedValues.onErrorRetry : undefined}
+              containerClassName={styles.fallbackOverlay}
               className={styles.fallbackOverlayContent}
             />
           </div>

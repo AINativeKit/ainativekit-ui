@@ -64,6 +64,12 @@ describe('Alert', () => {
       expect(alertDiv.className).toContain('alert--default');
     });
 
+    it('should render center layout', () => {
+      const { container } = render(<Alert layout="center" />);
+      const alertDiv = container.firstChild as HTMLElement;
+      expect(alertDiv.className).toContain('alert--center');
+    });
+
     it('should render card layout', () => {
       const { container } = render(<Alert layout="card" />);
       const alertDiv = container.firstChild as HTMLElement;
@@ -216,21 +222,41 @@ describe('Alert', () => {
 
     it('should combine all variant types with card layout', () => {
       const onAction = vi.fn();
-      
+
       // Test all 4 variants with card layout
       const { rerender } = render(
         <Alert variant="error" layout="card" message="Error message" onAction={onAction} />
       );
       expect(screen.getByText('Something went wrong')).toBeInTheDocument();
-      
+
       rerender(<Alert variant="warning" layout="card" message="Warning message" onAction={onAction} />);
       expect(screen.getByText('Warning')).toBeInTheDocument();
-      
+
       rerender(<Alert variant="info" layout="card" message="Info message" onAction={onAction} />);
       expect(screen.getByText('Information')).toBeInTheDocument();
-      
+
       rerender(<Alert variant="success" layout="card" message="Success message" onAction={onAction} />);
       expect(screen.getByText('Success')).toBeInTheDocument();
+    });
+
+    it('should render with center layout and all features', () => {
+      const onAction = vi.fn();
+      render(
+        <Alert
+          variant="info"
+          layout="center"
+          title="Update Available"
+          message="A new version is ready to install"
+          onAction={onAction}
+          actionLabel="Update Now"
+          data-testid="center-alert"
+        />
+      );
+
+      expect(screen.getByTestId('center-alert')).toBeInTheDocument();
+      expect(screen.getByText('Update Available')).toBeInTheDocument();
+      expect(screen.getByText('A new version is ready to install')).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: 'Update Now' })).toBeInTheDocument();
     });
   });
 });

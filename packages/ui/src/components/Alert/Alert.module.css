@@ -1,5 +1,6 @@
 /* Alert Component Styles */
 
+/* Base Alert - Vertical Layout (Row 1: Icon+Title, Row 2: Message, Row 3: Button) */
 .alert {
   display: flex;
   flex-direction: column;
@@ -7,26 +8,50 @@
   padding: var(--ai-spacing-12);
   color: var(--ai-color-text-default);
   border-radius: var(--ai-radius-md);
+  width: 100%;
+  box-sizing: border-box;
+  align-items: flex-start;
 }
 
 /* Layout Variants */
 .alert--default {
-  align-items: stretch;
+  /* Default layout - all items left aligned */
+}
+
+.alert--center {
+  /* Center layout - centered content without card styling */
+  align-items: center;
+  text-align: center;
 }
 
 .alert--card {
+  /* Card layout - centered with card container styling */
   align-items: center;
   text-align: center;
   padding: var(--ai-spacing-16) var(--ai-spacing-12);
-  min-height: 200px;
+  gap: var(--ai-spacing-16);
+}
+
+/* Header - Row 1: Icon + Title (Horizontal, Left Aligned) */
+.alert__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--ai-spacing-4);
+  width: 100%;
+}
+
+.alert--center .alert__header,
+.alert--card .alert__header {
   justify-content: center;
 }
 
-/* Header with icon and title */
-.alert__header {
-  display: flex;
-  align-items: center;
-  gap: var(--ai-spacing-8);
+.alert--center .alert__message {
+  text-align: center;
+}
+
+.alert--center .alert__actions {
+  justify-content: center;
 }
 
 /* Severity Variants */
@@ -50,7 +75,7 @@
   border: 1px solid rgba(0, 134, 53, 0.2);
 }
 
-/* Icon */
+/* Icon - Left */
 .alert__icon {
   display: flex;
   align-items: center;
@@ -86,27 +111,6 @@
   height: 40px;
 }
 
-/* Header layout variants */
-.alert--card .alert__header {
-  flex-direction: column;
-  gap: var(--ai-spacing-4);
-}
-
-/* Content */
-.alert__content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--ai-spacing-8);
-}
-
-.alert--default .alert__content {
-  align-items: flex-start;
-}
-
-.alert--card .alert__content {
-  align-items: center;
-}
-
 /* Title */
 .alert__title {
   margin: 0;
@@ -116,19 +120,24 @@
   color: var(--ai-color-text-default);
 }
 
-/* Message */
+/* Message - Row 2 (Left Aligned) */
 .alert__message {
   margin: 0;
   font-size: var(--ai-font-size-body-sm);
   line-height: var(--ai-line-height-body-sm);
   color: var(--ai-color-text-subtle);
+  width: 100%;
 }
 
-/* Actions */
+.alert--card .alert__message {
+  text-align: center;
+}
+
+/* Actions - Row 3 (Left Aligned) */
 .alert__actions {
   display: flex;
   gap: var(--ai-spacing-8);
-  margin-top: var(--ai-spacing-4);
+  width: 100%;
 }
 
 .alert--default .alert__actions {
@@ -145,30 +154,30 @@
     background-color: rgba(255, 133, 131, 0.1);
     border-color: rgba(255, 133, 131, 0.2);
   }
-  
+
   .alert--error .alert__icon svg {
     color: var(--ai-color-error-light, #FF8583);
   }
-  
+
   .alert--warning {
     background-color: rgba(255, 158, 108, 0.1);
     border-color: rgba(255, 158, 108, 0.2);
   }
-  
+
   .alert--warning .alert__icon svg {
     color: var(--ai-color-warning-light, #FF9E6C);
   }
-  
+
   .alert--info {
     background-color: rgba(2, 133, 255, 0.1);
     border-color: rgba(2, 133, 255, 0.2);
   }
-  
+
   .alert--success {
     background-color: rgba(64, 201, 119, 0.1);
     border-color: rgba(64, 201, 119, 0.2);
   }
-  
+
   .alert--success .alert__icon svg {
     color: var(--ai-color-success-light, #40C977);
   }

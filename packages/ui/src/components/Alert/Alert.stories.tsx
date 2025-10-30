@@ -183,22 +183,64 @@ const AlertShowcaseComponent: React.FC = () => {
         )}
       </section>
 
+      {/* Center Layout */}
+      <section style={{ marginBottom: '48px' }}>
+        <header style={{ marginBottom: '24px' }}>
+          <h2 style={{ marginBottom: '8px', fontSize: '24px', fontWeight: 600 }}>Center Layout</h2>
+          <p style={{ color: 'var(--ai-color-text-subtle)', margin: 0, fontSize: '14px' }}>
+            Centered content without additional card styling
+          </p>
+        </header>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr',
+          gap: '12px',
+          maxWidth: '400px'
+        }}>
+          <Alert
+            variant="error"
+            layout="center"
+            title="Connection Error"
+            message="Unable to connect to the server"
+            onAction={handleRetry}
+            actionLabel="Retry"
+          />
+
+          <Alert
+            variant="info"
+            layout="center"
+            title="Update Available"
+            message="A new version is ready to install"
+            onAction={handleDismiss}
+            actionLabel="Update Now"
+          />
+
+          <Alert
+            variant="success"
+            layout="center"
+            title="Operation Complete"
+            message="Your request has been processed"
+          />
+        </div>
+      </section>
+
       {/* Card Layout */}
       <section style={{ marginBottom: '48px' }}>
         <header style={{ marginBottom: '24px' }}>
           <h2 style={{ marginBottom: '8px', fontSize: '24px', fontWeight: 600 }}>Card Layout</h2>
           <p style={{ color: 'var(--ai-color-text-subtle)', margin: 0, fontSize: '14px' }}>
-            Centered layout optimized for card containers
+            Centered layout with card container styling (padding, min-height)
           </p>
         </header>
 
-        <div style={{ 
-          display: 'grid', 
+        <div style={{
+          display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
           gap: '24px'
         }}>
           <Card elevationLevel="1">
-            <Alert 
+            <Alert
               variant="error"
               layout="card"
               title="No results found"
@@ -207,7 +249,7 @@ const AlertShowcaseComponent: React.FC = () => {
           </Card>
 
           <Card elevationLevel="1">
-            <Alert 
+            <Alert
               variant="warning"
               layout="card"
               title="Limited access"
@@ -218,7 +260,7 @@ const AlertShowcaseComponent: React.FC = () => {
           </Card>
 
           <Card elevationLevel="1">
-            <Alert 
+            <Alert
               variant="success"
               layout="card"
               title="All caught up!"
@@ -310,7 +352,7 @@ const AlertShowcaseComponent: React.FC = () => {
             },
             {
               name: 'layout',
-              description: 'Layout style. Options: "default" | "card". Use "card" for centered display in containers. Default: "default"',
+              description: 'Layout style. Options: "default" (left-aligned) | "center" (centered without card styling) | "card" (centered with card styling). Default: "default"',
             },
             {
               name: 'title',
@@ -364,8 +406,8 @@ const AlertShowcaseComponent: React.FC = () => {
             }}>
               ✓ Do
             </h3>
-            <ul style={{ 
-              margin: 0, 
+            <ul style={{
+              margin: 0,
               paddingLeft: '24px',
               fontSize: '14px',
               lineHeight: '1.8',
@@ -374,7 +416,9 @@ const AlertShowcaseComponent: React.FC = () => {
               <li>Use appropriate variant for the situation (error for failures, success for confirmations)</li>
               <li>Keep messages concise and actionable</li>
               <li>Provide action buttons for errors that users can recover from</li>
-              <li>Use "card" layout when alert is the main content of a card</li>
+              <li>Use "default" layout for inline/inline alerts in normal content flow</li>
+              <li>Use "center" layout for centered alerts without container styling</li>
+              <li>Use "card" layout when alert is the main content of a card container</li>
               <li>Include clear titles that summarize the alert purpose</li>
             </ul>
           </div>

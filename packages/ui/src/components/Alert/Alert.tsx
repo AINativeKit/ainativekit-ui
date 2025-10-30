@@ -9,7 +9,7 @@ import { Button } from '../Button';
 import styles from './Alert.module.css';
 
 export type AlertVariant = 'error' | 'warning' | 'info' | 'success';
-export type AlertLayout = 'default' | 'card';
+export type AlertLayout = 'default' | 'center' | 'card';
 
 export interface AlertProps extends ComponentPropsWithoutRef<'div'> {
   /**
@@ -24,8 +24,9 @@ export interface AlertProps extends ComponentPropsWithoutRef<'div'> {
   
   /**
    * Layout style
-   * - 'default': Standard alert display
-   * - 'card': Centered layout optimized for card containers
+   * - 'default': Left-aligned layout
+   * - 'center': Center-aligned layout without card styling
+   * - 'card': Centered layout with card container styling (padding, min-height)
    * @default 'default'
    */
   layout?: AlertLayout;
@@ -86,49 +87,46 @@ const DEFAULT_ICONS: Record<AlertVariant, React.ReactNode> = {
 
 /**
  * Alert component for displaying feedback messages
- * 
- * Supports multiple severity levels (error, warning, info, success) 
+ *
+ * Supports multiple severity levels (error, warning, info, success)
  * following standard design system patterns from Material UI, Chakra UI, etc.
- * 
+ *
  * @example
  * ```tsx
- * // Error alert
- * <Alert 
+ * // Default layout (left-aligned)
+ * <Alert
  *   variant="error"
  *   title="Failed to load"
  *   message="Unable to fetch data"
  *   onAction={handleRetry}
  * />
- * 
+ *
  * // Success alert
- * <Alert 
+ * <Alert
  *   variant="success"
  *   title="Saved"
  *   message="Your changes have been saved"
  * />
- * 
- * // Warning alert
- * <Alert 
- *   variant="warning"
- *   message="Your session will expire soon"
- * />
- * 
- * // Info alert
- * <Alert 
+ *
+ * // Center layout (centered without card styling)
+ * <Alert
  *   variant="info"
+ *   layout="center"
+ *   title="Information"
  *   message="New features are available"
  * />
- * 
- * // Card layout (centered)
- * <Alert 
+ *
+ * // Card layout (centered with card styling)
+ * <Alert
  *   variant="error"
  *   layout="card"
  *   title="No results found"
  *   message="Try adjusting your filters"
+ *   onAction={handleRetry}
  * />
- * 
+ *
  * // Custom icon
- * <Alert 
+ * <Alert
  *   icon={<CustomIcon />}
  *   title="Custom alert"
  * />
@@ -168,26 +166,26 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) =
       data-testid={testId}
       {...rest}
     >
+      {/* Row 1: Icon + Title (same row, left aligned) */}
       <div className={styles.alert__header}>
         {displayIcon && (
           <div className={styles.alert__icon}>
             {displayIcon}
           </div>
         )}
-
         <h3 className={styles.alert__title}>
           {displayTitle}
         </h3>
       </div>
 
+      {/* Row 2: Message (left aligned) */}
       {message && (
-        <div className={styles.alert__content}>
-          <p className={styles.alert__message}>
-            {message}
-          </p>
-        </div>
+        <p className={styles.alert__message}>
+          {message}
+        </p>
       )}
 
+      {/* Row 3: Action Button (left aligned) */}
       {onAction && (
         <div className={styles.alert__actions}>
           <Button

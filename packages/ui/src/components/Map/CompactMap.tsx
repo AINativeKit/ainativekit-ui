@@ -4,7 +4,7 @@ import type { MapViewProps } from './MapView';
 import { LocationCarousel } from './LocationCarousel';
 import type { LocationCarouselProps } from './LocationCarousel';
 import { Button } from '../Button';
-import { Alert } from '../Alert';
+import { ErrorStateDisplay } from './ErrorStateDisplay';
 import { cn } from '../../utils/cn';
 import styles from './CompactMap.module.css';
 
@@ -131,12 +131,12 @@ export const CompactMap: React.FC<CompactMapProps> = ({
 
       {isEmpty && (
         <div className={styles.emptyOverlay}>
-          <Alert
-            variant="info"
-            hideIcon
-            layout="card"
+          <ErrorStateDisplay
+            state="empty"
             title="No locations yet"
             message="Add locations to see them on the map"
+            hideIcon={true}
+            layout="card"
           />
         </div>
       )}

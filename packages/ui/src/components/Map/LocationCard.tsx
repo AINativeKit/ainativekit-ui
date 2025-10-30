@@ -1,7 +1,7 @@
 import React from 'react';
 import type { SyntheticEvent } from 'react';
 import { Skeleton } from '../Skeleton';
-import { Alert } from '../Alert';
+import { ErrorStateDisplay } from './ErrorStateDisplay';
 import { Badge, type BadgeProps } from '../Badge';
 import { Chip, type ChipProps } from '../Chip';
 import { Features } from '../Feature';
@@ -228,10 +228,13 @@ export const LocationCard: React.FC<LocationCardProps> = ({
         data-testid={testId}
       >
         <div className={styles.errorContainer}>
-          <Alert
-            title={errorTitle}
+          <ErrorStateDisplay
+            state="error"
+            title={errorTitle || 'Failed to load'}
             message={errorMessage}
             onAction={onErrorRetry}
+            layout="default"
+            hideIcon={false}
           />
         </div>
       </div>
