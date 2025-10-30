@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Carousel as CarouselComponent } from '../../components/Carousel';
 import { DiscoveryCard } from '../../components/Card/DiscoveryCard';
 import { PropsTable } from '../../tokens/PropsTable';
+import { codeBlockStyles } from '../../components/storybook/codeBlockStyles';
 
 // Dummy component for Storybook
 const CarouselExample = () => null;
@@ -197,22 +198,13 @@ export const Carousel: Story = {
             Define your carousel items with rich content including images, descriptions, and metadata.
           </p>
 
-          <div
-            style={{
-              background: '#1e1e1e',
-              color: '#d4d4d4',
-              padding: '24px',
-              borderRadius: '12px',
-              overflow: 'auto',
-              marginBottom: '16px',
-            }}
-          >
+          <div style={codeBlockStyles.primary}>
             <pre
               style={{
                 margin: 0,
-                fontFamily: 'ui-monospace, Menlo, Monaco, "Courier New", monospace',
-                fontSize: '13px',
-                lineHeight: '1.6',
+                color: 'var(--ai-color-text-primary)',
+                whiteSpace: 'pre-wrap',
+                wordBreak: 'break-word',
               }}
             >
 {`type FeatureItem = string | { icon?: IconName; label: string };
@@ -290,21 +282,13 @@ const items: DiscoveryCardItem[] = [
             Quick Start
           </h2>
 
-          <div
-            style={{
-              background: '#1e1e1e',
-              color: '#d4d4d4',
-              padding: '24px',
-              borderRadius: '12px',
-              overflow: 'auto',
-            }}
-          >
+          <div style={codeBlockStyles.primary}>
             <pre
               style={{
                 margin: 0,
-                fontFamily: 'ui-monospace, Menlo, Monaco, "Courier New", monospace',
-                fontSize: '13px',
-                lineHeight: '1.6',
+                color: 'var(--ai-color-text-primary)',
+                whiteSpace: 'pre-wrap',
+                wordBreak: 'break-word',
               }}
             >
 {`import { Carousel } from '@ainativekit/ui';

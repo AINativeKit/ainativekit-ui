@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ImageCard, SummaryCard, ListCard, DiscoveryCard } from '../../components/Card';
 import type { IconName } from '../../tokens/icons';
+import { codeBlockStyles } from '../../components/storybook/codeBlockStyles';
 
 // Dummy component for Storybook
 const CardsExample = () => null;
@@ -815,16 +816,7 @@ const CardsComponent = () => {
           Quick Reference
         </h2>
 
-        <div
-          style={{
-            padding: '24px',
-            background: 'var(--ai-color-bg-secondary)',
-            borderRadius: '8px',
-            fontSize: '12px',
-            fontFamily: 'monospace',
-            overflow: 'auto',
-          }}
-        >
+        <div style={codeBlockStyles.primary}>
           <pre
             style={{
               margin: 0,

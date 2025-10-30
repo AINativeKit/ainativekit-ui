@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Map, FullscreenMap } from '../../components/Map';
 import type { LocationData } from '../../components/Map/types';
+import { codeBlockStyles } from '../../components/storybook/codeBlockStyles';
 
 // Dummy component for Storybook
 const MapsExample = () => null;
@@ -422,23 +423,13 @@ const MapsComponent: React.FC = () => {
           shown below to let ChatGPT manage the iframe expansion when users click the expand button.
         </p>
 
-        <div
-          style={{
-            backgroundColor: 'var(--ai-color-bg-secondary)',
-            borderRadius: '8px',
-            padding: '16px',
-            marginBottom: '16px',
-            fontFamily: 'monospace',
-            fontSize: '12px',
-            overflow: 'auto',
-            color: 'var(--ai-color-text-secondary)',
-          }}
-        >
+        <div style={codeBlockStyles.primary}>
           <pre
             style={{
               margin: 0,
+              color: 'var(--ai-color-text-primary)',
               whiteSpace: 'pre-wrap',
-              wordWrap: 'break-word',
+              wordBreak: 'break-word',
             }}
           >
 {`import { useState } from 'react';

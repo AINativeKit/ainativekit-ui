@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { List, ListItem } from '../../components/List';
 import { Button } from '../../components/Button';
 import { PropsTable } from '../../tokens/PropsTable';
+import { codeBlockStyles } from '../../components/storybook/codeBlockStyles';
 
 // Dummy component for Storybook
 const ListExample = () => null;
@@ -198,18 +199,15 @@ const PizzaListComponent: React.FC = () => {
             Use this structure for displaying ranked lists with ratings and metadata:
           </p>
 
-          <pre
-            style={{
-              background: 'var(--ai-color-bg-tertiary)',
-              color: 'var(--ai-color-text-primary)',
-              padding: '24px',
-              borderRadius: '8px',
-              overflow: 'auto',
-              fontSize: '13px',
-              lineHeight: '1.6',
-              border: '1px solid var(--ai-color-border-light)',
-            }}
-          >
+          <div style={codeBlockStyles.primary}>
+            <pre
+              style={{
+                margin: 0,
+                color: 'var(--ai-color-text-primary)',
+                whiteSpace: 'pre-wrap',
+                wordBreak: 'break-word',
+              }}
+            >
             {`interface PizzaPlace {
   id: string;
   name: string;
@@ -245,7 +243,8 @@ type FeatureItem = string | { icon?: IconName; label: string };
     />
   )}
 />`}
-          </pre>
+            </pre>
+          </div>
         </section>
 
         {/* Quick Start */}

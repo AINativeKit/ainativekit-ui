@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Album } from '../../components/Album';
 import type { Album as AlbumType } from '../../components/Album/types';
 import { PropsTable } from '../../tokens/PropsTable';
+import { codeBlockStyles } from '../../components/storybook/codeBlockStyles';
 
 // Dummy component for Storybook
 const AlbumsExample = () => null;
@@ -302,22 +303,13 @@ const AlbumsComponent: React.FC = () => {
             Define your albums using this TypeScript interface. Each album contains metadata and an array of photos.
           </p>
 
-          <div
-            style={{
-              background: '#1e1e1e',
-              color: '#d4d4d4',
-              padding: '24px',
-              borderRadius: '12px',
-              overflow: 'auto',
-              marginBottom: '16px',
-            }}
-          >
+          <div style={codeBlockStyles.primary}>
             <pre
               style={{
                 margin: 0,
-                fontFamily: 'ui-monospace, Menlo, Monaco, "Courier New", monospace',
-                fontSize: '13px',
-                lineHeight: '1.6',
+                color: 'var(--ai-color-text-primary)',
+                whiteSpace: 'pre-wrap',
+                wordBreak: 'break-word',
               }}
             >
 {`interface Album {
@@ -394,21 +386,13 @@ const albums: Album[] = [
             Quick Start
           </h2>
 
-          <div
-            style={{
-              background: '#1e1e1e',
-              color: '#d4d4d4',
-              padding: '24px',
-              borderRadius: '12px',
-              overflow: 'auto',
-            }}
-          >
+          <div style={codeBlockStyles.primary}>
             <pre
               style={{
                 margin: 0,
-                fontFamily: 'ui-monospace, Menlo, Monaco, "Courier New", monospace',
-                fontSize: '13px',
-                lineHeight: '1.6',
+                color: 'var(--ai-color-text-primary)',
+                whiteSpace: 'pre-wrap',
+                wordBreak: 'break-word',
               }}
             >
 {`import { Album } from '@ainativekit/ui';
