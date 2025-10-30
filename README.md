@@ -241,7 +241,7 @@ Contributions welcome! Please:
 2. **Open an issue** to discuss new features/bugs
 3. **Fork** -> create a feature branch -> open a **PR**
 
-See [`CONTRIBUTING.md`](./CONTRIBUTING.md) (coming soon) for guidelines.
+See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for guidelines.
 
 ## 🔗 Links
 

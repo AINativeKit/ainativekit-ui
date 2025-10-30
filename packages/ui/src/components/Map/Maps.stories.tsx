@@ -311,7 +311,7 @@ const MapSystemComponent: React.FC = () => {
               Lightweight inline map with carousel for ChatGPT Apps SDK integration.
             </p>
             <a
-              href="?path=/story/media-compactmap--compactmap"
+              href="?path=/story/composed-components-maps--compact-maps"
               style={{
                 fontSize: '13px',
                 color: 'var(--ai-color-accent-blue)',
@@ -337,7 +337,7 @@ const MapSystemComponent: React.FC = () => {
               Full-featured map with sidebar, Inspector panel, and responsive layout.
             </p>
             <a
-              href="?path=/story/media-fullscreenmap--fullscreenmap"
+              href="?path=/story/composed-components-maps--fullscreen-maps"
               style={{
                 fontSize: '13px',
                 color: 'var(--ai-color-accent-blue)',
