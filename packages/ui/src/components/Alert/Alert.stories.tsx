@@ -31,7 +31,7 @@ const AlertShowcaseComponent: React.FC = () => {
     <div style={{ padding: '24px', maxWidth: '1200px', margin: '0 auto' }}>
       {/* Introduction */}
       <header style={{ marginBottom: '48px' }}>
-        <h1 style={{ marginBottom: '16px', fontSize: '32px', fontWeight: 600 }}>Alert</h1>
+        <h1 style={{ marginBottom: '16px', fontSize: '32px', fontWeight: 600 }}>Alert System</h1>
         <p style={{ 
           fontSize: '16px', 
           lineHeight: '1.6', 
@@ -337,7 +337,7 @@ const AlertShowcaseComponent: React.FC = () => {
       {/* Props Documentation */}
       <section style={{ marginBottom: '48px' }}>
         <header style={{ marginBottom: '24px' }}>
-          <h2 style={{ marginBottom: '8px', fontSize: '24px', fontWeight: 600 }}>Component API</h2>
+          <h2 style={{ marginBottom: '8px', fontSize: '24px', fontWeight: 600 }}>Props</h2>
           <p style={{ color: 'var(--ai-color-text-subtle)', margin: 0, fontSize: '14px' }}>
             Complete props reference for the Alert component
           </p>
