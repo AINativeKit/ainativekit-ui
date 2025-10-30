@@ -832,7 +832,7 @@ const CardsComponent: React.FC = () => {
 
         <h3 style={{ fontSize: '18px', marginBottom: '12px', marginTop: '32px' }}>Card.ActionButton</h3>
         <p style={{ marginBottom: '12px', color: 'var(--ai-color-text-secondary)', fontSize: '14px' }}>
-          Inherits all Button props. See <a href="?path=/story/primitives-button--buttons" style={{ color: 'var(--ai-color-accent-blue)', textDecoration: 'none' }}>Button component</a> for full props list.
+          Inherits all Button props. See <a href="?path=/story/primitive-components-buttons--buttons" style={{ color: 'var(--ai-color-accent-blue)', textDecoration: 'none' }}>Button component</a> for full props list.
         </p>
 
         <h3 style={{ fontSize: '18px', marginBottom: '12px', marginTop: '32px' }}>Card.Title</h3>
@@ -849,7 +849,7 @@ const CardsComponent: React.FC = () => {
         <h3 style={{ fontSize: '18px', marginBottom: '12px', marginTop: '32px' }}>Other Compound Components</h3>
         <p style={{ color: 'var(--ai-color-text-secondary)', fontSize: '14px' }}>
           Card.Header, Card.Body, Card.Footer, Card.Description, Card.Meta, Card.ChipGroup, Card.Image accept standard HTML props for their respective elements.
-          Card.Chip inherits all <a href="?path=/story/primitives-chip--chips" style={{ color: 'var(--ai-color-accent-blue)', textDecoration: 'none' }}>Chip props</a>.
+          Card.Chip inherits all <a href="?path=/story/primitive-components-chips--chips" style={{ color: 'var(--ai-color-accent-blue)', textDecoration: 'none' }}>Chip props</a>.
         </p>
       </section>
     </div>
