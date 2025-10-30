@@ -2,7 +2,7 @@ import React from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import type { EmblaOptionsType, EmblaCarouselType } from 'embla-carousel';
 import { Button } from '../Button';
-import { Skeleton } from '../Skeleton';
+import { Card } from '../Card';
 import { Alert } from '../Alert';
 import { cn } from '../../utils/cn';
 import styles from './Carousel.module.css';
@@ -226,11 +226,21 @@ export const Carousel: React.FC<CarouselProps> = ({
   // Phase 1: Loading State - Smart loading based on children
   if (loading) {
     const childCount = React.Children.count(children);
-    const loadingChildren = childCount > 0 ? children : Array.from({ length: loadingSlides }).map((_, i) => (
-      <div key={i} style={{ width: '240px', flexShrink: 0 }}>
-        <Skeleton width="100%" height={240} animation style={{ borderRadius: 'var(--ai-radius-medium)' }} />
-      </div>
-    ));
+    const loadingChildren = childCount > 0
+      ? children
+      : Array.from({ length: loadingSlides }).map((_, i) => (
+        <div key={i} style={{ width: '240px', flexShrink: 0 }}>
+          <Card
+            loading
+            elevationLevel="1"
+            style={{
+              width: '100%',
+              minHeight: '240px',
+              padding: 'var(--ai-spacing-16)',
+            }}
+          />
+        </div>
+      ));
 
     // Render static (non-scrollable) loading carousel
     return (
