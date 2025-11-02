@@ -118,14 +118,14 @@ describe('Card Compound Components', () => {
     it('should render image with src and alt', () => {
       render(
         <Card>
-          <Card.Image 
-            src="https://example.com/image.jpg" 
+          <Card.Image
+            src="https://example.com/image.jpg"
             alt="Test image"
             data-testid="card-image"
           />
         </Card>
       );
-      
+
       const image = screen.getByTestId('card-image') as HTMLImageElement;
       expect(image).toBeInTheDocument();
       expect(image.src).toBe('https://example.com/image.jpg');
@@ -135,16 +135,47 @@ describe('Card Compound Components', () => {
     it('should apply custom className', () => {
       render(
         <Card>
-          <Card.Image 
-            src="https://example.com/image.jpg" 
+          <Card.Image
+            src="https://example.com/image.jpg"
             alt="Test"
             className="custom-class"
             data-testid="card-image"
           />
         </Card>
       );
-      
+
       expect(screen.getByTestId('card-image')).toHaveClass('custom-class');
+    });
+
+    it('should apply aspectRatio when provided', () => {
+      render(
+        <Card>
+          <Card.Image
+            src="https://example.com/image.jpg"
+            alt="Test"
+            aspectRatio="16 / 9"
+            data-testid="card-image"
+          />
+        </Card>
+      );
+
+      const image = screen.getByTestId('card-image') as HTMLImageElement;
+      expect(image.style.getPropertyValue('--card-image-aspect-ratio')).toBe('16 / 9');
+    });
+
+    it('should not apply aspectRatio CSS variable when not provided', () => {
+      render(
+        <Card>
+          <Card.Image
+            src="https://example.com/image.jpg"
+            alt="Test"
+            data-testid="card-image"
+          />
+        </Card>
+      );
+
+      const image = screen.getByTestId('card-image') as HTMLImageElement;
+      expect(image.style.getPropertyValue('--card-image-aspect-ratio')).toBe('');
     });
 
     it('should forward ref', () => {
@@ -158,7 +189,7 @@ describe('Card Compound Components', () => {
           />
         </Card>
       );
-      
+
       expect(ref.current).toBeInstanceOf(HTMLImageElement);
     });
   });

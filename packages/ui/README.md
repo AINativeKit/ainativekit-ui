@@ -243,7 +243,7 @@ const card = renderComponent(config); // Renders <SummaryCard {...props} />
 
 **AI Integration:**
 - 🤖 **Context7:** Documentation via "use context7" command
-- 📚 **Schemas:** Available in GitHub repo for tooling
+- 📚 **Schemas:** Can be generated with `pnpm --filter @ainativekit/ui generate:schemas` for external tooling (not used in runtime)
 - 📖 **Guide:** See `/docs` folder for comprehensive documentation
 
 ## 🧰 Development
@@ -267,7 +267,7 @@ pnpm lint             # lint
 
 Repository (for documentation & tooling):
 ├── /docs           # Markdown documentation (Context7)
-├── /schemas        # JSON schemas (dev tooling)
+├── /schemas        # JSON schemas (generated on-demand, not committed)
 └── /metadata       # Component registry (dev tooling)
 ```
 

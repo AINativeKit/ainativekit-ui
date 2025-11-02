@@ -129,6 +129,87 @@ const CardsComponent: React.FC = () => {
         </div>
       </section>
 
+      {/* Card.Image with Aspect Ratio */}
+      <section style={{ marginBottom: '64px' }}>
+        <header style={{ marginBottom: '24px', alignItems: 'start' }}>
+          <h2 style={{ marginBottom: '8px' }}>Card.Image with Aspect Ratio</h2>
+          <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
+            Control image dimensions with the aspectRatio prop for consistent layouts
+          </p>
+        </header>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '24px', alignItems: 'start' }}>
+          <Card>
+            <Card.Image
+              src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=400&h=300&fit=crop"
+              alt="Square aspect ratio"
+              aspectRatio="1 / 1"
+            />
+            <Card.Body>
+              <Card.Title as="h4">Square (1:1)</Card.Title>
+              <Card.Description>
+                Perfect for avatars, product thumbnails, or Instagram-style images
+              </Card.Description>
+            </Card.Body>
+          </Card>
+
+          <Card>
+            <Card.Image
+              src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=400&h=300&fit=crop"
+              alt="Widescreen aspect ratio"
+              aspectRatio="16 / 9"
+            />
+            <Card.Body>
+              <Card.Title as="h4">Widescreen (16:9)</Card.Title>
+              <Card.Description>
+                Ideal for video thumbnails and landscape photography
+              </Card.Description>
+            </Card.Body>
+          </Card>
+
+          <Card>
+            <Card.Image
+              src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=400&h=300&fit=crop"
+              alt="Classic photo aspect ratio"
+              aspectRatio="3 / 2"
+            />
+            <Card.Body>
+              <Card.Title as="h4">Classic (3:2)</Card.Title>
+              <Card.Description>
+                Traditional photography ratio for balanced composition
+              </Card.Description>
+            </Card.Body>
+          </Card>
+
+          <Card>
+            <Card.Image
+              src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=400&h=300&fit=crop"
+              alt="Portrait aspect ratio"
+              aspectRatio="2 / 3"
+            />
+            <Card.Body>
+              <Card.Title as="h4">Portrait (2:3)</Card.Title>
+              <Card.Description>
+                Vertical orientation for portraits and mobile-first content
+              </Card.Description>
+            </Card.Body>
+          </Card>
+
+          <Card>
+            <Card.Image
+              src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=400&h=300&fit=crop"
+              alt="No aspect ratio (natural)"
+            />
+            <Card.Body>
+              <Card.Title as="h4">Natural (No Ratio)</Card.Title>
+              <Card.Description>
+                Image uses its natural dimensions when aspectRatio is not specified
+              </Card.Description>
+            </Card.Body>
+          </Card>
+        </div>
+      </section>
+
       {/* Loading States */}
       <section style={{ marginBottom: '64px' }}>
         <header style={{ marginBottom: '24px', alignItems: 'start' }}>
@@ -846,9 +927,28 @@ const CardsComponent: React.FC = () => {
           ]}
         />
 
+        <h3 style={{ fontSize: '18px', marginBottom: '12px', marginTop: '32px' }}>Card.Image</h3>
+        <PropsTable
+          hideThemeColumn
+          rows={[
+            {
+              name: 'src',
+              description: 'Image source URL (required)',
+            },
+            {
+              name: 'alt',
+              description: 'Alt text for accessibility (required)',
+            },
+            {
+              name: 'aspectRatio',
+              description: 'Optional aspect ratio for the image (e.g., "16/9", "3/2", "1/1"). Controls the display ratio using CSS aspect-ratio.',
+            },
+          ]}
+        />
+
         <h3 style={{ fontSize: '18px', marginBottom: '12px', marginTop: '32px' }}>Other Compound Components</h3>
         <p style={{ color: 'var(--ai-color-text-secondary)', fontSize: '14px' }}>
-          Card.Header, Card.Body, Card.Footer, Card.Description, Card.Meta, Card.ChipGroup, Card.Image accept standard HTML props for their respective elements.
+          Card.Header, Card.Body, Card.Footer, Card.Description, Card.Meta, Card.ChipGroup accept standard HTML props for their respective elements.
           Card.Chip inherits all <a href="?path=/story/primitive-components-chips--chips" style={{ color: 'var(--ai-color-accent-blue)', textDecoration: 'none' }}>Chip props</a>.
         </p>
       </section>

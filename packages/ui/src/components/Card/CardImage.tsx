@@ -13,6 +13,10 @@ export interface CardImageProps extends ComponentPropsWithoutRef<'img'> {
    */
   alt: string;
   /**
+   * Optional aspect ratio for the image (e.g., "16/9", "3/2", "1/1")
+   */
+  aspectRatio?: string;
+  /**
    * Optional test ID for testing purposes
    */
   'data-testid'?: string;
@@ -20,7 +24,7 @@ export interface CardImageProps extends ComponentPropsWithoutRef<'img'> {
 
 export const CardImage = React.forwardRef<HTMLImageElement, CardImageProps>(
   (props, ref) => {
-    const { className, src, alt, 'data-testid': testId, ...rest } = props;
+    const { className, src, alt, aspectRatio, style, 'data-testid': testId, ...rest } = props;
 
     return (
       <img
@@ -29,6 +33,10 @@ export const CardImage = React.forwardRef<HTMLImageElement, CardImageProps>(
         alt={alt}
         className={cn(styles.cardImage, className)}
         data-testid={testId}
+        style={{
+          ...(aspectRatio ? { '--card-image-aspect-ratio': aspectRatio } as React.CSSProperties : {}),
+          ...style,
+        }}
         {...rest}
       />
     );

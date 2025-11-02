@@ -82,6 +82,9 @@ docs/.docusaurus/
 docs/build/
 planning/.cache/
 
+# Auto-generated JSON schemas (not actively used, regenerate with 'pnpm generate:schemas')
+/packages/ui/schemas/
+
 # ===========================================
 # 🧪 Local environment & secrets
 # ===========================================
