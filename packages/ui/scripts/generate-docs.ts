@@ -22,7 +22,7 @@ const SRC_DIR = path.resolve(__dirname, '../src');
 const DOCS_DIR = path.resolve(__dirname, '../docs');
 
 // Load metadata if available, but don't fail if it's missing
-let componentRegistry: any = { components: {} };
+let componentRegistry: Record<string, unknown> = { components: {} };
 try {
   componentRegistry = require('../metadata/component-registry.json');
 } catch {
@@ -68,7 +68,7 @@ const CATEGORIES: Record<string, string[]> = {
 /**
  * Extract examples from JSDoc comment
  */
-function extractExamples(jsDocComment: string): string[] {
+function _extractExamples(jsDocComment: string): string[] {
   const examples: string[] = [];
   const exampleMatches = jsDocComment.matchAll(/@example\s*([\s\S]*?)(?=@\w+|$)/g);
 
@@ -84,6 +84,7 @@ function extractExamples(jsDocComment: string): string[] {
 /**
  * Generate props table from interface
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function generatePropsTable(componentName: string, sourceFile: any): string {
   try {
     // Find the props interface
@@ -96,6 +97,7 @@ function generatePropsTable(componentName: string, sourceFile: any): string {
     rows.push('| Prop | Type | Default | Description |');
     rows.push('|------|------|---------|-------------|');
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     propsInterface.getProperties().forEach((prop: any) => {
       const name = prop.getName();
       const type = prop.getType().getText().replace(/\|/g, '\\|');
@@ -106,6 +108,7 @@ function generatePropsTable(componentName: string, sourceFile: any): string {
       let defaultValue = '-';
       if (jsDoc) {
         const tags = jsDoc.getTags();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const defaultTag = tags.find((tag: any) => tag.getTagName() === 'default');
         if (defaultTag) {
           defaultValue = `\`${defaultTag.getComment()}\``;
@@ -116,8 +119,8 @@ function generatePropsTable(componentName: string, sourceFile: any): string {
     });
 
     return rows.join('\n');
-  } catch (error) {
-    console.warn(`Warning: Could not generate props table for ${componentName}:`, error);
+  } catch {
+    console.warn(`Warning: Could not generate props table for ${componentName}`);
     return '_Props table generation failed_';
   }
 }
@@ -142,9 +145,9 @@ function generateComponentDoc(componentName: string, category: string): void {
   const sourceFile = project.addSourceFileAtPath(sourceFilePath);
 
   // Get metadata if available
-  const meta = componentRegistry.components[componentName] || {};
+  const meta = (componentRegistry.components as Record<string, unknown>)?.[componentName] as Record<string, unknown> || {};
 
-  let description = meta.description || 'Component for building user interfaces.';
+  const description = (meta.description as string) || 'Component for building user interfaces.';
   let examples: string[] = [];
 
   // Extract JSDoc examples from source file
@@ -168,13 +171,13 @@ function generateComponentDoc(componentName: string, category: string): void {
         return `\`\`\`tsx\n${code}\n\`\`\``;
       });
     }
-  } catch (error) {
+  } catch {
     // Silently continue if extraction fails
   }
 
   // Use examples from metadata if none in JSDoc (metadata is optional)
   if (examples.length === 0 && meta.examples && Array.isArray(meta.examples) && meta.examples.length > 0) {
-    examples = meta.examples.map((ex: any) => `\`\`\`tsx\n${ex.code}\n\`\`\``);
+    examples = (meta.examples as Array<Record<string, string>>).map(ex => `\`\`\`tsx\n${ex.code}\n\`\`\``);
   }
 
   // Generate props table

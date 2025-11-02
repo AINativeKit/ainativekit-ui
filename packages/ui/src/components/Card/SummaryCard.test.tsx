@@ -581,13 +581,13 @@ describe('SummaryCard', () => {
     });
 
     it('does not render metadata section when metadata is empty', () => {
-      const { container } = render(<SummaryCard title="Article" metadata={[]} />);
+      render(<SummaryCard title="Article" metadata={[]} />);
       // Check that metadata section is not present
       expect(screen.getByText('Article')).toBeInTheDocument();
     });
 
     it('does not render metadata section when metadata is not provided', () => {
-      const { container } = render(<SummaryCard title="Article" />);
+      render(<SummaryCard title="Article" />);
       expect(screen.getByText('Article')).toBeInTheDocument();
     });
 
