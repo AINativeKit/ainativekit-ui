@@ -81,7 +81,102 @@ const IconsComponent: React.FC = () => {
     <div style={{ padding: '24px' }}>
       <h1 style={{ marginBottom: '32px' }}>Icon System</h1>
 
-      {/* Icon Gallery - shown first */}
+      {/* How Icons Work Section */}
+      <section style={{ marginBottom: '64px' }}>
+        <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>How Icons Work</h2>
+        <p style={{ marginBottom: '24px', color: 'var(--ai-color-text-secondary)' }}>
+          This library includes 417 pre-built icon components covering 10 categories (arrows, interface, media, social,
+          and more). All icons are properly distributed in the npm package and resolved at module runtime.
+        </p>
+
+        <div
+          style={{
+            backgroundColor: 'var(--ai-color-bg-blue-alpha)',
+            padding: '16px',
+            borderRadius: '8px',
+            marginBottom: '24px',
+            fontSize: '13px',
+          }}
+        >
+          <strong>✨ What's Changed:</strong> Icons now use module-relative URL resolution, ensuring they work
+          perfectly in all environments (npm packages, monorepos, different build tools, etc.). SVG files are
+          automatically resolved relative to the installed module location.
+        </div>
+
+        <h3 style={{ fontSize: '18px', marginBottom: '12px' }}>Two Ways to Use Icons</h3>
+        <p style={{ marginBottom: '16px', color: 'var(--ai-color-text-secondary)' }}>
+          Both approaches work identically - choose based on your use case:
+        </p>
+
+        <div style={{ marginBottom: '24px' }}>
+          <h4 style={{ fontSize: '14px', marginBottom: '8px', fontWeight: 600 }}>Option 1: Named Components (Recommended)</h4>
+          <p style={{ fontSize: '13px', marginBottom: '12px', color: 'var(--ai-color-text-secondary)' }}>
+            Import components by name for better tree-shaking and clearer code:
+          </p>
+          <div
+            style={{
+              backgroundColor: 'var(--ai-color-bg-secondary)',
+              padding: '12px',
+              borderRadius: '6px',
+              fontSize: '12px',
+              fontFamily: 'monospace',
+              whiteSpace: 'pre',
+            }}
+          >
+            <code>{`import { SettingsCog, PlusCircleAdd } from '@ainativekit/ui/icons';
+
+<SettingsCog size="md" />
+<PlusCircleAdd tone="primary" />`}</code>
+          </div>
+        </div>
+
+        <div style={{ marginBottom: '24px' }}>
+          <h4 style={{ fontSize: '14px', marginBottom: '8px', fontWeight: 600 }}>Option 2: Dynamic Icon Names</h4>
+          <p style={{ fontSize: '13px', marginBottom: '12px', color: 'var(--ai-color-text-secondary)' }}>
+            Use the base Icon component when icon name comes from configuration or APIs:
+          </p>
+          <div
+            style={{
+              backgroundColor: 'var(--ai-color-bg-secondary)',
+              padding: '12px',
+              borderRadius: '6px',
+              fontSize: '12px',
+              fontFamily: 'monospace',
+              whiteSpace: 'pre',
+            }}
+          >
+            <code>{`import { Icon } from '@ainativekit/ui';
+
+const iconName = getConfigValue('menuIcon');
+<Icon name={iconName} size="md" />`}</code>
+          </div>
+        </div>
+
+        <h3 style={{ fontSize: '18px', marginBottom: '12px' }}>Icon Categories</h3>
+        <p style={{ marginBottom: '16px', color: 'var(--ai-color-text-secondary)' }}>
+          All 417 icons are organized into these categories:
+        </p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px', marginBottom: '24px' }}>
+          {iconCategories.map(category => (
+            <div
+              key={category}
+              style={{
+                backgroundColor: 'var(--ai-color-bg-secondary)',
+                padding: '12px',
+                borderRadius: '6px',
+                fontSize: '13px',
+              }}
+            >
+              <strong style={{ textTransform: 'capitalize' }}>{category.replace('-', ' ')}</strong>
+              <div style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginTop: '4px' }}>
+                {getIconsInCategory(category).length} icons
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Icon Gallery - shown next */}
       <section style={{ marginBottom: '64px' }}>
         <p style={{ marginBottom: '24px', color: 'var(--ai-color-text-secondary)' }}>
           Click any icon below to copy its React component name. All icons are organized by category for easy browsing.
