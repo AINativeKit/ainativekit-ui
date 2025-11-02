@@ -6,6 +6,7 @@ import {
   useWidgetState,
   useMaxHeight,
   useDisplayMode,
+  useTheme,
   SetGlobalsEvent,
   type OpenAiGlobals,
   type OpenAiApi,
@@ -196,6 +197,36 @@ describe('OpenAI Hooks', () => {
       });
 
       expect(result.current).toBe('pip');
+    });
+  });
+
+  describe('useTheme', () => {
+    beforeEach(() => {
+      window.openai = createOpenAiMock();
+    });
+
+    it('returns the current theme from globals', () => {
+      const { result } = renderHook(() => useTheme());
+      expect(result.current).toBe('light');
+    });
+
+    it('updates when theme changes', () => {
+      const { result } = renderHook(() => useTheme());
+      expect(result.current).toBe('light');
+
+      act(() => {
+        window.openai.theme = 'dark';
+        dispatchGlobalsEvent({ theme: 'dark' });
+      });
+
+      expect(result.current).toBe('dark');
+    });
+
+    it('returns null when window.openai is not available', () => {
+      delete (window as { openai?: unknown }).openai;
+
+      const { result } = renderHook(() => useTheme());
+      expect(result.current).toBeNull();
     });
   });
 });

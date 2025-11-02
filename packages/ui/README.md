@@ -187,16 +187,44 @@ import { SettingsCog, Terminal, Star } from '@ainativekit/ui/icons';
 Utilities to integrate with the **ChatGPT Apps SDK** runtime.
 
 ```tsx
-import { useOpenAiGlobal, useWidgetState, useMaxHeight } from '@ainativekit/ui';
+import {
+  useOpenAiGlobal,
+  useWidgetState,
+  useMaxHeight,
+  useTheme,
+  useDisplayMode
+} from '@ainativekit/ui';
 
 function MyChatGPTWidget() {
-  const openai = useOpenAiGlobal(); // Access global OpenAI instance
-  const [state, setState] = useWidgetState({}); // Manage widget state
-  const maxHeight = useMaxHeight(); // Layout constraint from host
+  // Access specific OpenAI global values (reactive)
+  const theme = useTheme(); // 'light' | 'dark' | null
+  const displayMode = useDisplayMode(); // 'inline' | 'pip' | 'fullscreen' | null
+  const maxHeight = useMaxHeight(); // number | null
 
-  return <div style={{ maxHeight }}>{/* your widget */}</div>;
+  // Or access any global property directly
+  const locale = useOpenAiGlobal('locale'); // string | null
+
+  // Manage persistent widget state
+  const [state, setState] = useWidgetState({ count: 0 });
+
+  return (
+    <div
+      className={theme === 'dark' ? 'dark-mode' : 'light-mode'}
+      style={{ maxHeight: maxHeight ?? 600 }}
+    >
+      {/* your widget */}
+    </div>
+  );
 }
 ```
+
+**Available Hooks:**
+- `useTheme()` - Get current theme and listen for changes
+- `useDisplayMode()` - Get current display mode (inline/pip/fullscreen)
+- `useMaxHeight()` - Get maximum height constraint for layout
+- `useWidgetState(defaultState)` - Persistent state across ChatGPT sessions
+- `useOpenAiGlobal(key)` - Access any `window.openai` property reactively
+- `useWidgetProps(defaultProps)` - Get tool output data
 
 ## 📘 TypeScript Support
 
