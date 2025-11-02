@@ -103,7 +103,7 @@ import '@ainativekit/ui/styles';
 
 export function DocumentCard() {
   return (
-     <Card elevationLevel="1" interactive>
+     <Card elevationLevel={1} interactive>
       <Card.Header>
         <Card.ChipGroup>
           <Card.Chip variant="neutral" size="sm">AINativeKit UI</Card.Chip>
@@ -163,9 +163,9 @@ import { colors, typography, spacing, elevation } from '@ainativekit/ui';
 
 const style = {
   backgroundColor: colors.light.background.primary,
-  padding: spacing['space-16'],
+  padding: spacing[16],
   fontSize: typography.body.fontSize,
-  boxShadow: elevation.low,
+  boxShadow: elevation[1].shadow,
 };
 ```
 

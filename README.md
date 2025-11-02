@@ -102,7 +102,7 @@ import '@ainativekit/ui/styles';
 
 export function DocumentCard() {
   return (
-     <Card elevationLevel="1" interactive>
+     <Card elevationLevel={1} interactive>
       <Card.Header>
         <Card.ChipGroup>
           <Card.Chip variant="neutral" size="sm">AINativeKit UI</Card.Chip>
@@ -155,18 +155,64 @@ export function DocumentCard() {
 
 ## 🎨 Design System
 
-Use consistent **colors**, **typography**, **spacing**, and **elevation** derived from OpenAI’s Figma system.
+Use consistent **colors**, **typography**, **spacing**, and **elevation** derived from OpenAI's Figma system with **full type safety** and **autocomplete**.
+
+### Type-Safe Design Tokens
+
+Get autocomplete and compile-time type checking for all design tokens:
 
 ```tsx
-import { colors, typography, spacing, elevation } from '@ainativekit/ui';
+import { cssVar } from '@ainativekit/ui/tokens';
+import { spacing, colors, typography } from '@ainativekit/ui/tokens';
 
-const style = {
-  backgroundColor: colors.light.background.primary,
-  padding: spacing['space-16'],
-  fontSize: typography.body.fontSize,
-  boxShadow: elevation.low,
-};
+// ✅ Method 1: Direct token values (clean numeric/string access)
+<div style={{
+  gap: spacing[8],                    // '16px' - Numeric key!
+  color: colors.light.text.primary,   // '#0D0D0D' - Full autocomplete!
+  ...typography.heading1,             // Complete typography style
+}} />
+
+// ✅ Method 2: CSS variables for theme-aware styling (recommended for dynamic themes)
+<div style={{
+  gap: cssVar.spacing(8),             // 'var(--ai-spacing-8)'
+  color: cssVar.color('text-primary'), // Adapts to light/dark theme
+  borderRadius: cssVar.radius('xl'),
+}} />
 ```
+
+**Before vs After:**
+
+```tsx
+// ❌ Before: String literals, no autocomplete, typo-prone
+<div style={{
+  gap: 'var(--ai-spacing-8)',        // Could typo
+  fontSize: 'var(--ai-font-size-sm)' // No autocomplete
+}} />
+
+// ✅ After: Type-safe with autocomplete
+import { cssVar, spacing, typography } from '@ainativekit/ui/tokens';
+
+<div style={{
+  gap: cssVar.spacing(8),  // Autocomplete suggests scale values!
+  ...typography.bodySmall  // Complete font styles
+}} />
+
+// Or use direct values:
+<div style={{
+  gap: spacing[8],         // Numeric key access
+  ...typography.bodySmall
+}} />
+```
+
+**Available Token Categories:**
+- 🎯 **Spacing** - 13 scale values (0-64)
+- 🎨 **Colors** - Light/dark themes, semantic colors
+- 📝 **Typography** - 11 complete text styles
+- 🔲 **Border Radius** - 7 radius scales
+- ✨ **Elevation** - 6 shadow levels
+- 👁️ **Opacity** - 4 opacity presets
+
+📖 **[Complete Token Usage Guide](./packages/ui/src/tokens/TOKEN_USAGE.md)** | **[Live Examples](./packages/ui/src/tokens/EXAMPLES.tsx)**
 
 **Icons:**
 

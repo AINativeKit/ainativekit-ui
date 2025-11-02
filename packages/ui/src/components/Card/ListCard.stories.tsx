@@ -520,8 +520,8 @@ function Component() {
 
             // Inherited from Card
             {
-              name: 'elevationLevel: "0" | "1" | "2" | "3"',
-              description: 'Card elevation level (inherited from Card). Default: "1"',
+              name: 'elevationLevel: 0 | 1 | 2 | 3 | 4 | 5',
+              description: 'Card elevation level (inherited from Card). Default: 1',
             },
             {
               name: 'interactive: boolean',

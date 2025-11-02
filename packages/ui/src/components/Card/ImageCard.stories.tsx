@@ -455,7 +455,7 @@ const ImageCardsComponent: React.FC = () => {
               subtitle="Flat, no shadow"
               actionIcon="plus-circle-add"
               actionLabel="Add"
-              elevationLevel="0"
+              elevationLevel={0}
               style={{ maxWidth: `${CARD_WIDTH}px` }}
             />
             <ImageCard
@@ -464,7 +464,7 @@ const ImageCardsComponent: React.FC = () => {
               subtitle="Default shadow"
               actionIcon="plus-circle-add"
               actionLabel="Add"
-              elevationLevel="1"
+              elevationLevel={1}
               style={{ maxWidth: `${CARD_WIDTH}px` }}
             />
             <ImageCard
@@ -473,7 +473,7 @@ const ImageCardsComponent: React.FC = () => {
               subtitle="Higher elevation"
               actionIcon="plus-circle-add"
               actionLabel="Add"
-              elevationLevel="3"
+              elevationLevel={3}
               style={{ maxWidth: `${CARD_WIDTH}px` }}
             />
           </div>
@@ -736,8 +736,8 @@ function Component() {
             },
             {
               name: 'elevationLevel',
-              type: "'0' | '1' | '2' | '3' | '4' | '5'",
-              default: "'1'",
+              type: '0 | 1 | 2 | 3 | 4 | 5',
+              default: '1',
               description: 'Shadow elevation level (from Card)',
             },
             {

@@ -11,7 +11,7 @@ describe('Card', () => {
 
   it('applies elevation and border tokens via custom properties', () => {
     render(
-      <Card data-testid="card" elevationLevel="3" border="light">
+      <Card data-testid="card" elevationLevel={3} border="light">
         Card Content
       </Card>
     );
@@ -23,7 +23,7 @@ describe('Card', () => {
 
   it('uses next elevation on hover when interactive', () => {
     render(
-      <Card data-testid="interactive-card" elevationLevel="2" interactive>
+      <Card data-testid="interactive-card" elevationLevel={2} interactive>
         Card Content
       </Card>
     );

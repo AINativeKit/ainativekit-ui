@@ -239,7 +239,7 @@ const AlertShowcaseComponent: React.FC = () => {
           gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
           gap: '24px'
         }}>
-          <Card elevationLevel="1">
+          <Card elevationLevel={1}>
             <Alert
               variant="error"
               layout="card"
@@ -248,7 +248,7 @@ const AlertShowcaseComponent: React.FC = () => {
             />
           </Card>
 
-          <Card elevationLevel="1">
+          <Card elevationLevel={1}>
             <Alert
               variant="warning"
               layout="card"
@@ -259,7 +259,7 @@ const AlertShowcaseComponent: React.FC = () => {
             />
           </Card>
 
-          <Card elevationLevel="1">
+          <Card elevationLevel={1}>
             <Alert
               variant="success"
               layout="card"

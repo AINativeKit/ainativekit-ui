@@ -40,7 +40,7 @@ const CardsComponent: React.FC = () => {
         </header>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px', marginBottom: '32px', alignItems: 'start' }}>
-          <Card elevationLevel="1">
+          <Card elevationLevel={1}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               <span style={{ fontWeight: 600 }}>Default Card</span>
               <span style={{ color: 'var(--ai-color-text-secondary)', fontSize: '14px' }}>
@@ -49,7 +49,7 @@ const CardsComponent: React.FC = () => {
             </div>
           </Card>
 
-          <Card elevationLevel="1" interactive>
+          <Card elevationLevel={1} interactive>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               <span style={{ fontWeight: 600 }}>Interactive Card</span>
               <span style={{ color: 'var(--ai-color-text-secondary)', fontSize: '14px' }}>
@@ -58,7 +58,7 @@ const CardsComponent: React.FC = () => {
             </div>
           </Card>
 
-          <Card elevationLevel="2">
+          <Card elevationLevel={2}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               <span style={{ fontWeight: 600 }}>Higher Elevation</span>
               <span style={{ color: 'var(--ai-color-text-secondary)', fontSize: '14px' }}>
@@ -71,7 +71,7 @@ const CardsComponent: React.FC = () => {
         <details style={{ marginTop: '16px', cursor: 'pointer' }}>
           <summary style={{ fontWeight: 600, marginBottom: '12px' }}>Show all elevation levels</summary>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '16px', marginTop: '16px', alignItems: 'start' }}>
-            {(['0', '1', '2', '3', '4', '5'] as const).map(level => (
+            {([0, 1, 2, 3, 4, 5] as const).map(level => (
               <Card
                 key={level}
                 elevationLevel={level}
@@ -86,7 +86,7 @@ const CardsComponent: React.FC = () => {
               >
                 <strong>Elevation {level}</strong>
                 <div style={{ color: 'var(--ai-color-text-secondary)', fontSize: '13px' }}>
-                  {level === '0' ? 'No shadow' : `Shadow level ${level}`}
+                  {level === 0 ? 'No shadow' : `Shadow level ${level}`}
                 </div>
               </Card>
             ))}
@@ -222,7 +222,7 @@ const CardsComponent: React.FC = () => {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px', alignItems: 'start' }}>
           <div>
             <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>Default Loading</h3>
-            <Card elevationLevel="1" loading style={{ minHeight: '280px' }}>
+            <Card elevationLevel={1} loading style={{ minHeight: '280px' }}>
               <p>This content won't show while loading</p>
             </Card>
             <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginTop: '8px' }}>
@@ -232,7 +232,7 @@ const CardsComponent: React.FC = () => {
 
           <div>
             <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>Custom Skeleton</h3>
-            <Card elevationLevel="1" loading skeleton={
+            <Card elevationLevel={1} loading skeleton={
               <>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
                   <Skeleton variant="circular" width={48} height={48} />
@@ -255,7 +255,7 @@ const CardsComponent: React.FC = () => {
 
           <div>
             <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>Not Loading</h3>
-            <Card elevationLevel="1">
+            <Card elevationLevel={1}>
               <Card.Header>
                 <Card.Title>Normal Content</Card.Title>
                 <Card.Description>This card shows content immediately</Card.Description>
@@ -285,7 +285,7 @@ const CardsComponent: React.FC = () => {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px', alignItems: 'start' }}>
           <div>
             <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>Default Error</h3>
-            <Card elevationLevel="1" error style={{ minHeight: '280px' }}>
+            <Card elevationLevel={1} error style={{ minHeight: '280px' }}>
               <p>This content won't show when error state is active</p>
             </Card>
             <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginTop: '8px' }}>
@@ -296,7 +296,7 @@ const CardsComponent: React.FC = () => {
           <div>
             <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>Custom Error Message</h3>
             <Card 
-              elevationLevel="1" 
+              elevationLevel={1} 
               error 
               errorTitle="Failed to load"
               errorMessage="Unable to fetch the requested data. Please try again."
@@ -312,7 +312,7 @@ const CardsComponent: React.FC = () => {
           <div>
             <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>With Retry Action</h3>
             <Card 
-              elevationLevel="1" 
+              elevationLevel={1} 
               error 
               errorTitle="Connection failed"
               errorMessage="Could not reach the server"
@@ -329,7 +329,7 @@ const CardsComponent: React.FC = () => {
           <div>
             <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>Custom Error Content</h3>
             <Card 
-              elevationLevel="1" 
+              elevationLevel={1} 
               error 
               errorContent={
                 <div style={{ padding: '48px 24px', textAlign: 'center' }}>
@@ -360,7 +360,7 @@ const CardsComponent: React.FC = () => {
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '24px', alignItems: 'start' }}>
           {/* Product Card */}
-          <Card elevationLevel="1" interactive>
+          <Card elevationLevel={1} interactive>
             <Card.Header>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Card.Title>Premium Headphones</Card.Title>
@@ -385,7 +385,7 @@ const CardsComponent: React.FC = () => {
           </Card>
 
           {/* Article Card - Documentation Example */}
-          <Card elevationLevel="1" interactive>
+          <Card elevationLevel={1} interactive>
             <Card.Header>
               <Card.ChipGroup>
                 <Card.Chip variant="neutral" size="sm">ChatGPT Apps</Card.Chip>
@@ -417,7 +417,7 @@ const CardsComponent: React.FC = () => {
           </Card>
 
           {/* User Profile Card */}
-          <Card elevationLevel="2">
+          <Card elevationLevel={2}>
             <Card.Header>
               <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                 <img 
@@ -450,7 +450,7 @@ const CardsComponent: React.FC = () => {
           </Card>
 
           {/* Venue/Restaurant Card with Features Meta */}
-          <Card elevationLevel="1" interactive>
+          <Card elevationLevel={1} interactive>
             <Card.Image
               src="https://images.unsplash.com/photo-1686836715835-65af22ea5cd4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=400&h=200"
               alt="Artisan Bistro"
@@ -478,7 +478,7 @@ const CardsComponent: React.FC = () => {
           </Card>
 
           {/* Project/Case Study Card */}
-          <Card elevationLevel="1" interactive>
+          <Card elevationLevel={1} interactive>
             <Card.Image
               src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=200&fit=crop"
               alt="Project showcase"
@@ -509,7 +509,7 @@ const CardsComponent: React.FC = () => {
           </Card>
 
           {/* Team Member Card */}
-          <Card elevationLevel="1" interactive>
+          <Card elevationLevel={1} interactive>
             <Card.Header>
               <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
                 <img
@@ -556,7 +556,7 @@ const CardsComponent: React.FC = () => {
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: '24px', alignItems: 'start' }}>
           {/* E-commerce Product */}
-          <Card elevationLevel="2" interactive>
+          <Card elevationLevel={2} interactive>
             <Card.Header>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
                 <div>
@@ -694,7 +694,7 @@ const CardsComponent: React.FC = () => {
               For basic content, use Card as a simple container. Best for custom layouts or simple content.
             </p>
             <pre style={codeBlockStyles.primary}>
-              <code>{`<Card elevationLevel="1">
+              <code>{`<Card elevationLevel={1}>
   <h3>Title</h3>
   <p>Content goes here</p>
 </Card>`}</code>
@@ -707,7 +707,7 @@ const CardsComponent: React.FC = () => {
               For structured layouts, use compound components. Provides semantic HTML and consistent styling.
             </p>
             <pre style={codeBlockStyles.primary}>
-              <code>{`<Card elevationLevel="1" interactive>
+              <code>{`<Card elevationLevel={1} interactive>
   <Card.Header>
     <Card.Title>Product Name</Card.Title>
     <Card.Chip variant="success">New</Card.Chip>
@@ -871,7 +871,7 @@ const CardsComponent: React.FC = () => {
           rows={[
             {
               name: 'elevationLevel',
-              description: 'Elevation level for shadow and overlay. Options: "0" | "1" | "2" | "3" | "4" | "5". Default: "1"',
+              description: 'Elevation level for shadow and overlay. Options: 0 | 1 | 2 | 3 | 4 | 5. Default: 1',
             },
             {
               name: 'border',

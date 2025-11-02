@@ -230,7 +230,7 @@ describe('ImageCard', () => {
   describe('Card Props Inheritance', () => {
     it('forwards elevation prop to Card', () => {
       const { container } = render(
-        <ImageCard image={mockImage} elevationLevel="3" />
+        <ImageCard image={mockImage} elevationLevel={3} />
       );
       const card = container.firstChild as HTMLElement;
       expect(card).toBeInTheDocument();

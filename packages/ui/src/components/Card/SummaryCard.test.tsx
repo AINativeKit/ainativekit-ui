@@ -218,7 +218,7 @@ describe('SummaryCard', () => {
 
   it('passes Card props through', () => {
     const { container } = render(
-      <SummaryCard elevationLevel="3" border="light" data-testid="card" />
+      <SummaryCard elevationLevel={3} border="light" data-testid="card" />
     );
     expect(container.querySelector('[data-testid="card"]')).toBeInTheDocument();
   });

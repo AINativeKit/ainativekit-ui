@@ -22,7 +22,7 @@ export type CardBorder = 'light' | 'default' | 'heavy';
 export interface CardProps extends Omit<ComponentPropsWithoutRef<'div'>, 'color'> {
   /**
    * Elevation level for the card.
-   * @default '1'
+   * @default 1
    */
   elevationLevel?: ElevationLevel;
   /**
@@ -92,13 +92,12 @@ const BORDER_TOKENS: Record<CardBorder, string> = {
 };
 
 const clampElevation = (level: number): ElevationLevel => {
-  const clamped = Math.max(0, Math.min(5, level));
-  return clamped.toString() as ElevationLevel;
+  return Math.max(0, Math.min(5, level)) as ElevationLevel;
 };
 
 const CardBase = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   const {
-    elevationLevel = '1',
+    elevationLevel = 1,
     border = 'heavy',
     hoverElevationLevel,
     interactive = false,
@@ -117,7 +116,7 @@ const CardBase = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
     ...rest
   } = props;
 
-  const hoverLevel = hoverElevationLevel ?? clampElevation(Number(elevationLevel) + (interactive ? 1 : 0));
+  const hoverLevel = hoverElevationLevel ?? clampElevation(elevationLevel + (interactive ? 1 : 0));
   const elevationShadowVar = `var(--ai-elevation-${elevationLevel}-shadow)`;
   const hoverShadowVar = `var(--ai-elevation-${hoverLevel}-shadow)`;
   const elevationOverlayVar = `var(--ai-elevation-${elevationLevel}-overlay)`;

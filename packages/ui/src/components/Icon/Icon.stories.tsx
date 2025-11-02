@@ -42,7 +42,7 @@ const IconCard: React.FC<{ name: IconName }> = ({ name }) => {
 
   return (
     <Card
-      elevationLevel="1"
+      elevationLevel={1}
       interactive
       onClick={handleCopy}
       style={{

@@ -489,7 +489,7 @@ const IntroductionPage = () => {
         <div style={{ ...contentSectionStyle, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
           {/* Restaurant from JSON - Real-World Example */}
           <SummaryCard
-            elevationLevel="1"
+            elevationLevel={1}
             interactive
             images={[
               { src: 'https://persistent.oaistatic.com/pizzaz/pizzaz-1.png', alt: 'Signature Pizza' },
@@ -512,7 +512,7 @@ const IntroductionPage = () => {
 
           {/* Article from JSON */}
           <SummaryCard
-            elevationLevel="1"
+            elevationLevel={1}
             interactive
             images="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400&h=200&fit=crop"
             title="Building AI-Native UIs"
@@ -708,7 +708,7 @@ const IntroductionPage = () => {
         <div style={{ ...contentSectionStyle, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', maxWidth: '360px' }}>
           {/* Article Card using SummaryCard - shows what it looks like */}
           <SummaryCard
-            elevationLevel="1"
+            elevationLevel={1}
             interactive
             images="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400&h=200&fit=crop"
             title="Building AI-Native UIs"
@@ -733,7 +733,7 @@ const IntroductionPage = () => {
           Need more control? Use compound Card components for rich customization. Same data, but with custom tags, advanced metadata, and full styling control:
         </div>
         <div style={codeBlockStyle}>
-          {'<Card elevationLevel="1" interactive>'}<br />
+          {'<Card elevationLevel={1} interactive>'}<br />
           &nbsp;&nbsp;{'<Card.Header>'}<br />
           &nbsp;&nbsp;&nbsp;&nbsp;{'<Card.ChipGroup>'}<br />
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'<Card.Chip variant="neutral" size="sm">ChatGPT Apps SDK</Card.Chip>'}<br />
@@ -762,7 +762,7 @@ const IntroductionPage = () => {
         </div>
         <div style={{ ...contentSectionStyle, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px', maxWidth: '360px' }}>
           {/* Documentation Card Example - shows what it looks like */}
-          <Card elevationLevel="1" interactive>
+          <Card elevationLevel={1} interactive>
             <Card.Header>
               <Card.ChipGroup>
                 <Card.Chip variant="neutral" size="sm">ChatGPT Apps SDK</Card.Chip>

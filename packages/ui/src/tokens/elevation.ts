@@ -1,18 +1,6 @@
-/**
- * Elevation (shadow) tokens for AI Native Kit
- * Defines shadow depth with metadata for proper usage
- *
- * @example
- * ```typescript
- * import { elevation } from '@ainativekit/ui/tokens';
- * const cardShadow = elevation['1'].shadow;
- * const className = elevation['1'].className; // 'ai-elevation-1'
- * ```
- */
+export type ElevationLevel = 0 | 1 | 2 | 3 | 4 | 5;
 
-export type ElevationLevel = '0' | '1' | '2' | '3' | '4' | '5';
-
-type ElevationDefinition = {
+export type ElevationDefinition = {
   shadow: string;
   lightOverlay: string;
   darkOverlay: string;
@@ -24,8 +12,8 @@ type ElevationDefinition = {
   };
 };
 
-export const elevation: Record<ElevationLevel, ElevationDefinition> = {
-  '0': {
+const elevationDefinition = {
+  0: {
     shadow: 'none',
     lightOverlay: 'rgba(0,0,0,0)',
     darkOverlay: 'rgba(255,255,255,0)',
@@ -35,7 +23,7 @@ export const elevation: Record<ElevationLevel, ElevationDefinition> = {
       usage: 'Use for elements flush with the background',
     },
   },
-  '1': {
+  1: {
     shadow: '0px 4px 16px rgba(0,0,0,0.05)',
     lightOverlay: 'rgba(0,0,0,0)',
     darkOverlay: 'rgba(255,255,255,0.05)',
@@ -46,7 +34,7 @@ export const elevation: Record<ElevationLevel, ElevationDefinition> = {
       zIndex: '1-100',
     },
   },
-  '2': {
+  2: {
     shadow: '0px 6px 24px rgba(0,0,0,0.08)',
     lightOverlay: 'rgba(0,0,0,0)',
     darkOverlay: 'rgba(255,255,255,0.07)',
@@ -57,7 +45,7 @@ export const elevation: Record<ElevationLevel, ElevationDefinition> = {
       zIndex: '100-200',
     },
   },
-  '3': {
+  3: {
     shadow: '0px 10px 32px rgba(0,0,0,0.10)',
     lightOverlay: 'rgba(0,0,0,0)',
     darkOverlay: 'rgba(255,255,255,0.08)',
@@ -68,7 +56,7 @@ export const elevation: Record<ElevationLevel, ElevationDefinition> = {
       zIndex: '200-500',
     },
   },
-  '4': {
+  4: {
     shadow: '0px 12px 40px rgba(0,0,0,0.12)',
     lightOverlay: 'rgba(0,0,0,0)',
     darkOverlay: 'rgba(255,255,255,0.09)',
@@ -79,7 +67,7 @@ export const elevation: Record<ElevationLevel, ElevationDefinition> = {
       zIndex: '500-1000',
     },
   },
-  '5': {
+  5: {
     shadow: '0px 16px 48px rgba(0,0,0,0.14)',
     lightOverlay: 'rgba(0,0,0,0)',
     darkOverlay: 'rgba(255,255,255,0.12)',
@@ -90,6 +78,19 @@ export const elevation: Record<ElevationLevel, ElevationDefinition> = {
       zIndex: '1000+',
     },
   },
-} as const;
+} as const satisfies Record<ElevationLevel, ElevationDefinition>;
 
-export const defaultElevation: ElevationLevel = '1';
+export const elevation: Record<ElevationLevel, ElevationDefinition> = elevationDefinition;
+
+export const defaultElevation: ElevationLevel = 1;
+/**
+ * Elevation (shadow) tokens for AI Native Kit
+ * Defines shadow depth with metadata for proper usage
+ *
+ * @example
+ * ```typescript
+ * import { elevation } from '@ainativekit/ui/tokens';
+ * const cardShadow = elevation[1].shadow;
+ * const className = elevation[1].className; // 'ai-elevation-1'
+ * ```
+ */

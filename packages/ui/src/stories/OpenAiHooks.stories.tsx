@@ -218,7 +218,7 @@ const ReactiveComponentDemo: React.FC = () => {
 
   return (
     <div style={{ maxWidth: cardWidth, transition: 'max-width 0.3s ease' }}>
-      <Card interactive elevationLevel="2">
+      <Card interactive elevationLevel={2}>
         <CardBody>
           <CardTitle>Live Hook Demonstration</CardTitle>
           <CardDescription>

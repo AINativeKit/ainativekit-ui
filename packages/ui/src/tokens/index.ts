@@ -5,15 +5,46 @@
  * @packageDocumentation
  */
 
-export * from './colors';
-export * from './typography';
-export * from './spacing';
-export * from './radius';
-export * from './elevation';
-export * from './opacity';
+/**
+ * Design Tokens Export
+ * Provides type-safe access to design tokens with autocomplete support
+ */
+
+// Export icons and utilities
 export * from './icons';
 export * from './icon-utils';
 export * from './utility-classes';
+
+// Export types
+export type { ColorTheme, ThemeMode } from './colors';
+export type { ElevationLevel, ElevationDefinition } from './elevation';
+export type { SpacingScale } from './spacing';
+export type {
+  ColorPath,
+  RadiusScale,
+  TypographyStyle,
+  OpacityPreset,
+} from './token-helpers';
+
+// Export fontStack from typography
+export { fontStack } from './typography';
+
+// Export type-safe token helpers (primary API)
+export {
+  spacing,
+  colors,
+  radius,
+  typography,
+  elevation,
+  opacity,
+  defaultRadius,
+  defaultElevation,
+  cssVar,
+  customVar,
+  varWithFallback,
+  applyTypography,
+  applyElevation,
+} from './token-helpers';
 
 import { colors } from './colors';
 import { typography, fontStack } from './typography';
@@ -32,7 +63,8 @@ import { iconMetadata, iconNames, icons } from './icons';
  *
  * const bgColor = tokens.colors.light.background.primary;
  * const h1Size = tokens.typography.heading1.fontSize;
- * const gap = tokens.spacing['space-16'];
+ * const gap = tokens.spacing[16]; // Numeric keys
+ * const shadow = tokens.elevation[1].shadow; // Numeric keys
  * ```
  */
 export const tokens = {

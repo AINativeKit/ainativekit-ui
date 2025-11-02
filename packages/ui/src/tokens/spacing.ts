@@ -5,25 +5,25 @@
  *
  * @example
  * ```typescript
- * import { spacing } from '@ainativekit/ui';
- * const padding = spacing['space-16']; // '32px'
+ * import { spacing } from '@ainativekit/ui/tokens';
+ * const padding = spacing[16]; // '32px'
  * ```
  */
 
-export const spacing = {
-  'space-0': '0px',
-  'space-1': '2px',
-  'space-2': '4px',
-  'space-4': '8px',
-  'space-6': '12px',
-  'space-8': '16px',
-  'space-10': '20px',
-  'space-12': '24px',
-  'space-16': '32px',
-  'space-20': '40px',
-  'space-24': '48px',
-  'space-32': '64px',
-  'space-64': '128px',
-} as const;
+export type SpacingScale = 0 | 1 | 2 | 4 | 6 | 8 | 10 | 12 | 16 | 20 | 24 | 32 | 64;
 
-export type SpacingToken = keyof typeof spacing;
+export const spacing: Record<SpacingScale, string> = {
+  0: '0px',
+  1: '2px',
+  2: '4px',
+  4: '8px',
+  6: '12px',
+  8: '16px',
+  10: '20px',
+  12: '24px',
+  16: '32px',
+  20: '40px',
+  24: '48px',
+  32: '64px',
+  64: '128px',
+} as const;

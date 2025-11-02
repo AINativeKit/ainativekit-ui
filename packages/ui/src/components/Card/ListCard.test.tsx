@@ -301,7 +301,7 @@ describe('ListCard', () => {
   describe('Card Props Inheritance', () => {
     it('passes through elevation props', () => {
       const { container } = render(
-        <ListCard items={mockItems} elevationLevel="3" />
+        <ListCard items={mockItems} elevationLevel={3} />
       );
       // Card component should receive and apply elevation
       expect(container.firstChild).toBeInTheDocument();

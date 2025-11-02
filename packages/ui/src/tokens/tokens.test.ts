@@ -190,13 +190,14 @@ describe('Design Tokens', () => {
 
   describe('Spacing', () => {
     it('should follow space-<n> = n*2px formula', () => {
-      expect(spacing['space-4']).toBe('8px'); // 4 * 2 = 8
-      expect(spacing['space-8']).toBe('16px'); // 8 * 2 = 16
-      expect(spacing['space-16']).toBe('32px'); // 16 * 2 = 32
-      expect(spacing['space-20']).toBe('40px'); // 20 * 2 = 40
-      expect(spacing['space-24']).toBe('48px'); // 24 * 2 = 48
-      expect(spacing['space-32']).toBe('64px'); // 32 * 2 = 64
-      expect(spacing['space-64']).toBe('128px'); // 64 * 2 = 128
+      // New helper API uses numeric keys
+      expect(spacing[4]).toBe('8px'); // 4 * 2 = 8
+      expect(spacing[8]).toBe('16px'); // 8 * 2 = 16
+      expect(spacing[16]).toBe('32px'); // 16 * 2 = 32
+      expect(spacing[20]).toBe('40px'); // 20 * 2 = 40
+      expect(spacing[24]).toBe('48px'); // 24 * 2 = 48
+      expect(spacing[32]).toBe('64px'); // 32 * 2 = 64
+      expect(spacing[64]).toBe('128px'); // 64 * 2 = 128
     });
 
     it('should have 13 spacing tokens', () => {
@@ -222,10 +223,10 @@ describe('Design Tokens', () => {
 
   describe('Elevation', () => {
     it('should have correct elevation values', () => {
-      expect(elevation['0'].shadow).toBe('none');
-      expect(elevation['1'].shadow).toBe('0px 4px 16px rgba(0,0,0,0.05)');
-      expect(elevation['1'].darkOverlay).toBe('rgba(255,255,255,0.05)');
-      expect(elevation['5'].shadow).toBe('0px 16px 48px rgba(0,0,0,0.14)');
+      expect(elevation[0].shadow).toBe('none');
+      expect(elevation[1].shadow).toBe('0px 4px 16px rgba(0,0,0,0.05)');
+      expect(elevation[1].darkOverlay).toBe('rgba(255,255,255,0.05)');
+      expect(elevation[5].shadow).toBe('0px 16px 48px rgba(0,0,0,0.14)');
     });
 
     it('should have 6 elevation tokens', () => {
@@ -242,7 +243,7 @@ describe('Design Tokens', () => {
       expect(tokens.elevation).toBeDefined();
       expect(tokens.fontStack).toBeDefined();
       expect(tokens.defaultRadius).toBe(radius.xl);
-      expect(tokens.defaultElevation).toBe('1');
+      expect(tokens.defaultElevation).toBe(1);
     });
 
     it('should have tokens accessible from package root', () => {
@@ -285,7 +286,7 @@ describe('Design Tokens', () => {
         const elevationLevels = Object.keys(elevation);
         
         elevationLevels.forEach(level => {
-          const token = elevation[level as keyof typeof elevation];
+          const token = elevation[Number(level) as keyof typeof elevation];
           expect(token.meta).toBeDefined();
           expect(token.meta.description).toBeDefined();
           expect(token.meta.usage).toBeDefined();
@@ -296,13 +297,13 @@ describe('Design Tokens', () => {
 
       it('should have zIndex guidance for elevated elements', () => {
         // Check that elevated elements have zIndex guidance
-        expect(elevation['1'].meta.zIndex).toBeDefined();
-        expect(typeof elevation['1'].meta.zIndex).toBe('string');
-        expect(elevation['1'].meta.zIndex!.length).toBeGreaterThan(0);
+        expect(elevation[1].meta.zIndex).toBeDefined();
+        expect(typeof elevation[1].meta.zIndex).toBe('string');
+        expect(elevation[1].meta.zIndex!.length).toBeGreaterThan(0);
         
         // Verify higher elevations have guidance
-        expect(elevation['3'].meta.zIndex).toBeDefined();
-        expect(elevation['5'].meta.zIndex).toBeDefined();
+        expect(elevation[3].meta.zIndex).toBeDefined();
+        expect(elevation[5].meta.zIndex).toBeDefined();
       });
     });
   });
@@ -336,7 +337,7 @@ describe('Design Tokens', () => {
         const elevationLevels = Object.keys(elevation);
         
         elevationLevels.forEach(level => {
-          const token = elevation[level as keyof typeof elevation];
+          const token = elevation[Number(level) as keyof typeof elevation];
           expect(token.className).toBeDefined();
           expect(typeof token.className).toBe('string');
           expect(token.className).toBe(`ai-elevation-${level}`);
@@ -344,12 +345,12 @@ describe('Design Tokens', () => {
       });
 
       it('should have correct class name format', () => {
-        expect(elevation['0'].className).toBe('ai-elevation-0');
-        expect(elevation['1'].className).toBe('ai-elevation-1');
-        expect(elevation['2'].className).toBe('ai-elevation-2');
-        expect(elevation['3'].className).toBe('ai-elevation-3');
-        expect(elevation['4'].className).toBe('ai-elevation-4');
-        expect(elevation['5'].className).toBe('ai-elevation-5');
+        expect(elevation[0].className).toBe('ai-elevation-0');
+        expect(elevation[1].className).toBe('ai-elevation-1');
+        expect(elevation[2].className).toBe('ai-elevation-2');
+        expect(elevation[3].className).toBe('ai-elevation-3');
+        expect(elevation[4].className).toBe('ai-elevation-4');
+        expect(elevation[5].className).toBe('ai-elevation-5');
       });
     });
 

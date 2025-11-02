@@ -232,7 +232,7 @@ export const Carousel: React.FC<CarouselProps> = ({
         <div key={i} style={{ width: '240px', flexShrink: 0 }}>
           <Card
             loading
-            elevationLevel="1"
+            elevationLevel={1}
             style={{
               width: '100%',
               minHeight: '240px',

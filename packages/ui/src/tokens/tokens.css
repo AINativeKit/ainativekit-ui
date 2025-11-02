@@ -293,8 +293,8 @@
  * 
  * Usage:
  * - Direct: <div className="ai-elevation-1">...</div>
- * - Type-safe: <div className={elevation['1'].className}>...</div>
- * - For Cards: <Card elevationLevel="1">...</Card> (recommended)
+ * - Type-safe: <div className={elevation[1].className}>...</div>
+ * - For Cards: <Card elevationLevel={1}>...</Card> (recommended)
  * 
  * Note: These classes set background using color-mix. If you need a custom background
  * color with elevation, use the Card component or apply shadow/overlay separately.

@@ -10,7 +10,7 @@
  * 
  * // Use embedded className property
  * typography.heading1.className  // 'ai-heading1'
- * elevation['1'].className       // 'ai-elevation-1'
+ * elevation[1].className         // 'ai-elevation-1'
  * ```
  */
 

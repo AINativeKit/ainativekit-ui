@@ -37,7 +37,7 @@ const SkeletonCard: React.FC<{
 
   return (
     <Card
-      elevationLevel="1"
+      elevationLevel={1}
       interactive
       onClick={handleCopy}
       style={{
@@ -137,7 +137,7 @@ const SkeletonsComponent: React.FC = () => {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '24px' }}>
           <div>
             <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px' }}>With Animation (Default)</h3>
-            <Card elevationLevel="1" style={{ padding: '16px' }}>
+            <Card elevationLevel={1} style={{ padding: '16px' }}>
               <Skeleton width={200} height={100} />
             </Card>
             <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginTop: '8px' }}>
@@ -147,7 +147,7 @@ const SkeletonsComponent: React.FC = () => {
 
           <div>
             <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px' }}>Without Animation</h3>
-            <Card elevationLevel="1" style={{ padding: '16px' }}>
+            <Card elevationLevel={1} style={{ padding: '16px' }}>
               <Skeleton width={200} height={100} animation={false} />
             </Card>
             <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginTop: '8px' }}>
@@ -165,7 +165,7 @@ const SkeletonsComponent: React.FC = () => {
           {/* Card Loading */}
           <div>
             <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px' }}>Card Loading</h3>
-            <Card elevationLevel="1" style={{ padding: '16px' }}>
+            <Card elevationLevel={1} style={{ padding: '16px' }}>
               <Skeleton variant="rectangular" height={180} style={{ marginBottom: 12 }} />
               <Skeleton variant="text" width="60%" style={{ marginBottom: 8 }} />
               <Skeleton variant="text" width="80%" />
@@ -183,7 +183,7 @@ const SkeletonsComponent: React.FC = () => {
           {/* Profile Loading */}
           <div>
             <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px' }}>Profile Loading</h3>
-            <Card elevationLevel="1" style={{ padding: '16px' }}>
+            <Card elevationLevel={1} style={{ padding: '16px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                 <Skeleton variant="circular" width={48} height={48} />
                 <div style={{ flex: 1 }}>
@@ -209,7 +209,7 @@ const SkeletonsComponent: React.FC = () => {
           {/* List Loading */}
           <div>
             <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px' }}>List Loading</h3>
-            <Card elevationLevel="1" style={{ padding: '16px' }}>
+            <Card elevationLevel={1} style={{ padding: '16px' }}>
               {[1, 2, 3].map(i => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: i < 3 ? 16 : 0 }}>
                   <Skeleton variant="circular" width={32} height={32} />
@@ -235,7 +235,7 @@ const SkeletonsComponent: React.FC = () => {
           {/* Table Loading */}
           <div>
             <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px' }}>Table Loading</h3>
-            <Card elevationLevel="1" style={{ padding: '16px' }}>
+            <Card elevationLevel={1} style={{ padding: '16px' }}>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr 1fr', gap: 12, marginBottom: 12 }}>
                 <Skeleton variant="text" width="100%" />
                 <Skeleton variant="text" width="100%" />

@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { colors, spacing, typography, radius, elevation } from './index';
+import { colors, typography, radius, elevation } from './index';
+import { spacing as spacingRaw } from './spacing'; // Use raw for display in Storybook
 import type { ElevationLevel } from './elevation';
 import { Card } from '../components/Card';
 import { PropsTable } from './PropsTable';
@@ -31,7 +32,7 @@ const ColorSwatch: React.FC<{ name: string; value: string; cssVariable: string }
 
   return (
     <Card
-      elevationLevel="1"
+      elevationLevel={1}
       interactive
       onClick={handleCopy}
       style={{
@@ -239,7 +240,7 @@ const TypographyComponent = () => {
           {Object.entries(typography).map(([name, value]) => (
             <Card
               key={name}
-              elevationLevel="1"
+              elevationLevel={1}
               interactive
               onClick={() => handleCopy(name)}
               style={{ cursor: 'pointer' }}
@@ -381,26 +382,26 @@ export const Typography: StoryObj = {
 };
 
 // Spacing Story
-const spacingOrder: Array<keyof typeof spacing> = [
-  'space-64',
-  'space-32',
-  'space-24',
-  'space-20',
-  'space-16',
-  'space-12',
-  'space-10',
-  'space-8',
-  'space-6',
-  'space-4',
-  'space-2',
-  'space-1',
-  'space-0',
+const spacingOrder: Array<keyof typeof spacingRaw> = [
+  64,
+  32,
+  24,
+  20,
+  16,
+  12,
+  10,
+  8,
+  6,
+  4,
+  2,
+  1,
+  0,
 ];
 
 const SpacingComponent = () => {
-  const [copied, setCopied] = React.useState<string | null>(null);
+  const [copied, setCopied] = React.useState<number | null>(null);
 
-  const handleCopy = (name: string) => {
+  const handleCopy = (name: number) => {
     navigator.clipboard.writeText(`var(--ai-spacing-${name})`);
     setCopied(name);
     setTimeout(() => setCopied(null), 2000);
@@ -424,7 +425,7 @@ const SpacingComponent = () => {
           }}
         >
           {spacingOrder.map(name => {
-            const value = spacing[name];
+            const value = spacingRaw[name];
             const numeric = parseInt(value, 10);
             const borderWidth = numeric > 2 ? 2 : 1;
             const containerSize = 120;
@@ -438,7 +439,7 @@ const SpacingComponent = () => {
             return (
               <Card
                 key={name}
-                elevationLevel="1"
+                elevationLevel={1}
                 interactive
                 onClick={() => handleCopy(name)}
                 style={{
@@ -520,7 +521,7 @@ const SpacingComponent = () => {
 
 /* For dynamic spacing in JavaScript/TypeScript */
 import { spacing } from '@ainativekit/ui';
-const padding = spacing['space-16']; // '32px'`}</code>
+const padding = spacing[16]; // '32px'`}</code>
         </pre>
       </section>
 
@@ -531,55 +532,55 @@ const padding = spacing['space-16']; // '32px'`}</code>
           hideThemeColumn
           rows={[
             {
-              name: 'space-0',
+              name: '0',
               description: 'Zero spacing - Use for removing space (0px)',
             },
           {
-            name: 'space-1',
+            name: '1',
             description: 'Minimal spacing for tight layouts (2px)',
           },
           {
-            name: 'space-2',
+            name: '2',
             description: 'Extra small spacing for subtle separation (4px)',
           },
           {
-            name: 'space-4',
+            name: '4',
             description: 'Small spacing for compact components (8px)',
           },
           {
-            name: 'space-6',
+            name: '6',
             description: 'Medium-small spacing for related elements (12px)',
           },
           {
-            name: 'space-8',
+            name: '8',
             description: 'Base spacing unit - Most common default (16px)',
           },
           {
-            name: 'space-10',
+            name: '10',
             description: 'Medium spacing for component padding (20px)',
           },
           {
-            name: 'space-12',
+            name: '12',
             description: 'Medium-large spacing for sections (24px)',
           },
           {
-            name: 'space-16',
+            name: '16',
             description: 'Large spacing for card padding and gaps (32px)',
           },
           {
-            name: 'space-20',
+            name: '20',
             description: 'Extra large spacing for major sections (40px)',
           },
           {
-            name: 'space-24',
+            name: '24',
             description: 'Very large spacing for page sections (48px)',
           },
           {
-            name: 'space-32',
+            name: '32',
             description: 'Extra extra large for major layouts (64px)',
           },
           {
-            name: 'space-64',
+            name: '64',
             description: 'Maximum spacing for page-level separation (128px)',
           },
         ]} />
@@ -622,7 +623,7 @@ const RadiusComponent = () => {
           {Object.entries(radius).map(([name, value]) => (
             <Card
               key={name}
-              elevationLevel="1"
+              elevationLevel={1}
               interactive
               onClick={() => handleCopy(name)}
               style={{
@@ -737,7 +738,8 @@ export const Radius: StoryObj = {
 const ElevationComponent: React.FC = () => {
   const [copied, setCopied] = React.useState<string | null>(null);
 
-  const handleCopy = (theme: 'light' | 'dark', name: string) => {
+  const handleCopy = (theme: 'light' | 'dark', level: ElevationLevel) => {
+    const name = level.toString();
     navigator.clipboard.writeText(`var(--ai-elevation-${name}-shadow)`);
     setCopied(`${theme}-${name}`);
     setTimeout(() => setCopied(null), 2000);
@@ -774,6 +776,7 @@ const ElevationComponent: React.FC = () => {
                   }}
                 >
                   {Object.entries(elevation).map(([name, value]) => {
+                    const level = Number(name) as ElevationLevel;
                     const overlay = theme === 'dark' ? value.darkOverlay : value.lightOverlay;
                     const mixedSurface = `color-mix(in srgb, ${themeColors.background.primary} 88%, ${overlay})`;
 
@@ -781,11 +784,11 @@ const ElevationComponent: React.FC = () => {
                       <div
                         key={`${theme}-${name}`}
                         style={{ cursor: 'pointer' }}
-                        onClick={() => handleCopy(theme, name)}
+                        onClick={() => handleCopy(theme, level)}
                         title="Click to copy CSS variable"
                       >
                         <Card
-                          elevationLevel={name as ElevationLevel}
+                          elevationLevel={level}
                           border="default"
                           interactive={false}
                           style={{
@@ -801,11 +804,11 @@ const ElevationComponent: React.FC = () => {
                             marginBottom: '8px',
                           }}
                         >
-                          <span style={{ fontSize: '32px', fontWeight: 600 }}>{name}</span>
+                          <span style={{ fontSize: '32px', fontWeight: 600 }}>{level}</span>
                         </Card>
                         <div style={{ fontWeight: 600 }}>
-                          elevation-{name}
-                          {copied === `${theme}-${name}` && (
+                          elevation-{level}
+                          {copied === `${theme}-${level}` && (
                             <span style={{ marginLeft: '8px', color: 'var(--ai-color-accent-green)' }}>
                               ✓
                             </span>
@@ -852,12 +855,12 @@ const ElevationComponent: React.FC = () => {
 /* Method 2: Type-safe with TypeScript (RECOMMENDED - Best DX) */
 import { elevation } from '@ainativekit/ui/tokens';
 
-<div className={elevation['1'].className}>Card</div>
-<div className={elevation['3'].className}>Menu</div>
+<div className={elevation[1].className}>Card</div>
+<div className={elevation[3].className}>Menu</div>
 
 /* Method 3: Use elevation via Card component prop (RECOMMENDED for Cards) */
-<Card elevationLevel="1">Content</Card>
-<Card elevationLevel="3">Content</Card>
+<Card elevationLevel={1}>Content</Card>
+<Card elevationLevel={3}>Content</Card>
 
 /* Method 4: CSS Variables (For custom background colors) */
 .custom-card {
@@ -877,10 +880,10 @@ import { elevation } from '@ainativekit/ui/tokens';
 
 /* Method 5: JavaScript/TypeScript token value access */
 import { elevation } from '@ainativekit/ui/tokens';
-const shadow = elevation['1'].shadow; // '0px 4px 16px rgba(0,0,0,0.05)'
-const darkOverlay = elevation['1'].darkOverlay; // 'rgba(255,255,255,0.05)'
-const lightOverlay = elevation['1'].lightOverlay; // 'rgba(0,0,0,0)'
-const className = elevation['1'].className; // 'ai-elevation-1'`}</code>
+const shadow = elevation[1].shadow; // '0px 4px 16px rgba(0,0,0,0.05)'
+const darkOverlay = elevation[1].darkOverlay; // 'rgba(255,255,255,0.05)'
+const lightOverlay = elevation[1].lightOverlay; // 'rgba(0,0,0,0)'
+const className = elevation[1].className; // 'ai-elevation-1'`}</code>
         </pre>
         <p style={{ marginTop: '16px', fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
           <strong>Note:</strong> Utility classes (.ai-elevation-*) now apply both shadow AND overlay (using bg-primary + overlay tint). For custom background colors, use Method 4 to manually apply shadow to your color.
