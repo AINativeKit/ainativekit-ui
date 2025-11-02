@@ -198,6 +198,57 @@ function MyChatGPTWidget() {
 }
 ```
 
+## 📘 TypeScript Support
+
+AINativeKit UI exports comprehensive TypeScript definitions for the ChatGPT Apps SDK, giving you **full autocomplete and type safety** for `window.openai`.
+
+### Zero Boilerplate - Types Just Work
+
+```tsx
+// Simply import the package
+import '@ainativekit/ui';
+
+// window.openai is now fully typed! ✨
+const theme = window.openai?.theme; // 'light' | 'dark' | undefined
+const toolOutput = window.openai?.toolOutput; // string | undefined
+const displayMode = window.openai?.displayMode; // 'inline' | 'pip' | 'fullscreen' | undefined
+
+// Full autocomplete for all methods
+window.openai?.sendFollowUpMessage({ prompt: 'Show more' });
+const result = await window.openai?.callTool('get_weather', { location: 'SF' });
+```
+
+### Available Types
+
+All ChatGPT Apps SDK types are exported:
+
+```tsx
+import type {
+  OpenAiGlobals,
+  OpenAiApi,
+  Theme,
+  DisplayMode,
+  UserAgent,
+  SafeArea
+} from '@ainativekit/ui';
+
+// Use in your own type definitions
+type MyWidgetProps = {
+  theme: Theme;
+  displayMode: DisplayMode;
+};
+```
+
+**Exported Types:**
+- `OpenAiGlobals` - Complete `window.openai` globals interface
+- `OpenAiApi` - API methods (`callTool`, `sendFollowUpMessage`, etc.)
+- `Theme` - `'light' | 'dark'`
+- `DisplayMode` - `'inline' | 'pip' | 'fullscreen'`
+- `UserAgent` - Device type and capabilities
+- `SafeArea` - Safe area insets for mobile layouts
+- `CallTool` - Type-safe tool calling signature
+- And more... (see [types.ts](packages/ui/src/hooks/openai/types.ts))
+
 ## 🤖 AI Tool Integration
 
 AINativeKit UI is optimized for AI coding assistants through Context7 and runtime utilities.
