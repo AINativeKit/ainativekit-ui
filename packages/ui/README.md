@@ -40,6 +40,7 @@
 
 - 🎯 **Apps SDK Optimized:** Components designed to work seamlessly with ChatGPT Apps SDK
 - 🔄 **JSON -> UI Mapping:** Render structured MCP results with minimal glue code
+- 🤖 **AI-Tool Friendly:** JSON schemas, component registry, and utilities for AI code generation
 - 🎨 **417 Figma‑Aligned Icons:** Fully typed and tree‑shakeable
 - ♿ **Accessibility First:** ARIA attributes & sensible focus management
 - 🌗 **Dark/Light Themes:** Built‑in theme switching
@@ -197,6 +198,54 @@ function MyChatGPTWidget() {
 }
 ```
 
+## 🤖 AI Tool Integration
+
+AINativeKit UI is optimized for AI coding assistants through Context7 and runtime utilities.
+
+### Using with Context7
+
+If you use Claude Desktop, Cursor, or other AI editors with Context7 support:
+
+```
+use context7 @ainativekit/ui
+```
+
+This will inject the latest component documentation directly into your AI's context, enabling:
+- Smart component suggestions
+- Accurate prop recommendations
+- Best practice guidance
+- Code generation with examples
+
+### JSON-to-Component Rendering
+
+Dynamically render components from JSON/API data in your production app:
+
+```tsx
+import { renderComponent, type ComponentConfig } from '@ainativekit/ui';
+
+const config: ComponentConfig = {
+  type: 'SummaryCard',
+  props: {
+    title: "Little Nona's",
+    badge: "9.2",
+    images: ["https://example.com/restaurant.jpg"],
+    buttonText: "Add to Order"
+  }
+};
+
+const card = renderComponent(config); // Renders <SummaryCard {...props} />
+```
+
+**Runtime Utilities:**
+- 🔧 `renderComponent()` - Render from JSON config
+- ✅ `validateComponentConfig()` - Validate component configs
+- 📝 `ComponentPropsMap` - Type-safe prop definitions
+
+**AI Integration:**
+- 🤖 **Context7:** Documentation via "use context7" command
+- 📚 **Schemas:** Available in GitHub repo for tooling
+- 📖 **Guide:** See `/docs` folder for comprehensive documentation
+
 ## 🧰 Development
 
 ```bash
@@ -211,10 +260,15 @@ pnpm lint             # lint
 
 ```
 @ainativekit/ui
-├── /               # Components, tokens, hooks
+├── /               # Components, tokens, hooks, utilities
 ├── /icons          # 417 icons as named React components
 ├── /tokens         # Design tokens only
 └── /styles         # CSS styles
+
+Repository (for documentation & tooling):
+├── /docs           # Markdown documentation (Context7)
+├── /schemas        # JSON schemas (dev tooling)
+└── /metadata       # Component registry (dev tooling)
 ```
 
 ## ✅ Compatibility

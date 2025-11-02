@@ -1,0 +1,63 @@
+{
+  "$schema": "https://context7.com/schema/context7.json",
+  "projectTitle": "AINativeKit UI",
+  "description": "React component library optimized for ChatGPT Apps SDK with JSON-to-UI mapping, 417 Figma-aligned icons, and AI-native patterns for building accessible, production-ready UIs",
+  "folders": [
+    "packages/ui/docs",
+    "README.md",
+    "packages/ui/README.md"
+  ],
+  "excludeFolders": [
+    "node_modules",
+    "dist",
+    "build",
+    ".storybook",
+    "storybook-static",
+    "assets",
+    "coverage",
+    ".next",
+    ".turbo",
+    "schemas",
+    "metadata"
+  ],
+  "excludeFiles": [
+    "CHANGELOG.md",
+    "LICENSE",
+    "package-lock.json",
+    "pnpm-lock.yaml",
+    "yarn.lock"
+  ],
+  "rules": [
+    "Always import styles with: import '@ainativekit/ui/styles'",
+    "Use SummaryCard for entity displays (restaurants, products, places, articles)",
+    "Use Card compound components for custom layouts: Card.Header, Card.Body, Card.Footer",
+    "Prefer named icon imports over dynamic Icon component when possible",
+    "All components support TypeScript with full type definitions",
+    "Components follow ChatGPT Apps SDK patterns and Figma design tokens",
+    "Map components (MapView, CompactMap) require react-leaflet and leaflet as peer dependencies",
+    "Loading states: Use loading prop on Card-based components for skeleton UI",
+    "Error states: Use error prop with errorMessage on Card-based components",
+    "Icons: 417 available icons organized in 7 categories (account-user, arrows, chat-tools, interface, misc, platform, settings)",
+    "For JSON-to-component mapping, use renderComponent() utility from main package",
+    "Button component: 44px pill-shaped with variants (primary, secondary, tertiary, ghost)",
+    "SummaryCard supports 1-4 images, displayed as single large or 2x2 grid",
+    "Use metadata prop on SummaryCard for additional info with icons (time, date, etc)",
+    "Carousel uses Embla Carousel for smooth, touch-enabled browsing",
+    "List and ListItem for structured content with icons and features",
+    "All card components support elevationLevel (1-5) for depth",
+    "Theme support: Components automatically adapt to light/dark mode",
+    "Accessibility: Components include ARIA attributes and keyboard navigation",
+    "Use OpenAI hooks (useOpenAiGlobal, useWidgetState, useMaxHeight) for ChatGPT Apps integration"
+  ],
+  "previousVersions": [
+    {
+      "tag": "v0.2.0",
+      "title": "v0.2.0 - Current (AI Integration)"
+    },
+    {
+      "tag": "v0.1.0",
+      "title": "v0.1.0 - Initial Release"
+    }
+  ],
+  "branch": "main"
+}

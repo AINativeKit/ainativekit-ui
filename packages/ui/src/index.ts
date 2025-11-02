@@ -16,3 +16,6 @@ export * from './components';
 
 // Export hooks
 export * from './hooks/openai';
+
+// Export utilities (including JSON-to-component rendering)
+export * from './utils';
