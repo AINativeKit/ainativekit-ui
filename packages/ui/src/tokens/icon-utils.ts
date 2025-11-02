@@ -26,12 +26,28 @@ export function getIconPath(iconName: IconName): string {
 }
 
 /**
- * Get the URL path to an icon file (for use in src attributes)
+ * Get the URL path or import URL to an icon file
+ * Resolves relative to the package location for bundled library usage
  * @param iconName - The globally unique icon name
- * @returns The URL path to the icon file
+ * @returns The URL or import path to the icon file
  */
 export function getIconUrl(iconName: IconName): string {
-  return `/${getIconPath(iconName)}`;
+  const iconPath = getIconPath(iconName);
+
+  // In a bundled library context, resolve relative to this module
+  // The icons are published in the npm package at public/icons/
+  // When imported, they will be at: node_modules/@ainativekit/ui/public/icons/
+  try {
+    // Use import.meta.url to get the module's location
+    // This works in both ESM and when the module is bundled
+    const moduleDir = new URL('.', import.meta.url);
+    const iconsUrl = new URL(`../../../public/${iconPath}`, moduleDir);
+    return iconsUrl.href;
+  } catch {
+    // Fallback for environments where import.meta.url is not available
+    // (e.g., older Node.js, bundlers that don't support it)
+    return `/${iconPath}`;
+  }
 }
 
 /**

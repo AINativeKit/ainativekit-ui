@@ -28,6 +28,7 @@
   },
   "files": [
     "dist",
+    "public/icons",
     "README.md"
   ],
   "keywords": [
