@@ -7,12 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2025-11-03
+
 ### Added
 - **ThemeProvider**: New provider component for programmatic theme control
   - Enables theme switching in standalone apps and development environments
   - Respects ChatGPT theme authority when running inside ChatGPT (read-only mode)
   - Supports localStorage persistence and system preference detection
   - See [Theme Management](packages/ui/README.md#-openai-hooks--theme-management) for usage
+- [Performance Best Practices](packages/ui/docs/guides/performance.md) guide
+  - Clarifies typical ChatGPT Apps SDK usage patterns (10-20 items)
+  - Explains why virtualization is not needed for conversational UI
+  - Provides optimization tips for image-heavy content
+  - Documents when to consider pagination vs virtualization
 
 ### Changed
 - **useTheme()**: Enhanced to return object with `{ theme, setTheme, isControlledByChatGPT }`
@@ -20,17 +27,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Works seamlessly with or without ThemeProvider
   - Inside ChatGPT: Read-only theme from `window.openai.theme`
   - Inside ThemeProvider: Full theme control with localStorage persistence
-- Refreshed documentation across the project to align with the 0.1.0 release and Storybook content.
-- Added an icon system reference guide detailing categories, APIs, and maintenance workflows.
-- Adopted an explicit Code of Conduct linked from CONTRIBUTING guidelines.
+- Icon system documentation updated to remove misleading tree-shaking claims
+  - Icons use runtime lookup (not tree-shakeable)
+  - Bundle includes all 417 icons (606KB source, 206KB gzipped)
+  - Focus on actual benefits: type safety, autocompletion, semantic categories
 
-### Documentation
-- Added [Performance Best Practices](packages/ui/docs/guides/performance.md) guide
-  - Clarifies typical ChatGPT Apps SDK usage patterns (10-20 items)
-  - Explains why virtualization is not needed for conversational UI
-  - Provides optimization tips for image-heavy content
-  - Documents when to consider pagination vs virtualization
-
+### Fixed
+- Icon data generation script now handles missing source directory gracefully
+- Storybook build no longer fails when icon source files are unavailable
+- ESLint errors in theme implementation (Rules of Hooks violations)
 
 ## [0.1.0] - 2025-10-28
 
@@ -89,4 +94,5 @@ This library follows [Semantic Versioning](https://semver.org/):
 
 ---
 
+[0.4.0]: https://github.com/ainativekit/ainativekit-ui/releases/tag/v0.4.0
 [0.1.0]: https://github.com/ainativekit/ainativekit-ui/releases/tag/v0.1.0
