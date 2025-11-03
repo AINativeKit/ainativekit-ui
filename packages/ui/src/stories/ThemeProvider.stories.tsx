@@ -305,25 +305,30 @@ The \`useTheme()\` hook returns \`isControlledByChatGPT: true\` and \`setTheme()
 };
 
 /**
+ * Wrapper component for WithThemeProvider story
+ */
+const WithThemeProviderStory: React.FC = () => {
+  // Cleanup ChatGPT mock for this story
+  React.useEffect(() => {
+    cleanupMockChatGPT();
+    return () => {
+      // Re-setup for other stories
+      setupMockChatGPT();
+    };
+  }, []);
+
+  return (
+    <ThemeProvider defaultTheme="light">
+      <ThemeDemo />
+    </ThemeProvider>
+  );
+};
+
+/**
  * Story: ThemeProvider with Full Control
  */
 export const WithThemeProvider: StoryObj = {
-  render: () => {
-    // Cleanup ChatGPT mock for this story
-    React.useEffect(() => {
-      cleanupMockChatGPT();
-      return () => {
-        // Re-setup for other stories
-        setupMockChatGPT();
-      };
-    }, []);
-
-    return (
-      <ThemeProvider defaultTheme="light">
-        <ThemeDemo />
-      </ThemeProvider>
-    );
-  },
+  render: () => <WithThemeProviderStory />,
   parameters: {
     docs: {
       description: {
@@ -339,45 +344,50 @@ The theme persists to localStorage and can be toggled via \`setTheme()\`.
 };
 
 /**
+ * Wrapper component for SystemPreference story
+ */
+const SystemPreferenceStory: React.FC = () => {
+  React.useEffect(() => {
+    cleanupMockChatGPT();
+    // Clear localStorage to demonstrate system preference
+    try {
+      localStorage.removeItem('ainativekit-theme');
+    } catch {
+      // Ignore
+    }
+    return () => setupMockChatGPT();
+  }, []);
+
+  const systemTheme = typeof window !== 'undefined'
+    ? window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    : 'light';
+
+  return (
+    <ThemeProvider enableSystemTheme>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '20px',
+        maxWidth: '600px',
+        margin: '0 auto',
+        padding: '24px',
+      }}>
+        <Alert
+          layout="card"
+          title="System Preference Detection"
+          message={`Your system preference is: ${systemTheme}. The ThemeProvider will respect this when no theme is stored.`}
+        />
+        <ThemeDemo />
+      </div>
+    </ThemeProvider>
+  );
+};
+
+/**
  * Story: System Preference Detection
  */
 export const SystemPreference: StoryObj = {
-  render: () => {
-    React.useEffect(() => {
-      cleanupMockChatGPT();
-      // Clear localStorage to demonstrate system preference
-      try {
-        localStorage.removeItem('ainativekit-theme');
-      } catch {
-        // Ignore
-      }
-      return () => setupMockChatGPT();
-    }, []);
-
-    const systemTheme = typeof window !== 'undefined'
-      ? window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-      : 'light';
-
-    return (
-      <ThemeProvider enableSystemTheme>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '20px',
-          maxWidth: '600px',
-          margin: '0 auto',
-          padding: '24px',
-        }}>
-          <Alert
-            layout="card"
-            title="System Preference Detection"
-            message={`Your system preference is: ${systemTheme}. The ThemeProvider will respect this when no theme is stored.`}
-          />
-          <ThemeDemo />
-        </div>
-      </ThemeProvider>
-    );
-  },
+  render: () => <SystemPreferenceStory />,
   parameters: {
     docs: {
       description: {
@@ -393,26 +403,31 @@ This is the default behavior when \`enableSystemTheme={true}\` (default).
 };
 
 /**
+ * Wrapper component for DarkModeDefault story
+ */
+const DarkModeDefaultStory: React.FC = () => {
+  React.useEffect(() => {
+    cleanupMockChatGPT();
+    try {
+      localStorage.removeItem('ainativekit-theme');
+    } catch {
+      // Ignore
+    }
+    return () => setupMockChatGPT();
+  }, []);
+
+  return (
+    <ThemeProvider defaultTheme="dark" enableSystemTheme={false}>
+      <ThemeDemo />
+    </ThemeProvider>
+  );
+};
+
+/**
  * Story: Dark Mode Default
  */
 export const DarkModeDefault: StoryObj = {
-  render: () => {
-    React.useEffect(() => {
-      cleanupMockChatGPT();
-      try {
-        localStorage.removeItem('ainativekit-theme');
-      } catch {
-        // Ignore
-      }
-      return () => setupMockChatGPT();
-    }, []);
-
-    return (
-      <ThemeProvider defaultTheme="dark" enableSystemTheme={false}>
-        <ThemeDemo />
-      </ThemeProvider>
-    );
-  },
+  render: () => <DarkModeDefaultStory />,
   parameters: {
     docs: {
       description: {

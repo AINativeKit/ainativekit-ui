@@ -78,8 +78,9 @@ export interface UseThemeResult {
  * ```
  */
 export const useTheme = (): UseThemeResult => {
-  // Try to get theme from ThemeProvider context
+  // Call all hooks at top level (Rules of Hooks)
   const contextValue = useContext(ThemeContext);
+  const chatGPTTheme = useOpenAiGlobal('theme');
 
   // If ThemeProvider context is available, use it
   if (contextValue) {
@@ -91,8 +92,6 @@ export const useTheme = (): UseThemeResult => {
   }
 
   // Fall back to ChatGPT theme (read-only)
-  const chatGPTTheme = useOpenAiGlobal('theme');
-
   return {
     theme: chatGPTTheme,
     setTheme: undefined,

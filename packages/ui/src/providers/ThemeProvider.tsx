@@ -204,7 +204,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
           if (!stored) {
             setThemeState(e.matches ? 'dark' : 'light');
           }
-        } catch (error) {
+        } catch {
           // Ignore localStorage errors
         }
       };
