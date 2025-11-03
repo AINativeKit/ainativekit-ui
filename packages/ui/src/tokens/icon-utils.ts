@@ -1,54 +1,19 @@
 /**
  * Icon utility functions for AI Native Kit
- * Helper functions for working with icon tokens
+ * Helper functions for working with icon metadata
+ *
+ * Note: Icons are now bundled as inline SVG components, so URL resolution
+ * is no longer needed. These utilities help with icon discovery and metadata.
  *
  * @example
  * ```typescript
- * import { getIconPath, getIconUrl } from '@ainativekit/ui';
- * const iconPath = getIconPath('settings-cog'); // 'icons/settings/settings-cog.svg'
- * const iconUrl = getIconUrl('settings-cog'); // '/icons/settings/settings-cog.svg'
+ * import { getIconMetadata, iconExists } from '@ainativekit/ui';
+ * const metadata = getIconMetadata('settings-cog');
+ * // { category: 'settings', name: 'settings-cog', fileName: 'settings-cog' }
  * ```
  */
 
 import { iconCategories, iconMetadata, icons, type IconCategory, type IconName } from './icons';
-
-/**
- * Get the full path to an icon file
- * @param iconName - The globally unique icon name (e.g., 'settings-cog')
- * @returns The full path to the icon file
- */
-export function getIconPath(iconName: IconName): string {
-  const metadata = iconMetadata[iconName];
-  if (!metadata) {
-    throw new Error(`Icon '${iconName}' not found in iconMetadata`);
-  }
-  return `icons/${metadata.category}/${metadata.fileName}.svg`;
-}
-
-/**
- * Get the URL path or import URL to an icon file
- * Resolves relative to the package location for bundled library usage
- * @param iconName - The globally unique icon name
- * @returns The URL or import path to the icon file
- */
-export function getIconUrl(iconName: IconName): string {
-  const iconPath = getIconPath(iconName);
-
-  // In a bundled library context, resolve relative to this module
-  // The icons are published in the npm package at public/icons/
-  // When imported, they will be at: node_modules/@ainativekit/ui/public/icons/
-  try {
-    // Use import.meta.url to get the module's location
-    // This works in both ESM and when the module is bundled
-    const moduleDir = new URL('.', import.meta.url);
-    const iconsUrl = new URL(`../../../public/${iconPath}`, moduleDir);
-    return iconsUrl.href;
-  } catch {
-    // Fallback for environments where import.meta.url is not available
-    // (e.g., older Node.js, bundlers that don't support it)
-    return `/${iconPath}`;
-  }
-}
 
 /**
  * Get icon metadata (useful for building icon pickers)
@@ -65,8 +30,6 @@ export function getIconMetadata(iconName: IconName) {
     category: metadata.category,
     name: iconName,
     fileName: metadata.fileName,
-    path: getIconPath(iconName),
-    url: getIconUrl(iconName),
   };
 }
 

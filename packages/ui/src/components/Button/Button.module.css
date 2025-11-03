@@ -54,7 +54,7 @@
 /* Icon colors for primary variant - white to match text */
 .buttonPrimary .leftIcon,
 .buttonPrimary .rightIcon {
-  background-color: #ffffff; /* White icons on colored background */
+  color: #ffffff; /* White icons on colored background */
 }
 
 .buttonPrimary:not(:disabled):hover {
@@ -75,7 +75,7 @@
 /* Icon colors for secondary variant - match text color */
 .buttonSecondary .leftIcon,
 .buttonSecondary .rightIcon {
-  background-color: var(--ai-color-text-primary);
+  color: var(--ai-color-text-primary);
 }
 
 .buttonSecondary:not(:disabled):hover {
@@ -102,7 +102,7 @@
 /* Icon colors for tertiary variant - match text color */
 .buttonTertiary .leftIcon,
 .buttonTertiary .rightIcon {
-  background-color: var(--ai-color-text-primary);
+  color: var(--ai-color-text-primary);
 }
 
 .buttonTertiary:not(:disabled):hover {
@@ -124,7 +124,7 @@
 .buttonGhost .leftIcon,
 .buttonGhost .rightIcon,
 .buttonGhost .iconOnlyIcon {
-  background-color: var(--ai-color-text-primary);
+  color: var(--ai-color-text-primary);
 }
 
 .buttonGhost:not(:disabled):hover {
@@ -150,13 +150,13 @@
 
 /* Icon colors for icon-only variants */
 .buttonPrimary.buttonIconOnly .iconOnlyIcon {
-  background-color: #ffffff; /* White icons on colored background */
+  color: #ffffff; /* White icons on colored background */
 }
 
 .buttonSecondary.buttonIconOnly .iconOnlyIcon,
 .buttonTertiary.buttonIconOnly .iconOnlyIcon,
 .buttonGhost.buttonIconOnly .iconOnlyIcon {
-  background-color: var(--ai-color-text-primary);
+  color: var(--ai-color-text-primary);
 }
 
 /* ========== ICONS & LABEL ========== */

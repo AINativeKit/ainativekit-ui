@@ -250,14 +250,14 @@ export const Carousel: React.FC<CarouselProps> = ({
           <>
             <Button
               variant="ghost"
-              iconOnly="arrow-left-sm"
+              iconOnly="chevron-left-md"
               className={cn(styles.navButton, styles.navButtonPrev)}
               disabled
               aria-label="Previous slide"
             />
             <Button
               variant="ghost"
-              iconOnly="arrow-right-sm"
+              iconOnly="chevron-right-md"
               className={cn(styles.navButton, styles.navButtonNext)}
               disabled
               aria-label="Next slide"
@@ -386,7 +386,7 @@ export const Carousel: React.FC<CarouselProps> = ({
       {showNavigation && canPrev && (
         <Button
           variant="ghost"
-          iconOnly="arrow-left-sm"
+          iconOnly="chevron-left-md"
           onClick={scrollPrev}
           aria-label="Previous slide"
           className={`${styles.navButton} ${styles.navButtonPrev}`}
@@ -395,7 +395,7 @@ export const Carousel: React.FC<CarouselProps> = ({
       {showNavigation && canNext && (
         <Button
           variant="ghost"
-          iconOnly="arrow-right-sm"
+          iconOnly="chevron-right-md"
           onClick={scrollNext}
           aria-label="Next slide"
           className={`${styles.navButton} ${styles.navButtonNext}`}

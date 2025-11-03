@@ -1,7 +1,7 @@
 import React from 'react';
-import type { ComponentPropsWithoutRef, CSSProperties } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 import { cn } from '../../utils/cn';
-import { getIconUrl } from '../../tokens/icon-utils';
+import { iconData } from '../../tokens/icon-data';
 import type { IconName } from '../../tokens/icons';
 import styles from './Icon.module.css';
 
@@ -134,7 +134,15 @@ export const Icon = React.forwardRef<HTMLSpanElement, IconProps>(({
   onClick,
   ...props
 }, ref) => {
-  const iconUrl = getIconUrl(name);
+  // Get icon data
+  const icon = iconData[name];
+
+  if (!icon) {
+    if (process.env.NODE_ENV === 'development') {
+      console.warn(`Icon "${name}" not found in iconData`);
+    }
+    return null;
+  }
 
   // Icons are decorative by default (aria-hidden) unless explicitly given aria-label
   // This aligns with accessibility best practices where most icons are decorative
@@ -153,9 +161,15 @@ export const Icon = React.forwardRef<HTMLSpanElement, IconProps>(({
 
   // Handle size - can be semantic token or pixel value
   const isNumericSize = typeof size === 'number';
-  const sizeStyle: CSSProperties | undefined = isNumericSize
-    ? { width: `${size}px`, height: `${size}px` }
-    : undefined;
+  const sizeInPixels = isNumericSize
+    ? size
+    : {
+        xs: 12,
+        sm: 16,
+        md: 20,
+        lg: 24,
+        xl: 32,
+      }[size];
 
   const sizeClass = !isNumericSize
     ? {
@@ -174,17 +188,6 @@ export const Icon = React.forwardRef<HTMLSpanElement, IconProps>(({
     inverted: styles.iconInverted,
   }[tone];
 
-  const maskStyle: CSSProperties = {
-    WebkitMaskImage: `url(${iconUrl})`,
-    maskImage: `url(${iconUrl})`,
-  };
-
-  const mergedStyle = {
-    ...maskStyle,
-    ...sizeStyle,
-    ...style,
-  };
-
   return (
     <span
       ref={ref}
@@ -193,17 +196,29 @@ export const Icon = React.forwardRef<HTMLSpanElement, IconProps>(({
       aria-hidden={shouldBeHidden || undefined}
       aria-disabled={disabled || undefined}
       className={cn(
-        styles.icon,
+        styles.iconSvg,
         sizeClass,
         toneClass,
         interactive && !disabled && styles.iconInteractive,
         disabled && styles.iconDisabled,
         className
       )}
-      style={mergedStyle}
+      style={style}
       onClick={handleClick}
       {...props}
-    />
+    >
+      <svg
+        width={sizeInPixels}
+        height={sizeInPixels}
+        viewBox={icon.viewBox}
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        {icon.paths.map((path, index) => (
+          <path key={index} d={path} fill="currentColor" />
+        ))}
+      </svg>
+    </span>
   );
 });
 

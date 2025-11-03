@@ -1,5 +1,5 @@
 declare const styles: {
-  readonly icon: string;
+  readonly iconSvg: string;
   readonly iconXs: string;
   readonly iconSm: string;
   readonly iconMd: string;

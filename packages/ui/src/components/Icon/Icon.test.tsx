@@ -4,18 +4,14 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { Icon } from './Icon';
 
-// Mock the icon utils
-const mockedIconMetadata = {
-  category: 'interface',
-  name: 'plus-circle-add',
-  fileName: 'plus-circle-add',
-  path: 'icons/interface/plus-circle-add.svg',
-  url: '/icons/interface/plus-circle-add.svg',
-};
-
-vi.mock('../../tokens/icon-utils', () => ({
-  getIconMetadata: vi.fn(() => mockedIconMetadata),
-  getIconUrl: vi.fn((name: string) => `/icons/interface/${name}.svg`),
+// Mock the icon data with inline SVG paths
+vi.mock('../../tokens/icon-data', () => ({
+  iconData: {
+    'plus-circle-add': {
+      viewBox: '0 0 24 24',
+      paths: ['M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z'],
+    },
+  },
 }));
 
 describe('Icon', () => {
@@ -24,7 +20,7 @@ describe('Icon', () => {
 
     const icon = screen.getByRole('img');
     expect(icon).toBeInTheDocument();
-    expect(icon).toHaveClass('icon');
+    expect(icon).toHaveClass('iconSvg');
     expect(icon).toHaveClass('iconMd'); // default size
     expect(icon).toHaveAttribute('aria-label', 'Add');
   });
@@ -45,9 +41,9 @@ describe('Icon', () => {
 
   it('applies custom className', () => {
     render(<Icon name="plus-circle-add" className="custom-class" aria-label="Add" />);
-    
+
     const icon = screen.getByRole('img');
-    expect(icon).toHaveClass('icon');
+    expect(icon).toHaveClass('iconSvg');
     expect(icon).toHaveClass('custom-class');
   });
 
@@ -78,11 +74,19 @@ describe('Icon', () => {
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
-  it('applies mask image style for svg source', () => {
+  it('renders inline SVG with correct structure', () => {
     render(<Icon name="plus-circle-add" aria-label="Add" />);
 
     const icon = screen.getByRole('img');
-    expect(icon).toHaveStyle('mask-image: url(/icons/interface/plus-circle-add.svg)');
+    const svg = icon.querySelector('svg');
+    expect(svg).toBeInTheDocument();
+    expect(svg).toHaveAttribute('viewBox', '0 0 24 24');
+    expect(svg).toHaveAttribute('fill', 'none');
+
+    // Check that path elements are rendered
+    const paths = svg?.querySelectorAll('path');
+    expect(paths?.length).toBeGreaterThan(0);
+    expect(paths?.[0]).toHaveAttribute('fill', 'currentColor');
   });
 
   it('applies default size when not specified', () => {
