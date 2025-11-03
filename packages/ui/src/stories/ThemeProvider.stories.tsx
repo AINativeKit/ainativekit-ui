@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React, { useEffect } from 'react';
-import { ThemeProvider, useTheme } from '../providers/ThemeProvider';
+import { ThemeProvider } from '../providers/ThemeProvider';
+import { useTheme } from '../hooks/openai/useTheme';
 import { Button } from '../components/Button/Button';
 import { Card, CardBody, CardTitle, CardDescription } from '../components/Card';
 import { Alert } from '../components/Alert';
@@ -108,7 +109,6 @@ const ThemeDemo: React.FC = () => {
           }}>
             <Button
               variant="primary"
-              leftIcon="sun-filled"
               onClick={() => setTheme?.('light')}
               disabled={theme === 'light'}
             >
@@ -116,7 +116,6 @@ const ThemeDemo: React.FC = () => {
             </Button>
             <Button
               variant="primary"
-              leftIcon="moon-filled"
               onClick={() => setTheme?.('dark')}
               disabled={theme === 'dark'}
             >
@@ -124,6 +123,7 @@ const ThemeDemo: React.FC = () => {
             </Button>
             <Button
               variant="secondary"
+              leftIcon="color-theme"
               onClick={() => setTheme?.(theme === 'light' ? 'dark' : 'light')}
             >
               Toggle
