@@ -7,10 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- **ThemeProvider**: New provider component for programmatic theme control
+  - Enables theme switching in standalone apps and development environments
+  - Respects ChatGPT theme authority when running inside ChatGPT (read-only mode)
+  - Supports localStorage persistence and system preference detection
+  - See [Theme Management](packages/ui/README.md#-openai-hooks--theme-management) for usage
+
 ### Changed
+- **useTheme()**: Enhanced to return object with `{ theme, setTheme, isControlledByChatGPT }`
+  - **Breaking Change**: Previously returned `Theme | null`, now returns `UseThemeResult` object
+  - Works seamlessly with or without ThemeProvider
+  - Inside ChatGPT: Read-only theme from `window.openai.theme`
+  - Inside ThemeProvider: Full theme control with localStorage persistence
 - Refreshed documentation across the project to align with the 0.1.0 release and Storybook content.
 - Added an icon system reference guide detailing categories, APIs, and maintenance workflows.
 - Adopted an explicit Code of Conduct linked from CONTRIBUTING guidelines.
+
+### Documentation
+- Added [Performance Best Practices](packages/ui/docs/guides/performance.md) guide
+  - Clarifies typical ChatGPT Apps SDK usage patterns (10-20 items)
+  - Explains why virtualization is not needed for conversational UI
+  - Provides optimization tips for image-heavy content
+  - Documents when to consider pagination vs virtualization
 
 
 ## [0.1.0] - 2025-10-28

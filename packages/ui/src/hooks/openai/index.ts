@@ -5,3 +5,4 @@ export { useWidgetState } from './useWidgetState';
 export { useMaxHeight } from './useMaxHeight';
 export { useDisplayMode } from './useDisplayMode';
 export { useTheme } from './useTheme';
+export type { UseThemeResult } from './useTheme';

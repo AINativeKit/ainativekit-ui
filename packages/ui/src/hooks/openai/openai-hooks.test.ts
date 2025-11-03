@@ -207,26 +207,31 @@ describe('OpenAI Hooks', () => {
 
     it('returns the current theme from globals', () => {
       const { result } = renderHook(() => useTheme());
-      expect(result.current).toBe('light');
+      expect(result.current.theme).toBe('light');
+      expect(result.current.setTheme).toBeUndefined();
+      expect(result.current.isControlledByChatGPT).toBe(true);
     });
 
     it('updates when theme changes', () => {
       const { result } = renderHook(() => useTheme());
-      expect(result.current).toBe('light');
+      expect(result.current.theme).toBe('light');
 
       act(() => {
         window.openai.theme = 'dark';
         dispatchGlobalsEvent({ theme: 'dark' });
       });
 
-      expect(result.current).toBe('dark');
+      expect(result.current.theme).toBe('dark');
+      expect(result.current.isControlledByChatGPT).toBe(true);
     });
 
     it('returns null when window.openai is not available', () => {
       delete (window as { openai?: unknown }).openai;
 
       const { result } = renderHook(() => useTheme());
-      expect(result.current).toBeNull();
+      expect(result.current.theme).toBeNull();
+      expect(result.current.setTheme).toBeUndefined();
+      expect(result.current.isControlledByChatGPT).toBe(false);
     });
   });
 });

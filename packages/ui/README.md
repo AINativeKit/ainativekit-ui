@@ -182,7 +182,7 @@ import { SettingsCog, Terminal, Star } from '@ainativekit/ui/icons';
 <Icon name="settings-cog" size="lg" />
 ```
 
-## 🪝 OpenAI Hooks
+## 🪝 OpenAI Hooks & Theme Management
 
 Utilities to integrate with the **ChatGPT Apps SDK** runtime.
 
@@ -196,8 +196,10 @@ import {
 } from '@ainativekit/ui';
 
 function MyChatGPTWidget() {
-  // Access specific OpenAI global values (reactive)
-  const theme = useTheme(); // 'light' | 'dark' | null
+  // Get theme (read-only in ChatGPT, controllable with ThemeProvider)
+  const { theme, isControlledByChatGPT } = useTheme();
+
+  // Access other OpenAI global values (reactive)
   const displayMode = useDisplayMode(); // 'inline' | 'pip' | 'fullscreen' | null
   const maxHeight = useMaxHeight(); // number | null
 
@@ -219,12 +221,57 @@ function MyChatGPTWidget() {
 ```
 
 **Available Hooks:**
-- `useTheme()` - Get current theme and listen for changes
+- `useTheme()` - Get current theme and optionally control it (see ThemeProvider below)
 - `useDisplayMode()` - Get current display mode (inline/pip/fullscreen)
 - `useMaxHeight()` - Get maximum height constraint for layout
 - `useWidgetState(defaultState)` - Persistent state across ChatGPT sessions
 - `useOpenAiGlobal(key)` - Access any `window.openai` property reactively
 - `useWidgetProps(defaultProps)` - Get tool output data
+
+### Theme Management
+
+For development and standalone apps, use `ThemeProvider` to enable programmatic theme control:
+
+```tsx
+import { ThemeProvider, useTheme } from '@ainativekit/ui';
+
+function App() {
+  return (
+    <ThemeProvider defaultTheme="light">
+      <MyApp />
+    </ThemeProvider>
+  );
+}
+
+function MyApp() {
+  const { theme, setTheme, isControlledByChatGPT } = useTheme();
+
+  return (
+    <div>
+      <p>Current theme: {theme}</p>
+      <button
+        onClick={() => setTheme?.(theme === 'light' ? 'dark' : 'light')}
+        disabled={isControlledByChatGPT}
+      >
+        Toggle theme
+      </button>
+      {isControlledByChatGPT && (
+        <p>Theme is controlled by ChatGPT</p>
+      )}
+    </div>
+  );
+}
+```
+
+**Theme Behavior:**
+- **Inside ChatGPT**: Theme is read-only (`window.openai.theme`), `setTheme` has no effect
+- **Inside ThemeProvider**: Theme is controllable, persists to localStorage
+- **Standalone**: Theme defaults to system preference or specified default
+
+**ThemeProvider Props:**
+- `defaultTheme` - Initial theme ('light' or 'dark'), default: 'light'
+- `storageKey` - LocalStorage key for persistence, default: 'ainativekit-theme'
+- `enableSystemTheme` - Detect system preference, default: true
 
 ## 📘 TypeScript Support
 

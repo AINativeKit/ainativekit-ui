@@ -19,7 +19,7 @@ import '@ainativekit/ui/styles';
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `elevationLevel` | `import("/Users/jakelin/dev/ai/ai-native-kit/ainativekit-ui/packages/ui/src/tokens/elevation").ElevationLevel \| undefined` | `'1'` | Elevation level for the card. |
+| `elevationLevel` | `import("/Users/jakelin/dev/ai/ai-native-kit/ainativekit-ui/packages/ui/src/tokens/elevation").ElevationLevel \| undefined` | `1` | Elevation level for the card. |
 | `border` | `import("/Users/jakelin/dev/ai/ai-native-kit/ainativekit-ui/packages/ui/src/components/Card/Card").CardBorder \| undefined` | `'heavy'` | Border weight token. |
 | `hoverElevationLevel` | `import("/Users/jakelin/dev/ai/ai-native-kit/ainativekit-ui/packages/ui/src/tokens/elevation").ElevationLevel \| undefined` | - | Elevation applied on hover when `interactive` is true.
 Defaults to the next elevation level. |
