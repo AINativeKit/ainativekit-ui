@@ -22,7 +22,6 @@ const path = require('path');
 const { spawnSync } = require('child_process');
 
 const ICONS_SRC_DIR = path.join(__dirname, '../src/tokens/icons');
-const ICONS_PUBLIC_DIR = path.join(__dirname, '../public/icons');
 const TOKENS_FILE = path.join(__dirname, '../src/tokens/icons.ts');
 
 /**
@@ -247,33 +246,9 @@ export type IconCategory = (typeof iconCategories)[number];
 }
 
 /**
- * Sync icons from src to public directory
+ * Note: syncToPublic function removed - icons are now bundled as inline SVG data
+ * The public/icons directory is no longer used or needed
  */
-function syncToPublic(iconsByCategory) {
-  console.log('\n📋 Syncing icons to public directory...');
-
-  // Clear public icons directory
-  if (fs.existsSync(ICONS_PUBLIC_DIR)) {
-    fs.rmSync(ICONS_PUBLIC_DIR, { recursive: true, force: true });
-  }
-  fs.mkdirSync(ICONS_PUBLIC_DIR, { recursive: true });
-
-  let copiedCount = 0;
-
-  Object.keys(iconsByCategory).forEach(category => {
-    const srcCategoryDir = path.join(ICONS_SRC_DIR, category);
-    const destCategoryDir = path.join(ICONS_PUBLIC_DIR, category);
-
-    // Copy entire category directory
-    fs.cpSync(srcCategoryDir, destCategoryDir, { recursive: true });
-
-    const icons = iconsByCategory[category];
-    copiedCount += icons.length;
-    console.log(`  ✓ ${category}: ${icons.length} icons`);
-  });
-
-  console.log(`✓ Synced ${copiedCount} icons to public directory`);
-}
 
 /**
  * Main execution
@@ -292,12 +267,9 @@ function main() {
     normalizeDirectory(ICONS_SRC_DIR);
 
     // Step 2: Generate token file
-    const iconsByCategory = generateIconTokens();
+    generateIconTokens();
 
-    // Step 3: Sync to public
-    syncToPublic(iconsByCategory);
-
-    // Step 4: Regenerate named icon components
+    // Step 3: Regenerate named icon components
     console.log('\n🧱 Regenerating named icon components...');
     const generatorPath = path.join(__dirname, 'generate-icon-components.cjs');
     const result = spawnSync('node', [generatorPath], { stdio: 'inherit' });
@@ -326,6 +298,5 @@ if (require.main === module) {
 module.exports = {
   normalizeFilename,
   normalizeDirectory,
-  generateIconTokens,
-  syncToPublic
+  generateIconTokens
 };
