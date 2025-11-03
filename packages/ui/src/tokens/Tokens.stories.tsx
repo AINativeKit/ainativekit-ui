@@ -933,3 +933,338 @@ const className = elevation[1].className; // 'ai-elevation-1'`}</code>
 export const Elevation: StoryObj = {
   render: () => <ElevationComponent />,
 };
+
+// Token Helper Functions Component
+const TokenHelpersComponent: React.FC = () => {
+  const [copiedHelper, setCopiedHelper] = React.useState<string | null>(null);
+
+  const handleCopyHelper = (code: string, name: string) => {
+    navigator.clipboard.writeText(code);
+    setCopiedHelper(name);
+    setTimeout(() => setCopiedHelper(null), 2000);
+  };
+
+  const helperExamples = [
+    {
+      name: 'cssVar.spacing()',
+      description: 'Generate CSS variable for spacing',
+      code: `import { cssVar } from '@ainativekit/ui/tokens';
+
+// Returns CSS variable string
+cssVar.spacing(4)   // 'var(--ai-spacing-4)'
+cssVar.spacing(12)  // 'var(--ai-spacing-12)'
+cssVar.spacing(24)  // 'var(--ai-spacing-24)'`,
+      usage: `<div style={{
+  padding: cssVar.spacing(12),
+  gap: cssVar.spacing(6),
+  marginBottom: cssVar.spacing(8)
+}} />`,
+    },
+    {
+      name: 'cssVar.color()',
+      description: 'Generate CSS variable for colors',
+      code: `import { cssVar } from '@ainativekit/ui/tokens';
+
+// Returns CSS variable string
+cssVar.color('text-primary')     // 'var(--ai-color-text-primary)'
+cssVar.color('bg-secondary')     // 'var(--ai-color-bg-secondary)'
+cssVar.color('accent-blue')      // 'var(--ai-color-accent-blue)'`,
+      usage: `<div style={{
+  color: cssVar.color('text-primary'),
+  backgroundColor: cssVar.color('bg-secondary'),
+  borderColor: cssVar.color('border-heavy')
+}} />`,
+    },
+    {
+      name: 'cssVar.radius()',
+      description: 'Generate CSS variable for border radius',
+      code: `import { cssVar } from '@ainativekit/ui/tokens';
+
+// Returns CSS variable string
+cssVar.radius('sm')    // 'var(--ai-radius-sm)'
+cssVar.radius('base')  // 'var(--ai-radius-base)'
+cssVar.radius('full')  // 'var(--ai-radius-full)'`,
+      usage: `<div style={{
+  borderRadius: cssVar.radius('base'),
+  overflow: 'hidden'
+}} />`,
+    },
+    {
+      name: 'applyTypography()',
+      description: 'Apply complete typography styles',
+      code: `import { applyTypography } from '@ainativekit/ui/tokens';
+
+// Returns complete CSS properties object
+applyTypography('heading-lg')
+// Returns: {
+//   fontSize: '24px',
+//   lineHeight: '32px',
+//   fontWeight: 600,
+//   letterSpacing: '-0.01em'
+// }`,
+      usage: `<h1 style={applyTypography('heading-lg')}>
+  Page Title
+</h1>
+
+// Or spread into existing styles
+<div style={{
+  ...applyTypography('body'),
+  color: cssVar.color('text-secondary')
+}} />`,
+    },
+    {
+      name: 'applyElevation()',
+      description: 'Apply elevation shadow and overlay',
+      code: `import { applyElevation } from '@ainativekit/ui/tokens';
+
+// Returns shadow and overlay CSS properties
+applyElevation(2)
+// Returns: {
+//   boxShadow: 'var(--ai-elevation-2-shadow)',
+//   '--card-overlay-light': 'var(--ai-elevation-2-overlay-light)',
+//   '--card-overlay-dark': 'var(--ai-elevation-2-overlay-dark)'
+// }`,
+      usage: `<Card style={applyElevation(2)}>
+  Elevated content
+</Card>
+
+// Or with dynamic elevation
+const [hovered, setHovered] = useState(false);
+<div
+  style={applyElevation(hovered ? 3 : 1)}
+  onMouseEnter={() => setHovered(true)}
+  onMouseLeave={() => setHovered(false)}
+/>`,
+    },
+    {
+      name: 'cssVar.opacity()',
+      description: 'Generate CSS variable for opacity presets',
+      code: `import { cssVar } from '@ainativekit/ui/tokens';
+
+// Returns CSS variable string
+cssVar.opacity('subtle')   // 'var(--ai-opacity-subtle)'
+cssVar.opacity('muted')    // 'var(--ai-opacity-muted)'
+cssVar.opacity('disabled') // 'var(--ai-opacity-disabled)'`,
+      usage: `<div style={{
+  opacity: cssVar.opacity('subtle')
+}} />
+
+// For disabled states
+<button
+  disabled
+  style={{ opacity: cssVar.opacity('disabled') }}
+/>`,
+    },
+    {
+      name: 'varWithFallback()',
+      description: 'CSS variable with fallback value',
+      code: `import { varWithFallback } from '@ainativekit/ui/tokens';
+
+// Provides fallback if CSS variable not defined
+varWithFallback('--custom-color', '#000000')
+// Returns: 'var(--custom-color, #000000)'`,
+      usage: `<div style={{
+  color: varWithFallback('--brand-color', '#007AFF')
+}} />`,
+    },
+    {
+      name: 'Direct Token Values',
+      description: 'Access raw token values directly',
+      code: `import { spacing, colors, typography, radius } from '@ainativekit/ui/tokens';
+
+// Direct access to values
+spacing[16]              // '32px'
+colors.light.text.primary  // '#1a1a1a'
+typography.heading1.fontSize // '36px'
+radius.base              // '8px'`,
+      usage: `// Use when you need the actual value, not CSS variable
+const CARD_PADDING = spacing[12]; // '24px'
+
+// Useful for calculations
+const doubleSpacing = parseInt(spacing[8]) * 2 + 'px';
+
+// Or for non-CSS contexts
+console.log(\`Font size: \${typography.body.fontSize}\`);`,
+    },
+  ];
+
+  return (
+    <div style={{ padding: '24px' }}>
+      <h1 style={{ marginBottom: '8px' }}>Token Helper Functions</h1>
+      <p style={{ marginBottom: '32px', color: 'var(--ai-color-text-secondary)' }}>
+        Utility functions for using design tokens in TypeScript/React components.
+        These helpers provide type-safe access to tokens with IDE autocomplete.
+      </p>
+
+      {/* Important Note */}
+      <div style={{
+        padding: '16px',
+        marginBottom: '32px',
+        backgroundColor: 'var(--ai-color-accent-blue)',
+        color: 'white',
+        borderRadius: 'var(--ai-radius-base)',
+      }}>
+        <strong>Important:</strong> These helpers are for TypeScript/JSX only.
+        In CSS modules, use CSS variables directly: <code style={{ opacity: 0.9 }}>var(--ai-spacing-4)</code>
+      </div>
+
+      {/* Helper Examples */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+        {helperExamples.map((helper) => (
+          <div
+            key={helper.name}
+            style={{
+              padding: '24px',
+              backgroundColor: 'var(--ai-color-bg-secondary)',
+              borderRadius: 'var(--ai-radius-base)',
+            }}
+          >
+            <div style={{ marginBottom: '16px' }}>
+              <h3 style={{ marginBottom: '4px', fontSize: '18px', fontWeight: 600 }}>
+                {helper.name}
+              </h3>
+              <p style={{ color: 'var(--ai-color-text-secondary)', fontSize: '14px' }}>
+                {helper.description}
+              </p>
+            </div>
+
+            <div style={{ marginBottom: '16px' }}>
+              <div style={{ marginBottom: '8px' }}>
+                <strong style={{ fontSize: '12px', textTransform: 'uppercase', opacity: 0.7 }}>
+                  Import & Basic Usage:
+                </strong>
+              </div>
+              <div
+                style={{
+                  position: 'relative',
+                  padding: '12px',
+                  backgroundColor: 'var(--ai-color-bg-tertiary)',
+                  borderRadius: 'var(--ai-radius-sm)',
+                  fontFamily: 'monospace',
+                  fontSize: '13px',
+                }}
+              >
+                <pre style={{ margin: 0, overflow: 'auto' }}>
+                  <code>{helper.code}</code>
+                </pre>
+                <button
+                  onClick={() => handleCopyHelper(helper.code, helper.name + '-import')}
+                  style={{
+                    position: 'absolute',
+                    top: '8px',
+                    right: '8px',
+                    padding: '4px 8px',
+                    fontSize: '11px',
+                    backgroundColor: 'var(--ai-color-bg-primary)',
+                    border: '1px solid var(--ai-color-border-light)',
+                    borderRadius: 'var(--ai-radius-sm)',
+                    cursor: 'pointer',
+                  }}
+                >
+                  {copiedHelper === helper.name + '-import' ? '✓ Copied' : 'Copy'}
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <div style={{ marginBottom: '8px' }}>
+                <strong style={{ fontSize: '12px', textTransform: 'uppercase', opacity: 0.7 }}>
+                  React/JSX Example:
+                </strong>
+              </div>
+              <div
+                style={{
+                  position: 'relative',
+                  padding: '12px',
+                  backgroundColor: 'var(--ai-color-bg-tertiary)',
+                  borderRadius: 'var(--ai-radius-sm)',
+                  fontFamily: 'monospace',
+                  fontSize: '13px',
+                }}
+              >
+                <pre style={{ margin: 0, overflow: 'auto' }}>
+                  <code>{helper.usage}</code>
+                </pre>
+                <button
+                  onClick={() => handleCopyHelper(helper.usage, helper.name + '-usage')}
+                  style={{
+                    position: 'absolute',
+                    top: '8px',
+                    right: '8px',
+                    padding: '4px 8px',
+                    fontSize: '11px',
+                    backgroundColor: 'var(--ai-color-bg-primary)',
+                    border: '1px solid var(--ai-color-border-light)',
+                    borderRadius: 'var(--ai-radius-sm)',
+                    cursor: 'pointer',
+                  }}
+                >
+                  {copiedHelper === helper.name + '-usage' ? '✓ Copied' : 'Copy'}
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* When to Use Which Approach */}
+      <section style={{ marginTop: '48px' }}>
+        <h2 style={{ marginBottom: '16px' }}>When to Use Each Approach</h2>
+
+        <div style={{ display: 'grid', gap: '16px' }}>
+          <div style={{
+            padding: '16px',
+            backgroundColor: 'var(--ai-color-bg-secondary)',
+            borderRadius: 'var(--ai-radius-base)',
+          }}>
+            <h3 style={{ marginBottom: '8px', fontSize: '16px', color: 'var(--ai-color-accent-green)' }}>
+              ✅ Use CSS Variables in CSS Modules
+            </h3>
+            <code style={{ fontSize: '13px', backgroundColor: 'var(--ai-color-bg-tertiary)', padding: '8px', borderRadius: '4px', display: 'block' }}>
+              {`.button { gap: var(--ai-spacing-4); }`}
+            </code>
+            <p style={{ marginTop: '8px', fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
+              Best for static styles, better performance, theme-aware
+            </p>
+          </div>
+
+          <div style={{
+            padding: '16px',
+            backgroundColor: 'var(--ai-color-bg-secondary)',
+            borderRadius: 'var(--ai-radius-base)',
+          }}>
+            <h3 style={{ marginBottom: '8px', fontSize: '16px', color: 'var(--ai-color-accent-blue)' }}>
+              ℹ️ Use Helpers in TypeScript/JSX
+            </h3>
+            <code style={{ fontSize: '13px', backgroundColor: 'var(--ai-color-bg-tertiary)', padding: '8px', borderRadius: '4px', display: 'block' }}>
+              {`style={{ gap: cssVar.spacing(4) }}`}
+            </code>
+            <p style={{ marginTop: '8px', fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
+              Best for inline styles, dynamic values, type safety with autocomplete
+            </p>
+          </div>
+
+          <div style={{
+            padding: '16px',
+            backgroundColor: 'var(--ai-color-bg-secondary)',
+            borderRadius: 'var(--ai-radius-base)',
+          }}>
+            <h3 style={{ marginBottom: '8px', fontSize: '16px', color: 'var(--ai-color-text-tertiary)' }}>
+              🔧 Use Direct Values for Calculations
+            </h3>
+            <code style={{ fontSize: '13px', backgroundColor: 'var(--ai-color-bg-tertiary)', padding: '8px', borderRadius: '4px', display: 'block' }}>
+              {`const padding = spacing[16]; // '32px'`}
+            </code>
+            <p style={{ marginTop: '8px', fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
+              Best for JavaScript calculations, non-CSS contexts, build-time values
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export const TokenHelpers: StoryObj = {
+  render: () => <TokenHelpersComponent />,
+};

@@ -5,6 +5,7 @@ import { Skeleton } from '../Skeleton';
 import { Features } from '../Feature/Features';
 import { PropsTable } from '../../tokens/PropsTable';
 import { codeBlockStyles } from '../storybook/codeBlockStyles';
+import { cssVar } from '../../tokens/token-helpers';
 
 const meta: Meta<typeof Card> = {
   title: 'Composed Components/Cards/Cards',
@@ -19,19 +20,19 @@ export default meta;
 // Main unified Card showcase component
 const CardsComponent: React.FC = () => {
   return (
-    <div style={{ padding: '24px' }}>
-      <h1 style={{ marginBottom: '32px', alignItems: 'start' }}>Card System</h1>
+    <div style={{ padding: cssVar.spacing(12) }}>
+      <h1 style={{ marginBottom: cssVar.spacing(16), alignItems: 'start' }}>Card System</h1>
 
       {/* Introduction */}
-      <section style={{ marginBottom: '64px' }}>
-        <p style={{ marginBottom: '24px', color: 'var(--ai-color-text-secondary)', fontSize: '16px', lineHeight: '1.6' }}>
+      <section style={{ marginBottom: cssVar.spacing(32) }}>
+        <p style={{ marginBottom: cssVar.spacing(12), color: 'var(--ai-color-text-secondary)', fontSize: 'var(--ai-font-size-body-large)', lineHeight: '1.6' }}>
           Flexible container component supporting both simple content and complex compound layouts.
           Use Card as a basic container or compose sophisticated layouts with compound components.
         </p>
       </section>
 
       {/* Basic Cards */}
-      <section style={{ marginBottom: '64px' }}>
+      <section style={{ marginBottom: cssVar.spacing(32) }}>
         <header style={{ marginBottom: '24px', alignItems: 'start' }}>
           <h2 style={{ marginBottom: '8px' }}>Basic Cards</h2>
           <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
@@ -95,7 +96,7 @@ const CardsComponent: React.FC = () => {
       </section>
 
       {/* Compound Components - Simple */}
-      <section style={{ marginBottom: '64px' }}>
+      <section style={{ marginBottom: cssVar.spacing(32) }}>
         <header style={{ marginBottom: '24px', alignItems: 'start' }}>
           <h2 style={{ marginBottom: '8px' }}>Compound Components - Simple Layouts</h2>
           <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
@@ -130,7 +131,7 @@ const CardsComponent: React.FC = () => {
       </section>
 
       {/* Card.Image with Aspect Ratio */}
-      <section style={{ marginBottom: '64px' }}>
+      <section style={{ marginBottom: cssVar.spacing(32) }}>
         <header style={{ marginBottom: '24px', alignItems: 'start' }}>
           <h2 style={{ marginBottom: '8px' }}>Card.Image with Aspect Ratio</h2>
           <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
@@ -211,7 +212,7 @@ const CardsComponent: React.FC = () => {
       </section>
 
       {/* Loading States */}
-      <section style={{ marginBottom: '64px' }}>
+      <section style={{ marginBottom: cssVar.spacing(32) }}>
         <header style={{ marginBottom: '24px', alignItems: 'start' }}>
           <h2 style={{ marginBottom: '8px' }}>Loading States</h2>
           <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
@@ -274,7 +275,7 @@ const CardsComponent: React.FC = () => {
       </section>
 
       {/* Error States */}
-      <section style={{ marginBottom: '64px' }}>
+      <section style={{ marginBottom: cssVar.spacing(32) }}>
         <header style={{ marginBottom: '24px', alignItems: 'start' }}>
           <h2 style={{ marginBottom: '8px' }}>Error States</h2>
           <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
@@ -350,7 +351,7 @@ const CardsComponent: React.FC = () => {
       </section>
 
       {/* Real-World Examples */}
-      <section style={{ marginBottom: '64px' }}>
+      <section style={{ marginBottom: cssVar.spacing(32) }}>
         <header style={{ marginBottom: '24px', alignItems: 'start' }}>
           <h2 style={{ marginBottom: '8px' }}>Real-World Examples</h2>
           <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
@@ -546,7 +547,7 @@ const CardsComponent: React.FC = () => {
       </section>
 
       {/* Advanced Examples */}
-      <section style={{ marginBottom: '64px' }}>
+      <section style={{ marginBottom: cssVar.spacing(32) }}>
         <header style={{ marginBottom: '24px', alignItems: 'start' }}>
           <h2 style={{ marginBottom: '8px' }}>Advanced Patterns</h2>
           <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
@@ -635,7 +636,7 @@ const CardsComponent: React.FC = () => {
       </section>
 
       {/* Button Variations */}
-      <section style={{ marginBottom: '64px' }}>
+      <section style={{ marginBottom: cssVar.spacing(32) }}>
         <header style={{ marginBottom: '24px', alignItems: 'start' }}>
           <h2 style={{ marginBottom: '8px' }}>Action Button Variations</h2>
           <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
@@ -679,7 +680,7 @@ const CardsComponent: React.FC = () => {
       </section>
 
       {/* Usage Section */}
-      <section style={{ marginBottom: '64px' }}>
+      <section style={{ marginBottom: cssVar.spacing(32) }}>
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Usage</h2>
         
         <h3 style={{ fontSize: '18px', marginBottom: '12px' }}>Two Patterns</h3>
@@ -832,7 +833,7 @@ const CardsComponent: React.FC = () => {
       </section>
 
       {/* Accessibility Section */}
-      <section style={{ marginBottom: '64px' }}>
+      <section style={{ marginBottom: cssVar.spacing(32) }}>
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Accessibility</h2>
 
         <h3 style={{ fontSize: '18px', marginBottom: '12px' }}>Best Practices</h3>
@@ -862,7 +863,7 @@ const CardsComponent: React.FC = () => {
       </section>
 
       {/* Props Section */}
-      <section style={{ marginBottom: '64px' }}>
+      <section style={{ marginBottom: cssVar.spacing(32) }}>
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Props</h2>
         
         <h3 style={{ fontSize: '18px', marginBottom: '12px' }}>Card (Base Component)</h3>

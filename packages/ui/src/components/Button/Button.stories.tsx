@@ -5,6 +5,7 @@ import type { ButtonVariant } from './Button';
 import { Card } from '../Card';
 import { PropsTable } from '../../tokens/PropsTable';
 import type { IconName } from '../../tokens/icons';
+import { cssVar } from '../../tokens/token-helpers';
 
 const meta: Meta<typeof Button> = {
   title: 'Primitive Components/Buttons',
@@ -46,11 +47,11 @@ const ButtonCard: React.FC<{
       onClick={handleCopy}
       style={{
         cursor: 'pointer',
-        padding: '20px',
+        padding: cssVar.spacing(10),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: '12px',
+        gap: cssVar.spacing(6),
         minWidth: '180px',
       }}
       title="Click to copy code"
@@ -61,19 +62,19 @@ const ButtonCard: React.FC<{
       <div style={{ textAlign: 'center' }}>
         <div
           style={{
-            fontSize: '13px',
+            fontSize: 'var(--ai-font-size-body-small)',
             fontWeight: 600,
-            marginBottom: '4px',
+            marginBottom: cssVar.spacing(2),
           }}
         >
           {label}
           {copied && (
-            <span style={{ marginLeft: '4px', color: 'var(--ai-color-accent-green)' }}>✓</span>
+            <span style={{ marginLeft: cssVar.spacing(2), color: 'var(--ai-color-accent-green)' }}>✓</span>
           )}
         </div>
         <div
           style={{
-            fontSize: '11px',
+            fontSize: 'var(--ai-font-size-caption)',
             color: 'var(--ai-color-text-secondary)',
             lineHeight: '1.4',
           }}
@@ -88,21 +89,21 @@ const ButtonCard: React.FC<{
 // Main unified Button showcase component
 const ButtonsComponent: React.FC = () => {
   return (
-    <div style={{ padding: '24px' }}>
-      <h1 style={{ marginBottom: '32px' }}>Button System</h1>
+    <div style={{ padding: cssVar.spacing(12) }}>
+      <h1 style={{ marginBottom: cssVar.spacing(16) }}>Button System</h1>
 
       {/* Button Gallery */}
-      <section style={{ marginBottom: '64px' }}>
-        <p style={{ marginBottom: '24px', color: 'var(--ai-color-text-secondary)' }}>
+      <section style={{ marginBottom: cssVar.spacing(32) }}>
+        <p style={{ marginBottom: cssVar.spacing(12), color: 'var(--ai-color-text-secondary)' }}>
           Versatile, accessible buttons for actions and interactions. Click any button card to copy
           its code.
         </p>
 
         {/* Variants Section */}
-        <div style={{ marginBottom: '48px' }}>
-          <header style={{ marginBottom: '24px' }}>
-            <h2 style={{ marginBottom: '8px' }}>Button Variants</h2>
-            <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
+        <div style={{ marginBottom: cssVar.spacing(24) }}>
+          <header style={{ marginBottom: cssVar.spacing(12) }}>
+            <h2 style={{ marginBottom: cssVar.spacing(4) }}>Button Variants</h2>
+            <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: 'var(--ai-font-size-body-regular)' }}>
               4 variants available for different use cases
             </p>
           </header>
@@ -111,7 +112,7 @@ const ButtonsComponent: React.FC = () => {
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
-              gap: '16px',
+              gap: cssVar.spacing(8),
             }}
           >
             <ButtonCard variant="primary" label="Primary" description="Main actions & CTAs">
@@ -134,10 +135,10 @@ const ButtonsComponent: React.FC = () => {
         </div>
 
         {/* Icon Combinations */}
-        <div style={{ marginBottom: '48px' }}>
-          <header style={{ marginBottom: '24px' }}>
-            <h3 style={{ marginBottom: '8px' }}>With Icons</h3>
-            <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
+        <div style={{ marginBottom: cssVar.spacing(24) }}>
+          <header style={{ marginBottom: cssVar.spacing(12) }}>
+            <h3 style={{ marginBottom: cssVar.spacing(4) }}>With Icons</h3>
+            <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: 'var(--ai-font-size-body-regular)' }}>
               Combine text with left or right icons for better clarity
             </p>
           </header>
@@ -146,7 +147,7 @@ const ButtonsComponent: React.FC = () => {
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
-              gap: '16px',
+              gap: cssVar.spacing(8),
             }}
           >
             <ButtonCard
@@ -186,40 +187,40 @@ const ButtonsComponent: React.FC = () => {
       </section>
 
       {/* Interactive States */}
-      <section style={{ marginBottom: '64px' }}>
-        <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Interactive States</h2>
-        <p style={{ marginBottom: '24px', color: 'var(--ai-color-text-secondary)' }}>
+      <section style={{ marginBottom: cssVar.spacing(32) }}>
+        <h2 style={{ fontSize: 'var(--ai-font-size-heading-sm)', marginBottom: cssVar.spacing(8) }}>Interactive States</h2>
+        <p style={{ marginBottom: cssVar.spacing(12), color: 'var(--ai-color-text-secondary)' }}>
           All buttons support hover, active, and disabled states. Try interacting with them!
         </p>
 
-        <div style={{ display: 'grid', gap: '32px' }}>
+        <div style={{ display: 'grid', gap: cssVar.spacing(16) }}>
           {/* Primary States */}
           <div>
-            <h3 style={{ fontSize: '16px', marginBottom: '16px' }}>Primary Variant</h3>
-            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+            <h3 style={{ fontSize: 'var(--ai-font-size-body-large)', marginBottom: cssVar.spacing(8) }}>Primary Variant</h3>
+            <div style={{ display: 'flex', gap: cssVar.spacing(6), flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: cssVar.spacing(4) }}>
                 <Button variant="primary">Default</Button>
-                <code style={{ fontSize: '11px', color: 'var(--ai-color-text-secondary)' }}>
+                <code style={{ fontSize: 'var(--ai-font-size-caption)', color: 'var(--ai-color-text-secondary)' }}>
                   Default
                 </code>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: cssVar.spacing(4) }}>
                 <Button variant="primary">Hover Me</Button>
-                <code style={{ fontSize: '11px', color: 'var(--ai-color-text-secondary)' }}>
+                <code style={{ fontSize: 'var(--ai-font-size-caption)', color: 'var(--ai-color-text-secondary)' }}>
                   :hover
                 </code>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: cssVar.spacing(4) }}>
                 <Button variant="primary">Click Me</Button>
-                <code style={{ fontSize: '11px', color: 'var(--ai-color-text-secondary)' }}>
+                <code style={{ fontSize: 'var(--ai-font-size-caption)', color: 'var(--ai-color-text-secondary)' }}>
                   :active
                 </code>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: cssVar.spacing(4) }}>
                 <Button variant="primary" disabled>
                   Disabled
                 </Button>
-                <code style={{ fontSize: '11px', color: 'var(--ai-color-text-secondary)' }}>
+                <code style={{ fontSize: 'var(--ai-font-size-caption)', color: 'var(--ai-color-text-secondary)' }}>
                   disabled
                 </code>
               </div>
@@ -228,31 +229,31 @@ const ButtonsComponent: React.FC = () => {
 
           {/* Secondary States */}
           <div>
-            <h3 style={{ fontSize: '16px', marginBottom: '16px' }}>Secondary Variant</h3>
-            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+            <h3 style={{ fontSize: 'var(--ai-font-size-body-large)', marginBottom: cssVar.spacing(8) }}>Secondary Variant</h3>
+            <div style={{ display: 'flex', gap: cssVar.spacing(6), flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: cssVar.spacing(4) }}>
                 <Button variant="secondary">Default</Button>
-                <code style={{ fontSize: '11px', color: 'var(--ai-color-text-secondary)' }}>
+                <code style={{ fontSize: 'var(--ai-font-size-caption)', color: 'var(--ai-color-text-secondary)' }}>
                   Default
                 </code>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: cssVar.spacing(4) }}>
                 <Button variant="secondary">Hover Me</Button>
-                <code style={{ fontSize: '11px', color: 'var(--ai-color-text-secondary)' }}>
+                <code style={{ fontSize: 'var(--ai-font-size-caption)', color: 'var(--ai-color-text-secondary)' }}>
                   :hover
                 </code>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: cssVar.spacing(4) }}>
                 <Button variant="secondary">Click Me</Button>
-                <code style={{ fontSize: '11px', color: 'var(--ai-color-text-secondary)' }}>
+                <code style={{ fontSize: 'var(--ai-font-size-caption)', color: 'var(--ai-color-text-secondary)' }}>
                   :active
                 </code>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: cssVar.spacing(4) }}>
                 <Button variant="secondary" disabled>
                   Disabled
                 </Button>
-                <code style={{ fontSize: '11px', color: 'var(--ai-color-text-secondary)' }}>
+                <code style={{ fontSize: 'var(--ai-font-size-caption)', color: 'var(--ai-color-text-secondary)' }}>
                   disabled
                 </code>
               </div>
@@ -261,31 +262,31 @@ const ButtonsComponent: React.FC = () => {
 
           {/* Tertiary States */}
           <div>
-            <h3 style={{ fontSize: '16px', marginBottom: '16px' }}>Tertiary Variant</h3>
+            <h3 style={{ fontSize: 'var(--ai-font-size-body-large)', marginBottom: cssVar.spacing(8) }}>Tertiary Variant</h3>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: cssVar.spacing(4) }}>
                 <Button variant="tertiary">Default</Button>
-                <code style={{ fontSize: '11px', color: 'var(--ai-color-text-secondary)' }}>
+                <code style={{ fontSize: 'var(--ai-font-size-caption)', color: 'var(--ai-color-text-secondary)' }}>
                   Default
                 </code>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: cssVar.spacing(4) }}>
                 <Button variant="tertiary">Hover Me</Button>
-                <code style={{ fontSize: '11px', color: 'var(--ai-color-text-secondary)' }}>
+                <code style={{ fontSize: 'var(--ai-font-size-caption)', color: 'var(--ai-color-text-secondary)' }}>
                   :hover
                 </code>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: cssVar.spacing(4) }}>
                 <Button variant="tertiary">Click Me</Button>
-                <code style={{ fontSize: '11px', color: 'var(--ai-color-text-secondary)' }}>
+                <code style={{ fontSize: 'var(--ai-font-size-caption)', color: 'var(--ai-color-text-secondary)' }}>
                   :active
                 </code>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: cssVar.spacing(4) }}>
                 <Button variant="tertiary" disabled>
                   Disabled
                 </Button>
-                <code style={{ fontSize: '11px', color: 'var(--ai-color-text-secondary)' }}>
+                <code style={{ fontSize: 'var(--ai-font-size-caption)', color: 'var(--ai-color-text-secondary)' }}>
                   disabled
                 </code>
               </div>
@@ -294,31 +295,31 @@ const ButtonsComponent: React.FC = () => {
 
           {/* Ghost States */}
           <div>
-            <h3 style={{ fontSize: '16px', marginBottom: '16px' }}>Ghost Variant</h3>
+            <h3 style={{ fontSize: 'var(--ai-font-size-body-large)', marginBottom: cssVar.spacing(8) }}>Ghost Variant</h3>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: cssVar.spacing(4) }}>
                 <Button variant="ghost">Default</Button>
-                <code style={{ fontSize: '11px', color: 'var(--ai-color-text-secondary)' }}>
+                <code style={{ fontSize: 'var(--ai-font-size-caption)', color: 'var(--ai-color-text-secondary)' }}>
                   Default
                 </code>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: cssVar.spacing(4) }}>
                 <Button variant="ghost">Hover Me</Button>
-                <code style={{ fontSize: '11px', color: 'var(--ai-color-text-secondary)' }}>
+                <code style={{ fontSize: 'var(--ai-font-size-caption)', color: 'var(--ai-color-text-secondary)' }}>
                   :hover
                 </code>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: cssVar.spacing(4) }}>
                 <Button variant="ghost">Click Me</Button>
-                <code style={{ fontSize: '11px', color: 'var(--ai-color-text-secondary)' }}>
+                <code style={{ fontSize: 'var(--ai-font-size-caption)', color: 'var(--ai-color-text-secondary)' }}>
                   :active
                 </code>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: cssVar.spacing(4) }}>
                 <Button variant="ghost" disabled>
                   Disabled
                 </Button>
-                <code style={{ fontSize: '11px', color: 'var(--ai-color-text-secondary)' }}>
+                <code style={{ fontSize: 'var(--ai-font-size-caption)', color: 'var(--ai-color-text-secondary)' }}>
                   disabled
                 </code>
               </div>
@@ -329,7 +330,7 @@ const ButtonsComponent: React.FC = () => {
 
       {/* Icon-Only Buttons */}
       <section style={{ marginBottom: '64px' }}>
-        <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Icon-Only Buttons</h2>
+        <h2 style={{ fontSize: 'var(--ai-font-size-heading-sm)', marginBottom: cssVar.spacing(8) }}>Icon-Only Buttons</h2>
         <p style={{ marginBottom: '24px', color: 'var(--ai-color-text-secondary)' }}>
           Circular 44×44 buttons with icons only.{' '}
           <strong>Always provide an aria-label for accessibility.</strong>
@@ -338,7 +339,7 @@ const ButtonsComponent: React.FC = () => {
         <div style={{ display: 'grid', gap: '32px' }}>
           {/* Ghost Icon Buttons */}
           <div>
-            <h3 style={{ fontSize: '16px', marginBottom: '16px' }}>Ghost Icon Buttons (Minimal)</h3>
+            <h3 style={{ fontSize: 'var(--ai-font-size-body-large)', marginBottom: cssVar.spacing(8) }}>Ghost Icon Buttons (Minimal)</h3>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
               <Button variant="ghost" iconOnly="edit-pencil" aria-label="Edit" />
               <Button variant="ghost" iconOnly="settings-cog" aria-label="Settings" />
@@ -346,14 +347,14 @@ const ButtonsComponent: React.FC = () => {
               <Button variant="ghost" iconOnly="filter" aria-label="Filter" />
               <Button variant="ghost" iconOnly="edit-pencil" aria-label="Edit" disabled />
             </div>
-            <div style={{ marginTop: '12px', fontSize: '13px', color: 'var(--ai-color-text-secondary)' }}>
+            <div style={{ marginTop: cssVar.spacing(6), fontSize: 'var(--ai-font-size-body-small)', color: 'var(--ai-color-text-secondary)' }}>
               Perfect for headers, toolbars, and minimal interfaces
             </div>
           </div>
 
           {/* Tertiary Icon Buttons */}
           <div>
-            <h3 style={{ fontSize: '16px', marginBottom: '16px' }}>Tertiary Icon Buttons (With Background)</h3>
+            <h3 style={{ fontSize: 'var(--ai-font-size-body-large)', marginBottom: cssVar.spacing(8) }}>Tertiary Icon Buttons (With Background)</h3>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
               <Button variant="tertiary" iconOnly="plus-circle-add" aria-label="Add" />
               <Button variant="tertiary" iconOnly="settings-cog" aria-label="Settings" />
@@ -361,14 +362,14 @@ const ButtonsComponent: React.FC = () => {
               <Button variant="tertiary" iconOnly="filter" aria-label="Filter" />
               <Button variant="tertiary" iconOnly="plus-circle-add" aria-label="Add" disabled />
             </div>
-            <div style={{ marginTop: '12px', fontSize: '13px', color: 'var(--ai-color-text-secondary)' }}>
+            <div style={{ marginTop: cssVar.spacing(6), fontSize: 'var(--ai-font-size-body-small)', color: 'var(--ai-color-text-secondary)' }}>
               More visible than ghost, good for action buttons in lists
             </div>
           </div>
 
           {/* Primary & Secondary Icon Buttons */}
           <div>
-            <h3 style={{ fontSize: '16px', marginBottom: '16px' }}>Primary & Secondary Icon Buttons</h3>
+            <h3 style={{ fontSize: 'var(--ai-font-size-body-large)', marginBottom: cssVar.spacing(8) }}>Primary & Secondary Icon Buttons</h3>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
               <Button variant="primary" iconOnly="plus-circle-add" aria-label="Add" />
               <Button variant="secondary" iconOnly="settings-cog" aria-label="Settings" />
@@ -376,7 +377,7 @@ const ButtonsComponent: React.FC = () => {
               <Button variant="secondary" iconOnly="filter" aria-label="Filter" />
               <Button variant="primary" iconOnly="settings-cog" aria-label="Settings" disabled />
             </div>
-            <div style={{ marginTop: '12px', fontSize: '13px', color: 'var(--ai-color-text-secondary)' }}>
+            <div style={{ marginTop: cssVar.spacing(6), fontSize: 'var(--ai-font-size-body-small)', color: 'var(--ai-color-text-secondary)' }}>
               Use sparingly for high-emphasis icon actions
             </div>
           </div>
@@ -385,7 +386,7 @@ const ButtonsComponent: React.FC = () => {
           <div
             style={{
               backgroundColor: 'var(--ai-color-bg-tertiary)',
-              padding: '16px',
+              padding: cssVar.spacing(8),
               borderRadius: '8px',
               fontFamily: 'monospace',
               fontSize: '13px',
@@ -407,7 +408,7 @@ const ButtonsComponent: React.FC = () => {
 
       {/* Real-World Examples */}
       <section style={{ marginBottom: '64px' }}>
-        <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Real-World Examples</h2>
+        <h2 style={{ fontSize: 'var(--ai-font-size-heading-sm)', marginBottom: cssVar.spacing(8) }}>Real-World Examples</h2>
         <p style={{ marginBottom: '24px', color: 'var(--ai-color-text-secondary)' }}>
           See buttons in common UI patterns and contexts.
         </p>
@@ -415,10 +416,10 @@ const ButtonsComponent: React.FC = () => {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
           {/* Form Actions */}
           <div>
-            <h3 style={{ fontSize: '16px', marginBottom: '16px' }}>Form Actions</h3>
+            <h3 style={{ fontSize: 'var(--ai-font-size-body-large)', marginBottom: cssVar.spacing(8) }}>Form Actions</h3>
             <div
               style={{
-                padding: '24px',
+                padding: cssVar.spacing(12),
                 backgroundColor: 'var(--ai-color-bg-secondary)',
                 borderRadius: '12px',
                 maxWidth: '400px',
@@ -437,7 +438,7 @@ const ButtonsComponent: React.FC = () => {
                     borderRadius: '6px',
                     border: '1px solid var(--ai-color-border-heavy)',
                     backgroundColor: 'var(--ai-color-bg-primary)',
-                    fontSize: '14px',
+                    fontSize: 'var(--ai-font-size-body-regular)',
                     boxSizing: 'border-box',
                   }}
                 />
@@ -451,7 +452,7 @@ const ButtonsComponent: React.FC = () => {
 
           {/* Call to Action */}
           <div>
-            <h3 style={{ fontSize: '16px', marginBottom: '16px' }}>Call to Action</h3>
+            <h3 style={{ fontSize: 'var(--ai-font-size-body-large)', marginBottom: cssVar.spacing(8) }}>Call to Action</h3>
             <div
               style={{
                 padding: '32px',
@@ -473,7 +474,7 @@ const ButtonsComponent: React.FC = () => {
 
           {/* List Item Actions */}
           <div>
-            <h3 style={{ fontSize: '16px', marginBottom: '16px' }}>List Item Actions</h3>
+            <h3 style={{ fontSize: 'var(--ai-font-size-body-large)', marginBottom: cssVar.spacing(8) }}>List Item Actions</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', maxWidth: '500px' }}>
               <div
                 style={{
@@ -540,7 +541,7 @@ const ButtonsComponent: React.FC = () => {
 
           {/* Toolbar Actions */}
           <div>
-            <h3 style={{ fontSize: '16px', marginBottom: '16px' }}>Toolbar Actions</h3>
+            <h3 style={{ fontSize: 'var(--ai-font-size-body-large)', marginBottom: cssVar.spacing(8) }}>Toolbar Actions</h3>
             <div
               style={{
                 display: 'flex',
@@ -568,10 +569,10 @@ const ButtonsComponent: React.FC = () => {
 
           {/* Dialog Actions */}
           <div>
-            <h3 style={{ fontSize: '16px', marginBottom: '16px' }}>Dialog/Modal Actions</h3>
+            <h3 style={{ fontSize: 'var(--ai-font-size-body-large)', marginBottom: cssVar.spacing(8) }}>Dialog/Modal Actions</h3>
             <div
               style={{
-                padding: '24px',
+                padding: cssVar.spacing(12),
                 backgroundColor: 'var(--ai-color-bg-secondary)',
                 borderRadius: '12px',
                 maxWidth: '400px',
@@ -595,15 +596,15 @@ const ButtonsComponent: React.FC = () => {
 
       {/* Usage Guide */}
       <section style={{ marginBottom: '64px' }}>
-        <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Usage Guide</h2>
+        <h2 style={{ fontSize: 'var(--ai-font-size-heading-sm)', marginBottom: cssVar.spacing(8) }}>Usage Guide</h2>
 
         {/* Import */}
         <div style={{ marginBottom: '32px' }}>
-          <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>Import</h3>
+          <h3 style={{ fontSize: 'var(--ai-font-size-body-large)', marginBottom: cssVar.spacing(6) }}>Import</h3>
           <div
             style={{
               backgroundColor: 'var(--ai-color-bg-tertiary)',
-              padding: '16px',
+              padding: cssVar.spacing(8),
               borderRadius: '8px',
               fontFamily: 'monospace',
               fontSize: '13px',
@@ -619,11 +620,11 @@ const ButtonsComponent: React.FC = () => {
 
         {/* When to Use Button vs Link */}
         <div style={{ marginBottom: '32px' }}>
-          <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>Button vs Link: When to Use Each</h3>
+          <h3 style={{ fontSize: 'var(--ai-font-size-body-large)', marginBottom: cssVar.spacing(6) }}>Button vs Link: When to Use Each</h3>
           <div style={{ display: 'grid', gap: '16px' }}>
             <div
               style={{
-                padding: '16px',
+                padding: cssVar.spacing(8),
                 backgroundColor: 'var(--ai-color-bg-secondary)',
                 borderRadius: '8px',
               }}
@@ -641,7 +642,7 @@ const ButtonsComponent: React.FC = () => {
 
             <div
               style={{
-                padding: '16px',
+                padding: cssVar.spacing(8),
                 backgroundColor: 'var(--ai-color-bg-secondary)',
                 borderRadius: '8px',
               }}
@@ -661,12 +662,12 @@ const ButtonsComponent: React.FC = () => {
 
         {/* Accessibility Best Practices */}
         <div style={{ marginBottom: '32px' }}>
-          <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>Accessibility Best Practices</h3>
+          <h3 style={{ fontSize: 'var(--ai-font-size-body-large)', marginBottom: cssVar.spacing(6) }}>Accessibility Best Practices</h3>
           <div style={{ display: 'grid', gap: '16px' }}>
             {/* Icon-only aria-label */}
             <div
               style={{
-                padding: '16px',
+                padding: cssVar.spacing(8),
                 backgroundColor: 'var(--ai-color-bg-secondary)',
                 borderRadius: '8px',
               }}
@@ -700,7 +701,7 @@ const ButtonsComponent: React.FC = () => {
             {/* Disabled state */}
             <div
               style={{
-                padding: '16px',
+                padding: cssVar.spacing(8),
                 backgroundColor: 'var(--ai-color-bg-secondary)',
                 borderRadius: '8px',
               }}
@@ -728,7 +729,7 @@ const ButtonsComponent: React.FC = () => {
             {/* Focus visible */}
             <div
               style={{
-                padding: '16px',
+                padding: cssVar.spacing(8),
                 backgroundColor: 'var(--ai-color-bg-secondary)',
                 borderRadius: '8px',
               }}
@@ -745,7 +746,7 @@ const ButtonsComponent: React.FC = () => {
             {/* Clear labels */}
             <div
               style={{
-                padding: '16px',
+                padding: cssVar.spacing(8),
                 backgroundColor: 'var(--ai-color-bg-secondary)',
                 borderRadius: '8px',
               }}
@@ -776,12 +777,12 @@ const ButtonsComponent: React.FC = () => {
 
         {/* Common Patterns */}
         <div style={{ marginBottom: '32px' }}>
-          <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>Common Patterns</h3>
+          <h3 style={{ fontSize: 'var(--ai-font-size-body-large)', marginBottom: cssVar.spacing(6) }}>Common Patterns</h3>
           <div style={{ display: 'grid', gap: '16px' }}>
             {/* Primary + Secondary */}
             <div
               style={{
-                padding: '16px',
+                padding: cssVar.spacing(8),
                 backgroundColor: 'var(--ai-color-bg-secondary)',
                 borderRadius: '8px',
               }}
@@ -801,7 +802,7 @@ const ButtonsComponent: React.FC = () => {
             {/* Icon + Text */}
             <div
               style={{
-                padding: '16px',
+                padding: cssVar.spacing(8),
                 backgroundColor: 'var(--ai-color-bg-secondary)',
                 borderRadius: '8px',
               }}
@@ -828,7 +829,7 @@ const ButtonsComponent: React.FC = () => {
             {/* Ghost for minimal */}
             <div
               style={{
-                padding: '16px',
+                padding: cssVar.spacing(8),
                 backgroundColor: 'var(--ai-color-bg-secondary)',
                 borderRadius: '8px',
               }}
@@ -851,7 +852,7 @@ const ButtonsComponent: React.FC = () => {
 
       {/* Props Table */}
       <section style={{ marginBottom: '32px' }}>
-        <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Props</h2>
+        <h2 style={{ fontSize: 'var(--ai-font-size-heading-sm)', marginBottom: cssVar.spacing(8) }}>Props</h2>
         <PropsTable
           hideThemeColumn
           rows={[
