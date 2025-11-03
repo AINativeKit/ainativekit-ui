@@ -114,6 +114,24 @@ export const iconData: Record<string, IconData> = {\n`;
 
 // Run the generator
 try {
+  // Check if source directory exists
+  if (!fs.existsSync(PUBLIC_ICONS_DIR)) {
+    console.log('ℹ️  Source icons directory not found, skipping regeneration');
+    console.log('📁 Expected:', PUBLIC_ICONS_DIR);
+
+    // Check if output file already exists
+    if (fs.existsSync(OUTPUT_FILE)) {
+      const stats = fs.statSync(OUTPUT_FILE);
+      const sizeKB = (stats.size / 1024).toFixed(2);
+      console.log(`✅ Using existing icon data (${sizeKB} KB)`);
+      console.log(`📁 File: ${path.relative(process.cwd(), OUTPUT_FILE)}`);
+      process.exit(0);
+    } else {
+      console.error('❌ No icon data file found and cannot regenerate');
+      process.exit(1);
+    }
+  }
+
   generateIconData();
 } catch (error) {
   console.error('❌ Error generating icon data:', error);
