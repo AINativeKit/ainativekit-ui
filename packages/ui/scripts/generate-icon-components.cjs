@@ -4,8 +4,8 @@
  * Icon Component Generator
  *
  * Generates individual React components for each icon to enable:
- * - Tree-shaking (import only what you use)
  * - Named imports (import { SettingsCog } from '@ainativekit/ui/icons')
+ * - Better TypeScript autocompletion and type safety
  * - Industry-standard API (like Lucide, Material UI, Heroicons)
  *
  * Usage: node scripts/generate-icon-components.cjs
@@ -215,11 +215,11 @@ function main() {
   // Generate index file
   const indexContent = `/**
  * Icon Components - AI Native Kit
- * Auto-generated individual icon components for tree-shaking
+ * Auto-generated individual icon components
  *
  * @example
  * \`\`\`tsx
- * // Named imports (tree-shakeable)
+ * // Named imports
  * import { SettingsCog, PlusCircleAdd } from '@ainativekit/ui/icons';
  *
  * <SettingsCog size="md" />

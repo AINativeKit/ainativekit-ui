@@ -111,7 +111,7 @@ const IconsComponent: React.FC = () => {
         <div style={{ marginBottom: '24px' }}>
           <h4 style={{ fontSize: '14px', marginBottom: '8px', fontWeight: 600 }}>Option 1: Named Components (Recommended)</h4>
           <p style={{ fontSize: '13px', marginBottom: '12px', color: 'var(--ai-color-text-secondary)' }}>
-            Import components by name for better tree-shaking and clearer code:
+            Import components by name for clearer code and better autocompletion:
           </p>
           <div
             style={{
@@ -561,7 +561,7 @@ const iconName = getConfigValue('menuIcon');
           Named Components (Recommended)
         </h3>
         <p style={{ marginBottom: '12px', color: 'var(--ai-color-text-secondary)' }}>
-          Import named components directly for maximum tree-shaking and clearer JSX:
+          Import named components directly for clearer JSX and better autocompletion:
         </p>
         <div
           style={{

@@ -69,10 +69,10 @@ Complex, domain-specific, feature-complete patterns.
 
 - 🎯 **Apps SDK Optimized:** Components designed for ChatGPT Apps SDK
 - 🔄 **JSON → UI Mapping:** Render structured MCP results with minimal code
-- 🎨 **417 Figma-Aligned Icons:** Fully typed and tree-shakeable
+- 🎨 **417 Figma-Aligned Icons:** Fully typed with semantic categories
 - ♿ **Accessibility First:** ARIA attributes & sensible focus management
 - 🌗 **Dark/Light Themes:** Built-in theme switching
-- 📦 **Tree-Shakeable & Type-Safe:** Import only what you need
+- 📦 **Type-Safe:** Full TypeScript support with JSDoc documentation
 
 ## Links
 

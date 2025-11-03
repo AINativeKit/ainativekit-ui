@@ -59,7 +59,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 #### Developer Experience
 - Full TypeScript support with JSDoc documentation
-- Tree-shakeable ESM and CJS builds
+- ESM and CJS builds
 - Multiple export paths for granular imports
 - Comprehensive Storybook with 29 stories
 - 15 test files with Vitest + React Testing Library

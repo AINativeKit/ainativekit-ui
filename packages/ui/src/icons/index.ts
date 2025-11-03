@@ -1,10 +1,10 @@
 /**
  * Icon Components - AI Native Kit
- * Auto-generated individual icon components for tree-shaking
+ * Auto-generated individual icon components
  *
  * @example
  * ```tsx
- * // Named imports (tree-shakeable)
+ * // Named imports
  * import { SettingsCog, PlusCircleAdd } from '@ainativekit/ui/icons';
  *
  * <SettingsCog size="md" />
