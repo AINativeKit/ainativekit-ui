@@ -1,6 +1,6 @@
 # 🧩 AI Native Kit UI
 
-> **Instantly turn MCP JSON results into polished ChatGPT App UIs.**  
+> **Instantly turn MCP JSON results into polished ChatGPT App UIs.**
 > OpenAI Figma‑aligned **React** components purpose‑built for the [ChatGPT Apps SDK](https://developers.openai.com/apps-sdk).
 
 [![npm version](https://img.shields.io/npm/v/@ainativekit/ui.svg)](https://www.npmjs.com/package/@ainativekit/ui)
@@ -8,7 +8,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-%233178C6.svg?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Storybook](https://img.shields.io/badge/Storybook-%23FF4785.svg?logo=storybook&logoColor=white)](https://www.ainativekit.com)
 
-![AINativeKit UI demo](./assets/ainativekit-ui-demo.gif)
+![AINativeKit UI demo](https://raw.githubusercontent.com/AINativeKit/ainativekit-ui/main/assets/ainativekit-ui-demo.gif)
 
 <p>
   <b><a href="https://www.ainativekit.com">🎪 Live Storybook</a></b> ·
@@ -22,11 +22,11 @@
 **AI Native Kit UI** bridges the gap between **structured MCP JSON** and **beautiful, accessible UI** for ChatGPT apps. Designed for the **Apps SDK**, it maps model/tool results directly to **interactive, Figma‑aligned components**, so you stop hand‑wiring UI and start shipping.
 
 - ✨ **What you get:** Production‑ready React components, example patterns, hooks for Apps SDK, and a rich design‑token system.
-- 🧭 **Who it’s for:** Developers building **ChatGPT Apps** who want consistent, on‑brand UI without reinventing the wheel.
+- 🧭 **Who it's for:** Developers building **ChatGPT Apps** who want consistent, on‑brand UI without reinventing the wheel.
 
 > **Why now?** ChatGPT Apps (via the Apps SDK) expose results + UI metadata. This kit renders those results as native widgets with minimal code.
 
-## 💡 Why You’ll Love It
+## 💡 Why You'll Love It
 
 | Developer Pain Point | How AINativeKit UI Helps |
 |---|---|
@@ -40,6 +40,7 @@
 
 - 🎯 **Apps SDK Optimized:** Components designed to work seamlessly with ChatGPT Apps SDK
 - 🔄 **JSON -> UI Mapping:** Render structured MCP results with minimal glue code
+- 🤖 **AI-Tool Friendly:** JSON schemas, component registry, and utilities for AI code generation
 - 🎨 **417 Figma‑Aligned Icons:** Fully typed and tree‑shakeable
 - ♿ **Accessibility First:** ARIA attributes & sensible focus management
 - 🌗 **Dark/Light Themes:** Built‑in theme switching
@@ -155,64 +156,18 @@ export function DocumentCard() {
 
 ## 🎨 Design System
 
-Use consistent **colors**, **typography**, **spacing**, and **elevation** derived from OpenAI's Figma system with **full type safety** and **autocomplete**.
-
-### Type-Safe Design Tokens
-
-Get autocomplete and compile-time type checking for all design tokens:
+Use consistent **colors**, **typography**, **spacing**, and **elevation** derived from OpenAI's Figma system.
 
 ```tsx
-import { cssVar } from '@ainativekit/ui/tokens';
-import { spacing, colors, typography } from '@ainativekit/ui/tokens';
+import { colors, typography, spacing, elevation } from '@ainativekit/ui';
 
-// ✅ Method 1: Direct token values (clean numeric/string access)
-<div style={{
-  gap: spacing[8],                    // '16px' - Numeric key!
-  color: colors.light.text.primary,   // '#0D0D0D' - Full autocomplete!
-  ...typography.heading1,             // Complete typography style
-}} />
-
-// ✅ Method 2: CSS variables for theme-aware styling (recommended for dynamic themes)
-<div style={{
-  gap: cssVar.spacing(8),             // 'var(--ai-spacing-8)'
-  color: cssVar.color('text-primary'), // Adapts to light/dark theme
-  borderRadius: cssVar.radius('xl'),
-}} />
+const style = {
+  backgroundColor: colors.light.background.primary,
+  padding: spacing[16],
+  fontSize: typography.body.fontSize,
+  boxShadow: elevation[1].shadow,
+};
 ```
-
-**Before vs After:**
-
-```tsx
-// ❌ Before: String literals, no autocomplete, typo-prone
-<div style={{
-  gap: 'var(--ai-spacing-8)',        // Could typo
-  fontSize: 'var(--ai-font-size-sm)' // No autocomplete
-}} />
-
-// ✅ After: Type-safe with autocomplete
-import { cssVar, spacing, typography } from '@ainativekit/ui/tokens';
-
-<div style={{
-  gap: cssVar.spacing(8),  // Autocomplete suggests scale values!
-  ...typography.bodySmall  // Complete font styles
-}} />
-
-// Or use direct values:
-<div style={{
-  gap: spacing[8],         // Numeric key access
-  ...typography.bodySmall
-}} />
-```
-
-**Available Token Categories:**
-- 🎯 **Spacing** - 13 scale values (0-64)
-- 🎨 **Colors** - Light/dark themes, semantic colors
-- 📝 **Typography** - 11 complete text styles
-- 🔲 **Border Radius** - 7 radius scales
-- ✨ **Elevation** - 6 shadow levels
-- 👁️ **Opacity** - 4 opacity presets
-
-📖 **[Complete Token Usage Guide](./packages/ui/src/tokens/TOKEN_USAGE.md)** | **[Live Examples](./packages/ui/src/tokens/EXAMPLES.tsx)**
 
 **Icons:**
 
@@ -227,7 +182,7 @@ import { SettingsCog, Terminal, Star } from '@ainativekit/ui/icons';
 <Icon name="settings-cog" size="lg" />
 ```
 
-## 🪝 OpenAI Hooks
+## 🪝 OpenAI Hooks & Theme Management
 
 Utilities to integrate with the **ChatGPT Apps SDK** runtime.
 
@@ -241,8 +196,10 @@ import {
 } from '@ainativekit/ui';
 
 function MyChatGPTWidget() {
-  // Access specific OpenAI global values (reactive)
-  const theme = useTheme(); // 'light' | 'dark' | null
+  // Get theme (read-only in ChatGPT, controllable with ThemeProvider)
+  const { theme, isControlledByChatGPT } = useTheme();
+
+  // Access other OpenAI global values (reactive)
   const displayMode = useDisplayMode(); // 'inline' | 'pip' | 'fullscreen' | null
   const maxHeight = useMaxHeight(); // number | null
 
@@ -264,12 +221,57 @@ function MyChatGPTWidget() {
 ```
 
 **Available Hooks:**
-- `useTheme()` - Get current theme and listen for changes
+- `useTheme()` - Get current theme and optionally control it (see ThemeProvider below)
 - `useDisplayMode()` - Get current display mode (inline/pip/fullscreen)
 - `useMaxHeight()` - Get maximum height constraint for layout
 - `useWidgetState(defaultState)` - Persistent state across ChatGPT sessions
 - `useOpenAiGlobal(key)` - Access any `window.openai` property reactively
 - `useWidgetProps(defaultProps)` - Get tool output data
+
+### Theme Management
+
+For development and standalone apps, use `ThemeProvider` to enable programmatic theme control:
+
+```tsx
+import { ThemeProvider, useTheme } from '@ainativekit/ui';
+
+function App() {
+  return (
+    <ThemeProvider defaultTheme="light">
+      <MyApp />
+    </ThemeProvider>
+  );
+}
+
+function MyApp() {
+  const { theme, setTheme, isControlledByChatGPT } = useTheme();
+
+  return (
+    <div>
+      <p>Current theme: {theme}</p>
+      <button
+        onClick={() => setTheme?.(theme === 'light' ? 'dark' : 'light')}
+        disabled={isControlledByChatGPT}
+      >
+        Toggle theme
+      </button>
+      {isControlledByChatGPT && (
+        <p>Theme is controlled by ChatGPT</p>
+      )}
+    </div>
+  );
+}
+```
+
+**Theme Behavior:**
+- **Inside ChatGPT**: Theme is read-only (`window.openai.theme`), `setTheme` has no effect
+- **Inside ThemeProvider**: Theme is controllable, persists to localStorage
+- **Standalone**: Theme defaults to system preference or specified default
+
+**ThemeProvider Props:**
+- `defaultTheme` - Initial theme ('light' or 'dark'), default: 'light'
+- `storageKey` - LocalStorage key for persistence, default: 'ainativekit-theme'
+- `enableSystemTheme` - Detect system preference, default: true
 
 ## 📘 TypeScript Support
 
@@ -322,6 +324,54 @@ type MyWidgetProps = {
 - `CallTool` - Type-safe tool calling signature
 - And more... (see [types.ts](packages/ui/src/hooks/openai/types.ts))
 
+## 🤖 AI Tool Integration
+
+AINativeKit UI is optimized for AI coding assistants through Context7 and runtime utilities.
+
+### Using with Context7
+
+If you use Claude Desktop, Cursor, or other AI editors with Context7 support:
+
+```
+use context7 @ainativekit/ui
+```
+
+This will inject the latest component documentation directly into your AI's context, enabling:
+- Smart component suggestions
+- Accurate prop recommendations
+- Best practice guidance
+- Code generation with examples
+
+### JSON-to-Component Rendering
+
+Dynamically render components from JSON/API data in your production app:
+
+```tsx
+import { renderComponent, type ComponentConfig } from '@ainativekit/ui';
+
+const config: ComponentConfig = {
+  type: 'SummaryCard',
+  props: {
+    title: "Little Nona's",
+    badge: "9.2",
+    images: ["https://example.com/restaurant.jpg"],
+    buttonText: "Add to Order"
+  }
+};
+
+const card = renderComponent(config); // Renders <SummaryCard {...props} />
+```
+
+**Runtime Utilities:**
+- 🔧 `renderComponent()` - Render from JSON config
+- ✅ `validateComponentConfig()` - Validate component configs
+- 📝 `ComponentPropsMap` - Type-safe prop definitions
+
+**AI Integration:**
+- 🤖 **Context7:** Documentation via "use context7" command
+- 📚 **Schemas:** Can be generated with `pnpm --filter @ainativekit/ui generate:schemas` for external tooling (not used in runtime)
+- 📖 **Guide:** See `/docs` folder for comprehensive documentation
+
 ## 🧰 Development
 
 ```bash
@@ -336,10 +386,15 @@ pnpm lint             # lint
 
 ```
 @ainativekit/ui
-├── /               # Components, tokens, hooks
+├── /               # Components, tokens, hooks, utilities
 ├── /icons          # 417 icons as named React components
 ├── /tokens         # Design tokens only
 └── /styles         # CSS styles
+
+Repository (for documentation & tooling):
+├── /docs           # Markdown documentation (Context7)
+├── /schemas        # JSON schemas (generated on-demand, not committed)
+└── /metadata       # Component registry (dev tooling)
 ```
 
 ## ✅ Compatibility
