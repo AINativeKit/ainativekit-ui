@@ -26,6 +26,16 @@ function App() {
 }
 ```
 
+## Guides
+
+### [useOpenAiGlobal](/guides/useOpenAiGlobal.md)
+Reactive access to ChatGPT's global state with automatic re-rendering.
+
+### [Performance](/guides/performance.md)
+Best practices for component performance and optimization.
+
+---
+
 ## Component Categories
 
 ### [Primitives](/components/primitives/)

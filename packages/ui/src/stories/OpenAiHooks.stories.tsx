@@ -402,6 +402,30 @@ const OpenAiHooksPlayground: React.FC<PlaygroundArgs> = (args) => {
           <li><strong>useDisplayMode()</strong> - React to display mode changes (inline, pip, fullscreen)</li>
           <li><strong>useMaxHeight()</strong> - Constrain your component to the available height</li>
         </ul>
+
+        <div style={{ marginTop: '16px', padding: '12px', background: 'var(--ai-color-bg-secondary)', borderRadius: '8px', border: '1px solid var(--ai-color-border-default)' }}>
+          <p style={{ margin: '0', fontSize: '13px', color: 'var(--ai-color-text-secondary)', lineHeight: '1.5' }}>
+            📖{' '}
+            <strong>Need detailed documentation?</strong> Check out the{' '}
+            <a
+              href="https://www.ainativekit.com/?path=/docs/guides-useopenaiglobal--page"
+              style={{
+                color: 'var(--ai-color-text-interactive, #0066cc)',
+                textDecoration: 'none',
+                fontWeight: '500',
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.textDecoration = 'underline';
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.textDecoration = 'none';
+              }}
+            >
+              complete useOpenAiGlobal guide
+            </a>
+            {' '}for data structure patterns, real-world examples, troubleshooting, and best practices.
+          </p>
+        </div>
       </section>
 
       {/* Interactive Playground Section */}
