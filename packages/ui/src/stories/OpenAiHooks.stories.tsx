@@ -408,7 +408,9 @@ const OpenAiHooksPlayground: React.FC<PlaygroundArgs> = (args) => {
             📖{' '}
             <strong>Need detailed documentation?</strong> Check out the{' '}
             <a
-              href="https://www.ainativekit.com/?path=/docs/guides-useopenaiglobal--page"
+              href="https://github.com/ainativekit/ainativekit-ui/blob/main/packages/ui/docs/guides/useOpenAiGlobal.md"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 color: 'var(--ai-color-text-interactive, #0066cc)',
                 textDecoration: 'none',
