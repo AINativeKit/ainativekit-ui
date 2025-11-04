@@ -44,13 +44,32 @@ export const colors = {
       inverted: '#1B1B1F',
     },
     accent: lightAccent,
-    // Semantic brand color aliases derived from accent colors
+    // Brand colors with interactive states (customizable via ThemeProvider)
     brand: {
-      primary: lightAccent.blue,
-      success: lightAccent.green,
-      warning: lightAccent.orange,
-      error: lightAccent.red,
-      info: lightAccent.blue,
+      primary: {
+        base: lightAccent.blue,
+        hover: '#016FDB', // ~15% darker
+        active: '#0159B8', // ~25% darker
+        onColor: '#FFFFFF',
+      },
+      success: {
+        base: lightAccent.green,
+        hover: '#00722E', // ~15% darker
+        active: '#005E25', // ~25% darker
+        onColor: '#FFFFFF',
+      },
+      warning: {
+        base: lightAccent.orange,
+        hover: '#C14906', // ~15% darker
+        active: '#A03E05', // ~25% darker
+        onColor: '#FFFFFF',
+      },
+      error: {
+        base: lightAccent.red,
+        hover: '#BF2723', // ~15% darker
+        active: '#9E201D', // ~25% darker
+        onColor: '#FFFFFF',
+      },
     },
     outline: '#79747E',
     border: {
@@ -95,13 +114,32 @@ export const colors = {
       inverted: '#FFFFFF',
     },
     accent: darkAccent,
-    // Semantic brand color aliases derived from accent colors
+    // Brand colors with interactive states (customizable via ThemeProvider)
     brand: {
-      primary: darkAccent.blue,
-      success: darkAccent.green,
-      warning: darkAccent.orange,
-      error: darkAccent.red,
-      info: darkAccent.blue,
+      primary: {
+        base: darkAccent.blue,
+        hover: '#1A92FF', // ~15% lighter
+        active: '#339FFF', // ~25% lighter
+        onColor: '#FFFFFF',
+      },
+      success: {
+        base: darkAccent.green,
+        hover: '#56D487', // ~15% lighter
+        active: '#6BDF97', // ~25% lighter
+        onColor: '#000000',
+      },
+      warning: {
+        base: darkAccent.orange,
+        hover: '#FFAB82', // ~15% lighter
+        active: '#FFB898', // ~25% lighter
+        onColor: '#000000',
+      },
+      error: {
+        base: darkAccent.red,
+        hover: '#FF9D9B', // ~15% lighter
+        active: '#FFB5B3', // ~25% lighter
+        onColor: '#000000',
+      },
     },
     outline: '#938F99',
     border: {
@@ -131,3 +169,23 @@ export const colors = {
 
 export type ColorTheme = typeof colors.light;
 export type ThemeMode = 'light' | 'dark';
+
+/**
+ * Brand color configuration for customizing theme colors
+ * Used by ThemeProvider to override default brand colors
+ */
+export interface BrandColorConfig {
+  /** Primary brand color (used for main actions, links, etc.) */
+  primary?: string;
+  /** Success color (used for positive actions, success states) */
+  success?: string;
+  /** Warning color (used for warning states, caution messages) */
+  warning?: string;
+  /** Error color (used for error states, destructive actions) */
+  error?: string;
+}
+
+/**
+ * Semantic color variants for component color props
+ */
+export type ColorVariant = 'primary' | 'success' | 'warning' | 'error' | 'neutral';

@@ -54,25 +54,25 @@
   justify-content: center;
 }
 
-/* Severity Variants */
+/* Severity Variants - Use brand colors */
 .alert--error {
-  background-color: rgba(239, 68, 68, 0.1);
-  border: 1px solid rgba(239, 68, 68, 0.2);
+  background-color: color-mix(in srgb, var(--ai-color-brand-error) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ai-color-brand-error) 20%, transparent);
 }
 
 .alert--warning {
-  background-color: rgba(245, 158, 11, 0.1);
-  border: 1px solid rgba(245, 158, 11, 0.2);
+  background-color: color-mix(in srgb, var(--ai-color-brand-warning) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ai-color-brand-warning) 20%, transparent);
 }
 
 .alert--info {
-  background-color: rgba(2, 133, 255, 0.1);
-  border: 1px solid rgba(2, 133, 255, 0.2);
+  background-color: color-mix(in srgb, var(--ai-color-brand-primary) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ai-color-brand-primary) 20%, transparent);
 }
 
 .alert--success {
-  background-color: rgba(0, 134, 53, 0.1);
-  border: 1px solid rgba(0, 134, 53, 0.2);
+  background-color: color-mix(in srgb, var(--ai-color-brand-success) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ai-color-brand-success) 20%, transparent);
 }
 
 /* Icon - Left */
@@ -91,19 +91,19 @@
 }
 
 .alert--error .alert__icon svg {
-  color: var(--ai-color-error-default, #EF4444);
+  color: var(--ai-color-brand-error);
 }
 
 .alert--warning .alert__icon svg {
-  color: var(--ai-color-warning-default, #F59E0B);
+  color: var(--ai-color-brand-warning);
 }
 
 .alert--info .alert__icon svg {
-  color: var(--ai-color-info-default, #0285FF);
+  color: var(--ai-color-brand-primary);
 }
 
 .alert--success .alert__icon svg {
-  color: var(--ai-color-success-default, #008635);
+  color: var(--ai-color-brand-success);
 }
 
 .alert--card .alert__icon svg {
@@ -149,36 +149,22 @@
 }
 
 /* Dark theme adjustments */
-@media (prefers-color-scheme: dark) {
-  .alert--error {
-    background-color: rgba(255, 133, 131, 0.1);
-    border-color: rgba(255, 133, 131, 0.2);
-  }
+:global([data-theme='dark']) .alert--error {
+  background-color: color-mix(in srgb, var(--ai-color-brand-error) 15%, transparent);
+  border-color: color-mix(in srgb, var(--ai-color-brand-error) 25%, transparent);
+}
 
-  .alert--error .alert__icon svg {
-    color: var(--ai-color-error-light, #FF8583);
-  }
+:global([data-theme='dark']) .alert--warning {
+  background-color: color-mix(in srgb, var(--ai-color-brand-warning) 15%, transparent);
+  border-color: color-mix(in srgb, var(--ai-color-brand-warning) 25%, transparent);
+}
 
-  .alert--warning {
-    background-color: rgba(255, 158, 108, 0.1);
-    border-color: rgba(255, 158, 108, 0.2);
-  }
+:global([data-theme='dark']) .alert--info {
+  background-color: color-mix(in srgb, var(--ai-color-brand-primary) 15%, transparent);
+  border-color: color-mix(in srgb, var(--ai-color-brand-primary) 25%, transparent);
+}
 
-  .alert--warning .alert__icon svg {
-    color: var(--ai-color-warning-light, #FF9E6C);
-  }
-
-  .alert--info {
-    background-color: rgba(2, 133, 255, 0.1);
-    border-color: rgba(2, 133, 255, 0.2);
-  }
-
-  .alert--success {
-    background-color: rgba(64, 201, 119, 0.1);
-    border-color: rgba(64, 201, 119, 0.2);
-  }
-
-  .alert--success .alert__icon svg {
-    color: var(--ai-color-success-light, #40C977);
-  }
+:global([data-theme='dark']) .alert--success {
+  background-color: color-mix(in srgb, var(--ai-color-brand-success) 15%, transparent);
+  border-color: color-mix(in srgb, var(--ai-color-brand-success) 25%, transparent);
 }

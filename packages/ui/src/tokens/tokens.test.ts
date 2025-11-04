@@ -101,42 +101,58 @@ describe('Design Tokens', () => {
       });
     });
 
-    it('should have correct color token count per theme (including brand aliases)', () => {
+    it('should have correct color token count per theme (including brand colors)', () => {
+      // Count nested brand color objects (primary, success, warning, error)
+      const brandColorCount = Object.keys(colors.light.brand).length; // 4 brand colors (primary, success, warning, error)
+
       const lightTokenCount =
         Object.keys(colors.light.background).length +
         Object.keys(colors.light.text).length +
         Object.keys(colors.light.icon).length +
         Object.keys(colors.light.accent).length +
-        Object.keys(colors.light.brand).length +
+        brandColorCount +
         Object.keys(colors.light.border).length +
         1; // outline
-      expect(lightTokenCount).toBe(24); // 19 + 5 brand aliases
+      expect(lightTokenCount).toBe(23); // 19 base + 4 brand color objects
 
       const darkTokenCount =
         Object.keys(colors.dark.background).length +
         Object.keys(colors.dark.text).length +
         Object.keys(colors.dark.icon).length +
         Object.keys(colors.dark.accent).length +
-        Object.keys(colors.dark.brand).length +
+        brandColorCount +
         Object.keys(colors.dark.border).length +
         1; // outline
-      expect(darkTokenCount).toBe(24); // 19 + 5 brand aliases
+      expect(darkTokenCount).toBe(23); // 19 base + 4 brand color objects
     });
 
-    it('should have brand color aliases', () => {
-      // Light theme
-      expect(colors.light.brand.primary).toBe('#0285FF');
-      expect(colors.light.brand.success).toBe('#008635');
-      expect(colors.light.brand.warning).toBe('#E25507');
-      expect(colors.light.brand.error).toBe('#E02E2A');
-      expect(colors.light.brand.info).toBe('#0285FF');
+    it('should have brand color objects with state variants', () => {
+      // Light theme - verify nested structure with base, hover, active, onColor
+      expect(colors.light.brand.primary.base).toBe('#0285FF');
+      expect(colors.light.brand.primary.hover).toBeDefined();
+      expect(colors.light.brand.primary.active).toBeDefined();
+      expect(colors.light.brand.primary.onColor).toBe('#FFFFFF');
+
+      expect(colors.light.brand.success.base).toBe('#008635');
+      expect(colors.light.brand.success.hover).toBeDefined();
+      expect(colors.light.brand.success.active).toBeDefined();
+      expect(colors.light.brand.success.onColor).toBe('#FFFFFF');
+
+      expect(colors.light.brand.warning.base).toBe('#E25507');
+      expect(colors.light.brand.warning.hover).toBeDefined();
+      expect(colors.light.brand.warning.active).toBeDefined();
+      expect(colors.light.brand.warning.onColor).toBe('#FFFFFF');
+
+      expect(colors.light.brand.error.base).toBe('#E02E2A');
+      expect(colors.light.brand.error.hover).toBeDefined();
+      expect(colors.light.brand.error.active).toBeDefined();
+      expect(colors.light.brand.error.onColor).toBe('#FFFFFF');
 
       // Dark theme
-      expect(colors.dark.brand.primary).toBe('#0285FF');
-      expect(colors.dark.brand.success).toBe('#40C977');
-      expect(colors.dark.brand.warning).toBe('#FF9E6C');
-      expect(colors.dark.brand.error).toBe('#FF8583');
-      expect(colors.dark.brand.info).toBe('#0285FF');
+      expect(colors.dark.brand.primary.base).toBe('#0285FF');
+      expect(colors.dark.brand.success.base).toBe('#40C977');
+      expect(colors.dark.brand.warning.base).toBe('#FF9E6C');
+      expect(colors.dark.brand.error.base).toBe('#FF8583');
     });
   });
 

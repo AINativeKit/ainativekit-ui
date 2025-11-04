@@ -41,7 +41,7 @@ button.chip:not(.chipDisabled):active {
 
 /* Focus states */
 button.chip:focus-visible {
-  outline: 2px solid var(--ai-color-accent-blue);
+  outline: 2px solid var(--ai-color-brand-primary);
   outline-offset: 2px;
 }
 
@@ -104,96 +104,96 @@ button.chip:focus-visible {
 }
 
 .chipRemove:focus-visible {
-  outline: 2px solid var(--ai-color-accent-blue);
+  outline: 2px solid var(--ai-color-brand-primary);
   outline-offset: 1px;
 }
 
 /* ========== VARIANT STYLES ========== */
 
-/* Default Variant - Light background with accent color */
+/* Default Variant - Light background with brand primary color */
 .chipDefault {
-  background-color: color-mix(in srgb, var(--ai-color-accent-blue) 10%, transparent);
-  color: var(--ai-color-accent-blue);
+  background-color: color-mix(in srgb, var(--ai-color-brand-primary) 10%, transparent);
+  color: var(--ai-color-brand-primary);
 }
 
 :global([data-theme='dark']) .chipDefault {
-  background-color: color-mix(in srgb, var(--ai-color-accent-blue) 15%, transparent);
+  background-color: color-mix(in srgb, var(--ai-color-brand-primary) 15%, transparent);
 }
 
 button.chipDefault:not(.chipDisabled):hover {
-  background-color: color-mix(in srgb, var(--ai-color-accent-blue) 15%, transparent);
+  background-color: color-mix(in srgb, var(--ai-color-brand-primary) 15%, transparent);
 }
 
 :global([data-theme='dark']) button.chipDefault:not(.chipDisabled):hover {
-  background-color: color-mix(in srgb, var(--ai-color-accent-blue) 20%, transparent);
+  background-color: color-mix(in srgb, var(--ai-color-brand-primary) 20%, transparent);
 }
 
-/* Filled Variant - Solid accent background */
+/* Filled Variant - Solid brand primary background */
 .chipFilled {
-  background-color: var(--ai-color-accent-blue);
-  color: #ffffff;
+  background-color: var(--ai-color-brand-primary);
+  color: var(--ai-color-brand-on-primary);
 }
 
 button.chipFilled:not(.chipDisabled):hover {
-  background-color: color-mix(in srgb, var(--ai-color-accent-blue) 90%, black);
+  background-color: var(--ai-color-brand-primary-hover);
 }
 
 .chipFilled .chipRemove:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Success Variant - Green for positive states */
+/* Success Variant - Brand success color for positive states */
 .chipSuccess {
-  background-color: color-mix(in srgb, var(--ai-color-accent-green) 10%, transparent);
-  color: var(--ai-color-accent-green);
+  background-color: color-mix(in srgb, var(--ai-color-brand-success) 10%, transparent);
+  color: var(--ai-color-brand-success);
 }
 
 :global([data-theme='dark']) .chipSuccess {
-  background-color: color-mix(in srgb, var(--ai-color-accent-green) 15%, transparent);
+  background-color: color-mix(in srgb, var(--ai-color-brand-success) 15%, transparent);
 }
 
 button.chipSuccess:not(.chipDisabled):hover {
-  background-color: color-mix(in srgb, var(--ai-color-accent-green) 15%, transparent);
+  background-color: color-mix(in srgb, var(--ai-color-brand-success) 15%, transparent);
 }
 
 :global([data-theme='dark']) button.chipSuccess:not(.chipDisabled):hover {
-  background-color: color-mix(in srgb, var(--ai-color-accent-green) 20%, transparent);
+  background-color: color-mix(in srgb, var(--ai-color-brand-success) 20%, transparent);
 }
 
-/* Warning Variant - Orange for attention states */
+/* Warning Variant - Brand warning color for attention states */
 .chipWarning {
-  background-color: color-mix(in srgb, var(--ai-color-accent-orange) 10%, transparent);
-  color: var(--ai-color-accent-orange);
+  background-color: color-mix(in srgb, var(--ai-color-brand-warning) 10%, transparent);
+  color: var(--ai-color-brand-warning);
 }
 
 :global([data-theme='dark']) .chipWarning {
-  background-color: color-mix(in srgb, var(--ai-color-accent-orange) 15%, transparent);
+  background-color: color-mix(in srgb, var(--ai-color-brand-warning) 15%, transparent);
 }
 
 button.chipWarning:not(.chipDisabled):hover {
-  background-color: color-mix(in srgb, var(--ai-color-accent-orange) 15%, transparent);
+  background-color: color-mix(in srgb, var(--ai-color-brand-warning) 15%, transparent);
 }
 
 :global([data-theme='dark']) button.chipWarning:not(.chipDisabled):hover {
-  background-color: color-mix(in srgb, var(--ai-color-accent-orange) 20%, transparent);
+  background-color: color-mix(in srgb, var(--ai-color-brand-warning) 20%, transparent);
 }
 
-/* Error Variant - Red for error states */
+/* Error Variant - Brand error color for error states */
 .chipError {
-  background-color: color-mix(in srgb, var(--ai-color-accent-red) 10%, transparent);
-  color: var(--ai-color-accent-red);
+  background-color: color-mix(in srgb, var(--ai-color-brand-error) 10%, transparent);
+  color: var(--ai-color-brand-error);
 }
 
 :global([data-theme='dark']) .chipError {
-  background-color: color-mix(in srgb, var(--ai-color-accent-red) 15%, transparent);
+  background-color: color-mix(in srgb, var(--ai-color-brand-error) 15%, transparent);
 }
 
 button.chipError:not(.chipDisabled):hover {
-  background-color: color-mix(in srgb, var(--ai-color-accent-red) 15%, transparent);
+  background-color: color-mix(in srgb, var(--ai-color-brand-error) 15%, transparent);
 }
 
 :global([data-theme='dark']) button.chipError:not(.chipDisabled):hover {
-  background-color: color-mix(in srgb, var(--ai-color-accent-red) 20%, transparent);
+  background-color: color-mix(in srgb, var(--ai-color-brand-error) 20%, transparent);
 }
 
 /* Neutral Variant - Subtle for tags and categories */

@@ -5,9 +5,17 @@ import React, {
   useState,
   useCallback,
   useMemo,
+  useRef,
 } from 'react';
 import { useOpenAiGlobal } from '../hooks/openai/useOpenAiGlobal';
 import type { Theme } from '../hooks/openai/types';
+import type { BrandColorConfig } from '../tokens/colors';
+import {
+  getContrastColor,
+  validateContrast,
+  isValidHexColor,
+  normalizeHexColor,
+} from '../tokens/token-helpers';
 
 /**
  * Theme context value shape
@@ -29,6 +37,11 @@ export interface ThemeContextValue {
    * Whether the theme is controlled by ChatGPT (read-only mode)
    */
   isControlledByChatGPT: boolean;
+
+  /**
+   * Current brand color configuration
+   */
+  brandColors?: BrandColorConfig;
 }
 
 /**
@@ -63,6 +76,109 @@ export interface ThemeProviderProps {
    * @default true
    */
   enableSystemTheme?: boolean;
+
+  /**
+   * Custom brand colors to override the default accent colors
+   * Provide hex color codes to customize the primary, success, warning, and error colors
+   * @example
+   * ```tsx
+   * <ThemeProvider brandColors={{ primary: '#6B46C1', success: '#00C853' }}>
+   *   <App />
+   * </ThemeProvider>
+   * ```
+   */
+  brandColors?: BrandColorConfig;
+}
+
+/**
+ * Generate CSS custom properties from brand color configuration
+ */
+function generateBrandColorCSS(
+  brandColors: BrandColorConfig,
+  theme: Theme
+): string {
+  const isDark = theme === 'dark';
+  const mixColor = isDark ? 'white' : 'black';
+  const hoverPercent = isDark ? '85%' : '85%';
+  const activePercent = isDark ? '90%' : '75%';
+
+  const styles: string[] = [];
+
+  // Helper to validate and add color with warnings
+  const addColorVariable = (
+    colorKey: keyof BrandColorConfig,
+    varName: string,
+    value: string
+  ) => {
+    // Validate hex color format first
+    if (!isValidHexColor(value)) {
+      console.warn(
+        `[ThemeProvider] Invalid hex color format for brand ${colorKey}: "${value}". ` +
+          `Expected format: #RGB, #RRGGBB, or #RRGGBBAA. This color will be skipped.`
+      );
+      return; // Skip invalid colors
+    }
+
+    // Normalize the color to standard format with #
+    const normalizedValue = normalizeHexColor(value);
+    if (!normalizedValue) {
+      console.warn(
+        `[ThemeProvider] Failed to normalize color "${value}" for brand ${colorKey}. This color will be skipped.`
+      );
+      return;
+    }
+
+    // Check if color has alpha channel (8-digit hex)
+    const hasAlpha = normalizedValue.length === 9;
+    if (hasAlpha) {
+      console.warn(
+        `[ThemeProvider] Brand ${colorKey} color "${normalizedValue}" contains an alpha channel. ` +
+          `Contrast validation will be performed on the opaque base color (alpha channel stripped). ` +
+          `Actual contrast may vary depending on background opacity.`
+      );
+    }
+
+    // Validate contrast for on-color (text on brand color)
+    // Note: For 8-digit colors, we validate against the opaque RGB values
+    const onColor = getContrastColor(normalizedValue);
+    const contrastResult = validateContrast(onColor, normalizedValue);
+
+    if (!contrastResult.valid) {
+      console.warn(
+        `[ThemeProvider] Brand ${colorKey} color "${normalizedValue}" may not meet WCAG AA contrast requirements (ratio: ${contrastResult.ratio?.toFixed(2)}). Consider using a different color.`
+      );
+    }
+
+    styles.push(`--ai-color-${varName}: ${normalizedValue};`);
+    styles.push(
+      `--ai-color-${varName}-hover: color-mix(in srgb, var(--ai-color-${varName}) ${hoverPercent}, ${mixColor});`
+    );
+    styles.push(
+      `--ai-color-${varName}-active: color-mix(in srgb, var(--ai-color-${varName}) ${activePercent}, ${mixColor});`
+    );
+    styles.push(`--ai-color-brand-on-${colorKey}: ${onColor};`);
+  };
+
+  // Generate CSS for each provided brand color
+  if (brandColors.primary) {
+    addColorVariable('primary', 'brand-primary', brandColors.primary);
+  }
+  if (brandColors.success) {
+    addColorVariable('success', 'brand-success', brandColors.success);
+  }
+  if (brandColors.warning) {
+    addColorVariable('warning', 'brand-warning', brandColors.warning);
+  }
+  if (brandColors.error) {
+    addColorVariable('error', 'brand-error', brandColors.error);
+  }
+
+  // Return empty if no custom colors provided
+  if (styles.length === 0) return '';
+
+  // Wrap in appropriate selector
+  const selector = isDark ? '[data-theme="dark"]' : ':root';
+  return `${selector} {\n  ${styles.join('\n  ')}\n}`;
 }
 
 /**
@@ -156,6 +272,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   defaultTheme = 'light',
   storageKey = 'ainativekit-theme',
   enableSystemTheme = true,
+  brandColors,
 }) => {
   // Check for ChatGPT theme
   const chatGPTTheme = useOpenAiGlobal('theme');
@@ -164,6 +281,15 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   const [theme, setThemeState] = useState<Theme>(() =>
     getInitialTheme(chatGPTTheme, storageKey, enableSystemTheme, defaultTheme)
   );
+
+  // Ref to track injected style element for brand colors
+  const styleElementRef = useRef<HTMLStyleElement | null>(null);
+
+  // Memoize CSS generation to avoid unnecessary recalculation
+  const brandColorCSS = useMemo(() => {
+    if (!brandColors) return '';
+    return generateBrandColorCSS(brandColors, theme);
+  }, [brandColors, theme]);
 
   // Update theme when ChatGPT theme changes (takes precedence)
   useEffect(() => {
@@ -225,6 +351,40 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     }
   }, [chatGPTTheme, enableSystemTheme, storageKey]);
 
+  // Inject brand color CSS
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    if (!brandColorCSS) {
+      // No custom colors, remove style element if it exists
+      if (styleElementRef.current) {
+        styleElementRef.current.remove();
+        styleElementRef.current = null;
+      }
+      return;
+    }
+
+    // Create or update style element
+    if (!styleElementRef.current) {
+      styleElementRef.current = document.createElement('style');
+      styleElementRef.current.setAttribute('data-ainativekit-brand-colors', 'true');
+      document.head.appendChild(styleElementRef.current);
+    }
+
+    // Only update if CSS content has changed (additional optimization)
+    if (styleElementRef.current.textContent !== brandColorCSS) {
+      styleElementRef.current.textContent = brandColorCSS;
+    }
+
+    // Cleanup on unmount
+    return () => {
+      if (styleElementRef.current) {
+        styleElementRef.current.remove();
+        styleElementRef.current = null;
+      }
+    };
+  }, [brandColorCSS]);
+
   // setTheme function (no-op if ChatGPT controls theme)
   const setTheme = useCallback(
     (newTheme: Theme) => {
@@ -244,8 +404,9 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
       theme,
       setTheme,
       isControlledByChatGPT: !!chatGPTTheme,
+      brandColors,
     }),
-    [theme, setTheme, chatGPTTheme]
+    [theme, setTheme, chatGPTTheme, brandColors]
   );
 
   return (

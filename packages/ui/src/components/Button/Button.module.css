@@ -168,3 +168,92 @@
 .rightIcon {
   flex-shrink: 0;
 }
+
+/* ========== COLOR VARIANTS ========== */
+/* Color variants use brand colors from ThemeProvider */
+/* These classes work with the primary variant to provide semantic coloring */
+
+/* Primary Color (default) */
+.buttonPrimary.colorPrimary {
+  background-color: var(--ai-color-brand-primary);
+  color: var(--ai-color-brand-on-primary);
+}
+
+.buttonPrimary.colorPrimary:not(:disabled):hover {
+  background-color: var(--ai-color-brand-primary-hover);
+}
+
+.buttonPrimary.colorPrimary:not(:disabled):active {
+  background-color: var(--ai-color-brand-primary-active);
+}
+
+.buttonPrimary.colorPrimary .leftIcon,
+.buttonPrimary.colorPrimary .rightIcon,
+.buttonPrimary.colorPrimary .iconOnlyIcon {
+  color: var(--ai-color-brand-on-primary);
+}
+
+/* Success Color */
+.buttonPrimary.colorSuccess {
+  background-color: var(--ai-color-brand-success);
+  color: var(--ai-color-brand-on-success);
+}
+
+.buttonPrimary.colorSuccess:not(:disabled):hover {
+  background-color: var(--ai-color-brand-success-hover);
+}
+
+.buttonPrimary.colorSuccess:not(:disabled):active {
+  background-color: var(--ai-color-brand-success-active);
+}
+
+.buttonPrimary.colorSuccess .leftIcon,
+.buttonPrimary.colorSuccess .rightIcon,
+.buttonPrimary.colorSuccess .iconOnlyIcon {
+  color: var(--ai-color-brand-on-success);
+}
+
+/* Warning Color */
+.buttonPrimary.colorWarning {
+  background-color: var(--ai-color-brand-warning);
+  color: var(--ai-color-brand-on-warning);
+}
+
+.buttonPrimary.colorWarning:not(:disabled):hover {
+  background-color: var(--ai-color-brand-warning-hover);
+}
+
+.buttonPrimary.colorWarning:not(:disabled):active {
+  background-color: var(--ai-color-brand-warning-active);
+}
+
+.buttonPrimary.colorWarning .leftIcon,
+.buttonPrimary.colorWarning .rightIcon,
+.buttonPrimary.colorWarning .iconOnlyIcon {
+  color: var(--ai-color-brand-on-warning);
+}
+
+/* Error Color */
+.buttonPrimary.colorError {
+  background-color: var(--ai-color-brand-error);
+  color: var(--ai-color-brand-on-error);
+}
+
+.buttonPrimary.colorError:not(:disabled):hover {
+  background-color: var(--ai-color-brand-error-hover);
+}
+
+.buttonPrimary.colorError:not(:disabled):active {
+  background-color: var(--ai-color-brand-error-active);
+}
+
+.buttonPrimary.colorError .leftIcon,
+.buttonPrimary.colorError .rightIcon,
+.buttonPrimary.colorError .iconOnlyIcon {
+  color: var(--ai-color-brand-on-error);
+}
+
+/* Neutral Color - uses default text colors for all variants */
+.colorNeutral {
+  /* Neutral doesn't override colors, uses variant defaults */
+}

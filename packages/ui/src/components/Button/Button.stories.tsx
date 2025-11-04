@@ -6,6 +6,7 @@ import { Card } from '../Card';
 import { PropsTable } from '../../tokens/PropsTable';
 import type { IconName } from '../../tokens/icons';
 import { cssVar } from '../../tokens/token-helpers';
+import { ThemeProvider } from '../../providers/ThemeProvider';
 
 const meta: Meta<typeof Button> = {
   title: 'Primitive Components/Buttons',
@@ -88,9 +89,48 @@ const ButtonCard: React.FC<{
 
 // Main unified Button showcase component
 const ButtonsComponent: React.FC = () => {
+  const [selectedBrand, setSelectedBrand] = React.useState<string>('default');
+
+  const brandPresets = {
+    default: {
+      name: 'Default (OpenAI Blue)',
+      colors: undefined,
+    },
+    purple: {
+      name: 'Purple Brand',
+      colors: {
+        primary: '#6B46C1',
+        success: '#00C853',
+        warning: '#FFB300',
+        error: '#D32F2F',
+      },
+    },
+    teal: {
+      name: 'Teal Brand',
+      colors: {
+        primary: '#0694A2',
+        success: '#0E9F6E',
+        warning: '#F59E0B',
+        error: '#E02424',
+      },
+    },
+    pink: {
+      name: 'Pink Brand',
+      colors: {
+        primary: '#E91E63',
+        success: '#4CAF50',
+        warning: '#FF9800',
+        error: '#F44336',
+      },
+    },
+  };
+
+  const currentBrand = brandPresets[selectedBrand as keyof typeof brandPresets];
+
   return (
-    <div style={{ padding: cssVar.spacing(12) }}>
-      <h1 style={{ marginBottom: cssVar.spacing(16) }}>Button System</h1>
+    <ThemeProvider brandColors={currentBrand.colors}>
+      <div style={{ padding: cssVar.spacing(12) }}>
+        <h1 style={{ marginBottom: cssVar.spacing(16) }}>Button System</h1>
 
       {/* Button Gallery */}
       <section style={{ marginBottom: cssVar.spacing(32) }}>
@@ -183,6 +223,221 @@ const ButtonsComponent: React.FC = () => {
               Settings
             </ButtonCard>
           </div>
+        </div>
+
+        {/* Color Variants */}
+        <div style={{ marginBottom: cssVar.spacing(24) }}>
+          <header style={{ marginBottom: cssVar.spacing(12) }}>
+            <h3 style={{ marginBottom: cssVar.spacing(4) }}>Semantic Colors</h3>
+            <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: 'var(--ai-font-size-body-regular)' }}>
+              Use brand colors for semantic meaning (customizable via ThemeProvider)
+            </p>
+          </header>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
+              gap: cssVar.spacing(8),
+            }}
+          >
+            <Card
+              elevationLevel={1}
+              style={{
+                padding: cssVar.spacing(10),
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: cssVar.spacing(6),
+              }}
+            >
+              <Button variant="primary" color="primary">Primary</Button>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: 'var(--ai-font-size-body-small)', fontWeight: 600 }}>
+                  Primary Color
+                </div>
+                <div style={{ fontSize: 'var(--ai-font-size-caption)', color: 'var(--ai-color-text-secondary)' }}>
+                  Default brand color
+                </div>
+              </div>
+            </Card>
+            <Card
+              elevationLevel={1}
+              style={{
+                padding: cssVar.spacing(10),
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: cssVar.spacing(6),
+              }}
+            >
+              <Button variant="primary" color="success">Success</Button>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: 'var(--ai-font-size-body-small)', fontWeight: 600 }}>
+                  Success Color
+                </div>
+                <div style={{ fontSize: 'var(--ai-font-size-caption)', color: 'var(--ai-color-text-secondary)' }}>
+                  Positive actions
+                </div>
+              </div>
+            </Card>
+            <Card
+              elevationLevel={1}
+              style={{
+                padding: cssVar.spacing(10),
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: cssVar.spacing(6),
+              }}
+            >
+              <Button variant="primary" color="warning">Warning</Button>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: 'var(--ai-font-size-body-small)', fontWeight: 600 }}>
+                  Warning Color
+                </div>
+                <div style={{ fontSize: 'var(--ai-font-size-caption)', color: 'var(--ai-color-text-secondary)' }}>
+                  Caution actions
+                </div>
+              </div>
+            </Card>
+            <Card
+              elevationLevel={1}
+              style={{
+                padding: cssVar.spacing(10),
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: cssVar.spacing(6),
+              }}
+            >
+              <Button variant="primary" color="error">Delete</Button>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: 'var(--ai-font-size-body-small)', fontWeight: 600 }}>
+                  Error Color
+                </div>
+                <div style={{ fontSize: 'var(--ai-font-size-caption)', color: 'var(--ai-color-text-secondary)' }}>
+                  Destructive actions
+                </div>
+              </div>
+            </Card>
+          </div>
+        </div>
+
+        {/* Custom Branding Section */}
+        <div style={{ marginTop: cssVar.spacing(32) }}>
+          <header style={{ marginBottom: cssVar.spacing(12) }}>
+            <h3 style={{ marginBottom: cssVar.spacing(4) }}>Custom Brand Colors</h3>
+            <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: 'var(--ai-font-size-body-regular)' }}>
+              Try different brand presets below to see colors update in real-time
+            </p>
+          </header>
+
+          {/* Brand Selector */}
+          <Card
+            elevationLevel={1}
+            style={{
+              padding: cssVar.spacing(12),
+              marginBottom: cssVar.spacing(16),
+            }}
+          >
+            <div style={{ display: 'flex', gap: cssVar.spacing(6), flexWrap: 'wrap', marginBottom: cssVar.spacing(8) }}>
+              {Object.entries(brandPresets).map(([key, preset]) => (
+                <Button
+                  key={key}
+                  variant={selectedBrand === key ? 'primary' : 'secondary'}
+                  onClick={() => setSelectedBrand(key)}
+                >
+                  {preset.name}
+                </Button>
+              ))}
+            </div>
+
+            {currentBrand.colors && (
+              <div
+                style={{
+                  marginTop: cssVar.spacing(8),
+                  padding: cssVar.spacing(8),
+                  backgroundColor: 'var(--ai-color-bg-secondary)',
+                  borderRadius: '8px',
+                  fontFamily: 'monospace',
+                  fontSize: '12px',
+                }}
+              >
+                <div style={{ marginBottom: cssVar.spacing(4), fontWeight: 600 }}>
+                  Current Configuration:
+                </div>
+                <pre style={{ margin: 0, whiteSpace: 'pre-wrap' }}>
+                  {`<ThemeProvider brandColors=${'{'}\n  primary: '${currentBrand.colors.primary}',\n  success: '${currentBrand.colors.success}',\n  warning: '${currentBrand.colors.warning}',\n  error: '${currentBrand.colors.error}',\n${'}'} />`}
+                </pre>
+              </div>
+            )}
+          </Card>
+
+          {/* Real-world Example */}
+          <Card
+            elevationLevel={2}
+            style={{
+              padding: cssVar.spacing(16),
+              marginBottom: cssVar.spacing(16),
+            }}
+          >
+            <h4 style={{ marginBottom: cssVar.spacing(4) }}>Delete Account</h4>
+            <p style={{ marginBottom: cssVar.spacing(12), color: 'var(--ai-color-text-secondary)' }}>
+              This action cannot be undone. All your data will be permanently deleted.
+            </p>
+            <div style={{ display: 'flex', gap: cssVar.spacing(8) }}>
+              <Button variant="secondary">Cancel</Button>
+              <Button variant="primary" color="error">
+                Delete My Account
+              </Button>
+            </div>
+          </Card>
+
+          {/* Usage Instructions */}
+          <Card
+            elevationLevel={1}
+            style={{
+              padding: cssVar.spacing(12),
+              backgroundColor: 'var(--ai-color-bg-secondary)',
+            }}
+          >
+            <h4 style={{ marginBottom: cssVar.spacing(6), fontSize: 'var(--ai-font-size-body-large)' }}>
+              How to Use
+            </h4>
+            <div style={{ fontSize: '14px', lineHeight: '1.6', color: 'var(--ai-color-text-secondary)' }}>
+              <p style={{ marginBottom: cssVar.spacing(6) }}>
+                Wrap your application with <code>ThemeProvider</code> and pass custom colors:
+              </p>
+              <pre
+                style={{
+                  padding: cssVar.spacing(8),
+                  backgroundColor: 'var(--ai-color-bg-tertiary)',
+                  borderRadius: '6px',
+                  overflow: 'auto',
+                  fontFamily: 'monospace',
+                  fontSize: '12px',
+                }}
+              >
+                {`import { ThemeProvider } from '@ainativekit/ui';
+
+<ThemeProvider
+  brandColors={{
+    primary: '#6B46C1',
+    success: '#00C853',
+    warning: '#FFB300',
+    error: '#D32F2F',
+  }}
+>
+  <App />
+</ThemeProvider>`}
+              </pre>
+              <p style={{ marginTop: cssVar.spacing(6), margin: 0 }}>
+                All components will automatically use your brand colors! The system generates hover/active
+                states and ensures WCAG AA accessible contrast ratios.
+              </p>
+            </div>
+          </Card>
         </div>
       </section>
 
@@ -846,6 +1101,33 @@ const ButtonsComponent: React.FC = () => {
                 <Button variant="ghost" iconOnly="close-bold" aria-label="Close" />
               </div>
             </div>
+
+            {/* Semantic colors for actions */}
+            <div
+              style={{
+                padding: cssVar.spacing(8),
+                backgroundColor: 'var(--ai-color-bg-secondary)',
+                borderRadius: '8px',
+              }}
+            >
+              <div style={{ fontWeight: 600, marginBottom: '8px' }}>
+                Semantic colors for specific actions
+              </div>
+              <div style={{ fontSize: '14px', marginBottom: '12px', color: 'var(--ai-color-text-secondary)' }}>
+                Use color prop to convey meaning: success for confirmations, error for destructive actions.
+              </div>
+              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                <Button variant="primary" color="success" leftIcon="check-circle">
+                  Confirm
+                </Button>
+                <Button variant="primary" color="error" leftIcon="trash-remove">
+                  Delete
+                </Button>
+                <Button variant="secondary" color="warning">
+                  Reset
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -859,6 +1141,10 @@ const ButtonsComponent: React.FC = () => {
             {
               name: 'variant',
               description: `Visual variant of the button. Options: "primary" (filled, main actions), "secondary" (outlined, alternatives), "tertiary" (subtle background), "ghost" (minimal). Default: "primary"`,
+            },
+            {
+              name: 'color',
+              description: `Semantic color of the button using brand colors from ThemeProvider. Options: "primary" (default brand color), "success" (positive actions), "warning" (caution), "error" (destructive), "neutral" (no color override). Default: "primary". Customize via ThemeProvider brandColors prop.`,
             },
             {
               name: 'leftIcon',
@@ -914,9 +1200,11 @@ const ButtonsComponent: React.FC = () => {
         </div>
       </section>
     </div>
+    </ThemeProvider>
   );
 };
 
 export const Buttons: StoryObj = {
   render: () => <ButtonsComponent />,
 };
+

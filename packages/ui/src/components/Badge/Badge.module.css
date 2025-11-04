@@ -42,50 +42,50 @@
 
 /* ========== VARIANT STYLES ========== */
 
-/* Default Variant - Light background with accent color */
+/* Default Variant - Light background with brand primary color */
 .badgeDefault {
-  background-color: color-mix(in srgb, var(--ai-color-accent-blue) 10%, transparent);
-  color: var(--ai-color-accent-blue);
+  background-color: color-mix(in srgb, var(--ai-color-brand-primary) 10%, transparent);
+  color: var(--ai-color-brand-primary);
 }
 
 :global([data-theme='dark']) .badgeDefault {
-  background-color: color-mix(in srgb, var(--ai-color-accent-blue) 15%, transparent);
+  background-color: color-mix(in srgb, var(--ai-color-brand-primary) 15%, transparent);
 }
 
-/* Filled Variant - Solid accent background */
+/* Filled Variant - Solid brand primary background */
 .badgeFilled {
-  background-color: var(--ai-color-accent-blue);
-  color: #ffffff; /* White text for contrast */
+  background-color: var(--ai-color-brand-primary);
+  color: var(--ai-color-brand-on-primary);
 }
 
-/* Success Variant - Green for positive states */
+/* Success Variant - Brand success color for positive states */
 .badgeSuccess {
-  background-color: color-mix(in srgb, var(--ai-color-accent-green) 10%, transparent);
-  color: var(--ai-color-accent-green);
+  background-color: color-mix(in srgb, var(--ai-color-brand-success) 10%, transparent);
+  color: var(--ai-color-brand-success);
 }
 
 :global([data-theme='dark']) .badgeSuccess {
-  background-color: color-mix(in srgb, var(--ai-color-accent-green) 15%, transparent);
+  background-color: color-mix(in srgb, var(--ai-color-brand-success) 15%, transparent);
 }
 
-/* Warning Variant - Orange for attention states */
+/* Warning Variant - Brand warning color for attention states */
 .badgeWarning {
-  background-color: color-mix(in srgb, var(--ai-color-accent-orange) 10%, transparent);
-  color: var(--ai-color-accent-orange);
+  background-color: color-mix(in srgb, var(--ai-color-brand-warning) 10%, transparent);
+  color: var(--ai-color-brand-warning);
 }
 
 :global([data-theme='dark']) .badgeWarning {
-  background-color: color-mix(in srgb, var(--ai-color-accent-orange) 15%, transparent);
+  background-color: color-mix(in srgb, var(--ai-color-brand-warning) 15%, transparent);
 }
 
-/* Error Variant - Red for error states */
+/* Error Variant - Brand error color for error states */
 .badgeError {
-  background-color: color-mix(in srgb, var(--ai-color-accent-red) 10%, transparent);
-  color: var(--ai-color-accent-red);
+  background-color: color-mix(in srgb, var(--ai-color-brand-error) 10%, transparent);
+  color: var(--ai-color-brand-error);
 }
 
 :global([data-theme='dark']) .badgeError {
-  background-color: color-mix(in srgb, var(--ai-color-accent-red) 15%, transparent);
+  background-color: color-mix(in srgb, var(--ai-color-brand-error) 15%, transparent);
 }
 
 /* Neutral Variant - Subtle for tags and categories */

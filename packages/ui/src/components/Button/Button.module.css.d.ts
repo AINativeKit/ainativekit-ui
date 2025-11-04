@@ -9,6 +9,11 @@ declare const styles: {
   readonly leftIcon: string;
   readonly rightIcon: string;
   readonly iconOnlyIcon: string;
+  readonly colorPrimary: string;
+  readonly colorSuccess: string;
+  readonly colorWarning: string;
+  readonly colorError: string;
+  readonly colorNeutral: string;
 };
 
 export default styles;

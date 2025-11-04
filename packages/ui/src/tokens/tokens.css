@@ -20,6 +20,25 @@
   --ai-color-accent-red: #e02e2a;
   --ai-color-accent-orange: #e25507;
   --ai-color-accent-green: #008635;
+
+  /* Brand Colors (customizable layer) */
+  --ai-color-brand-primary: var(--ai-color-accent-blue);
+  --ai-color-brand-primary-hover: color-mix(in srgb, var(--ai-color-brand-primary) 85%, black);
+  --ai-color-brand-primary-active: color-mix(in srgb, var(--ai-color-brand-primary) 75%, black);
+  --ai-color-brand-on-primary: #ffffff;
+  --ai-color-brand-success: var(--ai-color-accent-green);
+  --ai-color-brand-success-hover: color-mix(in srgb, var(--ai-color-brand-success) 85%, black);
+  --ai-color-brand-success-active: color-mix(in srgb, var(--ai-color-brand-success) 75%, black);
+  --ai-color-brand-on-success: #ffffff;
+  --ai-color-brand-warning: var(--ai-color-accent-orange);
+  --ai-color-brand-warning-hover: color-mix(in srgb, var(--ai-color-brand-warning) 85%, black);
+  --ai-color-brand-warning-active: color-mix(in srgb, var(--ai-color-brand-warning) 75%, black);
+  --ai-color-brand-on-warning: #ffffff;
+  --ai-color-brand-error: var(--ai-color-accent-red);
+  --ai-color-brand-error-hover: color-mix(in srgb, var(--ai-color-brand-error) 85%, black);
+  --ai-color-brand-error-active: color-mix(in srgb, var(--ai-color-brand-error) 75%, black);
+  --ai-color-brand-on-error: #ffffff;
+
   --ai-color-outline: #79747e;
   --ai-color-border-light: rgba(13, 13, 13, 0.05);
   --ai-color-border-default: rgba(13, 13, 13, 0.1);
@@ -165,6 +184,25 @@
   --ai-color-accent-red: #ff8583;
   --ai-color-accent-orange: #ff9e6c;
   --ai-color-accent-green: #40c977;
+
+  /* Brand Colors (customizable layer) - Dark Theme */
+  --ai-color-brand-primary: var(--ai-color-accent-blue);
+  --ai-color-brand-primary-hover: color-mix(in srgb, var(--ai-color-brand-primary) 85%, white);
+  --ai-color-brand-primary-active: color-mix(in srgb, var(--ai-color-brand-primary) 90%, white);
+  --ai-color-brand-on-primary: #ffffff;
+  --ai-color-brand-success: var(--ai-color-accent-green);
+  --ai-color-brand-success-hover: color-mix(in srgb, var(--ai-color-brand-success) 85%, white);
+  --ai-color-brand-success-active: color-mix(in srgb, var(--ai-color-brand-success) 90%, white);
+  --ai-color-brand-on-success: #000000;
+  --ai-color-brand-warning: var(--ai-color-accent-orange);
+  --ai-color-brand-warning-hover: color-mix(in srgb, var(--ai-color-brand-warning) 85%, white);
+  --ai-color-brand-warning-active: color-mix(in srgb, var(--ai-color-brand-warning) 90%, white);
+  --ai-color-brand-on-warning: #000000;
+  --ai-color-brand-error: var(--ai-color-accent-red);
+  --ai-color-brand-error-hover: color-mix(in srgb, var(--ai-color-brand-error) 85%, white);
+  --ai-color-brand-error-active: color-mix(in srgb, var(--ai-color-brand-error) 90%, white);
+  --ai-color-brand-on-error: #000000;
+
   --ai-color-outline: #938f99;
   --ai-color-border-light: rgba(255, 255, 255, 0.08);
   --ai-color-border-default: rgba(255, 255, 255, 0.12);

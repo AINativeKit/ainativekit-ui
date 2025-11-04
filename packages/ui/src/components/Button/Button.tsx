@@ -3,6 +3,7 @@ import type { ComponentPropsWithoutRef } from 'react';
 import { cn } from '../../utils/cn';
 import { Icon } from '../Icon';
 import type { IconName } from '../../tokens/icons';
+import type { ColorVariant } from '../../tokens/colors';
 import styles from './Button.module.css';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'ghost';
@@ -13,6 +14,12 @@ export interface ButtonProps extends Omit<ComponentPropsWithoutRef<'button'>, 'c
    * @default 'primary'
    */
   variant?: ButtonVariant;
+
+  /**
+   * Semantic color of the button (uses brand colors from ThemeProvider).
+   * @default 'primary'
+   */
+  color?: ColorVariant;
 
   /**
    * Icon to display before the button text.
@@ -67,6 +74,11 @@ export interface ButtonProps extends Omit<ComponentPropsWithoutRef<'button'>, 'c
  * // Secondary button for alternative actions
  * <Button variant="secondary">Learn More</Button>
  *
+ * // Semantic color variants (uses brand colors from ThemeProvider)
+ * <Button variant="primary" color="success">Save Changes</Button>
+ * <Button variant="primary" color="error">Delete Account</Button>
+ * <Button variant="secondary" color="warning">Reset Settings</Button>
+ *
  * // With icons for visual clarity
  * <Button variant="primary" leftIcon="plus-circle-add">Add Item</Button>
  * <Button variant="primary" rightIcon="arrow-right-sm">Continue</Button>
@@ -85,6 +97,7 @@ export interface ButtonProps extends Omit<ComponentPropsWithoutRef<'button'>, 'c
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
   const {
     variant = 'primary',
+    color = 'primary',
     leftIcon,
     rightIcon,
     iconOnly,
@@ -106,6 +119,14 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, r
     ghost: styles.buttonGhost,
   }[variant];
 
+  const colorClass = {
+    primary: styles.colorPrimary,
+    success: styles.colorSuccess,
+    warning: styles.colorWarning,
+    error: styles.colorError,
+    neutral: styles.colorNeutral,
+  }[color];
+
   const isIconOnly = !!iconOnly;
 
   // Development mode validation for icon-only buttons
@@ -122,6 +143,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, r
       className={cn(
         styles.button,
         variantClass,
+        colorClass,
         isIconOnly && styles.buttonIconOnly,
         className
       )}

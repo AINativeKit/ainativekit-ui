@@ -404,10 +404,10 @@ export function AlertBefore({ variant, children }: AlertProps) {
  */
 export function AlertAfter({ variant, children }: AlertProps) {
   const variantColorMap = {
-    info: colors.light.brand.info,
-    success: colors.light.brand.success,
-    warning: colors.light.brand.warning,
-    error: colors.light.brand.error,
+    info: colors.light.brand.primary.base,
+    success: colors.light.brand.success.base,
+    warning: colors.light.brand.warning.base,
+    error: colors.light.brand.error.base,
   };
 
   return (
@@ -472,7 +472,7 @@ export function FormInput({ label, placeholder, error }: InputProps) {
         <span
           style={{
             ...typography.caption,
-            color: colors.light.brand.error,
+            color: colors.light.brand.error.base,
           }}
         >
           {error}
