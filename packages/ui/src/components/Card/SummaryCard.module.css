@@ -40,7 +40,7 @@
 .summaryCard[data-size='compact'] .title {
   font-size: var(--ai-font-size-body);
   line-height: var(--ai-line-height-body);
-  font-weight: var(--ai-font-weight-semibold);
+  font-weight: var(--ai-font-weight-body);
   letter-spacing: var(--ai-letter-spacing-body);
 }
 
@@ -202,7 +202,7 @@
   line-height: var(--ai-line-height-body-small);
   font-weight: var(--ai-font-weight-body-small);
   letter-spacing: var(--ai-letter-spacing-body-small);
-  color: var(--ai-color-text-secondary);
+  color: var(--ai-color-text-primary);
   margin: 0;
 
   /* Truncate to single line with ellipsis */

@@ -118,7 +118,7 @@ const pizzaRestaurants: PizzaRestaurant[] = [
     title: 'Dough-Re-Mi',
     subtitle: '512 Harmony Avenue',
     image: 'https://persistent.oaistatic.com/pizzaz/pizzaz-4.png',
-    description: 'Focaccia-style squares, late-night favorite.',
+    description: 'Focaccia-style squares with fluffy, airy texture and perfectly crispy edges. A late-night favorite among locals who crave authentic Italian-style pizza.',
     badge: '4.6',
     features: ['$$', 'Focaccia', 'Late-night'],
   },
@@ -573,9 +573,9 @@ const IntroductionPage = () => {
         <div style={{ ...contentSectionStyle, maxWidth: '100%' }}>
           <CarouselComponent flushStart>
             {pizzaRestaurants.map((restaurant) => (
-              <div key={restaurant.id} style={{ minWidth: '220px' }}>
+              <div key={restaurant.id} style={{ minWidth: '280px' }}>
                 <SummaryCard
-                  style={{ width: '220px' }}
+                  style={{ width: '280px' }}
                   images={restaurant.image}
                   title={restaurant.title}
                   subtitle={restaurant.subtitle}
