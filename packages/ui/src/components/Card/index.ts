@@ -34,6 +34,3 @@ export type { SummaryCardProps, SummaryCardImage, SummaryCardMetadata } from './
 
 export { ListCard } from './ListCard';
 export type { ListCardProps, ListCardItem, ListCardImage } from './ListCard';
-
-export { DiscoveryCard } from './DiscoveryCard';
-export type { DiscoveryCardProps } from './DiscoveryCard';

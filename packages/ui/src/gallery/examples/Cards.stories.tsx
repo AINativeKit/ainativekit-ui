@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { ImageCard, SummaryCard, ListCard, DiscoveryCard } from '../../components/Card';
-import type { IconName } from '../../tokens/icons';
+import { ImageCard, SummaryCard, ListCard } from '../../components/Card';
 import { codeBlockStyles } from '../../components/storybook/codeBlockStyles';
 
 // Dummy component for Storybook
@@ -425,7 +424,7 @@ const CardsComponent = () => {
           </div>
         </div>
 
-        {/* DiscoveryCard Example */}
+        {/* SummaryCard Compact Example (replaces DiscoveryCard) */}
         <div style={{ marginBottom: '48px' }}>
           <h3
             style={{
@@ -435,7 +434,7 @@ const CardsComponent = () => {
               color: 'var(--ai-color-text-primary)',
             }}
           >
-            ⭐ DiscoveryCard - Featured Recommendations
+            ⭐ SummaryCard Compact - Featured Recommendations
           </h3>
           <p
             style={{
@@ -444,7 +443,7 @@ const CardsComponent = () => {
               marginBottom: '16px',
             }}
           >
-            Premium featured content with 4:3 aspect ratio images, ratings, feature highlights, and strong visual prominence. Perfect for discovery browsing, restaurant recommendations, and spotlights.
+            Premium featured content with 4:3 aspect ratio images, ratings, feature highlights, and strong visual prominence. Perfect for discovery browsing, restaurant recommendations, and spotlights. Uses compact size variant for denser layout.
           </p>
 
           <div
@@ -487,19 +486,19 @@ const CardsComponent = () => {
                 description: 'What the community is ordering most right now.'
               },
             ].map((item, i) => (
-              <DiscoveryCard
+              <SummaryCard
                 key={i}
-                image={item.image}
-                imageAlt={item.title}
+                images={item.image}
                 title={item.title}
                 subtitle={item.subtitle}
                 badge={item.badge}
-                badgeIcon={item.badgeIcon as IconName | undefined}
-                features={item.features}
+                size="compact"
+                imageAspectRatio="4/3"
+                metadata={item.features.map(f => ({ label: f, separator: '•' }))}
                 description={item.description}
                 buttonText={i === 2 ? 'Discover' : 'Order now'}
                 onButtonClick={() => console.log(`Action for ${item.title}`)}
-                width="280px"
+                style={{ width: '280px' }}
               />
             ))}
           </div>
@@ -546,10 +545,10 @@ const CardsComponent = () => {
               features: ['Top image', 'List items with metadata', 'Header + button', 'Flexible layout'],
             },
             {
-              title: '⭐ DiscoveryCard',
-              description: 'Premium featured content with badge and stats.',
-              bestFor: 'Featured products, spotlight content, recommendations, top picks',
-              features: ['Hero image', 'Badge support', 'Description text', 'Visual emphasis'],
+              title: '⭐ SummaryCard Compact',
+              description: 'Dense layout with compact typography (replaces DiscoveryCard).',
+              bestFor: 'Featured products, spotlight content, recommendations, carousels',
+              features: ['4:3 aspect ratio', 'Compact typography', 'Badge support', 'Metadata separators'],
             },
           ].map((card, index) => (
             <div
@@ -637,9 +636,8 @@ const CardsComponent = () => {
               description: 'Select based on content type and user intent:',
               details: [
                 'ImageCard: Visual-heavy content needing strong visual hierarchy',
-                'SummaryCard: Metrics, KPIs, status at a glance',
+                'SummaryCard: Metrics, KPIs, status at a glance (use size="compact" for denser layout)',
                 'ListCard: Structured multi-item data with metadata',
-                'DiscoveryCard: Featured/premium content needing emphasis',
               ],
             },
             {
@@ -761,12 +759,12 @@ const CardsComponent = () => {
         >
           {[
             { title: '🍕 Restaurant Finder', description: 'ImageCard grid for browsing restaurants with ratings and cuisines' },
-            { title: '📱 Product Catalog', description: 'Mix of ImageCard and DiscoveryCard for featured and regular items' },
+            { title: '📱 Product Catalog', description: 'Mix of ImageCard and SummaryCard (compact) for featured and regular items' },
             { title: '✈️ Travel Guide', description: 'ImageCard for attractions + ListCard for itineraries and guides' },
             { title: '📊 Dashboard', description: 'SummaryCard for KPIs and metrics with real-time updates' },
-            { title: '📚 Learning Platform', description: 'ListCard for course steps + DiscoveryCard for featured courses' },
+            { title: '📚 Learning Platform', description: 'ListCard for course steps + SummaryCard (compact) for featured courses' },
             { title: '🏥 Service Locator', description: 'ImageCard for locations + SummaryCard for hours/ratings' },
-            { title: '🛍️ E-commerce', description: 'DiscoveryCard for sale items + ImageCard for regular products' },
+            { title: '🛍️ E-commerce', description: 'SummaryCard (compact) for sale items + ImageCard for regular products' },
             { title: '✅ Task Manager', description: 'ListCard for to-do items with metadata and progress tracking' },
           ].map((useCase, index) => (
             <div
@@ -849,11 +847,13 @@ const CardsComponent = () => {
   topImage="optional-url"
 />
 
-// DiscoveryCard - Featured
-<DiscoveryCard
-  image="url"
+// SummaryCard Compact - Featured
+<SummaryCard
+  images="url"
   title="Title"
   badge="Featured"
+  size="compact"
+  imageAspectRatio="4/3"
   description="Description"
 />`}
           </pre>
@@ -881,7 +881,7 @@ const CardsComponent = () => {
           }}
         >
           {[
-            { title: 'Multiple Variants', description: '4 specialized card types for different use cases' },
+            { title: 'Multiple Variants', description: '3 specialized card types with compact size variant' },
             { title: 'Responsive Design', description: 'Adapts seamlessly to mobile, tablet, and desktop' },
             { title: 'Selection State', description: 'Built-in selected state for interactive applications' },
             { title: 'Flexible Content', description: 'Support for images, text, metadata, actions, and lists' },

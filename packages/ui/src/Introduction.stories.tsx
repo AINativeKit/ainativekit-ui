@@ -4,9 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Album } from './components/Album';
 import type { Album as AlbumType } from './components/Album/types';
 import { Carousel as CarouselComponent } from './components/Carousel';
-import { DiscoveryCard } from './components/Card/DiscoveryCard';
-import { Card } from './components/Card';
-import { SummaryCard } from './components/Card/SummaryCard';
+import { Card, SummaryCard } from './components/Card';
 import { List, ListItem } from './components/List';
 import { Button } from './components/Button';
 import { Map, FullscreenMap } from './components/Map';
@@ -576,15 +574,15 @@ const IntroductionPage = () => {
           <CarouselComponent flushStart>
             {pizzaRestaurants.map((restaurant) => (
               <div key={restaurant.id} style={{ minWidth: '220px' }}>
-                <DiscoveryCard
-                  width="220px"
-                  image={restaurant.image}
-                  imageAlt={restaurant.title}
+                <SummaryCard
+                  style={{ width: '220px' }}
+                  images={restaurant.image}
                   title={restaurant.title}
                   subtitle={restaurant.subtitle}
                   badge={restaurant.badge}
-                  badgeIcon="star"
-                  features={restaurant.features}
+                  size="compact"
+                  imageAspectRatio="4/3"
+                  metadata={restaurant.features.map(f => ({ label: f, separator: '•' }))}
                   description={restaurant.description}
                   buttonText="Order now"
                   onButtonClick={() => alert(`Order from ${restaurant.title}`)}
@@ -941,8 +939,8 @@ const IntroductionPage = () => {
               more
             </li>
             <li>
-              <strong>Cards</strong>: SummaryCard, ImageCard, ListCard, DiscoveryCard with all
-              variants
+              <strong>Cards</strong>: SummaryCard (with compact variant), ImageCard, ListCard with all
+              features
             </li>
             <li>
               <strong>Patterns</strong>: Carousel, List, Album, Map with complete examples

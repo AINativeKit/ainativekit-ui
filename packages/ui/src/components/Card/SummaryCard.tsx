@@ -47,6 +47,12 @@ export interface SummaryCardMetadata {
    * Label text to display next to the icon
    */
   label: string;
+  /**
+   * Separator to display after this item (e.g., "•", "|")
+   * Not displayed for the last item
+   * @default undefined
+   */
+  separator?: string;
 }
 
 export interface SummaryCardProps extends Omit<CardProps, 'children'> {
@@ -76,6 +82,24 @@ export interface SummaryCardProps extends Omit<CardProps, 'children'> {
    * @default 'default'
    */
   badgeVariant?: BadgeVariant;
+
+  /**
+   * Card size/density
+   * - "default": Spacious layout, heading3 title, bodySmall subtitle
+   * - "compact": Dense layout, bodyEmph title, caption subtitle (DiscoveryCard style)
+   * @default "default"
+   */
+  size?: 'default' | 'compact';
+
+  /**
+   * Image aspect ratio for single images
+   * - "auto": Natural aspect ratio (current behavior)
+   * - "16/9": Widescreen
+   * - "4/3": Classic (DiscoveryCard default)
+   * - "1/1": Square
+   * @default "auto"
+   */
+  imageAspectRatio?: 'auto' | '16/9' | '4/3' | '1/1';
 
   /**
    * Description text using bodySmall with secondary color.
@@ -251,6 +275,8 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
     subtitle,
     badge,
     badgeVariant = 'default',
+    size = 'default',
+    imageAspectRatio = 'auto',
     description,
     metadata,
     buttonText,
@@ -323,7 +349,13 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
   };
 
   return (
-    <Card ref={ref} padding={0} className={cn(styles.summaryCard, className)} {...cardProps}>
+    <Card
+      ref={ref}
+      padding={0}
+      className={cn(styles.summaryCard, className)}
+      data-size={size}
+      {...cardProps}
+    >
       {/* Loading State - Single Image */}
       {loading && isSingleImage && (
         <div className={styles.loadingContainer} role="status" aria-live="polite">
@@ -357,7 +389,7 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
 
           {/* Button Skeleton */}
           {hasButton && (
-            <div className={styles.buttonContainer}>
+            <div className={styles.buttonSection}>
               <Skeleton width="100%" height={44} borderRadius={8} />
             </div>
           )}
@@ -405,7 +437,7 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
 
           {/* Button Skeleton */}
           {hasButton && (
-            <div className={styles.buttonContainer}>
+            <div className={styles.buttonSection}>
               <Skeleton width="100%" height={44} borderRadius={8} />
             </div>
           )}
@@ -446,7 +478,7 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
 
           {/* Button Skeleton */}
           {hasButton && (
-            <div className={styles.buttonContainer}>
+            <div className={styles.buttonSection}>
               <Skeleton width="100%" height={44} borderRadius={8} />
             </div>
           )}
@@ -498,6 +530,7 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
                   src={imageArray[0].src}
                   alt={imageArray[0].alt}
                   className={styles.imageSingle}
+                  data-aspect={imageAspectRatio}
                   loading={imageArray[0].lazy !== false && imageLazy ? 'lazy' : 'eager'}
                   onLoad={onImageLoad}
                   onError={onImageError}
@@ -524,40 +557,50 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
             </div>
           )}
 
-          {/* Header Section */}
-          {hasHeader && (
-            <div className={styles.header}>
-              <div className={styles.headerText}>
-                {title && <h3 className={styles.title}>{title}</h3>}
-                {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
-              </div>
-              {renderBadge()}
-            </div>
-          )}
-
-          {/* Description Section */}
-          {hasDescription && <p className={styles.description}>{description}</p>}
-
-          {/* Metadata Section */}
-          {metadata && metadata.length > 0 && (
-            <div className={styles.metadata}>
-              {metadata.map((item, index) => (
-                <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  {item.icon &&
-                    (typeof item.icon === 'string' ? (
-                      <Icon name={item.icon as IconName} size="sm" tone="secondary" />
-                    ) : (
-                      <span className={styles.customIcon}>{item.icon}</span>
-                    ))}
-                  <span>{item.label}</span>
+          {/* Content Section - Groups header, description, metadata */}
+          {(hasHeader || hasDescription || metadata) && (
+            <div className={styles.contentSection}>
+              {/* Header Section */}
+              {hasHeader && (
+                <div className={styles.header}>
+                  <div className={styles.headerText}>
+                    {title && <h3 className={styles.title}>{title}</h3>}
+                    {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
+                  </div>
+                  {renderBadge()}
                 </div>
-              ))}
+              )}
+
+              {/* Description Section */}
+              {hasDescription && <p className={styles.description}>{description}</p>}
+
+              {/* Metadata Section */}
+              {metadata && metadata.length > 0 && (
+                <div className={styles.metadata}>
+                  {metadata.map((item, index) => (
+                    <React.Fragment key={index}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        {item.icon &&
+                          (typeof item.icon === 'string' ? (
+                            <Icon name={item.icon as IconName} size="sm" tone="secondary" />
+                          ) : (
+                            <span className={styles.customIcon}>{item.icon}</span>
+                          ))}
+                        <span>{item.label}</span>
+                      </div>
+                      {item.separator && index < metadata.length - 1 && (
+                        <span className={styles.metadataSeparator}>{item.separator}</span>
+                      )}
+                    </React.Fragment>
+                  ))}
+                </div>
+              )}
             </div>
           )}
 
           {/* Action Button */}
           {hasButton && (
-            <div className={styles.buttonContainer}>
+            <div className={styles.buttonSection}>
               <Button
                 variant="primary"
                 onClick={onButtonClick}

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Carousel as CarouselComponent } from '../../components/Carousel';
-import { DiscoveryCard } from '../../components/Card/DiscoveryCard';
+import { SummaryCard } from '../../components/Card';
 import { PropsTable } from '../../tokens/PropsTable';
 import { codeBlockStyles } from '../../components/storybook/codeBlockStyles';
 
@@ -18,7 +18,7 @@ const meta: Meta<typeof CarouselExample> = {
 export default meta;
 type Story = StoryObj<typeof CarouselExample>;
 
-// Pizza restaurant data for DiscoveryCard carousel
+// Pizza restaurant data for SummaryCard (compact) carousel
 const pizzaRestaurants = [
   {
     id: 'little-nonas',
@@ -129,16 +129,16 @@ export const Carousel: Story = {
           <div style={{ marginBottom: '24px' }}>
             <CarouselComponent>
               {pizzaRestaurants.map((restaurant) => (
-                <DiscoveryCard
+                <SummaryCard
                   key={restaurant.id}
-                  width="220px"
-                  image={restaurant.image}
-                  imageAlt={restaurant.title}
+                  style={{ width: '220px' }}
+                  images={restaurant.image}
                   title={restaurant.title}
                   subtitle={restaurant.subtitle}
                   badge={restaurant.badge}
-                  badgeIcon="star"
-                  features={restaurant.features}
+                  size="compact"
+                  imageAspectRatio="4/3"
+                  metadata={restaurant.features.map(f => ({ label: f, separator: '•' }))}
                   description={restaurant.description}
                   buttonText="Order now"
                   onButtonClick={() => alert(`Order from ${restaurant.title}`)}
@@ -209,7 +209,7 @@ export const Carousel: Story = {
             >
 {`type FeatureItem = string | { icon?: IconName; label: string };
 
-interface DiscoveryCardItem {
+interface SummaryCardItem {
   id: string;
   title: string;
   subtitle: string;
@@ -221,7 +221,7 @@ interface DiscoveryCardItem {
 }
 
 // Example:
-const items: DiscoveryCardItem[] = [
+const items: SummaryCardItem[] = [
   {
     id: 'item-1',
     title: 'Restaurant Name',
@@ -263,8 +263,8 @@ const items: DiscoveryCardItem[] = [
               >
                 badgeIcon
               </code>{' '}
-              prop to display icons alongside ratings (e.g., star-filled, verified). DiscoveryCard is optimized
-              for discovery/carousel layouts with 4:3 images and compact content.
+              prop to display icons alongside ratings (e.g., star-filled, verified). SummaryCard with size="compact" is optimized
+              for discovery/carousel layouts with 4:3 images and dense typography.
             </p>
           </div>
         </section>
@@ -292,7 +292,7 @@ const items: DiscoveryCardItem[] = [
               }}
             >
 {`import { Carousel } from '@ainativekit/ui';
-import { DiscoveryCard } from '@ainativekit/ui';
+import { SummaryCard } from '@ainativekit/ui';
 
 // 1. Define your carousel items with flexible features
 const items = [
@@ -324,21 +324,21 @@ const items = [
   // ... more items
 ];
 
-// 2. Render the carousel with DiscoveryCard
+// 2. Render the carousel with SummaryCard (compact)
 function MyCarousel() {
   return (
     <CarouselComponent>
       {items.map((item) => (
-        <DiscoveryCard
+        <SummaryCard
           key={item.id}
-          width="220px"
-          image={item.image}
-          imageAlt={item.title}
+          style={{ width: '220px' }}
+          images={item.image}
           title={item.title}
           subtitle={item.subtitle}
           badge={item.badge}
-          badgeIcon={item.badgeIcon}
-          features={item.features}
+          size="compact"
+          imageAspectRatio="4/3"
+          metadata={item.features.map(f => ({ label: f, separator: '•' }))}
           description={item.description}
           buttonText="Order now"
           onButtonClick={() => handleOrder(item.id)}
@@ -404,7 +404,7 @@ function MyCarousel() {
                 color: 'var(--ai-color-text-primary)',
               }}
             >
-              DiscoveryCard Component (Card Content)
+              SummaryCard Component (Card Content)
             </h3>
 
             <PropsTable
@@ -561,14 +561,14 @@ function MyCarousel() {
             }}
           >
             <p style={{ margin: '0 0 12px 0' }}>
-              This carousel gallery uses <strong>DiscoveryCard</strong>, which pairs well with:
+              This carousel gallery uses <strong>SummaryCard (compact)</strong>, which pairs well with:
             </p>
             <ul style={{ margin: 0, paddingLeft: '20px' }}>
               <li>
-                <strong>DiscoveryCard</strong> - Optimized for discovery/carousel layouts with 4:3 images and compact content
+                <strong>SummaryCard (size="compact")</strong> - Optimized for discovery/carousel layouts with 4:3 images and dense typography
               </li>
               <li>
-                <strong>SummaryCard</strong> - General-purpose cards with flexible image layouts (1 or multiple images)
+                <strong>SummaryCard (default)</strong> - General-purpose cards with flexible image layouts (1 or multiple images)
               </li>
               <li>
                 <strong>ImageCard</strong> - Image-focused cards with minimal text overlay

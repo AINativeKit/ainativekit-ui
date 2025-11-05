@@ -4,6 +4,7 @@ declare const styles: {
   readonly imageSingle: string;
   readonly imageGrid: string;
   readonly imageGridItem: string;
+  readonly contentSection: string;
   readonly header: string;
   readonly headerText: string;
   readonly title: string;
@@ -12,7 +13,8 @@ declare const styles: {
   readonly description: string;
   readonly metadata: string;
   readonly customIcon: string;
-  readonly buttonContainer: string;
+  readonly metadataSeparator: string;
+  readonly buttonSection: string;
   readonly button: string;
   readonly overflowIndicator: string;
   readonly loadingContainer: string;

@@ -257,7 +257,7 @@ const SummaryCardsComponent: React.FC = () => {
       {/* Custom Icons */}
       <section style={{ marginBottom: '64px' }}>
         <header style={{ marginBottom: '24px' }}>
-          <h2 style={{ marginBottom: '8px' }}>Custom Icons (NEW)</h2>
+          <h2 style={{ marginBottom: '8px' }}>Custom Icons</h2>
           <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
             Metadata icons can be library icons (string names) or custom React elements (SVGs, icon
             components)
@@ -275,8 +275,8 @@ const SummaryCardsComponent: React.FC = () => {
           {/* Custom property icons example */}
           <SummaryCard
             images="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80"
-            title="$4,449,000"
-            subtitle="98 Parnki Parade, Palm Beach, Qld 4221"
+            title="$5,449,000"
+            subtitle="98 Beach Parade, Palm Beach, Florida"
             metadata={[
               {
                 icon: (
@@ -446,6 +446,129 @@ const SummaryCardsComponent: React.FC = () => {
             description="Red chip for errors or unavailable"
             style={{ maxWidth: `${CARD_WIDTH}px` }}
           />
+        </div>
+      </section>
+
+      {/* Discovery/Browse Mode - Compact Size (NEW - replaces DiscoveryCard) */}
+      <section style={{ marginBottom: '64px' }}>
+        <header style={{ marginBottom: '24px' }}>
+          <h2 style={{ marginBottom: '8px' }}>Discovery/Browse Mode - Compact Size (NEW)</h2>
+          <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
+            Dense layout optimized for carousels and discovery interfaces. Use size="compact" with imageAspectRatio="4/3" to replicate DiscoveryCard.
+            Perfect for restaurant listings, product catalogs, and content discovery.
+          </p>
+        </header>
+
+        {/* Single Card with Code Example */}
+        <div style={{ marginBottom: '32px' }}>
+          <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+            Single Card Example
+          </h3>
+          <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+            <SummaryCard
+              images="https://persistent.oaistatic.com/pizzaz/pizzaz-1.png"
+              title="Tony's Pizzeria"
+              subtitle="123 Main Street"
+              badge="4.8"
+              size="compact"
+              imageAspectRatio="4/3"
+              description="Award-winning Neapolitan pizzas with wood-fired oven."
+              metadata={[
+                { label: '$$$', separator: '•' },
+                { label: 'Neapolitan', separator: '•' },
+                { label: 'Wood-fired' },
+              ]}
+              buttonText="Order now"
+              onButtonClick={() => alert('Order clicked!')}
+              style={{ width: '220px' }}
+            />
+            <pre style={{ flex: 1, minWidth: '300px', background: 'var(--ai-color-bg-secondary)', border: '1px solid var(--ai-color-border)', borderRadius: '8px', padding: '16px', fontSize: '12px', lineHeight: '1.5', overflow: 'auto', margin: 0 }}>
+{`<SummaryCard
+  images="..."
+  title="Tony's Pizzeria"
+  subtitle="123 Main Street"
+  badge="4.8"
+  size="compact"
+  imageAspectRatio="4/3"
+  description="Award-winning..."
+  metadata={[
+    { label: '$$$', separator: '•' },
+    { label: 'Neapolitan', separator: '•' },
+    { label: 'Wood-fired' }
+  ]}
+  buttonText="Order now"
+  style={{ width: '220px' }}
+/>`}
+            </pre>
+          </div>
+        </div>
+
+        {/* Grid of Cards */}
+        <div style={{ marginBottom: '32px' }}>
+          <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+            Multiple Cards in Grid
+          </h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '16px' }}>
+            {[
+              { id: '1', title: "Tony's Pizzeria", subtitle: '123 Main Street', image: 'https://persistent.oaistatic.com/pizzaz/pizzaz-1.png', description: 'Award-winning Neapolitan pizzas with wood-fired oven.', badge: '4.8', features: ['$$$', 'Neapolitan', 'Wood-fired'] },
+              { id: '2', title: 'Slice Haven', subtitle: '456 Park Avenue', image: 'https://persistent.oaistatic.com/pizzaz/pizzaz-3.png', description: 'New York style slices with fresh mozzarella.', badge: '4.6', features: ['$$', 'Slices', 'Fresh'] },
+              { id: '3', title: 'Pesto Kitchen', subtitle: '789 Garden Lane', image: 'https://persistent.oaistatic.com/pizzaz/pizzaz-5.png', description: 'Creative pesto-based pizzas with seasonal ingredients.', badge: '4.7', features: ['$$', 'Pesto', 'Creative'] },
+              { id: '4', title: 'Margherita Express', subtitle: '321 Market Street', image: 'https://persistent.oaistatic.com/pizzaz/pizzaz-6.png', description: 'Fresh mozzarella and basil prepared daily.', badge: '4.5', features: ['$$', 'Margherita', 'Fresh'] },
+            ].map((r) => (
+              <SummaryCard key={r.id} images={r.image} title={r.title} subtitle={r.subtitle} badge={r.badge} size="compact" imageAspectRatio="4/3" description={r.description} metadata={r.features.map((f, i, arr) => ({ label: f, separator: i < arr.length - 1 ? '•' : undefined }))} buttonText="Order now" onButtonClick={() => alert(`Order from ${r.title}`)} style={{ width: '100%' }} />
+            ))}
+          </div>
+        </div>
+
+        {/* Key Features */}
+        <div style={{ marginBottom: '32px' }}>
+          <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+            Key Features
+          </h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '12px' }}>
+            {[
+              { emoji: '🖼️', title: '4:3 Aspect Ratio', desc: 'Balanced proportions for content preview' },
+              { emoji: '⭐', title: 'Badge Support', desc: 'Display ratings with flexible variants' },
+              { emoji: '✨', title: 'Metadata Separators', desc: 'Custom separators (•, |, etc.)' },
+              { emoji: '📝', title: 'Dense Typography', desc: 'Compact text for info density' },
+              { emoji: '🎨', title: 'Design Tokens', desc: 'Consistent theming' },
+              { emoji: '🔘', title: 'Action Button', desc: 'Built-in CTA button' },
+            ].map((f) => (
+              <div key={f.title} style={{ background: 'var(--ai-color-bg-secondary)', border: '1px solid var(--ai-color-border)', borderRadius: '8px', padding: '12px' }}>
+                <div style={{ fontSize: '20px', marginBottom: '6px' }}>{f.emoji}</div>
+                <h4 style={{ margin: '0 0 4px 0', fontSize: '12px', fontWeight: '600', color: 'var(--ai-color-text-primary)' }}>{f.title}</h4>
+                <p style={{ margin: 0, fontSize: '11px', color: 'var(--ai-color-text-secondary)', lineHeight: '1.4' }}>{f.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Use Cases */}
+        <div style={{ marginBottom: '32px' }}>
+          <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+            Use Cases
+          </h3>
+          <div style={{ background: 'var(--ai-color-bg-secondary)', border: '1px solid var(--ai-color-border)', borderRadius: '8px', padding: '16px', fontSize: '13px', lineHeight: '1.6', color: 'var(--ai-color-text-secondary)' }}>
+            <ul style={{ margin: 0, paddingLeft: '20px' }}>
+              <li><strong>Restaurant Discovery:</strong> Browse restaurants with ratings, pricing, and cuisine types in carousels</li>
+              <li><strong>Product Catalogs:</strong> Display products in grid or carousel layouts with quick actions</li>
+              <li><strong>Hotel/Travel:</strong> Show accommodations with amenities and booking options</li>
+              <li><strong>Content Discovery:</strong> Browse articles, videos with rich previews</li>
+              <li><strong>E-commerce:</strong> Product showcase with ratings and quick-buy actions</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Aspect Ratio Variants */}
+        <div>
+          <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+            Image Aspect Ratio Options
+          </h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '16px' }}>
+            <SummaryCard images={SAMPLE_IMAGES.restaurant} title="4:3 Classic" subtitle="Recommended" badge="4.8" size="compact" imageAspectRatio="4/3" description="Balanced proportions, perfect for most content" metadata={[{ label: 'Default' }]} style={{ width: '100%' }} />
+            <SummaryCard images={SAMPLE_IMAGES.restaurant} title="16:9 Widescreen" subtitle="Cinematic" badge="4.7" size="compact" imageAspectRatio="16/9" description="Wide format for landscape-oriented content" metadata={[{ label: 'Landscape' }]} style={{ width: '100%' }} />
+            <SummaryCard images={SAMPLE_IMAGES.restaurant} title="1:1 Square" subtitle="Symmetric" badge="4.6" size="compact" imageAspectRatio="1/1" description="Square format for symmetric compositions" metadata={[{ label: 'Square' }]} style={{ width: '100%' }} />
+          </div>
         </div>
       </section>
 

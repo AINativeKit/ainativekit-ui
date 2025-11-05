@@ -17,6 +17,44 @@
   object-fit: cover;
 }
 
+/* Image aspect ratios for single images */
+.imageSingle[data-aspect='16/9'] {
+  aspect-ratio: 16 / 9;
+  height: auto;
+}
+
+.imageSingle[data-aspect='4/3'] {
+  aspect-ratio: 4 / 3;
+  height: auto;
+}
+
+.imageSingle[data-aspect='1/1'] {
+  aspect-ratio: 1 / 1;
+  height: auto;
+}
+
+/* Compact size variant - denser typography */
+.summaryCard[data-size='compact'] .title {
+  font-size: var(--ai-font-size-body);
+  line-height: var(--ai-line-height-body);
+  font-weight: var(--ai-font-weight-semibold);
+  letter-spacing: var(--ai-letter-spacing-body);
+}
+
+.summaryCard[data-size='compact'] .subtitle {
+  font-size: var(--ai-font-size-caption);
+  line-height: var(--ai-line-height-caption);
+  font-weight: var(--ai-font-weight-caption);
+  letter-spacing: var(--ai-letter-spacing-caption);
+}
+
+.summaryCard[data-size='compact'] .description {
+  font-size: var(--ai-font-size-caption);
+  line-height: var(--ai-line-height-caption);
+  font-weight: var(--ai-font-weight-caption);
+  letter-spacing: var(--ai-letter-spacing-caption);
+}
+
 .imageGrid {
   display: grid;
   gap: var(--ai-spacing-2);
@@ -117,23 +155,20 @@
   pointer-events: none;
 }
 
+/* Content Section - Groups header, description, metadata */
+.contentSection {
+  padding: var(--ai-spacing-4) var(--ai-spacing-8); /* 16px vertical, 32px horizontal */
+  display: flex;
+  flex-direction: column;
+  gap: var(--ai-spacing-2); /* 8px between children */
+}
+
 /* Header Section */
 .header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: var(--ai-spacing-8);
-  margin: var(--ai-spacing-4) var(--ai-spacing-8) 0 var(--ai-spacing-8); /* 16px top, 32px sides, 0 bottom */
-}
-
-/* Add spacing from image if image exists */
-.imageSection + .header {
-  margin-top: var(--ai-spacing-4); /* 16px from image */
-}
-
-/* Add bottom margin when header is the last element (no description or button) */
-.header:last-child {
-  margin-bottom: var(--ai-spacing-4); /* 16px bottom */
+  gap: var(--ai-spacing-8); /* Gap between title/subtitle and badge */
 }
 
 .headerText {
@@ -160,8 +195,8 @@
   line-height: var(--ai-line-height-body-small);
   font-weight: var(--ai-font-weight-body-small);
   letter-spacing: var(--ai-letter-spacing-body-small);
-  color: var(--ai-color-text-primary);
-  margin: var(--ai-spacing-2) 0 0 0;
+  color: var(--ai-color-text-secondary); /* Changed from primary to secondary for better hierarchy */
+  margin: var(--ai-spacing-2) 0 0 0; /* Keep spacing from title within header */
 
   /* Truncate to single line with ellipsis */
   overflow: hidden;
@@ -176,11 +211,10 @@
 /* Description Section */
 .description {
   font-size: var(--ai-font-size-body-small);
-  line-height: var(--ai-line-height-body-small);
+  line-height: 20px; /* Increased from 18px for better readability */
   font-weight: var(--ai-font-weight-body-small);
   letter-spacing: var(--ai-letter-spacing-body-small);
   color: var(--ai-color-text-secondary);
-  margin: var(--ai-spacing-2) var(--ai-spacing-8) 0 var(--ai-spacing-8); /* 8px top, 32px sides */
 
   /* Clamp to 2 lines with ellipsis */
   display: -webkit-box;
@@ -189,23 +223,12 @@
   overflow: hidden;
 }
 
-/* Add spacing from header if header exists */
-.header + .description {
-  margin-top: var(--ai-spacing-2); /* 8px from header */
-}
-
-/* Add bottom padding when description is the last element (no button) */
-.description:last-child {
-  margin-bottom: var(--ai-spacing-4); /* 16px bottom */
-}
-
 /* Metadata Section */
 .metadata {
   font-size: var(--ai-font-size-body-small);
   color: var(--ai-color-text-secondary);
   display: flex;
   gap: var(--ai-spacing-4);
-  margin: var(--ai-spacing-2) var(--ai-spacing-8) 0 var(--ai-spacing-8); /* 8px top, 32px sides, 0 bottom */
 }
 
 .customIcon {
@@ -215,34 +238,14 @@
   color: var(--ai-color-text-secondary);
 }
 
-/* Add spacing from description if description exists */
-.description + .metadata {
-  margin-top: var(--ai-spacing-2); /* 8px from description */
+.metadataSeparator {
+  color: var(--ai-color-text-secondary);
+  margin: 0 var(--ai-spacing-1);
 }
 
-/* Add bottom padding when metadata is the last element (no button) */
-.metadata:last-child {
-  margin-bottom: var(--ai-spacing-4); /* 16px bottom */
-}
-
-/* Button Container */
-.buttonContainer {
-  margin: var(--ai-spacing-6) var(--ai-spacing-4) var(--ai-spacing-4) var(--ai-spacing-4); /* 24px top, 16px sides, 16px bottom */
-}
-
-/* Add spacing from description if description exists */
-.description + .buttonContainer {
-  margin-top: var(--ai-spacing-6); /* 24px from description */
-}
-
-/* Add spacing from header if no description */
-.header + .buttonContainer {
-  margin-top: var(--ai-spacing-6); /* 24px from header */
-}
-
-/* Add spacing from image if only button (no header or description) */
-.imageSection + .buttonContainer {
-  margin-top: var(--ai-spacing-6); /* 24px from image */
+/* Button Section */
+.buttonSection {
+  padding: var(--ai-spacing-6) var(--ai-spacing-4) var(--ai-spacing-4); /* 24px top, 16px sides/bottom */
 }
 
 .button {
