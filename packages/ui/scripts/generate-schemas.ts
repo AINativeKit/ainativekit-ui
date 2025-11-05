@@ -66,7 +66,11 @@ function getAllTsFiles(dir: string, fileList: string[] = []): string[] {
     const filePath = path.join(dir, file);
     if (fs.statSync(filePath).isDirectory()) {
       getAllTsFiles(filePath, fileList);
-    } else if (filePath.match(/\.tsx?$/) && !filePath.includes('.test.') && !filePath.includes('.stories.')) {
+    } else if (
+      filePath.match(/\.tsx?$/) &&
+      !filePath.includes('.test.') &&
+      !filePath.includes('.stories.')
+    ) {
       fileList.push(filePath);
     }
   });
@@ -121,11 +125,7 @@ for (const { name, component, category } of COMPONENT_SCHEMAS) {
 
       // Write schema to file
       const schemaPath = path.join(SCHEMA_DIR, `${component}.schema.json`);
-      fs.writeFileSync(
-        schemaPath,
-        JSON.stringify(enhancedSchema, null, 2),
-        'utf-8'
-      );
+      fs.writeFileSync(schemaPath, JSON.stringify(enhancedSchema, null, 2), 'utf-8');
 
       console.log(`✅ Generated schema for ${component} (${name})`);
       successCount++;
@@ -146,15 +146,18 @@ const indexContent = {
   title: 'AINativeKit UI Component Schemas',
   description: 'Collection of JSON schemas for all AINativeKit UI components',
   version: require('../package.json').version,
-  components: COMPONENT_SCHEMAS.reduce((acc, { component, category }) => {
-    acc[component] = {
-      schemaPath: `./components/${component}.schema.json`,
-      category,
-      import: '@ainativekit/ui',
-    };
-    return acc;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  }, {} as Record<string, any>),
+  components: COMPONENT_SCHEMAS.reduce(
+    (acc, { component, category }) => {
+      acc[component] = {
+        schemaPath: `./components/${component}.schema.json`,
+        category,
+        import: '@ainativekit/ui',
+      };
+      return acc;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    },
+    {} as Record<string, any>
+  ),
 };
 
 const indexPath = path.join(path.dirname(SCHEMA_DIR), 'index.json');

@@ -21,10 +21,8 @@ import type { IconProps } from '../components/Icon';
  * @accessibility
  * Usually decorative when paired with text. For icon-only buttons, add aria-label to the Button.
  */
-export const UserLock = React.forwardRef<HTMLSpanElement, Omit<IconProps, 'name'>>(
-  (props, ref) => {
-    return <Icon ref={ref} name="user-lock" {...props} />;
-  }
-);
+export const UserLock = React.forwardRef<HTMLSpanElement, Omit<IconProps, 'name'>>((props, ref) => {
+  return <Icon ref={ref} name="user-lock" {...props} />;
+});
 
 UserLock.displayName = 'UserLock';

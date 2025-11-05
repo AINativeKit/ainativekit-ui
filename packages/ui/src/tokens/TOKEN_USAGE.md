@@ -28,9 +28,9 @@ function MyComponent() {
   return (
     <div
       style={{
-        gap: spacing[8],                    // '16px'
-        color: colors.light.text.primary,   // '#0D0D0D'
-        ...typography.heading1,             // Complete typography style
+        gap: spacing[8], // '16px'
+        color: colors.light.text.primary, // '#0D0D0D'
+        ...typography.heading1, // Complete typography style
       }}
     >
       <h1>Hello World</h1>
@@ -90,21 +90,21 @@ import { spacing, cssVar } from '@ainativekit/ui/tokens';
 
 **Spacing Scale Reference:**
 
-| Scale | Value | Use Case |
-|-------|-------|----------|
-| 0     | 0px   | No spacing |
+| Scale | Value | Use Case                 |
+| ----- | ----- | ------------------------ |
+| 0     | 0px   | No spacing               |
 | 1     | 2px   | Minimal spacing, borders |
-| 2     | 4px   | Tight spacing |
+| 2     | 4px   | Tight spacing            |
 | 4     | 8px   | Small gaps, icon spacing |
-| 6     | 12px  | Medium-small spacing |
-| 8     | 16px  | Standard gap, padding |
-| 10    | 20px  | Medium spacing |
-| 12    | 24px  | Large padding |
-| 16    | 32px  | Section spacing |
-| 20    | 40px  | Large sections |
-| 24    | 48px  | Major spacing |
-| 32    | 64px  | Extra large |
-| 64    | 128px | Maximum spacing |
+| 6     | 12px  | Medium-small spacing     |
+| 8     | 16px  | Standard gap, padding    |
+| 10    | 20px  | Medium spacing           |
+| 12    | 24px  | Large padding            |
+| 16    | 32px  | Section spacing          |
+| 20    | 40px  | Large sections           |
+| 24    | 48px  | Major spacing            |
+| 32    | 64px  | Extra large              |
+| 64    | 128px | Maximum spacing          |
 
 ### Colors
 
@@ -148,12 +148,12 @@ import { colors, cssVar } from '@ainativekit/ui/tokens';
 
 ```typescript
 // Available CSS variable paths:
-'text-primary' | 'text-secondary' | 'text-tertiary' | 'text-inverted'
-'bg-primary' | 'bg-secondary' | 'bg-tertiary'
-'icon-primary' | 'icon-secondary' | 'icon-tertiary' | 'icon-inverted'
-'accent-blue' | 'accent-red' | 'accent-orange' | 'accent-green'
-'brand-primary' | 'brand-success' | 'brand-warning' | 'brand-error' | 'brand-info'
-'outline' | 'border-light' | 'border-default' | 'border-heavy'
+'text-primary' | 'text-secondary' | 'text-tertiary' | 'text-inverted';
+'bg-primary' | 'bg-secondary' | 'bg-tertiary';
+'icon-primary' | 'icon-secondary' | 'icon-tertiary' | 'icon-inverted';
+'accent-blue' | 'accent-red' | 'accent-orange' | 'accent-green';
+'brand-primary' | 'brand-success' | 'brand-warning' | 'brand-error' | 'brand-info';
+'outline' | 'border-light' | 'border-default' | 'border-heavy';
 ```
 
 ### Typography
@@ -197,19 +197,19 @@ import { typography, applyTypography, cssVar } from '@ainativekit/ui/tokens';
 
 **Typography Styles:**
 
-| Style | Font Size | Line Height | Weight | Use Case |
-|-------|-----------|-------------|--------|----------|
-| heading1 | 36px | 40px | 600 | Page titles |
-| heading2 | 24px | 28px | 600 | Section headings |
-| heading3 | 18px | 26px | 600 | Subsections |
-| body | 16px | 26px | 400 | Main content |
-| bodyEmph | 16px | 26px | 600 | Emphasized text |
-| bodySmall | 14px | 18px | 400 | Secondary info |
-| bodySmallEmph | 14px | 18px | 600 | Emphasized small text |
-| caption | 12px | 16px | 400 | Captions, labels |
-| captionEmph | 12px | 16px | 600 | Emphasized captions |
-| button | 15px | 24px | 500 | Buttons, CTAs |
-| badge | 14px | 18px | 600 | Badges, tags |
+| Style         | Font Size | Line Height | Weight | Use Case              |
+| ------------- | --------- | ----------- | ------ | --------------------- |
+| heading1      | 36px      | 40px        | 600    | Page titles           |
+| heading2      | 24px      | 28px        | 600    | Section headings      |
+| heading3      | 18px      | 26px        | 600    | Subsections           |
+| body          | 16px      | 26px        | 400    | Main content          |
+| bodyEmph      | 16px      | 26px        | 600    | Emphasized text       |
+| bodySmall     | 14px      | 18px        | 400    | Secondary info        |
+| bodySmallEmph | 14px      | 18px        | 600    | Emphasized small text |
+| caption       | 12px      | 16px        | 400    | Captions, labels      |
+| captionEmph   | 12px      | 16px        | 600    | Emphasized captions   |
+| button        | 15px      | 24px        | 500    | Buttons, CTAs         |
+| badge         | 14px      | 18px        | 600    | Badges, tags          |
 
 ### Border Radius
 
@@ -235,15 +235,15 @@ import { radius, cssVar } from '@ainativekit/ui/tokens';
 
 **Radius Scale:**
 
-| Value | Size | Use Case |
-|-------|------|----------|
-| none  | 0px  | Sharp corners |
-| sm    | 4px  | Subtle rounding |
-| md    | 8px  | Small elements |
-| base  | 12px | Default rounding |
-| lg    | 16px | Cards, panels |
-| xl    | 24px | Large cards |
-| full  | 9999px | Pills, circular |
+| Value | Size   | Use Case         |
+| ----- | ------ | ---------------- |
+| none  | 0px    | Sharp corners    |
+| sm    | 4px    | Subtle rounding  |
+| md    | 8px    | Small elements   |
+| base  | 12px   | Default rounding |
+| lg    | 16px   | Cards, panels    |
+| xl    | 24px   | Large cards      |
+| full  | 9999px | Pills, circular  |
 
 ### Elevation
 
@@ -277,14 +277,14 @@ import { elevation, applyElevation, cssVar } from '@ainativekit/ui/tokens';
 
 **Elevation Levels:**
 
-| Level | Shadow | Use Case | Z-Index |
-|-------|--------|----------|---------|
-| 0     | none   | Flat surface | 0 |
-| 1     | 4px blur | Subtle lift | 100 |
-| 2     | 6px blur | Cards | 200 |
-| 3     | 10px blur | Raised cards | 300 |
-| 4     | 12px blur | Modals | 400 |
-| 5     | 16px blur | Popovers | 500 |
+| Level | Shadow    | Use Case     | Z-Index |
+| ----- | --------- | ------------ | ------- |
+| 0     | none      | Flat surface | 0       |
+| 1     | 4px blur  | Subtle lift  | 100     |
+| 2     | 6px blur  | Cards        | 200     |
+| 3     | 10px blur | Raised cards | 300     |
+| 4     | 12px blur | Modals       | 400     |
+| 5     | 16px blur | Popovers     | 500     |
 
 ### Opacity
 
@@ -310,12 +310,12 @@ import { opacity, cssVar } from '@ainativekit/ui/tokens';
 
 **Opacity Presets:**
 
-| Preset | Value | Use Case |
-|--------|-------|----------|
-| full | 1.0 | Full opacity |
-| subtle | 0.7 | Slightly dimmed |
-| muted | 0.5 | Half opacity |
-| disabled | 0.3 | Disabled state |
+| Preset   | Value | Use Case        |
+| -------- | ----- | --------------- |
+| full     | 1.0   | Full opacity    |
+| subtle   | 0.7   | Slightly dimmed |
+| muted    | 0.5   | Half opacity    |
+| disabled | 0.3   | Disabled state  |
 
 ## Usage Patterns
 
@@ -355,8 +355,8 @@ function ThemedCard({ children }: { children: React.ReactNode }) {
     <div
       style={{
         padding: spacing[16],
-        backgroundColor: cssVar.color('bg-primary'),  // Adapts to theme
-        color: cssVar.color('text-primary'),           // Adapts to theme
+        backgroundColor: cssVar.color('bg-primary'), // Adapts to theme
+        color: cssVar.color('text-primary'), // Adapts to theme
         borderRadius: cssVar.radius('xl'),
         boxShadow: cssVar.elevation(2),
       }}
@@ -377,12 +377,8 @@ import { typography, elevation } from '@ainativekit/ui/tokens';
 function Article() {
   return (
     <article className={elevation[1].className}>
-      <h1 className={typography.heading1.className}>
-        Article Title
-      </h1>
-      <p className={typography.body.className}>
-        Article content goes here.
-      </p>
+      <h1 className={typography.heading1.className}>Article Title</h1>
+      <p className={typography.body.className}>Article content goes here.</p>
     </article>
   );
 }
@@ -393,13 +389,7 @@ function Article() {
 Best for: Real-world applications
 
 ```tsx
-import {
-  spacing,
-  colors,
-  typography,
-  applyTypography,
-  cssVar,
-} from '@ainativekit/ui/tokens';
+import { spacing, colors, typography, applyTypography, cssVar } from '@ainativekit/ui/tokens';
 
 function ProductCard({ theme }: { theme: 'light' | 'dark' }) {
   const themeColors = colors[theme];
@@ -407,10 +397,10 @@ function ProductCard({ theme }: { theme: 'light' | 'dark' }) {
   return (
     <div
       style={{
-        padding: spacing[16],                    // Direct value
-        backgroundColor: themeColors.background.primary,  // Theme-specific
-        borderRadius: cssVar.radius('xl'),       // CSS variable
-        gap: spacing[8],                         // Direct value
+        padding: spacing[16], // Direct value
+        backgroundColor: themeColors.background.primary, // Theme-specific
+        borderRadius: cssVar.radius('xl'), // CSS variable
+        gap: spacing[8], // Direct value
       }}
     >
       <h3 style={applyTypography('heading3')}>Product Name</h3>
@@ -425,6 +415,7 @@ function ProductCard({ theme }: { theme: 'light' | 'dark' }) {
 ### When to Use Direct Values
 
 ✅ **Use direct values when:**
+
 - Component doesn't need theme switching
 - Building a static site
 - Performance is critical (fewer CSS variable lookups)
@@ -432,15 +423,18 @@ function ProductCard({ theme }: { theme: 'light' | 'dark' }) {
 
 ```tsx
 // Good: Static component
-<div style={{
-  padding: spacing[16],              // '32px'
-  color: colors.light.text.primary,  // '#0D0D0D'
-}} />
+<div
+  style={{
+    padding: spacing[16], // '32px'
+    color: colors.light.text.primary, // '#0D0D0D'
+  }}
+/>
 ```
 
 ### When to Use CSS Variables
 
 ✅ **Use CSS variables when:**
+
 - Supporting dynamic theme switching
 - Building for ChatGPT Apps (theme changes automatically)
 - Want user-controlled themes
@@ -448,10 +442,12 @@ function ProductCard({ theme }: { theme: 'light' | 'dark' }) {
 
 ```tsx
 // Good: Dynamic theming
-<div style={{
-  padding: cssVar.spacing(16),     // 'var(--ai-spacing-16)'
-  color: cssVar.color('text-primary'),  // Adapts to theme
-}} />
+<div
+  style={{
+    padding: cssVar.spacing(16), // 'var(--ai-spacing-16)'
+    color: cssVar.color('text-primary'), // Adapts to theme
+  }}
+/>
 ```
 
 ## Best Practices
@@ -503,11 +499,13 @@ color: 'var(--ai-color-text-primry)'  // Typo! Use cssVar.color('text-primary')
 
 ```tsx
 // ❌ Before: No autocomplete, typo-prone
-<div style={{
-  gap: 'var(--ai-spacing-8)',
-  fontSize: 'var(--ai-font-size-sm)',
-  color: 'var(--ai-color-text-primary)',
-}} />
+<div
+  style={{
+    gap: 'var(--ai-spacing-8)',
+    fontSize: 'var(--ai-font-size-sm)',
+    color: 'var(--ai-color-text-primary)',
+  }}
+/>
 ```
 
 ### After: Type-Safe Token Helpers
@@ -537,10 +535,12 @@ import { cssVar, spacing, typography } from '@ainativekit/ui/tokens';
 ```tsx
 import { varWithFallback, customVar } from '@ainativekit/ui/tokens';
 
-<div style={{
-  color: varWithFallback('custom-color', colors.light.text.primary),
-  backgroundColor: customVar('brand-background'),
-}} />
+<div
+  style={{
+    color: varWithFallback('custom-color', colors.light.text.primary),
+    backgroundColor: customVar('brand-background'),
+  }}
+/>;
 ```
 
 ### Conditional Theming
@@ -595,11 +595,11 @@ All token helpers provide full type inference:
 import type { SpacingScale, ColorPath, TypographyStyle } from '@ainativekit/ui/tokens';
 
 // Autocomplete works automatically
-const mySpacing: SpacingScale = 16;  // ✅ Valid
+const mySpacing: SpacingScale = 16; // ✅ Valid
 const mySpacing2: SpacingScale = 15; // ❌ Error: not a valid scale
 
-const myColor: ColorPath = 'text-primary';  // ✅ Valid
-const myColor2: ColorPath = 'text-primry';  // ❌ Error: typo
+const myColor: ColorPath = 'text-primary'; // ✅ Valid
+const myColor2: ColorPath = 'text-primry'; // ❌ Error: typo
 ```
 
 ### Const Assertions
@@ -608,18 +608,18 @@ All token objects use `as const` for maximum type safety:
 
 ```tsx
 // Types are narrowed to literal values
-const gap = spacing[8];  // Type: '16px' (not string)
-const color = colors.light.text.primary;  // Type: '#0D0D0D' (not string)
+const gap = spacing[8]; // Type: '16px' (not string)
+const color = colors.light.text.primary; // Type: '#0D0D0D' (not string)
 ```
 
 ## Summary
 
-| Feature | Import | Example | When to Use |
-|---------|--------|---------|-------------|
-| Spacing | `spacing` | `spacing[16]` | Always for spacing |
-| Colors | `colors` | `colors.light.text.primary` | Static themes |
-| Typography | `typography` | `typography.heading1` | Complete styles |
-| CSS Vars | `cssVar` | `cssVar.spacing(16)` | Dynamic themes |
-| Helpers | `applyTypography` | `applyTypography('body')` | Inline styles |
+| Feature    | Import            | Example                     | When to Use        |
+| ---------- | ----------------- | --------------------------- | ------------------ |
+| Spacing    | `spacing`         | `spacing[16]`               | Always for spacing |
+| Colors     | `colors`          | `colors.light.text.primary` | Static themes      |
+| Typography | `typography`      | `typography.heading1`       | Complete styles    |
+| CSS Vars   | `cssVar`          | `cssVar.spacing(16)`        | Dynamic themes     |
+| Helpers    | `applyTypography` | `applyTypography('body')`   | Inline styles      |
 
 **Key Takeaway:** Use token helpers for type safety, autocomplete, and maintainability. Choose between direct values (static) and CSS variables (dynamic) based on your theming needs.

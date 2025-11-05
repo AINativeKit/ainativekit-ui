@@ -49,7 +49,14 @@ const ColorSwatch: React.FC<{ name: string; value: string; cssVariable: string }
           backgroundColor: value,
         }}
       />
-      <div style={{ padding: 'var(--ai-spacing-6)', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+      <div
+        style={{
+          padding: 'var(--ai-spacing-6)',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '4px',
+        }}
+      >
         <div style={{ fontSize: '14px', fontWeight: 600 }}>
           {name}
           {copied && (
@@ -96,74 +103,93 @@ const ColorsComponent: React.FC = () => {
       {/* Color Swatches - shown first */}
       <section style={{ marginBottom: '64px' }}>
         <p style={{ marginBottom: '24px', color: 'var(--ai-color-text-secondary)' }}>
-          Select a color below to copy its CSS variable. Light and dark theme variations are displayed side by side for easy reference.
+          Select a color below to copy its CSS variable. Light and dark theme variations are
+          displayed side by side for easy reference.
         </p>
 
-      <div style={{ display: 'grid', gap: '48px' }}>
-        {(['light', 'dark'] as const).map(theme => (
-          <section key={theme}>
-            <header style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '24px' }}>
-              <div>
-                <h2 style={{ marginBottom: '8px', textTransform: 'capitalize' }}>{theme} theme</h2>
-                <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontFamily: 'monospace' }}>
-                  Palette: colors.{theme}
-                </p>
-              </div>
-            </header>
-
-            {Object.entries(colors[theme]).map(([category, categoryValue]) => {
-              // Skip complex nested objects like 'state'
-              if (category === 'state' || typeof categoryValue === 'object' && !('primary' in categoryValue) && !('light' in categoryValue) && !('blue' in categoryValue)) {
-                return null;
-              }
-
-              return (
-                <div key={`${theme}-${category}`} style={{ marginBottom: '32px' }}>
-                  <h3 style={{ marginBottom: '16px', textTransform: 'capitalize' }}>{category}</h3>
-                  <div
+        <div style={{ display: 'grid', gap: '48px' }}>
+          {(['light', 'dark'] as const).map((theme) => (
+            <section key={theme}>
+              <header
+                style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '24px' }}
+              >
+                <div>
+                  <h2 style={{ marginBottom: '8px', textTransform: 'capitalize' }}>
+                    {theme} theme
+                  </h2>
+                  <p
                     style={{
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-                      gap: '24px',
+                      color: 'var(--ai-color-text-secondary)',
+                      margin: 0,
+                      fontFamily: 'monospace',
                     }}
                   >
-                    {(() => {
-                      const prefix =
-                        COLOR_CATEGORY_TO_VAR_PREFIX[category] ?? category.replace(/\s+/g, '-');
-                      const entries =
-                        typeof categoryValue === 'string'
-                          ? [['value', categoryValue]]
-                          : Object.entries(categoryValue as Record<string, string>);
-
-                      return entries.map(([name, value]) => {
-                        // Skip if value is an object
-                        if (typeof value === 'object') {
-                          return null;
-                        }
-
-                        const isSingleValue = typeof categoryValue === 'string';
-                        const cssVariable = isSingleValue
-                          ? `--ai-color-${prefix}`
-                          : `--ai-color-${prefix}-${name}`;
-                        const displayName = isSingleValue ? category : name;
-
-                        return (
-                          <ColorSwatch
-                            key={`${theme}-${category}-${name}`}
-                            name={displayName}
-                            value={value as string}
-                            cssVariable={cssVariable}
-                          />
-                        );
-                      });
-                    })()}
-                  </div>
+                    Palette: colors.{theme}
+                  </p>
                 </div>
-              );
-            })}
-          </section>
-        ))}
-      </div>
+              </header>
+
+              {Object.entries(colors[theme]).map(([category, categoryValue]) => {
+                // Skip complex nested objects like 'state'
+                if (
+                  category === 'state' ||
+                  (typeof categoryValue === 'object' &&
+                    !('primary' in categoryValue) &&
+                    !('light' in categoryValue) &&
+                    !('blue' in categoryValue))
+                ) {
+                  return null;
+                }
+
+                return (
+                  <div key={`${theme}-${category}`} style={{ marginBottom: '32px' }}>
+                    <h3 style={{ marginBottom: '16px', textTransform: 'capitalize' }}>
+                      {category}
+                    </h3>
+                    <div
+                      style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+                        gap: '24px',
+                      }}
+                    >
+                      {(() => {
+                        const prefix =
+                          COLOR_CATEGORY_TO_VAR_PREFIX[category] ?? category.replace(/\s+/g, '-');
+                        const entries =
+                          typeof categoryValue === 'string'
+                            ? [['value', categoryValue]]
+                            : Object.entries(categoryValue as Record<string, string>);
+
+                        return entries.map(([name, value]) => {
+                          // Skip if value is an object
+                          if (typeof value === 'object') {
+                            return null;
+                          }
+
+                          const isSingleValue = typeof categoryValue === 'string';
+                          const cssVariable = isSingleValue
+                            ? `--ai-color-${prefix}`
+                            : `--ai-color-${prefix}-${name}`;
+                          const displayName = isSingleValue ? category : name;
+
+                          return (
+                            <ColorSwatch
+                              key={`${theme}-${category}-${name}`}
+                              name={displayName}
+                              value={value as string}
+                              cssVariable={cssVariable}
+                            />
+                          );
+                        });
+                      })()}
+                    </div>
+                  </div>
+                );
+              })}
+            </section>
+          ))}
+        </div>
       </section>
 
       {/* Usage Section */}
@@ -180,33 +206,38 @@ border: 1px solid var(--ai-color-outline-default);`}</code>
       {/* Reference Section */}
       <section style={{ marginBottom: '64px' }}>
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Reference</h2>
-        <PropsTable rows={[
-          {
-            name: 'background',
-            description: 'Primary, secondary, and tertiary background colors for surfaces and containers',
-            theme: 'Light & Dark',
-          },
-          {
-            name: 'text',
-            description: 'Primary, secondary, and tertiary text colors with varying contrast levels',
-            theme: 'Light & Dark',
-          },
-          {
-            name: 'icon',
-            description: 'Icon colors that match text hierarchy',
-            theme: 'Light & Dark',
-          },
-          {
-            name: 'accent',
-            description: 'Accent colors (blue, green, orange) for interactive elements and status',
-            theme: 'Light & Dark',
-          },
-          {
-            name: 'outline',
-            description: 'Border and divider colors',
-            theme: 'Light & Dark',
-          },
-        ]} />
+        <PropsTable
+          rows={[
+            {
+              name: 'background',
+              description:
+                'Primary, secondary, and tertiary background colors for surfaces and containers',
+              theme: 'Light & Dark',
+            },
+            {
+              name: 'text',
+              description:
+                'Primary, secondary, and tertiary text colors with varying contrast levels',
+              theme: 'Light & Dark',
+            },
+            {
+              name: 'icon',
+              description: 'Icon colors that match text hierarchy',
+              theme: 'Light & Dark',
+            },
+            {
+              name: 'accent',
+              description:
+                'Accent colors (blue, green, orange) for interactive elements and status',
+              theme: 'Light & Dark',
+            },
+            {
+              name: 'outline',
+              description: 'Border and divider colors',
+              theme: 'Light & Dark',
+            },
+          ]}
+        />
       </section>
     </div>
   );
@@ -233,10 +264,17 @@ const TypographyComponent = () => {
       {/* Visual Reference Section */}
       <section style={{ marginBottom: '64px' }}>
         <p style={{ marginBottom: '24px', color: 'var(--ai-color-text-secondary)' }}>
-          Select a typography style below to copy its CSS variable. Each sample displays the actual size, weight, and spacing for easy reference.
+          Select a typography style below to copy its CSS variable. Each sample displays the actual
+          size, weight, and spacing for easy reference.
         </p>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(400px, 1fr))', gap: '24px' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(400px, 1fr))',
+            gap: '24px',
+          }}
+        >
           {Object.entries(typography).map(([name, value]) => (
             <Card
               key={name}
@@ -274,7 +312,15 @@ const TypographyComponent = () => {
                     </span>
                   )}
                 </div>
-                <div style={{ fontFamily: 'monospace', display: 'flex', gap: '12px', flexWrap: 'wrap', fontSize: '11px' }}>
+                <div
+                  style={{
+                    fontFamily: 'monospace',
+                    display: 'flex',
+                    gap: '12px',
+                    flexWrap: 'wrap',
+                    fontSize: '11px',
+                  }}
+                >
                   <span>{value.fontSize}</span>
                   <span>·</span>
                   <span>{value.lineHeight}</span>
@@ -323,32 +369,38 @@ const className = typography.heading1.className; // 'ai-heading1'`}</code>
       {/* Reference Section */}
       <section style={{ marginBottom: '64px' }}>
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Reference</h2>
-        <PropsTable 
+        <PropsTable
           hideThemeColumn
           rows={[
             {
               name: 'heading1',
-              description: 'Large headings and page titles (36px, weight 600, -0.1px letter spacing)',
+              description:
+                'Large headings and page titles (36px, weight 600, -0.1px letter spacing)',
             },
             {
               name: 'heading2',
-              description: 'Section headings and major subsections (24px, weight 600, -0.25px letter spacing)',
+              description:
+                'Section headings and major subsections (24px, weight 600, -0.25px letter spacing)',
             },
             {
               name: 'heading3',
-              description: 'Subsection headings and card titles (18px, weight 600, -0.45px letter spacing)',
+              description:
+                'Subsection headings and card titles (18px, weight 600, -0.45px letter spacing)',
             },
             {
               name: 'body',
-              description: 'Standard body text and paragraphs (16px, weight 400, -0.4px letter spacing)',
+              description:
+                'Standard body text and paragraphs (16px, weight 400, -0.4px letter spacing)',
             },
             {
               name: 'bodyEmph',
-              description: 'Emphasized body text with increased weight (16px, weight 600, -0.4px letter spacing)',
+              description:
+                'Emphasized body text with increased weight (16px, weight 600, -0.4px letter spacing)',
             },
             {
               name: 'bodySmall',
-              description: 'Smaller body text for secondary content (14px, weight 400, -0.3px letter spacing)',
+              description:
+                'Smaller body text for secondary content (14px, weight 400, -0.3px letter spacing)',
             },
             {
               name: 'bodySmallEmph',
@@ -356,19 +408,23 @@ const className = typography.heading1.className; // 'ai-heading1'`}</code>
             },
             {
               name: 'caption',
-              description: 'Captions, labels, and metadata (12px, weight 400, -0.1px letter spacing)',
+              description:
+                'Captions, labels, and metadata (12px, weight 400, -0.1px letter spacing)',
             },
             {
               name: 'captionEmph',
-              description: 'Emphasized captions and labels (12px, weight 600, -0.1px letter spacing)',
+              description:
+                'Emphasized captions and labels (12px, weight 600, -0.1px letter spacing)',
             },
             {
               name: 'button',
-              description: 'Button labels and interactive controls (15px, weight 500, -0.24px letter spacing)',
+              description:
+                'Button labels and interactive controls (15px, weight 500, -0.24px letter spacing)',
             },
             {
               name: 'badge',
-              description: 'Badge labels and status indicators (14px, weight 600, 0px letter spacing)',
+              description:
+                'Badge labels and status indicators (14px, weight 600, 0px letter spacing)',
             },
           ]}
         />
@@ -382,21 +438,7 @@ export const Typography: StoryObj = {
 };
 
 // Spacing Story
-const spacingOrder: Array<keyof typeof spacingRaw> = [
-  64,
-  32,
-  24,
-  20,
-  16,
-  12,
-  10,
-  8,
-  6,
-  4,
-  2,
-  1,
-  0,
-];
+const spacingOrder: Array<keyof typeof spacingRaw> = [64, 32, 24, 20, 16, 12, 10, 8, 6, 4, 2, 1, 0];
 
 const SpacingComponent = () => {
   const [copied, setCopied] = React.useState<number | null>(null);
@@ -414,7 +456,8 @@ const SpacingComponent = () => {
       {/* Visual Reference Section */}
       <section style={{ marginBottom: '64px' }}>
         <p style={{ marginBottom: '24px', color: 'var(--ai-color-text-secondary)' }}>
-          Select a spacing value below to copy its CSS variable. Visual representation shows the actual size for easy reference.
+          Select a spacing value below to copy its CSS variable. Visual representation shows the
+          actual size for easy reference.
         </p>
 
         <div
@@ -424,7 +467,7 @@ const SpacingComponent = () => {
             gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
           }}
         >
-          {spacingOrder.map(name => {
+          {spacingOrder.map((name) => {
             const value = spacingRaw[name];
             const numeric = parseInt(value, 10);
             const borderWidth = numeric > 2 ? 2 : 1;
@@ -461,7 +504,9 @@ const SpacingComponent = () => {
                   }}
                 >
                   {numeric === 0 ? (
-                    <div style={{ fontSize: '24px', color: 'var(--ai-color-text-tertiary)' }}>∅</div>
+                    <div style={{ fontSize: '24px', color: 'var(--ai-color-text-tertiary)' }}>
+                      ∅
+                    </div>
                   ) : numeric <= 2 ? (
                     <div
                       style={{
@@ -535,55 +580,56 @@ const padding = spacing[16]; // '32px'`}</code>
               name: '0',
               description: 'Zero spacing - Use for removing space (0px)',
             },
-          {
-            name: '1',
-            description: 'Minimal spacing for tight layouts (2px)',
-          },
-          {
-            name: '2',
-            description: 'Extra small spacing for subtle separation (4px)',
-          },
-          {
-            name: '4',
-            description: 'Small spacing for compact components (8px)',
-          },
-          {
-            name: '6',
-            description: 'Medium-small spacing for related elements (12px)',
-          },
-          {
-            name: '8',
-            description: 'Base spacing unit - Most common default (16px)',
-          },
-          {
-            name: '10',
-            description: 'Medium spacing for component padding (20px)',
-          },
-          {
-            name: '12',
-            description: 'Medium-large spacing for sections (24px)',
-          },
-          {
-            name: '16',
-            description: 'Large spacing for card padding and gaps (32px)',
-          },
-          {
-            name: '20',
-            description: 'Extra large spacing for major sections (40px)',
-          },
-          {
-            name: '24',
-            description: 'Very large spacing for page sections (48px)',
-          },
-          {
-            name: '32',
-            description: 'Extra extra large for major layouts (64px)',
-          },
-          {
-            name: '64',
-            description: 'Maximum spacing for page-level separation (128px)',
-          },
-        ]} />
+            {
+              name: '1',
+              description: 'Minimal spacing for tight layouts (2px)',
+            },
+            {
+              name: '2',
+              description: 'Extra small spacing for subtle separation (4px)',
+            },
+            {
+              name: '4',
+              description: 'Small spacing for compact components (8px)',
+            },
+            {
+              name: '6',
+              description: 'Medium-small spacing for related elements (12px)',
+            },
+            {
+              name: '8',
+              description: 'Base spacing unit - Most common default (16px)',
+            },
+            {
+              name: '10',
+              description: 'Medium spacing for component padding (20px)',
+            },
+            {
+              name: '12',
+              description: 'Medium-large spacing for sections (24px)',
+            },
+            {
+              name: '16',
+              description: 'Large spacing for card padding and gaps (32px)',
+            },
+            {
+              name: '20',
+              description: 'Extra large spacing for major sections (40px)',
+            },
+            {
+              name: '24',
+              description: 'Very large spacing for page sections (48px)',
+            },
+            {
+              name: '32',
+              description: 'Extra extra large for major layouts (64px)',
+            },
+            {
+              name: '64',
+              description: 'Maximum spacing for page-level separation (128px)',
+            },
+          ]}
+        />
       </section>
     </div>
   );
@@ -610,7 +656,8 @@ const RadiusComponent = () => {
       {/* Visual Reference Section */}
       <section style={{ marginBottom: '64px' }}>
         <p style={{ marginBottom: '24px', color: 'var(--ai-color-text-secondary)' }}>
-          Select a radius value below to copy its CSS variable. Visual representation shows the actual curvature.
+          Select a radius value below to copy its CSS variable. Visual representation shows the
+          actual curvature.
         </p>
 
         <div
@@ -633,7 +680,9 @@ const RadiusComponent = () => {
               }}
               title="Click to copy CSS variable"
             >
-              <div style={{ padding: 'var(--ai-spacing-8) var(--ai-spacing-8) 0 var(--ai-spacing-8)' }}>
+              <div
+                style={{ padding: 'var(--ai-spacing-8) var(--ai-spacing-8) 0 var(--ai-spacing-8)' }}
+              >
                 <div
                   style={{
                     width: '100%',
@@ -645,11 +694,20 @@ const RadiusComponent = () => {
                   }}
                 />
               </div>
-              <div style={{ padding: 'var(--ai-spacing-8)', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+              <div
+                style={{
+                  padding: 'var(--ai-spacing-8)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '4px',
+                }}
+              >
                 <div style={{ fontWeight: 600, fontSize: '14px' }}>
                   {name}
                   {copied === name && (
-                    <span style={{ marginLeft: '8px', color: 'var(--ai-color-accent-green)' }}>✓</span>
+                    <span style={{ marginLeft: '8px', color: 'var(--ai-color-accent-green)' }}>
+                      ✓
+                    </span>
                   )}
                 </div>
                 <div
@@ -700,31 +758,32 @@ const cardRadius = radius.xl; // '24px'`}</code>
               name: 'none',
               description: 'No rounding - Sharp corners (0px)',
             },
-          {
-            name: 'sm',
-            description: 'Small radius for subtle rounding (4px)',
-          },
-          {
-            name: 'md',
-            description: 'Medium radius for moderate rounding (8px)',
-          },
-          {
-            name: 'base',
-            description: 'Base radius - Default for most components (12px)',
-          },
-          {
-            name: 'lg',
-            description: 'Large radius for prominent rounding (16px)',
-          },
-          {
-            name: 'xl',
-            description: 'Extra large radius for cards and containers (24px)',
-          },
-          {
-            name: 'full',
-            description: 'Fully rounded - For circles and pill buttons (9999px)',
-          },
-        ]} />
+            {
+              name: 'sm',
+              description: 'Small radius for subtle rounding (4px)',
+            },
+            {
+              name: 'md',
+              description: 'Medium radius for moderate rounding (8px)',
+            },
+            {
+              name: 'base',
+              description: 'Base radius - Default for most components (12px)',
+            },
+            {
+              name: 'lg',
+              description: 'Large radius for prominent rounding (16px)',
+            },
+            {
+              name: 'xl',
+              description: 'Extra large radius for cards and containers (24px)',
+            },
+            {
+              name: 'full',
+              description: 'Fully rounded - For circles and pill buttons (9999px)',
+            },
+          ]}
+        />
       </section>
     </div>
   );
@@ -752,17 +811,20 @@ const ElevationComponent: React.FC = () => {
       {/* Visual Reference Section */}
       <section style={{ marginBottom: '64px' }}>
         <p style={{ marginBottom: '24px', color: 'var(--ai-color-text-secondary)' }}>
-          Select an elevation card to copy its CSS variable. Both light and dark themes are shown to compare how shadows and overlays combine at each elevation level.
+          Select an elevation card to copy its CSS variable. Both light and dark themes are shown to
+          compare how shadows and overlays combine at each elevation level.
         </p>
 
         <div style={{ display: 'grid', gap: '48px' }}>
-          {(['light', 'dark'] as const).map(theme => {
+          {(['light', 'dark'] as const).map((theme) => {
             const themeColors = colors[theme];
 
             return (
               <section key={theme}>
                 <header style={{ marginBottom: '24px' }}>
-                  <h2 style={{ textTransform: 'capitalize', marginBottom: '4px' }}>{theme} theme</h2>
+                  <h2 style={{ textTransform: 'capitalize', marginBottom: '4px' }}>
+                    {theme} theme
+                  </h2>
                   <p style={{ margin: 0, color: 'var(--ai-color-text-secondary)' }}>
                     Surface: {themeColors.background.primary} · Text: {themeColors.text.primary}
                   </p>
@@ -809,7 +871,9 @@ const ElevationComponent: React.FC = () => {
                         <div style={{ fontWeight: 600 }}>
                           elevation-{level}
                           {copied === `${theme}-${level}` && (
-                            <span style={{ marginLeft: '8px', color: 'var(--ai-color-accent-green)' }}>
+                            <span
+                              style={{ marginLeft: '8px', color: 'var(--ai-color-accent-green)' }}
+                            >
                               ✓
                             </span>
                           )}
@@ -886,14 +950,16 @@ const lightOverlay = elevation[1].lightOverlay; // 'rgba(0,0,0,0)'
 const className = elevation[1].className; // 'ai-elevation-1'`}</code>
         </pre>
         <p style={{ marginTop: '16px', fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
-          <strong>Note:</strong> Utility classes (.ai-elevation-*) now apply both shadow AND overlay (using bg-primary + overlay tint). For custom background colors, use Method 4 to manually apply shadow to your color.
+          <strong>Note:</strong> Utility classes (.ai-elevation-*) now apply both shadow AND overlay
+          (using bg-primary + overlay tint). For custom background colors, use Method 4 to manually
+          apply shadow to your color.
         </p>
       </section>
 
       {/* Reference Section */}
       <section style={{ marginBottom: '64px' }}>
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Reference</h2>
-        <PropsTable 
+        <PropsTable
           hideThemeColumn
           rows={[
             {
@@ -923,7 +989,9 @@ const className = elevation[1].className; // 'ai-elevation-1'`}</code>
           ]}
         />
         <p style={{ marginTop: '16px', fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
-          <strong>Note:</strong> Each elevation level includes both shadow and overlay values. The utility classes (.ai-elevation-*) apply both automatically using bg-primary + overlay tint. Dark theme uses white overlays to lighten elevated surfaces.
+          <strong>Note:</strong> Each elevation level includes both shadow and overlay values. The
+          utility classes (.ai-elevation-*) apply both automatically using bg-primary + overlay
+          tint. Dark theme uses white overlays to lighten elevated surfaces.
         </p>
       </section>
     </div>
@@ -1092,20 +1160,22 @@ console.log(\`Font size: \${typography.body.fontSize}\`);`,
     <div style={{ padding: '24px' }}>
       <h1 style={{ marginBottom: '8px' }}>Token Helper Functions</h1>
       <p style={{ marginBottom: '32px', color: 'var(--ai-color-text-secondary)' }}>
-        Utility functions for using design tokens in TypeScript/React components.
-        These helpers provide type-safe access to tokens with IDE autocomplete.
+        Utility functions for using design tokens in TypeScript/React components. These helpers
+        provide type-safe access to tokens with IDE autocomplete.
       </p>
 
       {/* Important Note */}
-      <div style={{
-        padding: '16px',
-        marginBottom: '32px',
-        backgroundColor: 'var(--ai-color-accent-blue)',
-        color: 'white',
-        borderRadius: 'var(--ai-radius-base)',
-      }}>
-        <strong>Important:</strong> These helpers are for TypeScript/JSX only.
-        In CSS modules, use CSS variables directly: <code style={{ opacity: 0.9 }}>var(--ai-spacing-4)</code>
+      <div
+        style={{
+          padding: '16px',
+          marginBottom: '32px',
+          backgroundColor: 'var(--ai-color-accent-blue)',
+          color: 'white',
+          borderRadius: 'var(--ai-radius-base)',
+        }}
+      >
+        <strong>Important:</strong> These helpers are for TypeScript/JSX only. In CSS modules, use
+        CSS variables directly: <code style={{ opacity: 0.9 }}>var(--ai-spacing-4)</code>
       </div>
 
       {/* Helper Examples */}
@@ -1212,50 +1282,116 @@ console.log(\`Font size: \${typography.body.fontSize}\`);`,
         <h2 style={{ marginBottom: '16px' }}>When to Use Each Approach</h2>
 
         <div style={{ display: 'grid', gap: '16px' }}>
-          <div style={{
-            padding: '16px',
-            backgroundColor: 'var(--ai-color-bg-secondary)',
-            borderRadius: 'var(--ai-radius-base)',
-          }}>
-            <h3 style={{ marginBottom: '8px', fontSize: '16px', color: 'var(--ai-color-accent-green)' }}>
+          <div
+            style={{
+              padding: '16px',
+              backgroundColor: 'var(--ai-color-bg-secondary)',
+              borderRadius: 'var(--ai-radius-base)',
+            }}
+          >
+            <h3
+              style={{
+                marginBottom: '8px',
+                fontSize: '16px',
+                color: 'var(--ai-color-accent-green)',
+              }}
+            >
               ✅ Use CSS Variables in CSS Modules
             </h3>
-            <code style={{ fontSize: '13px', backgroundColor: 'var(--ai-color-bg-tertiary)', padding: '8px', borderRadius: '4px', display: 'block' }}>
+            <code
+              style={{
+                fontSize: '13px',
+                backgroundColor: 'var(--ai-color-bg-tertiary)',
+                padding: '8px',
+                borderRadius: '4px',
+                display: 'block',
+              }}
+            >
               {`.button { gap: var(--ai-spacing-4); }`}
             </code>
-            <p style={{ marginTop: '8px', fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
+            <p
+              style={{
+                marginTop: '8px',
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               Best for static styles, better performance, theme-aware
             </p>
           </div>
 
-          <div style={{
-            padding: '16px',
-            backgroundColor: 'var(--ai-color-bg-secondary)',
-            borderRadius: 'var(--ai-radius-base)',
-          }}>
-            <h3 style={{ marginBottom: '8px', fontSize: '16px', color: 'var(--ai-color-accent-blue)' }}>
+          <div
+            style={{
+              padding: '16px',
+              backgroundColor: 'var(--ai-color-bg-secondary)',
+              borderRadius: 'var(--ai-radius-base)',
+            }}
+          >
+            <h3
+              style={{
+                marginBottom: '8px',
+                fontSize: '16px',
+                color: 'var(--ai-color-accent-blue)',
+              }}
+            >
               ℹ️ Use Helpers in TypeScript/JSX
             </h3>
-            <code style={{ fontSize: '13px', backgroundColor: 'var(--ai-color-bg-tertiary)', padding: '8px', borderRadius: '4px', display: 'block' }}>
+            <code
+              style={{
+                fontSize: '13px',
+                backgroundColor: 'var(--ai-color-bg-tertiary)',
+                padding: '8px',
+                borderRadius: '4px',
+                display: 'block',
+              }}
+            >
               {`style={{ gap: cssVar.spacing(4) }}`}
             </code>
-            <p style={{ marginTop: '8px', fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
+            <p
+              style={{
+                marginTop: '8px',
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               Best for inline styles, dynamic values, type safety with autocomplete
             </p>
           </div>
 
-          <div style={{
-            padding: '16px',
-            backgroundColor: 'var(--ai-color-bg-secondary)',
-            borderRadius: 'var(--ai-radius-base)',
-          }}>
-            <h3 style={{ marginBottom: '8px', fontSize: '16px', color: 'var(--ai-color-text-tertiary)' }}>
+          <div
+            style={{
+              padding: '16px',
+              backgroundColor: 'var(--ai-color-bg-secondary)',
+              borderRadius: 'var(--ai-radius-base)',
+            }}
+          >
+            <h3
+              style={{
+                marginBottom: '8px',
+                fontSize: '16px',
+                color: 'var(--ai-color-text-tertiary)',
+              }}
+            >
               🔧 Use Direct Values for Calculations
             </h3>
-            <code style={{ fontSize: '13px', backgroundColor: 'var(--ai-color-bg-tertiary)', padding: '8px', borderRadius: '4px', display: 'block' }}>
+            <code
+              style={{
+                fontSize: '13px',
+                backgroundColor: 'var(--ai-color-bg-tertiary)',
+                padding: '8px',
+                borderRadius: '4px',
+                display: 'block',
+              }}
+            >
               {`const padding = spacing[16]; // '32px'`}
             </code>
-            <p style={{ marginTop: '8px', fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
+            <p
+              style={{
+                marginTop: '8px',
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               Best for JavaScript calculations, non-CSS contexts, build-time values
             </p>
           </div>

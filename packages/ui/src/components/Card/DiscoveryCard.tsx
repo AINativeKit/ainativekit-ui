@@ -114,117 +114,103 @@ export interface DiscoveryCardProps {
  * />
  * ```
  */
-export const DiscoveryCard = React.forwardRef<HTMLDivElement, DiscoveryCardProps>(
-  (props, ref) => {
-    const {
-      image,
-      imageAlt = '',
-      title,
-      subtitle,
-      badge,
-      badgeIcon,
-      features,
-      description,
-      buttonText = 'Order now',
-      onButtonClick,
-      className,
-      style,
-      width = '220px',
-    } = props;
+export const DiscoveryCard = React.forwardRef<HTMLDivElement, DiscoveryCardProps>((props, ref) => {
+  const {
+    image,
+    imageAlt = '',
+    title,
+    subtitle,
+    badge,
+    badgeIcon,
+    features,
+    description,
+    buttonText = 'Order now',
+    onButtonClick,
+    className,
+    style,
+    width = '220px',
+  } = props;
 
-    return (
-      <div
-        ref={ref}
-        className={cn(styles.card, className)}
-        style={{
-          width,
-          ...style,
-        }}
-      >
-        {/* Image Container */}
-        <div className={styles.imageContainer}>
-          <img
-            src={image}
-            alt={imageAlt || title}
-            className={styles.image}
-          />
-        </div>
-
-        {/* Content Container */}
-        <div className={styles.contentContainer}>
-          {/* Title + Badge Header */}
-          <div className={styles.header}>
-            <h3
-              className={styles.title}
-              style={{
-                fontSize: typography.bodyEmph.fontSize,
-                fontWeight: typography.bodyEmph.fontWeight,
-                letterSpacing: typography.bodyEmph.letterSpacing,
-              }}
-            >
-              {title}
-            </h3>
-            <div className={styles.badge}>
-              <Chip
-                variant="neutral"
-                size="sm"
-                leftIcon={badgeIcon}
-              >
-                {badge}
-              </Chip>
-            </div>
-          </div>
-
-          {/* Location/Subtitle */}
-          <p
-            className={styles.subtitle}
-            style={{
-              fontSize: typography.caption.fontSize,
-              fontWeight: typography.caption.fontWeight,
-              letterSpacing: typography.caption.letterSpacing,
-            }}
-          >
-            {subtitle}
-          </p>
-
-          {/* Features */}
-          {features && features.length > 0 && (
-            <div
-              style={{
-                marginBottom: 'var(--ai-spacing-4)',
-                fontSize: typography.caption.fontSize,
-                fontWeight: typography.caption.fontWeight,
-                letterSpacing: typography.caption.letterSpacing,
-              }}
-            >
-              <Features items={features} />
-            </div>
-          )}
-
-          {/* Description */}
-          <p
-            className={styles.description}
-            style={{
-              fontSize: typography.caption.fontSize,
-              fontWeight: typography.caption.fontWeight,
-              letterSpacing: typography.caption.letterSpacing,
-            }}
-          >
-            {description}
-          </p>
-
-          {/* Action Button */}
-          <Button
-            className={styles.button}
-            variant="primary"
-            onClick={onButtonClick}
-          >
-            {buttonText}
-          </Button>
-        </div>
+  return (
+    <div
+      ref={ref}
+      className={cn(styles.card, className)}
+      style={{
+        width,
+        ...style,
+      }}
+    >
+      {/* Image Container */}
+      <div className={styles.imageContainer}>
+        <img src={image} alt={imageAlt || title} className={styles.image} />
       </div>
-    );
-  }
-);
+
+      {/* Content Container */}
+      <div className={styles.contentContainer}>
+        {/* Title + Badge Header */}
+        <div className={styles.header}>
+          <h3
+            className={styles.title}
+            style={{
+              fontSize: typography.bodyEmph.fontSize,
+              fontWeight: typography.bodyEmph.fontWeight,
+              letterSpacing: typography.bodyEmph.letterSpacing,
+            }}
+          >
+            {title}
+          </h3>
+          <div className={styles.badge}>
+            <Chip variant="neutral" size="sm" leftIcon={badgeIcon}>
+              {badge}
+            </Chip>
+          </div>
+        </div>
+
+        {/* Location/Subtitle */}
+        <p
+          className={styles.subtitle}
+          style={{
+            fontSize: typography.caption.fontSize,
+            fontWeight: typography.caption.fontWeight,
+            letterSpacing: typography.caption.letterSpacing,
+          }}
+        >
+          {subtitle}
+        </p>
+
+        {/* Features */}
+        {features && features.length > 0 && (
+          <div
+            style={{
+              marginBottom: 'var(--ai-spacing-4)',
+              fontSize: typography.caption.fontSize,
+              fontWeight: typography.caption.fontWeight,
+              letterSpacing: typography.caption.letterSpacing,
+            }}
+          >
+            <Features items={features} />
+          </div>
+        )}
+
+        {/* Description */}
+        <p
+          className={styles.description}
+          style={{
+            fontSize: typography.caption.fontSize,
+            fontWeight: typography.caption.fontWeight,
+            letterSpacing: typography.caption.letterSpacing,
+          }}
+        >
+          {description}
+        </p>
+
+        {/* Action Button */}
+        <Button className={styles.button} variant="primary" onClick={onButtonClick}>
+          {buttonText}
+        </Button>
+      </div>
+    </div>
+  );
+});
 
 DiscoveryCard.displayName = 'DiscoveryCard';

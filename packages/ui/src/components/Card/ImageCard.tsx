@@ -228,7 +228,7 @@ export const ImageCard = React.forwardRef<HTMLDivElement, ImageCardProps>((props
   const [internalError, setInternalError] = useState(false);
 
   const imageSrc = typeof image === 'string' ? image : image.src;
-  const imageAlt = typeof image === 'string' ? (title || 'Image') : image.alt;
+  const imageAlt = typeof image === 'string' ? title || 'Image' : image.alt;
 
   const hasContent = !!(title || subtitle);
   const hasAction = !!actionIcon;
@@ -242,7 +242,7 @@ export const ImageCard = React.forwardRef<HTMLDivElement, ImageCardProps>((props
     if (hasAction && !actionLabel) {
       console.error(
         'ImageCard: actionLabel is required when actionIcon is provided. ' +
-        'Provide a descriptive label for accessibility (e.g., "Add to cart", "View details").'
+          'Provide a descriptive label for accessibility (e.g., "Add to cart", "View details").'
       );
     }
     if (titleLines && (titleLines < 1 || titleLines > 3)) {
@@ -271,8 +271,7 @@ export const ImageCard = React.forwardRef<HTMLDivElement, ImageCardProps>((props
     bottom: styles.imagePositionBottom,
   }[imagePosition];
 
-  const normalizedMinHeight =
-    typeof minHeight === 'number' ? `${minHeight}px` : minHeight;
+  const normalizedMinHeight = typeof minHeight === 'number' ? `${minHeight}px` : minHeight;
 
   const inlineStyle = {
     ...(normalizedMinHeight ? { '--image-card-min-height': normalizedMinHeight } : {}),
@@ -284,11 +283,7 @@ export const ImageCard = React.forwardRef<HTMLDivElement, ImageCardProps>((props
     <Card
       ref={ref}
       padding={0}
-      className={cn(
-        styles.imageCard,
-        size === 'compact' && styles.imageCardCompact,
-        className
-      )}
+      className={cn(styles.imageCard, size === 'compact' && styles.imageCardCompact, className)}
       style={inlineStyle}
       {...cardProps}
     >
@@ -350,38 +345,19 @@ export const ImageCard = React.forwardRef<HTMLDivElement, ImageCardProps>((props
                   {badge}
                 </Chip>
               ) : (
-                <Badge variant={badgeVariant as BadgeProps['variant']}>
-                  {badge}
-                </Badge>
+                <Badge variant={badgeVariant as BadgeProps['variant']}>{badge}</Badge>
               )}
             </div>
           )}
 
           {/* Text Content Overlay */}
           {hasContent && (
-            <div
-              className={cn(
-                styles.content,
-                !hasAction && styles.contentNoAction
-              )}
-            >
+            <div className={cn(styles.content, !hasAction && styles.contentNoAction)}>
               {title && (
-                <h3 
-                  className={cn(
-                    styles.title,
-                    styles[`titleLines${titleLines}`]
-                  )}
-                >
-                  {title}
-                </h3>
+                <h3 className={cn(styles.title, styles[`titleLines${titleLines}`])}>{title}</h3>
               )}
               {subtitle && (
-                <p 
-                  className={cn(
-                    styles.subtitle,
-                    styles[`subtitleLines${subtitleLines}`]
-                  )}
-                >
+                <p className={cn(styles.subtitle, styles[`subtitleLines${subtitleLines}`])}>
                   {subtitle}
                 </p>
               )}

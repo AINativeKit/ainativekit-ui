@@ -60,7 +60,7 @@ function normalizeFilename(filename) {
 function getAllSvgFiles(dir, fileList = []) {
   const files = fs.readdirSync(dir);
 
-  files.forEach(file => {
+  files.forEach((file) => {
     const filePath = path.join(dir, file);
     const stat = fs.statSync(filePath);
 
@@ -83,7 +83,7 @@ function normalizeDirectory(baseDir) {
   const svgFiles = getAllSvgFiles(baseDir);
   const renames = [];
 
-  svgFiles.forEach(filePath => {
+  svgFiles.forEach((filePath) => {
     const dir = path.dirname(filePath);
     const oldName = path.basename(filePath);
     const newName = normalizeFilename(oldName);
@@ -94,7 +94,7 @@ function normalizeDirectory(baseDir) {
         newPath: path.join(dir, newName),
         oldName,
         newName,
-        category: path.relative(baseDir, dir)
+        category: path.relative(baseDir, dir),
       });
     }
   });
@@ -120,34 +120,31 @@ function normalizeDirectory(baseDir) {
 function generateIconTokens() {
   console.log('\n📝 Generating icons.ts token file...');
 
-  const categories = fs.readdirSync(ICONS_SRC_DIR)
-    .filter(item => {
-      const itemPath = path.join(ICONS_SRC_DIR, item);
-      return fs.statSync(itemPath).isDirectory();
-    });
+  const categories = fs.readdirSync(ICONS_SRC_DIR).filter((item) => {
+    const itemPath = path.join(ICONS_SRC_DIR, item);
+    return fs.statSync(itemPath).isDirectory();
+  });
 
   const iconsByCategory = {};
   const flatIconEntries = [];
 
-  categories.forEach(category => {
+  categories.forEach((category) => {
     const categoryPath = path.join(ICONS_SRC_DIR, category);
     const svgFiles = getAllSvgFiles(categoryPath);
 
     const icons = svgFiles
-      .map(filePath => {
+      .map((filePath) => {
         const filename = path.basename(filePath, '.svg');
         const relativePath = path.relative(categoryPath, filePath);
         const relativeDir = path.dirname(relativePath);
 
         // If in subdirectory, include it in the path
-        return relativeDir && relativeDir !== '.'
-          ? path.join(relativeDir, filename)
-          : filename;
+        return relativeDir && relativeDir !== '.' ? path.join(relativeDir, filename) : filename;
       })
       .sort();
 
     iconsByCategory[category] = icons;
-    icons.forEach(icon => {
+    icons.forEach((icon) => {
       flatIconEntries.push({ category, icon });
     });
   });
@@ -176,17 +173,18 @@ export type IconCategory = (typeof iconCategories)[number];
 `;
 
   // Generate type definitions for each category
-  categories.forEach(category => {
-    const typeName = category
-      .split('-')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join('') + 'IconName';
+  categories.forEach((category) => {
+    const typeName =
+      category
+        .split('-')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join('') + 'IconName';
 
     const icons = iconsByCategory[category];
 
     content += `// ${category.charAt(0).toUpperCase() + category.slice(1)} Icon Names (${icons.length} icons)\n`;
     content += `export type ${typeName} =\n`;
-    content += icons.map(icon => `  | '${icon}'`).join('\n');
+    content += icons.map((icon) => `  | '${icon}'`).join('\n');
     content += ';\n\n';
   });
 
@@ -194,10 +192,11 @@ export type IconCategory = (typeof iconCategories)[number];
   content += `// Union type for all icon names\n`;
   content += `export type IconName =\n`;
   categories.forEach((category, index) => {
-    const typeName = category
-      .split('-')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join('') + 'IconName';
+    const typeName =
+      category
+        .split('-')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join('') + 'IconName';
     const isLast = index === categories.length - 1;
     content += `  | ${typeName}${isLast ? '' : '\n'}`;
   });
@@ -282,7 +281,6 @@ function main() {
     console.log('  • Run tests: pnpm --filter @ainativekit/ui test');
     console.log('  • Build: pnpm --filter @ainativekit/ui build');
     console.log('  • Start Storybook: pnpm --filter @ainativekit/ui storybook');
-
   } catch (error) {
     console.error('\n❌ Error:', error.message);
     console.error(error.stack);
@@ -298,5 +296,5 @@ if (require.main === module) {
 module.exports = {
   normalizeFilename,
   normalizeDirectory,
-  generateIconTokens
+  generateIconTokens,
 };

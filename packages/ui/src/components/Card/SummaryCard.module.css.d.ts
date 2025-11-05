@@ -11,6 +11,7 @@ declare const styles: {
   readonly badge: string;
   readonly description: string;
   readonly metadata: string;
+  readonly customIcon: string;
   readonly buttonContainer: string;
   readonly button: string;
   readonly overflowIndicator: string;

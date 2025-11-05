@@ -131,9 +131,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, r
 
   // Development mode validation for icon-only buttons
   if (process.env.NODE_ENV !== 'production' && isIconOnly && !rest['aria-label']) {
-    console.warn(
-      'Button: iconOnly buttons require an aria-label for accessibility'
-    );
+    console.warn('Button: iconOnly buttons require an aria-label for accessibility');
   }
 
   return (
@@ -151,30 +149,15 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, r
       {...rest}
     >
       {isIconOnly ? (
-        <Icon
-          name={iconOnly}
-          size="md"
-          className={styles.iconOnlyIcon}
-          aria-hidden="true"
-        />
+        <Icon name={iconOnly} size="md" className={styles.iconOnlyIcon} aria-hidden="true" />
       ) : (
         <>
           {leftIcon && (
-            <Icon
-              name={leftIcon}
-              size="sm"
-              className={styles.leftIcon}
-              aria-hidden="true"
-            />
+            <Icon name={leftIcon} size="sm" className={styles.leftIcon} aria-hidden="true" />
           )}
           <span className={styles.label}>{children}</span>
           {rightIcon && (
-            <Icon
-              name={rightIcon}
-              size="sm"
-              className={styles.rightIcon}
-              aria-hidden="true"
-            />
+            <Icon name={rightIcon} size="sm" className={styles.rightIcon} aria-hidden="true" />
           )}
         </>
       )}

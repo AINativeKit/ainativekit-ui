@@ -21,10 +21,8 @@ import type { IconProps } from '../components/Icon';
  * @accessibility
  * Arrows are decorative when showing direction alongside text. Icon-only navigation buttons need descriptive aria-label.
  */
-export const ExpandLg = React.forwardRef<HTMLSpanElement, Omit<IconProps, 'name'>>(
-  (props, ref) => {
-    return <Icon ref={ref} name="expand-lg" {...props} />;
-  }
-);
+export const ExpandLg = React.forwardRef<HTMLSpanElement, Omit<IconProps, 'name'>>((props, ref) => {
+  return <Icon ref={ref} name="expand-lg" {...props} />;
+});
 
 ExpandLg.displayName = 'ExpandLg';

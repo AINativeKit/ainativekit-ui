@@ -23,10 +23,8 @@ import type { IconProps } from '../components/Icon';
  * @accessibility
  * Settings icons are decorative when accompanied by descriptive text labels.
  */
-export const CheckMd = React.forwardRef<HTMLSpanElement, Omit<IconProps, 'name'>>(
-  (props, ref) => {
-    return <Icon ref={ref} name="check-md" {...props} />;
-  }
-);
+export const CheckMd = React.forwardRef<HTMLSpanElement, Omit<IconProps, 'name'>>((props, ref) => {
+  return <Icon ref={ref} name="check-md" {...props} />;
+});
 
 CheckMd.displayName = 'CheckMd';

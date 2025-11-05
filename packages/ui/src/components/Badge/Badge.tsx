@@ -12,7 +12,7 @@ export interface BadgeProps extends Omit<ComponentPropsWithoutRef<'span'>, 'colo
    * @default 'default'
    */
   variant?: BadgeVariant;
-  
+
   /**
    * Size of the badge.
    * - sm: 32px (--ai-spacing-16)
@@ -21,7 +21,7 @@ export interface BadgeProps extends Omit<ComponentPropsWithoutRef<'span'>, 'colo
    * @default 'md'
    */
   size?: BadgeSize;
-  
+
   /**
    * Accessible label for screen readers when content is not descriptive.
    * Use when badge contains only icons, numbers, or abbreviated text.
@@ -59,14 +59,7 @@ export interface BadgeProps extends Omit<ComponentPropsWithoutRef<'span'>, 'colo
  * ```
  */
 export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
-  const {
-    variant = 'default',
-    size = 'md',
-    ariaLabel,
-    className,
-    children,
-    ...rest
-  } = props;
+  const { variant = 'default', size = 'md', ariaLabel, className, children, ...rest } = props;
 
   const variantClass = {
     default: styles.badgeDefault,

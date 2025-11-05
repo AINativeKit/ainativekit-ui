@@ -179,12 +179,7 @@ interface ProductCardProps {
 /**
  * ❌ BEFORE: Mixed hard-coded values and magic numbers
  */
-export function ProductCardBefore({
-  title,
-  description,
-  price,
-  imageUrl,
-}: ProductCardProps) {
+export function ProductCardBefore({ title, description, price, imageUrl }: ProductCardProps) {
   return (
     <div
       style={{
@@ -244,12 +239,7 @@ export function ProductCardBefore({
 /**
  * ✅ AFTER: Type-safe tokens throughout
  */
-export function ProductCardAfter({
-  title,
-  description,
-  price,
-  imageUrl,
-}: ProductCardProps) {
+export function ProductCardAfter({ title, description, price, imageUrl }: ProductCardProps) {
   return (
     <div
       style={{
@@ -305,12 +295,7 @@ export function ProductCardAfter({
 /**
  * ✅ THEME-AWARE VERSION: Works in both light and dark themes
  */
-export function ProductCardThemeAware({
-  title,
-  description,
-  price,
-  imageUrl,
-}: ProductCardProps) {
+export function ProductCardThemeAware({ title, description, price, imageUrl }: ProductCardProps) {
   return (
     <div
       style={{

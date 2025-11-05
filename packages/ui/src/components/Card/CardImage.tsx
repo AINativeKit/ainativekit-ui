@@ -22,25 +22,25 @@ export interface CardImageProps extends ComponentPropsWithoutRef<'img'> {
   'data-testid'?: string;
 }
 
-export const CardImage = React.forwardRef<HTMLImageElement, CardImageProps>(
-  (props, ref) => {
-    const { className, src, alt, aspectRatio, style, 'data-testid': testId, ...rest } = props;
+export const CardImage = React.forwardRef<HTMLImageElement, CardImageProps>((props, ref) => {
+  const { className, src, alt, aspectRatio, style, 'data-testid': testId, ...rest } = props;
 
-    return (
-      <img
-        ref={ref}
-        src={src}
-        alt={alt}
-        className={cn(styles.cardImage, className)}
-        data-testid={testId}
-        style={{
-          ...(aspectRatio ? { '--card-image-aspect-ratio': aspectRatio } as React.CSSProperties : {}),
-          ...style,
-        }}
-        {...rest}
-      />
-    );
-  }
-);
+  return (
+    <img
+      ref={ref}
+      src={src}
+      alt={alt}
+      className={cn(styles.cardImage, className)}
+      data-testid={testId}
+      style={{
+        ...(aspectRatio
+          ? ({ '--card-image-aspect-ratio': aspectRatio } as React.CSSProperties)
+          : {}),
+        ...style,
+      }}
+      {...rest}
+    />
+  );
+});
 
 CardImage.displayName = 'Card.Image';

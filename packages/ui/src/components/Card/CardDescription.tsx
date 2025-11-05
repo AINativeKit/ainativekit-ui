@@ -15,12 +15,7 @@ export const CardDescription = React.forwardRef<HTMLParagraphElement, CardDescri
     const { className, children, 'data-testid': testId, ...rest } = props;
 
     return (
-      <p
-        ref={ref}
-        className={cn(styles.cardDescription, className)}
-        data-testid={testId}
-        {...rest}
-      >
+      <p ref={ref} className={cn(styles.cardDescription, className)} data-testid={testId} {...rest}>
         {children}
       </p>
     );

@@ -85,9 +85,9 @@ describe('Design Tokens', () => {
       });
 
       it('should have border colors', () => {
-    expect(colors.dark.border.light).toBe('rgba(255, 255, 255, 0.08)');
-    expect(colors.dark.border.default).toBe('rgba(255, 255, 255, 0.12)');
-    expect(colors.dark.border.heavy).toBe('rgba(255, 255, 255, 0.16)');
+        expect(colors.dark.border.light).toBe('rgba(255, 255, 255, 0.08)');
+        expect(colors.dark.border.default).toBe('rgba(255, 255, 255, 0.12)');
+        expect(colors.dark.border.heavy).toBe('rgba(255, 255, 255, 0.16)');
       });
 
       it('should have interactive state tokens', () => {
@@ -175,17 +175,17 @@ describe('Design Tokens', () => {
       expect(typography.heading3.fontWeight).toBe(600);
     });
 
-  it('should have correct body values', () => {
-    expect(typography.body.fontSize).toBe('16px');
-    expect(typography.body.lineHeight).toBe('26px');
-    expect(typography.body.fontWeight).toBe(400);
-  });
+    it('should have correct body values', () => {
+      expect(typography.body.fontSize).toBe('16px');
+      expect(typography.body.lineHeight).toBe('26px');
+      expect(typography.body.fontWeight).toBe(400);
+    });
 
-  it('should have correct bodyEmph values', () => {
-    expect(typography.bodyEmph.fontSize).toBe('16px');
-    expect(typography.bodyEmph.lineHeight).toBe('26px');
-    expect(typography.bodyEmph.fontWeight).toBe(600);
-  });
+    it('should have correct bodyEmph values', () => {
+      expect(typography.bodyEmph.fontSize).toBe('16px');
+      expect(typography.bodyEmph.lineHeight).toBe('26px');
+      expect(typography.bodyEmph.fontWeight).toBe(600);
+    });
 
     it('should have correct bodySmall values', () => {
       expect(typography.bodySmall.fontSize).toBe('14px');
@@ -222,18 +222,18 @@ describe('Design Tokens', () => {
   });
 
   describe('Radius', () => {
-  it('should have correct radius values', () => {
-    expect(radius.none).toBe('0px');
-    expect(radius.sm).toBe('4px');
-    expect(radius.md).toBe('8px');
-    expect(radius.base).toBe('12px');
-    expect(radius.lg).toBe('16px');
-    expect(radius.xl).toBe('24px');
-    expect(radius.full).toBe('9999px');
-  });
+    it('should have correct radius values', () => {
+      expect(radius.none).toBe('0px');
+      expect(radius.sm).toBe('4px');
+      expect(radius.md).toBe('8px');
+      expect(radius.base).toBe('12px');
+      expect(radius.lg).toBe('16px');
+      expect(radius.xl).toBe('24px');
+      expect(radius.full).toBe('9999px');
+    });
 
-  it('should have 7 radius tokens', () => {
-    expect(Object.keys(radius).length).toBe(7);
+    it('should have 7 radius tokens', () => {
+      expect(Object.keys(radius).length).toBe(7);
     });
   });
 
@@ -276,8 +276,8 @@ describe('Design Tokens', () => {
     describe('Typography Metadata', () => {
       it('should have metadata on all typography tokens', () => {
         const typographyKeys = Object.keys(typography);
-        
-        typographyKeys.forEach(key => {
+
+        typographyKeys.forEach((key) => {
           const token = typography[key as keyof typeof typography];
           expect(token.meta).toBeDefined();
           expect(token.meta.description).toBeDefined();
@@ -300,8 +300,8 @@ describe('Design Tokens', () => {
     describe('Elevation Metadata', () => {
       it('should have metadata on all elevation tokens', () => {
         const elevationLevels = Object.keys(elevation);
-        
-        elevationLevels.forEach(level => {
+
+        elevationLevels.forEach((level) => {
           const token = elevation[Number(level) as keyof typeof elevation];
           expect(token.meta).toBeDefined();
           expect(token.meta.description).toBeDefined();
@@ -316,7 +316,7 @@ describe('Design Tokens', () => {
         expect(elevation[1].meta.zIndex).toBeDefined();
         expect(typeof elevation[1].meta.zIndex).toBe('string');
         expect(elevation[1].meta.zIndex!.length).toBeGreaterThan(0);
-        
+
         // Verify higher elevations have guidance
         expect(elevation[3].meta.zIndex).toBeDefined();
         expect(elevation[5].meta.zIndex).toBeDefined();
@@ -328,8 +328,8 @@ describe('Design Tokens', () => {
     describe('Typography Classes', () => {
       it('should have className property on every typography token', () => {
         const typographyKeys = Object.keys(typography);
-        
-        typographyKeys.forEach(key => {
+
+        typographyKeys.forEach((key) => {
           const token = typography[key as keyof typeof typography];
           expect(token.className).toBeDefined();
           expect(typeof token.className).toBe('string');
@@ -351,8 +351,8 @@ describe('Design Tokens', () => {
     describe('Elevation Classes', () => {
       it('should have className property on every elevation level', () => {
         const elevationLevels = Object.keys(elevation);
-        
-        elevationLevels.forEach(level => {
+
+        elevationLevels.forEach((level) => {
           const token = elevation[Number(level) as keyof typeof elevation];
           expect(token.className).toBeDefined();
           expect(typeof token.className).toBe('string');
@@ -372,11 +372,11 @@ describe('Design Tokens', () => {
 
     describe('Class Name Consistency', () => {
       it('should use consistent ai- prefix', () => {
-        const typographyClasses = Object.values(typography).map(t => t.className);
-        const elevationClasses = Object.values(elevation).map(e => e.className);
+        const typographyClasses = Object.values(typography).map((t) => t.className);
+        const elevationClasses = Object.values(elevation).map((e) => e.className);
         const allClasses = [...typographyClasses, ...elevationClasses];
 
-        allClasses.forEach(className => {
+        allClasses.forEach((className) => {
           expect(className).toMatch(/^ai-/);
         });
       });
@@ -412,8 +412,17 @@ describe('Design Tokens', () => {
 
     it('should have all required opacity tokens', () => {
       // Test for presence of required keys instead of fixed count
-      const requiredKeys = ['full', 'subtle', 'muted', 'disabled', 'hover', 'pressed', 'overlay', 'scrim'];
-      requiredKeys.forEach(key => {
+      const requiredKeys = [
+        'full',
+        'subtle',
+        'muted',
+        'disabled',
+        'hover',
+        'pressed',
+        'overlay',
+        'scrim',
+      ];
+      requiredKeys.forEach((key) => {
         expect(opacity).toHaveProperty(key);
         expect(typeof opacity[key as keyof typeof opacity]).toBe('number');
       });

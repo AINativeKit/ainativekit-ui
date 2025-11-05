@@ -17,10 +17,7 @@ const sampleLocations: LocationData[] = [
     description:
       'Award-winning Neapolitan pies in North Beach. A San Francisco institution serving authentic Italian pizza with locally-sourced ingredients.',
     thumbnail: 'https://persistent.oaistatic.com/pizzaz/pizzaz-1.png',
-    features: [
-      { icon: 'star', label: '4.8' },
-      { label: '$$$' },
-    ],
+    features: [{ icon: 'star', label: '4.8' }, { label: '$$$' }],
     lists: [
       {
         title: 'Reviews',
@@ -44,10 +41,7 @@ const sampleLocations: LocationData[] = [
     description:
       'Focaccia-style squares, late-night favorite. Classic North Beach spot known for thick, fluffy focaccia pizza by the slice.',
     thumbnail: 'https://persistent.oaistatic.com/pizzaz/pizzaz-2.png',
-    features: [
-      { icon: 'star', label: '4.6' },
-      { label: '$' },
-    ],
+    features: [{ icon: 'star', label: '4.6' }, { label: '$' }],
   },
   {
     id: 'delfina',
@@ -57,10 +51,7 @@ const sampleLocations: LocationData[] = [
     description:
       'Thin-crust classics on 18th Street. Celebrated for perfectly charred, thin-crust pizzas made in a wood-burning oven.',
     thumbnail: 'https://persistent.oaistatic.com/pizzaz/pizzaz-3.png',
-    features: [
-      { icon: 'star', label: '4.5' },
-      { label: '$$' },
-    ],
+    features: [{ icon: 'star', label: '4.5' }, { label: '$$' }],
   },
   {
     id: 'flour-water',
@@ -70,10 +61,7 @@ const sampleLocations: LocationData[] = [
     description:
       'Deep-dish and cornmeal crust favorites. Innovative pizzeria from the Flour + Water team with seasonal rotating menu.',
     thumbnail: 'https://persistent.oaistatic.com/pizzaz/pizzaz-6.png',
-    features: [
-      { icon: 'star', label: '4.5' },
-      { label: '$$' },
-    ],
+    features: [{ icon: 'star', label: '4.5' }, { label: '$$' }],
   },
 ];
 
@@ -168,7 +156,13 @@ const CompactMapDoc: FC = () => {
           }}
         >
           <div>
-            <h3 style={{ marginBottom: '12px', fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
+            <h3
+              style={{
+                marginBottom: '12px',
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               Loading
             </h3>
             <div style={heroStyle}>
@@ -182,7 +176,13 @@ const CompactMapDoc: FC = () => {
           </div>
 
           <div>
-            <h3 style={{ marginBottom: '12px', fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
+            <h3
+              style={{
+                marginBottom: '12px',
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               Error
             </h3>
             <div style={heroStyle}>
@@ -199,7 +199,13 @@ const CompactMapDoc: FC = () => {
           </div>
 
           <div>
-            <h3 style={{ marginBottom: '12px', fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
+            <h3
+              style={{
+                marginBottom: '12px',
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               Empty
             </h3>
             <div style={heroStyle}>
@@ -226,7 +232,9 @@ const CompactMapDoc: FC = () => {
             Pass `carouselProps.onErrorRetry` to offer a retry CTA without leaving the inline
             context.
           </li>
-          <li>CompactMap shares `LocationData` with other map components for easy swaps to fullscreen.</li>
+          <li>
+            CompactMap shares `LocationData` with other map components for easy swaps to fullscreen.
+          </li>
         </ul>
       </section>
 
@@ -250,7 +258,8 @@ const CompactMapDoc: FC = () => {
             },
             {
               name: 'onLocationSelect',
-              description: 'Callback when a location card or marker is selected: (id: string) => void.',
+              description:
+                'Callback when a location card or marker is selected: (id: string) => void.',
             },
             {
               name: 'onLocationActive',
@@ -270,15 +279,18 @@ const CompactMapDoc: FC = () => {
             },
             {
               name: 'selectedMarkerColor',
-              description: 'Marker colour for selected state. Default: var(--ai-color-accent-blue).',
+              description:
+                'Marker colour for selected state. Default: var(--ai-color-accent-blue).',
             },
             {
               name: 'height',
-              description: 'Fixed height for the container. Accepts number (px) or string. Default: "478px".',
+              description:
+                'Fixed height for the container. Accepts number (px) or string. Default: "478px".',
             },
             {
               name: 'carouselProps',
-              description: 'Partial LocationCarousel props to customise loading/error/empty states.',
+              description:
+                'Partial LocationCarousel props to customise loading/error/empty states.',
             },
             {
               name: 'loading',
@@ -307,11 +319,13 @@ const CompactMapDoc: FC = () => {
             { name: 'subtitle', description: 'Optional subtitle or category text (string).' },
             {
               name: 'coords',
-              description: 'Tuple of [latitude, longitude] used by Leaflet markers (number, number).',
+              description:
+                'Tuple of [latitude, longitude] used by Leaflet markers (number, number).',
             },
             {
               name: 'description',
-              description: 'Optional supporting copy displayed in popups and carousel cards (string).',
+              description:
+                'Optional supporting copy displayed in popups and carousel cards (string).',
             },
             {
               name: 'thumbnail',
@@ -337,7 +351,8 @@ const CompactMapDoc: FC = () => {
         <header>
           <h2 style={{ marginBottom: '8px' }}>When to Escalate</h2>
           <p style={{ margin: 0, color: 'var(--ai-color-text-secondary)' }}>
-            CompactMap offers quick exploration. Escalate to fullscreen when deeper context is required.
+            CompactMap offers quick exploration. Escalate to fullscreen when deeper context is
+            required.
           </p>
         </header>
         <ul style={{ margin: 0, paddingLeft: '20px', color: 'var(--ai-color-text-secondary)' }}>
@@ -348,7 +363,8 @@ const CompactMapDoc: FC = () => {
             Use `MapView` directly when the carousel isn’t necessary (e.g., single location focus).
           </li>
           <li>
-            Keep selection state in a shared store so CompactMap can hand off to fullscreen seamlessly.
+            Keep selection state in a shared store so CompactMap can hand off to fullscreen
+            seamlessly.
           </li>
         </ul>
       </section>

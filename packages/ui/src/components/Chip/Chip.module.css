@@ -5,19 +5,19 @@
   align-items: center;
   gap: var(--ai-spacing-2); /* 4px gap between elements */
   border-radius: var(--ai-radius-full); /* Fully rounded pill */
-  
+
   /* Typography */
   font-family: var(--ai-font-family);
   font-weight: 500;
   white-space: nowrap;
   user-select: none;
-  
+
   /* Remove button default styles when interactive */
   border: none;
   background: none;
   cursor: default;
   text-align: left;
-  
+
   /* Transitions */
   transition:
     background-color 0.15s ease,
@@ -203,7 +203,11 @@ button.chipError:not(.chipDisabled):hover {
 }
 
 button.chipNeutral:not(.chipDisabled):hover {
-  background-color: color-mix(in srgb, var(--ai-color-bg-tertiary) 90%, var(--ai-color-text-primary));
+  background-color: color-mix(
+    in srgb,
+    var(--ai-color-bg-tertiary) 90%,
+    var(--ai-color-text-primary)
+  );
 }
 
 /* ========== SELECTED STATE ========== */

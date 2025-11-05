@@ -28,20 +28,13 @@ const SAMPLE_LOCATIONS = [
     image: 'https://images.unsplash.com/photo-1431274172761-fca41d930114?w=200&q=80',
     title: 'Golden Gate Bridge',
     subtitle: 'San Francisco, CA',
-    features: [
-      { icon: 'star' as const, label: '4.9' },
-      { label: '$10' },
-      { label: '2.5 mi' },
-    ],
+    features: [{ icon: 'star' as const, label: '4.9' }, { label: '$10' }, { label: '2.5 mi' }],
   },
   {
     image: 'https://images.unsplash.com/photo-1564221710304-0b37c8b9d729?w=200&q=80',
     title: 'Griffith Observatory',
     subtitle: 'Los Angeles, CA',
-    features: [
-      { icon: 'star' as const, label: '4.7' },
-      { label: 'Free' },
-    ],
+    features: [{ icon: 'star' as const, label: '4.7' }, { label: 'Free' }],
   },
 ];
 
@@ -56,7 +49,14 @@ const LocationCardShowcase: React.FC = () => {
 
       {/* Overview */}
       <section style={{ marginBottom: '64px' }}>
-        <p style={{ marginBottom: '24px', color: 'var(--ai-color-text-secondary)', fontSize: '16px', lineHeight: '1.6' }}>
+        <p
+          style={{
+            marginBottom: '24px',
+            color: 'var(--ai-color-text-secondary)',
+            fontSize: '16px',
+            lineHeight: '1.6',
+          }}
+        >
           Location cards display places with thumbnail images, titles, and configurable features.
           Perfect for maps, location lists, and place pickers with full state management support.
         </p>
@@ -72,7 +72,9 @@ const LocationCardShowcase: React.FC = () => {
         </header>
 
         <div style={{ marginBottom: '32px' }}>
-          <h3 style={{ fontSize: '14px', marginBottom: '16px', fontWeight: '600' }}>Standard Locations</h3>
+          <h3 style={{ fontSize: '14px', marginBottom: '16px', fontWeight: '600' }}>
+            Standard Locations
+          </h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '600px' }}>
             <LocationCard
               {...SAMPLE_LOCATIONS[0]}
@@ -93,7 +95,9 @@ const LocationCardShowcase: React.FC = () => {
         </div>
 
         <div style={{ marginBottom: '32px' }}>
-          <h3 style={{ fontSize: '14px', marginBottom: '16px', fontWeight: '600' }}>Minimal Content</h3>
+          <h3 style={{ fontSize: '14px', marginBottom: '16px', fontWeight: '600' }}>
+            Minimal Content
+          </h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '600px' }}>
             <LocationCard
               image={SAMPLE_LOCATIONS[0].image}
@@ -110,23 +114,13 @@ const LocationCardShowcase: React.FC = () => {
         </div>
 
         <div>
-          <h3 style={{ fontSize: '14px', marginBottom: '16px', fontWeight: '600' }}>With Badges & Chips</h3>
+          <h3 style={{ fontSize: '14px', marginBottom: '16px', fontWeight: '600' }}>
+            With Badges & Chips
+          </h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '600px' }}>
-            <LocationCard
-              {...SAMPLE_LOCATIONS[0]}
-              badge="New"
-              badgeVariant="success"
-            />
-            <LocationCard
-              {...SAMPLE_LOCATIONS[1]}
-              badge="Popular"
-              badgeVariant="filled"
-            />
-            <LocationCard
-              {...SAMPLE_LOCATIONS[2]}
-              badge={5}
-              badgeVariant="default"
-            />
+            <LocationCard {...SAMPLE_LOCATIONS[0]} badge="New" badgeVariant="success" />
+            <LocationCard {...SAMPLE_LOCATIONS[1]} badge="Popular" badgeVariant="filled" />
+            <LocationCard {...SAMPLE_LOCATIONS[2]} badge={5} badgeVariant="default" />
           </div>
         </div>
       </section>
@@ -142,7 +136,14 @@ const LocationCardShowcase: React.FC = () => {
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '600px' }}>
           <div>
-            <h3 style={{ fontSize: '14px', marginBottom: '12px', color: 'var(--ai-color-text-secondary)', fontWeight: '600' }}>
+            <h3
+              style={{
+                fontSize: '14px',
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-secondary)',
+                fontWeight: '600',
+              }}
+            >
               Loading
             </h3>
             <LocationCard
@@ -153,7 +154,14 @@ const LocationCardShowcase: React.FC = () => {
           </div>
 
           <div>
-            <h3 style={{ fontSize: '14px', marginBottom: '12px', color: 'var(--ai-color-text-secondary)', fontWeight: '600' }}>
+            <h3
+              style={{
+                fontSize: '14px',
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-secondary)',
+                fontWeight: '600',
+              }}
+            >
               Error (with retry)
             </h3>
             <LocationCard
@@ -170,7 +178,14 @@ const LocationCardShowcase: React.FC = () => {
           </div>
 
           <div>
-            <h3 style={{ fontSize: '14px', marginBottom: '12px', color: 'var(--ai-color-text-secondary)', fontWeight: '600' }}>
+            <h3
+              style={{
+                fontSize: '14px',
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-secondary)',
+                fontWeight: '600',
+              }}
+            >
               Empty
             </h3>
             <LocationCard
@@ -192,7 +207,14 @@ const LocationCardShowcase: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ backgroundColor: 'var(--ai-color-bg-secondary)', padding: '24px', borderRadius: '12px', maxWidth: '650px' }}>
+        <div
+          style={{
+            backgroundColor: 'var(--ai-color-bg-secondary)',
+            padding: '24px',
+            borderRadius: '12px',
+            maxWidth: '650px',
+          }}
+        >
           <h3 style={{ fontSize: '18px', marginBottom: '16px' }}>Nearby Locations</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {SAMPLE_LOCATIONS.map((location, index) => (
@@ -215,10 +237,25 @@ const LocationCardShowcase: React.FC = () => {
           <h2 style={{ marginBottom: '8px' }}>Usage Guidelines</h2>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '24px',
+          }}
+        >
           <div>
-            <h3 style={{ fontSize: '16px', marginBottom: '12px', fontWeight: '600' }}>When to Use</h3>
-            <ul style={{ margin: 0, paddingLeft: '20px', color: 'var(--ai-color-text-secondary)', lineHeight: '1.8' }}>
+            <h3 style={{ fontSize: '16px', marginBottom: '12px', fontWeight: '600' }}>
+              When to Use
+            </h3>
+            <ul
+              style={{
+                margin: 0,
+                paddingLeft: '20px',
+                color: 'var(--ai-color-text-secondary)',
+                lineHeight: '1.8',
+              }}
+            >
               <li>Map sidebar location lists</li>
               <li>Location search results</li>
               <li>Place picker interfaces</li>
@@ -227,8 +264,17 @@ const LocationCardShowcase: React.FC = () => {
           </div>
 
           <div>
-            <h3 style={{ fontSize: '16px', marginBottom: '12px', fontWeight: '600' }}>Best Practices</h3>
-            <ul style={{ margin: 0, paddingLeft: '20px', color: 'var(--ai-color-text-secondary)', lineHeight: '1.8' }}>
+            <h3 style={{ fontSize: '16px', marginBottom: '12px', fontWeight: '600' }}>
+              Best Practices
+            </h3>
+            <ul
+              style={{
+                margin: 0,
+                paddingLeft: '20px',
+                color: 'var(--ai-color-text-secondary)',
+                lineHeight: '1.8',
+              }}
+            >
               <li>Use Chips for text labels</li>
               <li>Use Badges for numbers</li>
               <li>Keep features concise (3-4 max)</li>
@@ -238,8 +284,17 @@ const LocationCardShowcase: React.FC = () => {
           </div>
 
           <div>
-            <h3 style={{ fontSize: '16px', marginBottom: '12px', fontWeight: '600' }}>Accessibility</h3>
-            <ul style={{ margin: 0, paddingLeft: '20px', color: 'var(--ai-color-text-secondary)', lineHeight: '1.8' }}>
+            <h3 style={{ fontSize: '16px', marginBottom: '12px', fontWeight: '600' }}>
+              Accessibility
+            </h3>
+            <ul
+              style={{
+                margin: 0,
+                paddingLeft: '20px',
+                color: 'var(--ai-color-text-secondary)',
+                lineHeight: '1.8',
+              }}
+            >
               <li>Keyboard navigable</li>
               <li>Screen reader support</li>
               <li>Loading announcements</li>
@@ -256,80 +311,211 @@ const LocationCardShowcase: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ 
-          border: '1px solid rgba(121, 116, 126, 0.2)', 
-          borderRadius: '8px', 
-          overflow: 'hidden',
-          marginBottom: '24px'
-        }}>
+        <div
+          style={{
+            border: '1px solid rgba(121, 116, 126, 0.2)',
+            borderRadius: '8px',
+            overflow: 'hidden',
+            marginBottom: '24px',
+          }}
+        >
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
               <tr style={{ backgroundColor: 'var(--ai-color-bg-secondary)' }}>
-                <th style={{ textAlign: 'left', padding: '14px 16px', fontWeight: '600', fontSize: '14px', borderBottom: '1px solid rgba(121, 116, 126, 0.15)' }}>Prop</th>
-                <th style={{ textAlign: 'left', padding: '14px 16px', fontWeight: '600', fontSize: '14px', borderBottom: '1px solid rgba(121, 116, 126, 0.15)' }}>Type</th>
-                <th style={{ textAlign: 'left', padding: '14px 16px', fontWeight: '600', fontSize: '14px', borderBottom: '1px solid rgba(121, 116, 126, 0.15)' }}>Default</th>
-                <th style={{ textAlign: 'left', padding: '14px 16px', fontWeight: '600', fontSize: '14px', borderBottom: '1px solid rgba(121, 116, 126, 0.15)' }}>Description</th>
+                <th
+                  style={{
+                    textAlign: 'left',
+                    padding: '14px 16px',
+                    fontWeight: '600',
+                    fontSize: '14px',
+                    borderBottom: '1px solid rgba(121, 116, 126, 0.15)',
+                  }}
+                >
+                  Prop
+                </th>
+                <th
+                  style={{
+                    textAlign: 'left',
+                    padding: '14px 16px',
+                    fontWeight: '600',
+                    fontSize: '14px',
+                    borderBottom: '1px solid rgba(121, 116, 126, 0.15)',
+                  }}
+                >
+                  Type
+                </th>
+                <th
+                  style={{
+                    textAlign: 'left',
+                    padding: '14px 16px',
+                    fontWeight: '600',
+                    fontSize: '14px',
+                    borderBottom: '1px solid rgba(121, 116, 126, 0.15)',
+                  }}
+                >
+                  Default
+                </th>
+                <th
+                  style={{
+                    textAlign: 'left',
+                    padding: '14px 16px',
+                    fontWeight: '600',
+                    fontSize: '14px',
+                    borderBottom: '1px solid rgba(121, 116, 126, 0.15)',
+                  }}
+                >
+                  Description
+                </th>
               </tr>
             </thead>
             <tbody>
               {[
-                { name: 'image', type: 'string', required: true, description: 'Thumbnail image URL' },
-                { name: 'title', type: 'string', required: true, description: 'Location name/title' },
+                {
+                  name: 'image',
+                  type: 'string',
+                  required: true,
+                  description: 'Thumbnail image URL',
+                },
+                {
+                  name: 'title',
+                  type: 'string',
+                  required: true,
+                  description: 'Location name/title',
+                },
                 { name: 'subtitle', type: 'string', description: 'Optional subtitle/description' },
-                { name: 'features', type: 'Feature[]', description: 'Configurable feature list (rating, price, etc.)' },
-                { name: 'selected', type: 'boolean', default: 'false', description: 'Whether this card is currently selected' },
+                {
+                  name: 'features',
+                  type: 'Feature[]',
+                  description: 'Configurable feature list (rating, price, etc.)',
+                },
+                {
+                  name: 'selected',
+                  type: 'boolean',
+                  default: 'false',
+                  description: 'Whether this card is currently selected',
+                },
                 { name: 'onClick', type: '() => void', description: 'Click handler' },
-                { name: 'loading', type: 'boolean', default: 'false', description: 'Loading state - shows skeleton UI' },
-                { name: 'error', type: 'boolean', default: 'false', description: 'Error state - shows error message' },
-                { name: 'errorTitle', type: 'string', default: "'Failed to load'", description: 'Custom error title' },
+                {
+                  name: 'loading',
+                  type: 'boolean',
+                  default: 'false',
+                  description: 'Loading state - shows skeleton UI',
+                },
+                {
+                  name: 'error',
+                  type: 'boolean',
+                  default: 'false',
+                  description: 'Error state - shows error message',
+                },
+                {
+                  name: 'errorTitle',
+                  type: 'string',
+                  default: "'Failed to load'",
+                  description: 'Custom error title',
+                },
                 { name: 'errorMessage', type: 'string', description: 'Custom error message' },
-                { name: 'onErrorRetry', type: '() => void', description: 'Retry callback for error state' },
-                { name: 'emptyTitle', type: 'string', default: "'No location'", description: 'Empty state title' },
+                {
+                  name: 'onErrorRetry',
+                  type: '() => void',
+                  description: 'Retry callback for error state',
+                },
+                {
+                  name: 'emptyTitle',
+                  type: 'string',
+                  default: "'No location'",
+                  description: 'Empty state title',
+                },
                 { name: 'emptyMessage', type: 'string', description: 'Empty state message' },
-                { name: 'imageLazy', type: 'boolean', default: 'true', description: 'Enable lazy loading for thumbnail' },
-                { name: 'onImageLoad', type: '(event) => void', description: 'Callback when image loads' },
-                { name: 'onImageError', type: '(event) => void', description: 'Callback when image fails' },
-                { name: 'badge', type: 'string | number', description: 'Badge content (numbers use Badge, text uses Chip)' },
-                { name: 'badgePosition', type: "'top-left' | 'top-right'", default: "'top-right'", description: 'Badge position (note: top-left not supported, always uses top-right)' },
-                { name: 'badgeVariant', type: 'BadgeVariant | ChipVariant', description: 'Badge or Chip variant style' },
-                { name: 'titleLines', type: '1 | 2 | 3', default: '1', description: 'Number of lines for title' },
-                { name: 'subtitleLines', type: '1 | 2 | 3', default: '1', description: 'Number of lines for subtitle' },
+                {
+                  name: 'imageLazy',
+                  type: 'boolean',
+                  default: 'true',
+                  description: 'Enable lazy loading for thumbnail',
+                },
+                {
+                  name: 'onImageLoad',
+                  type: '(event) => void',
+                  description: 'Callback when image loads',
+                },
+                {
+                  name: 'onImageError',
+                  type: '(event) => void',
+                  description: 'Callback when image fails',
+                },
+                {
+                  name: 'badge',
+                  type: 'string | number',
+                  description: 'Badge content (numbers use Badge, text uses Chip)',
+                },
+                {
+                  name: 'badgePosition',
+                  type: "'top-left' | 'top-right'",
+                  default: "'top-right'",
+                  description:
+                    'Badge position (note: top-left not supported, always uses top-right)',
+                },
+                {
+                  name: 'badgeVariant',
+                  type: 'BadgeVariant | ChipVariant',
+                  description: 'Badge or Chip variant style',
+                },
+                {
+                  name: 'titleLines',
+                  type: '1 | 2 | 3',
+                  default: '1',
+                  description: 'Number of lines for title',
+                },
+                {
+                  name: 'subtitleLines',
+                  type: '1 | 2 | 3',
+                  default: '1',
+                  description: 'Number of lines for subtitle',
+                },
                 { name: 'className', type: 'string', description: 'Additional CSS class name' },
                 { name: 'data-testid', type: 'string', description: 'Test ID for testing' },
               ].map((prop, index) => (
                 <tr key={prop.name}>
-                  <td style={{
-                    padding: '12px 16px',
-                    borderBottom: index < 22 ? '1px solid rgba(121, 116, 126, 0.08)' : 'none',
-                    fontFamily: 'monospace',
-                    fontSize: '13px'
-                  }}>
-                    {prop.name}{prop.required && <span style={{ color: 'var(--ai-color-error)' }}> *</span>}
+                  <td
+                    style={{
+                      padding: '12px 16px',
+                      borderBottom: index < 22 ? '1px solid rgba(121, 116, 126, 0.08)' : 'none',
+                      fontFamily: 'monospace',
+                      fontSize: '13px',
+                    }}
+                  >
+                    {prop.name}
+                    {prop.required && <span style={{ color: 'var(--ai-color-error)' }}> *</span>}
                   </td>
-                  <td style={{ 
-                    padding: '12px 16px', 
-                    borderBottom: index < 22 ? '1px solid rgba(121, 116, 126, 0.08)' : 'none',
-                    fontFamily: 'monospace',
-                    fontSize: '12px',
-                    color: 'var(--ai-color-text-secondary)'
-                  }}>
+                  <td
+                    style={{
+                      padding: '12px 16px',
+                      borderBottom: index < 22 ? '1px solid rgba(121, 116, 126, 0.08)' : 'none',
+                      fontFamily: 'monospace',
+                      fontSize: '12px',
+                      color: 'var(--ai-color-text-secondary)',
+                    }}
+                  >
                     {prop.type}
                   </td>
-                  <td style={{ 
-                    padding: '12px 16px', 
-                    borderBottom: index < 22 ? '1px solid rgba(121, 116, 126, 0.08)' : 'none',
-                    fontFamily: 'monospace',
-                    fontSize: '12px',
-                    color: 'var(--ai-color-text-tertiary)'
-                  }}>
+                  <td
+                    style={{
+                      padding: '12px 16px',
+                      borderBottom: index < 22 ? '1px solid rgba(121, 116, 126, 0.08)' : 'none',
+                      fontFamily: 'monospace',
+                      fontSize: '12px',
+                      color: 'var(--ai-color-text-tertiary)',
+                    }}
+                  >
                     {prop.default || '-'}
                   </td>
-                  <td style={{ 
-                    padding: '12px 16px', 
-                    borderBottom: index < 22 ? '1px solid rgba(121, 116, 126, 0.08)' : 'none',
-                    fontSize: '14px',
-                    color: 'var(--ai-color-text-secondary)'
-                  }}>
+                  <td
+                    style={{
+                      padding: '12px 16px',
+                      borderBottom: index < 22 ? '1px solid rgba(121, 116, 126, 0.08)' : 'none',
+                      fontSize: '14px',
+                      color: 'var(--ai-color-text-secondary)',
+                    }}
+                  >
                     {prop.description}
                   </td>
                 </tr>

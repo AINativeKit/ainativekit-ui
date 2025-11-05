@@ -21,10 +21,8 @@ import type { IconProps } from '../components/Icon';
  * @accessibility
  * Most misc icons are decorative. Only add aria-label directly to Icon when conveying unique information without text.
  */
-export const Love = React.forwardRef<HTMLSpanElement, Omit<IconProps, 'name'>>(
-  (props, ref) => {
-    return <Icon ref={ref} name="love" {...props} />;
-  }
-);
+export const Love = React.forwardRef<HTMLSpanElement, Omit<IconProps, 'name'>>((props, ref) => {
+  return <Icon ref={ref} name="love" {...props} />;
+});
 
 Love.displayName = 'Love';

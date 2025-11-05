@@ -87,7 +87,8 @@ const BadgesComponent: React.FC = () => {
       {/* Badge Gallery */}
       <section style={{ marginBottom: '64px' }}>
         <p style={{ marginBottom: '24px', color: 'var(--ai-color-text-secondary)' }}>
-          Compact, circular indicators for ratings, counters, status, and tags. Click any badge to copy its code.
+          Compact, circular indicators for ratings, counters, status, and tags. Click any badge to
+          copy its code.
         </p>
 
         {/* Variants Section */}
@@ -106,46 +107,22 @@ const BadgesComponent: React.FC = () => {
               gap: '16px',
             }}
           >
-            <BadgeCard
-              variant="default"
-              label="Default"
-              description="Ratings & counters"
-            >
+            <BadgeCard variant="default" label="Default" description="Ratings & counters">
               9.2
             </BadgeCard>
-            <BadgeCard
-              variant="filled"
-              label="Filled"
-              description="Notifications"
-            >
+            <BadgeCard variant="filled" label="Filled" description="Notifications">
               5
             </BadgeCard>
-            <BadgeCard
-              variant="success"
-              label="Success"
-              description="Positive status"
-            >
+            <BadgeCard variant="success" label="Success" description="Positive status">
               ✓
             </BadgeCard>
-            <BadgeCard
-              variant="warning"
-              label="Warning"
-              description="Attention needed"
-            >
+            <BadgeCard variant="warning" label="Warning" description="Attention needed">
               !
             </BadgeCard>
-            <BadgeCard
-              variant="error"
-              label="Error"
-              description="Critical states"
-            >
+            <BadgeCard variant="error" label="Error" description="Critical states">
               ×
             </BadgeCard>
-            <BadgeCard
-              variant="neutral"
-              label="Neutral"
-              description="Tags & categories"
-            >
+            <BadgeCard variant="neutral" label="Neutral" description="Tags & categories">
               AI
             </BadgeCard>
           </div>
@@ -162,11 +139,21 @@ const BadgesComponent: React.FC = () => {
               </p>
             </header>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-              <Badge variant="default" ariaLabel="Rating 9.2 out of 10">9.2</Badge>
-              <Badge variant="default" ariaLabel="Rating 8.5 out of 10">8.5</Badge>
-              <Badge variant="default" ariaLabel="Grade A+">A+</Badge>
-              <Badge variant="default" ariaLabel="Score 95">95</Badge>
-              <Badge variant="default" ariaLabel="4.5 stars">4.5★</Badge>
+              <Badge variant="default" ariaLabel="Rating 9.2 out of 10">
+                9.2
+              </Badge>
+              <Badge variant="default" ariaLabel="Rating 8.5 out of 10">
+                8.5
+              </Badge>
+              <Badge variant="default" ariaLabel="Grade A+">
+                A+
+              </Badge>
+              <Badge variant="default" ariaLabel="Score 95">
+                95
+              </Badge>
+              <Badge variant="default" ariaLabel="4.5 stars">
+                4.5★
+              </Badge>
             </div>
           </section>
 
@@ -179,11 +166,21 @@ const BadgesComponent: React.FC = () => {
               </p>
             </header>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-              <Badge variant="filled" ariaLabel="1 notification">1</Badge>
-              <Badge variant="filled" ariaLabel="5 notifications">5</Badge>
-              <Badge variant="filled" ariaLabel="12 notifications">12</Badge>
-              <Badge variant="filled" ariaLabel="99 or more notifications">99+</Badge>
-              <Badge variant="filled" ariaLabel="3 new messages">3</Badge>
+              <Badge variant="filled" ariaLabel="1 notification">
+                1
+              </Badge>
+              <Badge variant="filled" ariaLabel="5 notifications">
+                5
+              </Badge>
+              <Badge variant="filled" ariaLabel="12 notifications">
+                12
+              </Badge>
+              <Badge variant="filled" ariaLabel="99 or more notifications">
+                99+
+              </Badge>
+              <Badge variant="filled" ariaLabel="3 new messages">
+                3
+              </Badge>
             </div>
           </section>
 
@@ -197,23 +194,33 @@ const BadgesComponent: React.FC = () => {
             </header>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Badge variant="success" ariaLabel="Verified">✓</Badge>
+                <Badge variant="success" ariaLabel="Verified">
+                  ✓
+                </Badge>
                 <span style={{ fontSize: '14px' }}>Verified</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Badge variant="warning" ariaLabel="Warning">!</Badge>
+                <Badge variant="warning" ariaLabel="Warning">
+                  !
+                </Badge>
                 <span style={{ fontSize: '14px' }}>Warning</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Badge variant="error" ariaLabel="Error">×</Badge>
+                <Badge variant="error" ariaLabel="Error">
+                  ×
+                </Badge>
                 <span style={{ fontSize: '14px' }}>Error</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Badge variant="success" ariaLabel="Online">●</Badge>
+                <Badge variant="success" ariaLabel="Online">
+                  ●
+                </Badge>
                 <span style={{ fontSize: '14px' }}>Online</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Badge variant="neutral" ariaLabel="Offline">●</Badge>
+                <Badge variant="neutral" ariaLabel="Offline">
+                  ●
+                </Badge>
                 <span style={{ fontSize: '14px' }}>Offline</span>
               </div>
             </div>
@@ -248,17 +255,23 @@ const BadgesComponent: React.FC = () => {
           Three sizes available: Small (32px), Medium (40px), and Large (48px).
         </p>
         <div style={{ display: 'flex', gap: '32px', alignItems: 'center', flexWrap: 'wrap' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-            <Badge size="sm" ariaLabel="5 notifications">5</Badge>
+          <div
+            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}
+          >
+            <Badge size="sm" ariaLabel="5 notifications">
+              5
+            </Badge>
             <code style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)' }}>
               size="sm"
             </code>
-            <span style={{ fontSize: '11px', color: 'var(--ai-color-text-tertiary)' }}>
-              32px
-            </span>
+            <span style={{ fontSize: '11px', color: 'var(--ai-color-text-tertiary)' }}>32px</span>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-            <Badge size="md" ariaLabel="5 notifications">5</Badge>
+          <div
+            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}
+          >
+            <Badge size="md" ariaLabel="5 notifications">
+              5
+            </Badge>
             <code style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)' }}>
               size="md"
             </code>
@@ -266,14 +279,16 @@ const BadgesComponent: React.FC = () => {
               40px (default)
             </span>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-            <Badge size="lg" ariaLabel="5 notifications">5</Badge>
+          <div
+            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}
+          >
+            <Badge size="lg" ariaLabel="5 notifications">
+              5
+            </Badge>
             <code style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)' }}>
               size="lg"
             </code>
-            <span style={{ fontSize: '11px', color: 'var(--ai-color-text-tertiary)' }}>
-              48px
-            </span>
+            <span style={{ fontSize: '11px', color: 'var(--ai-color-text-tertiary)' }}>48px</span>
           </div>
         </div>
       </section>
@@ -289,7 +304,9 @@ const BadgesComponent: React.FC = () => {
           {/* In List Items */}
           <div>
             <h3 style={{ fontSize: '16px', marginBottom: '16px' }}>In List Items</h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', maxWidth: '400px' }}>
+            <div
+              style={{ display: 'flex', flexDirection: 'column', gap: '8px', maxWidth: '400px' }}
+            >
               <div
                 style={{
                   display: 'flex',
@@ -314,7 +331,9 @@ const BadgesComponent: React.FC = () => {
                 }}
               >
                 <span>Notifications</span>
-                <Badge variant="filled" ariaLabel="5 notifications">5</Badge>
+                <Badge variant="filled" ariaLabel="5 notifications">
+                  5
+                </Badge>
               </div>
               <div
                 style={{
@@ -327,7 +346,9 @@ const BadgesComponent: React.FC = () => {
                 }}
               >
                 <span>System Status</span>
-                <Badge variant="success" ariaLabel="Operational">✓</Badge>
+                <Badge variant="success" ariaLabel="Operational">
+                  ✓
+                </Badge>
               </div>
             </div>
           </div>
@@ -338,15 +359,21 @@ const BadgesComponent: React.FC = () => {
             <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span style={{ fontSize: '14px' }}>Rating:</span>
-                <Badge variant="default" ariaLabel="Rating 9.2 out of 10">9.2</Badge>
+                <Badge variant="default" ariaLabel="Rating 9.2 out of 10">
+                  9.2
+                </Badge>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span style={{ fontSize: '14px' }}>Messages:</span>
-                <Badge variant="filled" ariaLabel="3 messages">3</Badge>
+                <Badge variant="filled" ariaLabel="3 messages">
+                  3
+                </Badge>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span style={{ fontSize: '14px' }}>Status:</span>
-                <Badge variant="success" ariaLabel="Verified">✓</Badge>
+                <Badge variant="success" ariaLabel="Verified">
+                  ✓
+                </Badge>
               </div>
             </div>
           </div>
@@ -357,9 +384,7 @@ const BadgesComponent: React.FC = () => {
       <section style={{ marginBottom: '64px' }}>
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Usage</h2>
 
-        <h3 style={{ fontSize: '18px', marginBottom: '12px', marginTop: '24px' }}>
-          Basic Usage
-        </h3>
+        <h3 style={{ fontSize: '18px', marginBottom: '12px', marginTop: '24px' }}>Basic Usage</h3>
         <p style={{ marginBottom: '12px', color: 'var(--ai-color-text-secondary)' }}>
           Import and use Badge with different variants and sizes:
         </p>
@@ -415,15 +440,34 @@ const BadgesComponent: React.FC = () => {
 <Badge variant="success">✓</Badge>`}</code>
         </div>
 
-        <h3 style={{ fontSize: '18px', marginBottom: '12px', marginTop: '24px' }}>
-          When to Use
-        </h3>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginBottom: '24px' }}>
+        <h3 style={{ fontSize: '18px', marginBottom: '12px', marginTop: '24px' }}>When to Use</h3>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '24px',
+            marginBottom: '24px',
+          }}
+        >
           <div>
-            <h4 style={{ fontSize: '14px', marginBottom: '8px', color: 'var(--ai-color-accent-green)' }}>
+            <h4
+              style={{
+                fontSize: '14px',
+                marginBottom: '8px',
+                color: 'var(--ai-color-accent-green)',
+              }}
+            >
               ✅ Good Use Cases
             </h4>
-            <ul style={{ margin: 0, paddingLeft: '20px', color: 'var(--ai-color-text-secondary)', fontSize: '14px', lineHeight: '1.8' }}>
+            <ul
+              style={{
+                margin: 0,
+                paddingLeft: '20px',
+                color: 'var(--ai-color-text-secondary)',
+                fontSize: '14px',
+                lineHeight: '1.8',
+              }}
+            >
               <li>Notification counts</li>
               <li>Ratings and scores</li>
               <li>Status indicators</li>
@@ -432,10 +476,20 @@ const BadgesComponent: React.FC = () => {
             </ul>
           </div>
           <div>
-            <h4 style={{ fontSize: '14px', marginBottom: '8px', color: 'var(--ai-color-accent-red)' }}>
+            <h4
+              style={{ fontSize: '14px', marginBottom: '8px', color: 'var(--ai-color-accent-red)' }}
+            >
               ❌ Don't Use For
             </h4>
-            <ul style={{ margin: 0, paddingLeft: '20px', color: 'var(--ai-color-text-secondary)', fontSize: '14px', lineHeight: '1.8' }}>
+            <ul
+              style={{
+                margin: 0,
+                paddingLeft: '20px',
+                color: 'var(--ai-color-text-secondary)',
+                fontSize: '14px',
+                lineHeight: '1.8',
+              }}
+            >
               <li>Long text labels (use Chip/Tag)</li>
               <li>Interactive elements (use Button)</li>
               <li>Form inputs or controls</li>
@@ -453,15 +507,18 @@ const BadgesComponent: React.FC = () => {
           rows={[
             {
               name: 'variant',
-              description: 'Visual style variant. Options: "default" (light bg, blue text), "filled" (solid blue), "success" (green), "warning" (orange), "error" (red), "neutral" (gray). Default: "default"',
+              description:
+                'Visual style variant. Options: "default" (light bg, blue text), "filled" (solid blue), "success" (green), "warning" (orange), "error" (red), "neutral" (gray). Default: "default"',
             },
             {
               name: 'size',
-              description: 'Badge size. Options: "sm" (32px), "md" (40px), "lg" (48px). Default: "md"',
+              description:
+                'Badge size. Options: "sm" (32px), "md" (40px), "lg" (48px). Default: "md"',
             },
             {
               name: 'ariaLabel',
-              description: 'Accessible label for screen readers. Required for icons/symbols/numbers. Automatically adds role="status" when provided.',
+              description:
+                'Accessible label for screen readers. Required for icons/symbols/numbers. Automatically adds role="status" when provided.',
             },
             {
               name: 'children',

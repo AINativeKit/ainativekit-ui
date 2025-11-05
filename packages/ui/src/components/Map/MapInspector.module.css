@@ -88,7 +88,9 @@
   max-height: min(85vh, 600px);
   border-radius: var(--ai-radius-xl);
   border: 1px solid var(--ai-color-border-default);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 /* Sidebar content styling */
@@ -193,7 +195,8 @@
   gap: var(--ai-spacing-4);
   min-width: 88px;
   height: 44px;
-  padding: 0 var(--ai-spacing-12);  font-size: var(--ai-font-size-button);
+  padding: 0 var(--ai-spacing-12);
+  font-size: var(--ai-font-size-button);
   line-height: var(--ai-line-height-button);
   font-weight: var(--ai-font-weight-button);
   letter-spacing: var(--ai-letter-spacing-button);
@@ -205,7 +208,10 @@
   cursor: pointer;
   user-select: none;
   white-space: nowrap;
-  transition: background-color 0.15s ease, opacity 0.15s ease, transform 0.1s ease;
+  transition:
+    background-color 0.15s ease,
+    opacity 0.15s ease,
+    transform 0.1s ease;
 }
 
 .primaryButton:not(:disabled):hover {
@@ -243,7 +249,11 @@
   cursor: pointer;
   user-select: none;
   white-space: nowrap;
-  transition: background-color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease, transform 0.1s ease;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    opacity 0.15s ease,
+    transform 0.1s ease;
 }
 
 .secondaryButton:not(:disabled):hover {

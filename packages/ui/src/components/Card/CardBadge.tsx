@@ -10,7 +10,7 @@ export interface CardBadgeProps extends BadgeProps {
 
 /**
  * Card.Badge - Wrapper around the Badge primitive optimized for card usage
- * 
+ *
  * @example
  * ```tsx
  * <Card.Header>
@@ -19,10 +19,8 @@ export interface CardBadgeProps extends BadgeProps {
  * </Card.Header>
  * ```
  */
-export const CardBadge = React.forwardRef<HTMLSpanElement, CardBadgeProps>(
-  (props, ref) => {
-    return <Badge ref={ref} {...props} />;
-  }
-);
+export const CardBadge = React.forwardRef<HTMLSpanElement, CardBadgeProps>((props, ref) => {
+  return <Badge ref={ref} {...props} />;
+});
 
 CardBadge.displayName = 'Card.Badge';

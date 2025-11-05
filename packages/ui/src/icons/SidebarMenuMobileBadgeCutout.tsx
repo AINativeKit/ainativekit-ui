@@ -19,10 +19,11 @@ import type { IconProps } from '../components/Icon';
  * @accessibility
  * Interface icons often appear alone. Always provide aria-label on the parent button or interactive element.
  */
-export const SidebarMenuMobileBadgeCutout = React.forwardRef<HTMLSpanElement, Omit<IconProps, 'name'>>(
-  (props, ref) => {
-    return <Icon ref={ref} name="sidebar-menu-mobile-badge-cutout" {...props} />;
-  }
-);
+export const SidebarMenuMobileBadgeCutout = React.forwardRef<
+  HTMLSpanElement,
+  Omit<IconProps, 'name'>
+>((props, ref) => {
+  return <Icon ref={ref} name="sidebar-menu-mobile-badge-cutout" {...props} />;
+});
 
 SidebarMenuMobileBadgeCutout.displayName = 'SidebarMenuMobileBadgeCutout';

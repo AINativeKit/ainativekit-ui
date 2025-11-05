@@ -22,10 +22,7 @@ describe('LocationCard', () => {
     });
 
     it('renders features when provided', () => {
-      const features: Feature[] = [
-        { icon: 'star', label: '4.5' },
-        { label: '$100' },
-      ];
+      const features: Feature[] = [{ icon: 'star', label: '4.5' }, { label: '$100' }];
       render(<LocationCard {...defaultProps} features={features} />);
       expect(screen.getByText('4.5')).toBeInTheDocument();
       expect(screen.getByText('$100')).toBeInTheDocument();
@@ -73,10 +70,10 @@ describe('LocationCard', () => {
       const user = userEvent.setup();
       const handleRetry = vi.fn();
       render(<LocationCard {...defaultProps} error={true} onErrorRetry={handleRetry} />);
-      
+
       const retryButton = screen.getByRole('button', { name: /try again/i });
       await user.click(retryButton);
-      
+
       expect(handleRetry).toHaveBeenCalledTimes(1);
     });
 
@@ -148,10 +145,10 @@ describe('LocationCard', () => {
     it('calls onImageLoad when image loads', async () => {
       const handleImageLoad = vi.fn();
       render(<LocationCard {...defaultProps} onImageLoad={handleImageLoad} />);
-      
+
       const img = screen.getByAltText('Test Location');
       img.dispatchEvent(new Event('load'));
-      
+
       await waitFor(() => {
         expect(handleImageLoad).toHaveBeenCalledTimes(1);
       });
@@ -160,10 +157,10 @@ describe('LocationCard', () => {
     it('calls onImageError when image fails', async () => {
       const handleImageError = vi.fn();
       render(<LocationCard {...defaultProps} onImageError={handleImageError} />);
-      
+
       const img = screen.getByAltText('Test Location');
       img.dispatchEvent(new Event('error'));
-      
+
       await waitFor(() => {
         expect(handleImageError).toHaveBeenCalledTimes(1);
       });
@@ -232,17 +229,13 @@ describe('LocationCard', () => {
     });
 
     it('applies 2-line class to subtitle when subtitleLines=2', () => {
-      render(
-        <LocationCard {...defaultProps} subtitle="Subtitle" subtitleLines={2} />
-      );
+      render(<LocationCard {...defaultProps} subtitle="Subtitle" subtitleLines={2} />);
       const subtitle = screen.getByText('Subtitle');
       expect(subtitle.className).toContain('subtitleLines2');
     });
 
     it('applies 3-line class to subtitle when subtitleLines=3', () => {
-      render(
-        <LocationCard {...defaultProps} subtitle="Subtitle" subtitleLines={3} />
-      );
+      render(<LocationCard {...defaultProps} subtitle="Subtitle" subtitleLines={3} />);
       const subtitle = screen.getByText('Subtitle');
       expect(subtitle.className).toContain('subtitleLines3');
     });
@@ -270,7 +263,7 @@ describe('LocationCard', () => {
     it('does not respond to keyboard events when not interactive', () => {
       const { container } = render(<LocationCard {...defaultProps} />);
       const card = container.firstChild as HTMLElement;
-      
+
       // Verify no onKeyDown handler is set
       expect(card.onkeydown).toBeNull();
     });
@@ -313,7 +306,7 @@ describe('LocationCard', () => {
 
       card.focus();
       await user.keyboard('{Enter}');
-      
+
       expect(handleClick).toHaveBeenCalledTimes(1);
     });
 
@@ -325,7 +318,7 @@ describe('LocationCard', () => {
 
       card.focus();
       await user.keyboard(' ');
-      
+
       expect(handleClick).toHaveBeenCalledTimes(1);
     });
   });
@@ -338,7 +331,7 @@ describe('LocationCard', () => {
       const card = container.firstChild as HTMLElement;
 
       await user.click(card);
-      
+
       expect(handleClick).toHaveBeenCalledTimes(1);
     });
 
@@ -350,7 +343,7 @@ describe('LocationCard', () => {
 
       // This should not call handleClick since it wasn't passed
       await user.click(card);
-      
+
       expect(handleClick).not.toHaveBeenCalled();
     });
   });
@@ -391,9 +384,7 @@ describe('LocationCard', () => {
 
   describe('Custom className', () => {
     it('applies custom className', () => {
-      const { container } = render(
-        <LocationCard {...defaultProps} className="custom-class" />
-      );
+      const { container } = render(<LocationCard {...defaultProps} className="custom-class" />);
       const card = container.firstChild as HTMLElement;
       expect(card.className).toContain('custom-class');
     });

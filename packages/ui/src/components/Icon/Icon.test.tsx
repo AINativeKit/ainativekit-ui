@@ -9,7 +9,9 @@ vi.mock('../../tokens/icon-data', () => ({
   iconData: {
     'plus-circle-add': {
       viewBox: '0 0 24 24',
-      paths: ['M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z'],
+      paths: [
+        'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z',
+      ],
     },
   },
 }));
@@ -57,7 +59,7 @@ describe('Icon', () => {
 
   it('passes through additional props', () => {
     render(<Icon name="plus-circle-add" data-testid="test-icon" />);
-    
+
     const icon = screen.getByTestId('test-icon');
     expect(icon).toBeInTheDocument();
   });
@@ -65,12 +67,12 @@ describe('Icon', () => {
   it('handles click events', async () => {
     const user = userEvent.setup();
     const handleClick = vi.fn();
-    
+
     render(<Icon name="plus-circle-add" onClick={handleClick} aria-label="Add" />);
-    
+
     const icon = screen.getByRole('img');
     await user.click(icon);
-    
+
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
@@ -91,7 +93,7 @@ describe('Icon', () => {
 
   it('applies default size when not specified', () => {
     render(<Icon name="plus-circle-add" aria-label="Add" />);
-    
+
     const icon = screen.getByRole('img');
     expect(icon).toHaveClass('iconMd');
   });

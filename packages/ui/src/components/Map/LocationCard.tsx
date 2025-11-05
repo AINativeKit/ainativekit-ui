@@ -223,10 +223,7 @@ export const LocationCard: React.FC<LocationCardProps> = ({
   // Error State
   if (showError) {
     return (
-      <div
-        className={cn(styles.locationCard, styles.errorCard, className)}
-        data-testid={testId}
-      >
+      <div className={cn(styles.locationCard, styles.errorCard, className)} data-testid={testId}>
         <div className={styles.errorContainer}>
           <ErrorStateDisplay
             state="error"
@@ -244,10 +241,7 @@ export const LocationCard: React.FC<LocationCardProps> = ({
   // Empty State
   if (showEmpty) {
     return (
-      <div
-        className={cn(styles.locationCard, styles.emptyCard, className)}
-        data-testid={testId}
-      >
+      <div className={cn(styles.locationCard, styles.emptyCard, className)} data-testid={testId}>
         <div className={styles.emptyContainer}>
           <div className={styles.emptyTitle}>{emptyTitle}</div>
           {emptyMessage && <div className={styles.emptyMessage}>{emptyMessage}</div>}
@@ -257,11 +251,7 @@ export const LocationCard: React.FC<LocationCardProps> = ({
   }
 
   // Normal Content
-  const cardClassName = cn(
-    styles.locationCard,
-    selected && styles.selected,
-    className
-  );
+  const cardClassName = cn(styles.locationCard, selected && styles.selected, className);
 
   return (
     <div
@@ -299,16 +289,13 @@ export const LocationCard: React.FC<LocationCardProps> = ({
             {typeof badge === 'number' ? (
               <Badge variant={badgeVariant as BadgeProps['variant']}>{badge}</Badge>
             ) : (
-              <Chip 
-                variant={badgeVariant as ChipProps['variant'] || 'default'} 
-                size="sm"
-              >
+              <Chip variant={(badgeVariant as ChipProps['variant']) || 'default'} size="sm">
                 {badge}
               </Chip>
             )}
           </div>
         )}
-        
+
         <div
           className={cn(
             styles.title,

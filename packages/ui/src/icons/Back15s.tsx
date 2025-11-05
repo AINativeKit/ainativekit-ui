@@ -21,10 +21,8 @@ import type { IconProps } from '../components/Icon';
  * @accessibility
  * Chat tool icons are usually decorative in action buttons. Icon-only toolbar buttons require aria-label.
  */
-export const Back15s = React.forwardRef<HTMLSpanElement, Omit<IconProps, 'name'>>(
-  (props, ref) => {
-    return <Icon ref={ref} name="back-15s" {...props} />;
-  }
-);
+export const Back15s = React.forwardRef<HTMLSpanElement, Omit<IconProps, 'name'>>((props, ref) => {
+  return <Icon ref={ref} name="back-15s" {...props} />;
+});
 
 Back15s.displayName = 'Back15s';

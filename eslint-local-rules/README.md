@@ -17,8 +17,9 @@ primitives (tier 1) → composed (tier 2) → patterns (tier 3)
 ```
 
 **Dependency Rules:**
+
 - ✅ **Primitives** can import from: primitives, tokens, icons, utils, hooks
-- ✅ **Composed** can import from: primitives, composed, tokens, icons, utils, hooks  
+- ✅ **Composed** can import from: primitives, composed, tokens, icons, utils, hooks
 - ✅ **Patterns** can import from: primitives, composed, patterns, tokens, icons, utils, hooks
 - ❌ **Primitives** CANNOT import from: composed or patterns
 - ❌ **Composed** CANNOT import from: patterns
@@ -32,28 +33,30 @@ primitives (tier 1) → composed (tier 2) → patterns (tier 3)
 #### Examples
 
 **✅ Valid imports:**
+
 ```typescript
 // In primitives/Button/Button.tsx
-import { cn } from '../../utils/cn';           // Utils - OK
-import { IconName } from '../../tokens/icons';  // Tokens - OK
-import { Badge } from '../Badge';               // Same tier - OK
+import { cn } from '../../utils/cn'; // Utils - OK
+import { IconName } from '../../tokens/icons'; // Tokens - OK
+import { Badge } from '../Badge'; // Same tier - OK
 
 // In composed/Card/Card.tsx
-import { Button } from '../../primitives/Button';  // Lower tier - OK
-import { Badge } from '../../primitives/Badge';    // Lower tier - OK
+import { Button } from '../../primitives/Button'; // Lower tier - OK
+import { Badge } from '../../primitives/Badge'; // Lower tier - OK
 
 // In patterns/Album/Album.tsx
-import { Card } from '../../composed/Card';         // Lower tier - OK
-import { Button } from '../../primitives/Button';  // Lower tier - OK
+import { Card } from '../../composed/Card'; // Lower tier - OK
+import { Button } from '../../primitives/Button'; // Lower tier - OK
 ```
 
 **❌ Invalid imports:**
+
 ```typescript
 // In primitives/Badge/Badge.tsx
-import { Card } from '../../composed/Card';  // ❌ Cannot import higher tier
+import { Card } from '../../composed/Card'; // ❌ Cannot import higher tier
 
 // In composed/Card/Card.tsx
-import { Album } from '../../patterns/Album';  // ❌ Cannot import higher tier
+import { Album } from '../../patterns/Album'; // ❌ Cannot import higher tier
 ```
 
 #### Error Message
@@ -61,7 +64,7 @@ import { Album } from '../../patterns/Album';  // ❌ Cannot import higher tier
 When a violation is detected, you'll see:
 
 ```
-Invalid tier dependency: primitives cannot import from composed. 
+Invalid tier dependency: primitives cannot import from composed.
 Dependency flow must be: primitives → composed → patterns
 ```
 
@@ -90,7 +93,7 @@ To add a new custom rule:
    ```javascript
    module.exports = {
      'enforce-tier-dependencies': require('./enforce-tier-dependencies.js'),
-     'my-new-rule': require('./my-new-rule.js'),  // Add here
+     'my-new-rule': require('./my-new-rule.js'), // Add here
    };
    ```
 4. Enable it in `.eslintrc.cjs`:

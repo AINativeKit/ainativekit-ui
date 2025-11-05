@@ -89,9 +89,7 @@ export type SupportedComponentType = keyof typeof COMPONENT_REGISTRY;
 /**
  * Type guard to check if a component type is supported
  */
-export function isSupportedComponent(
-  type: string
-): type is SupportedComponentType {
+export function isSupportedComponent(type: string): type is SupportedComponentType {
   return type in COMPONENT_REGISTRY;
 }
 
@@ -159,9 +157,7 @@ export function renderComponent(config: ComponentConfig): ReactNode {
  * ```
  */
 export function renderComponents(configs: ComponentConfig[]): ReactNode[] {
-  return configs.map((config, index) =>
-    renderComponent({ ...config, key: config.key ?? index })
-  );
+  return configs.map((config, index) => renderComponent({ ...config, key: config.key ?? index }));
 }
 
 /**
@@ -222,11 +218,7 @@ export function validateComponentConfig(config: ComponentConfig): {
     errors.push('Props must be an object');
   }
 
-  if (
-    config.children &&
-    typeof config.children !== 'string' &&
-    !Array.isArray(config.children)
-  ) {
+  if (config.children && typeof config.children !== 'string' && !Array.isArray(config.children)) {
     errors.push('Children must be a string or array of component configs');
   }
 

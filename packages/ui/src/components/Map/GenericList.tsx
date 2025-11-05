@@ -30,13 +30,9 @@ export const GenericList: React.FC<GenericListProps> = ({ list }) => {
               </div>
             )}
             <div className={styles.itemMeta}>
-              {item.metadata && (
-                <div className={styles.itemMetadata}>{item.metadata}</div>
-              )}
+              {item.metadata && <div className={styles.itemMetadata}>{item.metadata}</div>}
               <div className={styles.itemTitle}>{item.title}</div>
-              {item.description && (
-                <div className={styles.itemDescription}>{item.description}</div>
-              )}
+              {item.description && <div className={styles.itemDescription}>{item.description}</div>}
             </div>
           </div>
         ))}

@@ -75,7 +75,13 @@ describe('ListCard', () => {
 
     it('renders header action button when onHeaderAction provided', () => {
       const handleHeaderAction = vi.fn();
-      render(<ListCard headerTitle="Header" onHeaderAction={handleHeaderAction} headerActionLabel="Edit header" />);
+      render(
+        <ListCard
+          headerTitle="Header"
+          onHeaderAction={handleHeaderAction}
+          headerActionLabel="Edit header"
+        />
+      );
       const editButton = screen.getByLabelText('Edit header');
       expect(editButton).toBeInTheDocument();
     });
@@ -83,11 +89,17 @@ describe('ListCard', () => {
     it('calls onHeaderAction when header button clicked', async () => {
       const user = userEvent.setup();
       const handleHeaderAction = vi.fn();
-      render(<ListCard headerTitle="Header" onHeaderAction={handleHeaderAction} headerActionLabel="Edit header" />);
-      
+      render(
+        <ListCard
+          headerTitle="Header"
+          onHeaderAction={handleHeaderAction}
+          headerActionLabel="Edit header"
+        />
+      );
+
       const editButton = screen.getByLabelText('Edit header');
       await user.click(editButton);
-      
+
       expect(handleHeaderAction).toHaveBeenCalledTimes(1);
     });
 
@@ -106,7 +118,7 @@ describe('ListCard', () => {
   describe('List Items - Content', () => {
     it('renders all list items', () => {
       render(<ListCard items={mockItems} />);
-      mockItems.forEach(item => {
+      mockItems.forEach((item) => {
         expect(screen.getByText(item.title)).toBeInTheDocument();
       });
     });
@@ -142,9 +154,7 @@ describe('ListCard', () => {
     });
 
     it('renders items without images correctly', () => {
-      const itemsWithoutImages: ListCardItem[] = [
-        { title: 'No image item' },
-      ];
+      const itemsWithoutImages: ListCardItem[] = [{ title: 'No image item' }];
       render(<ListCard items={itemsWithoutImages} />);
       expect(screen.getByText('No image item')).toBeInTheDocument();
       expect(screen.queryByRole('img')).not.toBeInTheDocument();
@@ -175,17 +185,15 @@ describe('ListCard', () => {
         },
       ];
       render(<ListCard items={itemsWithAction} />);
-      
+
       const addButton = screen.getByLabelText('Add item');
       await user.click(addButton);
-      
+
       expect(handleItemAction).toHaveBeenCalledTimes(1);
     });
 
     it('does not render action button when onItemAction not provided', () => {
-      const itemsWithoutAction: ListCardItem[] = [
-        { title: 'No action item' },
-      ];
+      const itemsWithoutAction: ListCardItem[] = [{ title: 'No action item' }];
       render(<ListCard items={itemsWithoutAction} />);
       expect(screen.queryByLabelText('Add item')).not.toBeInTheDocument();
     });
@@ -200,28 +208,16 @@ describe('ListCard', () => {
     it('calls onButtonClick when action button clicked', async () => {
       const user = userEvent.setup();
       const handleButtonClick = vi.fn();
-      render(
-        <ListCard
-          items={mockItems}
-          buttonText="Submit"
-          onButtonClick={handleButtonClick}
-        />
-      );
-      
+      render(<ListCard items={mockItems} buttonText="Submit" onButtonClick={handleButtonClick} />);
+
       const button = screen.getByRole('button', { name: 'Submit' });
       await user.click(button);
-      
+
       expect(handleButtonClick).toHaveBeenCalledTimes(1);
     });
 
     it('renders disabled button when buttonDisabled is true', () => {
-      render(
-        <ListCard
-          items={mockItems}
-          buttonText="Submit"
-          buttonDisabled={true}
-        />
-      );
+      render(<ListCard items={mockItems} buttonText="Submit" buttonDisabled={true} />);
       const button = screen.getByRole('button', { name: 'Submit' });
       expect(button).toBeDisabled();
     });
@@ -236,15 +232,13 @@ describe('ListCard', () => {
       render(<ListCard items={mockItems} />);
       // Should have no main action button (only potential item action buttons)
       const buttons = screen.queryAllByRole('button');
-      expect(buttons.every(btn => btn.getAttribute('aria-label')?.startsWith('Add'))).toBe(true);
+      expect(buttons.every((btn) => btn.getAttribute('aria-label')?.startsWith('Add'))).toBe(true);
     });
   });
 
   describe('Dividers', () => {
     it('renders dividers between items when button present', () => {
-      const { container } = render(
-        <ListCard items={mockItems} buttonText="Submit" />
-      );
+      const { container } = render(<ListCard items={mockItems} buttonText="Submit" />);
       const dividers = container.querySelectorAll('[class*="divider"]');
       // Should have dividers after each item when button is present
       expect(dividers.length).toBeGreaterThan(0);
@@ -300,17 +294,13 @@ describe('ListCard', () => {
 
   describe('Card Props Inheritance', () => {
     it('passes through elevation props', () => {
-      const { container } = render(
-        <ListCard items={mockItems} elevationLevel={3} />
-      );
+      const { container } = render(<ListCard items={mockItems} elevationLevel={3} />);
       // Card component should receive and apply elevation
       expect(container.firstChild).toBeInTheDocument();
     });
 
     it('passes through custom className', () => {
-      const { container } = render(
-        <ListCard items={mockItems} className="custom-class" />
-      );
+      const { container } = render(<ListCard items={mockItems} className="custom-class" />);
       const card = container.firstChild as HTMLElement;
       expect(card.className).toContain('custom-class');
     });
@@ -321,7 +311,7 @@ describe('ListCard', () => {
       const handleHeaderAction = vi.fn();
       const handleItemAction = vi.fn();
       const handleButtonClick = vi.fn();
-      
+
       const fullItems: ListCardItem[] = [
         {
           image: mockItemImage,
@@ -358,9 +348,7 @@ describe('ListCard', () => {
     });
 
     it('handles single item correctly', () => {
-      const singleItem: ListCardItem[] = [
-        { title: 'Only Item' },
-      ];
+      const singleItem: ListCardItem[] = [{ title: 'Only Item' }];
       render(<ListCard items={singleItem} />);
       expect(screen.getByText('Only Item')).toBeInTheDocument();
     });
@@ -370,7 +358,7 @@ describe('ListCard', () => {
         title: `Item ${i + 1}`,
       }));
       render(<ListCard items={manyItems} />);
-      manyItems.forEach(item => {
+      manyItems.forEach((item) => {
         expect(screen.getByText(item.title)).toBeInTheDocument();
       });
     });

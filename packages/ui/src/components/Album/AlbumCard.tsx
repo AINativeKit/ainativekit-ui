@@ -233,11 +233,7 @@ export const AlbumCard = React.forwardRef<HTMLButtonElement, AlbumCardProps>((pr
         data-testid={testId}
       >
         <div className={styles.errorContainer}>
-          <Alert
-            title={errorTitle}
-            message={errorMessage}
-            onAction={onErrorRetry}
-          />
+          <Alert title={errorTitle} message={errorMessage} onAction={onErrorRetry} />
         </div>
       </div>
     );
@@ -293,9 +289,7 @@ export const AlbumCard = React.forwardRef<HTMLButtonElement, AlbumCardProps>((pr
                 {badge}
               </Chip>
             ) : (
-              <Badge variant={badgeVariant as BadgeProps['variant']}>
-                {badge}
-              </Badge>
+              <Badge variant={badgeVariant as BadgeProps['variant']}>{badge}</Badge>
             )}
           </div>
         )}

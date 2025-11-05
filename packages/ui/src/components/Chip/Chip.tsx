@@ -14,7 +14,7 @@ export interface ChipProps extends Omit<ComponentPropsWithoutRef<'span'>, 'color
    * @default 'default'
    */
   variant?: ChipVariant;
-  
+
   /**
    * Size of the chip.
    * - sm: 24px height, compact padding
@@ -23,53 +23,53 @@ export interface ChipProps extends Omit<ComponentPropsWithoutRef<'span'>, 'color
    * @default 'md'
    */
   size?: ChipSize;
-  
+
   /**
    * Icon to display before the chip text.
    */
   leftIcon?: IconName;
-  
+
   /**
    * Icon to display after the chip text.
    */
   rightIcon?: IconName;
-  
+
   /**
    * Custom icon element (overrides leftIcon if both provided).
    * Use for non-icon elements like avatars.
    */
   leftElement?: ReactNode;
-  
+
   /**
    * Custom icon element (overrides rightIcon if both provided).
    * Use for non-icon elements.
    */
   rightElement?: ReactNode;
-  
+
   /**
    * Makes the chip removable with a close button.
    * Callback fires when the close button is clicked.
    */
   onRemove?: () => void;
-  
+
   /**
    * Makes the chip clickable and adds interactive states.
    * Also makes the chip keyboard accessible (button behavior).
    */
   onClick?: () => void;
-  
+
   /**
    * Shows selected state (typically for filter chips).
    * @default false
    */
   selected?: boolean;
-  
+
   /**
    * Accessible label for screen readers when content needs clarification.
    * Required when using only icons or abbreviations.
    */
   ariaLabel?: string;
-  
+
   /**
    * Disabled state - prevents interaction.
    * @default false
@@ -125,104 +125,128 @@ export interface ChipProps extends Omit<ComponentPropsWithoutRef<'span'>, 'color
  * <Chip variant="neutral" disabled onRemove={() => {}}>Can't Remove</Chip>
  * ```
  */
-export const Chip = React.forwardRef<HTMLSpanElement | HTMLButtonElement, ChipProps>((props, ref) => {
-  const {
-    variant = 'default',
-    size = 'md',
-    leftIcon,
-    rightIcon,
-    leftElement,
-    rightElement,
-    onRemove,
-    onClick,
-    selected = false,
-    ariaLabel,
-    disabled = false,
-    className,
-    children,
-    ...rest
-  } = props;
+export const Chip = React.forwardRef<HTMLSpanElement | HTMLButtonElement, ChipProps>(
+  (props, ref) => {
+    const {
+      variant = 'default',
+      size = 'md',
+      leftIcon,
+      rightIcon,
+      leftElement,
+      rightElement,
+      onRemove,
+      onClick,
+      selected = false,
+      ariaLabel,
+      disabled = false,
+      className,
+      children,
+      ...rest
+    } = props;
 
-  // Determine if chip should be rendered as button
-  const isInteractive = Boolean(onClick || onRemove);
-  const Component = isInteractive ? 'button' : 'span';
+    // Determine if chip should be rendered as button
+    const isInteractive = Boolean(onClick || onRemove);
+    const Component = isInteractive ? 'button' : 'span';
 
-  const variantClass = {
-    default: styles.chipDefault,
-    filled: styles.chipFilled,
-    success: styles.chipSuccess,
-    warning: styles.chipWarning,
-    error: styles.chipError,
-    neutral: styles.chipNeutral,
-  }[variant];
+    const variantClass = {
+      default: styles.chipDefault,
+      filled: styles.chipFilled,
+      success: styles.chipSuccess,
+      warning: styles.chipWarning,
+      error: styles.chipError,
+      neutral: styles.chipNeutral,
+    }[variant];
 
-  const sizeClass = {
-    sm: styles.chipSm,
-    md: styles.chipMd,
-    lg: styles.chipLg,
-  }[size];
+    const sizeClass = {
+      sm: styles.chipSm,
+      md: styles.chipMd,
+      lg: styles.chipLg,
+    }[size];
 
-  // Handle remove button click
-  const handleRemoveClick = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Prevent triggering onClick when removing
-    onRemove?.();
-  };
-
-  // Keyboard handling for remove button
-  const handleRemoveKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      e.stopPropagation();
+    // Handle remove button click
+    const handleRemoveClick = (e: React.MouseEvent) => {
+      e.stopPropagation(); // Prevent triggering onClick when removing
       onRemove?.();
-    }
-  };
+    };
 
-  const chipContent = (
-    <>
-      {/* Left icon/element */}
-      {leftElement || (leftIcon && (
-        <Icon
-          name={leftIcon}
-          size={size === 'sm' ? 12 : size === 'md' ? 14 : 16}
-          className={styles.chipIcon}
-          aria-hidden="true"
-        />
-      ))}
-      
-      {/* Chip text content */}
-      <span className={styles.chipLabel}>{children}</span>
-      
-      {/* Right icon/element (before remove button) */}
-      {rightElement || (rightIcon && (
-        <Icon
-          name={rightIcon}
-          size={size === 'sm' ? 12 : size === 'md' ? 14 : 16}
-          className={styles.chipIcon}
-          aria-hidden="true"
-        />
-      ))}
-      
-      {/* Remove button */}
-      {onRemove && (
-        <span
-          role="button"
-          tabIndex={disabled ? -1 : 0}
-          className={styles.chipRemove}
-          onClick={handleRemoveClick}
-          onKeyDown={handleRemoveKeyDown}
-          aria-label="Remove"
+    // Keyboard handling for remove button
+    const handleRemoveKeyDown = (e: React.KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        e.stopPropagation();
+        onRemove?.();
+      }
+    };
+
+    const chipContent = (
+      <>
+        {/* Left icon/element */}
+        {leftElement ||
+          (leftIcon && (
+            <Icon
+              name={leftIcon}
+              size={size === 'sm' ? 12 : size === 'md' ? 14 : 16}
+              className={styles.chipIcon}
+              aria-hidden="true"
+            />
+          ))}
+
+        {/* Chip text content */}
+        <span className={styles.chipLabel}>{children}</span>
+
+        {/* Right icon/element (before remove button) */}
+        {rightElement ||
+          (rightIcon && (
+            <Icon
+              name={rightIcon}
+              size={size === 'sm' ? 12 : size === 'md' ? 14 : 16}
+              className={styles.chipIcon}
+              aria-hidden="true"
+            />
+          ))}
+
+        {/* Remove button */}
+        {onRemove && (
+          <span
+            role="button"
+            tabIndex={disabled ? -1 : 0}
+            className={styles.chipRemove}
+            onClick={handleRemoveClick}
+            onKeyDown={handleRemoveKeyDown}
+            aria-label="Remove"
+          >
+            <Icon name="x-xs-crossed" size={size === 'sm' ? 12 : size === 'md' ? 14 : 16} />
+          </span>
+        )}
+      </>
+    );
+
+    if (Component === 'button') {
+      return (
+        <button
+          ref={ref as React.Ref<HTMLButtonElement>}
+          type="button"
+          className={cn(
+            styles.chip,
+            variantClass,
+            sizeClass,
+            selected && styles.chipSelected,
+            disabled && styles.chipDisabled,
+            className
+          )}
+          aria-label={ariaLabel}
+          disabled={disabled}
+          onClick={onClick}
+          {...(rest as ComponentPropsWithoutRef<'button'>)}
         >
-          <Icon name="x-xs-crossed" size={size === 'sm' ? 12 : size === 'md' ? 14 : 16} />
-        </span>
-      )}
-    </>
-  );
+          {chipContent}
+        </button>
+      );
+    }
 
-  if (Component === 'button') {
     return (
-      <button
-        ref={ref as React.Ref<HTMLButtonElement>}
-        type="button"
+      <span
+        ref={ref as React.Ref<HTMLSpanElement>}
         className={cn(
           styles.chip,
           variantClass,
@@ -232,33 +256,13 @@ export const Chip = React.forwardRef<HTMLSpanElement | HTMLButtonElement, ChipPr
           className
         )}
         aria-label={ariaLabel}
-        disabled={disabled}
-        onClick={onClick}
-        {...(rest as ComponentPropsWithoutRef<'button'>)}
+        role={ariaLabel ? 'status' : undefined}
+        {...(rest as ComponentPropsWithoutRef<'span'>)}
       >
         {chipContent}
-      </button>
+      </span>
     );
   }
-
-  return (
-    <span
-      ref={ref as React.Ref<HTMLSpanElement>}
-      className={cn(
-        styles.chip,
-        variantClass,
-        sizeClass,
-        selected && styles.chipSelected,
-        disabled && styles.chipDisabled,
-        className
-      )}
-      aria-label={ariaLabel}
-      role={ariaLabel ? 'status' : undefined}
-      {...(rest as ComponentPropsWithoutRef<'span'>)}
-    >
-      {chipContent}
-    </span>
-  );
-});
+);
 
 Chip.displayName = 'Chip';

@@ -122,7 +122,8 @@
   color: #ffffff; /* white on top of image */
 
   /* Text shadow for better readability */
-  text-shadow: 0 1px 2px color-mix(in srgb, var(--ai-color-text-primary) var(--ai-opacity-muted), transparent);
+  text-shadow: 0 1px 2px
+    color-mix(in srgb, var(--ai-color-text-primary) var(--ai-opacity-muted), transparent);
 
   /* Default: single line truncation */
   overflow: hidden;
@@ -156,7 +157,8 @@
   color: color-mix(in srgb, var(--ai-color-text-inverted) var(--ai-opacity-subtle), transparent);
 
   /* Text shadow for better readability */
-  text-shadow: 0 1px 2px color-mix(in srgb, var(--ai-color-text-primary) var(--ai-opacity-muted), transparent);
+  text-shadow: 0 1px 2px
+    color-mix(in srgb, var(--ai-color-text-primary) var(--ai-opacity-muted), transparent);
 
   /* Default: single line truncation */
   overflow: hidden;

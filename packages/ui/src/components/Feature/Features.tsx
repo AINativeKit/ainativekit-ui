@@ -58,10 +58,7 @@ export interface FeaturesProps {
  * ```
  */
 export const Features = React.forwardRef<HTMLDivElement, FeaturesProps>(
-  (
-    { items, separator = '•', iconSize = 14, className, style },
-    ref
-  ) => {
+  ({ items, separator = '•', iconSize = 14, className, style }, ref) => {
     return (
       <div ref={ref} className={cn(styles.feature, className)} style={style}>
         {items.map((item, idx) => {
@@ -73,13 +70,7 @@ export const Features = React.forwardRef<HTMLDivElement, FeaturesProps>(
           return (
             <React.Fragment key={`${label}-${idx}`}>
               <span className={styles.item}>
-                {icon && (
-                  <Icon
-                    name={icon}
-                    size={iconSize}
-                    className={styles.icon}
-                  />
-                )}
+                {icon && <Icon name={icon} size={iconSize} className={styles.icon} />}
                 <span>{label}</span>
               </span>
               {!isLast && <span className={styles.separator}>{separator}</span>}

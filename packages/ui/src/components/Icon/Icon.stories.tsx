@@ -25,7 +25,7 @@ export default meta;
 const toPascalCase = (str: string): string => {
   return str
     .split('-')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join('');
 };
 
@@ -85,8 +85,9 @@ const IconsComponent: React.FC = () => {
       <section style={{ marginBottom: '64px' }}>
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>How Icons Work</h2>
         <p style={{ marginBottom: '24px', color: 'var(--ai-color-text-secondary)' }}>
-          This library includes 417 pre-built icon components covering 10 categories (arrows, interface, media, social,
-          and more). All icons are properly distributed in the npm package and resolved at module runtime.
+          This library includes 417 pre-built icon components covering 10 categories (arrows,
+          interface, media, social, and more). All icons are properly distributed in the npm package
+          and resolved at module runtime.
         </p>
 
         <div
@@ -98,9 +99,9 @@ const IconsComponent: React.FC = () => {
             fontSize: '13px',
           }}
         >
-          <strong>✨ What's Changed:</strong> Icons now use module-relative URL resolution, ensuring they work
-          perfectly in all environments (npm packages, monorepos, different build tools, etc.). SVG files are
-          automatically resolved relative to the installed module location.
+          <strong>✨ What's Changed:</strong> Icons now use module-relative URL resolution, ensuring
+          they work perfectly in all environments (npm packages, monorepos, different build tools,
+          etc.). SVG files are automatically resolved relative to the installed module location.
         </div>
 
         <h3 style={{ fontSize: '18px', marginBottom: '12px' }}>Two Ways to Use Icons</h3>
@@ -109,8 +110,16 @@ const IconsComponent: React.FC = () => {
         </p>
 
         <div style={{ marginBottom: '24px' }}>
-          <h4 style={{ fontSize: '14px', marginBottom: '8px', fontWeight: 600 }}>Option 1: Named Components (Recommended)</h4>
-          <p style={{ fontSize: '13px', marginBottom: '12px', color: 'var(--ai-color-text-secondary)' }}>
+          <h4 style={{ fontSize: '14px', marginBottom: '8px', fontWeight: 600 }}>
+            Option 1: Named Components (Recommended)
+          </h4>
+          <p
+            style={{
+              fontSize: '13px',
+              marginBottom: '12px',
+              color: 'var(--ai-color-text-secondary)',
+            }}
+          >
             Import components by name for clearer code and better autocompletion:
           </p>
           <div
@@ -131,8 +140,16 @@ const IconsComponent: React.FC = () => {
         </div>
 
         <div style={{ marginBottom: '24px' }}>
-          <h4 style={{ fontSize: '14px', marginBottom: '8px', fontWeight: 600 }}>Option 2: Dynamic Icon Names</h4>
-          <p style={{ fontSize: '13px', marginBottom: '12px', color: 'var(--ai-color-text-secondary)' }}>
+          <h4 style={{ fontSize: '14px', marginBottom: '8px', fontWeight: 600 }}>
+            Option 2: Dynamic Icon Names
+          </h4>
+          <p
+            style={{
+              fontSize: '13px',
+              marginBottom: '12px',
+              color: 'var(--ai-color-text-secondary)',
+            }}
+          >
             Use the base Icon component when icon name comes from configuration or APIs:
           </p>
           <div
@@ -156,8 +173,15 @@ const iconName = getConfigValue('menuIcon');
         <p style={{ marginBottom: '16px', color: 'var(--ai-color-text-secondary)' }}>
           All 417 icons are organized into these categories:
         </p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px', marginBottom: '24px' }}>
-          {iconCategories.map(category => (
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: '16px',
+            marginBottom: '24px',
+          }}
+        >
+          {iconCategories.map((category) => (
             <div
               key={category}
               style={{
@@ -168,7 +192,13 @@ const iconName = getConfigValue('menuIcon');
               }}
             >
               <strong style={{ textTransform: 'capitalize' }}>{category.replace('-', ' ')}</strong>
-              <div style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginTop: '4px' }}>
+              <div
+                style={{
+                  fontSize: '12px',
+                  color: 'var(--ai-color-text-secondary)',
+                  marginTop: '4px',
+                }}
+              >
                 {getIconsInCategory(category).length} icons
               </div>
             </div>
@@ -179,11 +209,12 @@ const iconName = getConfigValue('menuIcon');
       {/* Icon Gallery - shown next */}
       <section style={{ marginBottom: '64px' }}>
         <p style={{ marginBottom: '24px', color: 'var(--ai-color-text-secondary)' }}>
-          Click any icon below to copy its React component name. All icons are organized by category for easy browsing.
+          Click any icon below to copy its React component name. All icons are organized by category
+          for easy browsing.
         </p>
 
         <div style={{ display: 'grid', gap: '48px' }}>
-          {iconCategories.map(category => {
+          {iconCategories.map((category) => {
             const icons = getIconsInCategory(category);
             return (
               <section key={category}>
@@ -191,7 +222,9 @@ const iconName = getConfigValue('menuIcon');
                   <h2 style={{ marginBottom: '8px', textTransform: 'capitalize' }}>
                     {category.replace('-', ' ')} Icons
                   </h2>
-                  <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
+                  <p
+                    style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}
+                  >
                     {icons.length} icons available
                   </p>
                 </header>
@@ -203,7 +236,7 @@ const iconName = getConfigValue('menuIcon');
                     gap: '16px',
                   }}
                 >
-                  {icons.map(iconName => (
+                  {icons.map((iconName) => (
                     <IconCard key={iconName} name={iconName} />
                   ))}
                 </div>
@@ -220,15 +253,20 @@ const iconName = getConfigValue('menuIcon');
           Icons support semantic size tokens and custom pixel values.
         </p>
         <div style={{ display: 'flex', gap: '32px', alignItems: 'center', flexWrap: 'wrap' }}>
-          {(['xs', 'sm', 'md', 'lg', 'xl'] as const).map(size => (
-            <div key={size} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+          {(['xs', 'sm', 'md', 'lg', 'xl'] as const).map((size) => (
+            <div
+              key={size}
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}
+            >
               <PlusCircleAdd size={size} />
               <code style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)' }}>
                 size="{size}"
               </code>
             </div>
           ))}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+          <div
+            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}
+          >
             <PlusCircleAdd size={32} />
             <code style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)' }}>
               size={'{32}'}
@@ -244,8 +282,11 @@ const iconName = getConfigValue('menuIcon');
           Icon colors map to text hierarchy tokens for consistent visual weight.
         </p>
         <div style={{ display: 'flex', gap: '32px', alignItems: 'center', flexWrap: 'wrap' }}>
-          {(['primary', 'secondary', 'tertiary', 'inverted'] as IconTone[]).map(tone => (
-            <div key={tone} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+          {(['primary', 'secondary', 'tertiary', 'inverted'] as IconTone[]).map((tone) => (
+            <div
+              key={tone}
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}
+            >
               <SettingsCog size="lg" tone={tone} />
               <code style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)' }}>
                 tone="{tone}"
@@ -265,7 +306,13 @@ const iconName = getConfigValue('menuIcon');
         {/* Icon Before Text */}
         <div style={{ marginBottom: '32px' }}>
           <h3 style={{ fontSize: '18px', marginBottom: '12px' }}>Icon Before Text</h3>
-          <p style={{ marginBottom: '16px', color: 'var(--ai-color-text-secondary)', fontSize: '14px' }}>
+          <p
+            style={{
+              marginBottom: '16px',
+              color: 'var(--ai-color-text-secondary)',
+              fontSize: '14px',
+            }}
+          >
             Most common pattern. Icon is decorative, button text provides accessible name.
           </p>
           <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
@@ -296,7 +343,13 @@ const iconName = getConfigValue('menuIcon');
         {/* Icon After Text */}
         <div style={{ marginBottom: '32px' }}>
           <h3 style={{ fontSize: '18px', marginBottom: '12px' }}>Icon After Text</h3>
-          <p style={{ marginBottom: '16px', color: 'var(--ai-color-text-secondary)', fontSize: '14px' }}>
+          <p
+            style={{
+              marginBottom: '16px',
+              color: 'var(--ai-color-text-secondary)',
+              fontSize: '14px',
+            }}
+          >
             Common for actions that lead to external content or next steps.
           </p>
           <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
@@ -324,7 +377,13 @@ const iconName = getConfigValue('menuIcon');
         {/* Icon-Only Button */}
         <div style={{ marginBottom: '32px' }}>
           <h3 style={{ fontSize: '18px', marginBottom: '12px' }}>Icon-Only Button</h3>
-          <p style={{ marginBottom: '16px', color: 'var(--ai-color-text-secondary)', fontSize: '14px' }}>
+          <p
+            style={{
+              marginBottom: '16px',
+              color: 'var(--ai-color-text-secondary)',
+              fontSize: '14px',
+            }}
+          >
             <strong>Important:</strong> The button needs aria-label for accessibility.
           </p>
           <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
@@ -357,14 +416,21 @@ const iconName = getConfigValue('menuIcon');
               fontSize: '13px',
             }}
           >
-            <strong>⚠️ Accessibility:</strong> Icon-only buttons require aria-label for screen readers.
+            <strong>⚠️ Accessibility:</strong> Icon-only buttons require aria-label for screen
+            readers.
           </div>
         </div>
 
         {/* Icon in List Items */}
         <div style={{ marginBottom: '32px' }}>
           <h3 style={{ fontSize: '18px', marginBottom: '12px' }}>Icon in List Items</h3>
-          <p style={{ marginBottom: '16px', color: 'var(--ai-color-text-secondary)', fontSize: '14px' }}>
+          <p
+            style={{
+              marginBottom: '16px',
+              color: 'var(--ai-color-text-secondary)',
+              fontSize: '14px',
+            }}
+          >
             Icons enhance visual hierarchy in lists and menus. Use ListItem component with icons.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1px' }}>
@@ -411,8 +477,8 @@ const iconName = getConfigValue('menuIcon');
               fontSize: '13px',
             }}
           >
-            <strong>💡 Tip:</strong> Use ListItem component for menu lists and settings screens. 
-            It handles hover states, accessibility, and responsive layouts automatically.
+            <strong>💡 Tip:</strong> Use ListItem component for menu lists and settings screens. It
+            handles hover states, accessibility, and responsive layouts automatically.
           </div>
         </div>
       </section>
@@ -421,27 +487,64 @@ const iconName = getConfigValue('menuIcon');
       <section style={{ marginBottom: '64px' }}>
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Interactive & Disabled States</h2>
         <p style={{ marginBottom: '24px', color: 'var(--ai-color-text-secondary)' }}>
-          Icons can have hover/active effects when used as standalone interactive elements, or be visually disabled.
+          Icons can have hover/active effects when used as standalone interactive elements, or be
+          visually disabled.
         </p>
 
         {/* Interactive Icons */}
         <div style={{ marginBottom: '32px' }}>
           <h3 style={{ fontSize: '18px', marginBottom: '12px' }}>Interactive Icons</h3>
-          <p style={{ marginBottom: '16px', color: 'var(--ai-color-text-secondary)', fontSize: '14px' }}>
-            Use the <code>interactive</code> prop for standalone clickable icons. Hover and active states are automatically applied.
+          <p
+            style={{
+              marginBottom: '16px',
+              color: 'var(--ai-color-text-secondary)',
+              fontSize: '14px',
+            }}
+          >
+            Use the <code>interactive</code> prop for standalone clickable icons. Hover and active
+            states are automatically applied.
           </p>
           <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-              <Icon name="settings-cog" size="lg" interactive onClick={() => alert('Settings clicked!')} />
-              <span style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)' }}>Hover me</span>
+            <div
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}
+            >
+              <Icon
+                name="settings-cog"
+                size="lg"
+                interactive
+                onClick={() => alert('Settings clicked!')}
+              />
+              <span style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)' }}>
+                Hover me
+              </span>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-              <Icon name="user-heart" size="lg" tone="primary" interactive onClick={() => alert('Favorited!')} />
-              <span style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)' }}>Click me</span>
+            <div
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}
+            >
+              <Icon
+                name="user-heart"
+                size="lg"
+                tone="primary"
+                interactive
+                onClick={() => alert('Favorited!')}
+              />
+              <span style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)' }}>
+                Click me
+              </span>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-              <Icon name="book-bookmark" size="lg" tone="secondary" interactive onClick={() => alert('Bookmarked!')} />
-              <span style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)' }}>Try clicking</span>
+            <div
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}
+            >
+              <Icon
+                name="book-bookmark"
+                size="lg"
+                tone="secondary"
+                interactive
+                onClick={() => alert('Bookmarked!')}
+              />
+              <span style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)' }}>
+                Try clicking
+              </span>
             </div>
           </div>
           <div
@@ -471,15 +574,23 @@ const iconName = getConfigValue('menuIcon');
               fontSize: '13px',
             }}
           >
-            <strong>💡 Tip:</strong> Interactive icons get hover opacity (0.8) and active scale (0.95) automatically.
+            <strong>💡 Tip:</strong> Interactive icons get hover opacity (0.8) and active scale
+            (0.95) automatically.
           </div>
         </div>
 
         {/* Disabled Icons */}
         <div style={{ marginBottom: '32px' }}>
           <h3 style={{ fontSize: '18px', marginBottom: '12px' }}>Disabled Icons</h3>
-          <p style={{ marginBottom: '16px', color: 'var(--ai-color-text-secondary)', fontSize: '14px' }}>
-            Use the <code>disabled</code> prop to visually indicate an icon is not available or inactive.
+          <p
+            style={{
+              marginBottom: '16px',
+              color: 'var(--ai-color-text-secondary)',
+              fontSize: '14px',
+            }}
+          >
+            Use the <code>disabled</code> prop to visually indicate an icon is not available or
+            inactive.
           </p>
           <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap', alignItems: 'center' }}>
             <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
@@ -488,7 +599,9 @@ const iconName = getConfigValue('menuIcon');
             </div>
             <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
               <Icon name="download" size="lg" disabled />
-              <span style={{ fontSize: '14px', color: 'var(--ai-color-text-tertiary)' }}>Disabled</span>
+              <span style={{ fontSize: '14px', color: 'var(--ai-color-text-tertiary)' }}>
+                Disabled
+              </span>
             </div>
           </div>
           <div
@@ -509,17 +622,45 @@ const iconName = getConfigValue('menuIcon');
         {/* Combined Example */}
         <div style={{ marginBottom: '32px' }}>
           <h3 style={{ fontSize: '18px', marginBottom: '12px' }}>Interactive + Disabled States</h3>
-          <p style={{ marginBottom: '16px', color: 'var(--ai-color-text-secondary)', fontSize: '14px' }}>
-            When both <code>interactive</code> and <code>disabled</code> are set, disabled takes precedence.
+          <p
+            style={{
+              marginBottom: '16px',
+              color: 'var(--ai-color-text-secondary)',
+              fontSize: '14px',
+            }}
+          >
+            When both <code>interactive</code> and <code>disabled</code> are set, disabled takes
+            precedence.
           </p>
           <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap', alignItems: 'center' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-              <Icon name="trash-remove" size="lg" tone="primary" interactive onClick={() => alert('Delete!')} />
-              <span style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)' }}>Active</span>
+            <div
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}
+            >
+              <Icon
+                name="trash-remove"
+                size="lg"
+                tone="primary"
+                interactive
+                onClick={() => alert('Delete!')}
+              />
+              <span style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)' }}>
+                Active
+              </span>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-              <Icon name="trash-remove" size="lg" tone="primary" interactive disabled onClick={() => alert('Cannot delete')} />
-              <span style={{ fontSize: '12px', color: 'var(--ai-color-text-tertiary)' }}>Disabled</span>
+            <div
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}
+            >
+              <Icon
+                name="trash-remove"
+                size="lg"
+                tone="primary"
+                interactive
+                disabled
+                onClick={() => alert('Cannot delete')}
+              />
+              <span style={{ fontSize: '12px', color: 'var(--ai-color-text-tertiary)' }}>
+                Disabled
+              </span>
             </div>
           </div>
           <div
@@ -548,7 +689,8 @@ const iconName = getConfigValue('menuIcon');
               fontSize: '13px',
             }}
           >
-            <strong>⚠️ Note:</strong> Disabled state prevents hover effects AND blocks onClick handlers from executing.
+            <strong>⚠️ Note:</strong> Disabled state prevents hover effects AND blocks onClick
+            handlers from executing.
           </div>
         </div>
       </section>
@@ -556,7 +698,7 @@ const iconName = getConfigValue('menuIcon');
       {/* Usage Section */}
       <section style={{ marginBottom: '64px' }}>
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Usage</h2>
-        
+
         <h3 style={{ fontSize: '18px', marginBottom: '12px', marginTop: '24px' }}>
           Named Components (Recommended)
         </h3>
@@ -628,8 +770,15 @@ const iconName = getIconNameFromConfig();
             <h5 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>
               1. Decorative Icons (Most Common - Default)
             </h5>
-            <p style={{ fontSize: '13px', color: 'var(--ai-color-text-secondary)', marginBottom: '12px' }}>
-              Icons that add visual interest but don't convey unique information. The icon automatically gets aria-hidden="true".
+            <p
+              style={{
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+                marginBottom: '12px',
+              }}
+            >
+              Icons that add visual interest but don't convey unique information. The icon
+              automatically gets aria-hidden="true".
             </p>
             <div
               style={{
@@ -663,7 +812,13 @@ const iconName = getIconNameFromConfig();
             <h5 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>
               2. Icon-Only Buttons
             </h5>
-            <p style={{ fontSize: '13px', color: 'var(--ai-color-text-secondary)', marginBottom: '12px' }}>
+            <p
+              style={{
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+                marginBottom: '12px',
+              }}
+            >
               Interactive icons without visible text need accessible names on the parent element.
             </p>
             <div
@@ -699,8 +854,15 @@ const iconName = getIconNameFromConfig();
             <h5 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>
               3. Standalone Meaningful Icons
             </h5>
-            <p style={{ fontSize: '13px', color: 'var(--ai-color-text-secondary)', marginBottom: '12px' }}>
-              Icons that convey information independently (rare). Provide explicit aria-label on the icon.
+            <p
+              style={{
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+                marginBottom: '12px',
+              }}
+            >
+              Icons that convey information independently (rare). Provide explicit aria-label on the
+              icon.
             </p>
             <div
               style={{
@@ -738,7 +900,14 @@ const iconName = getIconNameFromConfig();
           </h4>
           <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '13px' }}>
             <li style={{ marginBottom: '8px' }}>
-              <code style={{ color: 'red', backgroundColor: 'rgba(255,0,0,0.1)', padding: '2px 6px', borderRadius: '4px' }}>
+              <code
+                style={{
+                  color: 'red',
+                  backgroundColor: 'rgba(255,0,0,0.1)',
+                  padding: '2px 6px',
+                  borderRadius: '4px',
+                }}
+              >
                 ❌ {'<Button iconOnly="close-bold" />'}
               </code>
               <br />
@@ -747,7 +916,14 @@ const iconName = getIconNameFromConfig();
               </span>
             </li>
             <li style={{ marginBottom: '8px' }}>
-              <code style={{ color: 'red', backgroundColor: 'rgba(255,0,0,0.1)', padding: '2px 6px', borderRadius: '4px' }}>
+              <code
+                style={{
+                  color: 'red',
+                  backgroundColor: 'rgba(255,0,0,0.1)',
+                  padding: '2px 6px',
+                  borderRadius: '4px',
+                }}
+              >
                 ❌ {'<Icon name="settings" aria-label="Settings icon" />'}
               </code>
               <br />
@@ -756,7 +932,14 @@ const iconName = getIconNameFromConfig();
               </span>
             </li>
             <li>
-              <code style={{ color: 'red', backgroundColor: 'rgba(255,0,0,0.1)', padding: '2px 6px', borderRadius: '4px' }}>
+              <code
+                style={{
+                  color: 'red',
+                  backgroundColor: 'rgba(255,0,0,0.1)',
+                  padding: '2px 6px',
+                  borderRadius: '4px',
+                }}
+              >
                 ❌ {'<Icon name="check" aria-hidden="true" aria-label="Complete" />'}
               </code>
               <br />
@@ -776,19 +959,23 @@ const iconName = getIconNameFromConfig();
           rows={[
             {
               name: 'size',
-              description: 'Icon size. Accepts semantic tokens ("xs", "sm", "md", "lg", "xl") or pixel numbers (16, 24, 32, etc.). Default: "md" (24px)',
+              description:
+                'Icon size. Accepts semantic tokens ("xs", "sm", "md", "lg", "xl") or pixel numbers (16, 24, 32, etc.). Default: "md" (24px)',
             },
             {
               name: 'tone',
-              description: 'Icon color mapped to text hierarchy. Options: "primary" (default), "secondary", "tertiary", "inverted"',
+              description:
+                'Icon color mapped to text hierarchy. Options: "primary" (default), "secondary", "tertiary", "inverted"',
             },
             {
               name: 'name',
-              description: 'Icon name (kebab-case) when using dynamic <Icon /> component. Not needed for named components.',
+              description:
+                'Icon name (kebab-case) when using dynamic <Icon /> component. Not needed for named components.',
             },
             {
               name: 'aria-label',
-              description: 'Required for interactive icons. Provides accessible name for screen readers.',
+              description:
+                'Required for interactive icons. Provides accessible name for screen readers.',
             },
             {
               name: 'className',

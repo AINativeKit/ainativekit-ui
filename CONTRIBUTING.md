@@ -82,6 +82,7 @@ git commit -m "docs: update Card component usage"
 ```
 
 **Commit types:**
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation changes
@@ -101,6 +102,7 @@ primitives → composed → patterns
 ```
 
 **Rules:**
+
 - ✅ **Primitives** can import: primitives, tokens, icons, utils, hooks
 - ✅ **Composed** can import: primitives, composed, tokens, icons, utils, hooks
 - ✅ **Patterns** can import: primitives, composed, patterns, tokens, icons, utils, hooks
@@ -127,7 +129,7 @@ packages/ui/src/components/YourComponent/
 
 #### 3. Component Template
 
-```tsx
+````tsx
 import React from 'react';
 import type { ComponentPropsWithoutRef } from 'react';
 import { cn } from '../../utils/cn';
@@ -139,7 +141,7 @@ export interface YourComponentProps extends ComponentPropsWithoutRef<'div'> {
    * @default 'default'
    */
   variant?: 'default' | 'primary';
-  
+
   /**
    * Additional description
    */
@@ -161,15 +163,12 @@ export const YourComponent: React.FC<YourComponentProps> = ({
   ...props
 }) => {
   return (
-    <div 
-      className={cn(styles.root, styles[variant], className)} 
-      {...props}
-    >
+    <div className={cn(styles.root, styles[variant], className)} {...props}>
       {children}
     </div>
   );
 };
-```
+````
 
 #### 4. Add to Exports
 
@@ -224,9 +223,7 @@ describe('YourComponent', () => {
   });
 
   it('applies variant className', () => {
-    const { container } = render(
-      <YourComponent variant="primary">Content</YourComponent>
-    );
+    const { container } = render(<YourComponent variant="primary">Content</YourComponent>);
     expect(container.firstChild).toHaveClass('primary');
   });
 });
@@ -299,23 +296,28 @@ docs: improve Icon system documentation
 
 ```markdown
 ## Description
+
 Brief description of changes
 
 ## Type of Change
+
 - [ ] Bug fix
 - [ ] New feature
 - [ ] Breaking change
 - [ ] Documentation update
 
 ## Testing
+
 - [ ] Added tests
 - [ ] All tests passing
 - [ ] Tested in Storybook
 
 ## Screenshots (if applicable)
+
 [Add screenshots of visual changes]
 
 ## Checklist
+
 - [ ] Code follows style guidelines
 - [ ] Self-reviewed code
 - [ ] Commented complex code

@@ -23,10 +23,8 @@ import type { IconProps } from '../components/Icon';
  * @accessibility
  * Settings icons are decorative when accompanied by descriptive text labels.
  */
-export const Moon = React.forwardRef<HTMLSpanElement, Omit<IconProps, 'name'>>(
-  (props, ref) => {
-    return <Icon ref={ref} name="moon" {...props} />;
-  }
-);
+export const Moon = React.forwardRef<HTMLSpanElement, Omit<IconProps, 'name'>>((props, ref) => {
+  return <Icon ref={ref} name="moon" {...props} />;
+});
 
 Moon.displayName = 'Moon';

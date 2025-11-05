@@ -19,7 +19,7 @@ const AlertShowcaseComponent: React.FC = () => {
   const [retryCount, setRetryCount] = React.useState(0);
 
   const handleRetry = () => {
-    setRetryCount(prev => prev + 1);
+    setRetryCount((prev) => prev + 1);
     console.log('Retry clicked', retryCount + 1);
   };
 
@@ -32,14 +32,17 @@ const AlertShowcaseComponent: React.FC = () => {
       {/* Introduction */}
       <header style={{ marginBottom: '48px' }}>
         <h1 style={{ marginBottom: '16px', fontSize: '32px', fontWeight: 600 }}>Alert System</h1>
-        <p style={{ 
-          fontSize: '16px', 
-          lineHeight: '1.6', 
-          color: 'var(--ai-color-text-subtle)',
-          maxWidth: '800px'
-        }}>
-          Display feedback messages for various states: errors, warnings, informational messages, and success confirmations.
-          Follows industry standards from Material UI, Chakra UI, and Ant Design.
+        <p
+          style={{
+            fontSize: '16px',
+            lineHeight: '1.6',
+            color: 'var(--ai-color-text-subtle)',
+            maxWidth: '800px',
+          }}
+        >
+          Display feedback messages for various states: errors, warnings, informational messages,
+          and success confirmations. Follows industry standards from Material UI, Chakra UI, and Ant
+          Design.
         </p>
       </header>
 
@@ -52,26 +55,28 @@ const AlertShowcaseComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr',
-          gap: '12px',
-          maxWidth: '400px'
-        }}>
-          <Alert 
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr',
+            gap: '12px',
+            maxWidth: '400px',
+          }}
+        >
+          <Alert
             variant="error"
             title="Error"
             message="Something went wrong. Please try again."
             onAction={handleRetry}
           />
 
-          <Alert 
+          <Alert
             variant="warning"
             title="Warning"
             message="Your session will expire in 5 minutes."
           />
 
-          <Alert 
+          <Alert
             variant="info"
             title="Information"
             message="New features are now available in settings."
@@ -79,7 +84,7 @@ const AlertShowcaseComponent: React.FC = () => {
             actionLabel="Got it"
           />
 
-          <Alert 
+          <Alert
             variant="success"
             title="Success"
             message="Your changes have been saved successfully."
@@ -90,56 +95,52 @@ const AlertShowcaseComponent: React.FC = () => {
       {/* Simple Messages */}
       <section style={{ marginBottom: '48px' }}>
         <header style={{ marginBottom: '24px' }}>
-          <h2 style={{ marginBottom: '8px', fontSize: '24px', fontWeight: 600 }}>Simple Messages</h2>
+          <h2 style={{ marginBottom: '8px', fontSize: '24px', fontWeight: 600 }}>
+            Simple Messages
+          </h2>
           <p style={{ color: 'var(--ai-color-text-subtle)', margin: 0, fontSize: '14px' }}>
             Auto-generated titles, message-only display
           </p>
         </header>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr',
-          gap: '12px',
-          maxWidth: '400px'
-        }}>
-          <Alert 
-            variant="error"
-            message="Unable to connect to server"
-          />
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr',
+            gap: '12px',
+            maxWidth: '400px',
+          }}
+        >
+          <Alert variant="error" message="Unable to connect to server" />
 
-          <Alert 
-            variant="warning"
-            message="Unsaved changes will be lost"
-          />
+          <Alert variant="warning" message="Unsaved changes will be lost" />
 
-          <Alert 
-            variant="info"
-            message="Update available for download"
-          />
+          <Alert variant="info" message="Update available for download" />
 
-          <Alert 
-            variant="success"
-            message="File uploaded successfully"
-          />
+          <Alert variant="success" message="File uploaded successfully" />
         </div>
       </section>
 
       {/* With Actions */}
       <section style={{ marginBottom: '48px' }}>
         <header style={{ marginBottom: '24px' }}>
-          <h2 style={{ marginBottom: '8px', fontSize: '24px', fontWeight: 600 }}>With Action Buttons</h2>
+          <h2 style={{ marginBottom: '8px', fontSize: '24px', fontWeight: 600 }}>
+            With Action Buttons
+          </h2>
           <p style={{ color: 'var(--ai-color-text-subtle)', margin: 0, fontSize: '14px' }}>
             Add retry, dismiss, or other actions
           </p>
         </header>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr',
-          gap: '12px',
-          maxWidth: '400px'
-        }}>
-          <Alert 
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr',
+            gap: '12px',
+            maxWidth: '400px',
+          }}
+        >
+          <Alert
             variant="error"
             title="Connection failed"
             message="Check your internet connection and try again."
@@ -147,7 +148,7 @@ const AlertShowcaseComponent: React.FC = () => {
             actionLabel="Retry"
           />
 
-          <Alert 
+          <Alert
             variant="warning"
             title="Storage almost full"
             message="Only 10% storage remaining. Consider upgrading."
@@ -155,7 +156,7 @@ const AlertShowcaseComponent: React.FC = () => {
             actionLabel="Upgrade Now"
           />
 
-          <Alert 
+          <Alert
             variant="info"
             title="New version available"
             message="Version 2.0 is ready to install with new features."
@@ -163,7 +164,7 @@ const AlertShowcaseComponent: React.FC = () => {
             actionLabel="Update"
           />
 
-          <Alert 
+          <Alert
             variant="success"
             title="Payment received"
             message="Your payment of $49.99 was processed successfully."
@@ -173,11 +174,13 @@ const AlertShowcaseComponent: React.FC = () => {
         </div>
 
         {retryCount > 0 && (
-          <p style={{ 
-            marginTop: '16px', 
-            fontSize: '13px', 
-            color: 'var(--ai-color-text-subtle)' 
-          }}>
+          <p
+            style={{
+              marginTop: '16px',
+              fontSize: '13px',
+              color: 'var(--ai-color-text-subtle)',
+            }}
+          >
             ↑ Retry clicked {retryCount} time{retryCount > 1 ? 's' : ''}
           </p>
         )}
@@ -192,12 +195,14 @@ const AlertShowcaseComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr',
-          gap: '12px',
-          maxWidth: '400px'
-        }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr',
+            gap: '12px',
+            maxWidth: '400px',
+          }}
+        >
           <Alert
             variant="error"
             layout="center"
@@ -234,11 +239,13 @@ const AlertShowcaseComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-          gap: '24px'
-        }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+            gap: '24px',
+          }}
+        >
           <Card elevationLevel={1}>
             <Alert
               variant="error"
@@ -279,35 +286,21 @@ const AlertShowcaseComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr',
-          gap: '12px',
-          maxWidth: '400px'
-        }}>
-          <Alert 
-            variant="error"
-            hideIcon
-            message="Error occurred"
-          />
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr',
+            gap: '12px',
+            maxWidth: '400px',
+          }}
+        >
+          <Alert variant="error" hideIcon message="Error occurred" />
 
-          <Alert 
-            variant="warning"
-            hideIcon
-            message="Warning message"
-          />
+          <Alert variant="warning" hideIcon message="Warning message" />
 
-          <Alert 
-            variant="info"
-            hideIcon
-            message="Informational message"
-          />
+          <Alert variant="info" hideIcon message="Informational message" />
 
-          <Alert 
-            variant="success"
-            hideIcon
-            message="Success message"
-          />
+          <Alert variant="success" hideIcon message="Success message" />
         </div>
       </section>
 
@@ -321,11 +314,11 @@ const AlertShowcaseComponent: React.FC = () => {
         </header>
 
         <div style={{ maxWidth: '400px' }}>
-          <Alert 
+          <Alert
             variant="info"
             icon={
               <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
               </svg>
             }
             title="Featured"
@@ -348,11 +341,13 @@ const AlertShowcaseComponent: React.FC = () => {
           rows={[
             {
               name: 'variant',
-              description: 'Alert severity/type. Options: "error" | "warning" | "info" | "success". Default: "error"',
+              description:
+                'Alert severity/type. Options: "error" | "warning" | "info" | "success". Default: "error"',
             },
             {
               name: 'layout',
-              description: 'Layout style. Options: "default" (left-aligned) | "center" (centered without card styling) | "card" (centered with card styling). Default: "default"',
+              description:
+                'Layout style. Options: "default" (left-aligned) | "center" (centered without card styling) | "card" (centered with card styling). Default: "default"',
             },
             {
               name: 'title',
@@ -368,7 +363,8 @@ const AlertShowcaseComponent: React.FC = () => {
             },
             {
               name: 'actionLabel',
-              description: 'Label for the action button. Defaults to variant-specific label if not provided.',
+              description:
+                'Label for the action button. Defaults to variant-specific label if not provided.',
             },
             {
               name: 'icon',
@@ -398,22 +394,29 @@ const AlertShowcaseComponent: React.FC = () => {
 
         <div style={{ display: 'grid', gap: '24px' }}>
           <div>
-            <h3 style={{ 
-              fontSize: '16px', 
-              fontWeight: 600, 
-              marginBottom: '12px',
-              color: 'var(--ai-color-success-default)'
-            }}>
+            <h3
+              style={{
+                fontSize: '16px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-success-default)',
+              }}
+            >
               ✓ Do
             </h3>
-            <ul style={{
-              margin: 0,
-              paddingLeft: '24px',
-              fontSize: '14px',
-              lineHeight: '1.8',
-              color: 'var(--ai-color-text-default)'
-            }}>
-              <li>Use appropriate variant for the situation (error for failures, success for confirmations)</li>
+            <ul
+              style={{
+                margin: 0,
+                paddingLeft: '24px',
+                fontSize: '14px',
+                lineHeight: '1.8',
+                color: 'var(--ai-color-text-default)',
+              }}
+            >
+              <li>
+                Use appropriate variant for the situation (error for failures, success for
+                confirmations)
+              </li>
               <li>Keep messages concise and actionable</li>
               <li>Provide action buttons for errors that users can recover from</li>
               <li>Use "default" layout for inline/inline alerts in normal content flow</li>
@@ -424,21 +427,25 @@ const AlertShowcaseComponent: React.FC = () => {
           </div>
 
           <div>
-            <h3 style={{ 
-              fontSize: '16px', 
-              fontWeight: 600, 
-              marginBottom: '12px',
-              color: 'var(--ai-color-error-default)'
-            }}>
+            <h3
+              style={{
+                fontSize: '16px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-error-default)',
+              }}
+            >
               ✗ Don't
             </h3>
-            <ul style={{ 
-              margin: 0, 
-              paddingLeft: '24px',
-              fontSize: '14px',
-              lineHeight: '1.8',
-              color: 'var(--ai-color-text-default)'
-            }}>
+            <ul
+              style={{
+                margin: 0,
+                paddingLeft: '24px',
+                fontSize: '14px',
+                lineHeight: '1.8',
+                color: 'var(--ai-color-text-default)',
+              }}
+            >
               <li>Don't use warnings for critical errors - use error variant</li>
               <li>Don't write long paragraphs - keep messages brief</li>
               <li>Don't hide important errors - make them visible</li>
@@ -458,16 +465,24 @@ const AlertShowcaseComponent: React.FC = () => {
           </p>
         </header>
 
-        <ul style={{ 
-          margin: 0, 
-          paddingLeft: '24px',
-          fontSize: '14px',
-          lineHeight: '1.8',
-          color: 'var(--ai-color-text-default)'
-        }}>
-          <li><code>role="alert"</code> - Announces alert to screen readers</li>
-          <li><code>aria-live="polite"</code> - Non-intrusive announcements</li>
-          <li><code>aria-hidden="true"</code> on icons - Icons are decorative</li>
+        <ul
+          style={{
+            margin: 0,
+            paddingLeft: '24px',
+            fontSize: '14px',
+            lineHeight: '1.8',
+            color: 'var(--ai-color-text-default)',
+          }}
+        >
+          <li>
+            <code>role="alert"</code> - Announces alert to screen readers
+          </li>
+          <li>
+            <code>aria-live="polite"</code> - Non-intrusive announcements
+          </li>
+          <li>
+            <code>aria-hidden="true"</code> on icons - Icons are decorative
+          </li>
           <li>Sufficient color contrast ratios (WCAG AA compliant)</li>
           <li>Clear focus indicators on action buttons</li>
           <li>Keyboard accessible action buttons</li>

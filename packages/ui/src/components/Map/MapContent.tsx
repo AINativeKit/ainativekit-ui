@@ -59,7 +59,8 @@ const MapFlyer: React.FC<{
   return null;
 };
 
-const DEFAULT_TILE_URL = 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png';
+const DEFAULT_TILE_URL =
+  'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png';
 
 const DEFAULT_ICON_SIZE: [number, number] = [29, 43];
 const DEFAULT_ICON_ANCHOR: [number, number] = [14.5, 43];
@@ -78,9 +79,7 @@ function createMarkerIcon(color: string, isSelected: boolean) {
     </svg>
   `;
 
-  const className = isSelected
-    ? `${styles.marker} ${styles.selectedMarker}`.trim()
-    : styles.marker;
+  const className = isSelected ? `${styles.marker} ${styles.selectedMarker}`.trim() : styles.marker;
 
   return L.divIcon({
     html: svg,
@@ -155,7 +154,7 @@ export const MapContent: React.FC<MapViewProps> = ({
         scrollWheelZoom
       >
         <MapFlyer selectedId={selectedId} locations={locations} isInspectorOpen={isInspectorOpen} />
-        <TileLayer 
+        <TileLayer
           url={DEFAULT_TILE_URL}
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
           subdomains={['a', 'b', 'c', 'd']}

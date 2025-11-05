@@ -105,9 +105,7 @@ export const LocationCarousel: React.FC<LocationCarouselProps> = ({
 
     // Fallback to native scrolling if Embla is not ready
     if (carouselRef.current) {
-      const selectedCard = carouselRef.current.querySelector(
-        `[data-location-id="${selectedId}"]`
-      );
+      const selectedCard = carouselRef.current.querySelector(`[data-location-id="${selectedId}"]`);
       if (selectedCard instanceof HTMLElement) {
         selectedCard.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
       }
@@ -115,7 +113,7 @@ export const LocationCarousel: React.FC<LocationCarouselProps> = ({
   }, [selectedId, emblaApi, locations]);
 
   // State Priority: Loading > Error > Empty > Content
-  
+
   // Loading State
   if (loading) {
     return (
@@ -197,11 +195,7 @@ export const LocationCarousel: React.FC<LocationCarouselProps> = ({
         onApi={setEmblaApi}
       >
         {locations.map((location) => (
-          <div
-            key={location.id}
-            className={styles.cardWrapper}
-            data-location-id={location.id}
-          >
+          <div key={location.id} className={styles.cardWrapper} data-location-id={location.id}>
             <LocationCard
               image={location.thumbnail}
               title={location.name}

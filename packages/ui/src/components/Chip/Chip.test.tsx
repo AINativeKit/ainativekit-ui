@@ -82,29 +82,18 @@ describe('Chip', () => {
     });
 
     it('should render custom left element', () => {
-      render(
-        <Chip leftElement={<span data-testid="custom-left">●</span>}>
-          Custom Element
-        </Chip>
-      );
+      render(<Chip leftElement={<span data-testid="custom-left">●</span>}>Custom Element</Chip>);
       expect(screen.getByTestId('custom-left')).toBeInTheDocument();
     });
 
     it('should render custom right element', () => {
-      render(
-        <Chip rightElement={<span data-testid="custom-right">→</span>}>
-          Custom Element
-        </Chip>
-      );
+      render(<Chip rightElement={<span data-testid="custom-right">→</span>}>Custom Element</Chip>);
       expect(screen.getByTestId('custom-right')).toBeInTheDocument();
     });
 
     it('should prefer leftElement over leftIcon', () => {
       render(
-        <Chip
-          leftIcon="check-circle"
-          leftElement={<span data-testid="custom-element">●</span>}
-        >
+        <Chip leftIcon="check-circle" leftElement={<span data-testid="custom-element">●</span>}>
           Priority Test
         </Chip>
       );
@@ -124,7 +113,7 @@ describe('Chip', () => {
       const user = userEvent.setup();
       const handleClick = vi.fn();
       render(<Chip onClick={handleClick}>Click Me</Chip>);
-      
+
       await user.click(screen.getByRole('button', { name: 'Click Me' }));
       expect(handleClick).toHaveBeenCalledTimes(1);
     });
@@ -137,7 +126,7 @@ describe('Chip', () => {
           Disabled
         </Chip>
       );
-      
+
       const button = screen.getByRole('button', { name: 'Disabled' });
       await user.click(button);
       expect(handleClick).not.toHaveBeenCalled();
@@ -148,7 +137,7 @@ describe('Chip', () => {
     it('should render remove button when onRemove is provided', () => {
       const handleRemove = vi.fn();
       render(<Chip onRemove={handleRemove}>Removable</Chip>);
-      
+
       // Remove button should be present (with aria-label)
       const removeButton = screen.getByRole('button', { name: 'Remove' });
       expect(removeButton).toBeInTheDocument();
@@ -158,7 +147,7 @@ describe('Chip', () => {
       const user = userEvent.setup();
       const handleRemove = vi.fn();
       render(<Chip onRemove={handleRemove}>Remove Me</Chip>);
-      
+
       const removeButton = screen.getByRole('button', { name: 'Remove' });
       await user.click(removeButton);
       expect(handleRemove).toHaveBeenCalledTimes(1);
@@ -173,10 +162,10 @@ describe('Chip', () => {
           Both Handlers
         </Chip>
       );
-      
+
       const removeButton = screen.getByRole('button', { name: 'Remove' });
       await user.click(removeButton);
-      
+
       expect(handleRemove).toHaveBeenCalledTimes(1);
       expect(handleClick).not.toHaveBeenCalled();
     });
@@ -185,11 +174,11 @@ describe('Chip', () => {
       const user = userEvent.setup();
       const handleRemove = vi.fn();
       render(<Chip onRemove={handleRemove}>Keyboard Remove</Chip>);
-      
+
       const removeButton = screen.getByRole('button', { name: 'Remove' });
       removeButton.focus();
       await user.keyboard('{Enter}');
-      
+
       expect(handleRemove).toHaveBeenCalledTimes(1);
     });
 
@@ -197,11 +186,11 @@ describe('Chip', () => {
       const user = userEvent.setup();
       const handleRemove = vi.fn();
       render(<Chip onRemove={handleRemove}>Keyboard Remove</Chip>);
-      
+
       const removeButton = screen.getByRole('button', { name: 'Remove' });
       removeButton.focus();
       await user.keyboard(' ');
-      
+
       expect(handleRemove).toHaveBeenCalledTimes(1);
     });
 
@@ -213,7 +202,7 @@ describe('Chip', () => {
           Disabled Remove
         </Chip>
       );
-      
+
       const removeButton = screen.getByRole('button', { name: 'Remove' });
       await user.click(removeButton);
       expect(handleRemove).not.toHaveBeenCalled();
@@ -234,7 +223,7 @@ describe('Chip', () => {
           Selected & Clickable
         </Chip>
       );
-      
+
       await user.click(screen.getByRole('button'));
       expect(handleClick).toHaveBeenCalledTimes(1);
     });
@@ -253,7 +242,7 @@ describe('Chip', () => {
           Disabled Button
         </Chip>
       );
-      
+
       const button = screen.getByRole('button', { name: 'Disabled Button' });
       expect(button).toBeDisabled();
     });
@@ -265,7 +254,7 @@ describe('Chip', () => {
           Disabled Remove
         </Chip>
       );
-      
+
       // Should still render as interactive structure
       const removeButton = screen.getByRole('button', { name: 'Remove' });
       expect(removeButton).toBeInTheDocument();
@@ -289,11 +278,11 @@ describe('Chip', () => {
       const user = userEvent.setup();
       const handleClick = vi.fn();
       render(<Chip onClick={handleClick}>Keyboard Accessible</Chip>);
-      
+
       const button = screen.getByRole('button');
       button.focus();
       expect(button).toHaveFocus();
-      
+
       await user.keyboard('{Enter}');
       expect(handleClick).toHaveBeenCalledTimes(1);
     });
@@ -301,7 +290,7 @@ describe('Chip', () => {
     it('should have proper focus management for remove button', () => {
       const handleRemove = vi.fn();
       render(<Chip onRemove={handleRemove}>Focus Test</Chip>);
-      
+
       const removeButton = screen.getByRole('button', { name: 'Remove' });
       removeButton.focus();
       expect(removeButton).toHaveFocus();
@@ -314,7 +303,7 @@ describe('Chip', () => {
           Disabled
         </Chip>
       );
-      
+
       const removeButton = screen.getByRole('button', { name: 'Remove' });
       expect(removeButton).toHaveAttribute('tabIndex', '-1');
     });
@@ -325,7 +314,7 @@ describe('Chip', () => {
       const user = userEvent.setup();
       const handleClick = vi.fn();
       const handleRemove = vi.fn();
-      
+
       render(
         <Chip
           variant="success"
@@ -339,15 +328,15 @@ describe('Chip', () => {
           Feature Complete
         </Chip>
       );
-      
+
       const chip = screen.getByTestId('feature-chip');
       expect(chip).toBeInTheDocument();
       expect(screen.getByText('Feature Complete')).toBeInTheDocument();
-      
+
       // Test click
       await user.click(chip);
       expect(handleClick).toHaveBeenCalledTimes(1);
-      
+
       // Test remove
       const removeButton = screen.getByRole('button', { name: 'Remove' });
       await user.click(removeButton);
@@ -368,10 +357,10 @@ describe('Chip', () => {
           </Chip>
         );
       };
-      
+
       render(<FilterChip />);
       const chip = screen.getByTestId('filter-chip');
-      
+
       expect(chip).not.toHaveClass('chipSelected');
       await user.click(chip);
       expect(chip).toHaveClass('chipSelected');

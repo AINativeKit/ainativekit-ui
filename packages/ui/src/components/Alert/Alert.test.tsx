@@ -115,7 +115,7 @@ describe('Alert', () => {
       const user = userEvent.setup();
       const onAction = vi.fn();
       render(<Alert onAction={onAction} />);
-      
+
       await user.click(screen.getByRole('button', { name: 'Try Again' }));
       expect(onAction).toHaveBeenCalledTimes(1);
     });
@@ -128,16 +128,16 @@ describe('Alert', () => {
 
     it('should use variant-specific default labels', () => {
       const onAction = vi.fn();
-      
+
       const { rerender } = render(<Alert variant="error" onAction={onAction} />);
       expect(screen.getByRole('button', { name: 'Try Again' })).toBeInTheDocument();
-      
+
       rerender(<Alert variant="warning" onAction={onAction} />);
       expect(screen.getByRole('button', { name: 'Dismiss' })).toBeInTheDocument();
-      
+
       rerender(<Alert variant="info" onAction={onAction} />);
       expect(screen.getByRole('button', { name: 'Dismiss' })).toBeInTheDocument();
-      
+
       rerender(<Alert variant="success" onAction={onAction} />);
       expect(screen.getByRole('button', { name: 'Dismiss' })).toBeInTheDocument();
     });
@@ -208,13 +208,15 @@ describe('Alert', () => {
 
       expect(screen.getByTestId('network-error')).toBeInTheDocument();
       expect(screen.getByText('Network Error')).toBeInTheDocument();
-      expect(screen.getByText('Unable to connect to the server. Please check your connection.')).toBeInTheDocument();
+      expect(
+        screen.getByText('Unable to connect to the server. Please check your connection.')
+      ).toBeInTheDocument();
       expect(screen.getByRole('button', { name: 'Reconnect' })).toBeInTheDocument();
     });
 
     it('should render minimal alert with just title', () => {
       render(<Alert title="Error" hideIcon />);
-      
+
       expect(screen.getByText('Error')).toBeInTheDocument();
       expect(screen.queryByRole('button')).not.toBeInTheDocument();
       expect(screen.queryByText('p')).not.toBeInTheDocument();
@@ -229,13 +231,17 @@ describe('Alert', () => {
       );
       expect(screen.getByText('Something went wrong')).toBeInTheDocument();
 
-      rerender(<Alert variant="warning" layout="card" message="Warning message" onAction={onAction} />);
+      rerender(
+        <Alert variant="warning" layout="card" message="Warning message" onAction={onAction} />
+      );
       expect(screen.getByText('Warning')).toBeInTheDocument();
 
       rerender(<Alert variant="info" layout="card" message="Info message" onAction={onAction} />);
       expect(screen.getByText('Information')).toBeInTheDocument();
 
-      rerender(<Alert variant="success" layout="card" message="Success message" onAction={onAction} />);
+      rerender(
+        <Alert variant="success" layout="card" message="Success message" onAction={onAction} />
+      );
       expect(screen.getByText('Success')).toBeInTheDocument();
     });
 

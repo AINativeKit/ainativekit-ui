@@ -23,10 +23,11 @@ import type { IconProps } from '../components/Icon';
  * @accessibility
  * Settings icons are decorative when accompanied by descriptive text labels.
  */
-export const WarningWrapCenteredForCircle = React.forwardRef<HTMLSpanElement, Omit<IconProps, 'name'>>(
-  (props, ref) => {
-    return <Icon ref={ref} name="warning-wrap-centered-for-circle" {...props} />;
-  }
-);
+export const WarningWrapCenteredForCircle = React.forwardRef<
+  HTMLSpanElement,
+  Omit<IconProps, 'name'>
+>((props, ref) => {
+  return <Icon ref={ref} name="warning-wrap-centered-for-circle" {...props} />;
+});
 
 WarningWrapCenteredForCircle.displayName = 'WarningWrapCenteredForCircle';

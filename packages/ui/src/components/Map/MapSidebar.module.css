@@ -35,7 +35,8 @@
   position: sticky;
   top: 0;
   background-color: var(--ai-color-bg-primary);
-  z-index: 1;  font-size: var(--ai-font-size-body-small-emph);
+  z-index: 1;
+  font-size: var(--ai-font-size-body-small-emph);
   line-height: var(--ai-line-height-body-small-emph);
   font-weight: var(--ai-font-weight-body-small-emph);
   letter-spacing: var(--ai-letter-spacing-body-small-emph);
@@ -125,7 +126,8 @@
 .itemFeatures {
   display: flex;
   align-items: center;
-  gap: var(--ai-spacing-2);  font-size: var(--ai-font-size-caption);
+  gap: var(--ai-spacing-2);
+  font-size: var(--ai-font-size-caption);
   line-height: var(--ai-line-height-caption);
   font-weight: var(--ai-font-weight-caption);
   letter-spacing: var(--ai-letter-spacing-caption);

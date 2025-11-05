@@ -51,7 +51,7 @@ describe('SummaryCard', () => {
 
     expect(screen.getByAltText('Image 1')).toBeInTheDocument();
     expect(screen.getByAltText('Image 2')).toBeInTheDocument();
-    
+
     // Verify grid layout is applied
     const grid = screen.getByAltText('Image 1').parentElement;
     expect(grid).toHaveAttribute('data-image-count', '2');
@@ -71,7 +71,7 @@ describe('SummaryCard', () => {
     expect(screen.getByAltText('Image 1')).toBeInTheDocument();
     expect(screen.getByAltText('Image 2')).toBeInTheDocument();
     expect(screen.getByAltText('Image 3')).toBeInTheDocument();
-    
+
     // Verify grid layout is applied
     const grid = screen.getByAltText('Image 1').parentElement;
     expect(grid).toHaveAttribute('data-image-count', '3');
@@ -93,7 +93,7 @@ describe('SummaryCard', () => {
     expect(screen.getByAltText('Image 2')).toBeInTheDocument();
     expect(screen.getByAltText('Image 3')).toBeInTheDocument();
     expect(screen.getByAltText('Image 4')).toBeInTheDocument();
-    
+
     // Verify grid layout is applied
     const grid = screen.getByAltText('Image 1').parentElement;
     expect(grid).toHaveAttribute('data-image-count', '4');
@@ -341,13 +341,7 @@ describe('SummaryCard', () => {
     });
 
     it('shows custom error title and message', () => {
-      render(
-        <SummaryCard
-          error
-          errorTitle="Custom Error"
-          errorMessage="Something went wrong"
-        />
-      );
+      render(<SummaryCard error errorTitle="Custom Error" errorMessage="Something went wrong" />);
       expect(screen.getByText('Custom Error')).toBeInTheDocument();
       expect(screen.getByText('Something went wrong')).toBeInTheDocument();
     });
@@ -363,22 +357,15 @@ describe('SummaryCard', () => {
       const user = userEvent.setup();
       const handleRetry = vi.fn();
       render(<SummaryCard error onErrorRetry={handleRetry} />);
-      
+
       const retryButton = screen.getByRole('button', { name: /try again/i });
       await user.click(retryButton);
-      
+
       expect(handleRetry).toHaveBeenCalledTimes(1);
     });
 
     it('hides normal content when error is true', () => {
-      render(
-        <SummaryCard
-          error
-          images="test.jpg"
-          title="Test"
-          description="Description"
-        />
-      );
+      render(<SummaryCard error images="test.jpg" title="Test" description="Description" />);
       // Normal content should not be visible
       expect(screen.queryByText('Test')).not.toBeInTheDocument();
       expect(screen.queryByText('Description')).not.toBeInTheDocument();
@@ -400,12 +387,7 @@ describe('SummaryCard', () => {
     });
 
     it('shows custom empty title and message', () => {
-      render(
-        <SummaryCard
-          emptyTitle="No data available"
-          emptyMessage="Please add some content"
-        />
-      );
+      render(<SummaryCard emptyTitle="No data available" emptyMessage="Please add some content" />);
       expect(screen.getByText('No data available')).toBeInTheDocument();
       expect(screen.getByText('Please add some content')).toBeInTheDocument();
     });
@@ -453,7 +435,7 @@ describe('SummaryCard', () => {
     it('transitions from loading to normal content', () => {
       const { rerender } = render(<SummaryCard loading title="Test" />);
       expect(screen.getByRole('status')).toBeInTheDocument();
-      
+
       rerender(<SummaryCard title="Test" />);
       expect(screen.queryByRole('status')).not.toBeInTheDocument();
       expect(screen.getByText('Test')).toBeInTheDocument();
@@ -462,7 +444,7 @@ describe('SummaryCard', () => {
     it('transitions from loading to error', () => {
       const { rerender } = render(<SummaryCard loading />);
       expect(screen.getByRole('status')).toBeInTheDocument();
-      
+
       rerender(<SummaryCard error errorTitle="Failed" />);
       expect(screen.queryByRole('status')).not.toBeInTheDocument();
       expect(screen.getByText('Failed')).toBeInTheDocument();
@@ -471,7 +453,7 @@ describe('SummaryCard', () => {
     it('transitions from error to normal content', () => {
       const { rerender } = render(<SummaryCard error title="Test" />);
       expect(screen.getByTestId('summary-card-error')).toBeInTheDocument();
-      
+
       rerender(<SummaryCard title="Test" />);
       expect(screen.queryByTestId('summary-card-error')).not.toBeInTheDocument();
       expect(screen.getByText('Test')).toBeInTheDocument();
@@ -523,10 +505,7 @@ describe('SummaryCard', () => {
 
     it('per-image lazy=false overrides imageLazy=true', () => {
       render(
-        <SummaryCard
-          images={{ src: 'test.jpg', alt: 'Test', lazy: false }}
-          imageLazy={true}
-        />
+        <SummaryCard images={{ src: 'test.jpg', alt: 'Test', lazy: false }} imageLazy={true} />
       );
       const img = screen.getByRole('img');
       expect(img).toHaveAttribute('loading', 'eager');
@@ -556,10 +535,7 @@ describe('SummaryCard', () => {
       render(
         <SummaryCard
           title="Article"
-          metadata={[
-            { label: '10 min read' },
-            { label: 'October 30, 2025' }
-          ]}
+          metadata={[{ label: '10 min read' }, { label: 'October 30, 2025' }]}
         />
       );
       expect(screen.getByText('10 min read')).toBeInTheDocument();
@@ -572,7 +548,7 @@ describe('SummaryCard', () => {
           title="Article"
           metadata={[
             { icon: 'clock', label: '10 min read' },
-            { icon: 'calendar-today', label: 'October 30, 2025' }
+            { icon: 'calendar-today', label: 'October 30, 2025' },
           ]}
         />
       );
@@ -596,9 +572,7 @@ describe('SummaryCard', () => {
         <SummaryCard
           title="Article"
           description="Test description"
-          metadata={[
-            { label: '5 min read' }
-          ]}
+          metadata={[{ label: '5 min read' }]}
         />
       );
       expect(screen.getByText('Test description')).toBeInTheDocument();
@@ -612,7 +586,7 @@ describe('SummaryCard', () => {
           metadata={[
             { icon: 'clock', label: '10 min read' },
             { icon: 'calendar-today', label: 'October 30, 2025' },
-            { icon: 'user', label: 'John Doe' }
+            { icon: 'user', label: 'John Doe' },
           ]}
         />
       );
@@ -630,7 +604,7 @@ describe('SummaryCard', () => {
           description="Build modern, accessible UI with AINativeKit."
           metadata={[
             { icon: 'clock', label: '10 min read' },
-            { icon: 'calendar-today', label: 'October 30, 2025' }
+            { icon: 'calendar-today', label: 'October 30, 2025' },
           ]}
           buttonText="Explore Docs"
           onButtonClick={handleClick}
@@ -649,20 +623,20 @@ describe('SummaryCard', () => {
     it('calls onImageLoad when single image loads', () => {
       const handleLoad = vi.fn();
       render(<SummaryCard images={{ src: 'test.jpg', alt: 'Test' }} onImageLoad={handleLoad} />);
-      
+
       const img = screen.getByRole('img');
       img.dispatchEvent(new Event('load'));
-      
+
       expect(handleLoad).toHaveBeenCalledTimes(1);
     });
 
     it('calls onImageError when single image fails', () => {
       const handleError = vi.fn();
       render(<SummaryCard images={{ src: 'test.jpg', alt: 'Test' }} onImageError={handleError} />);
-      
+
       const img = screen.getByRole('img');
       img.dispatchEvent(new Event('error'));
-      
+
       expect(handleError).toHaveBeenCalledTimes(1);
     });
 
@@ -677,11 +651,11 @@ describe('SummaryCard', () => {
           onImagesLoad={handleLoad}
         />
       );
-      
+
       const images = container.querySelectorAll('img');
       images[0].dispatchEvent(new Event('load'));
       images[1].dispatchEvent(new Event('load'));
-      
+
       expect(handleLoad).toHaveBeenCalledTimes(2);
       expect(handleLoad).toHaveBeenNthCalledWith(1, 0, expect.any(Object));
       expect(handleLoad).toHaveBeenNthCalledWith(2, 1, expect.any(Object));
@@ -699,11 +673,11 @@ describe('SummaryCard', () => {
           onImagesError={handleError}
         />
       );
-      
+
       const images = container.querySelectorAll('img');
       images[0].dispatchEvent(new Event('error'));
       images[2].dispatchEvent(new Event('error'));
-      
+
       expect(handleError).toHaveBeenCalledTimes(2);
       expect(handleError).toHaveBeenNthCalledWith(1, 0, expect.any(Object));
       expect(handleError).toHaveBeenNthCalledWith(2, 2, expect.any(Object));
@@ -714,10 +688,10 @@ describe('SummaryCard', () => {
       render(
         <SummaryCard images={{ src: 'test.jpg', alt: 'Test' }} onImagesLoad={handleGridLoad} />
       );
-      
+
       const img = screen.getByRole('img');
       img.dispatchEvent(new Event('load'));
-      
+
       expect(handleGridLoad).not.toHaveBeenCalled();
     });
 
@@ -732,10 +706,10 @@ describe('SummaryCard', () => {
           onImageLoad={handleSingleLoad}
         />
       );
-      
+
       const images = container.querySelectorAll('img');
       images[0].dispatchEvent(new Event('load'));
-      
+
       expect(handleSingleLoad).not.toHaveBeenCalled();
     });
   });

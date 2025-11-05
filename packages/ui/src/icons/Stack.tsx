@@ -19,10 +19,8 @@ import type { IconProps } from '../components/Icon';
  * @accessibility
  * Platform icons are typically decorative, paired with visible text identifying the platform.
  */
-export const Stack = React.forwardRef<HTMLSpanElement, Omit<IconProps, 'name'>>(
-  (props, ref) => {
-    return <Icon ref={ref} name="stack" {...props} />;
-  }
-);
+export const Stack = React.forwardRef<HTMLSpanElement, Omit<IconProps, 'name'>>((props, ref) => {
+  return <Icon ref={ref} name="stack" {...props} />;
+});
 
 Stack.displayName = 'Stack';

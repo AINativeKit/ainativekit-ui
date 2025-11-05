@@ -29,7 +29,9 @@ describe('Card', () => {
     );
 
     const card = screen.getByTestId('interactive-card');
-    expect(card.style.getPropertyValue('--card-hover-shadow-value')).toBe('var(--ai-elevation-3-shadow)');
+    expect(card.style.getPropertyValue('--card-hover-shadow-value')).toBe(
+      'var(--ai-elevation-3-shadow)'
+    );
   });
 
   describe('Loading States', () => {
@@ -39,7 +41,7 @@ describe('Card', () => {
           <div>Card Content</div>
         </Card>
       );
-      
+
       expect(screen.getByText('Card Content')).toBeInTheDocument();
     });
 
@@ -49,10 +51,10 @@ describe('Card', () => {
           <div>Card Content</div>
         </Card>
       );
-      
+
       // Content should not be visible
       expect(screen.queryByText('Card Content')).not.toBeInTheDocument();
-      
+
       // Skeleton should be present (3 skeleton elements by default)
       const card = screen.getByTestId('card');
       expect(card.querySelector('[aria-busy="true"]')).toBeInTheDocument();
@@ -60,15 +62,15 @@ describe('Card', () => {
 
     it('shows custom skeleton when provided', () => {
       render(
-        <Card 
-          data-testid="card" 
-          loading 
+        <Card
+          data-testid="card"
+          loading
           skeleton={<div data-testid="custom-skeleton">Custom Loading...</div>}
         >
           <div>Card Content</div>
         </Card>
       );
-      
+
       expect(screen.queryByText('Card Content')).not.toBeInTheDocument();
       expect(screen.getByTestId('custom-skeleton')).toBeInTheDocument();
       expect(screen.getByText('Custom Loading...')).toBeInTheDocument();
@@ -80,7 +82,7 @@ describe('Card', () => {
           <div>Content</div>
         </Card>
       );
-      
+
       const card = screen.getByTestId('card');
       expect(card).toHaveAttribute('aria-busy', 'true');
     });
@@ -91,7 +93,7 @@ describe('Card', () => {
           <div>Content</div>
         </Card>
       );
-      
+
       const card = screen.getByTestId('card');
       expect(card).toHaveAttribute('aria-busy', 'false');
     });
@@ -106,7 +108,11 @@ describe('Card', () => {
     });
 
     it('should render custom error title', () => {
-      render(<Card error errorTitle="Custom Error">Content</Card>);
+      render(
+        <Card error errorTitle="Custom Error">
+          Content
+        </Card>
+      );
       expect(screen.getByText('Custom Error')).toBeInTheDocument();
     });
 
@@ -121,15 +127,23 @@ describe('Card', () => {
 
     it('should render retry button when onErrorRetry provided', () => {
       const onRetry = vi.fn();
-      render(<Card error onErrorRetry={onRetry}>Content</Card>);
+      render(
+        <Card error onErrorRetry={onRetry}>
+          Content
+        </Card>
+      );
       expect(screen.getByRole('button', { name: 'Try Again' })).toBeInTheDocument();
     });
 
     it('should call onErrorRetry when retry button clicked', async () => {
       const user = userEvent.setup();
       const onRetry = vi.fn();
-      render(<Card error onErrorRetry={onRetry}>Content</Card>);
-      
+      render(
+        <Card error onErrorRetry={onRetry}>
+          Content
+        </Card>
+      );
+
       await user.click(screen.getByRole('button', { name: 'Try Again' }));
       expect(onRetry).toHaveBeenCalledTimes(1);
     });
@@ -145,7 +159,11 @@ describe('Card', () => {
     });
 
     it('should prioritize error over loading state', () => {
-      render(<Card loading error>Content</Card>);
+      render(
+        <Card loading error>
+          Content
+        </Card>
+      );
       // Error should take precedence, but currently loading takes precedence
       // This documents current behavior - loading is checked first
       expect(screen.queryByRole('alert')).not.toBeInTheDocument();

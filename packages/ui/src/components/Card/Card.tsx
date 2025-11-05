@@ -143,12 +143,7 @@ const CardBase = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
 
   // Default error layout if error and no custom error content provided
   const defaultError = (
-    <Alert
-      layout="card"
-      title={errorTitle}
-      message={errorMessage}
-      onAction={onErrorRetry}
-    />
+    <Alert layout="card" title={errorTitle} message={errorMessage} onAction={onErrorRetry} />
   );
 
   // Determine what to render

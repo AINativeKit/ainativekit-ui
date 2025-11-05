@@ -67,10 +67,17 @@ const AlbumCardShowcase: React.FC = () => {
 
       {/* Introduction */}
       <section style={{ marginBottom: '64px' }}>
-        <p style={{ marginBottom: '24px', color: 'var(--ai-color-text-secondary)', fontSize: '16px', lineHeight: '1.6' }}>
-          Album cards display photo collections with a cover image, title, and photo count. 
-          Features loading, error, and empty states with badge support and multi-line text.
-          Perfect for photo galleries, media libraries, and portfolio sections.
+        <p
+          style={{
+            marginBottom: '24px',
+            color: 'var(--ai-color-text-secondary)',
+            fontSize: '16px',
+            lineHeight: '1.6',
+          }}
+        >
+          Album cards display photo collections with a cover image, title, and photo count. Features
+          loading, error, and empty states with badge support and multi-line text. Perfect for photo
+          galleries, media libraries, and portfolio sections.
         </p>
       </section>
 
@@ -83,7 +90,14 @@ const AlbumCardShowcase: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(272px, 1fr))', gap: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(272px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
           <AlbumCard
             album={SAMPLE_ALBUMS[0]}
             onSelect={(album) => console.log('Selected:', album.title)}
@@ -111,7 +125,14 @@ const AlbumCardShowcase: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(272px, 1fr))', gap: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(272px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
           <AlbumCard
             album={SAMPLE_ALBUMS[0]}
             badge="New"
@@ -148,7 +169,14 @@ const AlbumCardShowcase: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(272px, 1fr))', gap: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(272px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
           <AlbumCard
             album={{
               ...SAMPLE_ALBUMS[0],
@@ -179,10 +207,23 @@ const AlbumCardShowcase: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(272px, 1fr))', gap: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(272px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
           {/* Loading */}
           <div>
-            <h3 style={{ fontSize: '14px', marginBottom: '12px', color: 'var(--ai-color-text-secondary)' }}>
+            <h3
+              style={{
+                fontSize: '14px',
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               Loading
             </h3>
             <AlbumCard
@@ -194,7 +235,13 @@ const AlbumCardShowcase: React.FC = () => {
 
           {/* Error */}
           <div>
-            <h3 style={{ fontSize: '14px', marginBottom: '12px', color: 'var(--ai-color-text-secondary)' }}>
+            <h3
+              style={{
+                fontSize: '14px',
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               Error
             </h3>
             <AlbumCard
@@ -207,7 +254,13 @@ const AlbumCardShowcase: React.FC = () => {
 
           {/* Error with Retry */}
           <div>
-            <h3 style={{ fontSize: '14px', marginBottom: '12px', color: 'var(--ai-color-text-secondary)' }}>
+            <h3
+              style={{
+                fontSize: '14px',
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               Error with Retry ({retryCount} attempts)
             </h3>
             <AlbumCard
@@ -225,7 +278,13 @@ const AlbumCardShowcase: React.FC = () => {
 
           {/* Empty */}
           <div>
-            <h3 style={{ fontSize: '14px', marginBottom: '12px', color: 'var(--ai-color-text-secondary)' }}>
+            <h3
+              style={{
+                fontSize: '14px',
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               Empty
             </h3>
             <AlbumCard
@@ -247,9 +306,22 @@ const AlbumCardShowcase: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(272px, 1fr))', gap: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(272px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
           <div>
-            <h3 style={{ fontSize: '14px', marginBottom: '12px', color: 'var(--ai-color-text-secondary)' }}>
+            <h3
+              style={{
+                fontSize: '14px',
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               Eager Loading (Above-the-fold)
             </h3>
             <AlbumCard
@@ -261,7 +333,13 @@ const AlbumCardShowcase: React.FC = () => {
           </div>
 
           <div>
-            <h3 style={{ fontSize: '14px', marginBottom: '12px', color: 'var(--ai-color-text-secondary)' }}>
+            <h3
+              style={{
+                fontSize: '14px',
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               With Image Callbacks
             </h3>
             <AlbumCard
@@ -284,7 +362,14 @@ const AlbumCardShowcase: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(272px, 1fr))', gap: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(272px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
           <AlbumCard
             album={SAMPLE_ALBUMS[0]}
             badge="New"

@@ -93,7 +93,11 @@
   height: 100%;
   width: 100%;
   border-left: 1px solid var(--ai-color-border-light);
-  background: linear-gradient(to right, color-mix(in srgb, var(--ai-color-text-primary) var(--ai-opacity-disabled), transparent), transparent);
+  background: linear-gradient(
+    to right,
+    color-mix(in srgb, var(--ai-color-text-primary) var(--ai-opacity-disabled), transparent),
+    transparent
+  );
   -webkit-mask-image: linear-gradient(
     to bottom,
     transparent 0%,
@@ -101,13 +105,7 @@
     white 70%,
     transparent 100%
   );
-  mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    white 30%,
-    white 70%,
-    transparent 100%
-  );
+  mask-image: linear-gradient(to bottom, transparent 0%, white 30%, white 70%, transparent 100%);
 }
 
 .edgeGradientRight {
@@ -120,7 +118,11 @@
   height: 100%;
   width: 100%;
   border-right: 1px solid var(--ai-color-border-light);
-  background: linear-gradient(to left, color-mix(in srgb, var(--ai-color-text-primary) var(--ai-opacity-disabled), transparent), transparent);
+  background: linear-gradient(
+    to left,
+    color-mix(in srgb, var(--ai-color-text-primary) var(--ai-opacity-disabled), transparent),
+    transparent
+  );
   -webkit-mask-image: linear-gradient(
     to bottom,
     transparent 0%,
@@ -128,22 +130,24 @@
     white 70%,
     transparent 100%
   );
-  mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    white 30%,
-    white 70%,
-    transparent 100%
-  );
+  mask-image: linear-gradient(to bottom, transparent 0%, white 30%, white 70%, transparent 100%);
 }
 
 /* Dark mode edge gradients */
 :global([data-theme='dark']) .edgeGradientLeft::before {
-  background: linear-gradient(to right, color-mix(in srgb, var(--ai-color-text-inverted) var(--ai-opacity-disabled), transparent), transparent);
+  background: linear-gradient(
+    to right,
+    color-mix(in srgb, var(--ai-color-text-inverted) var(--ai-opacity-disabled), transparent),
+    transparent
+  );
 }
 
 :global([data-theme='dark']) .edgeGradientRight::before {
-  background: linear-gradient(to left, color-mix(in srgb, var(--ai-color-text-inverted) var(--ai-opacity-disabled), transparent), transparent);
+  background: linear-gradient(
+    to left,
+    color-mix(in srgb, var(--ai-color-text-inverted) var(--ai-opacity-disabled), transparent),
+    transparent
+  );
 }
 
 /* Navigation Buttons */

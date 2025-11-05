@@ -326,7 +326,7 @@ describe('token-helpers color utilities', () => {
       // Test colors that meet WCAG AA (4.5+) against white
       const colors = ['#005A9C', '#007744', '#996600', '#CC0000'];
 
-      colors.forEach(color => {
+      colors.forEach((color) => {
         const result = validateContrast(color, '#FFFFFF');
         expect(result.valid).toBe(true);
         expect(result.ratio).toBeGreaterThanOrEqual(4.5);
@@ -344,7 +344,7 @@ describe('token-helpers color utilities', () => {
         '#007BFF', // Bootstrap blue - ratio ~3.4
       ];
 
-      brandColors.forEach(color => {
+      brandColors.forEach((color) => {
         const whiteContrast = validateContrast(color, '#FFFFFF');
         // All should have ratio > 3, though not all meet AA (4.5+)
         expect(whiteContrast.ratio).toBeGreaterThan(3);

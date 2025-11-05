@@ -59,11 +59,7 @@ export interface ErrorStateDefaults {
  * Priority: Loading > Error > Empty > Content
  */
 export function getErrorState(config: ErrorStateConfig) {
-  const {
-    loading = false,
-    error = false,
-    isEmpty = false,
-  } = config;
+  const { loading = false, error = false, isEmpty = false } = config;
 
   return {
     isLoading: loading,

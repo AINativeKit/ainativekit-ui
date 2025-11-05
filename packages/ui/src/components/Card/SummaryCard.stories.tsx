@@ -36,10 +36,18 @@ const SummaryCardsComponent: React.FC = () => {
 
       {/* Introduction */}
       <section style={{ marginBottom: '64px' }}>
-        <p style={{ marginBottom: '24px', color: 'var(--ai-color-text-secondary)', fontSize: '16px', lineHeight: '1.6' }}>
-          Cards displaying content summaries with flexible image layouts (single or 2-4 grid), header with badge, 
-          description, and action button. Perfect for restaurant listings, product summaries, and content previews. 
-          Features loading, error, and empty states with native lazy loading and image callbacks.
+        <p
+          style={{
+            marginBottom: '24px',
+            color: 'var(--ai-color-text-secondary)',
+            fontSize: '16px',
+            lineHeight: '1.6',
+          }}
+        >
+          Cards displaying content summaries with flexible image layouts (single or 2-4 grid),
+          header with badge, description, and action button. Perfect for restaurant listings,
+          product summaries, and content previews. Features loading, error, and empty states with
+          native lazy loading and image callbacks.
         </p>
       </section>
 
@@ -52,7 +60,14 @@ const SummaryCardsComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
           <SummaryCard
             images={SAMPLE_IMAGES.restaurant}
             title="Single Image"
@@ -89,7 +104,15 @@ const SummaryCardsComponent: React.FC = () => {
           />
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '24px', marginTop: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            gap: '24px',
+            marginTop: '24px',
+            alignItems: 'start',
+          }}
+        >
           <SummaryCard
             images={[
               { src: SAMPLE_IMAGES.pizza, alt: 'Pizza' },
@@ -128,7 +151,14 @@ const SummaryCardsComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
           <SummaryCard
             images={SAMPLE_IMAGES.restaurant}
             title="Image + Title Only"
@@ -149,7 +179,15 @@ const SummaryCardsComponent: React.FC = () => {
           />
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '24px', marginTop: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            gap: '24px',
+            marginTop: '24px',
+            alignItems: 'start',
+          }}
+        >
           <SummaryCard
             images={SAMPLE_IMAGES.restaurant}
             title="With Description"
@@ -176,7 +214,15 @@ const SummaryCardsComponent: React.FC = () => {
           />
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '24px', marginTop: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            gap: '24px',
+            marginTop: '24px',
+            alignItems: 'start',
+          }}
+        >
           <SummaryCard
             title="No Images"
             subtitle="Text only card"
@@ -191,7 +237,7 @@ const SummaryCardsComponent: React.FC = () => {
             description="Card with structured metadata items"
             metadata={[
               { icon: 'clock', label: '10 min read' },
-              { icon: 'calendar-today', label: 'October 30, 2025' }
+              { icon: 'calendar-today', label: 'October 30, 2025' },
             ]}
             style={{ maxWidth: `${CARD_WIDTH}px` }}
           />
@@ -201,7 +247,146 @@ const SummaryCardsComponent: React.FC = () => {
             metadata={[
               { icon: 'star', label: '9.2' },
               { icon: 'map-pin', label: 'San Francisco' },
-              { icon: 'clock', label: 'Open now' }
+              { icon: 'clock', label: 'Open now' },
+            ]}
+            style={{ maxWidth: `${CARD_WIDTH}px` }}
+          />
+        </div>
+      </section>
+
+      {/* Custom Icons */}
+      <section style={{ marginBottom: '64px' }}>
+        <header style={{ marginBottom: '24px' }}>
+          <h2 style={{ marginBottom: '8px' }}>Custom Icons (NEW)</h2>
+          <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
+            Metadata icons can be library icons (string names) or custom React elements (SVGs, icon
+            components)
+          </p>
+        </header>
+
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
+          {/* Custom property icons example */}
+          <SummaryCard
+            images="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80"
+            title="$4,449,000"
+            subtitle="98 Parnki Parade, Palm Beach, Qld 4221"
+            metadata={[
+              {
+                icon: (
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                ),
+                label: '5',
+              },
+              {
+                icon: (
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M9 6h6M12 3v3M13 17h-2a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1z" />
+                    <rect x="3" y="10" width="18" height="11" rx="2" />
+                  </svg>
+                ),
+                label: '2',
+              },
+              {
+                icon: (
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <rect x="5" y="11" width="14" height="10" rx="2" />
+                    <circle cx="12" cy="16" r="2" />
+                    <path d="M16 11V7a4 4 0 0 0-8 0v4" />
+                  </svg>
+                ),
+                label: '3',
+              },
+              {
+                icon: (
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <path d="M3 9h18M9 21V9" />
+                  </svg>
+                ),
+                label: '625m²',
+              },
+              { label: '• House' },
+            ]}
+            buttonText="View property"
+            style={{ maxWidth: `${CARD_WIDTH}px` }}
+          />
+
+          {/* Mixed library and custom icons */}
+          <SummaryCard
+            images={SAMPLE_IMAGES.restaurant}
+            title="Mixed Icon Types"
+            subtitle="Library + Custom Icons"
+            description="Combine library icons with custom SVG elements seamlessly"
+            metadata={[
+              { icon: 'clock', label: '10 min' },
+              {
+                icon: (
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                  </svg>
+                ),
+                label: 'Featured',
+              },
+              { icon: 'map-pin', label: 'SF' },
+            ]}
+            style={{ maxWidth: `${CARD_WIDTH}px` }}
+          />
+
+          {/* Text-only metadata (no icons) */}
+          <SummaryCard
+            images={SAMPLE_IMAGES.restaurant}
+            title="Text-Only Metadata"
+            subtitle="No icons needed"
+            description="Metadata items can omit icons entirely"
+            metadata={[
+              { label: 'Posted 2 hours ago' },
+              { label: 'Updated recently' },
+              { label: 'Verified listing' },
             ]}
             style={{ maxWidth: `${CARD_WIDTH}px` }}
           />
@@ -217,7 +402,14 @@ const SummaryCardsComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
           <SummaryCard
             images={SAMPLE_IMAGES.restaurant}
             title="Default Badge"
@@ -266,10 +458,24 @@ const SummaryCardsComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
           {/* Loading States */}
           <div>
-            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+            <h3
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
               Loading - Single Image
             </h3>
             <SummaryCard
@@ -285,7 +491,14 @@ const SummaryCardsComponent: React.FC = () => {
           </div>
 
           <div>
-            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+            <h3
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
               Loading - Grid Images
             </h3>
             <SummaryCard
@@ -304,7 +517,14 @@ const SummaryCardsComponent: React.FC = () => {
           </div>
 
           <div>
-            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+            <h3
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
               Loading - No Images
             </h3>
             <SummaryCard
@@ -319,10 +539,25 @@ const SummaryCardsComponent: React.FC = () => {
           </div>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '24px', marginTop: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            gap: '24px',
+            marginTop: '24px',
+            alignItems: 'start',
+          }}
+        >
           {/* Error State */}
           <div>
-            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+            <h3
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
               Error State
             </h3>
             <SummaryCard
@@ -334,7 +569,14 @@ const SummaryCardsComponent: React.FC = () => {
           </div>
 
           <div>
-            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+            <h3
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
               Error with Retry
             </h3>
             <SummaryCard
@@ -342,7 +584,7 @@ const SummaryCardsComponent: React.FC = () => {
               errorTitle="Connection failed"
               errorMessage="Unable to load content. Please try again."
               onErrorRetry={() => {
-                setRetryCount(c => c + 1);
+                setRetryCount((c) => c + 1);
                 console.log('Retry clicked', retryCount);
               }}
               style={{ maxWidth: `${CARD_WIDTH}px` }}
@@ -351,7 +593,14 @@ const SummaryCardsComponent: React.FC = () => {
 
           {/* Empty State */}
           <div>
-            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+            <h3
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
               Empty State
             </h3>
             <SummaryCard
@@ -372,9 +621,23 @@ const SummaryCardsComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
           <div>
-            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+            <h3
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
               Lazy Loading (Default)
             </h3>
             <SummaryCard
@@ -384,13 +647,26 @@ const SummaryCardsComponent: React.FC = () => {
               description="Images load as they enter viewport for better performance"
               style={{ maxWidth: `${CARD_WIDTH}px` }}
             />
-            <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginTop: '8px' }}>
+            <p
+              style={{
+                fontSize: '12px',
+                color: 'var(--ai-color-text-secondary)',
+                marginTop: '8px',
+              }}
+            >
               ✓ imageLazy=true (default)
             </p>
           </div>
 
           <div>
-            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+            <h3
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
               Eager Loading
             </h3>
             <SummaryCard
@@ -401,13 +677,26 @@ const SummaryCardsComponent: React.FC = () => {
               imageLazy={false}
               style={{ maxWidth: `${CARD_WIDTH}px` }}
             />
-            <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginTop: '8px' }}>
+            <p
+              style={{
+                fontSize: '12px',
+                color: 'var(--ai-color-text-secondary)',
+                marginTop: '8px',
+              }}
+            >
               ✓ imageLazy=false
             </p>
           </div>
 
           <div>
-            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+            <h3
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
               Image Callbacks
             </h3>
             <SummaryCard
@@ -419,7 +708,13 @@ const SummaryCardsComponent: React.FC = () => {
               onImageError={(e) => console.log('Image error:', e.currentTarget.src)}
               style={{ maxWidth: `${CARD_WIDTH}px` }}
             />
-            <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginTop: '8px' }}>
+            <p
+              style={{
+                fontSize: '12px',
+                color: 'var(--ai-color-text-secondary)',
+                marginTop: '8px',
+              }}
+            >
               ✓ Check console for events
             </p>
           </div>
@@ -450,7 +745,7 @@ const SummaryCardsComponent: React.FC = () => {
             metadata={[
               { icon: 'star', label: '9.2 rating' },
               { icon: 'map-pin', label: 'North Beach' },
-              { icon: 'clock', label: 'Open now' }
+              { icon: 'clock', label: 'Open now' },
             ]}
             buttonText="Reserve"
             onButtonClick={() => console.log('Reserve')}
@@ -504,8 +799,9 @@ const SummaryCardsComponent: React.FC = () => {
             },
             {
               name: 'metadata',
-              type: 'Array<{ icon?: IconName, label: string }>',
-              description: 'Metadata items to display below description (e.g., read time, date with icons)',
+              type: 'Array<{ icon?: IconName | React.ReactElement, label: string }>',
+              description:
+                'Metadata items with optional icons (library icon names OR custom React elements)',
             },
             {
               name: 'buttonText',

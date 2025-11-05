@@ -1,6 +1,6 @@
 /**
  * ESLint rule: enforce-tier-dependencies
- * 
+ *
  * Enforces architectural tier dependency rules:
  * - Primitives cannot import from Composed or Patterns
  * - Composed cannot import from Patterns
@@ -16,7 +16,8 @@ module.exports = {
       recommended: true,
     },
     messages: {
-      invalidDependency: 'Invalid tier dependency: {{fromTier}} cannot import from {{toTier}}. Dependency flow must be: primitives → composed → patterns',
+      invalidDependency:
+        'Invalid tier dependency: {{fromTier}} cannot import from {{toTier}}. Dependency flow must be: primitives → composed → patterns',
     },
     schema: [],
   },
@@ -30,13 +31,7 @@ module.exports = {
     };
 
     // Allowed cross-cutting concerns (can be imported by any tier)
-    const allowedCrossCuttingImports = [
-      'tokens',
-      'icons',
-      'utils',
-      'hooks',
-      'types',
-    ];
+    const allowedCrossCuttingImports = ['tokens', 'icons', 'utils', 'hooks', 'types'];
 
     /**
      * Extract tier from file path
@@ -75,10 +70,11 @@ module.exports = {
      * @returns {boolean} - True if it's a cross-cutting concern
      */
     function isCrossCuttingConcern(importPath) {
-      return allowedCrossCuttingImports.some(concern => 
-        importPath.includes(`/${concern}/`) || 
-        importPath.includes(`/${concern}`) ||
-        importPath.endsWith(concern)
+      return allowedCrossCuttingImports.some(
+        (concern) =>
+          importPath.includes(`/${concern}/`) ||
+          importPath.includes(`/${concern}`) ||
+          importPath.endsWith(concern)
       );
     }
 

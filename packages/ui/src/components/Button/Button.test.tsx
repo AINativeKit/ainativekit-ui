@@ -42,7 +42,6 @@ describe('Button', () => {
       const button = screen.getByRole('button');
       expect(button.querySelector('[aria-hidden="true"]')).toBeInTheDocument();
     });
-
   });
 
   describe('Disabled State', () => {
@@ -195,9 +194,7 @@ describe('Button', () => {
     it('can be clicked when not disabled', async () => {
       const user = userEvent.setup();
       const handleClick = vi.fn();
-      render(
-        <Button iconOnly="plus-circle-add" aria-label="Add" onClick={handleClick} />
-      );
+      render(<Button iconOnly="plus-circle-add" aria-label="Add" onClick={handleClick} />);
       const button = screen.getByRole('button', { name: 'Add' });
       await user.click(button);
       expect(handleClick).toHaveBeenCalledTimes(1);

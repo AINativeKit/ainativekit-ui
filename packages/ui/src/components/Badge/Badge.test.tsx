@@ -108,9 +108,7 @@ describe('Badge', () => {
     });
 
     it('applies custom styles', () => {
-      const { container } = render(
-        <Badge style={{ marginLeft: '10px' }}>Test</Badge>
-      );
+      const { container } = render(<Badge style={{ marginLeft: '10px' }}>Test</Badge>);
       const badge = container.firstChild as HTMLElement;
       expect(badge).toHaveStyle({ marginLeft: '10px' });
     });
@@ -118,7 +116,10 @@ describe('Badge', () => {
 
   describe('Variants', () => {
     it('applies correct class for each variant', () => {
-      const variants: Array<{ variant: 'default' | 'filled' | 'success' | 'warning' | 'error' | 'neutral', expectedClass: string }> = [
+      const variants: Array<{
+        variant: 'default' | 'filled' | 'success' | 'warning' | 'error' | 'neutral';
+        expectedClass: string;
+      }> = [
         { variant: 'default', expectedClass: 'badgeDefault' },
         { variant: 'filled', expectedClass: 'badgeFilled' },
         { variant: 'success', expectedClass: 'badgeSuccess' },
@@ -145,7 +146,7 @@ describe('Badge', () => {
     it('applies base badge class with all variants', () => {
       const variants = ['default', 'filled', 'success', 'warning', 'error', 'neutral'] as const;
 
-      variants.forEach(variant => {
+      variants.forEach((variant) => {
         const { container } = render(<Badge variant={variant}>Test</Badge>);
         const badge = container.firstChild as HTMLElement;
         expect(badge).toHaveClass('badge');

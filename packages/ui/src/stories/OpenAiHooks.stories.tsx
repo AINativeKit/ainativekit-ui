@@ -89,7 +89,7 @@ const ensureOpenAi = (): (OpenAiApi & OpenAiGlobals) | null => {
     window.openai = base;
   }
 
-  return window.openai as OpenAiApi & OpenAiGlobals | null;
+  return window.openai as (OpenAiApi & OpenAiGlobals) | null;
 };
 
 const updateOpenAiGlobals = (changes: Partial<OpenAiGlobals>) => {
@@ -221,31 +221,62 @@ const ReactiveComponentDemo: React.FC = () => {
       <Card interactive elevationLevel={2}>
         <CardBody>
           <CardTitle>Live Hook Demonstration</CardTitle>
-          <CardDescription>
-            This card's width changes based on display mode
-          </CardDescription>
+          <CardDescription>This card's width changes based on display mode</CardDescription>
 
-          <div style={{ marginTop: '16px', display: 'grid', gap: '12px', gridTemplateColumns: 'repeat(2, 1fr)' }}>
-            <div style={{ padding: '12px', backgroundColor: 'var(--ai-color-bg-secondary)', borderRadius: '8px' }}>
-              <div style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '6px' }}>
+          <div
+            style={{
+              marginTop: '16px',
+              display: 'grid',
+              gap: '12px',
+              gridTemplateColumns: 'repeat(2, 1fr)',
+            }}
+          >
+            <div
+              style={{
+                padding: '12px',
+                backgroundColor: 'var(--ai-color-bg-secondary)',
+                borderRadius: '8px',
+              }}
+            >
+              <div
+                style={{
+                  fontSize: '12px',
+                  color: 'var(--ai-color-text-secondary)',
+                  marginBottom: '6px',
+                }}
+              >
                 Display Mode
               </div>
-              <div style={{ fontSize: '16px' }}>
-                {displayMode || '—'}
-              </div>
+              <div style={{ fontSize: '16px' }}>{displayMode || '—'}</div>
             </div>
 
-            <div style={{ padding: '12px', backgroundColor: 'var(--ai-color-bg-secondary)', borderRadius: '8px' }}>
-              <div style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '6px' }}>
+            <div
+              style={{
+                padding: '12px',
+                backgroundColor: 'var(--ai-color-bg-secondary)',
+                borderRadius: '8px',
+              }}
+            >
+              <div
+                style={{
+                  fontSize: '12px',
+                  color: 'var(--ai-color-text-secondary)',
+                  marginBottom: '6px',
+                }}
+              >
                 Card Width
               </div>
-              <div style={{ fontSize: '16px' }}>
-                {cardWidth}
-              </div>
+              <div style={{ fontSize: '16px' }}>{cardWidth}</div>
             </div>
           </div>
 
-          <p style={{ margin: '16px 0 0 0', fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
+          <p
+            style={{
+              margin: '16px 0 0 0',
+              fontSize: '14px',
+              color: 'var(--ai-color-text-secondary)',
+            }}
+          >
             Try cycling display modes to see the card width change!
           </p>
         </CardBody>
@@ -254,9 +285,7 @@ const ReactiveComponentDemo: React.FC = () => {
   );
 };
 
-const HooksDashboard: React.FC<{ initialWidgetCount: number }> = ({
-  initialWidgetCount,
-}) => {
+const HooksDashboard: React.FC<{ initialWidgetCount: number }> = ({ initialWidgetCount }) => {
   const displayMode = useDisplayMode();
   const maxHeight = useMaxHeight();
   const locale = useOpenAiGlobal('locale');
@@ -265,11 +294,9 @@ const HooksDashboard: React.FC<{ initialWidgetCount: number }> = ({
   const toolOutput = useWidgetProps<PlaygroundToolOutput>(() => ({
     message: '',
   }));
-  const [widgetState, setWidgetState] = useWidgetState<Record<string, unknown>>(
-    () => ({
-      count: initialWidgetCount,
-    })
-  );
+  const [widgetState, setWidgetState] = useWidgetState<Record<string, unknown>>(() => ({
+    count: initialWidgetCount,
+  }));
 
   const currentCount = (widgetState as { count?: number })?.count ?? 0;
 
@@ -308,9 +335,7 @@ const HooksDashboard: React.FC<{ initialWidgetCount: number }> = ({
       }}
     >
       <div>
-        <h3 style={{ margin: '0 0 8px', fontSize: '18px' }}>
-          Hook Readout
-        </h3>
+        <h3 style={{ margin: '0 0 8px', fontSize: '18px' }}>Hook Readout</h3>
         <dl
           style={{
             display: 'grid',
@@ -353,11 +378,7 @@ const HooksDashboard: React.FC<{ initialWidgetCount: number }> = ({
         <Button variant="primary" onClick={() => increment(1)}>
           Increment Count
         </Button>
-        <Button
-          variant="secondary"
-          onClick={() => increment(-1)}
-          disabled={currentCount === 0}
-        >
+        <Button variant="secondary" onClick={() => increment(-1)} disabled={currentCount === 0}>
           Decrement Count
         </Button>
         <Button variant="tertiary" onClick={resetToInitial}>
@@ -389,24 +410,68 @@ const OpenAiHooksPlayground: React.FC<PlaygroundArgs> = (args) => {
         <h1 style={{ margin: '0 0 12px', fontSize: '28px', fontWeight: '700' }}>
           🪝 OpenAI Hooks Playground
         </h1>
-        <p style={{ margin: '0 0 8px 0', color: 'var(--ai-color-text-secondary)', fontSize: '16px', lineHeight: '1.5' }}>
-          These hooks give you access to the ChatGPT Apps SDK environment, allowing your component to react to host events, manage state, and communicate with the ChatGPT host.
+        <p
+          style={{
+            margin: '0 0 8px 0',
+            color: 'var(--ai-color-text-secondary)',
+            fontSize: '16px',
+            lineHeight: '1.5',
+          }}
+        >
+          These hooks give you access to the ChatGPT Apps SDK environment, allowing your component
+          to react to host events, manage state, and communicate with the ChatGPT host.
         </p>
-        <p style={{ margin: '0 0 8px 0', color: 'var(--ai-color-text-secondary)', fontSize: '14px' }}>
+        <p
+          style={{ margin: '0 0 8px 0', color: 'var(--ai-color-text-secondary)', fontSize: '14px' }}
+        >
           <strong>Available hooks:</strong>
         </p>
-        <ul style={{ margin: '0', paddingLeft: '20px', color: 'var(--ai-color-text-secondary)', fontSize: '14px' }}>
-          <li><strong>useOpenAiGlobal()</strong> - Access global SDK properties (theme, locale, display mode, etc.)</li>
-          <li><strong>useWidgetState()</strong> - Manage your widget state that persists across host updates</li>
-          <li><strong>useWidgetProps()</strong> - Get tool input/output from the host</li>
-          <li><strong>useDisplayMode()</strong> - React to display mode changes (inline, pip, fullscreen)</li>
-          <li><strong>useMaxHeight()</strong> - Constrain your component to the available height</li>
+        <ul
+          style={{
+            margin: '0',
+            paddingLeft: '20px',
+            color: 'var(--ai-color-text-secondary)',
+            fontSize: '14px',
+          }}
+        >
+          <li>
+            <strong>useOpenAiGlobal()</strong> - Access global SDK properties (theme, locale,
+            display mode, etc.)
+          </li>
+          <li>
+            <strong>useWidgetState()</strong> - Manage your widget state that persists across host
+            updates
+          </li>
+          <li>
+            <strong>useWidgetProps()</strong> - Get tool input/output from the host
+          </li>
+          <li>
+            <strong>useDisplayMode()</strong> - React to display mode changes (inline, pip,
+            fullscreen)
+          </li>
+          <li>
+            <strong>useMaxHeight()</strong> - Constrain your component to the available height
+          </li>
         </ul>
 
-        <div style={{ marginTop: '16px', padding: '12px', background: 'var(--ai-color-bg-secondary)', borderRadius: '8px', border: '1px solid var(--ai-color-border-default)' }}>
-          <p style={{ margin: '0', fontSize: '13px', color: 'var(--ai-color-text-secondary)', lineHeight: '1.5' }}>
-            📖{' '}
-            <strong>Need detailed documentation?</strong> Check out the{' '}
+        <div
+          style={{
+            marginTop: '16px',
+            padding: '12px',
+            background: 'var(--ai-color-bg-secondary)',
+            borderRadius: '8px',
+            border: '1px solid var(--ai-color-border-default)',
+          }}
+        >
+          <p
+            style={{
+              margin: '0',
+              fontSize: '13px',
+              color: 'var(--ai-color-text-secondary)',
+              lineHeight: '1.5',
+            }}
+          >
+            📖 <strong>Need detailed documentation?</strong> Check out the{' '}
             <a
               href="https://github.com/ainativekit/ainativekit-ui/blob/main/packages/ui/docs/guides/useOpenAiGlobal.md"
               target="_blank"
@@ -424,19 +489,28 @@ const OpenAiHooksPlayground: React.FC<PlaygroundArgs> = (args) => {
               }}
             >
               complete useOpenAiGlobal guide
-            </a>
-            {' '}for data structure patterns, real-world examples, troubleshooting, and best practices.
+            </a>{' '}
+            for data structure patterns, real-world examples, troubleshooting, and best practices.
           </p>
         </div>
       </section>
 
       {/* Interactive Playground Section */}
-      <section style={{ marginTop: '24px', paddingTop: '20px', borderTop: '1px solid var(--ai-color-border-default)' }}>
+      <section
+        style={{
+          marginTop: '24px',
+          paddingTop: '20px',
+          borderTop: '1px solid var(--ai-color-border-default)',
+        }}
+      >
         <h2 style={{ margin: '0 0 12px', fontSize: '20px', fontWeight: '600' }}>
           🎮 Interactive Playground
         </h2>
-        <p style={{ margin: '0 0 12px', color: 'var(--ai-color-text-secondary)', fontSize: '14px' }}>
-          Try adjusting the controls below or using the Storybook controls panel to simulate host environment changes and see how the hooks respond in real-time.
+        <p
+          style={{ margin: '0 0 12px', color: 'var(--ai-color-text-secondary)', fontSize: '14px' }}
+        >
+          Try adjusting the controls below or using the Storybook controls panel to simulate host
+          environment changes and see how the hooks respond in real-time.
         </p>
 
         <HostControlPanel />
@@ -447,7 +521,6 @@ const OpenAiHooksPlayground: React.FC<PlaygroundArgs> = (args) => {
       <section>
         <ReactiveComponentDemo />
       </section>
-
     </div>
   );
 };

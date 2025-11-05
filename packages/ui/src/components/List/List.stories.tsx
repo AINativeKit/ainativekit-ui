@@ -155,11 +155,21 @@ const ListsComponent: React.FC = () => {
 
       {/* Introduction */}
       <section style={{ marginBottom: '64px' }}>
-        <p style={{ marginBottom: '24px', color: 'var(--ai-color-text-secondary)', fontSize: '16px', lineHeight: '1.6' }}>
-          Flexible list component for displaying data collections with rich metadata, features, and interactive elements. Perfect for tasks, contacts, ranked items, and more.
+        <p
+          style={{
+            marginBottom: '24px',
+            color: 'var(--ai-color-text-secondary)',
+            fontSize: '16px',
+            lineHeight: '1.6',
+          }}
+        >
+          Flexible list component for displaying data collections with rich metadata, features, and
+          interactive elements. Perfect for tasks, contacts, ranked items, and more.
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '14px' }}>
-          <div><strong>Key Features:</strong></div>
+          <div>
+            <strong>Key Features:</strong>
+          </div>
           <ul style={{ marginLeft: '24px', color: 'var(--ai-color-text-secondary)' }}>
             <li>Customizable header with title, subtitle, thumbnail, and actions</li>
             <li>Rich list items with media, features, metadata, and ranks</li>
@@ -186,7 +196,8 @@ const ListsComponent: React.FC = () => {
             header={{
               title: 'National Best Pizza List',
               subtitle: 'A ranking of the best pizzerias in the world',
-              thumbnail: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=80&h=80&fit=crop',
+              thumbnail:
+                'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=80&h=80&fit=crop',
               action: <Button variant="primary">Save List</Button>,
             }}
             items={pizzaPlaces}
@@ -366,7 +377,13 @@ const ListsComponent: React.FC = () => {
         {/* Interactive Items */}
         <div>
           <h3 style={{ fontSize: '16px', marginBottom: '16px' }}>Interactive Items</h3>
-          <p style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)', marginBottom: '16px' }}>
+          <p
+            style={{
+              fontSize: '14px',
+              color: 'var(--ai-color-text-secondary)',
+              marginBottom: '16px',
+            }}
+          >
             Items with onClick handlers get hover/focus states and keyboard support
           </p>
           <List
@@ -400,7 +417,8 @@ const ListsComponent: React.FC = () => {
             header={{
               title: 'Best Pizza Places',
               subtitle: 'Top rated pizzerias worldwide',
-              thumbnail: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=80&h=80&fit=crop',
+              thumbnail:
+                'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=80&h=80&fit=crop',
             }}
             items={pizzaPlaces}
             renderItem={(place, index) => (
@@ -452,7 +470,13 @@ const ListsComponent: React.FC = () => {
         {/* With Features */}
         <div style={{ marginBottom: '48px' }}>
           <h3 style={{ fontSize: '16px', marginBottom: '16px' }}>With Features</h3>
-          <p style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)', marginBottom: '16px' }}>
+          <p
+            style={{
+              fontSize: '14px',
+              color: 'var(--ai-color-text-secondary)',
+              marginBottom: '16px',
+            }}
+          >
             Add feature badges with icons to list items
           </p>
           <List
@@ -502,8 +526,16 @@ const ListsComponent: React.FC = () => {
 
         {/* Loading State - Recommended Pattern */}
         <div style={{ marginBottom: '48px' }}>
-          <h3 style={{ fontSize: '16px', marginBottom: '16px' }}>Loading State (Recommended Pattern)</h3>
-          <p style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)', marginBottom: '16px' }}>
+          <h3 style={{ fontSize: '16px', marginBottom: '16px' }}>
+            Loading State (Recommended Pattern)
+          </h3>
+          <p
+            style={{
+              fontSize: '14px',
+              color: 'var(--ai-color-text-secondary)',
+              marginBottom: '16px',
+            }}
+          >
             Best UX: Render actual items with loading prop for seamless transition
           </p>
           <List
@@ -553,15 +585,16 @@ const ListsComponent: React.FC = () => {
         {/* Loading State - Fallback */}
         <div style={{ marginBottom: '48px' }}>
           <h3 style={{ fontSize: '16px', marginBottom: '16px' }}>Loading State (Fallback)</h3>
-          <p style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)', marginBottom: '16px' }}>
+          <p
+            style={{
+              fontSize: '14px',
+              color: 'var(--ai-color-text-secondary)',
+              marginBottom: '16px',
+            }}
+          >
             When no items available, shows generic skeleton items
           </p>
-          <List
-            loading
-            loadingItems={4}
-            items={[]}
-            renderItem={() => null}
-          />
+          <List loading loadingItems={4} items={[]} renderItem={() => null} />
           <details style={{ marginTop: '16px', cursor: 'pointer' }}>
             <summary style={{ fontWeight: 600, marginBottom: '12px' }}>Show code</summary>
             <div
@@ -587,7 +620,13 @@ const ListsComponent: React.FC = () => {
         {/* Error State */}
         <div style={{ marginBottom: '48px' }}>
           <h3 style={{ fontSize: '16px', marginBottom: '16px' }}>Error State</h3>
-          <p style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)', marginBottom: '16px' }}>
+          <p
+            style={{
+              fontSize: '14px',
+              color: 'var(--ai-color-text-secondary)',
+              marginBottom: '16px',
+            }}
+          >
             Error display with optional retry button
           </p>
           <List
@@ -727,7 +766,11 @@ const ListsComponent: React.FC = () => {
         <List
           header={{
             title: 'Pizza Places',
-            subtitle: isLoading ? 'Loading...' : hasError ? 'Error' : `${pizzaPlaces.length} places`,
+            subtitle: isLoading
+              ? 'Loading...'
+              : hasError
+                ? 'Error'
+                : `${pizzaPlaces.length} places`,
           }}
           loading={isLoading}
           error={hasError}
@@ -762,7 +805,9 @@ const ListsComponent: React.FC = () => {
               marginTop: '12px',
             }}
           >
-            <code style={{ whiteSpace: 'pre' }}>{`const [isLoading, setIsLoading] = React.useState(false);
+            <code
+              style={{ whiteSpace: 'pre' }}
+            >{`const [isLoading, setIsLoading] = React.useState(false);
 const [hasError, setHasError] = React.useState(false);
 const [data, setData] = React.useState([]);
 
@@ -811,19 +856,23 @@ return (
             },
             {
               name: 'renderItem',
-              description: 'Render function for list rows. Type: (item: T, index: number) => ReactNode (required)',
+              description:
+                'Render function for list rows. Type: (item: T, index: number) => ReactNode (required)',
             },
             {
               name: 'header',
-              description: 'Optional header configuration with title, subtitle, thumbnail, and action. Type: ListHeaderProps',
+              description:
+                'Optional header configuration with title, subtitle, thumbnail, and action. Type: ListHeaderProps',
             },
             {
               name: 'loading',
-              description: 'Loading state - renders items with loading context or skeleton items. Type: boolean. Default: false',
+              description:
+                'Loading state - renders items with loading context or skeleton items. Type: boolean. Default: false',
             },
             {
               name: 'loadingItems',
-              description: 'Number of skeleton items to show when loading and no items provided. Type: number. Default: 3',
+              description:
+                'Number of skeleton items to show when loading and no items provided. Type: number. Default: 3',
             },
             {
               name: 'error',
@@ -839,15 +888,18 @@ return (
             },
             {
               name: 'onErrorRetry',
-              description: 'Error retry handler - shows retry button when provided. Type: () => void',
+              description:
+                'Error retry handler - shows retry button when provided. Type: () => void',
             },
             {
               name: 'emptyTitle',
-              description: 'Empty state title when no items provided. Type: string. Default: "No items"',
+              description:
+                'Empty state title when no items provided. Type: string. Default: "No items"',
             },
             {
               name: 'emptyMessage',
-              description: 'Message to show when the list is empty. Type: ReactNode. Default: "No items found."',
+              description:
+                'Message to show when the list is empty. Type: ReactNode. Default: "No items found."',
             },
             {
               name: 'emptyState',
@@ -855,12 +907,15 @@ return (
             },
             {
               name: 'showDividers',
-              description: 'Controls whether divider lines are rendered between rows. Type: boolean. Default: true',
+              description:
+                'Controls whether divider lines are rendered between rows. Type: boolean. Default: true',
             },
           ]}
         />
 
-        <h3 style={{ fontSize: '16px', marginTop: '32px', marginBottom: '16px' }}>ListItem Props</h3>
+        <h3 style={{ fontSize: '16px', marginTop: '32px', marginBottom: '16px' }}>
+          ListItem Props
+        </h3>
         <PropsTable
           hideThemeColumn
           rows={[
@@ -874,11 +929,13 @@ return (
             },
             {
               name: 'media',
-              description: 'Optional visual shown to the left of the text. Type: string | ReactNode',
+              description:
+                'Optional visual shown to the left of the text. Type: string | ReactNode',
             },
             {
               name: 'mediaAlt',
-              description: 'Accessible alternative text for the media when a URL is provided. Type: string',
+              description:
+                'Accessible alternative text for the media when a URL is provided. Type: string',
             },
             {
               name: 'rank',
@@ -886,27 +943,33 @@ return (
             },
             {
               name: 'metadata',
-              description: 'Optional metadata rendered inline on mobile and in a separate column on desktop. Type: ReactNode',
+              description:
+                'Optional metadata rendered inline on mobile and in a separate column on desktop. Type: ReactNode',
             },
             {
               name: 'features',
-              description: 'Optional feature list displayed below the subtitle. Type: FeatureItem[] (string | { icon?: IconName; label: string })',
+              description:
+                'Optional feature list displayed below the subtitle. Type: FeatureItem[] (string | { icon?: IconName; label: string })',
             },
             {
               name: 'action',
-              description: 'Optional trailing action element (icon button, button, etc.). Type: ReactNode',
+              description:
+                'Optional trailing action element (icon button, button, etc.). Type: ReactNode',
             },
             {
               name: 'onActionClick',
-              description: 'Handler for trailing action clicks. Type: (event: React.MouseEvent) => void',
+              description:
+                'Handler for trailing action clicks. Type: (event: React.MouseEvent) => void',
             },
             {
               name: 'onClick',
-              description: 'Row click handler - enables hover/focus states. Type: (event: React.MouseEvent) => void',
+              description:
+                'Row click handler - enables hover/focus states. Type: (event: React.MouseEvent) => void',
             },
             {
               name: 'interactive',
-              description: 'Enable hover/focus states even without an onClick handler. Type: boolean. Default: false',
+              description:
+                'Enable hover/focus states even without an onClick handler. Type: boolean. Default: false',
             },
             {
               name: 'loading',
@@ -914,7 +977,8 @@ return (
             },
             {
               name: 'hideMetadataOnMobile',
-              description: 'Hide metadata from the inline mobile row. Type: boolean. Default: false',
+              description:
+                'Hide metadata from the inline mobile row. Type: boolean. Default: false',
             },
           ]}
         />
@@ -929,17 +993,37 @@ return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', fontSize: '14px' }}>
           <div>
             <strong>Loading Patterns:</strong>
-            <ul style={{ marginLeft: '24px', marginTop: '8px', color: 'var(--ai-color-text-secondary)' }}>
-              <li>Prefer rendering actual items with <code>loading</code> prop for better UX (seamless transition)</li>
+            <ul
+              style={{
+                marginLeft: '24px',
+                marginTop: '8px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
+              <li>
+                Prefer rendering actual items with <code>loading</code> prop for better UX (seamless
+                transition)
+              </li>
               <li>Use fallback skeleton items only when you don't have placeholder data</li>
-              <li>Set <code>loading</code> on both <code>List</code> and <code>ListItem</code> components</li>
+              <li>
+                Set <code>loading</code> on both <code>List</code> and <code>ListItem</code>{' '}
+                components
+              </li>
             </ul>
           </div>
 
           <div>
             <strong>Error Handling:</strong>
-            <ul style={{ marginLeft: '24px', marginTop: '8px', color: 'var(--ai-color-text-secondary)' }}>
-              <li>Always provide <code>onErrorRetry</code> handler for user recovery</li>
+            <ul
+              style={{
+                marginLeft: '24px',
+                marginTop: '8px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
+              <li>
+                Always provide <code>onErrorRetry</code> handler for user recovery
+              </li>
               <li>Use descriptive error titles and messages</li>
               <li>Preserve the header during error state for context</li>
             </ul>
@@ -947,7 +1031,13 @@ return (
 
           <div>
             <strong>Empty States:</strong>
-            <ul style={{ marginLeft: '24px', marginTop: '8px', color: 'var(--ai-color-text-secondary)' }}>
+            <ul
+              style={{
+                marginLeft: '24px',
+                marginTop: '8px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               <li>Provide helpful guidance or actions in empty states</li>
               <li>Use custom empty states for better engagement</li>
               <li>Consider showing a CTA button to help users take action</li>
@@ -956,8 +1046,16 @@ return (
 
           <div>
             <strong>Accessibility:</strong>
-            <ul style={{ marginLeft: '24px', marginTop: '8px', color: 'var(--ai-color-text-secondary)' }}>
-              <li>Always provide <code>mediaAlt</code> for images</li>
+            <ul
+              style={{
+                marginLeft: '24px',
+                marginTop: '8px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
+              <li>
+                Always provide <code>mediaAlt</code> for images
+              </li>
               <li>Use semantic HTML (role="button" for interactive items)</li>
               <li>Ensure keyboard navigation works (Tab, Enter, Space)</li>
               <li>Test with screen readers</li>
@@ -966,8 +1064,16 @@ return (
 
           <div>
             <strong>Performance:</strong>
-            <ul style={{ marginLeft: '24px', marginTop: '8px', color: 'var(--ai-color-text-secondary)' }}>
-              <li>Always provide unique <code>key</code> prop in renderItem</li>
+            <ul
+              style={{
+                marginLeft: '24px',
+                marginTop: '8px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
+              <li>
+                Always provide unique <code>key</code> prop in renderItem
+              </li>
               <li>Avoid inline function definitions in renderItem when possible</li>
               <li>Consider virtualization for very long lists (100+ items)</li>
             </ul>

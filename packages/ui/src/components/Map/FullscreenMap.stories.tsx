@@ -19,10 +19,7 @@ const sampleLocations: LocationData[] = [
     description:
       'Award-winning Neapolitan pies in North Beach. A San Francisco institution serving authentic Italian pizza with locally-sourced ingredients.',
     thumbnail: 'https://persistent.oaistatic.com/pizzaz/pizzaz-1.png',
-    features: [
-      { icon: 'star', label: '4.8' },
-      { label: '$$$' },
-    ],
+    features: [{ icon: 'star', label: '4.8' }, { label: '$$$' }],
     actions: [
       { label: 'Add to favorites', variant: 'primary' },
       { label: 'Contact', variant: 'secondary' },
@@ -56,10 +53,7 @@ const sampleLocations: LocationData[] = [
     description:
       'Focaccia-style squares, late-night favorite. Classic North Beach spot known for thick, fluffy focaccia pizza by the slice.',
     thumbnail: 'https://persistent.oaistatic.com/pizzaz/pizzaz-2.png',
-    features: [
-      { icon: 'star', label: '4.6' },
-      { label: '$' },
-    ],
+    features: [{ icon: 'star', label: '4.6' }, { label: '$' }],
     actions: [
       { label: 'Add to favorites', variant: 'primary' },
       { label: 'Call', variant: 'secondary' },
@@ -86,10 +80,7 @@ const sampleLocations: LocationData[] = [
     description:
       'Thin-crust classics on 18th Street. Celebrated for perfectly charred, thin-crust pizzas made in a wood-burning oven.',
     thumbnail: 'https://persistent.oaistatic.com/pizzaz/pizzaz-3.png',
-    features: [
-      { icon: 'star', label: '4.5' },
-      { label: '$$' },
-    ],
+    features: [{ icon: 'star', label: '4.5' }, { label: '$$' }],
     actions: [
       { label: 'Add to favorites', variant: 'primary' },
       { label: 'Reservations', variant: 'secondary' },
@@ -103,10 +94,7 @@ const sampleLocations: LocationData[] = [
     description:
       'Deep-dish and cornmeal crust favorites. Innovative pizzeria from the Flour + Water team with seasonal rotating menu.',
     thumbnail: 'https://persistent.oaistatic.com/pizzaz/pizzaz-6.png',
-    features: [
-      { icon: 'star', label: '4.5' },
-      { label: '$$' },
-    ],
+    features: [{ icon: 'star', label: '4.5' }, { label: '$$' }],
   },
   {
     id: 'beretta',
@@ -116,10 +104,7 @@ const sampleLocations: LocationData[] = [
     description:
       'Wood-fired pies and burrata in North Beach. Stylish spot combining pizza excellence with a full cocktail program.',
     thumbnail: 'https://persistent.oaistatic.com/pizzaz/pizzaz-4.png',
-    features: [
-      { icon: 'star', label: '4.6' },
-      { label: '$$' },
-    ],
+    features: [{ icon: 'star', label: '4.6' }, { label: '$$' }],
   },
   {
     id: 'slice-house',
@@ -129,10 +114,7 @@ const sampleLocations: LocationData[] = [
     description:
       'Neighborhood spot with seasonal toppings. Local favorite featuring creative combinations and locally-sourced ingredients.',
     thumbnail: 'https://persistent.oaistatic.com/pizzaz/pizzaz-1.png',
-    features: [
-      { icon: 'star', label: '4.4' },
-      { label: '$$' },
-    ],
+    features: [{ icon: 'star', label: '4.4' }, { label: '$$' }],
   },
   {
     id: 'pizza-palace',
@@ -142,10 +124,7 @@ const sampleLocations: LocationData[] = [
     description:
       'Sourdough, wood-fired pies near Nob Hill. San Francisco sourdough meets traditional Italian pizza-making.',
     thumbnail: 'https://persistent.oaistatic.com/pizzaz/pizzaz-2.png',
-    features: [
-      { icon: 'star', label: '4.6' },
-      { label: '$$$' },
-    ],
+    features: [{ icon: 'star', label: '4.6' }, { label: '$$$' }],
   },
   {
     id: 'crispy-crust',
@@ -155,10 +134,7 @@ const sampleLocations: LocationData[] = [
     description:
       'Crispy-edged Detroit-style in SoMa. Bringing Detroit-style square pizza to San Francisco with creative toppings.',
     thumbnail: 'https://persistent.oaistatic.com/pizzaz/pizzaz-3.png',
-    features: [
-      { icon: 'star', label: '4.5' },
-      { label: '$$' },
-    ],
+    features: [{ icon: 'star', label: '4.5' }, { label: '$$' }],
   },
 ];
 
@@ -198,8 +174,9 @@ const FullscreenMapDoc: FC = () => {
             lineHeight: 1.6,
           }}
         >
-          Immersive map experience with synchronized sidebar, inspector, and mobile carousel. Ideal for
-          ChatGPT Apps when users escalate from a compact inline map to a full exploration surface.
+          Immersive map experience with synchronized sidebar, inspector, and mobile carousel. Ideal
+          for ChatGPT Apps when users escalate from a compact inline map to a full exploration
+          surface.
         </p>
       </section>
 
@@ -221,16 +198,26 @@ const FullscreenMapDoc: FC = () => {
         </div>
       </section>
 
-      <section style={{ display: 'grid', gap: '24px', gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))' }}>
+      <section
+        style={{
+          display: 'grid',
+          gap: '24px',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
+        }}
+      >
         <article style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <h3 style={{ margin: 0, fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>Loading</h3>
+          <h3 style={{ margin: 0, fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
+            Loading
+          </h3>
           <div style={{ ...containerStyle, height: SECONDARY_HEIGHT }}>
             <FullscreenMap locations={locations} loading height={SECONDARY_HEIGHT} />
           </div>
         </article>
 
         <article style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <h3 style={{ margin: 0, fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>Error</h3>
+          <h3 style={{ margin: 0, fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
+            Error
+          </h3>
           <div style={{ ...containerStyle, height: SECONDARY_HEIGHT }}>
             <FullscreenMap
               locations={locations}
@@ -243,7 +230,9 @@ const FullscreenMapDoc: FC = () => {
         </article>
 
         <article style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <h3 style={{ margin: 0, fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>Empty</h3>
+          <h3 style={{ margin: 0, fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
+            Empty
+          </h3>
           <div style={{ ...containerStyle, height: SECONDARY_HEIGHT }}>
             <FullscreenMap locations={[]} height={SECONDARY_HEIGHT} />
           </div>
@@ -260,11 +249,15 @@ const FullscreenMapDoc: FC = () => {
         <ul style={{ margin: 0, paddingLeft: '20px', color: 'var(--ai-color-text-secondary)' }}>
           <li>Maintain shared selection state so compact and fullscreen maps stay in sync.</li>
           <li>
-            Provide `onErrorRetry` callbacks when remote data is involved to keep recovery within the
-            Apps surface.
+            Provide `onErrorRetry` callbacks when remote data is involved to keep recovery within
+            the Apps surface.
           </li>
-          <li>Use inspector notes to summarise key attributes so users don’t rely solely on the map.</li>
-          <li>Respect layout breakpoints—sidebar hides under 1024px with the carousel taking over.</li>
+          <li>
+            Use inspector notes to summarise key attributes so users don’t rely solely on the map.
+          </li>
+          <li>
+            Respect layout breakpoints—sidebar hides under 1024px with the carousel taking over.
+          </li>
         </ul>
       </section>
 
@@ -272,7 +265,8 @@ const FullscreenMapDoc: FC = () => {
         <header>
           <h2 style={{ marginBottom: '8px' }}>FullscreenMap Props</h2>
           <p style={{ margin: 0, color: 'var(--ai-color-text-secondary)' }}>
-            Extends `MapView` with layout, loading, and content configuration for the fullscreen shell.
+            Extends `MapView` with layout, loading, and content configuration for the fullscreen
+            shell.
           </p>
         </header>
         <PropsTable

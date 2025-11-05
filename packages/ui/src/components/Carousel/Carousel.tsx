@@ -64,7 +64,7 @@ export interface CarouselProps {
    * @default false
    */
   flushStart?: boolean;
-  
+
   /**
    * Custom left inset inside the carousel container.
    * Useful for re-introducing padding when using `flushStart`.
@@ -87,7 +87,7 @@ export interface CarouselProps {
   /**
    * Loading state - renders children with loading prop or skeleton slides
    * @default false
-   * 
+   *
    * @remarks
    * When true:
    * - If children are provided, they will be rendered (pass Cards with loading prop for best UX)
@@ -226,21 +226,22 @@ export const Carousel: React.FC<CarouselProps> = ({
   // Phase 1: Loading State - Smart loading based on children
   if (loading) {
     const childCount = React.Children.count(children);
-    const loadingChildren = childCount > 0
-      ? children
-      : Array.from({ length: loadingSlides }).map((_, i) => (
-        <div key={i} style={{ width: '240px', flexShrink: 0 }}>
-          <Card
-            loading
-            elevationLevel={1}
-            style={{
-              width: '100%',
-              minHeight: '240px',
-              padding: 'var(--ai-spacing-16)',
-            }}
-          />
-        </div>
-      ));
+    const loadingChildren =
+      childCount > 0
+        ? children
+        : Array.from({ length: loadingSlides }).map((_, i) => (
+            <div key={i} style={{ width: '240px', flexShrink: 0 }}>
+              <Card
+                loading
+                elevationLevel={1}
+                style={{
+                  width: '100%',
+                  minHeight: '240px',
+                  padding: 'var(--ai-spacing-16)',
+                }}
+              />
+            </div>
+          ));
 
     // Render static (non-scrollable) loading carousel
     return (
@@ -275,11 +276,13 @@ export const Carousel: React.FC<CarouselProps> = ({
 
         <div
           className={styles.emblaViewport}
-          style={{
-            ...(viewportPadding ? { '--carousel-viewport-padding': viewportPadding } : {}),
-            pointerEvents: 'none',
-            userSelect: 'none',
-          } as React.CSSProperties}
+          style={
+            {
+              ...(viewportPadding ? { '--carousel-viewport-padding': viewportPadding } : {}),
+              pointerEvents: 'none',
+              userSelect: 'none',
+            } as React.CSSProperties
+          }
         >
           <div
             className={cn(styles.emblaContainer, flushStart && styles.emblaContainerFlushStart)}
@@ -288,7 +291,10 @@ export const Carousel: React.FC<CarouselProps> = ({
             {React.Children.map(loadingChildren, (child, index) => (
               <div
                 key={index}
-                className={cn(styles.emblaSlide, flushStart && index === 0 && styles.emblaSlideFlushStart)}
+                className={cn(
+                  styles.emblaSlide,
+                  flushStart && index === 0 && styles.emblaSlideFlushStart
+                )}
               >
                 {child}
               </div>
@@ -304,12 +310,7 @@ export const Carousel: React.FC<CarouselProps> = ({
     return (
       <div className={cn(styles.carouselContainer, className)} style={style}>
         <div className={styles.errorContainer}>
-          <Alert
-            layout="card"
-            title={errorTitle}
-            message={errorMessage}
-            onAction={onErrorRetry}
-          />
+          <Alert layout="card" title={errorTitle} message={errorMessage} onAction={onErrorRetry} />
         </div>
       </div>
     );
@@ -317,19 +318,17 @@ export const Carousel: React.FC<CarouselProps> = ({
 
   // Phase 1: Empty State - Early return
   const childCount = React.Children.count(children);
-  
+
   if (childCount === 0) {
     // Custom empty state
     if (emptyState) {
       return (
         <div className={cn(styles.carouselContainer, className)} style={style}>
-          <div className={styles.emptyContainer}>
-            {emptyState}
-          </div>
+          <div className={styles.emptyContainer}>{emptyState}</div>
         </div>
       );
     }
-    
+
     // Default empty state
     return (
       <div className={cn(styles.carouselContainer, className)} style={style}>
@@ -349,7 +348,11 @@ export const Carousel: React.FC<CarouselProps> = ({
       <div
         className={styles.emblaViewport}
         ref={emblaRef}
-        style={viewportPadding ? { '--carousel-viewport-padding': viewportPadding } as React.CSSProperties : undefined}
+        style={
+          viewportPadding
+            ? ({ '--carousel-viewport-padding': viewportPadding } as React.CSSProperties)
+            : undefined
+        }
       >
         <div
           className={cn(styles.emblaContainer, flushStart && styles.emblaContainerFlushStart)}

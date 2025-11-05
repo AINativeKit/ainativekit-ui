@@ -40,12 +40,8 @@ const createOpenAiMock = () => {
     requestDisplayMode: vi.fn(),
   };
 
-  return globals as OpenAiApi & OpenAiGlobals<
-    TestToolOutput,
-    TestToolOutput,
-    unknown,
-    TestWidgetState
-  >;
+  return globals as OpenAiApi &
+    OpenAiGlobals<TestToolOutput, TestToolOutput, unknown, TestWidgetState>;
 };
 
 const dispatchGlobalsEvent = (globals: Partial<OpenAiGlobals>) => {
@@ -94,9 +90,7 @@ describe('OpenAI Hooks', () => {
       window.openai.toolOutput = null;
 
       const fallback = { message: 'fallback' };
-      const { result } = renderHook(() =>
-        useWidgetProps<TestToolOutput>(() => fallback)
-      );
+      const { result } = renderHook(() => useWidgetProps<TestToolOutput>(() => fallback));
 
       expect(result.current).toBe(fallback);
     });

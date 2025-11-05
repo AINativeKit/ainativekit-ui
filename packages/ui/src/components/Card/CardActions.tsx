@@ -21,10 +21,10 @@ export interface CardActionsProps extends ComponentPropsWithoutRef<'div'> {
 
 /**
  * Card.Actions - Container for action buttons with flexible alignment
- * 
+ *
  * Automatically provides proper spacing and alignment for buttons.
  * Works seamlessly with our Button primitive component.
- * 
+ *
  * @example
  * ```tsx
  * <Card.Actions align="end">
@@ -33,23 +33,21 @@ export interface CardActionsProps extends ComponentPropsWithoutRef<'div'> {
  * </Card.Actions>
  * ```
  */
-export const CardActions = React.forwardRef<HTMLDivElement, CardActionsProps>(
-  (props, ref) => {
-    const { align = 'end', className, children, 'data-testid': testId, ...rest } = props;
+export const CardActions = React.forwardRef<HTMLDivElement, CardActionsProps>((props, ref) => {
+  const { align = 'end', className, children, 'data-testid': testId, ...rest } = props;
 
-    return (
-      <div
-        ref={ref}
-        className={cn(styles.cardActions, className)}
-        data-align={align}
-        data-testid={testId}
-        {...rest}
-      >
-        {children}
-      </div>
-    );
-  }
-);
+  return (
+    <div
+      ref={ref}
+      className={cn(styles.cardActions, className)}
+      data-align={align}
+      data-testid={testId}
+      {...rest}
+    >
+      {children}
+    </div>
+  );
+});
 
 CardActions.displayName = 'Card.Actions';
 
@@ -58,9 +56,9 @@ export type CardActionButtonProps = ButtonProps;
 
 /**
  * Card.ActionButton - Pre-configured button for card actions
- * 
+ *
  * A convenience wrapper around Button with sensible defaults for card usage.
- * 
+ *
  * @example
  * ```tsx
  * <Card.Actions>

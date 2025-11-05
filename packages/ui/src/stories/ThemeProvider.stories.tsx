@@ -14,70 +14,84 @@ const ThemeDemo: React.FC = () => {
   const { theme, setTheme, isControlledByChatGPT } = useTheme();
 
   return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '20px',
-      maxWidth: '600px',
-      margin: '0 auto',
-      padding: '24px',
-    }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '20px',
+        maxWidth: '600px',
+        margin: '0 auto',
+        padding: '24px',
+      }}
+    >
       <Card elevationLevel={2}>
         <CardBody>
           <CardTitle>Theme Information</CardTitle>
-          <CardDescription>
-            Current theme settings and control status
-          </CardDescription>
+          <CardDescription>Current theme settings and control status</CardDescription>
 
-          <div style={{
-            marginTop: '20px',
-            display: 'grid',
-            gap: '12px',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-          }}>
-            <div style={{
-              padding: '16px',
-              backgroundColor: 'var(--ai-color-bg-secondary)',
-              borderRadius: '8px',
-              border: '1px solid var(--ai-color-border-default)',
-            }}>
-              <div style={{
-                fontSize: '12px',
-                color: 'var(--ai-color-text-secondary)',
-                marginBottom: '8px',
-                fontWeight: 500,
-              }}>
+          <div
+            style={{
+              marginTop: '20px',
+              display: 'grid',
+              gap: '12px',
+              gridTemplateColumns: 'repeat(2, 1fr)',
+            }}
+          >
+            <div
+              style={{
+                padding: '16px',
+                backgroundColor: 'var(--ai-color-bg-secondary)',
+                borderRadius: '8px',
+                border: '1px solid var(--ai-color-border-default)',
+              }}
+            >
+              <div
+                style={{
+                  fontSize: '12px',
+                  color: 'var(--ai-color-text-secondary)',
+                  marginBottom: '8px',
+                  fontWeight: 500,
+                }}
+              >
                 Current Theme
               </div>
-              <div style={{
-                fontSize: '20px',
-                fontWeight: 600,
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-              }}>
+              <div
+                style={{
+                  fontSize: '20px',
+                  fontWeight: 600,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                }}
+              >
                 {theme === 'dark' ? '🌙' : '☀️'} {theme || 'N/A'}
               </div>
             </div>
 
-            <div style={{
-              padding: '16px',
-              backgroundColor: 'var(--ai-color-bg-secondary)',
-              borderRadius: '8px',
-              border: '1px solid var(--ai-color-border-default)',
-            }}>
-              <div style={{
-                fontSize: '12px',
-                color: 'var(--ai-color-text-secondary)',
-                marginBottom: '8px',
-                fontWeight: 500,
-              }}>
+            <div
+              style={{
+                padding: '16px',
+                backgroundColor: 'var(--ai-color-bg-secondary)',
+                borderRadius: '8px',
+                border: '1px solid var(--ai-color-border-default)',
+              }}
+            >
+              <div
+                style={{
+                  fontSize: '12px',
+                  color: 'var(--ai-color-text-secondary)',
+                  marginBottom: '8px',
+                  fontWeight: 500,
+                }}
+              >
                 Control Status
               </div>
-              <div style={{
-                fontSize: '16px',
-                fontWeight: 600,
-              }}>
+              <div
+                style={{
+                  fontSize: '16px',
+                  fontWeight: 600,
+                }}
+              >
                 {isControlledByChatGPT ? '🔒 ChatGPT' : '🎛️ Manual'}
               </div>
             </div>
@@ -92,21 +106,25 @@ const ThemeDemo: React.FC = () => {
           message="The theme is currently controlled by ChatGPT. Toggle using Storybook's theme selector above."
         />
       ) : (
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '12px',
-        }}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '12px',
+          }}
+        >
           <Alert
             layout="card"
             title="Theme Controllable"
             message="You can programmatically switch themes using the buttons below."
           />
-          <div style={{
-            display: 'flex',
-            gap: '8px',
-            flexWrap: 'wrap',
-          }}>
+          <div
+            style={{
+              display: 'flex',
+              gap: '8px',
+              flexWrap: 'wrap',
+            }}
+          >
             <Button
               variant="primary"
               onClick={() => setTheme?.('light')}
@@ -139,21 +157,25 @@ const ThemeDemo: React.FC = () => {
             This content adapts to the current theme automatically using CSS variables.
           </CardDescription>
 
-          <div style={{
-            marginTop: '16px',
-            padding: '16px',
-            backgroundColor: 'var(--ai-color-bg-tertiary)',
-            borderRadius: '8px',
-            border: '1px solid var(--ai-color-border-default)',
-          }}>
-            <p style={{
-              margin: 0,
-              color: 'var(--ai-color-text-primary)',
-              lineHeight: 1.6,
-            }}>
-              All components in AI Native Kit UI use CSS variables that automatically
-              adapt to the current theme. Simply set <code>data-theme="dark"</code> on
-              the <code>document.documentElement</code> and all colors update instantly.
+          <div
+            style={{
+              marginTop: '16px',
+              padding: '16px',
+              backgroundColor: 'var(--ai-color-bg-tertiary)',
+              borderRadius: '8px',
+              border: '1px solid var(--ai-color-border-default)',
+            }}
+          >
+            <p
+              style={{
+                margin: 0,
+                color: 'var(--ai-color-text-primary)',
+                lineHeight: 1.6,
+              }}
+            >
+              All components in AI Native Kit UI use CSS variables that automatically adapt to the
+              current theme. Simply set <code>data-theme="dark"</code> on the{' '}
+              <code>document.documentElement</code> and all colors update instantly.
             </p>
           </div>
         </CardBody>
@@ -222,14 +244,16 @@ const cleanupMockChatGPT = () => {
 const ChatGPTThemeSync: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   useEffect(() => {
     // Get theme from Storybook's global theme selector
-    const currentTheme = document.documentElement.getAttribute('data-theme') as 'light' | 'dark' || 'light';
+    const currentTheme =
+      (document.documentElement.getAttribute('data-theme') as 'light' | 'dark') || 'light';
     setupMockChatGPT(currentTheme);
 
     // Listen for theme changes from Storybook
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
-          const newTheme = document.documentElement.getAttribute('data-theme') as 'light' | 'dark' || 'light';
+          const newTheme =
+            (document.documentElement.getAttribute('data-theme') as 'light' | 'dark') || 'light';
           setupMockChatGPT(newTheme);
         }
       });
@@ -358,20 +382,25 @@ const SystemPreferenceStory: React.FC = () => {
     return () => setupMockChatGPT();
   }, []);
 
-  const systemTheme = typeof window !== 'undefined'
-    ? window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-    : 'light';
+  const systemTheme =
+    typeof window !== 'undefined'
+      ? window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light'
+      : 'light';
 
   return (
     <ThemeProvider enableSystemTheme>
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '20px',
-        maxWidth: '600px',
-        margin: '0 auto',
-        padding: '24px',
-      }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '20px',
+          maxWidth: '600px',
+          margin: '0 auto',
+          padding: '24px',
+        }}
+      >
         <Alert
           layout="card"
           title="System Preference Detection"

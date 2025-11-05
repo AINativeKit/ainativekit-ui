@@ -67,7 +67,7 @@
   line-height: var(--ai-line-height-body-emph);
   letter-spacing: var(--ai-letter-spacing-body-emph);
   color: var(--ai-color-text-primary);
-  
+
   /* Overflow handling for long titles */
   overflow-wrap: break-word;
   word-break: break-word;

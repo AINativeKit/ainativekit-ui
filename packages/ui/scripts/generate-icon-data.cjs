@@ -46,7 +46,7 @@ function extractSvgData(svgContent) {
 function getAllSvgFiles(dir, baseDir = dir, fileList = []) {
   const files = fs.readdirSync(dir);
 
-  files.forEach(file => {
+  files.forEach((file) => {
     const filePath = path.join(dir, file);
     const stat = fs.statSync(filePath);
 
@@ -93,7 +93,7 @@ export interface IconData {
 export const iconData: Record<string, IconData> = {\n`;
 
   iconFiles.forEach(({ iconName, viewBox, paths }) => {
-    const pathsStr = paths.map(p => `    '${p}'`).join(',\n');
+    const pathsStr = paths.map((p) => `    '${p}'`).join(',\n');
     output += `  '${iconName}': {\n`;
     output += `    viewBox: '${viewBox}',\n`;
     output += `    paths: [\n${pathsStr}\n    ],\n`;

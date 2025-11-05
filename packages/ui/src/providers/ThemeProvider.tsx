@@ -93,10 +93,7 @@ export interface ThemeProviderProps {
 /**
  * Generate CSS custom properties from brand color configuration
  */
-function generateBrandColorCSS(
-  brandColors: BrandColorConfig,
-  theme: Theme
-): string {
+function generateBrandColorCSS(brandColors: BrandColorConfig, theme: Theme): string {
   const isDark = theme === 'dark';
   const mixColor = isDark ? 'white' : 'black';
   const hoverPercent = isDark ? '85%' : '85%';
@@ -105,11 +102,7 @@ function generateBrandColorCSS(
   const styles: string[] = [];
 
   // Helper to validate and add color with warnings
-  const addColorVariable = (
-    colorKey: keyof BrandColorConfig,
-    varName: string,
-    value: string
-  ) => {
+  const addColorVariable = (colorKey: keyof BrandColorConfig, varName: string, value: string) => {
     // Validate hex color format first
     if (!isValidHexColor(value)) {
       console.warn(
@@ -389,9 +382,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   const setTheme = useCallback(
     (newTheme: Theme) => {
       if (chatGPTTheme) {
-        console.warn(
-          'Theme is controlled by ChatGPT and cannot be changed manually.'
-        );
+        console.warn('Theme is controlled by ChatGPT and cannot be changed manually.');
         return;
       }
       setThemeState(newTheme);
@@ -409,9 +400,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     [theme, setTheme, chatGPTTheme, brandColors]
   );
 
-  return (
-    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 };
 
 /**

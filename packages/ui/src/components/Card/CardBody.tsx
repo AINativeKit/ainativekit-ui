@@ -10,21 +10,14 @@ export interface CardBodyProps extends ComponentPropsWithoutRef<'div'> {
   'data-testid'?: string;
 }
 
-export const CardBody = React.forwardRef<HTMLDivElement, CardBodyProps>(
-  (props, ref) => {
-    const { className, children, 'data-testid': testId, ...rest } = props;
+export const CardBody = React.forwardRef<HTMLDivElement, CardBodyProps>((props, ref) => {
+  const { className, children, 'data-testid': testId, ...rest } = props;
 
-    return (
-      <div
-        ref={ref}
-        className={cn(styles.cardBody, className)}
-        data-testid={testId}
-        {...rest}
-      >
-        {children}
-      </div>
-    );
-  }
-);
+  return (
+    <div ref={ref} className={cn(styles.cardBody, className)} data-testid={testId} {...rest}>
+      {children}
+    </div>
+  );
+});
 
 CardBody.displayName = 'Card.Body';

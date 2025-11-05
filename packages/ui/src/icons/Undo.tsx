@@ -21,10 +21,8 @@ import type { IconProps } from '../components/Icon';
  * @accessibility
  * Arrows are decorative when showing direction alongside text. Icon-only navigation buttons need descriptive aria-label.
  */
-export const Undo = React.forwardRef<HTMLSpanElement, Omit<IconProps, 'name'>>(
-  (props, ref) => {
-    return <Icon ref={ref} name="undo" {...props} />;
-  }
-);
+export const Undo = React.forwardRef<HTMLSpanElement, Omit<IconProps, 'name'>>((props, ref) => {
+  return <Icon ref={ref} name="undo" {...props} />;
+});
 
 Undo.displayName = 'Undo';

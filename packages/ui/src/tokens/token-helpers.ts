@@ -189,7 +189,9 @@ export const cssVar = {
    * Get typography CSS variables as a style object
    * @example cssVar.typography('heading1') // { fontSize: 'var(--ai-font-size-h1)', ... }
    */
-  typography: (style: TypographyStyle): {
+  typography: (
+    style: TypographyStyle
+  ): {
     fontSize: string;
     lineHeight: string;
     fontWeight: string;
@@ -367,7 +369,10 @@ export function normalizeHexColor(hex: string): string | null {
 
   // Handle 3-digit: expand to 6-digit
   if (cleanHex.length === 3) {
-    const expanded = cleanHex.split('').map(c => c + c).join('');
+    const expanded = cleanHex
+      .split('')
+      .map((c) => c + c)
+      .join('');
     return `#${expanded.toUpperCase()}`;
   }
 

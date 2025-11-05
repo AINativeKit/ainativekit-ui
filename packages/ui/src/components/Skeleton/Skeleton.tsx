@@ -41,18 +41,18 @@ export interface SkeletonProps extends ComponentPropsWithoutRef<'div'> {
 
 /**
  * Skeleton component for loading states
- * 
+ *
  * @example
  * ```tsx
  * // Text skeleton
  * <Skeleton variant="text" width="80%" />
- * 
+ *
  * // Rectangular skeleton (default)
  * <Skeleton width={200} height={100} />
- * 
+ *
  * // Circular skeleton (avatar)
  * <Skeleton variant="circular" width={40} height={40} />
- * 
+ *
  * // Without animation
  * <Skeleton animation={false} />
  * ```
@@ -72,7 +72,8 @@ export const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>((props, 
 
   const normalizedWidth = typeof width === 'number' ? `${width}px` : width;
   const normalizedHeight = typeof height === 'number' ? `${height}px` : height;
-  const normalizedBorderRadius = typeof borderRadius === 'number' ? `${borderRadius}px` : borderRadius;
+  const normalizedBorderRadius =
+    typeof borderRadius === 'number' ? `${borderRadius}px` : borderRadius;
 
   const inlineStyle = {
     ...(normalizedWidth && { width: normalizedWidth }),

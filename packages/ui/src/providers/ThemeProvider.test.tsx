@@ -12,9 +12,7 @@ vi.mock('../hooks/openai/useOpenAiGlobal', () => ({
 import { useOpenAiGlobal } from '../hooks/openai/useOpenAiGlobal';
 
 // Test component that uses the theme context
-const TestComponent: React.FC<{ showButton?: boolean }> = ({
-  showButton = true,
-}) => {
+const TestComponent: React.FC<{ showButton?: boolean }> = ({ showButton = true }) => {
   const { theme, setTheme, isControlledByChatGPT } = useThemeContext();
 
   return (
@@ -22,9 +20,7 @@ const TestComponent: React.FC<{ showButton?: boolean }> = ({
       <div data-testid="theme">{theme}</div>
       <div data-testid="controlled">{String(isControlledByChatGPT)}</div>
       {showButton && (
-        <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
-          Toggle
-        </button>
+        <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>Toggle</button>
       )}
     </div>
   );
@@ -228,10 +224,7 @@ describe('ThemeProvider', () => {
       );
 
       expect(screen.getByTestId('theme')).toHaveTextContent('light');
-      expect(consoleSpy).toHaveBeenCalledWith(
-        'Failed to detect system theme:',
-        expect.any(Error)
-      );
+      expect(consoleSpy).toHaveBeenCalledWith('Failed to detect system theme:', expect.any(Error));
       consoleSpy.mockRestore();
     });
   });

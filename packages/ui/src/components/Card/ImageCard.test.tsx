@@ -29,7 +29,7 @@ describe('ImageCard', () => {
 
     it('renders native img element with correct src', () => {
       const { container } = render(<ImageCard image={mockImage} />);
-      
+
       // Check that the image element is rendered with correct src
       const img = container.querySelector('img') as HTMLImageElement;
       expect(img).toHaveAttribute('src', mockImage);
@@ -60,11 +60,7 @@ describe('ImageCard', () => {
 
     it('renders both title and subtitle', () => {
       const { container } = render(
-        <ImageCard
-          image={mockImage}
-          title="Test Title"
-          subtitle="Test Subtitle"
-        />
+        <ImageCard image={mockImage} title="Test Title" subtitle="Test Subtitle" />
       );
       fireImageLoad(container);
       expect(screen.getByText('Test Title')).toBeInTheDocument();
@@ -82,11 +78,7 @@ describe('ImageCard', () => {
   describe('Action Button', () => {
     it('renders action button when actionIcon provided', () => {
       const { container } = render(
-        <ImageCard
-          image={mockImage}
-          actionIcon="plus-circle-add"
-          actionLabel="Add item"
-        />
+        <ImageCard image={mockImage} actionIcon="plus-circle-add" actionLabel="Add item" />
       );
       fireImageLoad(container);
       const button = screen.getByRole('button', { name: /Add item/ });
@@ -120,7 +112,7 @@ describe('ImageCard', () => {
     it('requires actionLabel when actionIcon is provided', () => {
       // In dev mode, console.error should be called
       const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-      
+
       render(
         <ImageCard
           image={mockImage}
@@ -128,18 +120,18 @@ describe('ImageCard', () => {
           actionLabel="" // Empty label should trigger warning
         />
       );
-      
+
       expect(consoleSpy).toHaveBeenCalledWith(
         expect.stringContaining('ImageCard: actionLabel is required')
       );
-      
+
       consoleSpy.mockRestore();
     });
 
     it('does not render button when actionLabel is missing', () => {
       // Suppress expected console.error for this validation test
       const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-      
+
       const { container } = render(
         <ImageCard
           image={mockImage}
@@ -147,12 +139,12 @@ describe('ImageCard', () => {
           actionLabel="" // Empty label
         />
       );
-      
+
       fireImageLoad(container);
       // Button should not render without a valid label
       const button = screen.queryByRole('button');
       expect(button).not.toBeInTheDocument();
-      
+
       consoleSpy.mockRestore();
     });
 
@@ -165,7 +157,7 @@ describe('ImageCard', () => {
           actionLabel="Add to favorites"
         />
       );
-      
+
       fireImageLoad(container);
       const button = screen.getByRole('button', { name: /Add to favorites for Pizza/ });
       expect(button).toBeInTheDocument();
@@ -180,17 +172,13 @@ describe('ImageCard', () => {
     });
 
     it('applies top position when specified', () => {
-      const { container } = render(
-        <ImageCard image={mockImage} imagePosition="top" />
-      );
+      const { container } = render(<ImageCard image={mockImage} imagePosition="top" />);
       const img = container.querySelector('img') as HTMLElement;
       expect(img).toHaveClass('imagePositionTop');
     });
 
     it('applies bottom position when specified', () => {
-      const { container } = render(
-        <ImageCard image={mockImage} imagePosition="bottom" />
-      );
+      const { container } = render(<ImageCard image={mockImage} imagePosition="bottom" />);
       const img = container.querySelector('img') as HTMLElement;
       expect(img).toHaveClass('imagePositionBottom');
     });
@@ -198,9 +186,7 @@ describe('ImageCard', () => {
 
   describe('Gradient Overlay', () => {
     it('renders gradient overlay when content exists', () => {
-      const { container } = render(
-        <ImageCard image={mockImage} title="Test" />
-      );
+      const { container } = render(<ImageCard image={mockImage} title="Test" />);
       fireImageLoad(container);
       const overlay = container.querySelector('[class*="gradientOverlay"]');
       expect(overlay).toBeInTheDocument();
@@ -208,11 +194,7 @@ describe('ImageCard', () => {
 
     it('renders gradient overlay when action button exists with valid label', () => {
       const { container } = render(
-        <ImageCard 
-          image={mockImage} 
-          actionIcon="plus-circle-add"
-          actionLabel="Add"
-        />
+        <ImageCard image={mockImage} actionIcon="plus-circle-add" actionLabel="Add" />
       );
       fireImageLoad(container);
       const overlay = container.querySelector('[class*="gradientOverlay"]');
@@ -229,18 +211,14 @@ describe('ImageCard', () => {
 
   describe('Card Props Inheritance', () => {
     it('forwards elevation prop to Card', () => {
-      const { container } = render(
-        <ImageCard image={mockImage} elevationLevel={3} />
-      );
+      const { container } = render(<ImageCard image={mockImage} elevationLevel={3} />);
       const card = container.firstChild as HTMLElement;
       expect(card).toBeInTheDocument();
       // Card component applies elevation via CSS variables
     });
 
     it('forwards interactive prop to Card', () => {
-      const { container } = render(
-        <ImageCard image={mockImage} interactive />
-      );
+      const { container } = render(<ImageCard image={mockImage} interactive />);
       const card = container.firstChild as HTMLElement;
       expect(card).toHaveAttribute('data-interactive', 'true');
     });
@@ -248,9 +226,7 @@ describe('ImageCard', () => {
     it('forwards onClick to Card', async () => {
       const user = userEvent.setup();
       const handleClick = vi.fn();
-      const { container } = render(
-        <ImageCard image={mockImage} onClick={handleClick} />
-      );
+      const { container } = render(<ImageCard image={mockImage} onClick={handleClick} />);
       const card = container.firstChild as HTMLElement;
       await user.click(card);
       expect(handleClick).toHaveBeenCalledTimes(1);
@@ -259,20 +235,13 @@ describe('ImageCard', () => {
 
   describe('Custom Styling', () => {
     it('applies custom className', () => {
-      const { container } = render(
-        <ImageCard image={mockImage} className="custom-class" />
-      );
+      const { container } = render(<ImageCard image={mockImage} className="custom-class" />);
       const card = container.firstChild as HTMLElement;
       expect(card).toHaveClass('custom-class');
     });
 
     it('applies custom style', () => {
-      const { container } = render(
-        <ImageCard
-          image={mockImage}
-          style={{ maxWidth: '300px' }}
-        />
-      );
+      const { container } = render(<ImageCard image={mockImage} style={{ maxWidth: '300px' }} />);
       const card = container.firstChild as HTMLElement;
       expect(card).toHaveStyle({ maxWidth: '300px' });
     });
@@ -287,9 +256,7 @@ describe('ImageCard', () => {
 
     it('provides proper aria-label for image element', () => {
       const { container } = render(
-        <ImageCard
-          image={{ src: mockImage, alt: 'Beautiful landscape' }}
-        />
+        <ImageCard image={{ src: mockImage, alt: 'Beautiful landscape' }} />
       );
       const img = container.querySelector('img');
       expect(img).toHaveAttribute('aria-label', 'Beautiful landscape');
@@ -297,11 +264,7 @@ describe('ImageCard', () => {
 
     it('renders semantic HTML structure', () => {
       const { container } = render(
-        <ImageCard
-          image={mockImage}
-          title="Test Title"
-          subtitle="Test Subtitle"
-        />
+        <ImageCard image={mockImage} title="Test Title" subtitle="Test Subtitle" />
       );
       fireImageLoad(container);
       const heading = screen.getByRole('heading', { level: 3 });
@@ -357,17 +320,13 @@ describe('ImageCard', () => {
 
   describe('Badge Support', () => {
     it('renders badge when badge prop provided', () => {
-      const { container } = render(
-        <ImageCard image={mockImage} badge="New" />
-      );
+      const { container } = render(<ImageCard image={mockImage} badge="New" />);
       fireImageLoad(container);
       expect(screen.getByText('New')).toBeInTheDocument();
     });
 
     it('positions badge top-right by default', () => {
-      const { container } = render(
-        <ImageCard image={mockImage} badge="Sale" />
-      );
+      const { container } = render(<ImageCard image={mockImage} badge="Sale" />);
       fireImageLoad(container);
       const badge = container.querySelector('[class*="badge"]');
       expect(badge).toHaveClass('badgeTopRight');
@@ -406,18 +365,14 @@ describe('ImageCard', () => {
   describe('Image Callbacks', () => {
     it('calls onImageLoad when image loads', () => {
       const handleLoad = vi.fn();
-      const { container } = render(
-        <ImageCard image={mockImage} onImageLoad={handleLoad} />
-      );
+      const { container } = render(<ImageCard image={mockImage} onImageLoad={handleLoad} />);
       fireImageLoad(container);
       expect(handleLoad).toHaveBeenCalledTimes(1);
     });
 
     it('calls onImageError when image fails', () => {
       const handleError = vi.fn();
-      const { container } = render(
-        <ImageCard image={mockImage} onImageError={handleError} />
-      );
+      const { container } = render(<ImageCard image={mockImage} onImageError={handleError} />);
       const img = container.querySelector('img');
       if (img) {
         act(() => {

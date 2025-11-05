@@ -19,10 +19,8 @@ import type { IconProps } from '../components/Icon';
  * @accessibility
  * Interface icons often appear alone. Always provide aria-label on the parent button or interactive element.
  */
-export const Equal = React.forwardRef<HTMLSpanElement, Omit<IconProps, 'name'>>(
-  (props, ref) => {
-    return <Icon ref={ref} name="equal" {...props} />;
-  }
-);
+export const Equal = React.forwardRef<HTMLSpanElement, Omit<IconProps, 'name'>>((props, ref) => {
+  return <Icon ref={ref} name="equal" {...props} />;
+});
 
 Equal.displayName = 'Equal';

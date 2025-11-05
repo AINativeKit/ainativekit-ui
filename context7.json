@@ -2,11 +2,7 @@
   "$schema": "https://context7.com/schema/context7.json",
   "projectTitle": "AINativeKit UI",
   "description": "React component library optimized for ChatGPT Apps SDK with JSON-to-UI mapping, 417 Figma-aligned icons, and AI-native patterns for building accessible, production-ready UIs",
-  "folders": [
-    "packages/ui/docs",
-    "README.md",
-    "packages/ui/README.md"
-  ],
+  "folders": ["packages/ui/docs", "README.md", "packages/ui/README.md"],
   "excludeFolders": [
     "node_modules",
     "dist",
@@ -20,13 +16,7 @@
     "schemas",
     "metadata"
   ],
-  "excludeFiles": [
-    "CHANGELOG.md",
-    "LICENSE",
-    "package-lock.json",
-    "pnpm-lock.yaml",
-    "yarn.lock"
-  ],
+  "excludeFiles": ["CHANGELOG.md", "LICENSE", "package-lock.json", "pnpm-lock.yaml", "yarn.lock"],
   "rules": [
     "Always import styles with: import '@ainativekit/ui/styles'",
     "Use SummaryCard for entity displays (restaurants, products, places, articles)",

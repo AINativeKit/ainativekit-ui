@@ -18,7 +18,7 @@ describe('ThemeProvider', () => {
   afterEach(() => {
     // Clean up any injected style elements
     const styleElements = document.querySelectorAll('[data-ainativekit-brand-colors]');
-    styleElements.forEach(el => el.remove());
+    styleElements.forEach((el) => el.remove());
     // Clean up localStorage and theme attribute
     localStorage.clear();
     document.documentElement.removeAttribute('data-theme');
@@ -207,9 +207,7 @@ describe('ThemeProvider', () => {
       );
 
       // Should warn about success color but not primary
-      expect(consoleWarnSpy).toHaveBeenCalledWith(
-        expect.stringContaining('success')
-      );
+      expect(consoleWarnSpy).toHaveBeenCalledWith(expect.stringContaining('success'));
     });
   });
 
@@ -291,9 +289,7 @@ describe('ThemeProvider', () => {
       expect(consoleWarnSpy).toHaveBeenCalledWith(
         expect.stringContaining('Invalid hex color format')
       );
-      expect(consoleWarnSpy).toHaveBeenCalledWith(
-        expect.stringContaining('not-a-color')
-      );
+      expect(consoleWarnSpy).toHaveBeenCalledWith(expect.stringContaining('not-a-color'));
     });
 
     it('should skip invalid colors but process valid ones', () => {

@@ -26,7 +26,8 @@ const sampleImages = [
   'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&auto=format&fit=crop',
 ];
 
-const pepperoniImage = 'https://images.unsplash.com/photo-1628840042765-356cda07504e?w=200&auto=format&fit=crop';
+const pepperoniImage =
+  'https://images.unsplash.com/photo-1628840042765-356cda07504e?w=200&auto=format&fit=crop';
 
 // Main unified Carousel showcase component
 const CarouselsComponent: React.FC = () => {
@@ -38,8 +39,16 @@ const CarouselsComponent: React.FC = () => {
 
       {/* Introduction */}
       <section style={{ marginBottom: '64px' }}>
-        <p style={{ marginBottom: '24px', color: 'var(--ai-color-text-secondary)', fontSize: '16px', lineHeight: '1.6' }}>
-          Horizontal scrolling carousel powered by Embla Carousel. Perfect for showcasing cards, images, and content collections in ChatGPT apps.
+        <p
+          style={{
+            marginBottom: '24px',
+            color: 'var(--ai-color-text-secondary)',
+            fontSize: '16px',
+            lineHeight: '1.6',
+          }}
+        >
+          Horizontal scrolling carousel powered by Embla Carousel. Perfect for showcasing cards,
+          images, and content collections in ChatGPT apps.
         </p>
       </section>
 
@@ -143,7 +152,13 @@ const CarouselsComponent: React.FC = () => {
         {/* Mixed Content */}
         <div>
           <h3 style={{ fontSize: '16px', marginBottom: '16px' }}>Mixed Content</h3>
-          <p style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)', marginBottom: '16px' }}>
+          <p
+            style={{
+              fontSize: '14px',
+              color: 'var(--ai-color-text-secondary)',
+              marginBottom: '16px',
+            }}
+          >
             Combine different card types and sizes in the same carousel
           </p>
           <Carousel>
@@ -199,17 +214,19 @@ const CarouselsComponent: React.FC = () => {
           {/* Start Aligned */}
           <div style={{ marginBottom: '32px' }}>
             <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>Start Aligned</h3>
-            <p style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)', marginBottom: '12px' }}>
+            <p
+              style={{
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+                marginBottom: '12px',
+              }}
+            >
               Slides align to the left edge. Perfect for left-to-right browsing.
             </p>
             <Carousel align="start">
               {sampleImages.map((image, index) => (
                 <div key={index} style={{ width: '240px', flexShrink: 0 }}>
-                  <ImageCard
-                    image={image}
-                    title={`Start ${index + 1}`}
-                    size="compact"
-                  />
+                  <ImageCard image={image} title={`Start ${index + 1}`} size="compact" />
                 </div>
               ))}
             </Carousel>
@@ -218,17 +235,19 @@ const CarouselsComponent: React.FC = () => {
           {/* Center Aligned (Default) */}
           <div style={{ marginBottom: '32px' }}>
             <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>Center Aligned (Default)</h3>
-            <p style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)', marginBottom: '12px' }}>
+            <p
+              style={{
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+                marginBottom: '12px',
+              }}
+            >
               Active slide stays centered. Most balanced for visual browsing.
             </p>
             <Carousel align="center">
               {sampleImages.map((image, index) => (
                 <div key={index} style={{ width: '240px', flexShrink: 0 }}>
-                  <ImageCard
-                    image={image}
-                    title={`Center ${index + 1}`}
-                    size="compact"
-                  />
+                  <ImageCard image={image} title={`Center ${index + 1}`} size="compact" />
                 </div>
               ))}
             </Carousel>
@@ -237,17 +256,19 @@ const CarouselsComponent: React.FC = () => {
           {/* End Aligned */}
           <div style={{ marginBottom: '32px' }}>
             <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>End Aligned</h3>
-            <p style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)', marginBottom: '12px' }}>
+            <p
+              style={{
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+                marginBottom: '12px',
+              }}
+            >
               Slides align to the right edge. Useful for RTL layouts or specific designs.
             </p>
             <Carousel align="end">
               {sampleImages.map((image, index) => (
                 <div key={index} style={{ width: '240px', flexShrink: 0 }}>
-                  <ImageCard
-                    image={image}
-                    title={`End ${index + 1}`}
-                    size="compact"
-                  />
+                  <ImageCard image={image} title={`End ${index + 1}`} size="compact" />
                 </div>
               ))}
             </Carousel>
@@ -268,7 +289,13 @@ const CarouselsComponent: React.FC = () => {
           {/* Infinite Loop */}
           <div style={{ marginBottom: '32px' }}>
             <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>Infinite Loop</h3>
-            <p style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)', marginBottom: '12px' }}>
+            <p
+              style={{
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+                marginBottom: '12px',
+              }}
+            >
               Enable seamless infinite looping for continuous browsing
             </p>
             <Carousel loop>
@@ -288,7 +315,13 @@ const CarouselsComponent: React.FC = () => {
           {/* No Navigation Buttons */}
           <div style={{ marginBottom: '32px' }}>
             <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>No Navigation Buttons</h3>
-            <p style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)', marginBottom: '12px' }}>
+            <p
+              style={{
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+                marginBottom: '12px',
+              }}
+            >
               Hide navigation buttons for touch-only or minimal interfaces
             </p>
             <Carousel showNavigation={false}>
@@ -308,7 +341,13 @@ const CarouselsComponent: React.FC = () => {
           {/* No Edge Gradients */}
           <div style={{ marginBottom: '32px' }}>
             <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>No Edge Gradients</h3>
-            <p style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)', marginBottom: '12px' }}>
+            <p
+              style={{
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+                marginBottom: '12px',
+              }}
+            >
               Remove edge gradients for a cleaner, simpler look
             </p>
             <Carousel showEdgeGradients={false}>
@@ -328,7 +367,13 @@ const CarouselsComponent: React.FC = () => {
           {/* Minimal (No Nav + No Gradients) */}
           <div style={{ marginBottom: '32px' }}>
             <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>Minimal Mode</h3>
-            <p style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)', marginBottom: '12px' }}>
+            <p
+              style={{
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+                marginBottom: '12px',
+              }}
+            >
               Combine options for a completely minimal carousel
             </p>
             <Carousel showNavigation={false} showEdgeGradients={false}>
@@ -360,17 +405,19 @@ const CarouselsComponent: React.FC = () => {
           {/* Default Gap (8px) */}
           <div style={{ marginBottom: '32px' }}>
             <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>Default Gap (8px)</h3>
-            <p style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)', marginBottom: '12px' }}>
+            <p
+              style={{
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+                marginBottom: '12px',
+              }}
+            >
               Standard spacing between slides
             </p>
             <Carousel>
               {sampleImages.map((image, index) => (
                 <div key={index} style={{ width: '240px', flexShrink: 0 }}>
-                  <ImageCard
-                    image={image}
-                    title={`Default ${index + 1}`}
-                    size="compact"
-                  />
+                  <ImageCard image={image} title={`Default ${index + 1}`} size="compact" />
                 </div>
               ))}
             </Carousel>
@@ -379,17 +426,19 @@ const CarouselsComponent: React.FC = () => {
           {/* Wide Gap (32px) */}
           <div style={{ marginBottom: '32px' }}>
             <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>Wide Gap (32px)</h3>
-            <p style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)', marginBottom: '12px' }}>
+            <p
+              style={{
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+                marginBottom: '12px',
+              }}
+            >
               Increase spacing with custom gap value
             </p>
             <Carousel gap="var(--ai-spacing-16)">
               {sampleImages.map((image, index) => (
                 <div key={index} style={{ width: '240px', flexShrink: 0 }}>
-                  <ImageCard
-                    image={image}
-                    title={`Wide ${index + 1}`}
-                    size="compact"
-                  />
+                  <ImageCard image={image} title={`Wide ${index + 1}`} size="compact" />
                 </div>
               ))}
             </Carousel>
@@ -398,17 +447,19 @@ const CarouselsComponent: React.FC = () => {
           {/* No Gap */}
           <div style={{ marginBottom: '32px' }}>
             <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>No Gap</h3>
-            <p style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)', marginBottom: '12px' }}>
+            <p
+              style={{
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+                marginBottom: '12px',
+              }}
+            >
               Slides directly adjacent for continuous appearance
             </p>
             <Carousel gap="0">
               {sampleImages.map((image, index) => (
                 <div key={index} style={{ width: '240px', flexShrink: 0 }}>
-                  <ImageCard
-                    image={image}
-                    title={`Tight ${index + 1}`}
-                    size="compact"
-                  />
+                  <ImageCard image={image} title={`Tight ${index + 1}`} size="compact" />
                 </div>
               ))}
             </Carousel>
@@ -417,17 +468,19 @@ const CarouselsComponent: React.FC = () => {
           {/* Flush Start */}
           <div style={{ marginBottom: '32px' }}>
             <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>Flush Start</h3>
-            <p style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)', marginBottom: '12px' }}>
+            <p
+              style={{
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+                marginBottom: '12px',
+              }}
+            >
               First slide aligns to viewport edge with no leading offset
             </p>
             <Carousel flushStart align="start">
               {sampleImages.map((image, index) => (
                 <div key={index} style={{ width: '240px', flexShrink: 0 }}>
-                  <ImageCard
-                    image={image}
-                    title={`Flush ${index + 1}`}
-                    size="compact"
-                  />
+                  <ImageCard image={image} title={`Flush ${index + 1}`} size="compact" />
                 </div>
               ))}
             </Carousel>
@@ -447,7 +500,13 @@ const CarouselsComponent: React.FC = () => {
         {/* Slide Change Callback */}
         <div>
           <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>Slide Change Tracking</h3>
-          <p style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)', marginBottom: '12px' }}>
+          <p
+            style={{
+              fontSize: '14px',
+              color: 'var(--ai-color-text-secondary)',
+              marginBottom: '12px',
+            }}
+          >
             Current slide: <strong>{currentSlide + 1}</strong> of 7
           </p>
           <Carousel onSlideChange={setCurrentSlide}>
@@ -474,7 +533,9 @@ const CarouselsComponent: React.FC = () => {
                 marginTop: '12px',
               }}
             >
-              <code style={{ whiteSpace: 'pre' }}>{`const [currentSlide, setCurrentSlide] = useState(0);
+              <code
+                style={{ whiteSpace: 'pre' }}
+              >{`const [currentSlide, setCurrentSlide] = useState(0);
 
 <Carousel onSlideChange={setCurrentSlide}>
   {/* slides */}
@@ -499,19 +560,20 @@ Current: {currentSlide + 1} of {total}`}</code>
           {/* Loading State - Recommended Pattern */}
           <div style={{ marginBottom: '32px' }}>
             <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>Loading State (Recommended)</h3>
-            <p style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)', marginBottom: '12px' }}>
-              Pass cards with loading prop for seamless transition - cards maintain their size and structure
+            <p
+              style={{
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+                marginBottom: '12px',
+              }}
+            >
+              Pass cards with loading prop for seamless transition - cards maintain their size and
+              structure
             </p>
             <Carousel loading>
               {Array.from({ length: 5 }).map((_, i) => (
                 <div key={i} style={{ width: '240px', flexShrink: 0 }}>
-                  <ImageCard
-                    loading
-                    image=""
-                    title=""
-                    subtitle=""
-                    size="compact"
-                  />
+                  <ImageCard loading image="" title="" subtitle="" size="compact" />
                 </div>
               ))}
             </Carousel>
@@ -527,7 +589,9 @@ Current: {currentSlide + 1} of {total}`}</code>
                   marginTop: '12px',
                 }}
               >
-                <code style={{ whiteSpace: 'pre' }}>{`// Recommended: Set loading on both Carousel AND cards
+                <code
+                  style={{ whiteSpace: 'pre' }}
+                >{`// Recommended: Set loading on both Carousel AND cards
 <Carousel loading>
   {Array.from({ length: 5 }).map((_, i) => (
     <div key={i} style={{ width: '240px', flexShrink: 0 }}>
@@ -551,7 +615,13 @@ Current: {currentSlide + 1} of {total}`}</code>
           {/* Loading State - Fallback Pattern */}
           <div style={{ marginBottom: '32px' }}>
             <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>Loading State (Fallback)</h3>
-            <p style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)', marginBottom: '12px' }}>
+            <p
+              style={{
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+                marginBottom: '12px',
+              }}
+            >
               Generic skeletons when no children provided (fallback for non-card content)
             </p>
             <Carousel loading loadingSlides={7} />
@@ -578,10 +648,16 @@ Current: {currentSlide + 1} of {total}`}</code>
           {/* Error State */}
           <div style={{ marginBottom: '32px' }}>
             <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>Error State</h3>
-            <p style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)', marginBottom: '12px' }}>
+            <p
+              style={{
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+                marginBottom: '12px',
+              }}
+            >
               Shows error message with optional retry button
             </p>
-            <Carousel 
+            <Carousel
               error
               errorTitle="Failed to load destinations"
               errorMessage="Unable to fetch items from the server"
@@ -614,10 +690,16 @@ Current: {currentSlide + 1} of {total}`}</code>
           {/* Empty State */}
           <div style={{ marginBottom: '32px' }}>
             <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>Empty State</h3>
-            <p style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)', marginBottom: '12px' }}>
+            <p
+              style={{
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+                marginBottom: '12px',
+              }}
+            >
               Shows when no items are provided
             </p>
-            <Carousel 
+            <Carousel
               emptyTitle="No destinations found"
               emptyMessage="Try adjusting your search filters"
             >
@@ -648,10 +730,16 @@ Current: {currentSlide + 1} of {total}`}</code>
           {/* Custom Empty State */}
           <div style={{ marginBottom: '32px' }}>
             <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>Custom Empty State</h3>
-            <p style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)', marginBottom: '12px' }}>
+            <p
+              style={{
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+                marginBottom: '12px',
+              }}
+            >
               Provide custom empty state content
             </p>
-            <Carousel 
+            <Carousel
               emptyState={
                 <div style={{ textAlign: 'center', padding: '32px' }}>
                   <div style={{ fontSize: '48px', marginBottom: '16px' }}>🎨</div>
@@ -717,7 +805,13 @@ Current: {currentSlide + 1} of {total}`}</code>
           {/* Single Slide */}
           <div style={{ marginBottom: '32px' }}>
             <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>Single Slide</h3>
-            <p style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)', marginBottom: '12px' }}>
+            <p
+              style={{
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+                marginBottom: '12px',
+              }}
+            >
               Navigation buttons hide automatically when there's only one slide
             </p>
             <Carousel>
@@ -734,17 +828,19 @@ Current: {currentSlide + 1} of {total}`}</code>
           {/* Two Slides */}
           <div>
             <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>Two Slides</h3>
-            <p style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)', marginBottom: '12px' }}>
+            <p
+              style={{
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+                marginBottom: '12px',
+              }}
+            >
               Minimal carousel with just two options
             </p>
             <Carousel>
               {sampleImages.slice(0, 2).map((image, index) => (
                 <div key={index} style={{ width: '300px', flexShrink: 0 }}>
-                  <ImageCard
-                    image={image}
-                    title={`Option ${index + 1}`}
-                    size="compact"
-                  />
+                  <ImageCard image={image} title={`Option ${index + 1}`} size="compact" />
                 </div>
               ))}
             </Carousel>
@@ -806,7 +902,13 @@ Current: {currentSlide + 1} of {total}`}</code>
             }}
           >
             <strong>⚠️ Important:</strong> Each slide must have an explicit width and{' '}
-            <code style={{ backgroundColor: 'var(--ai-color-bg-tertiary)', padding: '2px 6px', borderRadius: '4px' }}>
+            <code
+              style={{
+                backgroundColor: 'var(--ai-color-bg-tertiary)',
+                padding: '2px 6px',
+                borderRadius: '4px',
+              }}
+            >
               flexShrink: 0
             </code>{' '}
             to prevent size changes during scrolling.
@@ -825,7 +927,9 @@ Current: {currentSlide + 1} of {total}`}</code>
               fontSize: '13px',
             }}
           >
-            <code style={{ whiteSpace: 'pre' }}>{`// ✅ Recommended: Seamless transition with card loading states
+            <code
+              style={{ whiteSpace: 'pre' }}
+            >{`// ✅ Recommended: Seamless transition with card loading states
 // Pass loading to BOTH Carousel AND cards
 <Carousel loading={isLoading}>
   {items.map((item, i) => (
@@ -854,9 +958,10 @@ Current: {currentSlide + 1} of {total}`}</code>
               fontSize: '14px',
             }}
           >
-            <strong>💡 Tip:</strong> Pass the loading prop to individual cards, not to the Carousel. 
-            This creates a seamless transition where cards maintain their exact size and structure while 
-            loading, then smoothly update with real data. Much better UX than generic skeletons!
+            <strong>💡 Tip:</strong> Pass the loading prop to individual cards, not to the Carousel.
+            This creates a seamless transition where cards maintain their exact size and structure
+            while loading, then smoothly update with real data. Much better UX than generic
+            skeletons!
           </div>
         </div>
 
@@ -904,7 +1009,13 @@ Current: {currentSlide + 1} of {total}`}</code>
                 borderRadius: '8px',
               }}
             >
-              <div style={{ fontWeight: 600, marginBottom: '8px', color: 'var(--ai-color-accent-green)' }}>
+              <div
+                style={{
+                  fontWeight: 600,
+                  marginBottom: '8px',
+                  color: 'var(--ai-color-accent-green)',
+                }}
+              >
                 ✅ Do:
               </div>
               <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '14px', lineHeight: '1.6' }}>
@@ -924,7 +1035,13 @@ Current: {currentSlide + 1} of {total}`}</code>
                 borderRadius: '8px',
               }}
             >
-              <div style={{ fontWeight: 600, marginBottom: '8px', color: 'var(--ai-color-text-error)' }}>
+              <div
+                style={{
+                  fontWeight: 600,
+                  marginBottom: '8px',
+                  color: 'var(--ai-color-text-error)',
+                }}
+              >
                 ❌ Don't:
               </div>
               <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '14px', lineHeight: '1.6' }}>
@@ -991,11 +1108,13 @@ Current: {currentSlide + 1} of {total}`}</code>
           rows={[
             {
               name: 'children',
-              description: 'Slide content - wrap each slide in a div with explicit width and flexShrink: 0',
+              description:
+                'Slide content - wrap each slide in a div with explicit width and flexShrink: 0',
             },
             {
               name: 'align',
-              description: "Alignment of slides within viewport: 'start' | 'center' | 'end'. Default: 'center'",
+              description:
+                "Alignment of slides within viewport: 'start' | 'center' | 'end'. Default: 'center'",
             },
             {
               name: 'loop',
@@ -1003,11 +1122,13 @@ Current: {currentSlide + 1} of {total}`}</code>
             },
             {
               name: 'showNavigation',
-              description: 'Show prev/next arrow buttons. Auto-hides when scrolling is not possible. Default: true',
+              description:
+                'Show prev/next arrow buttons. Auto-hides when scrolling is not possible. Default: true',
             },
             {
               name: 'showEdgeGradients',
-              description: 'Show gradient overlays at edges to indicate more content. Default: true',
+              description:
+                'Show gradient overlays at edges to indicate more content. Default: true',
             },
             {
               name: 'gap',
@@ -1015,11 +1136,13 @@ Current: {currentSlide + 1} of {total}`}</code>
             },
             {
               name: 'flushStart',
-              description: 'Remove leading offset so first slide is flush with viewport start. Default: false',
+              description:
+                'Remove leading offset so first slide is flush with viewport start. Default: false',
             },
             {
               name: 'viewportPadding',
-              description: "Custom viewport padding (top and bottom). Default: 'var(--ai-spacing-10)' (10px)",
+              description:
+                "Custom viewport padding (top and bottom). Default: 'var(--ai-spacing-10)' (10px)",
             },
             {
               name: 'onSlideChange',
@@ -1040,11 +1163,13 @@ Current: {currentSlide + 1} of {total}`}</code>
             // Phase 1: Loading State
             {
               name: 'loading',
-              description: 'Shows loading state. When true: renders children (pass Cards with loading prop for seamless transition) or falls back to skeleton slides if no children provided. Default: false',
+              description:
+                'Shows loading state. When true: renders children (pass Cards with loading prop for seamless transition) or falls back to skeleton slides if no children provided. Default: false',
             },
             {
               name: 'loadingSlides',
-              description: 'Number of skeleton slides to show when loading and no children provided. Default: 3',
+              description:
+                'Number of skeleton slides to show when loading and no children provided. Default: 3',
             },
             // Phase 1: Error State
             {

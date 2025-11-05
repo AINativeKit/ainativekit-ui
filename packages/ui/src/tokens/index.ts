@@ -19,12 +19,7 @@ export * from './utility-classes';
 export type { ColorTheme, ThemeMode } from './colors';
 export type { ElevationLevel, ElevationDefinition } from './elevation';
 export type { SpacingScale } from './spacing';
-export type {
-  ColorPath,
-  RadiusScale,
-  TypographyStyle,
-  OpacityPreset,
-} from './token-helpers';
+export type { ColorPath, RadiusScale, TypographyStyle, OpacityPreset } from './token-helpers';
 
 // Export fontStack from typography
 export { fontStack } from './typography';

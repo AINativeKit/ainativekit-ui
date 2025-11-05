@@ -48,9 +48,7 @@ describe('Button', () => {
 
   describe('color prop', () => {
     it('should render with primary color by default', () => {
-      const { container } = render(
-        <Button variant="primary">Primary Color</Button>
-      );
+      const { container } = render(<Button variant="primary">Primary Color</Button>);
       expect(container.querySelector('button')).toBeInTheDocument();
     });
 
@@ -104,10 +102,18 @@ describe('Button', () => {
     it('should work with secondary variant and all colors', () => {
       const { container } = render(
         <>
-          <Button variant="secondary" color="primary">Primary</Button>
-          <Button variant="secondary" color="success">Success</Button>
-          <Button variant="secondary" color="warning">Warning</Button>
-          <Button variant="secondary" color="error">Error</Button>
+          <Button variant="secondary" color="primary">
+            Primary
+          </Button>
+          <Button variant="secondary" color="success">
+            Success
+          </Button>
+          <Button variant="secondary" color="warning">
+            Warning
+          </Button>
+          <Button variant="secondary" color="error">
+            Error
+          </Button>
         </>
       );
       expect(container.querySelectorAll('button')).toHaveLength(4);
@@ -152,10 +158,18 @@ describe('Button', () => {
             error: '#D32F2F',
           }}
         >
-          <Button variant="primary" color="primary">Primary</Button>
-          <Button variant="primary" color="success">Success</Button>
-          <Button variant="primary" color="warning">Warning</Button>
-          <Button variant="primary" color="error">Error</Button>
+          <Button variant="primary" color="primary">
+            Primary
+          </Button>
+          <Button variant="primary" color="success">
+            Success
+          </Button>
+          <Button variant="primary" color="warning">
+            Warning
+          </Button>
+          <Button variant="primary" color="error">
+            Error
+          </Button>
         </ThemeProvider>
       );
 
@@ -314,8 +328,8 @@ describe('Button', () => {
 
       const { container } = render(
         <>
-          {variants.map(variant =>
-            colors.map(color => (
+          {variants.map((variant) =>
+            colors.map((color) => (
               <Button key={`${variant}-${color}`} variant={variant} color={color}>
                 {variant}-{color}
               </Button>

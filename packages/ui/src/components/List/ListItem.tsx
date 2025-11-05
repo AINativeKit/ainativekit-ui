@@ -9,8 +9,7 @@ import styles from './List.module.css';
 // Re-export FeatureItem as Feature for backwards compatibility
 export type Feature = FeatureItem;
 
-export interface ListItemProps
-  extends Omit<ComponentPropsWithoutRef<'div'>, 'title'> {
+export interface ListItemProps extends Omit<ComponentPropsWithoutRef<'div'>, 'title'> {
   /**
    * Primary title for the row.
    */
@@ -79,184 +78,183 @@ export interface ListItemProps
   loading?: boolean;
 }
 
-export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
-  (props, ref) => {
-    const {
-      title,
-      subtitle,
-      metadata,
-      media,
-      mediaAlt,
-      rank,
-      features,
-      action,
-      onActionClick,
-      hideMetadataOnMobile = false,
-      interactive = false,
-      onClick,
-      loading = false,
-      className,
-      ...rest
-    } = props;
+export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>((props, ref) => {
+  const {
+    title,
+    subtitle,
+    metadata,
+    media,
+    mediaAlt,
+    rank,
+    features,
+    action,
+    onActionClick,
+    hideMetadataOnMobile = false,
+    interactive = false,
+    onClick,
+    loading = false,
+    className,
+    ...rest
+  } = props;
 
-    const isInteractive = interactive || typeof onClick === 'function';
+  const isInteractive = interactive || typeof onClick === 'function';
 
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (!onClick) {
-        return;
-      }
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (!onClick) {
+      return;
+    }
 
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        onClick(event as unknown as React.MouseEvent<HTMLDivElement>);
-      }
-    };
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      onClick(event as unknown as React.MouseEvent<HTMLDivElement>);
+    }
+  };
 
-    const handleActionClick = (event: React.MouseEvent) => {
-      event.stopPropagation();
-      onActionClick?.(event);
-    };
+  const handleActionClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    onActionClick?.(event);
+  };
 
-    const handleActionKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        onActionClick?.(event as unknown as React.MouseEvent<HTMLDivElement>);
-      }
-    };
+  const handleActionKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      onActionClick?.(event as unknown as React.MouseEvent<HTMLDivElement>);
+    }
+  };
 
-    const renderMedia = () => {
-      if (!media) {
-        return null;
-      }
+  const renderMedia = () => {
+    if (!media) {
+      return null;
+    }
 
-      if (typeof media === 'string') {
-        return (
-          <div className={styles.itemMedia}>
-            <img
-              src={media}
-              alt={mediaAlt || (typeof title === 'string' ? title : '')}
-              className={styles.itemMediaImage}
-            />
-          </div>
-        );
-      }
-
-      return <div className={styles.itemMedia}>{media}</div>;
-    };
-
-    const showMetadataInline = Boolean(!hideMetadataOnMobile && metadata);
-    const showSubtitle = Boolean(subtitle);
-    const hasFeatures = features && features.length > 0;
-    const hasSecondaryRow = hasFeatures || showMetadataInline || showSubtitle;
-
-    // Loading state rendering
-    if (loading) {
+    if (typeof media === 'string') {
       return (
-        <div
-          ref={ref}
-          className={cn(styles.listItemWrapper, className)}
-          style={{ pointerEvents: 'none' }}
-          {...rest}
-        >
-          <div className={styles.listItem}>
-            {/* Media skeleton */}
-            {(media || rank !== undefined) && (
-              <div className={styles.itemMedia}>
-                <Skeleton width={40} height={40} animation style={{ borderRadius: 'var(--ai-radius-md)' }} />
-              </div>
-            )}
-            {rank !== undefined && (
-              <div className={styles.itemRank}>
-                <Skeleton width={24} height={16} animation />
-              </div>
-            )}
-
-            {/* Body skeleton */}
-            <div className={styles.itemBody}>
-              <div className={styles.itemHeader}>
-                <Skeleton width="60%" height={16} animation />
-              </div>
-              {(subtitle || features) && (
-                <div className={styles.itemSubtitleRow} style={{ marginTop: 'var(--ai-spacing-2)' }}>
-                  <Skeleton width="40%" height={14} animation />
-                </div>
-              )}
-            </div>
-
-            {/* Trailing skeleton */}
-            {(metadata || action) && (
-              <div className={styles.itemTrailing}>
-                <Skeleton width={60} height={14} animation />
-              </div>
-            )}
-          </div>
+        <div className={styles.itemMedia}>
+          <img
+            src={media}
+            alt={mediaAlt || (typeof title === 'string' ? title : '')}
+            className={styles.itemMediaImage}
+          />
         </div>
       );
     }
 
+    return <div className={styles.itemMedia}>{media}</div>;
+  };
+
+  const showMetadataInline = Boolean(!hideMetadataOnMobile && metadata);
+  const showSubtitle = Boolean(subtitle);
+  const hasFeatures = features && features.length > 0;
+  const hasSecondaryRow = hasFeatures || showMetadataInline || showSubtitle;
+
+  // Loading state rendering
+  if (loading) {
     return (
       <div
         ref={ref}
         className={cn(styles.listItemWrapper, className)}
-        data-interactive={isInteractive}
-        onClick={isInteractive ? onClick : undefined}
-        onKeyDown={isInteractive ? handleKeyDown : undefined}
-        role={onClick ? 'button' : undefined}
-        tabIndex={onClick ? 0 : undefined}
+        style={{ pointerEvents: 'none' }}
         {...rest}
       >
         <div className={styles.listItem}>
-          {renderMedia()}
+          {/* Media skeleton */}
+          {(media || rank !== undefined) && (
+            <div className={styles.itemMedia}>
+              <Skeleton
+                width={40}
+                height={40}
+                animation
+                style={{ borderRadius: 'var(--ai-radius-md)' }}
+              />
+            </div>
+          )}
           {rank !== undefined && (
-            <div className={styles.itemRank}>{rank}</div>
+            <div className={styles.itemRank}>
+              <Skeleton width={24} height={16} animation />
+            </div>
           )}
 
+          {/* Body skeleton */}
           <div className={styles.itemBody}>
             <div className={styles.itemHeader}>
-              <div className={styles.itemTitle}>{title}</div>
+              <Skeleton width="60%" height={16} animation />
             </div>
-
-            {hasSecondaryRow && (
-              <div className={styles.itemSubtitleRow}>
-                {hasFeatures && (
-                  <Features key="features" items={features} className={styles.itemFeature} />
-                )}
-                {showMetadataInline && (
-                  <span className={styles.itemMetadataInline} key="metadata-inline">
-                    {metadata}
-                  </span>
-                )}
-                {subtitle && (
-                  <span className={styles.itemSubtitleText} key="subtitle">
-                    {subtitle}
-                  </span>
-                )}
+            {(subtitle || features) && (
+              <div className={styles.itemSubtitleRow} style={{ marginTop: 'var(--ai-spacing-2)' }}>
+                <Skeleton width="40%" height={14} animation />
               </div>
             )}
           </div>
 
+          {/* Trailing skeleton */}
           {(metadata || action) && (
             <div className={styles.itemTrailing}>
-              {metadata && (
-                <div className={styles.itemMetadataDesktop}>{metadata}</div>
-              )}
-              {action && (
-                <div
-                  className={styles.itemAction}
-                  onClick={onActionClick ? handleActionClick : undefined}
-                  onKeyDown={onActionClick ? handleActionKeyDown : undefined}
-                  role={onActionClick ? 'button' : undefined}
-                  tabIndex={onActionClick ? 0 : undefined}
-                >
-                  {action}
-                </div>
-              )}
+              <Skeleton width={60} height={14} animation />
             </div>
           )}
         </div>
       </div>
     );
   }
-);
+
+  return (
+    <div
+      ref={ref}
+      className={cn(styles.listItemWrapper, className)}
+      data-interactive={isInteractive}
+      onClick={isInteractive ? onClick : undefined}
+      onKeyDown={isInteractive ? handleKeyDown : undefined}
+      role={onClick ? 'button' : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      {...rest}
+    >
+      <div className={styles.listItem}>
+        {renderMedia()}
+        {rank !== undefined && <div className={styles.itemRank}>{rank}</div>}
+
+        <div className={styles.itemBody}>
+          <div className={styles.itemHeader}>
+            <div className={styles.itemTitle}>{title}</div>
+          </div>
+
+          {hasSecondaryRow && (
+            <div className={styles.itemSubtitleRow}>
+              {hasFeatures && (
+                <Features key="features" items={features} className={styles.itemFeature} />
+              )}
+              {showMetadataInline && (
+                <span className={styles.itemMetadataInline} key="metadata-inline">
+                  {metadata}
+                </span>
+              )}
+              {subtitle && (
+                <span className={styles.itemSubtitleText} key="subtitle">
+                  {subtitle}
+                </span>
+              )}
+            </div>
+          )}
+        </div>
+
+        {(metadata || action) && (
+          <div className={styles.itemTrailing}>
+            {metadata && <div className={styles.itemMetadataDesktop}>{metadata}</div>}
+            {action && (
+              <div
+                className={styles.itemAction}
+                onClick={onActionClick ? handleActionClick : undefined}
+                onKeyDown={onActionClick ? handleActionKeyDown : undefined}
+                role={onActionClick ? 'button' : undefined}
+                tabIndex={onActionClick ? 0 : undefined}
+              >
+                {action}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+});
 
 ListItem.displayName = 'ListItem';

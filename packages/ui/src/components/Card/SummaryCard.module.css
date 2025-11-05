@@ -208,6 +208,13 @@
   margin: var(--ai-spacing-2) var(--ai-spacing-8) 0 var(--ai-spacing-8); /* 8px top, 32px sides, 0 bottom */
 }
 
+.customIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ai-color-text-secondary);
+}
+
 /* Add spacing from description if description exists */
 .description + .metadata {
   margin-top: var(--ai-spacing-2); /* 8px from description */

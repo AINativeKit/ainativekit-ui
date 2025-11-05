@@ -85,9 +85,7 @@ const ChipsComponent: React.FC = () => {
 
   const toggleFilter = (filter: string) => {
     setSelectedFilters((prev) =>
-      prev.includes(filter)
-        ? prev.filter((f) => f !== filter)
-        : [...prev, filter]
+      prev.includes(filter) ? prev.filter((f) => f !== filter) : [...prev, filter]
     );
   };
 
@@ -102,7 +100,8 @@ const ChipsComponent: React.FC = () => {
       {/* Chip Gallery */}
       <section style={{ marginBottom: '64px' }}>
         <p style={{ marginBottom: '24px', color: 'var(--ai-color-text-secondary)' }}>
-          Pill-shaped components for labels, tags, filters, and categories. Auto-width design adapts to content length. Click any chip to copy its code.
+          Pill-shaped components for labels, tags, filters, and categories. Auto-width design adapts
+          to content length. Click any chip to copy its code.
         </p>
 
         {/* Variants Section */}
@@ -121,46 +120,22 @@ const ChipsComponent: React.FC = () => {
               gap: '16px',
             }}
           >
-            <ChipCard
-              variant="default"
-              label="Default"
-              description="General labels"
-            >
+            <ChipCard variant="default" label="Default" description="General labels">
               Premium
             </ChipCard>
-            <ChipCard
-              variant="filled"
-              label="Filled"
-              description="Emphasis"
-            >
+            <ChipCard variant="filled" label="Filled" description="Emphasis">
               Featured
             </ChipCard>
-            <ChipCard
-              variant="success"
-              label="Success"
-              description="Positive state"
-            >
+            <ChipCard variant="success" label="Success" description="Positive state">
               Verified
             </ChipCard>
-            <ChipCard
-              variant="warning"
-              label="Warning"
-              description="Attention"
-            >
+            <ChipCard variant="warning" label="Warning" description="Attention">
               Beta
             </ChipCard>
-            <ChipCard
-              variant="error"
-              label="Error"
-              description="Critical state"
-            >
+            <ChipCard variant="error" label="Error" description="Critical state">
               Deprecated
             </ChipCard>
-            <ChipCard
-              variant="neutral"
-              label="Neutral"
-              description="Subtle labels"
-            >
+            <ChipCard variant="neutral" label="Neutral" description="Subtle labels">
               Documentation
             </ChipCard>
           </div>
@@ -195,11 +170,21 @@ const ChipsComponent: React.FC = () => {
               </p>
             </header>
             <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-              <Chip variant="success" leftIcon="check-circle">Verified</Chip>
-              <Chip variant="filled" leftIcon="star">Featured</Chip>
-              <Chip variant="default" leftIcon="lock-key-hole">Secure</Chip>
-              <Chip variant="warning" leftIcon="warning-wrap-centered-for-circle">Warning</Chip>
-              <Chip variant="neutral" leftIcon="info-circle">Info</Chip>
+              <Chip variant="success" leftIcon="check-circle">
+                Verified
+              </Chip>
+              <Chip variant="filled" leftIcon="star">
+                Featured
+              </Chip>
+              <Chip variant="default" leftIcon="lock-key-hole">
+                Secure
+              </Chip>
+              <Chip variant="warning" leftIcon="warning-wrap-centered-for-circle">
+                Warning
+              </Chip>
+              <Chip variant="neutral" leftIcon="info-circle">
+                Info
+              </Chip>
             </div>
           </section>
 
@@ -213,11 +198,7 @@ const ChipsComponent: React.FC = () => {
             </header>
             <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
               {tags.map((tag) => (
-                <Chip
-                  key={tag}
-                  variant="neutral"
-                  onRemove={() => removeTag(tag)}
-                >
+                <Chip key={tag} variant="neutral" onRemove={() => removeTag(tag)}>
                   {tag}
                 </Chip>
               ))}
@@ -238,10 +219,7 @@ const ChipsComponent: React.FC = () => {
               </p>
             </header>
             <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-              <Chip
-                selected={selectedFilters.includes('all')}
-                onClick={() => toggleFilter('all')}
-              >
+              <Chip selected={selectedFilters.includes('all')} onClick={() => toggleFilter('all')}>
                 All
               </Chip>
               <Chip
@@ -263,7 +241,13 @@ const ChipsComponent: React.FC = () => {
                 Archived
               </Chip>
             </div>
-            <p style={{ marginTop: '12px', fontSize: '12px', color: 'var(--ai-color-text-tertiary)' }}>
+            <p
+              style={{
+                marginTop: '12px',
+                fontSize: '12px',
+                color: 'var(--ai-color-text-tertiary)',
+              }}
+            >
               Selected: {selectedFilters.join(', ')}
             </p>
           </section>
@@ -277,10 +261,18 @@ const ChipsComponent: React.FC = () => {
               </p>
             </header>
             <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-              <Chip variant="default" onClick={() => alert('Design clicked')}>Design</Chip>
-              <Chip variant="filled" onClick={() => alert('Engineering clicked')}>Engineering</Chip>
-              <Chip variant="success" onClick={() => alert('Product clicked')}>Product</Chip>
-              <Chip variant="neutral" onClick={() => alert('Marketing clicked')}>Marketing</Chip>
+              <Chip variant="default" onClick={() => alert('Design clicked')}>
+                Design
+              </Chip>
+              <Chip variant="filled" onClick={() => alert('Engineering clicked')}>
+                Engineering
+              </Chip>
+              <Chip variant="success" onClick={() => alert('Product clicked')}>
+                Product
+              </Chip>
+              <Chip variant="neutral" onClick={() => alert('Marketing clicked')}>
+                Marketing
+              </Chip>
             </div>
           </section>
         </div>
@@ -293,7 +285,9 @@ const ChipsComponent: React.FC = () => {
           Three sizes available: Small (24px), Medium (32px), and Large (40px).
         </p>
         <div style={{ display: 'flex', gap: '32px', alignItems: 'center', flexWrap: 'wrap' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+          <div
+            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}
+          >
             <Chip size="sm">Small Chip</Chip>
             <code style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)' }}>
               size="sm"
@@ -302,7 +296,9 @@ const ChipsComponent: React.FC = () => {
               24px height
             </span>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+          <div
+            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}
+          >
             <Chip size="md">Medium Chip</Chip>
             <code style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)' }}>
               size="md"
@@ -311,7 +307,9 @@ const ChipsComponent: React.FC = () => {
               32px (default)
             </span>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+          <div
+            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}
+          >
             <Chip size="lg">Large Chip</Chip>
             <code style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)' }}>
               size="lg"
@@ -331,10 +329,24 @@ const ChipsComponent: React.FC = () => {
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
           <div>
-            <h3 style={{ fontSize: '16px', marginBottom: '12px', color: 'var(--ai-color-accent-green)' }}>
+            <h3
+              style={{
+                fontSize: '16px',
+                marginBottom: '12px',
+                color: 'var(--ai-color-accent-green)',
+              }}
+            >
               ✅ Use Chip For
             </h3>
-            <ul style={{ margin: 0, paddingLeft: '20px', color: 'var(--ai-color-text-secondary)', fontSize: '14px', lineHeight: '1.8' }}>
+            <ul
+              style={{
+                margin: 0,
+                paddingLeft: '20px',
+                color: 'var(--ai-color-text-secondary)',
+                fontSize: '14px',
+                lineHeight: '1.8',
+              }}
+            >
               <li>Text labels (3+ characters)</li>
               <li>Category tags</li>
               <li>Filter selections</li>
@@ -349,10 +361,24 @@ const ChipsComponent: React.FC = () => {
             </div>
           </div>
           <div>
-            <h3 style={{ fontSize: '16px', marginBottom: '12px', color: 'var(--ai-color-accent-blue)' }}>
+            <h3
+              style={{
+                fontSize: '16px',
+                marginBottom: '12px',
+                color: 'var(--ai-color-accent-blue)',
+              }}
+            >
               ✅ Use Badge For
             </h3>
-            <ul style={{ margin: 0, paddingLeft: '20px', color: 'var(--ai-color-text-secondary)', fontSize: '14px', lineHeight: '1.8' }}>
+            <ul
+              style={{
+                margin: 0,
+                paddingLeft: '20px',
+                color: 'var(--ai-color-text-secondary)',
+                fontSize: '14px',
+                lineHeight: '1.8',
+              }}
+            >
               <li>Counts (1-3 characters)</li>
               <li>Ratings/scores</li>
               <li>Status dots</li>
@@ -361,11 +387,65 @@ const ChipsComponent: React.FC = () => {
               <li>Overlay indicators</li>
             </ul>
             <div style={{ marginTop: '16px', display: 'flex', gap: '12px', alignItems: 'center' }}>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '8px 16px', backgroundColor: 'var(--ai-color-bg-secondary)', borderRadius: '8px' }}>
+              <div
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '8px 16px',
+                  backgroundColor: 'var(--ai-color-bg-secondary)',
+                  borderRadius: '8px',
+                }}
+              >
                 <span style={{ fontSize: '14px' }}>Badge examples:</span>
-                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', backgroundColor: 'var(--ai-color-accent-blue)', color: 'white', fontSize: '12px', fontWeight: 600 }}>5</span>
-                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: 'color-mix(in srgb, var(--ai-color-accent-blue) 10%, transparent)', color: 'var(--ai-color-accent-blue)', fontSize: '12px', fontWeight: 600 }}>9.2</span>
-                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: 'var(--ai-color-bg-tertiary)', color: 'var(--ai-color-text-secondary)', fontSize: '12px', fontWeight: 600 }}>AI</span>
+                <span
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '32px',
+                    height: '32px',
+                    borderRadius: '50%',
+                    backgroundColor: 'var(--ai-color-accent-blue)',
+                    color: 'white',
+                    fontSize: '12px',
+                    fontWeight: 600,
+                  }}
+                >
+                  5
+                </span>
+                <span
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '32px',
+                    height: '32px',
+                    borderRadius: '50%',
+                    background: 'color-mix(in srgb, var(--ai-color-accent-blue) 10%, transparent)',
+                    color: 'var(--ai-color-accent-blue)',
+                    fontSize: '12px',
+                    fontWeight: 600,
+                  }}
+                >
+                  9.2
+                </span>
+                <span
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '32px',
+                    height: '32px',
+                    borderRadius: '50%',
+                    background: 'var(--ai-color-bg-tertiary)',
+                    color: 'var(--ai-color-text-secondary)',
+                    fontSize: '12px',
+                    fontWeight: 600,
+                  }}
+                >
+                  AI
+                </span>
               </div>
             </div>
           </div>
@@ -387,8 +467,12 @@ const ChipsComponent: React.FC = () => {
             <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>Disabled State</h3>
             <div style={{ display: 'flex', gap: '8px' }}>
               <Chip disabled>Disabled</Chip>
-              <Chip disabled onClick={() => {}}>Disabled Clickable</Chip>
-              <Chip disabled onRemove={() => {}}>Disabled Removable</Chip>
+              <Chip disabled onClick={() => {}}>
+                Disabled Clickable
+              </Chip>
+              <Chip disabled onRemove={() => {}}>
+                Disabled Removable
+              </Chip>
             </div>
           </div>
         </div>
@@ -398,9 +482,7 @@ const ChipsComponent: React.FC = () => {
       <section style={{ marginBottom: '64px' }}>
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Usage</h2>
 
-        <h3 style={{ fontSize: '18px', marginBottom: '12px', marginTop: '24px' }}>
-          Basic Usage
-        </h3>
+        <h3 style={{ fontSize: '18px', marginBottom: '12px', marginTop: '24px' }}>Basic Usage</h3>
         <div
           style={{
             backgroundColor: 'var(--ai-color-bg-secondary)',
@@ -435,13 +517,13 @@ const ChipsComponent: React.FC = () => {
 <Chip size="lg">Large</Chip>`}</code>
         </div>
 
-        <h3 style={{ fontSize: '18px', marginBottom: '12px', marginTop: '24px' }}>
-          Accessibility
-        </h3>
+        <h3 style={{ fontSize: '18px', marginBottom: '12px', marginTop: '24px' }}>Accessibility</h3>
         <p style={{ marginBottom: '12px', color: 'var(--ai-color-text-secondary)' }}>
           Chips are accessible by default with proper ARIA attributes and keyboard support:
         </p>
-        <ul style={{ color: 'var(--ai-color-text-secondary)', fontSize: '14px', lineHeight: '1.8' }}>
+        <ul
+          style={{ color: 'var(--ai-color-text-secondary)', fontSize: '14px', lineHeight: '1.8' }}
+        >
           <li>Interactive chips render as {'<button>'} elements</li>
           <li>Remove buttons are keyboard accessible (Enter/Space)</li>
           <li>Proper focus indicators</li>
@@ -457,11 +539,13 @@ const ChipsComponent: React.FC = () => {
           rows={[
             {
               name: 'variant',
-              description: 'Visual style variant. Options: "default", "filled", "success", "warning", "error", "neutral". Default: "default"',
+              description:
+                'Visual style variant. Options: "default", "filled", "success", "warning", "error", "neutral". Default: "default"',
             },
             {
               name: 'size',
-              description: 'Chip size. Options: "sm" (24px), "md" (32px), "lg" (40px). Default: "md"',
+              description:
+                'Chip size. Options: "sm" (24px), "md" (32px), "lg" (40px). Default: "md"',
             },
             {
               name: 'leftIcon',
@@ -473,7 +557,8 @@ const ChipsComponent: React.FC = () => {
             },
             {
               name: 'leftElement',
-              description: 'Custom element before text (overrides leftIcon). Use for avatars, custom icons.',
+              description:
+                'Custom element before text (overrides leftIcon). Use for avatars, custom icons.',
             },
             {
               name: 'rightElement',
@@ -485,11 +570,13 @@ const ChipsComponent: React.FC = () => {
             },
             {
               name: 'onClick',
-              description: 'Callback when chip is clicked. Makes chip interactive (renders as button).',
+              description:
+                'Callback when chip is clicked. Makes chip interactive (renders as button).',
             },
             {
               name: 'selected',
-              description: 'Shows selected state (border ring). Use for filter chips. Default: false',
+              description:
+                'Shows selected state (border ring). Use for filter chips. Default: false',
             },
             {
               name: 'disabled',
@@ -497,7 +584,8 @@ const ChipsComponent: React.FC = () => {
             },
             {
               name: 'ariaLabel',
-              description: 'Accessible label for screen readers. Required when content needs clarification.',
+              description:
+                'Accessible label for screen readers. Required when content needs clarification.',
             },
             {
               name: 'className',

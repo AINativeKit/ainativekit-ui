@@ -36,21 +36,10 @@ export { Carousel } from './Carousel';
 export type { CarouselProps } from './Carousel';
 
 export { List, ListItem } from './List';
-export type {
-  ListProps,
-  ListHeaderProps,
-  ListItemProps,
-  Feature as ListFeature,
-} from './List';
+export type { ListProps, ListHeaderProps, ListItemProps, Feature as ListFeature } from './List';
 
 // Patterns (complex, domain-specific, feature-complete)
-export {
-  Album,
-  AlbumCard,
-  AlbumCarousel,
-  AlbumViewer,
-  FilmStrip,
-} from './Album';
+export { Album, AlbumCard, AlbumCarousel, AlbumViewer, FilmStrip } from './Album';
 export type {
   AlbumProps,
   AlbumCardProps,

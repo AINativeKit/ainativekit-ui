@@ -1,13 +1,7 @@
 import { useSyncExternalStore } from 'react';
-import {
-  SET_GLOBALS_EVENT_TYPE,
-  type OpenAiGlobals,
-  type SetGlobalsEvent,
-} from './types';
+import { SET_GLOBALS_EVENT_TYPE, type OpenAiGlobals, type SetGlobalsEvent } from './types';
 
-export function useOpenAiGlobal<K extends keyof OpenAiGlobals>(
-  key: K
-): OpenAiGlobals[K] | null {
+export function useOpenAiGlobal<K extends keyof OpenAiGlobals>(key: K): OpenAiGlobals[K] | null {
   return useSyncExternalStore(
     (onChange) => {
       if (typeof window === 'undefined') {

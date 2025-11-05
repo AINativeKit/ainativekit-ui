@@ -21,7 +21,7 @@ export interface AlertProps extends ComponentPropsWithoutRef<'div'> {
    * @default 'error'
    */
   variant?: AlertVariant;
-  
+
   /**
    * Layout style
    * - 'default': Left-aligned layout
@@ -30,41 +30,41 @@ export interface AlertProps extends ComponentPropsWithoutRef<'div'> {
    * @default 'default'
    */
   layout?: AlertLayout;
-  
+
   /**
    * Alert title/heading
    * @default Auto-generated based on variant
    */
   title?: string;
-  
+
   /**
    * Detailed alert message or description
    */
   message?: string;
-  
+
   /**
    * Optional action handler (typically for retry or dismiss)
    * When provided, shows an action button
    */
   onAction?: () => void;
-  
+
   /**
    * Label for the action button
    * @default 'Try Again' for error, 'Dismiss' for others
    */
   actionLabel?: string;
-  
+
   /**
    * Custom icon to display instead of default variant icon
    */
   icon?: React.ReactNode;
-  
+
   /**
    * Hide the icon completely
    * @default false
    */
   hideIcon?: boolean;
-  
+
   /**
    * Optional test ID for testing purposes
    */
@@ -168,30 +168,17 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) =
     >
       {/* Row 1: Icon + Title (same row, left aligned) */}
       <div className={styles.alert__header}>
-        {displayIcon && (
-          <div className={styles.alert__icon}>
-            {displayIcon}
-          </div>
-        )}
-        <h3 className={styles.alert__title}>
-          {displayTitle}
-        </h3>
+        {displayIcon && <div className={styles.alert__icon}>{displayIcon}</div>}
+        <h3 className={styles.alert__title}>{displayTitle}</h3>
       </div>
 
       {/* Row 2: Message (left aligned) */}
-      {message && (
-        <p className={styles.alert__message}>
-          {message}
-        </p>
-      )}
+      {message && <p className={styles.alert__message}>{message}</p>}
 
       {/* Row 3: Action Button (left aligned) */}
       {onAction && (
         <div className={styles.alert__actions}>
-          <Button
-            variant="secondary"
-            onClick={onAction}
-          >
+          <Button variant="secondary" onClick={onAction}>
             {displayActionLabel}
           </Button>
         </div>

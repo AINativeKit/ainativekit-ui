@@ -20,6 +20,35 @@ export interface SummaryCardImage {
   lazy?: boolean;
 }
 
+/**
+ * Metadata item for SummaryCard
+ *
+ * @example
+ * ```tsx
+ * // Using library icons
+ * const metadata: SummaryCardMetadata[] = [
+ *   { icon: 'clock', label: '10 min read' },
+ *   { icon: 'calendar-today', label: 'Oct 30, 2025' }
+ * ];
+ *
+ * // Using custom icons (React elements)
+ * const metadata: SummaryCardMetadata[] = [
+ *   { icon: <BedIcon size={16} />, label: '5 bedrooms' },
+ *   { icon: <svg>...</svg>, label: 'Custom' }
+ * ];
+ * ```
+ */
+export interface SummaryCardMetadata {
+  /**
+   * Icon to display - can be a library icon name (IconName union) or custom React element
+   */
+  icon?: IconName | React.ReactElement;
+  /**
+   * Label text to display next to the icon
+   */
+  label: string;
+}
+
 export interface SummaryCardProps extends Omit<CardProps, 'children'> {
   /**
    * Single image or array of 1-3 images.
@@ -56,11 +85,28 @@ export interface SummaryCardProps extends Omit<CardProps, 'children'> {
   /**
    * Metadata items to display below description (e.g., read time, date).
    * Array of items with optional icon and label.
+   *
+   * Icons can be:
+   * - Icon name string from the icon library (e.g., 'clock', 'calendar-today')
+   * - Custom React element (e.g., <CustomIcon />, <svg>...</svg>)
+   *
+   * @example
+   * ```tsx
+   * // Using library icons
+   * metadata={[
+   *   { icon: 'clock', label: '10 min read' },
+   *   { icon: 'calendar-today', label: 'Oct 30, 2025' }
+   * ]}
+   *
+   * // Using custom icons
+   * metadata={[
+   *   { icon: <BedIcon size={16} />, label: '5' },
+   *   { icon: <BathIcon size={16} />, label: '2' },
+   *   { icon: <svg>...</svg>, label: '625m²' }
+   * ]}
+   * ```
    */
-  metadata?: Array<{
-    icon?: IconName;
-    label: string;
-  }>;
+  metadata?: SummaryCardMetadata[];
 
   /**
    * Button text. If provided, button will be displayed.
@@ -245,11 +291,11 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
   const hasHeader = !!(title || subtitle || badge);
   const hasDescription = !!description;
   const hasButton = !!buttonText;
-  
+
   // Determine if badge text is long (use Chip for long text, Badge for short)
   const badgeText = String(badge ?? '');
   const isLongBadge = badgeText.length > 4; // More than 4 characters, use Chip
-  
+
   // Phase 1: State logic
   const isEmpty = !loading && !error && !hasImages && !title && !description && !hasButton;
   const defaultLoadingCount = hasImages && !isSingleImage ? 3 : 1;
@@ -258,7 +304,7 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
   // Helper to render badge/chip based on text length
   const renderBadge = () => {
     if (badge === undefined) return null;
-    
+
     if (isLongBadge) {
       // Map BadgeVariant to ChipVariant
       const chipVariant: ChipVariant = badgeVariant === 'default' ? 'neutral' : badgeVariant;
@@ -268,7 +314,7 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
         </Chip>
       );
     }
-    
+
     return (
       <Badge variant={badgeVariant} className={styles.badge}>
         {badge}
@@ -277,12 +323,7 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
   };
 
   return (
-    <Card
-      ref={ref}
-      padding={0}
-      className={cn(styles.summaryCard, className)}
-      {...cardProps}
-    >
+    <Card ref={ref} padding={0} className={cn(styles.summaryCard, className)} {...cardProps}>
       {/* Loading State - Single Image */}
       {loading && isSingleImage && (
         <div className={styles.loadingContainer} role="status" aria-live="polite">
@@ -290,33 +331,37 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
           <div style={{ margin: 'var(--ai-spacing-4)' }}>
             <Skeleton width="100%" height={244} borderRadius={16} />
           </div>
-          
+
           {/* Header Skeleton */}
           {hasHeader && (
             <div className={styles.header}>
               <div className={styles.headerText}>
                 <Skeleton width="60%" height={24} />
-                {subtitle && <Skeleton width="40%" height={16} style={{ marginTop: 'var(--ai-spacing-2)' }} />}
+                {subtitle && (
+                  <Skeleton width="40%" height={16} style={{ marginTop: 'var(--ai-spacing-2)' }} />
+                )}
               </div>
               {badge && <Skeleton width={50} height={28} borderRadius={14} />}
             </div>
           )}
-          
+
           {/* Description Skeleton */}
           {hasDescription && (
-            <div style={{ margin: 'var(--ai-spacing-4) var(--ai-spacing-8) 0 var(--ai-spacing-8)' }}>
+            <div
+              style={{ margin: 'var(--ai-spacing-4) var(--ai-spacing-8) 0 var(--ai-spacing-8)' }}
+            >
               <Skeleton width="100%" height={14} />
               <Skeleton width="80%" height={14} style={{ marginTop: 'var(--ai-spacing-2)' }} />
             </div>
           )}
-          
+
           {/* Button Skeleton */}
           {hasButton && (
             <div className={styles.buttonContainer}>
               <Skeleton width="100%" height={44} borderRadius={8} />
             </div>
           )}
-          
+
           <span className={styles.visuallyHidden}>Loading summary</span>
         </div>
       )}
@@ -325,47 +370,46 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
       {loading && isGridImages && (
         <div className={styles.loadingContainer} role="status" aria-live="polite">
           {/* Grid Skeleton */}
-          <div 
+          <div
             className={styles.imageGrid}
             data-image-count={skeletonImageCount}
             style={{ margin: 'var(--ai-spacing-4)' }}
           >
             {Array.from({ length: Math.min(skeletonImageCount, 4) }).map((_, index) => (
-              <Skeleton
-                key={index}
-                width="100%"
-                height="100%"
-                borderRadius={2}
-              />
+              <Skeleton key={index} width="100%" height="100%" borderRadius={2} />
             ))}
           </div>
-          
+
           {/* Header Skeleton */}
           {hasHeader && (
             <div className={styles.header}>
               <div className={styles.headerText}>
                 <Skeleton width="60%" height={24} />
-                {subtitle && <Skeleton width="40%" height={16} style={{ marginTop: 'var(--ai-spacing-2)' }} />}
+                {subtitle && (
+                  <Skeleton width="40%" height={16} style={{ marginTop: 'var(--ai-spacing-2)' }} />
+                )}
               </div>
               {badge && <Skeleton width={50} height={28} borderRadius={14} />}
             </div>
           )}
-          
+
           {/* Description Skeleton */}
           {hasDescription && (
-            <div style={{ margin: 'var(--ai-spacing-4) var(--ai-spacing-8) 0 var(--ai-spacing-8)' }}>
+            <div
+              style={{ margin: 'var(--ai-spacing-4) var(--ai-spacing-8) 0 var(--ai-spacing-8)' }}
+            >
               <Skeleton width="100%" height={14} />
               <Skeleton width="80%" height={14} style={{ marginTop: 'var(--ai-spacing-2)' }} />
             </div>
           )}
-          
+
           {/* Button Skeleton */}
           {hasButton && (
             <div className={styles.buttonContainer}>
               <Skeleton width="100%" height={44} borderRadius={8} />
             </div>
           )}
-          
+
           <span className={styles.visuallyHidden}>Loading summary</span>
         </div>
       )}
@@ -378,27 +422,35 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
             <div className={styles.header}>
               <div className={styles.headerText}>
                 <Skeleton width="60%" height={24} />
-                {subtitle && <Skeleton width="40%" height={16} style={{ marginTop: 'var(--ai-spacing-2)' }} />}
+                {subtitle && (
+                  <Skeleton width="40%" height={16} style={{ marginTop: 'var(--ai-spacing-2)' }} />
+                )}
               </div>
               {badge && <Skeleton width={50} height={28} borderRadius={14} />}
             </div>
           )}
-          
+
           {/* Description Skeleton */}
           {hasDescription && (
-            <div style={{ margin: hasHeader ? 'var(--ai-spacing-4) var(--ai-spacing-8) 0 var(--ai-spacing-8)' : 'var(--ai-spacing-8)' }}>
+            <div
+              style={{
+                margin: hasHeader
+                  ? 'var(--ai-spacing-4) var(--ai-spacing-8) 0 var(--ai-spacing-8)'
+                  : 'var(--ai-spacing-8)',
+              }}
+            >
               <Skeleton width="100%" height={14} />
               <Skeleton width="80%" height={14} style={{ marginTop: 'var(--ai-spacing-2)' }} />
             </div>
           )}
-          
+
           {/* Button Skeleton */}
           {hasButton && (
             <div className={styles.buttonContainer}>
               <Skeleton width="100%" height={44} borderRadius={8} />
             </div>
           )}
-          
+
           <span className={styles.visuallyHidden}>Loading summary</span>
         </div>
       )}
@@ -427,100 +479,96 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
               {renderBadge()}
             </div>
           )}
-          
+
           <div className={styles.emptyState}>
             <h4 className={styles.emptyTitle}>{emptyTitle}</h4>
-            {emptyMessage && (
-              <p className={styles.emptyMessage}>{emptyMessage}</p>
-            )}
+            {emptyMessage && <p className={styles.emptyMessage}>{emptyMessage}</p>}
           </div>
         </div>
       )}
 
       {/* Normal Content */}
       {!error && !isEmpty && !loading && (
-      <>
-      {/* Image Section */}
-      {hasImages && (
-        <div className={styles.imageSection}>
-          {isSingleImage && (
-            <img
-              src={imageArray[0].src}
-              alt={imageArray[0].alt}
-              className={styles.imageSingle}
-              loading={imageArray[0].lazy !== false && imageLazy ? 'lazy' : 'eager'}
-              onLoad={onImageLoad}
-              onError={onImageError}
-            />
-          )}
-          {isGridImages && (
-            <div 
-              className={styles.imageGrid}
-              data-image-count={imageCount}
-            >
-              {displayImages.map((image, index) => (
+        <>
+          {/* Image Section */}
+          {hasImages && (
+            <div className={styles.imageSection}>
+              {isSingleImage && (
                 <img
-                  key={index}
-                  src={image.src}
-                  alt={image.alt}
-                  className={styles.imageGridItem}
-                  loading={image.lazy !== false && imageLazy ? 'lazy' : 'eager'}
-                  onLoad={onImagesLoad ? (e) => onImagesLoad(index, e) : undefined}
-                  onError={onImagesError ? (e) => onImagesError(index, e) : undefined}
+                  src={imageArray[0].src}
+                  alt={imageArray[0].alt}
+                  className={styles.imageSingle}
+                  loading={imageArray[0].lazy !== false && imageLazy ? 'lazy' : 'eager'}
+                  onLoad={onImageLoad}
+                  onError={onImageError}
                 />
-              ))}
-              {hasOverflow && (
-                <div className={styles.overflowIndicator}>
-                  +{imageArray.length - 4}
+              )}
+              {isGridImages && (
+                <div className={styles.imageGrid} data-image-count={imageCount}>
+                  {displayImages.map((image, index) => (
+                    <img
+                      key={index}
+                      src={image.src}
+                      alt={image.alt}
+                      className={styles.imageGridItem}
+                      loading={image.lazy !== false && imageLazy ? 'lazy' : 'eager'}
+                      onLoad={onImagesLoad ? (e) => onImagesLoad(index, e) : undefined}
+                      onError={onImagesError ? (e) => onImagesError(index, e) : undefined}
+                    />
+                  ))}
+                  {hasOverflow && (
+                    <div className={styles.overflowIndicator}>+{imageArray.length - 4}</div>
+                  )}
                 </div>
               )}
             </div>
           )}
-        </div>
-      )}
 
-      {/* Header Section */}
-      {hasHeader && (
-        <div className={styles.header}>
-          <div className={styles.headerText}>
-            {title && <h3 className={styles.title}>{title}</h3>}
-            {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
-          </div>
-          {renderBadge()}
-        </div>
-      )}
-
-      {/* Description Section */}
-      {hasDescription && (
-        <p className={styles.description}>{description}</p>
-      )}
-
-      {/* Metadata Section */}
-      {metadata && metadata.length > 0 && (
-        <div className={styles.metadata}>
-          {metadata.map((item, index) => (
-            <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              {item.icon && <Icon name={item.icon} size="sm" tone="secondary" />}
-              <span>{item.label}</span>
+          {/* Header Section */}
+          {hasHeader && (
+            <div className={styles.header}>
+              <div className={styles.headerText}>
+                {title && <h3 className={styles.title}>{title}</h3>}
+                {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
+              </div>
+              {renderBadge()}
             </div>
-          ))}
-        </div>
-      )}
+          )}
 
-      {/* Action Button */}
-      {hasButton && (
-        <div className={styles.buttonContainer}>
-          <Button
-            variant="primary"
-            onClick={onButtonClick}
-            disabled={buttonDisabled}
-            className={styles.button}
-          >
-            {buttonText}
-          </Button>
-        </div>
-      )}
-      </>
+          {/* Description Section */}
+          {hasDescription && <p className={styles.description}>{description}</p>}
+
+          {/* Metadata Section */}
+          {metadata && metadata.length > 0 && (
+            <div className={styles.metadata}>
+              {metadata.map((item, index) => (
+                <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  {item.icon &&
+                    (typeof item.icon === 'string' ? (
+                      <Icon name={item.icon as IconName} size="sm" tone="secondary" />
+                    ) : (
+                      <span className={styles.customIcon}>{item.icon}</span>
+                    ))}
+                  <span>{item.label}</span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Action Button */}
+          {hasButton && (
+            <div className={styles.buttonContainer}>
+              <Button
+                variant="primary"
+                onClick={onButtonClick}
+                disabled={buttonDisabled}
+                className={styles.button}
+              >
+                {buttonText}
+              </Button>
+            </div>
+          )}
+        </>
       )}
     </Card>
   );

@@ -16,10 +16,7 @@ const sampleLocations: LocationData[] = [
     description:
       'Award-winning Neapolitan pies in North Beach. A San Francisco institution serving authentic Italian pizza with locally-sourced ingredients.',
     thumbnail: 'https://persistent.oaistatic.com/pizzaz/pizzaz-1.png',
-    features: [
-      { icon: 'star', label: '4.8' },
-      { label: '$$$' },
-    ],
+    features: [{ icon: 'star', label: '4.8' }, { label: '$$$' }],
     actions: [
       { label: 'Add to favorites', variant: 'primary' },
       { label: 'Contact', variant: 'secondary' },
@@ -53,10 +50,7 @@ const sampleLocations: LocationData[] = [
     description:
       'Focaccia-style squares, late-night favorite. Classic North Beach spot known for thick, fluffy focaccia pizza by the slice.',
     thumbnail: 'https://persistent.oaistatic.com/pizzaz/pizzaz-2.png',
-    features: [
-      { icon: 'star', label: '4.6' },
-      { label: '$' },
-    ],
+    features: [{ icon: 'star', label: '4.6' }, { label: '$' }],
     actions: [
       { label: 'Add to favorites', variant: 'primary' },
       { label: 'Call', variant: 'secondary' },
@@ -83,10 +77,7 @@ const sampleLocations: LocationData[] = [
     description:
       'Thin-crust classics on 18th Street. Celebrated for perfectly charred, thin-crust pizzas made in a wood-burning oven.',
     thumbnail: 'https://persistent.oaistatic.com/pizzaz/pizzaz-3.png',
-    features: [
-      { icon: 'star', label: '4.5' },
-      { label: '$$' },
-    ],
+    features: [{ icon: 'star', label: '4.5' }, { label: '$$' }],
     actions: [
       { label: 'Add to favorites', variant: 'primary' },
       { label: 'Reservations', variant: 'secondary' },
@@ -100,10 +91,7 @@ const sampleLocations: LocationData[] = [
     description:
       'Deep-dish and cornmeal crust favorites. Innovative pizzeria from the Flour + Water team with seasonal rotating menu.',
     thumbnail: 'https://persistent.oaistatic.com/pizzaz/pizzaz-6.png',
-    features: [
-      { icon: 'star', label: '4.5' },
-      { label: '$$' },
-    ],
+    features: [{ icon: 'star', label: '4.5' }, { label: '$$' }],
   },
   {
     id: 'beretta',
@@ -113,10 +101,7 @@ const sampleLocations: LocationData[] = [
     description:
       'Wood-fired pies and burrata in North Beach. Stylish spot combining pizza excellence with a full cocktail program.',
     thumbnail: 'https://persistent.oaistatic.com/pizzaz/pizzaz-4.png',
-    features: [
-      { icon: 'star', label: '4.6' },
-      { label: '$$' },
-    ],
+    features: [{ icon: 'star', label: '4.6' }, { label: '$$' }],
   },
   {
     id: 'slice-house',
@@ -126,10 +111,7 @@ const sampleLocations: LocationData[] = [
     description:
       'Neighborhood spot with seasonal toppings. Local favorite featuring creative combinations and locally-sourced ingredients.',
     thumbnail: 'https://persistent.oaistatic.com/pizzaz/pizzaz-1.png',
-    features: [
-      { icon: 'star', label: '4.4' },
-      { label: '$$' },
-    ],
+    features: [{ icon: 'star', label: '4.4' }, { label: '$$' }],
   },
   {
     id: 'pizza-palace',
@@ -139,10 +121,7 @@ const sampleLocations: LocationData[] = [
     description:
       'Sourdough, wood-fired pies near Nob Hill. San Francisco sourdough meets traditional Italian pizza-making.',
     thumbnail: 'https://persistent.oaistatic.com/pizzaz/pizzaz-2.png',
-    features: [
-      { icon: 'star', label: '4.6' },
-      { label: '$$$' },
-    ],
+    features: [{ icon: 'star', label: '4.6' }, { label: '$$$' }],
   },
   {
     id: 'crispy-crust',
@@ -152,10 +131,7 @@ const sampleLocations: LocationData[] = [
     description:
       'Crispy-edged Detroit-style in SoMa. Bringing Detroit-style square pizza to San Francisco with creative toppings.',
     thumbnail: 'https://persistent.oaistatic.com/pizzaz/pizzaz-3.png',
-    features: [
-      { icon: 'star', label: '4.5' },
-      { label: '$$' },
-    ],
+    features: [{ icon: 'star', label: '4.5' }, { label: '$$' }],
   },
 ];
 
@@ -192,16 +168,20 @@ const MapSystemComponent: React.FC = () => {
             lineHeight: '1.6',
           }}
         >
-          A comprehensive map-based location system with three complementary components: <strong>Map</strong> (orchestrator),
-          <strong> CompactMap</strong> (inline experience), and <strong>FullscreenMap</strong> (full-featured view). Built on Leaflet with
-          interactive markers, location cards, multiple layout options, and integrated support for ChatGPT Apps SDK.
+          A comprehensive map-based location system with three complementary components:{' '}
+          <strong>Map</strong> (orchestrator),
+          <strong> CompactMap</strong> (inline experience), and <strong>FullscreenMap</strong>{' '}
+          (full-featured view). Built on Leaflet with interactive markers, location cards, multiple
+          layout options, and integrated support for ChatGPT Apps SDK.
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '14px' }}>
           <div>
             <strong>Key Features:</strong>
           </div>
           <ul style={{ marginLeft: '24px', color: 'var(--ai-color-text-secondary)' }}>
-            <li>Three component variants for different use cases (Map, CompactMap, FullscreenMap)</li>
+            <li>
+              Three component variants for different use cases (Map, CompactMap, FullscreenMap)
+            </li>
             <li>Interactive map with location markers and popups</li>
             <li>Location carousel with synchronized selection</li>
             <li>Inspector panel with detailed location information</li>
@@ -223,7 +203,9 @@ const MapSystemComponent: React.FC = () => {
 
         {/* Controlled Example (for ChatGPT integration) */}
         <div style={{ marginBottom: '40px' }}>
-          <h3 style={{ fontSize: '14px', marginBottom: '12px' }}>Example: ChatGPT Apps Integration</h3>
+          <h3 style={{ fontSize: '14px', marginBottom: '12px' }}>
+            Example: ChatGPT Apps Integration
+          </h3>
           {mapIsFullscreen ? (
             // Real fullscreen overlay when expanded
             <div
@@ -278,7 +260,8 @@ const MapSystemComponent: React.FC = () => {
                   color: 'var(--ai-color-text-secondary)',
                 }}
               >
-                <strong>Try it:</strong> Click the expand button (↗️) in top-right corner. The map expands to fullscreen.
+                <strong>Try it:</strong> Click the expand button (↗️) in top-right corner. The map
+                expands to fullscreen.
               </div>
             </>
           )}
@@ -292,11 +275,18 @@ const MapSystemComponent: React.FC = () => {
         <header style={{ marginBottom: '24px' }}>
           <h2 style={{ marginBottom: '8px' }}>Component Variants</h2>
           <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
-            The Map system includes three specialized components. Explore their dedicated story files for detailed examples.
+            The Map system includes three specialized components. Explore their dedicated story
+            files for detailed examples.
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '20px',
+          }}
+        >
           {/* CompactMap Reference */}
           <div
             style={{
@@ -307,7 +297,13 @@ const MapSystemComponent: React.FC = () => {
             }}
           >
             <h3 style={{ margin: '0 0 12px 0', fontSize: '15px', fontWeight: 600 }}>CompactMap</h3>
-            <p style={{ margin: '0 0 12px 0', fontSize: '13px', color: 'var(--ai-color-text-secondary)' }}>
+            <p
+              style={{
+                margin: '0 0 12px 0',
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               Lightweight inline map with carousel for ChatGPT Apps SDK integration.
             </p>
             <a
@@ -332,8 +328,16 @@ const MapSystemComponent: React.FC = () => {
               border: '1px solid var(--ai-color-border-light)',
             }}
           >
-            <h3 style={{ margin: '0 0 12px 0', fontSize: '15px', fontWeight: 600 }}>FullscreenMap</h3>
-            <p style={{ margin: '0 0 12px 0', fontSize: '13px', color: 'var(--ai-color-text-secondary)' }}>
+            <h3 style={{ margin: '0 0 12px 0', fontSize: '15px', fontWeight: 600 }}>
+              FullscreenMap
+            </h3>
+            <p
+              style={{
+                margin: '0 0 12px 0',
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               Full-featured map with sidebar, Inspector panel, and responsive layout.
             </p>
             <a
@@ -359,26 +363,40 @@ const MapSystemComponent: React.FC = () => {
           <h2 style={{ marginBottom: '8px' }}>Best Practices & Component Selection</h2>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '24px',
+          }}
+        >
           {/* Map Card */}
           <div
             style={{
               padding: '20px',
-                borderRadius: '8px',
+              borderRadius: '8px',
               backgroundColor: 'var(--ai-color-bg-primary)',
             }}
           >
             <h3 style={{ margin: '0 0 12px 0', fontSize: '15px', fontWeight: 600 }}>
               Use <strong>Map</strong>
             </h3>
-            <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '13px', color: 'var(--ai-color-text-secondary)', lineHeight: '1.6' }}>
+            <ul
+              style={{
+                margin: 0,
+                paddingLeft: '20px',
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+                lineHeight: '1.6',
+              }}
+            >
               <li>ChatGPT Apps SDK integrations</li>
               <li>Need expand/collapse toggle</li>
               <li>Component manages fullscreen state</li>
               <li>Following Album pattern</li>
               <li style={{ marginTop: '8px' }}>
-                <strong style={{ color: 'var(--ai-color-text-primary)' }}>Example:</strong> Chat-based map interface with inline
-                compact view that expands to full map
+                <strong style={{ color: 'var(--ai-color-text-primary)' }}>Example:</strong>{' '}
+                Chat-based map interface with inline compact view that expands to full map
               </li>
             </ul>
           </div>
@@ -387,21 +405,29 @@ const MapSystemComponent: React.FC = () => {
           <div
             style={{
               padding: '20px',
-                borderRadius: '8px',
+              borderRadius: '8px',
               backgroundColor: 'var(--ai-color-bg-primary)',
             }}
           >
             <h3 style={{ margin: '0 0 12px 0', fontSize: '15px', fontWeight: 600 }}>
               Use <strong>CompactMap</strong>
             </h3>
-            <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '13px', color: 'var(--ai-color-text-secondary)', lineHeight: '1.6' }}>
+            <ul
+              style={{
+                margin: 0,
+                paddingLeft: '20px',
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+                lineHeight: '1.6',
+              }}
+            >
               <li>Fixed inline experiences</li>
               <li>No fullscreen toggle needed</li>
               <li>Embedding in dashboards</li>
               <li>Limited vertical space</li>
               <li style={{ marginTop: '8px' }}>
-                <strong style={{ color: 'var(--ai-color-text-primary)' }}>Example:</strong> Widget showing nearby locations on
-                user profile
+                <strong style={{ color: 'var(--ai-color-text-primary)' }}>Example:</strong> Widget
+                showing nearby locations on user profile
               </li>
             </ul>
           </div>
@@ -410,21 +436,29 @@ const MapSystemComponent: React.FC = () => {
           <div
             style={{
               padding: '20px',
-                borderRadius: '8px',
+              borderRadius: '8px',
               backgroundColor: 'var(--ai-color-bg-primary)',
             }}
           >
             <h3 style={{ margin: '0 0 12px 0', fontSize: '15px', fontWeight: 600 }}>
               Use <strong>FullscreenMap</strong>
             </h3>
-            <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '13px', color: 'var(--ai-color-text-secondary)', lineHeight: '1.6' }}>
+            <ul
+              style={{
+                margin: 0,
+                paddingLeft: '20px',
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+                lineHeight: '1.6',
+              }}
+            >
               <li>Always-fullscreen experiences</li>
               <li>Rich exploration interfaces</li>
               <li>Inspector panel needed</li>
               <li>Dedicated map page</li>
               <li style={{ marginTop: '8px' }}>
-                <strong style={{ color: 'var(--ai-color-text-primary)' }}>Example:</strong> Maps application with full UI for
-                exploring locations
+                <strong style={{ color: 'var(--ai-color-text-primary)' }}>Example:</strong> Maps
+                application with full UI for exploring locations
               </li>
             </ul>
           </div>
@@ -451,13 +485,15 @@ const MapSystemComponent: React.FC = () => {
           }}
         >
           <p style={{ margin: '0 0 12px 0' }}>
-            The <strong>Map</strong> component is designed to work seamlessly with ChatGPT Apps SDK. Use controlled mode to let
-            ChatGPT manage the iframe expansion based on user interaction.
+            The <strong>Map</strong> component is designed to work seamlessly with ChatGPT Apps SDK.
+            Use controlled mode to let ChatGPT manage the iframe expansion based on user
+            interaction.
           </p>
           <p style={{ margin: 0 }}>
-            When user clicks expand button → Map calls <code>onToggleFullscreen(true)</code> → Your app expands the iframe → User
-            sees FullscreenMap. When user clicks collapse → Map calls <code>onToggleFullscreen(false)</code> → Your app collapses
-            iframe → User sees CompactMap.
+            When user clicks expand button → Map calls <code>onToggleFullscreen(true)</code> → Your
+            app expands the iframe → User sees FullscreenMap. When user clicks collapse → Map calls{' '}
+            <code>onToggleFullscreen(false)</code> → Your app collapses iframe → User sees
+            CompactMap.
           </p>
         </div>
 
@@ -470,7 +506,7 @@ const MapSystemComponent: React.FC = () => {
               wordBreak: 'break-word',
             }}
           >
-{`// ChatGPT Apps integration (controlled mode)
+            {`// ChatGPT Apps integration (controlled mode)
 const [isMapFullscreen, setIsMapFullscreen] = useState(false);
 
 const handleMapToggle = (fullscreen: boolean) => {
@@ -495,9 +531,22 @@ const handleMapToggle = (fullscreen: boolean) => {
             borderRadius: '8px',
           }}
         >
-          <h3 style={{ fontSize: '14px', marginBottom: '8px', margin: '0 0 8px 0' }}>Key Points:</h3>
-          <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '13px', color: 'var(--ai-color-text-secondary)', lineHeight: '1.8' }}>
-            <li>Use <strong>controlled mode</strong> (isFullscreen + onToggleFullscreen) for ChatGPT integration</li>
+          <h3 style={{ fontSize: '14px', marginBottom: '8px', margin: '0 0 8px 0' }}>
+            Key Points:
+          </h3>
+          <ul
+            style={{
+              margin: 0,
+              paddingLeft: '20px',
+              fontSize: '13px',
+              color: 'var(--ai-color-text-secondary)',
+              lineHeight: '1.8',
+            }}
+          >
+            <li>
+              Use <strong>controlled mode</strong> (isFullscreen + onToggleFullscreen) for ChatGPT
+              integration
+            </li>
             <li>CompactMap height: 478px (standard ChatGPT Apps size)</li>
             <li>Expand/collapse buttons automatically shown in both views</li>
             <li>Buttons automatically disabled if callbacks not provided</li>
@@ -529,7 +578,8 @@ const handleMapToggle = (fullscreen: boolean) => {
             },
             {
               name: 'onToggleFullscreen',
-              description: 'Callback when user clicks expand/collapse: (isFullscreen: boolean) => void',
+              description:
+                'Callback when user clicks expand/collapse: (isFullscreen: boolean) => void',
             },
             {
               name: 'selectedId',
@@ -679,7 +729,8 @@ const handleMapToggle = (fullscreen: boolean) => {
           rows={[
             {
               name: 'locations',
-              description: 'Array of location data with coordinates, name, description. Type: LocationData[] (required)',
+              description:
+                'Array of location data with coordinates, name, description. Type: LocationData[] (required)',
             },
             {
               name: 'selectedId',
@@ -695,7 +746,8 @@ const handleMapToggle = (fullscreen: boolean) => {
             },
             {
               name: 'onLocationActive',
-              description: 'Callback when location marker is hovered: (id: string | undefined) => void',
+              description:
+                'Callback when location marker is hovered: (id: string | undefined) => void',
             },
             {
               name: 'defaultCenter',
@@ -715,7 +767,8 @@ const handleMapToggle = (fullscreen: boolean) => {
             },
             {
               name: 'isInspectorOpen',
-              description: 'Whether Inspector panel is open (for FullscreenMap) - adjusts map pan offset',
+              description:
+                'Whether Inspector panel is open (for FullscreenMap) - adjusts map pan offset',
             },
           ]}
         />
@@ -787,9 +840,10 @@ const handleMapToggle = (fullscreen: boolean) => {
         >
           <h3 style={{ fontSize: '14px', marginBottom: '8px' }}>Component Architecture</h3>
           <p style={{ margin: 0, fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
-            <strong>Map</strong> (orchestrator) follows the <strong>Album pattern</strong> - conditionally renders either
-            CompactMap or FullscreenMap based on fullscreen state. Supports both controlled and uncontrolled modes. Both child
-            components maintain their own internal state and features.
+            <strong>Map</strong> (orchestrator) follows the <strong>Album pattern</strong> -
+            conditionally renders either CompactMap or FullscreenMap based on fullscreen state.
+            Supports both controlled and uncontrolled modes. Both child components maintain their
+            own internal state and features.
           </p>
         </div>
 
@@ -803,8 +857,8 @@ const handleMapToggle = (fullscreen: boolean) => {
         >
           <h3 style={{ fontSize: '14px', marginBottom: '8px' }}>SSR-Safe Implementation</h3>
           <p style={{ margin: 0, fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
-            Map components use lazy loading and client-side mounting checks to avoid SSR issues with Leaflet. A loading fallback
-            is shown during hydration and initial mount.
+            Map components use lazy loading and client-side mounting checks to avoid SSR issues with
+            Leaflet. A loading fallback is shown during hydration and initial mount.
           </p>
         </div>
 
@@ -820,7 +874,8 @@ const handleMapToggle = (fullscreen: boolean) => {
           <p style={{ margin: 0, fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
             <strong>leaflet</strong> ^1.9.4 - Base mapping library
             <br />
-            <strong>react-leaflet</strong> ^4.2.1 - React components for Leaflet (compatible with React 18)
+            <strong>react-leaflet</strong> ^4.2.1 - React components for Leaflet (compatible with
+            React 18)
             <br />
             <strong>framer-motion</strong> - Animation support for Inspector panel
           </p>
@@ -835,8 +890,8 @@ const handleMapToggle = (fullscreen: boolean) => {
         >
           <h3 style={{ fontSize: '14px', marginBottom: '8px' }}>Browser Support</h3>
           <p style={{ margin: 0, fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
-            All modern browsers with CSS Grid and modern ES6+ support. Leaflet handles map tile loading and caching
-            automatically.
+            All modern browsers with CSS Grid and modern ES6+ support. Leaflet handles map tile
+            loading and caching automatically.
           </p>
         </div>
       </section>
@@ -846,8 +901,9 @@ const handleMapToggle = (fullscreen: boolean) => {
         <header style={{ marginBottom: '16px' }}>
           <h2 style={{ marginBottom: '8px' }}>Related Components</h2>
           <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
-            For detailed <strong>LocationCard</strong> documentation including badges, multi-line text, loading/error/empty states,
-            and image controls, see the <strong>LocationCard</strong> story in the sidebar.
+            For detailed <strong>LocationCard</strong> documentation including badges, multi-line
+            text, loading/error/empty states, and image controls, see the{' '}
+            <strong>LocationCard</strong> story in the sidebar.
           </p>
         </header>
       </section>

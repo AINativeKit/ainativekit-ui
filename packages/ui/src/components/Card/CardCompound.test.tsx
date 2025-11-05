@@ -10,7 +10,7 @@ describe('Card Compound Components', () => {
           <Card.Header data-testid="card-header">Header Content</Card.Header>
         </Card>
       );
-      
+
       const header = screen.getByTestId('card-header');
       expect(header).toBeInTheDocument();
       expect(header).toHaveTextContent('Header Content');
@@ -24,7 +24,7 @@ describe('Card Compound Components', () => {
           </Card.Header>
         </Card>
       );
-      
+
       expect(screen.getByTestId('card-header')).toHaveClass('custom-class');
     });
 
@@ -47,7 +47,7 @@ describe('Card Compound Components', () => {
           <Card.Body data-testid="card-body">Body Content</Card.Body>
         </Card>
       );
-      
+
       const body = screen.getByTestId('card-body');
       expect(body).toBeInTheDocument();
       expect(body).toHaveTextContent('Body Content');
@@ -61,7 +61,7 @@ describe('Card Compound Components', () => {
           </Card.Body>
         </Card>
       );
-      
+
       expect(screen.getByTestId('card-body')).toHaveClass('custom-class');
     });
 
@@ -84,7 +84,7 @@ describe('Card Compound Components', () => {
           <Card.Footer data-testid="card-footer">Footer Content</Card.Footer>
         </Card>
       );
-      
+
       const footer = screen.getByTestId('card-footer');
       expect(footer).toBeInTheDocument();
       expect(footer).toHaveTextContent('Footer Content');
@@ -98,7 +98,7 @@ describe('Card Compound Components', () => {
           </Card.Footer>
         </Card>
       );
-      
+
       expect(screen.getByTestId('card-footer')).toHaveClass('custom-class');
     });
 
@@ -166,11 +166,7 @@ describe('Card Compound Components', () => {
     it('should not apply aspectRatio CSS variable when not provided', () => {
       render(
         <Card>
-          <Card.Image
-            src="https://example.com/image.jpg"
-            alt="Test"
-            data-testid="card-image"
-          />
+          <Card.Image src="https://example.com/image.jpg" alt="Test" data-testid="card-image" />
         </Card>
       );
 
@@ -182,11 +178,7 @@ describe('Card Compound Components', () => {
       const ref = { current: null as HTMLImageElement | null };
       render(
         <Card>
-          <Card.Image
-            ref={ref}
-            src="https://example.com/image.jpg"
-            alt="Test"
-          />
+          <Card.Image ref={ref} src="https://example.com/image.jpg" alt="Test" />
         </Card>
       );
 
@@ -204,7 +196,7 @@ describe('Card Compound Components', () => {
           </Card.Actions>
         </Card>
       );
-      
+
       const actions = screen.getByTestId('card-actions');
       expect(actions).toBeInTheDocument();
       expect(screen.getByText('Action 1')).toBeInTheDocument();
@@ -217,14 +209,14 @@ describe('Card Compound Components', () => {
           <Card.Actions data-testid="card-actions">Actions</Card.Actions>
         </Card>
       );
-      
+
       expect(screen.getByTestId('card-actions')).toHaveAttribute('data-align', 'end');
     });
 
     it('should apply custom alignment', () => {
       const alignments = ['start', 'center', 'end', 'stretch'] as const;
-      
-      alignments.forEach(align => {
+
+      alignments.forEach((align) => {
         const { container } = render(
           <Card>
             <Card.Actions align={align} data-testid={`actions-${align}`}>
@@ -232,7 +224,7 @@ describe('Card Compound Components', () => {
             </Card.Actions>
           </Card>
         );
-        
+
         expect(screen.getByTestId(`actions-${align}`)).toHaveAttribute('data-align', align);
         container.remove();
       });
@@ -246,7 +238,7 @@ describe('Card Compound Components', () => {
           </Card.Actions>
         </Card>
       );
-      
+
       expect(screen.getByTestId('card-actions')).toHaveClass('custom-class');
     });
 
@@ -269,7 +261,7 @@ describe('Card Compound Components', () => {
           <Card.Title data-testid="card-title">Title Text</Card.Title>
         </Card>
       );
-      
+
       const title = screen.getByTestId('card-title');
       expect(title).toBeInTheDocument();
       expect(title).toHaveTextContent('Title Text');
@@ -279,10 +271,12 @@ describe('Card Compound Components', () => {
     it('should render as custom element', () => {
       render(
         <Card>
-          <Card.Title as="h1" data-testid="card-title">Title</Card.Title>
+          <Card.Title as="h1" data-testid="card-title">
+            Title
+          </Card.Title>
         </Card>
       );
-      
+
       expect(screen.getByTestId('card-title').tagName).toBe('H1');
     });
 
@@ -294,7 +288,7 @@ describe('Card Compound Components', () => {
           </Card.Title>
         </Card>
       );
-      
+
       expect(screen.getByTestId('card-title')).toHaveClass('custom-class');
     });
 
@@ -421,9 +415,15 @@ describe('Card Compound Components', () => {
       render(
         <Card>
           <Card.ChipGroup data-testid="card-chip-group">
-            <Card.Chip variant="neutral" size="sm">Design</Card.Chip>
-            <Card.Chip variant="neutral" size="sm">Systems</Card.Chip>
-            <Card.Chip variant="success" size="sm">New</Card.Chip>
+            <Card.Chip variant="neutral" size="sm">
+              Design
+            </Card.Chip>
+            <Card.Chip variant="neutral" size="sm">
+              Systems
+            </Card.Chip>
+            <Card.Chip variant="success" size="sm">
+              New
+            </Card.Chip>
           </Card.ChipGroup>
         </Card>
       );
@@ -468,7 +468,7 @@ describe('Card Compound Components', () => {
           <Card.Badge data-testid="card-badge">New</Card.Badge>
         </Card>
       );
-      
+
       const badge = screen.getByTestId('card-badge');
       expect(badge).toBeInTheDocument();
       expect(badge).toHaveTextContent('New');
@@ -477,10 +477,12 @@ describe('Card Compound Components', () => {
     it('should support Badge variants', () => {
       render(
         <Card>
-          <Card.Badge variant="success" data-testid="card-badge">Active</Card.Badge>
+          <Card.Badge variant="success" data-testid="card-badge">
+            Active
+          </Card.Badge>
         </Card>
       );
-      
+
       expect(screen.getByTestId('card-badge')).toBeInTheDocument();
     });
 
@@ -505,7 +507,7 @@ describe('Card Compound Components', () => {
           </Card.Actions>
         </Card>
       );
-      
+
       const button = screen.getByTestId('action-btn');
       expect(button).toBeInTheDocument();
       expect(button).toHaveTextContent('Click Me');
@@ -522,7 +524,7 @@ describe('Card Compound Components', () => {
           </Card.Actions>
         </Card>
       );
-      
+
       expect(screen.getByTestId('action-btn')).toBeInTheDocument();
     });
 
@@ -547,7 +549,7 @@ describe('Card Compound Components', () => {
           <Card.Description data-testid="card-desc">Description Text</Card.Description>
         </Card>
       );
-      
+
       const desc = screen.getByTestId('card-desc');
       expect(desc).toBeInTheDocument();
       expect(desc).toHaveTextContent('Description Text');
@@ -562,7 +564,7 @@ describe('Card Compound Components', () => {
           </Card.Description>
         </Card>
       );
-      
+
       expect(screen.getByTestId('card-desc')).toHaveClass('custom-class');
     });
 
@@ -585,15 +587,9 @@ describe('Card Compound Components', () => {
           <Card.Header data-testid="header">
             <Card.Title data-testid="title">Product Name</Card.Title>
           </Card.Header>
-          <Card.Image 
-            src="https://example.com/product.jpg" 
-            alt="Product"
-            data-testid="image"
-          />
+          <Card.Image src="https://example.com/product.jpg" alt="Product" data-testid="image" />
           <Card.Body data-testid="body">
-            <Card.Description data-testid="desc">
-              Product description goes here
-            </Card.Description>
+            <Card.Description data-testid="desc">Product description goes here</Card.Description>
           </Card.Body>
           <Card.Footer data-testid="footer">
             <Card.Actions data-testid="actions">
@@ -602,7 +598,7 @@ describe('Card Compound Components', () => {
           </Card.Footer>
         </Card>
       );
-      
+
       expect(screen.getByTestId('card')).toBeInTheDocument();
       expect(screen.getByTestId('header')).toBeInTheDocument();
       expect(screen.getByTestId('title')).toHaveTextContent('Product Name');
@@ -621,7 +617,7 @@ describe('Card Compound Components', () => {
           <Card.Description data-testid="desc">Just title and description</Card.Description>
         </Card>
       );
-      
+
       expect(screen.getByTestId('title')).toHaveTextContent('Simple Card');
       expect(screen.getByTestId('desc')).toHaveTextContent('Just title and description');
     });
@@ -637,7 +633,7 @@ describe('Card Compound Components', () => {
           </Card.Header>
         </Card>
       );
-      
+
       expect(screen.getByTestId('title')).toHaveTextContent('Nested Title');
       expect(screen.getByText('Subtitle')).toBeInTheDocument();
     });

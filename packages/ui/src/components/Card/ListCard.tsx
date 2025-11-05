@@ -215,14 +215,14 @@ export const ListCard = React.forwardRef<HTMLDivElement, ListCardProps>((props, 
     if (onHeaderAction && !headerActionLabel) {
       console.error(
         'ListCard: headerActionLabel is required when onHeaderAction is provided. ' +
-        'Provide a descriptive label for accessibility (e.g., "Edit playlist", "Manage items").'
+          'Provide a descriptive label for accessibility (e.g., "Edit playlist", "Manage items").'
       );
     }
     items.forEach((item, index) => {
       if (item.onItemAction && !item.actionLabel) {
         console.error(
           `ListCard: actionLabel is required for item ${index} when onItemAction is provided. ` +
-          `Provide a descriptive label for accessibility (e.g., "Add ${item.title} to cart").`
+            `Provide a descriptive label for accessibility (e.g., "Add ${item.title} to cart").`
         );
       }
     });
@@ -242,178 +242,178 @@ export const ListCard = React.forwardRef<HTMLDivElement, ListCardProps>((props, 
       <div className={styles.contentWrapper}>
         {/* Loading State Overlay */}
         {loading && !error && (
-        <div className={styles.loadingContainer} role="status" aria-live="polite">
-          {/* Header Skeleton */}
-          {hasHeader && (
-            <div className={styles.header}>
-              <Skeleton width="60%" height={24} />
-            </div>
-          )}
-
-          {/* List Items Skeleton */}
-          <div className={styles.listContainer}>
-            {Array.from({ length: loadingItemCount }).map((_, index) => (
-              <div key={index}>
-                <div className={styles.listItem}>
-                  <div className={styles.itemHeader}>
-                    <Skeleton variant="circular" width={44} height={44} />
-                    <div className={styles.itemTextContent}>
-                      <Skeleton width="70%" height={16} />
-                      <Skeleton width="50%" height={14} />
-                    </div>
-                  </div>
-                </div>
-                {index < loadingItemCount - 1 && <div className={styles.divider} />}
-              </div>
-            ))}
-          </div>
-          
-          <span className={styles.visuallyHidden}>Loading list content</span>
-        </div>
-      )}
-
-      {/* Error State Overlay */}
-      {error && !loading && (
-        <div className={styles.errorContainer}>
-          <Alert
-            layout="card"
-            title={errorTitle}
-            message={errorMessage}
-            onAction={onErrorRetry}
-            data-testid="list-card-error"
-          />
-        </div>
-      )}
-
-      {/* Empty State */}
-      {isEmpty && (
-        <div className={styles.emptyContainer}>
-          {/* Keep header if present */}
-          {hasHeader && (
-            <div className={styles.header}>
-              {headerTitle && <h3 className={styles.headerTitle}>{headerTitle}</h3>}
-              {onHeaderAction && (
-                <Button
-                  variant="ghost"
-                  iconOnly="edit-pencil"
-                  onClick={onHeaderAction}
-                  aria-label={headerActionLabel || 'Edit'}
-                  className={styles.headerActionButton}
-                />
-              )}
-            </div>
-          )}
-          
-          <div className={styles.emptyState}>
-            {emptyIcon && (
-              <div className={styles.emptyIcon} aria-hidden="true">
-                {/* Icon would be rendered here if we had icon component */}
+          <div className={styles.loadingContainer} role="status" aria-live="polite">
+            {/* Header Skeleton */}
+            {hasHeader && (
+              <div className={styles.header}>
+                <Skeleton width="60%" height={24} />
               </div>
             )}
-            <h4 className={styles.emptyTitle}>{emptyTitle}</h4>
-            {emptyMessage && (
-              <p className={styles.emptyMessage}>{emptyMessage}</p>
-            )}
-          </div>
-        </div>
-      )}
 
-      {/* Normal Content - only show when not loading, not error, and has items */}
-      {!loading && !error && hasItems && (
-        <>
-          {/* Top Image */}
-          {hasTopImage && topImageData && (
-            <div className={styles.topImageContainer}>
-              <img
-                src={topImageData.src}
-                alt={topImageData.alt}
-                className={styles.topImage}
-                loading={topImageLazy && topImageData.lazy !== false ? 'lazy' : undefined}
-                onLoad={onTopImageLoad}
-                onError={onTopImageError}
-              />
-            </div>
-          )}
-
-          {/* Header */}
-          {hasHeader && (
-            <div className={styles.header}>
-              {headerTitle && <h3 className={styles.headerTitle}>{headerTitle}</h3>}
-              {onHeaderAction && (
-                <Button
-                  variant="ghost"
-                  iconOnly="edit-pencil"
-                  onClick={onHeaderAction}
-                  aria-label={headerActionLabel || 'Edit'}
-                  className={styles.headerActionButton}
-                />
-              )}
-            </div>
-          )}
-
-          {/* List Items */}
-          <div className={styles.listContainer}>
-            {items.map((item, index) => {
-              const itemImageData = item.image ? normalizeImage(item.image) : null;
-              const isLastItem = index === items.length - 1;
-              const showDivider = hasButton || !isLastItem;
-
-              return (
+            {/* List Items Skeleton */}
+            <div className={styles.listContainer}>
+              {Array.from({ length: loadingItemCount }).map((_, index) => (
                 <div key={index}>
                   <div className={styles.listItem}>
                     <div className={styles.itemHeader}>
-                      {itemImageData && (
-                        <img
-                          src={itemImageData.src}
-                          alt={itemImageData.alt}
-                          className={styles.itemImage}
-                          loading={itemImagesLazy && itemImageData.lazy !== false ? 'lazy' : undefined}
-                          onLoad={item.onImageLoad}
-                          onError={item.onImageError}
-                        />
-                      )}
+                      <Skeleton variant="circular" width={44} height={44} />
                       <div className={styles.itemTextContent}>
-                        <div className={styles.itemTitle}>{item.title}</div>
-                        {item.subtitle && (
-                          <div className={styles.itemSubtitle}>{item.subtitle}</div>
+                        <Skeleton width="70%" height={16} />
+                        <Skeleton width="50%" height={14} />
+                      </div>
+                    </div>
+                  </div>
+                  {index < loadingItemCount - 1 && <div className={styles.divider} />}
+                </div>
+              ))}
+            </div>
+
+            <span className={styles.visuallyHidden}>Loading list content</span>
+          </div>
+        )}
+
+        {/* Error State Overlay */}
+        {error && !loading && (
+          <div className={styles.errorContainer}>
+            <Alert
+              layout="card"
+              title={errorTitle}
+              message={errorMessage}
+              onAction={onErrorRetry}
+              data-testid="list-card-error"
+            />
+          </div>
+        )}
+
+        {/* Empty State */}
+        {isEmpty && (
+          <div className={styles.emptyContainer}>
+            {/* Keep header if present */}
+            {hasHeader && (
+              <div className={styles.header}>
+                {headerTitle && <h3 className={styles.headerTitle}>{headerTitle}</h3>}
+                {onHeaderAction && (
+                  <Button
+                    variant="ghost"
+                    iconOnly="edit-pencil"
+                    onClick={onHeaderAction}
+                    aria-label={headerActionLabel || 'Edit'}
+                    className={styles.headerActionButton}
+                  />
+                )}
+              </div>
+            )}
+
+            <div className={styles.emptyState}>
+              {emptyIcon && (
+                <div className={styles.emptyIcon} aria-hidden="true">
+                  {/* Icon would be rendered here if we had icon component */}
+                </div>
+              )}
+              <h4 className={styles.emptyTitle}>{emptyTitle}</h4>
+              {emptyMessage && <p className={styles.emptyMessage}>{emptyMessage}</p>}
+            </div>
+          </div>
+        )}
+
+        {/* Normal Content - only show when not loading, not error, and has items */}
+        {!loading && !error && hasItems && (
+          <>
+            {/* Top Image */}
+            {hasTopImage && topImageData && (
+              <div className={styles.topImageContainer}>
+                <img
+                  src={topImageData.src}
+                  alt={topImageData.alt}
+                  className={styles.topImage}
+                  loading={topImageLazy && topImageData.lazy !== false ? 'lazy' : undefined}
+                  onLoad={onTopImageLoad}
+                  onError={onTopImageError}
+                />
+              </div>
+            )}
+
+            {/* Header */}
+            {hasHeader && (
+              <div className={styles.header}>
+                {headerTitle && <h3 className={styles.headerTitle}>{headerTitle}</h3>}
+                {onHeaderAction && (
+                  <Button
+                    variant="ghost"
+                    iconOnly="edit-pencil"
+                    onClick={onHeaderAction}
+                    aria-label={headerActionLabel || 'Edit'}
+                    className={styles.headerActionButton}
+                  />
+                )}
+              </div>
+            )}
+
+            {/* List Items */}
+            <div className={styles.listContainer}>
+              {items.map((item, index) => {
+                const itemImageData = item.image ? normalizeImage(item.image) : null;
+                const isLastItem = index === items.length - 1;
+                const showDivider = hasButton || !isLastItem;
+
+                return (
+                  <div key={index}>
+                    <div className={styles.listItem}>
+                      <div className={styles.itemHeader}>
+                        {itemImageData && (
+                          <img
+                            src={itemImageData.src}
+                            alt={itemImageData.alt}
+                            className={styles.itemImage}
+                            loading={
+                              itemImagesLazy && itemImageData.lazy !== false ? 'lazy' : undefined
+                            }
+                            onLoad={item.onImageLoad}
+                            onError={item.onImageError}
+                          />
+                        )}
+                        <div className={styles.itemTextContent}>
+                          <div className={styles.itemTitle}>{item.title}</div>
+                          {item.subtitle && (
+                            <div className={styles.itemSubtitle}>{item.subtitle}</div>
+                          )}
+                        </div>
+                        {item.onItemAction && (
+                          <Button
+                            variant="tertiary"
+                            iconOnly="plus-add-md"
+                            onClick={item.onItemAction}
+                            aria-label={item.actionLabel || 'Add'}
+                            className={styles.itemActionButton}
+                          />
                         )}
                       </div>
-                      {item.onItemAction && (
-                        <Button
-                          variant="tertiary"
-                          iconOnly="plus-add-md"
-                          onClick={item.onItemAction}
-                          aria-label={item.actionLabel || 'Add'}
-                          className={styles.itemActionButton}
-                        />
+                      {item.description && (
+                        <div className={styles.itemDescription}>{item.description}</div>
                       )}
                     </div>
-                    {item.description && (
-                      <div className={styles.itemDescription}>{item.description}</div>
-                    )}
+                    {showDivider && <div className={styles.divider} />}
                   </div>
-                  {showDivider && <div className={styles.divider} />}
-                </div>
-              );
-            })}
-            {!hasButton && <div className={styles.listBottomPadding} />}
-          </div>
-
-          {/* Action Button */}
-          {hasButton && (
-            <div className={styles.buttonContainer}>
-              <Button
-                onClick={onButtonClick}
-                disabled={buttonDisabled}
-                variant="primary"
-                style={{ width: '100%' }}
-              >
-                {buttonText}
-              </Button>
+                );
+              })}
+              {!hasButton && <div className={styles.listBottomPadding} />}
             </div>
-          )}
-        </>
-      )}
+
+            {/* Action Button */}
+            {hasButton && (
+              <div className={styles.buttonContainer}>
+                <Button
+                  onClick={onButtonClick}
+                  disabled={buttonDisabled}
+                  variant="primary"
+                  style={{ width: '100%' }}
+                >
+                  {buttonText}
+                </Button>
+              </div>
+            )}
+          </>
+        )}
       </div>
     </Card>
   );

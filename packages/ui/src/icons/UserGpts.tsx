@@ -21,10 +21,8 @@ import type { IconProps } from '../components/Icon';
  * @accessibility
  * Usually decorative when paired with text. For icon-only buttons, add aria-label to the Button.
  */
-export const UserGpts = React.forwardRef<HTMLSpanElement, Omit<IconProps, 'name'>>(
-  (props, ref) => {
-    return <Icon ref={ref} name="user-gpts" {...props} />;
-  }
-);
+export const UserGpts = React.forwardRef<HTMLSpanElement, Omit<IconProps, 'name'>>((props, ref) => {
+  return <Icon ref={ref} name="user-gpts" {...props} />;
+});
 
 UserGpts.displayName = 'UserGpts';

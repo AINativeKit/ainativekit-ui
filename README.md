@@ -28,13 +28,13 @@
 
 ## 💡 Why You'll Love It
 
-| Developer Pain Point | How AINativeKit UI Helps |
-|---|---|
-| Manually converting JSON to UI | **Native JSON -> UI mapping** components streamline integration |
+| Developer Pain Point                | How AINativeKit UI Helps                                                    |
+| ----------------------------------- | --------------------------------------------------------------------------- |
+| Manually converting JSON to UI      | **Native JSON -> UI mapping** components streamline integration             |
 | Lack of ChatGPT‑specific components | Built **specifically** for the **ChatGPT Apps SDK** with optimized patterns |
-| Inconsistent design & icons | **Figma‑aligned** tokens + **typed icon library** ensure visual consistency |
-| Accessibility concerns | **WCAG 2.1 AA** mindful components with ARIA support |
-| Poor developer experience | 100% **TypeScript**, IntelliSense, Storybook docs |
+| Inconsistent design & icons         | **Figma‑aligned** tokens + **typed icon library** ensure visual consistency |
+| Accessibility concerns              | **WCAG 2.1 AA** mindful components with ARIA support                        |
+| Poor developer experience           | 100% **TypeScript**, IntelliSense, Storybook docs                           |
 
 ## 🚀 Core Features
 
@@ -69,14 +69,16 @@ import '@ainativekit/ui/styles';
 // Example MCP/tool JSON from your backend
 const restaurantData = {
   title: "Little Nona's",
-  subtitle: "1427 Via Campania",
-  rating: "9.2",
-  description: "A tiny, brick-walled trattoria tucked down a side street. The windows glow warm gold at night.",
-  images: [ // Display up to 4 images
-    { src: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400", alt: "Pizza" },
-    { src: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400", alt: "Pasta" },
-    { src: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400", alt: "Salad" }
-  ]
+  subtitle: '1427 Via Campania',
+  rating: '9.2',
+  description:
+    'A tiny, brick-walled trattoria tucked down a side street. The windows glow warm gold at night.',
+  images: [
+    // Display up to 4 images
+    { src: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400', alt: 'Pizza' },
+    { src: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400', alt: 'Pasta' },
+    { src: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400', alt: 'Salad' },
+  ],
 };
 
 export function RestaurantListing() {
@@ -103,11 +105,15 @@ import '@ainativekit/ui/styles';
 
 export function DocumentCard() {
   return (
-     <Card elevationLevel={1} interactive>
+    <Card elevationLevel={1} interactive>
       <Card.Header>
         <Card.ChipGroup>
-          <Card.Chip variant="neutral" size="sm">AINativeKit UI</Card.Chip>
-          <Card.Chip variant="neutral" size="sm">Guide</Card.Chip>
+          <Card.Chip variant="neutral" size="sm">
+            AINativeKit UI
+          </Card.Chip>
+          <Card.Chip variant="neutral" size="sm">
+            Guide
+          </Card.Chip>
         </Card.ChipGroup>
       </Card.Header>
       <Card.Image
@@ -117,13 +123,17 @@ export function DocumentCard() {
       <Card.Body>
         <Card.Title as="h3">Building AI-Native UIs</Card.Title>
         <Card.Description>
-          Build modern, accessible UI with AINativeKit. Master reusable component patterns that scale.
+          Build modern, accessible UI with AINativeKit. Master reusable component patterns that
+          scale.
         </Card.Description>
         <Card.Meta>
-          <Features items={[
-            { icon: 'clock', label: '10 min read' },
-            { icon: 'calendar-today', label: 'October 30, 2025' }
-          ]} iconSize={12} />
+          <Features
+            items={[
+              { icon: 'clock', label: '10 min read' },
+              { icon: 'calendar-today', label: 'October 30, 2025' },
+            ]}
+            iconSize={12}
+          />
         </Card.Meta>
       </Card.Body>
       <Card.Footer>
@@ -192,7 +202,7 @@ import {
   useWidgetState,
   useMaxHeight,
   useTheme,
-  useDisplayMode
+  useDisplayMode,
 } from '@ainativekit/ui';
 
 function MyChatGPTWidget() {
@@ -221,6 +231,7 @@ function MyChatGPTWidget() {
 ```
 
 **Available Hooks:**
+
 - `useTheme()` - Get current theme and optionally control it (see ThemeProvider below)
 - `useDisplayMode()` - Get current display mode (inline/pip/fullscreen)
 - `useMaxHeight()` - Get maximum height constraint for layout
@@ -255,20 +266,20 @@ function MyApp() {
       >
         Toggle theme
       </button>
-      {isControlledByChatGPT && (
-        <p>Theme is controlled by ChatGPT</p>
-      )}
+      {isControlledByChatGPT && <p>Theme is controlled by ChatGPT</p>}
     </div>
   );
 }
 ```
 
 **Theme Behavior:**
+
 - **Inside ChatGPT**: Theme is read-only (`window.openai.theme`), `setTheme` has no effect
 - **Inside ThemeProvider**: Theme is controllable, persists to localStorage
 - **Standalone**: Theme defaults to system preference or specified default
 
 **ThemeProvider Props:**
+
 - `defaultTheme` - Initial theme ('light' or 'dark'), default: 'light'
 - `storageKey` - LocalStorage key for persistence, default: 'ainativekit-theme'
 - `enableSystemTheme` - Detect system preference, default: true
@@ -304,7 +315,7 @@ import type {
   Theme,
   DisplayMode,
   UserAgent,
-  SafeArea
+  SafeArea,
 } from '@ainativekit/ui';
 
 // Use in your own type definitions
@@ -315,6 +326,7 @@ type MyWidgetProps = {
 ```
 
 **Exported Types:**
+
 - `OpenAiGlobals` - Complete `window.openai` globals interface
 - `OpenAiApi` - API methods (`callTool`, `sendFollowUpMessage`, etc.)
 - `Theme` - `'light' | 'dark'`
@@ -330,13 +342,14 @@ AINativeKit UI is optimized for AI coding assistants through Context7 and runtim
 
 ### Using with Context7
 
-If you use Claude Desktop, Cursor, or other AI editors with Context7 support:
+If you use Claude Code, Cursor, or other AI editors with Context7 support:
 
 ```
 use context7 @ainativekit/ui
 ```
 
 This will inject the latest component documentation directly into your AI's context, enabling:
+
 - Smart component suggestions
 - Accurate prop recommendations
 - Best practice guidance
@@ -353,21 +366,23 @@ const config: ComponentConfig = {
   type: 'SummaryCard',
   props: {
     title: "Little Nona's",
-    badge: "9.2",
-    images: ["https://example.com/restaurant.jpg"],
-    buttonText: "Add to Order"
-  }
+    badge: '9.2',
+    images: ['https://example.com/restaurant.jpg'],
+    buttonText: 'Add to Order',
+  },
 };
 
 const card = renderComponent(config); // Renders <SummaryCard {...props} />
 ```
 
 **Runtime Utilities:**
+
 - 🔧 `renderComponent()` - Render from JSON config
 - ✅ `validateComponentConfig()` - Validate component configs
 - 📝 `ComponentPropsMap` - Type-safe prop definitions
 
 **AI Integration:**
+
 - 🤖 **Context7:** Documentation via "use context7" command
 - 📚 **Schemas:** Can be generated with `pnpm --filter @ainativekit/ui generate:schemas` for external tooling (not used in runtime)
 - 📖 **Guide:** See `/docs` folder for comprehensive documentation

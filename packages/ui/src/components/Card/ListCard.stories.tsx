@@ -17,8 +17,10 @@ export default meta;
 // Sample images
 const SAMPLE_IMAGES = {
   pizza: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&auto=format&fit=crop',
-  pepperoni: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?w=200&auto=format&fit=crop',
-  margherita: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=200&auto=format&fit=crop',
+  pepperoni:
+    'https://images.unsplash.com/photo-1628840042765-356cda07504e?w=200&auto=format&fit=crop',
+  margherita:
+    'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=200&auto=format&fit=crop',
   veggie: 'https://images.unsplash.com/photo-1511689660979-10d2b1aada49?w=200&auto=format&fit=crop',
 };
 
@@ -59,10 +61,17 @@ const ListCardsComponent: React.FC = () => {
 
       {/* Introduction */}
       <section style={{ marginBottom: '64px' }}>
-        <p style={{ marginBottom: '24px', color: 'var(--ai-color-text-secondary)', fontSize: '16px', lineHeight: '1.6' }}>
-          Cards displaying lists of items with optional header, top image, and action buttons. Perfect for menus, 
-          playlists, order summaries, and content collections. Features loading, error, and empty states with 
-          native lazy loading for optimal performance.
+        <p
+          style={{
+            marginBottom: '24px',
+            color: 'var(--ai-color-text-secondary)',
+            fontSize: '16px',
+            lineHeight: '1.6',
+          }}
+        >
+          Cards displaying lists of items with optional header, top image, and action buttons.
+          Perfect for menus, playlists, order summaries, and content collections. Features loading,
+          error, and empty states with native lazy loading for optimal performance.
         </p>
       </section>
 
@@ -75,7 +84,14 @@ const ListCardsComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(345px, 1fr))', gap: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(345px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
           <ListCard
             topImage={SAMPLE_IMAGES.pizza}
             headerTitle="Featured Pizzas"
@@ -97,9 +113,9 @@ const ListCardsComponent: React.FC = () => {
           />
           <ListCard
             headerTitle="Quick Add"
-            items={sampleItems.slice(0, 2).map(item => ({
+            items={sampleItems.slice(0, 2).map((item) => ({
               ...item,
-              onItemAction: () => console.log(`Add ${item.title}`)
+              onItemAction: () => console.log(`Add ${item.title}`),
             }))}
             style={{ maxWidth: `${CARD_WIDTH}px` }}
           />
@@ -115,10 +131,24 @@ const ListCardsComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(345px, 1fr))', gap: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(345px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
           {/* Loading State */}
           <div>
-            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+            <h3
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
               Loading State
             </h3>
             <ListCard
@@ -127,14 +157,27 @@ const ListCardsComponent: React.FC = () => {
               loadingItemCount={3}
               style={{ maxWidth: `${CARD_WIDTH}px` }}
             />
-            <p style={{ marginTop: '8px', fontSize: '13px', color: 'var(--ai-color-text-secondary)' }}>
+            <p
+              style={{
+                marginTop: '8px',
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               Skeleton UI with customizable item count
             </p>
           </div>
 
           {/* Error State */}
           <div>
-            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+            <h3
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
               Error State
             </h3>
             <ListCard
@@ -143,19 +186,32 @@ const ListCardsComponent: React.FC = () => {
               errorTitle="Failed to load"
               errorMessage="Unable to fetch menu items. Please try again."
               onErrorRetry={() => {
-                setRetryCount(c => c + 1);
+                setRetryCount((c) => c + 1);
                 console.log('Retry clicked', retryCount);
               }}
               style={{ maxWidth: `${CARD_WIDTH}px` }}
             />
-            <p style={{ marginTop: '8px', fontSize: '13px', color: 'var(--ai-color-text-secondary)' }}>
+            <p
+              style={{
+                marginTop: '8px',
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               Error with retry functionality
             </p>
           </div>
 
           {/* Empty State */}
           <div>
-            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+            <h3
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
               Empty State
             </h3>
             <ListCard
@@ -167,7 +223,13 @@ const ListCardsComponent: React.FC = () => {
               emptyMessage="Add items to your cart to get started"
               style={{ maxWidth: `${CARD_WIDTH}px` }}
             />
-            <p style={{ marginTop: '8px', fontSize: '13px', color: 'var(--ai-color-text-secondary)' }}>
+            <p
+              style={{
+                marginTop: '8px',
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               Custom empty state messaging
             </p>
           </div>
@@ -183,13 +245,20 @@ const ListCardsComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(345px, 1fr))', gap: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(345px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
           {/* With images and actions */}
           <ListCard
             headerTitle="Add to Order"
-            items={sampleItems.map(item => ({
+            items={sampleItems.map((item) => ({
               ...item,
-              onItemAction: () => console.log(`Add ${item.title}`)
+              onItemAction: () => console.log(`Add ${item.title}`),
             }))}
             style={{ maxWidth: `${CARD_WIDTH}px` }}
           />
@@ -210,7 +279,7 @@ const ListCardsComponent: React.FC = () => {
           <ListCard
             headerTitle="Order #1234"
             items={[
-              { 
+              {
                 image: SAMPLE_IMAGES.pepperoni,
                 title: 'Pepperoni Pizza',
                 subtitle: 'Large (14")',
@@ -231,21 +300,38 @@ const ListCardsComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(345px, 1fr))', gap: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(345px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
           <ListCard
             topImage={SAMPLE_IMAGES.pizza}
             topImageLazy={true}
             onTopImageLoad={() => console.log('Top image loaded')}
             headerTitle="Lazy Loaded Images"
-            items={sampleItems.map(item => ({
+            items={sampleItems.map((item) => ({
               ...item,
-              image: typeof item.image === 'string' ? { src: item.image, alt: item.title, lazy: true } : item.image,
+              image:
+                typeof item.image === 'string'
+                  ? { src: item.image, alt: item.title, lazy: true }
+                  : item.image,
               onImageLoad: () => console.log(`${item.title} image loaded`),
             }))}
             style={{ maxWidth: `${CARD_WIDTH}px` }}
           />
         </div>
-        <p style={{ marginTop: '16px', fontSize: '13px', color: 'var(--ai-color-text-secondary)', fontStyle: 'italic' }}>
+        <p
+          style={{
+            marginTop: '16px',
+            fontSize: '13px',
+            color: 'var(--ai-color-text-secondary)',
+            fontStyle: 'italic',
+          }}
+        >
           All images use native browser lazy loading by default. Check console for load events.
         </p>
       </section>
@@ -259,23 +345,38 @@ const ListCardsComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(345px, 1fr))', gap: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(345px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
           <ListCard
             headerTitle="Accessible List"
             headerActionLabel="Edit menu items"
             onHeaderAction={() => console.log('Edit')}
-            items={sampleItems.map(item => ({
+            items={sampleItems.map((item) => ({
               ...item,
               actionLabel: `Add ${item.title} to cart`,
-              onItemAction: () => console.log(`Add ${item.title}`)
+              onItemAction: () => console.log(`Add ${item.title}`),
             }))}
             buttonText="View Full Menu"
             onButtonClick={() => console.log('View menu')}
             style={{ maxWidth: `${CARD_WIDTH}px` }}
           />
         </div>
-        <p style={{ marginTop: '16px', fontSize: '13px', color: 'var(--ai-color-text-secondary)', fontStyle: 'italic' }}>
-          All action buttons have descriptive aria-labels. Development mode validates required labels.
+        <p
+          style={{
+            marginTop: '16px',
+            fontSize: '13px',
+            color: 'var(--ai-color-text-secondary)',
+            fontStyle: 'italic',
+          }}
+        >
+          All action buttons have descriptive aria-labels. Development mode validates required
+          labels.
         </p>
       </section>
 
@@ -308,7 +409,9 @@ function Component() {
         </details>
 
         <details style={{ marginBottom: '16px', cursor: 'pointer' }}>
-          <summary style={{ fontWeight: 600, marginBottom: '12px' }}>With Images and Actions</summary>
+          <summary style={{ fontWeight: 600, marginBottom: '12px' }}>
+            With Images and Actions
+          </summary>
           <pre style={codeBlockStyles.primary}>{`<ListCard
   topImage="/hero-image.jpg"
   headerTitle="Featured Items"
@@ -327,7 +430,9 @@ function Component() {
         </details>
 
         <details style={{ marginBottom: '16px', cursor: 'pointer' }}>
-          <summary style={{ fontWeight: 600, marginBottom: '12px' }}>Loading & Error States</summary>
+          <summary style={{ fontWeight: 600, marginBottom: '12px' }}>
+            Loading & Error States
+          </summary>
           <pre style={codeBlockStyles.primary}>{`// Loading state
 <ListCard 
   loading 
@@ -371,7 +476,9 @@ function Component() {
         </details>
 
         <details style={{ cursor: 'pointer' }}>
-          <summary style={{ fontWeight: 600, marginBottom: '12px' }}>Performance Optimization</summary>
+          <summary style={{ fontWeight: 600, marginBottom: '12px' }}>
+            Performance Optimization
+          </summary>
           <pre style={codeBlockStyles.primary}>{`// Native lazy loading (enabled by default)
 <ListCard
   topImage="/large-image.jpg"
@@ -385,11 +492,33 @@ function Component() {
 />`}</pre>
         </details>
 
-        <div style={{ marginTop: '32px', display: 'grid', gap: '16px', fontSize: '14px', lineHeight: '1.6' }}>
-          <div style={{ padding: '16px', backgroundColor: 'var(--ai-color-surface-secondary)', borderRadius: '8px' }}>
+        <div
+          style={{
+            marginTop: '32px',
+            display: 'grid',
+            gap: '16px',
+            fontSize: '14px',
+            lineHeight: '1.6',
+          }}
+        >
+          <div
+            style={{
+              padding: '16px',
+              backgroundColor: 'var(--ai-color-surface-secondary)',
+              borderRadius: '8px',
+            }}
+          >
             <strong style={{ color: 'var(--ai-color-success)' }}>✓ Best Practices:</strong>
-            <ul style={{ margin: '8px 0 0 0', paddingLeft: '20px', color: 'var(--ai-color-text-secondary)' }}>
-              <li>Provide descriptive actionLabel for all action buttons (required for accessibility)</li>
+            <ul
+              style={{
+                margin: '8px 0 0 0',
+                paddingLeft: '20px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
+              <li>
+                Provide descriptive actionLabel for all action buttons (required for accessibility)
+              </li>
               <li>Use loading state while fetching data to improve perceived performance</li>
               <li>Show error state with retry functionality for better UX</li>
               <li>Provide empty state guidance to help users understand next steps</li>
@@ -399,9 +528,21 @@ function Component() {
             </ul>
           </div>
 
-          <div style={{ padding: '16px', backgroundColor: 'var(--ai-color-surface-secondary)', borderRadius: '8px' }}>
+          <div
+            style={{
+              padding: '16px',
+              backgroundColor: 'var(--ai-color-surface-secondary)',
+              borderRadius: '8px',
+            }}
+          >
             <strong style={{ color: 'var(--ai-color-error)' }}>✗ Avoid:</strong>
-            <ul style={{ margin: '8px 0 0 0', paddingLeft: '20px', color: 'var(--ai-color-text-secondary)' }}>
+            <ul
+              style={{
+                margin: '8px 0 0 0',
+                paddingLeft: '20px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               <li>Showing empty component without loading/error states</li>
               <li>Using vague action labels like "Action" or "Click here"</li>
               <li>Displaying very long lists without pagination or virtual scrolling</li>
@@ -427,7 +568,8 @@ function Component() {
             // Content Props
             {
               name: 'topImage: string | ListCardImage',
-              description: 'Top image displayed at 210px height. Can be URL string or image object with lazy loading control.',
+              description:
+                'Top image displayed at 210px height. Can be URL string or image object with lazy loading control.',
             },
             {
               name: 'headerTitle: string',
@@ -515,7 +657,8 @@ function Component() {
             // Accessibility Props (Phase 2)
             {
               name: 'headerActionLabel: string',
-              description: 'REQUIRED accessibility label for header action button (when onHeaderAction provided).',
+              description:
+                'REQUIRED accessibility label for header action button (when onHeaderAction provided).',
             },
 
             // Inherited from Card
@@ -531,7 +674,9 @@ function Component() {
         />
 
         <div style={{ marginTop: '32px' }}>
-          <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '16px' }}>ListCardItem Interface</h3>
+          <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '16px' }}>
+            ListCardItem Interface
+          </h3>
           <PropsTable
             hideThemeColumn
             rows={[
@@ -557,7 +702,8 @@ function Component() {
               },
               {
                 name: 'actionLabel: string',
-                description: 'REQUIRED accessibility label for item action (when onItemAction provided).',
+                description:
+                  'REQUIRED accessibility label for item action (when onItemAction provided).',
               },
               {
                 name: 'onImageLoad: (event) => void',

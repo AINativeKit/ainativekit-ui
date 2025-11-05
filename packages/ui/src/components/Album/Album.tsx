@@ -81,11 +81,7 @@ export const Album: React.FC<AlbumProps> = ({
     <>
       {/* Album Carousel */}
       {!isViewerOpen && (
-        <AlbumCarousel
-          albums={albums}
-          onAlbumSelect={handleAlbumSelect}
-          {...carouselProps}
-        />
+        <AlbumCarousel albums={albums} onAlbumSelect={handleAlbumSelect} {...carouselProps} />
       )}
 
       {/* Album Viewer */}

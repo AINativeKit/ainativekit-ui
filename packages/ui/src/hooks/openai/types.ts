@@ -36,16 +36,13 @@ export type CallToolResponse = {
   result: string;
 };
 
-export type CallTool = (
-  name: string,
-  args: Record<string, unknown>
-) => Promise<CallToolResponse>;
+export type CallTool = (name: string, args: Record<string, unknown>) => Promise<CallToolResponse>;
 
 export type OpenAiGlobals<
   ToolInput = UnknownObject,
   ToolOutput = UnknownObject,
   ToolResponseMetadata = UnknownObject,
-  WidgetState = UnknownObject
+  WidgetState = UnknownObject,
 > = {
   theme: Theme;
 

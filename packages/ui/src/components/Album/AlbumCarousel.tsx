@@ -137,13 +137,7 @@ export const AlbumCarousel: React.FC<AlbumCarouselProps> = ({
 
   // 3. Empty State
   if (albums.length === 0) {
-    return (
-      <Carousel
-        {...carouselProps}
-        emptyTitle={emptyTitle}
-        emptyMessage={emptyMessage}
-      />
-    );
+    return <Carousel {...carouselProps} emptyTitle={emptyTitle} emptyMessage={emptyMessage} />;
   }
 
   // 4. Normal Content

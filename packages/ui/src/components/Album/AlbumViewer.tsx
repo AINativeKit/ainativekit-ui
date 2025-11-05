@@ -92,7 +92,12 @@ export const AlbumViewer: React.FC<AlbumViewerProps> = ({
   const currentPhoto = album.photos[currentIndex];
 
   return (
-    <div className={cn(styles.albumViewer, className)} role="dialog" aria-modal="true" aria-label={`${album.title} viewer`}>
+    <div
+      className={cn(styles.albumViewer, className)}
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${album.title} viewer`}
+    >
       {/* Close Button */}
       <div className={styles.header}>
         <Button
@@ -121,7 +126,11 @@ export const AlbumViewer: React.FC<AlbumViewerProps> = ({
             <div className={styles.photoWrapper}>
               <img
                 src={currentPhoto.url}
-                alt={currentPhoto.alt || currentPhoto.title || `${album.title} - Photo ${currentIndex + 1}`}
+                alt={
+                  currentPhoto.alt ||
+                  currentPhoto.title ||
+                  `${album.title} - Photo ${currentIndex + 1}`
+                }
                 className={styles.photo}
               />
             </div>

@@ -31,7 +31,7 @@ try {
 
 // Ensure docs directory exists
 const docsComponents = path.join(DOCS_DIR, 'components');
-['primitives', 'composed', 'patterns'].forEach(category => {
+['primitives', 'composed', 'patterns'].forEach((category) => {
   const dir = path.join(docsComponents, category);
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
@@ -130,12 +130,7 @@ function generatePropsTable(componentName: string, sourceFile: any): string {
  */
 function generateComponentDoc(componentName: string, category: string): void {
   // Find component source file
-  const sourceFilePath = path.join(
-    SRC_DIR,
-    'components',
-    componentName,
-    `${componentName}.tsx`
-  );
+  const sourceFilePath = path.join(SRC_DIR, 'components', componentName, `${componentName}.tsx`);
 
   if (!fs.existsSync(sourceFilePath)) {
     console.warn(`⚠️  Source file not found for ${componentName}, skipping...`);
@@ -145,7 +140,11 @@ function generateComponentDoc(componentName: string, category: string): void {
   const sourceFile = project.addSourceFileAtPath(sourceFilePath);
 
   // Get metadata if available
-  const meta = (componentRegistry.components as Record<string, unknown>)?.[componentName] as Record<string, unknown> || {};
+  const meta =
+    ((componentRegistry.components as Record<string, unknown>)?.[componentName] as Record<
+      string,
+      unknown
+    >) || {};
 
   const description = (meta.description as string) || 'Component for building user interfaces.';
   let examples: string[] = [];
@@ -161,13 +160,17 @@ function generateComponentDoc(componentName: string, category: string): void {
     const exampleMatches = Array.from(sourceText.matchAll(exampleRegex));
 
     if (exampleMatches.length > 0) {
-      examples = exampleMatches.map(match => {
+      examples = exampleMatches.map((match) => {
         let code = match[1];
         // Remove JSDoc comment markers (* at start of lines)
-        code = code.split('\n').map(line => {
-          const cleaned = line.replace(/^\s*\*\s?/, '');
-          return cleaned;
-        }).join('\n').trim();
+        code = code
+          .split('\n')
+          .map((line) => {
+            const cleaned = line.replace(/^\s*\*\s?/, '');
+            return cleaned;
+          })
+          .join('\n')
+          .trim();
         return `\`\`\`tsx\n${code}\n\`\`\``;
       });
     }
@@ -176,8 +179,15 @@ function generateComponentDoc(componentName: string, category: string): void {
   }
 
   // Use examples from metadata if none in JSDoc (metadata is optional)
-  if (examples.length === 0 && meta.examples && Array.isArray(meta.examples) && meta.examples.length > 0) {
-    examples = (meta.examples as Array<Record<string, string>>).map(ex => `\`\`\`tsx\n${ex.code}\n\`\`\``);
+  if (
+    examples.length === 0 &&
+    meta.examples &&
+    Array.isArray(meta.examples) &&
+    meta.examples.length > 0
+  ) {
+    examples = (meta.examples as Array<Record<string, string>>).map(
+      (ex) => `\`\`\`tsx\n${ex.code}\n\`\`\``
+    );
   }
 
   // Generate props table
@@ -222,7 +232,9 @@ function generateComponentDoc(componentName: string, category: string): void {
   if (Array.isArray(meta.useCases) && meta.useCases.length > 0) {
     sections.push('## Use Cases');
     sections.push('');
-    sections.push(meta.useCases.map((uc: string) => `- ${uc.charAt(0).toUpperCase() + uc.slice(1)}`).join('\n'));
+    sections.push(
+      meta.useCases.map((uc: string) => `- ${uc.charAt(0).toUpperCase() + uc.slice(1)}`).join('\n')
+    );
     sections.push('');
   }
 
@@ -230,7 +242,11 @@ function generateComponentDoc(componentName: string, category: string): void {
   if (Array.isArray(meta.features) && meta.features.length > 0) {
     sections.push('## Features');
     sections.push('');
-    sections.push(meta.features.map((f: string) => `- ${f.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}`).join('\n'));
+    sections.push(
+      meta.features
+        .map((f: string) => `- ${f.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())}`)
+        .join('\n')
+    );
     sections.push('');
   }
 
@@ -238,22 +254,27 @@ function generateComponentDoc(componentName: string, category: string): void {
   if (Array.isArray(meta.relatedComponents) && meta.relatedComponents.length > 0) {
     sections.push('## Related Components');
     sections.push('');
-    sections.push(meta.relatedComponents.map((rc: string) => `- [${rc}](/components/${getCategoryForComponent(rc)}/${rc.toLowerCase()}.md)`).join('\n'));
+    sections.push(
+      meta.relatedComponents
+        .map(
+          (rc: string) =>
+            `- [${rc}](/components/${getCategoryForComponent(rc)}/${rc.toLowerCase()}.md)`
+        )
+        .join('\n')
+    );
     sections.push('');
   }
 
   sections.push('---');
   sections.push('');
-  sections.push(`_Generated from TypeScript definitions. [View source](../../src/components/${componentName}/${componentName}.tsx)_`);
+  sections.push(
+    `_Generated from TypeScript definitions. [View source](../../src/components/${componentName}/${componentName}.tsx)_`
+  );
 
   const markdown = sections.join('\n');
 
   // Write markdown file
-  const outputPath = path.join(
-    docsComponents,
-    category,
-    `${componentName.toLowerCase()}.md`
-  );
+  const outputPath = path.join(docsComponents, category, `${componentName.toLowerCase()}.md`);
 
   fs.writeFileSync(outputPath, markdown, 'utf-8');
   console.log(`✅ Generated ${category}/${componentName.toLowerCase()}.md`);
@@ -278,13 +299,15 @@ function generateCategoryIndex(category: string, components: string[]): void {
   const categoryTitle = category.charAt(0).toUpperCase() + category.slice(1);
   const markdown = `# ${categoryTitle} Components
 
-${components.map(comp => {
+${components
+  .map((comp) => {
     const meta = componentRegistry.components[comp];
     return `## [${comp}](./${comp.toLowerCase()}.md)
 
 ${meta?.description || ''}
 `;
-  }).join('\n')}
+  })
+  .join('\n')}
 `;
 
   const outputPath = path.join(docsComponents, category, 'index.md');
@@ -329,17 +352,17 @@ function App() {
 ### [Primitives](/components/primitives/)
 Basic building block components.
 
-${CATEGORIES.primitives.map(c => `- [${c}](/components/primitives/${c.toLowerCase()}.md)`).join('\n')}
+${CATEGORIES.primitives.map((c) => `- [${c}](/components/primitives/${c.toLowerCase()}.md)`).join('\n')}
 
 ### [Composed](/components/composed/)
 Medium complexity, general-purpose components.
 
-${CATEGORIES.composed.map(c => `- [${c}](/components/composed/${c.toLowerCase()}.md)`).join('\n')}
+${CATEGORIES.composed.map((c) => `- [${c}](/components/composed/${c.toLowerCase()}.md)`).join('\n')}
 
 ### [Patterns](/components/patterns/)
 Complex, domain-specific, feature-complete patterns.
 
-${CATEGORIES.patterns.map(c => `- [${c}](/components/patterns/${c.toLowerCase()}.md)`).join('\n')}
+${CATEGORIES.patterns.map((c) => `- [${c}](/components/patterns/${c.toLowerCase()}.md)`).join('\n')}
 
 ## Features
 
@@ -369,7 +392,7 @@ let totalGenerated = 0;
 
 for (const [category, components] of Object.entries(CATEGORIES)) {
   console.log(`\n📂 Category: ${category}`);
-  components.forEach(componentName => {
+  components.forEach((componentName) => {
     try {
       generateComponentDoc(componentName, category);
       totalGenerated++;

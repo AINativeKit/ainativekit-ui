@@ -113,9 +113,7 @@ export const FullscreenMap: React.FC<FullscreenMapProps> = ({
     setIsMounted(true);
   }, []);
 
-  const selectedLocation = selectedId
-    ? locations.find((loc) => loc.id === selectedId)
-    : undefined;
+  const selectedLocation = selectedId ? locations.find((loc) => loc.id === selectedId) : undefined;
 
   // Wrapper for MapSidebar which expects (location: LocationData)
   const handleSidebarSelect = (location: LocationData) => {
@@ -194,19 +192,12 @@ export const FullscreenMap: React.FC<FullscreenMapProps> = ({
       )}
 
       {/* Desktop Sidebar */}
-      <MapSidebar
-        locations={locations}
-        selectedId={selectedId}
-        onSelect={handleSidebarSelect}
-      />
+      <MapSidebar locations={locations} selectedId={selectedId} onSelect={handleSidebarSelect} />
 
       {/* Desktop Inspector (slides in from right) */}
       <AnimatePresence>
         {selectedLocation && (
-          <MapInspector
-            location={selectedLocation}
-            onClose={handleCloseInspector}
-          />
+          <MapInspector location={selectedLocation} onClose={handleCloseInspector} />
         )}
       </AnimatePresence>
 

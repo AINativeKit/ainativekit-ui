@@ -28,7 +28,9 @@ const SkeletonCard: React.FC<{
 
   const handleCopy = () => {
     const widthStr = width ? ` width={${typeof width === 'string' ? `"${width}"` : width}}` : '';
-    const heightStr = height ? ` height={${typeof height === 'string' ? `"${height}"` : height}}` : '';
+    const heightStr = height
+      ? ` height={${typeof height === 'string' ? `"${height}"` : height}}`
+      : '';
     const code = `<Skeleton variant="${variant}"${widthStr}${heightStr} />`;
     navigator.clipboard.writeText(code);
     setCopied(true);
@@ -87,8 +89,16 @@ const SkeletonsComponent: React.FC = () => {
 
       {/* Introduction */}
       <section style={{ marginBottom: '64px' }}>
-        <p style={{ marginBottom: '24px', color: 'var(--ai-color-text-secondary)', fontSize: '16px', lineHeight: '1.6' }}>
-          Loading state placeholders that indicate content is loading. Use skeletons to reduce perceived wait time and improve user experience. Click any skeleton to copy its code.
+        <p
+          style={{
+            marginBottom: '24px',
+            color: 'var(--ai-color-text-secondary)',
+            fontSize: '16px',
+            lineHeight: '1.6',
+          }}
+        >
+          Loading state placeholders that indicate content is loading. Use skeletons to reduce
+          perceived wait time and improve user experience. Click any skeleton to copy its code.
         </p>
       </section>
 
@@ -101,7 +111,13 @@ const SkeletonsComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '16px' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
+            gap: '16px',
+          }}
+        >
           <SkeletonCard
             variant="rectangular"
             width={160}
@@ -134,23 +150,45 @@ const SkeletonsComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '24px' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+            gap: '24px',
+          }}
+        >
           <div>
-            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px' }}>With Animation (Default)</h3>
+            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px' }}>
+              With Animation (Default)
+            </h3>
             <Card elevationLevel={1} style={{ padding: '16px' }}>
               <Skeleton width={200} height={100} />
             </Card>
-            <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginTop: '8px' }}>
+            <p
+              style={{
+                fontSize: '12px',
+                color: 'var(--ai-color-text-secondary)',
+                marginTop: '8px',
+              }}
+            >
               Smooth wave animation
             </p>
           </div>
 
           <div>
-            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px' }}>Without Animation</h3>
+            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px' }}>
+              Without Animation
+            </h3>
             <Card elevationLevel={1} style={{ padding: '16px' }}>
               <Skeleton width={200} height={100} animation={false} />
             </Card>
-            <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginTop: '8px' }}>
+            <p
+              style={{
+                fontSize: '12px',
+                color: 'var(--ai-color-text-secondary)',
+                marginTop: '8px',
+              }}
+            >
               Static placeholder
             </p>
           </div>
@@ -161,16 +199,30 @@ const SkeletonsComponent: React.FC = () => {
       <section style={{ marginBottom: '64px' }}>
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Real-World Examples</h2>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+            gap: '24px',
+          }}
+        >
           {/* Card Loading */}
           <div>
-            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px' }}>Card Loading</h3>
+            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px' }}>
+              Card Loading
+            </h3>
             <Card elevationLevel={1} style={{ padding: '16px' }}>
               <Skeleton variant="rectangular" height={180} style={{ marginBottom: 12 }} />
               <Skeleton variant="text" width="60%" style={{ marginBottom: 8 }} />
               <Skeleton variant="text" width="80%" />
             </Card>
-            <details style={{ marginTop: '8px', fontSize: '12px', color: 'var(--ai-color-text-secondary)' }}>
+            <details
+              style={{
+                marginTop: '8px',
+                fontSize: '12px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               <summary style={{ cursor: 'pointer', userSelect: 'none' }}>View code</summary>
               <pre style={codeBlockStyles.inline}>
                 {`<Skeleton height={180} style={{ marginBottom: 12 }} />
@@ -182,7 +234,9 @@ const SkeletonsComponent: React.FC = () => {
 
           {/* Profile Loading */}
           <div>
-            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px' }}>Profile Loading</h3>
+            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px' }}>
+              Profile Loading
+            </h3>
             <Card elevationLevel={1} style={{ padding: '16px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                 <Skeleton variant="circular" width={48} height={48} />
@@ -192,7 +246,13 @@ const SkeletonsComponent: React.FC = () => {
                 </div>
               </div>
             </Card>
-            <details style={{ marginTop: '8px', fontSize: '12px', color: 'var(--ai-color-text-secondary)' }}>
+            <details
+              style={{
+                marginTop: '8px',
+                fontSize: '12px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               <summary style={{ cursor: 'pointer', userSelect: 'none' }}>View code</summary>
               <pre style={codeBlockStyles.inline}>
                 {`<div style={{ display: 'flex', gap: 12 }}>
@@ -208,10 +268,20 @@ const SkeletonsComponent: React.FC = () => {
 
           {/* List Loading */}
           <div>
-            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px' }}>List Loading</h3>
+            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px' }}>
+              List Loading
+            </h3>
             <Card elevationLevel={1} style={{ padding: '16px' }}>
-              {[1, 2, 3].map(i => (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: i < 3 ? 16 : 0 }}>
+              {[1, 2, 3].map((i) => (
+                <div
+                  key={i}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 12,
+                    marginBottom: i < 3 ? 16 : 0,
+                  }}
+                >
                   <Skeleton variant="circular" width={32} height={32} />
                   <div style={{ flex: 1 }}>
                     <Skeleton variant="text" width="70%" />
@@ -219,7 +289,13 @@ const SkeletonsComponent: React.FC = () => {
                 </div>
               ))}
             </Card>
-            <details style={{ marginTop: '8px', fontSize: '12px', color: 'var(--ai-color-text-secondary)' }}>
+            <details
+              style={{
+                marginTop: '8px',
+                fontSize: '12px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               <summary style={{ cursor: 'pointer', userSelect: 'none' }}>View code</summary>
               <pre style={codeBlockStyles.inline}>
                 {`{items.map(item => (
@@ -234,22 +310,45 @@ const SkeletonsComponent: React.FC = () => {
 
           {/* Table Loading */}
           <div>
-            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px' }}>Table Loading</h3>
+            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px' }}>
+              Table Loading
+            </h3>
             <Card elevationLevel={1} style={{ padding: '16px' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr 1fr', gap: 12, marginBottom: 12 }}>
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 2fr 1fr',
+                  gap: 12,
+                  marginBottom: 12,
+                }}
+              >
                 <Skeleton variant="text" width="100%" />
                 <Skeleton variant="text" width="100%" />
                 <Skeleton variant="text" width="100%" />
               </div>
-              {[1, 2, 3].map(i => (
-                <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 2fr 1fr', gap: 12, marginBottom: i < 3 ? 8 : 0 }}>
+              {[1, 2, 3].map((i) => (
+                <div
+                  key={i}
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: '1fr 2fr 1fr',
+                    gap: 12,
+                    marginBottom: i < 3 ? 8 : 0,
+                  }}
+                >
                   <Skeleton variant="text" width="80%" />
                   <Skeleton variant="text" width="90%" />
                   <Skeleton variant="text" width="60%" />
                 </div>
               ))}
             </Card>
-            <details style={{ marginTop: '8px', fontSize: '12px', color: 'var(--ai-color-text-secondary)' }}>
+            <details
+              style={{
+                marginTop: '8px',
+                fontSize: '12px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               <summary style={{ cursor: 'pointer', userSelect: 'none' }}>View code</summary>
               <pre style={codeBlockStyles.inline}>
                 {`<div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr 1fr', gap: 12 }}>
@@ -266,12 +365,29 @@ const SkeletonsComponent: React.FC = () => {
       {/* Usage */}
       <section style={{ marginBottom: '64px' }}>
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Usage</h2>
-        
+
         <details style={{ marginBottom: '16px' }}>
-          <summary style={{ cursor: 'pointer', fontWeight: 600, padding: '12px', background: 'var(--ai-color-bg-secondary)', borderRadius: '8px', userSelect: 'none' }}>
+          <summary
+            style={{
+              cursor: 'pointer',
+              fontWeight: 600,
+              padding: '12px',
+              background: 'var(--ai-color-bg-secondary)',
+              borderRadius: '8px',
+              userSelect: 'none',
+            }}
+          >
             Basic Card Loading
           </summary>
-          <pre style={{ marginTop: '12px', padding: '16px', background: 'var(--ai-color-bg-secondary)', borderRadius: '8px', overflow: 'auto' }}>
+          <pre
+            style={{
+              marginTop: '12px',
+              padding: '16px',
+              background: 'var(--ai-color-bg-secondary)',
+              borderRadius: '8px',
+              overflow: 'auto',
+            }}
+          >
             {`import { Skeleton } from '@ainativekit/ui/primitives';
 
 function CardLoading() {
@@ -287,10 +403,27 @@ function CardLoading() {
         </details>
 
         <details style={{ marginBottom: '16px' }}>
-          <summary style={{ cursor: 'pointer', fontWeight: 600, padding: '12px', background: 'var(--ai-color-bg-secondary)', borderRadius: '8px', userSelect: 'none' }}>
+          <summary
+            style={{
+              cursor: 'pointer',
+              fontWeight: 600,
+              padding: '12px',
+              background: 'var(--ai-color-bg-secondary)',
+              borderRadius: '8px',
+              userSelect: 'none',
+            }}
+          >
             With Loading State
           </summary>
-          <pre style={{ marginTop: '12px', padding: '16px', background: 'var(--ai-color-bg-secondary)', borderRadius: '8px', overflow: 'auto' }}>
+          <pre
+            style={{
+              marginTop: '12px',
+              padding: '16px',
+              background: 'var(--ai-color-bg-secondary)',
+              borderRadius: '8px',
+              overflow: 'auto',
+            }}
+          >
             {`import { Skeleton } from '@ainativekit/ui/primitives';
 
 function UserProfile({ loading, user }) {
@@ -320,10 +453,27 @@ function UserProfile({ loading, user }) {
         </details>
 
         <details>
-          <summary style={{ cursor: 'pointer', fontWeight: 600, padding: '12px', background: 'var(--ai-color-bg-secondary)', borderRadius: '8px', userSelect: 'none' }}>
+          <summary
+            style={{
+              cursor: 'pointer',
+              fontWeight: 600,
+              padding: '12px',
+              background: 'var(--ai-color-bg-secondary)',
+              borderRadius: '8px',
+              userSelect: 'none',
+            }}
+          >
             Custom Width and Height
           </summary>
-          <pre style={{ marginTop: '12px', padding: '16px', background: 'var(--ai-color-bg-secondary)', borderRadius: '8px', overflow: 'auto' }}>
+          <pre
+            style={{
+              marginTop: '12px',
+              padding: '16px',
+              background: 'var(--ai-color-bg-secondary)',
+              borderRadius: '8px',
+              overflow: 'auto',
+            }}
+          >
             {`import { Skeleton } from '@ainativekit/ui/primitives';
 import { codeBlockStyles } from '../storybook/codeBlockStyles';
 
@@ -349,17 +499,19 @@ function CustomSkeleton() {
       {/* Props */}
       <section style={{ marginBottom: '64px' }}>
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Props</h2>
-        
+
         <PropsTable
           hideThemeColumn
           rows={[
             {
               name: 'variant',
-              description: 'Shape variant. Options: "rectangular" | "text" | "circular". Default: "rectangular"',
+              description:
+                'Shape variant. Options: "rectangular" | "text" | "circular". Default: "rectangular"',
             },
             {
               name: 'width',
-              description: 'Width of skeleton. Accepts number (px) or CSS string (e.g., "100%", "20rem")',
+              description:
+                'Width of skeleton. Accepts number (px) or CSS string (e.g., "100%", "20rem")',
             },
             {
               name: 'height',

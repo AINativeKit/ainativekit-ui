@@ -10,9 +10,9 @@ export interface CardChipProps extends ChipProps {
 
 /**
  * Card.Chip - Wrapper around the Chip primitive optimized for card usage
- * 
+ *
  * Use Chip for text labels, tags, and categories (vs Badge for counts/dots).
- * 
+ *
  * @example
  * ```tsx
  * <Card.Body>
@@ -22,7 +22,7 @@ export interface CardChipProps extends ChipProps {
  *   </div>
  * </Card.Body>
  * ```
- * 
+ *
  * @example
  * ```tsx
  * <Card.Header>

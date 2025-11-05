@@ -57,7 +57,11 @@ export const FilmStrip: React.FC<FilmStripProps> = ({
   className,
 }) => {
   return (
-    <div className={cn(styles.filmStrip, className)} role="navigation" aria-label="Photo thumbnails">
+    <div
+      className={cn(styles.filmStrip, className)}
+      role="navigation"
+      aria-label="Photo thumbnails"
+    >
       <div className={styles.thumbnailList}>
         {photos.map((photo, index) => {
           const isSelected = index === selectedIndex;
@@ -66,10 +70,7 @@ export const FilmStrip: React.FC<FilmStripProps> = ({
               key={photo.id}
               type="button"
               onClick={() => onSelect?.(index)}
-              className={cn(
-                styles.thumbnail,
-                isSelected && styles.thumbnailSelected
-              )}
+              className={cn(styles.thumbnail, isSelected && styles.thumbnailSelected)}
               aria-label={photo.title || `Photo ${index + 1} of ${photos.length}`}
               aria-current={isSelected ? 'true' : undefined}
             >

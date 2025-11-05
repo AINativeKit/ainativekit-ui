@@ -107,11 +107,7 @@ export const Map: React.FC<MapProps> = ({
     <>
       {/* Compact Map */}
       {!isFullscreen && (
-        <CompactMap
-          {...commonMapProps}
-          onExpand={handleExpand}
-          {...compactMapProps}
-        />
+        <CompactMap {...commonMapProps} onExpand={handleExpand} {...compactMapProps} />
       )}
 
       {/* Fullscreen Map */}

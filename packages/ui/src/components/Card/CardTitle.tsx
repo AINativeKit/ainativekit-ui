@@ -15,21 +15,14 @@ export interface CardTitleProps extends ComponentPropsWithoutRef<'h2'> {
   'data-testid'?: string;
 }
 
-export const CardTitle = React.forwardRef<HTMLHeadingElement, CardTitleProps>(
-  (props, ref) => {
-    const { as: Component = 'h2', className, children, 'data-testid': testId, ...rest } = props;
+export const CardTitle = React.forwardRef<HTMLHeadingElement, CardTitleProps>((props, ref) => {
+  const { as: Component = 'h2', className, children, 'data-testid': testId, ...rest } = props;
 
-    return (
-      <Component
-        ref={ref}
-        className={cn(styles.cardTitle, className)}
-        data-testid={testId}
-        {...rest}
-      >
-        {children}
-      </Component>
-    );
-  }
-);
+  return (
+    <Component ref={ref} className={cn(styles.cardTitle, className)} data-testid={testId} {...rest}>
+      {children}
+    </Component>
+  );
+});
 
 CardTitle.displayName = 'Card.Title';

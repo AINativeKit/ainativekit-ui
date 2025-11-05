@@ -49,13 +49,7 @@ describe('AlbumCard', () => {
         // Intentionally NOT calling preventDefault
       });
 
-      render(
-        <AlbumCard 
-          album={mockAlbum} 
-          onSelect={handleSelect}
-          onClick={handleClick}
-        />
-      );
+      render(<AlbumCard album={mockAlbum} onSelect={handleSelect} onClick={handleClick} />);
 
       const button = screen.getByRole('button');
       await user.click(button);
@@ -73,13 +67,7 @@ describe('AlbumCard', () => {
         event.preventDefault(); // Prevent default behavior
       });
 
-      render(
-        <AlbumCard 
-          album={mockAlbum} 
-          onSelect={handleSelect}
-          onClick={handleClick}
-        />
-      );
+      render(<AlbumCard album={mockAlbum} onSelect={handleSelect} onClick={handleClick} />);
 
       const button = screen.getByRole('button');
       await user.click(button);
@@ -116,7 +104,7 @@ describe('AlbumCard', () => {
 
     it('does nothing when neither onClick nor onSelect is provided', async () => {
       const user = userEvent.setup();
-      
+
       // Should not throw an error
       render(<AlbumCard album={mockAlbum} />);
 
@@ -151,13 +139,7 @@ describe('AlbumCard', () => {
         event.preventDefault();
       });
 
-      render(
-        <AlbumCard 
-          album={mockAlbum} 
-          onSelect={handleSelect}
-          onClick={parentClick}
-        />
-      );
+      render(<AlbumCard album={mockAlbum} onSelect={handleSelect} onClick={parentClick} />);
 
       const button = screen.getByRole('button');
       await user.click(button);
@@ -197,14 +179,8 @@ describe('AlbumCard', () => {
     });
 
     it('passes through additional button props', () => {
-      render(
-        <AlbumCard 
-          album={mockAlbum} 
-          data-testid="custom-album"
-          aria-label="Custom label"
-        />
-      );
-      
+      render(<AlbumCard album={mockAlbum} data-testid="custom-album" aria-label="Custom label" />);
+
       const button = screen.getByTestId('custom-album');
       expect(button).toBeInTheDocument();
       expect(button.getAttribute('aria-label')).toBe('Custom label');
@@ -250,18 +226,18 @@ describe('AlbumCard', () => {
   describe('Loading State', () => {
     it('shows loading skeleton when loading prop is true', () => {
       const { container } = render(<AlbumCard album={mockAlbum} loading={true} />);
-      
+
       // Check for skeleton elements using class names
       const skeletons = container.querySelectorAll('[class*="skeleton"]');
       expect(skeletons.length).toBeGreaterThan(0);
-      
+
       // Should announce loading for screen readers
       expect(screen.getByText('Loading album')).toBeInTheDocument();
     });
 
     it('hides content when loading', () => {
       render(<AlbumCard album={mockAlbum} loading={true} />);
-      
+
       // Album content should not be visible
       expect(screen.queryByAltText('Test Album')).not.toBeInTheDocument();
       expect(screen.queryByText('Test Album')).not.toBeInTheDocument();
@@ -269,7 +245,7 @@ describe('AlbumCard', () => {
 
     it('has proper loading accessibility attributes', () => {
       const { container } = render(<AlbumCard album={mockAlbum} loading={true} />);
-      
+
       const loadingCard = container.firstChild as HTMLElement;
       expect(loadingCard.getAttribute('role')).toBe('status');
       expect(loadingCard.getAttribute('aria-live')).toBe('polite');
@@ -279,35 +255,29 @@ describe('AlbumCard', () => {
   describe('Error State', () => {
     it('shows error message when error prop is true', () => {
       render(<AlbumCard album={mockAlbum} error={true} />);
-      
+
       // Default error title
       expect(screen.getByText('Failed to load')).toBeInTheDocument();
     });
 
     it('shows custom error title and message', () => {
       render(
-        <AlbumCard 
-          album={mockAlbum} 
+        <AlbumCard
+          album={mockAlbum}
           error={true}
           errorTitle="Album Unavailable"
           errorMessage="This album could not be loaded"
         />
       );
-      
+
       expect(screen.getByText('Album Unavailable')).toBeInTheDocument();
       expect(screen.getByText('This album could not be loaded')).toBeInTheDocument();
     });
 
     it('shows retry button when onErrorRetry provided', () => {
       const handleRetry = vi.fn();
-      render(
-        <AlbumCard 
-          album={mockAlbum} 
-          error={true}
-          onErrorRetry={handleRetry}
-        />
-      );
-      
+      render(<AlbumCard album={mockAlbum} error={true} onErrorRetry={handleRetry} />);
+
       const retryButton = screen.getByRole('button');
       expect(retryButton).toBeInTheDocument();
     });
@@ -315,24 +285,18 @@ describe('AlbumCard', () => {
     it('calls onErrorRetry when retry button clicked', async () => {
       const user = userEvent.setup();
       const handleRetry = vi.fn();
-      
-      render(
-        <AlbumCard 
-          album={mockAlbum} 
-          error={true}
-          onErrorRetry={handleRetry}
-        />
-      );
-      
+
+      render(<AlbumCard album={mockAlbum} error={true} onErrorRetry={handleRetry} />);
+
       const retryButton = screen.getByRole('button');
       await user.click(retryButton);
-      
+
       expect(handleRetry).toHaveBeenCalledTimes(1);
     });
 
     it('hides content when error is true', () => {
       render(<AlbumCard album={mockAlbum} error={true} />);
-      
+
       expect(screen.queryByAltText('Test Album')).not.toBeInTheDocument();
     });
   });
@@ -347,26 +311,26 @@ describe('AlbumCard', () => {
 
     it('shows empty state when album has no content', () => {
       render(<AlbumCard album={emptyAlbum} />);
-      
+
       expect(screen.getByText('No album')).toBeInTheDocument();
     });
 
     it('shows custom empty title and message', () => {
       render(
-        <AlbumCard 
-          album={emptyAlbum} 
+        <AlbumCard
+          album={emptyAlbum}
           emptyTitle="No photos yet"
           emptyMessage="Add photos to get started"
         />
       );
-      
+
       expect(screen.getByText('No photos yet')).toBeInTheDocument();
       expect(screen.getByText('Add photos to get started')).toBeInTheDocument();
     });
 
     it('does not show empty state when album has content', () => {
       render(<AlbumCard album={mockAlbum} />);
-      
+
       expect(screen.queryByText('No album')).not.toBeInTheDocument();
     });
   });
@@ -374,7 +338,7 @@ describe('AlbumCard', () => {
   describe('State Priority', () => {
     it('loading takes priority over error', () => {
       render(<AlbumCard album={mockAlbum} loading={true} error={true} />);
-      
+
       // Should show loading, not error
       expect(screen.getByText('Loading album')).toBeInTheDocument();
       expect(screen.queryByText('Failed to load')).not.toBeInTheDocument();
@@ -387,9 +351,9 @@ describe('AlbumCard', () => {
         cover: '',
         photos: [],
       };
-      
+
       render(<AlbumCard album={emptyAlbum} error={true} />);
-      
+
       // Should show error, not empty
       expect(screen.getByText('Failed to load')).toBeInTheDocument();
       expect(screen.queryByText('No album')).not.toBeInTheDocument();
@@ -399,14 +363,14 @@ describe('AlbumCard', () => {
   describe('Lazy Loading', () => {
     it('enables lazy loading by default', () => {
       render(<AlbumCard album={mockAlbum} />);
-      
+
       const img = screen.getByAltText('Test Album') as HTMLImageElement;
       expect(img.getAttribute('loading')).toBe('lazy');
     });
 
     it('disables lazy loading when imageLazy is false', () => {
       render(<AlbumCard album={mockAlbum} imageLazy={false} />);
-      
+
       const img = screen.getByAltText('Test Album') as HTMLImageElement;
       expect(img.getAttribute('loading')).toBe('eager');
     });
@@ -416,20 +380,20 @@ describe('AlbumCard', () => {
     it('calls onImageLoad when cover image loads', () => {
       const handleImageLoad = vi.fn();
       render(<AlbumCard album={mockAlbum} onImageLoad={handleImageLoad} />);
-      
+
       const img = screen.getByAltText('Test Album') as HTMLImageElement;
       img.dispatchEvent(new Event('load', { bubbles: true }));
-      
+
       expect(handleImageLoad).toHaveBeenCalledTimes(1);
     });
 
     it('calls onImageError when cover image fails', () => {
       const handleImageError = vi.fn();
       render(<AlbumCard album={mockAlbum} onImageError={handleImageError} />);
-      
+
       const img = screen.getByAltText('Test Album') as HTMLImageElement;
       img.dispatchEvent(new Event('error', { bubbles: true }));
-      
+
       expect(handleImageError).toHaveBeenCalledTimes(1);
     });
   });
@@ -437,19 +401,19 @@ describe('AlbumCard', () => {
   describe('Badge Support', () => {
     it('renders badge when badge prop provided', () => {
       render(<AlbumCard album={mockAlbum} badge="New" />);
-      
+
       expect(screen.getByText('New')).toBeInTheDocument();
     });
 
     it('renders badge with number', () => {
       render(<AlbumCard album={mockAlbum} badge={42} />);
-      
+
       expect(screen.getByText('42')).toBeInTheDocument();
     });
 
     it('positions badge at top-right by default', () => {
       const { container } = render(<AlbumCard album={mockAlbum} badge="New" />);
-      
+
       const badgeContainer = container.querySelector('[class*="badge"]');
       expect(badgeContainer?.className).toContain('badgeTopRight');
     });
@@ -458,14 +422,14 @@ describe('AlbumCard', () => {
       const { container } = render(
         <AlbumCard album={mockAlbum} badge="New" badgePosition="top-left" />
       );
-      
+
       const badgeContainer = container.querySelector('[class*="badgeTopLeft"]');
       expect(badgeContainer).toBeInTheDocument();
     });
 
     it('does not render badge when not provided', () => {
       const { container } = render(<AlbumCard album={mockAlbum} />);
-      
+
       const badgeContainer = container.querySelector('[class*="badge"]');
       expect(badgeContainer).not.toBeInTheDocument();
     });
@@ -474,28 +438,28 @@ describe('AlbumCard', () => {
   describe('Multi-line Text', () => {
     it('uses single line for title by default', () => {
       const { container } = render(<AlbumCard album={mockAlbum} />);
-      
+
       const title = container.querySelector('[class*="title"]');
       expect(title?.className).not.toContain('titleLines');
     });
 
     it('applies 2-line clamp to title when specified', () => {
       const { container } = render(<AlbumCard album={mockAlbum} titleLines={2} />);
-      
+
       const title = container.querySelector('[class*="titleLines2"]');
       expect(title).toBeInTheDocument();
     });
 
     it('applies 3-line clamp to title when specified', () => {
       const { container } = render(<AlbumCard album={mockAlbum} titleLines={3} />);
-      
+
       const title = container.querySelector('[class*="titleLines3"]');
       expect(title).toBeInTheDocument();
     });
 
     it('applies 2-line clamp to subtitle when specified', () => {
       const { container } = render(<AlbumCard album={mockAlbum} subtitleLines={2} />);
-      
+
       const subtitle = container.querySelector('[class*="subtitleLines2"]');
       expect(subtitle).toBeInTheDocument();
     });

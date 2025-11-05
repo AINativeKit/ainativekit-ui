@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.4.0] - 2025-11-03
 
 ### Added
+
 - **ThemeProvider**: New provider component for programmatic theme control
   - Enables theme switching in standalone apps and development environments
   - Respects ChatGPT theme authority when running inside ChatGPT (read-only mode)
@@ -22,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Documents when to consider pagination vs virtualization
 
 ### Changed
+
 - **useTheme()**: Enhanced to return object with `{ theme, setTheme, isControlledByChatGPT }`
   - **Breaking Change**: Previously returned `Theme | null`, now returns `UseThemeResult` object
   - Works seamlessly with or without ThemeProvider
@@ -33,6 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Focus on actual benefits: type safety, autocompletion, semantic categories
 
 ### Fixed
+
 - Icon data generation script now handles missing source directory gracefully
 - Storybook build no longer fails when icon source files are unavailable
 - ESLint errors in theme implementation (Rules of Hooks violations)
@@ -42,20 +45,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 #### Components
+
 - **Core Primitives** (Production-Ready): Button, Icon, Badge, Chip, Alert, Skeleton, Feature, Card (Base)
-- **Example Patterns** (Reference Implementations): 
+- **Example Patterns** (Reference Implementations):
   - Card Variants (Image, Summary, List, Discovery)
   - Carousel, List
   - Album (photo gallery pattern - adapt for your media type)
   - Map (location pattern - adapt for your data source)
 
 #### Design System
+
 - Complete design token system (colors, typography, spacing, elevation, radius, opacity)
 - 417 fully type-safe icons across 7 categories
 - Light and dark theme support
 - CSS custom properties for all tokens
 
 #### OpenAI Integration
+
 - `useOpenAiGlobal()` - Access ChatGPT global object
 - `useWidgetProps()` - Widget-specific props management
 - `useWidgetState()` - State management for widgets
@@ -63,6 +69,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `useDisplayMode()` - Detect display mode (inline/fullscreen)
 
 #### Developer Experience
+
 - Full TypeScript support with JSDoc documentation
 - ESM and CJS builds
 - Multiple export paths for granular imports
@@ -71,10 +78,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Custom ESLint rule for tier dependency enforcement
 
 #### Documentation
+
 - 29 Storybook stories with interactive examples
 - Gallery examples showing real-world patterns
 
 ### Infrastructure
+
 - pnpm workspace monorepo setup
 - Vite build system
 - Vitest testing setup

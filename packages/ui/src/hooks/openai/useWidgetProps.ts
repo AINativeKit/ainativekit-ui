@@ -1,14 +1,12 @@
 import { useOpenAiGlobal } from './useOpenAiGlobal';
 
-export function useWidgetProps<T extends Record<string, unknown>>(
-  defaultState?: T | (() => T)
-): T {
+export function useWidgetProps<T extends Record<string, unknown>>(defaultState?: T | (() => T)): T {
   const props = useOpenAiGlobal('toolOutput') as T | null;
 
   const fallback =
     typeof defaultState === 'function'
       ? (defaultState as () => T | null)()
-      : defaultState ?? null;
+      : (defaultState ?? null);
 
   return (props ?? fallback) as T;
 }

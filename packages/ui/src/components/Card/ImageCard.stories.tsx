@@ -33,9 +33,17 @@ const ImageCardsComponent: React.FC = () => {
 
       {/* Introduction */}
       <section style={{ marginBottom: '64px' }}>
-        <p style={{ marginBottom: '24px', color: 'var(--ai-color-text-secondary)', fontSize: '16px', lineHeight: '1.6' }}>
-          Cards with background images designed for visual content like menus, galleries, and product showcases.
-          Supports multiple image positions, content overlays, loading states, error handling, and badges.
+        <p
+          style={{
+            marginBottom: '24px',
+            color: 'var(--ai-color-text-secondary)',
+            fontSize: '16px',
+            lineHeight: '1.6',
+          }}
+        >
+          Cards with background images designed for visual content like menus, galleries, and
+          product showcases. Supports multiple image positions, content overlays, loading states,
+          error handling, and badges.
         </p>
       </section>
 
@@ -48,7 +56,14 @@ const ImageCardsComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
           <ImageCard
             image={SAMPLE_IMAGES.pasta}
             imagePosition="center"
@@ -88,11 +103,15 @@ const ImageCardsComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px', alignItems: 'start' }}>
-          <ImageCard
-            image={SAMPLE_IMAGES.pizza}
-            style={{ maxWidth: `${CARD_WIDTH}px` }}
-          />
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
+          <ImageCard image={SAMPLE_IMAGES.pizza} style={{ maxWidth: `${CARD_WIDTH}px` }} />
           <ImageCard
             image={SAMPLE_IMAGES.pasta}
             title="With Title Only"
@@ -124,7 +143,7 @@ const ImageCardsComponent: React.FC = () => {
           <ImageCard
             image={{
               src: SAMPLE_IMAGES.pizza,
-              alt: 'Delicious margherita pizza with fresh basil leaves'
+              alt: 'Delicious margherita pizza with fresh basil leaves',
             }}
             title="With Alt Text"
             subtitle="Better accessibility"
@@ -144,7 +163,14 @@ const ImageCardsComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
           <ImageCard
             image={SAMPLE_IMAGES.pizza}
             title="Loading Card"
@@ -166,7 +192,14 @@ const ImageCardsComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
           <ImageCard
             image={SAMPLE_IMAGES.pizza}
             title="Default Error"
@@ -200,7 +233,14 @@ const ImageCardsComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
           <ImageCard
             image={SAMPLE_IMAGES.pizza}
             title="Interactive Card"
@@ -243,19 +283,59 @@ const ImageCardsComponent: React.FC = () => {
         <header style={{ marginBottom: '24px' }}>
           <h2 style={{ marginBottom: '8px' }}>Badge & Chip Support</h2>
           <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
-            Add status indicators to cards. The component automatically chooses the best presentation:
+            Add status indicators to cards. The component automatically chooses the best
+            presentation:
+            <br />• <strong>Short content (4 chars or less)</strong>: "New", "5", "✓" → Uses Badge
+            (circular)
+            <br />• <strong>Longer content (more than 4 chars)</strong>: "Featured", "On Sale" →
+            Uses Chip (pill-shaped)
             <br />
-            • <strong>Short content (4 chars or less)</strong>: "New", "5", "✓" → Uses Badge (circular)
-            <br />
-            • <strong>Longer content (more than 4 chars)</strong>: "Featured", "On Sale" → Uses Chip (pill-shaped)
-            <br />
-            For best visibility on images, use <code style={{ background: 'var(--ai-color-bg-tertiary)', padding: '2px 6px', borderRadius: '4px', fontFamily: 'monospace', fontSize: '12px' }}>badgeVariant="filled"</code> or <code style={{ background: 'var(--ai-color-bg-tertiary)', padding: '2px 6px', borderRadius: '4px', fontFamily: 'monospace', fontSize: '12px' }}>badgeVariant="neutral"</code>
+            For best visibility on images, use{' '}
+            <code
+              style={{
+                background: 'var(--ai-color-bg-tertiary)',
+                padding: '2px 6px',
+                borderRadius: '4px',
+                fontFamily: 'monospace',
+                fontSize: '12px',
+              }}
+            >
+              badgeVariant="filled"
+            </code>{' '}
+            or{' '}
+            <code
+              style={{
+                background: 'var(--ai-color-bg-tertiary)',
+                padding: '2px 6px',
+                borderRadius: '4px',
+                fontFamily: 'monospace',
+                fontSize: '12px',
+              }}
+            >
+              badgeVariant="neutral"
+            </code>
           </p>
         </header>
 
         <div style={{ marginBottom: '32px' }}>
-          <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-secondary)' }}>Short Content - Badge (4 chars or less)</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px', alignItems: 'start' }}>
+          <h3
+            style={{
+              fontSize: '14px',
+              fontWeight: 600,
+              marginBottom: '12px',
+              color: 'var(--ai-color-text-secondary)',
+            }}
+          >
+            Short Content - Badge (4 chars or less)
+          </h3>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+              gap: '24px',
+              alignItems: 'start',
+            }}
+          >
             <ImageCard
               image={SAMPLE_IMAGES.pizza}
               title="Badge - Top Right"
@@ -291,11 +371,34 @@ const ImageCardsComponent: React.FC = () => {
         </div>
 
         <div style={{ marginBottom: '32px' }}>
-          <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-secondary)' }}>Longer Content - Chip (more than 4 chars)</h3>
-          <p style={{ color: 'var(--ai-color-text-secondary)', fontSize: '12px', marginBottom: '16px' }}>
-            When badge text exceeds 4 characters, the component automatically renders as a Chip (pill-shaped) instead of a Badge for better visual balance.
+          <h3
+            style={{
+              fontSize: '14px',
+              fontWeight: 600,
+              marginBottom: '12px',
+              color: 'var(--ai-color-text-secondary)',
+            }}
+          >
+            Longer Content - Chip (more than 4 chars)
+          </h3>
+          <p
+            style={{
+              color: 'var(--ai-color-text-secondary)',
+              fontSize: '12px',
+              marginBottom: '16px',
+            }}
+          >
+            When badge text exceeds 4 characters, the component automatically renders as a Chip
+            (pill-shaped) instead of a Badge for better visual balance.
           </p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px', alignItems: 'start' }}>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+              gap: '24px',
+              alignItems: 'start',
+            }}
+          >
             <ImageCard
               image={SAMPLE_IMAGES.pizza}
               title="Featured"
@@ -342,11 +445,34 @@ const ImageCardsComponent: React.FC = () => {
         </div>
 
         <div>
-          <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-secondary)' }}>Other Badge Variants (Not Recommended for Images)</h3>
-          <p style={{ color: 'var(--ai-color-text-secondary)', fontSize: '12px', marginBottom: '16px' }}>
-            These variants use transparent backgrounds and may have low contrast on images. Consider using filled or neutral variants instead.
+          <h3
+            style={{
+              fontSize: '14px',
+              fontWeight: 600,
+              marginBottom: '12px',
+              color: 'var(--ai-color-text-secondary)',
+            }}
+          >
+            Other Badge Variants (Not Recommended for Images)
+          </h3>
+          <p
+            style={{
+              color: 'var(--ai-color-text-secondary)',
+              fontSize: '12px',
+              marginBottom: '16px',
+            }}
+          >
+            These variants use transparent backgrounds and may have low contrast on images. Consider
+            using filled or neutral variants instead.
           </p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px', alignItems: 'start' }}>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+              gap: '24px',
+              alignItems: 'start',
+            }}
+          >
             <ImageCard
               image={SAMPLE_IMAGES.pizza}
               title="Success Badge"
@@ -401,8 +527,17 @@ const ImageCardsComponent: React.FC = () => {
         </header>
 
         <div style={{ marginBottom: '32px' }}>
-          <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '16px' }}>Restaurant Menu Grid</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px', alignItems: 'start' }}>
+          <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '16px' }}>
+            Restaurant Menu Grid
+          </h3>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+              gap: '24px',
+              alignItems: 'start',
+            }}
+          >
             <ImageCard
               image={SAMPLE_IMAGES.pizza}
               title="Margherita Pizza"
@@ -447,8 +582,17 @@ const ImageCardsComponent: React.FC = () => {
         </div>
 
         <div style={{ marginBottom: '32px' }}>
-          <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '16px' }}>Elevation Levels</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px', alignItems: 'start' }}>
+          <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '16px' }}>
+            Elevation Levels
+          </h3>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+              gap: '24px',
+              alignItems: 'start',
+            }}
+          >
             <ImageCard
               image={SAMPLE_IMAGES.pizza}
               title="Elevation 0"
@@ -481,7 +625,14 @@ const ImageCardsComponent: React.FC = () => {
 
         <div>
           <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '16px' }}>Custom Sizing</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px', alignItems: 'start' }}>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+              gap: '24px',
+              alignItems: 'start',
+            }}
+          >
             <ImageCard
               image={SAMPLE_IMAGES.dessert}
               title="16:9 Wide Card"
@@ -533,7 +684,9 @@ function Component() {
         </details>
 
         <details style={{ marginBottom: '16px', cursor: 'pointer' }}>
-          <summary style={{ fontWeight: 600, marginBottom: '12px' }}>Image Position Variations</summary>
+          <summary style={{ fontWeight: 600, marginBottom: '12px' }}>
+            Image Position Variations
+          </summary>
           <pre style={codeBlockStyles.primary}>{`// Center position (default)
 <ImageCard imagePosition="center" {...props} />
 
@@ -545,7 +698,9 @@ function Component() {
         </details>
 
         <details style={{ marginBottom: '16px', cursor: 'pointer' }}>
-          <summary style={{ fontWeight: 600, marginBottom: '12px' }}>Loading & Error States</summary>
+          <summary style={{ fontWeight: 600, marginBottom: '12px' }}>
+            Loading & Error States
+          </summary>
           <pre style={codeBlockStyles.primary}>{`// Loading state
 <ImageCard loading {...props} />
 
@@ -633,7 +788,8 @@ function Component() {
             {
               name: 'actionLabel',
               type: 'string',
-              description: 'Accessibility label for action button (required when actionIcon provided)',
+              description:
+                'Accessibility label for action button (required when actionIcon provided)',
             },
             {
               name: 'onAction',
@@ -687,7 +843,8 @@ function Component() {
             {
               name: 'badge',
               type: 'string | number',
-              description: 'Badge content (text or number). Display status indicators like "New", "Sale", or numeric counts.',
+              description:
+                'Badge content (text or number). Display status indicators like "New", "Sale", or numeric counts.',
             },
             {
               name: 'badgePosition',
@@ -699,7 +856,8 @@ function Component() {
               name: 'badgeVariant',
               type: "BadgeProps['variant']",
               default: "'default'",
-              description: 'Badge styling variant. For images, use "filled" or "neutral" for better contrast. Other variants (default, success, warning, error) use transparent backgrounds and may have low visibility on images.',
+              description:
+                'Badge styling variant. For images, use "filled" or "neutral" for better contrast. Other variants (default, success, warning, error) use transparent backgrounds and may have low visibility on images.',
             },
             {
               name: 'titleLines',
@@ -773,21 +931,104 @@ function Component() {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '16px' }}>
-          <div style={{ background: 'var(--ai-color-bg-secondary)', border: '1px solid var(--ai-color-border-default)', borderRadius: '8px', padding: '16px' }}>
-            <strong style={{ display: 'block', marginBottom: '8px', color: 'var(--ai-color-text-primary)' }}>✅ Badge Best Practices</strong>
-            <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '13px', color: 'var(--ai-color-text-secondary)', lineHeight: '1.6' }}>
-              <li>Use <code style={{background: "var(--ai-color-bg-tertiary)", padding: "2px 6px", borderRadius: "4px", fontFamily: "monospace", fontSize: "12px"}}>badgeVariant="filled"</code> for maximum contrast on images</li>
-              <li>Use <code style={{background: "var(--ai-color-bg-tertiary)", padding: "2px 6px", borderRadius: "4px", fontFamily: "monospace", fontSize: "12px"}}>badgeVariant="neutral"</code> for subtle status indicators</li>
-              <li>Avoid transparent variants (default, success, warning, error) on images due to low contrast</li>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+            gap: '16px',
+          }}
+        >
+          <div
+            style={{
+              background: 'var(--ai-color-bg-secondary)',
+              border: '1px solid var(--ai-color-border-default)',
+              borderRadius: '8px',
+              padding: '16px',
+            }}
+          >
+            <strong
+              style={{
+                display: 'block',
+                marginBottom: '8px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
+              ✅ Badge Best Practices
+            </strong>
+            <ul
+              style={{
+                margin: 0,
+                paddingLeft: '20px',
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+                lineHeight: '1.6',
+              }}
+            >
+              <li>
+                Use{' '}
+                <code
+                  style={{
+                    background: 'var(--ai-color-bg-tertiary)',
+                    padding: '2px 6px',
+                    borderRadius: '4px',
+                    fontFamily: 'monospace',
+                    fontSize: '12px',
+                  }}
+                >
+                  badgeVariant="filled"
+                </code>{' '}
+                for maximum contrast on images
+              </li>
+              <li>
+                Use{' '}
+                <code
+                  style={{
+                    background: 'var(--ai-color-bg-tertiary)',
+                    padding: '2px 6px',
+                    borderRadius: '4px',
+                    fontFamily: 'monospace',
+                    fontSize: '12px',
+                  }}
+                >
+                  badgeVariant="neutral"
+                </code>{' '}
+                for subtle status indicators
+              </li>
+              <li>
+                Avoid transparent variants (default, success, warning, error) on images due to low
+                contrast
+              </li>
               <li>Keep badge text short: "New", "Sale", "Featured" or single characters</li>
               <li>Use numeric badges sparingly (e.g., counts, ratings)</li>
             </ul>
           </div>
 
-          <div style={{ background: 'var(--ai-color-bg-secondary)', border: '1px solid var(--ai-color-border-default)', borderRadius: '8px', padding: '16px' }}>
-            <strong style={{ display: 'block', marginBottom: '8px', color: 'var(--ai-color-text-primary)' }}>✅ Content Guidelines</strong>
-            <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '13px', color: 'var(--ai-color-text-secondary)', lineHeight: '1.6' }}>
+          <div
+            style={{
+              background: 'var(--ai-color-bg-secondary)',
+              border: '1px solid var(--ai-color-border-default)',
+              borderRadius: '8px',
+              padding: '16px',
+            }}
+          >
+            <strong
+              style={{
+                display: 'block',
+                marginBottom: '8px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
+              ✅ Content Guidelines
+            </strong>
+            <ul
+              style={{
+                margin: 0,
+                paddingLeft: '20px',
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+                lineHeight: '1.6',
+              }}
+            >
               <li>Keep titles concise (2-3 words) for readability</li>
               <li>Limit subtitle to essential info only</li>
               <li>Overlay gradient ensures text is always readable</li>
@@ -796,9 +1037,32 @@ function Component() {
             </ul>
           </div>
 
-          <div style={{ background: 'var(--ai-color-bg-secondary)', border: '1px solid var(--ai-color-border-default)', borderRadius: '8px', padding: '16px' }}>
-            <strong style={{ display: 'block', marginBottom: '8px', color: 'var(--ai-color-text-primary)' }}>✅ Image Guidelines</strong>
-            <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '13px', color: 'var(--ai-color-text-secondary)', lineHeight: '1.6' }}>
+          <div
+            style={{
+              background: 'var(--ai-color-bg-secondary)',
+              border: '1px solid var(--ai-color-border-default)',
+              borderRadius: '8px',
+              padding: '16px',
+            }}
+          >
+            <strong
+              style={{
+                display: 'block',
+                marginBottom: '8px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
+              ✅ Image Guidelines
+            </strong>
+            <ul
+              style={{
+                margin: 0,
+                paddingLeft: '20px',
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+                lineHeight: '1.6',
+              }}
+            >
               <li>Use high-quality images (avoid pixelated or low-res)</li>
               <li>Match aspect ratio to content type</li>
               <li>Always provide alt text via image object for accessibility</li>
@@ -807,10 +1071,47 @@ function Component() {
             </ul>
           </div>
 
-          <div style={{ background: 'var(--ai-color-bg-secondary)', border: '1px solid var(--ai-color-border-default)', borderRadius: '8px', padding: '16px' }}>
-            <strong style={{ display: 'block', marginBottom: '8px', color: 'var(--ai-color-text-primary)' }}>✅ Interaction Patterns</strong>
-            <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '13px', color: 'var(--ai-color-text-secondary)', lineHeight: '1.6' }}>
-              <li>Use <code style={{background: "var(--ai-color-bg-tertiary)", padding: "2px 6px", borderRadius: "4px", fontFamily: "monospace", fontSize: "12px"}}>interactive</code> for hover effects</li>
+          <div
+            style={{
+              background: 'var(--ai-color-bg-secondary)',
+              border: '1px solid var(--ai-color-border-default)',
+              borderRadius: '8px',
+              padding: '16px',
+            }}
+          >
+            <strong
+              style={{
+                display: 'block',
+                marginBottom: '8px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
+              ✅ Interaction Patterns
+            </strong>
+            <ul
+              style={{
+                margin: 0,
+                paddingLeft: '20px',
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+                lineHeight: '1.6',
+              }}
+            >
+              <li>
+                Use{' '}
+                <code
+                  style={{
+                    background: 'var(--ai-color-bg-tertiary)',
+                    padding: '2px 6px',
+                    borderRadius: '4px',
+                    fontFamily: 'monospace',
+                    fontSize: '12px',
+                  }}
+                >
+                  interactive
+                </code>{' '}
+                for hover effects
+              </li>
               <li>Action buttons for primary interactions (add, favorite)</li>
               <li>Card click for navigation or selection</li>
               <li>Combine with loading and error states for better UX</li>

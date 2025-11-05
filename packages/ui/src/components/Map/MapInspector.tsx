@@ -24,11 +24,7 @@ export interface MapInspectorProps {
   className?: string;
 }
 
-export const MapInspector: React.FC<MapInspectorProps> = ({
-  location,
-  onClose,
-  className,
-}) => {
+export const MapInspector: React.FC<MapInspectorProps> = ({ location, onClose, className }) => {
   // Mobile detection for responsive behavior
   const [isMobile, setIsMobile] = useState(() => {
     // Initialize with matchMedia for more reliable detection
@@ -102,55 +98,52 @@ export const MapInspector: React.FC<MapInspectorProps> = ({
           exit={cardVariants.exit}
           transition={{ type: 'spring', bounce: 0, duration: 0.3 }}
         >
-        <button
-          type="button"
-          aria-label="Close details"
-          className={styles.closeButton}
-          onClick={onClose}
-        >
-          <Icon name="close-bold" size={18} />
-        </button>
-        <div className={styles.scrollableContent}>
-          <div className={styles.imageContainer}>
-            <img
-              src={location.thumbnail}
-              alt={location.name}
-              className={styles.heroImage}
-            />
-          </div>
+          <button
+            type="button"
+            aria-label="Close details"
+            className={styles.closeButton}
+            onClick={onClose}
+          >
+            <Icon name="close-bold" size={18} />
+          </button>
+          <div className={styles.scrollableContent}>
+            <div className={styles.imageContainer}>
+              <img src={location.thumbnail} alt={location.name} className={styles.heroImage} />
+            </div>
 
-          <div className={styles.detailsSection}>
-            <div className={styles.title}>{location.name}</div>
-            {location.subtitle && (
-              <div className={styles.subtitle}>{location.subtitle}</div>
-            )}
-            {location.features && location.features.length > 0 && (
-              <Features items={location.features} iconSize={14} className={styles.features} />
-            )}
-            {location.actions && location.actions.length > 0 && (
-              <div className={styles.actions}>
-                {location.actions.map((action, index) => (
-                  <button
-                    key={index}
-                    type="button"
-                    onClick={action.onClick}
-                    className={action.variant === 'secondary' ? styles.secondaryButton : styles.primaryButton}
-                  >
-                    {action.label}
-                  </button>
-                ))}
-              </div>
-            )}
-            {location.description && (
-              <div className={styles.description}>{location.description}</div>
-            )}
-          </div>
+            <div className={styles.detailsSection}>
+              <div className={styles.title}>{location.name}</div>
+              {location.subtitle && <div className={styles.subtitle}>{location.subtitle}</div>}
+              {location.features && location.features.length > 0 && (
+                <Features items={location.features} iconSize={14} className={styles.features} />
+              )}
+              {location.actions && location.actions.length > 0 && (
+                <div className={styles.actions}>
+                  {location.actions.map((action, index) => (
+                    <button
+                      key={index}
+                      type="button"
+                      onClick={action.onClick}
+                      className={
+                        action.variant === 'secondary'
+                          ? styles.secondaryButton
+                          : styles.primaryButton
+                      }
+                    >
+                      {action.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+              {location.description && (
+                <div className={styles.description}>{location.description}</div>
+              )}
+            </div>
 
-          {/* Generic Lists Section */}
-          {location.lists && location.lists.map((list) => (
-            <GenericList key={list.title} list={list} />
-          ))}
-        </div>
+            {/* Generic Lists Section */}
+            {location.lists &&
+              location.lists.map((list) => <GenericList key={list.title} list={list} />)}
+          </div>
         </motion.div>
       </motion.div>
     </>

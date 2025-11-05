@@ -25,7 +25,14 @@ const CardsComponent: React.FC = () => {
 
       {/* Introduction */}
       <section style={{ marginBottom: cssVar.spacing(32) }}>
-        <p style={{ marginBottom: cssVar.spacing(12), color: 'var(--ai-color-text-secondary)', fontSize: 'var(--ai-font-size-body-large)', lineHeight: '1.6' }}>
+        <p
+          style={{
+            marginBottom: cssVar.spacing(12),
+            color: 'var(--ai-color-text-secondary)',
+            fontSize: 'var(--ai-font-size-body-large)',
+            lineHeight: '1.6',
+          }}
+        >
           Flexible container component supporting both simple content and complex compound layouts.
           Use Card as a basic container or compose sophisticated layouts with compound components.
         </p>
@@ -40,7 +47,15 @@ const CardsComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px', marginBottom: '32px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+            gap: '24px',
+            marginBottom: '32px',
+            alignItems: 'start',
+          }}
+        >
           <Card elevationLevel={1}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               <span style={{ fontWeight: 600 }}>Default Card</span>
@@ -70,9 +85,19 @@ const CardsComponent: React.FC = () => {
         </div>
 
         <details style={{ marginTop: '16px', cursor: 'pointer' }}>
-          <summary style={{ fontWeight: 600, marginBottom: '12px' }}>Show all elevation levels</summary>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '16px', marginTop: '16px', alignItems: 'start' }}>
-            {([0, 1, 2, 3, 4, 5] as const).map(level => (
+          <summary style={{ fontWeight: 600, marginBottom: '12px' }}>
+            Show all elevation levels
+          </summary>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+              gap: '16px',
+              marginTop: '16px',
+              alignItems: 'start',
+            }}
+          >
+            {([0, 1, 2, 3, 4, 5] as const).map((level) => (
               <Card
                 key={level}
                 elevationLevel={level}
@@ -104,7 +129,14 @@ const CardsComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
           <Card>
             <Card.Title>Simple Title</Card.Title>
             <Card.Description>
@@ -117,9 +149,7 @@ const CardsComponent: React.FC = () => {
               <Card.Title as="h3">With Header & Footer</Card.Title>
             </Card.Header>
             <Card.Body>
-              <Card.Description>
-                Clear content hierarchy with dedicated sections.
-              </Card.Description>
+              <Card.Description>Clear content hierarchy with dedicated sections.</Card.Description>
             </Card.Body>
             <Card.Footer>
               <Card.Actions align="end">
@@ -139,7 +169,14 @@ const CardsComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
           <Card>
             <Card.Image
               src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=400&h=300&fit=crop"
@@ -220,42 +257,100 @@ const CardsComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
           <div>
-            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>Default Loading</h3>
+            <h3
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
+              Default Loading
+            </h3>
             <Card elevationLevel={1} loading style={{ minHeight: '280px' }}>
               <p>This content won't show while loading</p>
             </Card>
-            <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginTop: '8px' }}>
+            <p
+              style={{
+                fontSize: '12px',
+                color: 'var(--ai-color-text-secondary)',
+                marginTop: '8px',
+              }}
+            >
               Uses built-in skeleton with shimmer animation
             </p>
           </div>
 
           <div>
-            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>Custom Skeleton</h3>
-            <Card elevationLevel={1} loading skeleton={
-              <>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
-                  <Skeleton variant="circular" width={48} height={48} />
-                  <div style={{ flex: 1 }}>
-                    <Skeleton variant="text" width="40%" style={{ marginBottom: '8px' }} />
-                    <Skeleton variant="text" width="60%" />
+            <h3
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
+              Custom Skeleton
+            </h3>
+            <Card
+              elevationLevel={1}
+              loading
+              skeleton={
+                <>
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '12px',
+                      marginBottom: '16px',
+                    }}
+                  >
+                    <Skeleton variant="circular" width={48} height={48} />
+                    <div style={{ flex: 1 }}>
+                      <Skeleton variant="text" width="40%" style={{ marginBottom: '8px' }} />
+                      <Skeleton variant="text" width="60%" />
+                    </div>
                   </div>
-                </div>
-                <Skeleton height={150} style={{ marginBottom: '12px' }} />
-                <Skeleton variant="text" width="80%" style={{ marginBottom: '8px' }} />
-                <Skeleton variant="text" width="90%" />
-              </>
-            } style={{ minHeight: '320px' }}>
+                  <Skeleton height={150} style={{ marginBottom: '12px' }} />
+                  <Skeleton variant="text" width="80%" style={{ marginBottom: '8px' }} />
+                  <Skeleton variant="text" width="90%" />
+                </>
+              }
+              style={{ minHeight: '320px' }}
+            >
               <p>Custom skeleton layout</p>
             </Card>
-            <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginTop: '8px' }}>
+            <p
+              style={{
+                fontSize: '12px',
+                color: 'var(--ai-color-text-secondary)',
+                marginTop: '8px',
+              }}
+            >
               Custom layout with avatar, image, and text placeholders
             </p>
           </div>
 
           <div>
-            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>Not Loading</h3>
+            <h3
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
+              Not Loading
+            </h3>
             <Card elevationLevel={1}>
               <Card.Header>
                 <Card.Title>Normal Content</Card.Title>
@@ -267,7 +362,13 @@ const CardsComponent: React.FC = () => {
                 </p>
               </Card.Body>
             </Card>
-            <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginTop: '8px' }}>
+            <p
+              style={{
+                fontSize: '12px',
+                color: 'var(--ai-color-text-secondary)',
+                marginTop: '8px',
+              }}
+            >
               Standard card for comparison
             </p>
           </div>
@@ -283,38 +384,84 @@ const CardsComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
           <div>
-            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>Default Error</h3>
+            <h3
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
+              Default Error
+            </h3>
             <Card elevationLevel={1} error style={{ minHeight: '280px' }}>
               <p>This content won't show when error state is active</p>
             </Card>
-            <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginTop: '8px' }}>
+            <p
+              style={{
+                fontSize: '12px',
+                color: 'var(--ai-color-text-secondary)',
+                marginTop: '8px',
+              }}
+            >
               Use <code>error</code> prop to show default error message
             </p>
           </div>
 
           <div>
-            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>Custom Error Message</h3>
-            <Card 
-              elevationLevel={1} 
-              error 
+            <h3
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
+              Custom Error Message
+            </h3>
+            <Card
+              elevationLevel={1}
+              error
               errorTitle="Failed to load"
               errorMessage="Unable to fetch the requested data. Please try again."
               style={{ minHeight: '280px' }}
             >
               <p>This content won't show when error state is active</p>
             </Card>
-            <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginTop: '8px' }}>
+            <p
+              style={{
+                fontSize: '12px',
+                color: 'var(--ai-color-text-secondary)',
+                marginTop: '8px',
+              }}
+            >
               Use <code>errorTitle</code> and <code>errorMessage</code> for custom text
             </p>
           </div>
 
           <div>
-            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>With Retry Action</h3>
-            <Card 
-              elevationLevel={1} 
-              error 
+            <h3
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
+              With Retry Action
+            </h3>
+            <Card
+              elevationLevel={1}
+              error
               errorTitle="Connection failed"
               errorMessage="Could not reach the server"
               onErrorRetry={() => alert('Retry clicked!')}
@@ -322,28 +469,51 @@ const CardsComponent: React.FC = () => {
             >
               <p>This content won't show when error state is active</p>
             </Card>
-            <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginTop: '8px' }}>
+            <p
+              style={{
+                fontSize: '12px',
+                color: 'var(--ai-color-text-secondary)',
+                marginTop: '8px',
+              }}
+            >
               Use <code>onErrorRetry</code> to show a retry button
             </p>
           </div>
 
           <div>
-            <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>Custom Error Content</h3>
-            <Card 
-              elevationLevel={1} 
-              error 
+            <h3
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
+              Custom Error Content
+            </h3>
+            <Card
+              elevationLevel={1}
+              error
               errorContent={
                 <div style={{ padding: '48px 24px', textAlign: 'center' }}>
                   <div style={{ fontSize: '48px', marginBottom: '16px' }}>🚫</div>
                   <h3 style={{ margin: '0 0 8px 0' }}>Access Denied</h3>
-                  <p style={{ margin: 0, color: 'var(--ai-color-text-secondary)' }}>You don't have permission to view this content.</p>
+                  <p style={{ margin: 0, color: 'var(--ai-color-text-secondary)' }}>
+                    You don't have permission to view this content.
+                  </p>
                 </div>
               }
               style={{ minHeight: '280px' }}
             >
               <p>This content won't show when error state is active</p>
             </Card>
-            <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginTop: '8px' }}>
+            <p
+              style={{
+                fontSize: '12px',
+                color: 'var(--ai-color-text-secondary)',
+                marginTop: '8px',
+              }}
+            >
               Use <code>errorContent</code> for fully custom error UI
             </p>
           </div>
@@ -359,22 +529,34 @@ const CardsComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
           {/* Product Card */}
           <Card elevationLevel={1} interactive>
             <Card.Header>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <div
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
+              >
                 <Card.Title>Premium Headphones</Card.Title>
-                <Card.Chip variant="success" size="sm">New</Card.Chip>
+                <Card.Chip variant="success" size="sm">
+                  New
+                </Card.Chip>
               </div>
             </Card.Header>
-            <Card.Image 
-              src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop" 
+            <Card.Image
+              src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop"
               alt="Premium headphones"
             />
             <Card.Body>
               <Card.Description>
-                High-quality wireless headphones with active noise cancellation and 30-hour battery life.
+                High-quality wireless headphones with active noise cancellation and 30-hour battery
+                life.
               </Card.Description>
             </Card.Body>
             <Card.Footer>
@@ -389,9 +571,15 @@ const CardsComponent: React.FC = () => {
           <Card elevationLevel={1} interactive>
             <Card.Header>
               <Card.ChipGroup>
-                <Card.Chip variant="neutral" size="sm">ChatGPT Apps</Card.Chip>
-                <Card.Chip variant="neutral" size="sm">AI-Native</Card.Chip>
-                <Card.Chip variant="neutral" size="sm">UI Components</Card.Chip>
+                <Card.Chip variant="neutral" size="sm">
+                  ChatGPT Apps
+                </Card.Chip>
+                <Card.Chip variant="neutral" size="sm">
+                  AI-Native
+                </Card.Chip>
+                <Card.Chip variant="neutral" size="sm">
+                  UI Components
+                </Card.Chip>
               </Card.ChipGroup>
             </Card.Header>
             <Card.Image
@@ -401,13 +589,17 @@ const CardsComponent: React.FC = () => {
             <Card.Body>
               <Card.Title as="h3">Building AI-Native UIs</Card.Title>
               <Card.Description>
-                Build modern, accessible UI with AINativeKit. Master reusable component patterns that scale.
+                Build modern, accessible UI with AINativeKit. Master reusable component patterns
+                that scale.
               </Card.Description>
               <Card.Meta>
-                <Features items={[
-                  { icon: 'clock', label: '10 min read' },
-                  { icon: 'calendar-today', label: 'October 30, 2025' }
-                ]} iconSize={12} />
+                <Features
+                  items={[
+                    { icon: 'clock', label: '10 min read' },
+                    { icon: 'calendar-today', label: 'October 30, 2025' },
+                  ]}
+                  iconSize={12}
+                />
               </Card.Meta>
             </Card.Body>
             <Card.Footer>
@@ -421,15 +613,17 @@ const CardsComponent: React.FC = () => {
           <Card elevationLevel={2}>
             <Card.Header>
               <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-                <img 
-                  src="https://i.pravatar.cc/80" 
+                <img
+                  src="https://i.pravatar.cc/80"
                   alt="User avatar"
                   style={{ width: '80px', height: '80px', borderRadius: '50%' }}
                 />
                 <div style={{ flex: 1 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <Card.Title as="h3">Sarah Johnson</Card.Title>
-                    <Card.Chip variant="filled" size="sm">Pro</Card.Chip>
+                    <Card.Chip variant="filled" size="sm">
+                      Pro
+                    </Card.Chip>
                   </div>
                   <Card.Description>Senior Product Designer</Card.Description>
                 </div>
@@ -462,12 +656,10 @@ const CardsComponent: React.FC = () => {
                 Cozy French bistro with locally-sourced ingredients and an extensive wine selection.
               </Card.Description>
               <Card.Meta>
-                <Features items={[
-                  { icon: 'chat', label: '4.8★' },
-                  '128 reviews',
-                  '$$',
-                  'Open now'
-                ]} iconSize={12} />
+                <Features
+                  items={[{ icon: 'chat', label: '4.8★' }, '128 reviews', '$$', 'Open now']}
+                  iconSize={12}
+                />
               </Card.Meta>
             </Card.Body>
             <Card.Footer>
@@ -486,20 +678,25 @@ const CardsComponent: React.FC = () => {
             />
             <Card.Header>
               <Card.ChipGroup>
-                <Card.Chip variant="success" size="sm">Completed</Card.Chip>
-                <Card.Chip variant="filled" size="sm">2024</Card.Chip>
+                <Card.Chip variant="success" size="sm">
+                  Completed
+                </Card.Chip>
+                <Card.Chip variant="filled" size="sm">
+                  2024
+                </Card.Chip>
               </Card.ChipGroup>
             </Card.Header>
             <Card.Body>
               <Card.Title as="h3">Design System Overhaul</Card.Title>
               <Card.Description>
-                Modernized component library and documentation, improving developer experience by 40%.
+                Modernized component library and documentation, improving developer experience by
+                40%.
               </Card.Description>
               <Card.Meta>
-                <Features items={[
-                  { icon: 'calendar-today', label: '6 months' },
-                  '8 people'
-                ]} iconSize={12} />
+                <Features
+                  items={[{ icon: 'calendar-today', label: '6 months' }, '8 people']}
+                  iconSize={12}
+                />
               </Card.Meta>
             </Card.Body>
             <Card.Footer>
@@ -526,14 +723,26 @@ const CardsComponent: React.FC = () => {
             </Card.Header>
             <Card.Body>
               <div style={{ marginBottom: '12px' }}>
-                <p style={{ fontSize: '13px', color: 'var(--ai-color-text-secondary)', margin: '0 0 8px 0' }}>
+                <p
+                  style={{
+                    fontSize: '13px',
+                    color: 'var(--ai-color-text-secondary)',
+                    margin: '0 0 8px 0',
+                  }}
+                >
                   Specialized in React and design systems with 5+ years experience.
                 </p>
               </div>
               <Card.ChipGroup>
-                <Card.Chip variant="filled" size="sm">React</Card.Chip>
-                <Card.Chip variant="filled" size="sm">TypeScript</Card.Chip>
-                <Card.Chip variant="filled" size="sm">Design Systems</Card.Chip>
+                <Card.Chip variant="filled" size="sm">
+                  React
+                </Card.Chip>
+                <Card.Chip variant="filled" size="sm">
+                  TypeScript
+                </Card.Chip>
+                <Card.Chip variant="filled" size="sm">
+                  Design Systems
+                </Card.Chip>
               </Card.ChipGroup>
             </Card.Body>
             <Card.Footer>
@@ -555,48 +764,78 @@ const CardsComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
           {/* E-commerce Product */}
           <Card elevationLevel={2} interactive>
             <Card.Header>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
+              <div
+                style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}
+              >
                 <div>
                   <Card.Title as="h3">Advanced Product Card</Card.Title>
-                  <div style={{ marginTop: '8px', fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
+                  <div
+                    style={{
+                      marginTop: '8px',
+                      fontSize: '14px',
+                      color: 'var(--ai-color-text-secondary)',
+                    }}
+                  >
                     SKU: PROD-12345
                   </div>
                 </div>
                 <Card.Chip variant="success">In Stock</Card.Chip>
               </div>
             </Card.Header>
-            <Card.Image 
-              src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=300&fit=crop" 
+            <Card.Image
+              src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=300&fit=crop"
               alt="Product"
             />
             <Card.Body>
               <Card.Description>
-                Premium quality product with exceptional features. Includes warranty and free shipping.
+                Premium quality product with exceptional features. Includes warranty and free
+                shipping.
               </Card.Description>
-              <div style={{ marginTop: '16px', display: 'flex', gap: '12px', alignItems: 'center' }}>
+              <div
+                style={{ marginTop: '16px', display: 'flex', gap: '12px', alignItems: 'center' }}
+              >
                 <div style={{ fontSize: '24px', fontWeight: 'bold' }}>$299.99</div>
-                <div style={{ fontSize: '16px', textDecoration: 'line-through', color: 'var(--ai-color-text-tertiary)' }}>
+                <div
+                  style={{
+                    fontSize: '16px',
+                    textDecoration: 'line-through',
+                    color: 'var(--ai-color-text-tertiary)',
+                  }}
+                >
                   $399.99
                 </div>
-                <Card.Chip variant="error" size="sm">25% OFF</Card.Chip>
+                <Card.Chip variant="error" size="sm">
+                  25% OFF
+                </Card.Chip>
               </div>
             </Card.Body>
             <Card.Footer>
               <Card.Actions align="stretch">
-                <Card.ActionButton variant="secondary" leftIcon="user-heart">Wishlist</Card.ActionButton>
-                <Card.ActionButton variant="primary" leftIcon="shopping-bag">Add to Cart</Card.ActionButton>
+                <Card.ActionButton variant="secondary" leftIcon="user-heart">
+                  Wishlist
+                </Card.ActionButton>
+                <Card.ActionButton variant="primary" leftIcon="shopping-bag">
+                  Add to Cart
+                </Card.ActionButton>
               </Card.Actions>
             </Card.Footer>
           </Card>
-          
+
           {/* Zero Padding */}
           <Card padding={0}>
-            <Card.Image 
-              src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=200&fit=crop" 
+            <Card.Image
+              src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=200&fit=crop"
               alt="Tech background"
               style={{ borderRadius: 'var(--ai-radius-8) var(--ai-radius-8) 0 0', margin: 0 }}
             />
@@ -615,14 +854,18 @@ const CardsComponent: React.FC = () => {
             </Card.Header>
             <Card.Body>
               <Card.Description>
-                Learn best practices for building scalable design systems. Hands-on workshop with live demos.
+                Learn best practices for building scalable design systems. Hands-on workshop with
+                live demos.
               </Card.Description>
               <Card.Meta>
-                <Features items={[
-                  { icon: 'calendar-today', label: 'Oct 30, 2025' },
-                  { icon: 'clock', label: '2:00 PM' },
-                  { icon: 'maps', label: 'Virtual' }
-                ]} iconSize={12} />
+                <Features
+                  items={[
+                    { icon: 'calendar-today', label: 'Oct 30, 2025' },
+                    { icon: 'clock', label: '2:00 PM' },
+                    { icon: 'maps', label: 'Virtual' },
+                  ]}
+                  iconSize={12}
+                />
               </Card.Meta>
             </Card.Body>
             <Card.Footer>
@@ -644,10 +887,21 @@ const CardsComponent: React.FC = () => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
           <Card>
-            <Card.Header><Card.Title as="h4">Actions Start</Card.Title></Card.Header>
-            <Card.Body><Card.Description>Left-aligned buttons</Card.Description></Card.Body>
+            <Card.Header>
+              <Card.Title as="h4">Actions Start</Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <Card.Description>Left-aligned buttons</Card.Description>
+            </Card.Body>
             <Card.Footer>
               <Card.Actions align="start">
                 <Card.ActionButton variant="primary">Action</Card.ActionButton>
@@ -656,8 +910,12 @@ const CardsComponent: React.FC = () => {
           </Card>
 
           <Card>
-            <Card.Header><Card.Title as="h4">Actions Stretched</Card.Title></Card.Header>
-            <Card.Body><Card.Description>Full-width buttons</Card.Description></Card.Body>
+            <Card.Header>
+              <Card.Title as="h4">Actions Stretched</Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <Card.Description>Full-width buttons</Card.Description>
+            </Card.Body>
             <Card.Footer>
               <Card.Actions align="stretch">
                 <Card.ActionButton variant="secondary">Cancel</Card.ActionButton>
@@ -667,12 +925,20 @@ const CardsComponent: React.FC = () => {
           </Card>
 
           <Card>
-            <Card.Header><Card.Title as="h4">With Icons</Card.Title></Card.Header>
-            <Card.Body><Card.Description>Buttons with left and right icons</Card.Description></Card.Body>
+            <Card.Header>
+              <Card.Title as="h4">With Icons</Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <Card.Description>Buttons with left and right icons</Card.Description>
+            </Card.Body>
             <Card.Footer>
               <Card.Actions align="stretch">
-                <Card.ActionButton variant="secondary" leftIcon="arrow-left-lg">Back</Card.ActionButton>
-                <Card.ActionButton variant="primary" rightIcon="arrow-right-lg">Next</Card.ActionButton>
+                <Card.ActionButton variant="secondary" leftIcon="arrow-left-lg">
+                  Back
+                </Card.ActionButton>
+                <Card.ActionButton variant="primary" rightIcon="arrow-right-lg">
+                  Next
+                </Card.ActionButton>
               </Card.Actions>
             </Card.Footer>
           </Card>
@@ -682,17 +948,34 @@ const CardsComponent: React.FC = () => {
       {/* Usage Section */}
       <section style={{ marginBottom: cssVar.spacing(32) }}>
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Usage</h2>
-        
+
         <h3 style={{ fontSize: '18px', marginBottom: '12px' }}>Two Patterns</h3>
         <p style={{ marginBottom: '16px', color: 'var(--ai-color-text-secondary)' }}>
           Card supports two usage patterns depending on your needs:
         </p>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginBottom: '32px', alignItems: 'start' }}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '24px',
+            marginBottom: '32px',
+            alignItems: 'start',
+          }}
+        >
           <div>
-            <h4 style={{ fontSize: '16px', marginBottom: '8px' }}>Pattern 1: Simple Card (Direct Children)</h4>
-            <p style={{ marginBottom: '12px', color: 'var(--ai-color-text-secondary)', fontSize: '14px' }}>
-              For basic content, use Card as a simple container. Best for custom layouts or simple content.
+            <h4 style={{ fontSize: '16px', marginBottom: '8px' }}>
+              Pattern 1: Simple Card (Direct Children)
+            </h4>
+            <p
+              style={{
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-secondary)',
+                fontSize: '14px',
+              }}
+            >
+              For basic content, use Card as a simple container. Best for custom layouts or simple
+              content.
             </p>
             <pre style={codeBlockStyles.primary}>
               <code>{`<Card elevationLevel={1}>
@@ -703,9 +986,18 @@ const CardsComponent: React.FC = () => {
           </div>
 
           <div>
-            <h4 style={{ fontSize: '16px', marginBottom: '8px' }}>Pattern 2: Compound Components (Dot Notation)</h4>
-            <p style={{ marginBottom: '12px', color: 'var(--ai-color-text-secondary)', fontSize: '14px' }}>
-              For structured layouts, use compound components. Provides semantic HTML and consistent styling.
+            <h4 style={{ fontSize: '16px', marginBottom: '8px' }}>
+              Pattern 2: Compound Components (Dot Notation)
+            </h4>
+            <p
+              style={{
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-secondary)',
+                fontSize: '14px',
+              }}
+            >
+              For structured layouts, use compound components. Provides semantic HTML and consistent
+              styling.
             </p>
             <pre style={codeBlockStyles.primary}>
               <code>{`<Card elevationLevel={1} interactive>
@@ -730,84 +1022,245 @@ const CardsComponent: React.FC = () => {
         <h3 style={{ fontSize: '18px', marginBottom: '12px', marginTop: '24px' }}>
           Available Compound Components
         </h3>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '16px', marginBottom: '24px', alignItems: 'start' }}>
-          <div style={{ padding: '12px', background: 'var(--ai-color-bg-secondary)', borderRadius: '8px' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+            gap: '16px',
+            marginBottom: '24px',
+            alignItems: 'start',
+          }}
+        >
+          <div
+            style={{
+              padding: '12px',
+              background: 'var(--ai-color-bg-secondary)',
+              borderRadius: '8px',
+            }}
+          >
             <strong style={{ fontSize: '14px' }}>Card.Header</strong>
-            <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: 'var(--ai-color-text-secondary)' }}>
+            <p
+              style={{
+                margin: '4px 0 0 0',
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               Container for title, chips, metadata
             </p>
           </div>
-          <div style={{ padding: '12px', background: 'var(--ai-color-bg-secondary)', borderRadius: '8px' }}>
+          <div
+            style={{
+              padding: '12px',
+              background: 'var(--ai-color-bg-secondary)',
+              borderRadius: '8px',
+            }}
+          >
             <strong style={{ fontSize: '14px' }}>Card.Body</strong>
-            <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: 'var(--ai-color-text-secondary)' }}>
+            <p
+              style={{
+                margin: '4px 0 0 0',
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               Main content area with spacing
             </p>
           </div>
-          <div style={{ padding: '12px', background: 'var(--ai-color-bg-secondary)', borderRadius: '8px' }}>
+          <div
+            style={{
+              padding: '12px',
+              background: 'var(--ai-color-bg-secondary)',
+              borderRadius: '8px',
+            }}
+          >
             <strong style={{ fontSize: '14px' }}>Card.Footer</strong>
-            <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: 'var(--ai-color-text-secondary)' }}>
+            <p
+              style={{
+                margin: '4px 0 0 0',
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               Bottom section for actions
             </p>
           </div>
-          <div style={{ padding: '12px', background: 'var(--ai-color-bg-secondary)', borderRadius: '8px' }}>
+          <div
+            style={{
+              padding: '12px',
+              background: 'var(--ai-color-bg-secondary)',
+              borderRadius: '8px',
+            }}
+          >
             <strong style={{ fontSize: '14px' }}>Card.Image</strong>
-            <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: 'var(--ai-color-text-secondary)' }}>
+            <p
+              style={{
+                margin: '4px 0 0 0',
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               Optimized image display
             </p>
           </div>
-          <div style={{ padding: '12px', background: 'var(--ai-color-bg-secondary)', borderRadius: '8px' }}>
+          <div
+            style={{
+              padding: '12px',
+              background: 'var(--ai-color-bg-secondary)',
+              borderRadius: '8px',
+            }}
+          >
             <strong style={{ fontSize: '14px' }}>Card.Title</strong>
-            <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: 'var(--ai-color-text-secondary)' }}>
+            <p
+              style={{
+                margin: '4px 0 0 0',
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               Semantic heading (default h2)
             </p>
           </div>
-          <div style={{ padding: '12px', background: 'var(--ai-color-bg-secondary)', borderRadius: '8px' }}>
+          <div
+            style={{
+              padding: '12px',
+              background: 'var(--ai-color-bg-secondary)',
+              borderRadius: '8px',
+            }}
+          >
             <strong style={{ fontSize: '14px' }}>Card.Description</strong>
-            <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: 'var(--ai-color-text-secondary)' }}>
+            <p
+              style={{
+                margin: '4px 0 0 0',
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               Text content with styling
             </p>
           </div>
-          <div style={{ padding: '12px', background: 'var(--ai-color-bg-secondary)', borderRadius: '8px' }}>
+          <div
+            style={{
+              padding: '12px',
+              background: 'var(--ai-color-bg-secondary)',
+              borderRadius: '8px',
+            }}
+          >
             <strong style={{ fontSize: '14px' }}>Card.Meta</strong>
-            <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: 'var(--ai-color-text-secondary)' }}>
-              Metadata with tertiary styling. Works great with Features component for consistent metadata lists
+            <p
+              style={{
+                margin: '4px 0 0 0',
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
+              Metadata with tertiary styling. Works great with Features component for consistent
+              metadata lists
             </p>
           </div>
-          <div style={{ padding: '12px', background: 'var(--ai-color-bg-secondary)', borderRadius: '8px' }}>
+          <div
+            style={{
+              padding: '12px',
+              background: 'var(--ai-color-bg-secondary)',
+              borderRadius: '8px',
+            }}
+          >
             <strong style={{ fontSize: '14px' }}>Card.Actions</strong>
-            <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: 'var(--ai-color-text-secondary)' }}>
+            <p
+              style={{
+                margin: '4px 0 0 0',
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               Button group with alignment
             </p>
           </div>
-          <div style={{ padding: '12px', background: 'var(--ai-color-bg-secondary)', borderRadius: '8px' }}>
+          <div
+            style={{
+              padding: '12px',
+              background: 'var(--ai-color-bg-secondary)',
+              borderRadius: '8px',
+            }}
+          >
             <strong style={{ fontSize: '14px' }}>Card.ActionButton</strong>
-            <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: 'var(--ai-color-text-secondary)' }}>
+            <p
+              style={{
+                margin: '4px 0 0 0',
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               Pre-styled action button
             </p>
           </div>
-          <div style={{ padding: '12px', background: 'var(--ai-color-bg-secondary)', borderRadius: '8px' }}>
+          <div
+            style={{
+              padding: '12px',
+              background: 'var(--ai-color-bg-secondary)',
+              borderRadius: '8px',
+            }}
+          >
             <strong style={{ fontSize: '14px' }}>Card.ChipGroup</strong>
-            <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: 'var(--ai-color-text-secondary)' }}>
+            <p
+              style={{
+                margin: '4px 0 0 0',
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               Container for grouping chips with automatic spacing and wrapping
             </p>
           </div>
-          <div style={{ padding: '12px', background: 'var(--ai-color-bg-secondary)', borderRadius: '8px' }}>
+          <div
+            style={{
+              padding: '12px',
+              background: 'var(--ai-color-bg-secondary)',
+              borderRadius: '8px',
+            }}
+          >
             <strong style={{ fontSize: '14px' }}>Card.Chip</strong>
-            <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: 'var(--ai-color-text-secondary)' }}>
+            <p
+              style={{
+                margin: '4px 0 0 0',
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
               Chip for tags and status (use inside Card.ChipGroup)
             </p>
           </div>
         </div>
 
-        <h3 style={{ fontSize: '18px', marginBottom: '12px', marginTop: '24px' }}>
-          When to Use
-        </h3>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginBottom: '24px', alignItems: 'start' }}>
+        <h3 style={{ fontSize: '18px', marginBottom: '12px', marginTop: '24px' }}>When to Use</h3>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '24px',
+            marginBottom: '24px',
+            alignItems: 'start',
+          }}
+        >
           <div>
-            <h4 style={{ fontSize: '14px', marginBottom: '8px', color: 'var(--ai-color-accent-green)' }}>
+            <h4
+              style={{
+                fontSize: '14px',
+                marginBottom: '8px',
+                color: 'var(--ai-color-accent-green)',
+              }}
+            >
               ✅ Good Use Cases
             </h4>
-            <ul style={{ margin: 0, paddingLeft: '20px', color: 'var(--ai-color-text-secondary)', fontSize: '14px', lineHeight: '1.8' }}>
+            <ul
+              style={{
+                margin: 0,
+                paddingLeft: '20px',
+                color: 'var(--ai-color-text-secondary)',
+                fontSize: '14px',
+                lineHeight: '1.8',
+              }}
+            >
               <li>Product/service listings</li>
               <li>User profiles and contact cards</li>
               <li>Article/blog post previews</li>
@@ -818,10 +1271,20 @@ const CardsComponent: React.FC = () => {
             </ul>
           </div>
           <div>
-            <h4 style={{ fontSize: '14px', marginBottom: '8px', color: 'var(--ai-color-accent-red)' }}>
+            <h4
+              style={{ fontSize: '14px', marginBottom: '8px', color: 'var(--ai-color-accent-red)' }}
+            >
               ❌ Don't Use For
             </h4>
-            <ul style={{ margin: 0, paddingLeft: '20px', color: 'var(--ai-color-text-secondary)', fontSize: '14px', lineHeight: '1.8' }}>
+            <ul
+              style={{
+                margin: 0,
+                paddingLeft: '20px',
+                color: 'var(--ai-color-text-secondary)',
+                fontSize: '14px',
+                lineHeight: '1.8',
+              }}
+            >
               <li>Page-level containers (use layout components)</li>
               <li>Form containers (use Form component)</li>
               <li>Modal/dialog content (use Dialog)</li>
@@ -837,11 +1300,22 @@ const CardsComponent: React.FC = () => {
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Accessibility</h2>
 
         <h3 style={{ fontSize: '18px', marginBottom: '12px' }}>Best Practices</h3>
-        <ul style={{ margin: '0 0 24px 0', paddingLeft: '20px', color: 'var(--ai-color-text-secondary)', fontSize: '14px', lineHeight: '1.8' }}>
+        <ul
+          style={{
+            margin: '0 0 24px 0',
+            paddingLeft: '20px',
+            color: 'var(--ai-color-text-secondary)',
+            fontSize: '14px',
+            lineHeight: '1.8',
+          }}
+        >
           <li>Use semantic headings (Card.Title) to create proper document structure</li>
           <li>Provide alt text for Card.Image components</li>
           <li>Ensure sufficient color contrast for text content</li>
-          <li>Make interactive cards keyboard accessible (they automatically become buttons when onClick is provided)</li>
+          <li>
+            Make interactive cards keyboard accessible (they automatically become buttons when
+            onClick is provided)
+          </li>
           <li>Use aria-label on Card.ActionButton when using iconOnly prop</li>
         </ul>
 
@@ -865,34 +1339,40 @@ const CardsComponent: React.FC = () => {
       {/* Props Section */}
       <section style={{ marginBottom: cssVar.spacing(32) }}>
         <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>Props</h2>
-        
+
         <h3 style={{ fontSize: '18px', marginBottom: '12px' }}>Card (Base Component)</h3>
         <PropsTable
           hideThemeColumn
           rows={[
             {
               name: 'elevationLevel',
-              description: 'Elevation level for shadow and overlay. Options: 0 | 1 | 2 | 3 | 4 | 5. Default: 1',
+              description:
+                'Elevation level for shadow and overlay. Options: 0 | 1 | 2 | 3 | 4 | 5. Default: 1',
             },
             {
               name: 'border',
-              description: 'Border weight. Options: "light" | "default" | "heavy". Default: "heavy"',
+              description:
+                'Border weight. Options: "light" | "default" | "heavy". Default: "heavy"',
             },
             {
               name: 'interactive',
-              description: 'Enable hover effects with elevation increase. Makes card clickable when onClick provided. Default: false',
+              description:
+                'Enable hover effects with elevation increase. Makes card clickable when onClick provided. Default: false',
             },
             {
               name: 'hoverElevationLevel',
-              description: 'Custom elevation level on hover. Auto-increments by 1 if not specified.',
+              description:
+                'Custom elevation level on hover. Auto-increments by 1 if not specified.',
             },
             {
               name: 'padding',
-              description: 'Card padding. CSS value string or number (in px). Default: "var(--ai-spacing-16)"',
+              description:
+                'Card padding. CSS value string or number (in px). Default: "var(--ai-spacing-16)"',
             },
             {
               name: 'onClick',
-              description: 'Click handler. When provided, card becomes interactive and keyboard accessible.',
+              description:
+                'Click handler. When provided, card becomes interactive and keyboard accessible.',
             },
             {
               name: 'data-testid',
@@ -907,14 +1387,30 @@ const CardsComponent: React.FC = () => {
           rows={[
             {
               name: 'align',
-              description: 'Button alignment. Options: "start" | "center" | "end" | "stretch". Default: "end"',
+              description:
+                'Button alignment. Options: "start" | "center" | "end" | "stretch". Default: "end"',
             },
           ]}
         />
 
-        <h3 style={{ fontSize: '18px', marginBottom: '12px', marginTop: '32px' }}>Card.ActionButton</h3>
-        <p style={{ marginBottom: '12px', color: 'var(--ai-color-text-secondary)', fontSize: '14px' }}>
-          Inherits all Button props. See <a href="?path=/story/primitive-components-buttons--buttons" style={{ color: 'var(--ai-color-accent-blue)', textDecoration: 'none' }}>Button component</a> for full props list.
+        <h3 style={{ fontSize: '18px', marginBottom: '12px', marginTop: '32px' }}>
+          Card.ActionButton
+        </h3>
+        <p
+          style={{
+            marginBottom: '12px',
+            color: 'var(--ai-color-text-secondary)',
+            fontSize: '14px',
+          }}
+        >
+          Inherits all Button props. See{' '}
+          <a
+            href="?path=/story/primitive-components-buttons--buttons"
+            style={{ color: 'var(--ai-color-accent-blue)', textDecoration: 'none' }}
+          >
+            Button component
+          </a>{' '}
+          for full props list.
         </p>
 
         <h3 style={{ fontSize: '18px', marginBottom: '12px', marginTop: '32px' }}>Card.Title</h3>
@@ -923,7 +1419,8 @@ const CardsComponent: React.FC = () => {
           rows={[
             {
               name: 'as',
-              description: 'HTML heading element. Options: "h1" | "h2" | "h3" | "h4" | "h5" | "h6". Default: "h2"',
+              description:
+                'HTML heading element. Options: "h1" | "h2" | "h3" | "h4" | "h5" | "h6". Default: "h2"',
             },
           ]}
         />
@@ -942,15 +1439,25 @@ const CardsComponent: React.FC = () => {
             },
             {
               name: 'aspectRatio',
-              description: 'Optional aspect ratio for the image (e.g., "16/9", "3/2", "1/1"). Controls the display ratio using CSS aspect-ratio.',
+              description:
+                'Optional aspect ratio for the image (e.g., "16/9", "3/2", "1/1"). Controls the display ratio using CSS aspect-ratio.',
             },
           ]}
         />
 
-        <h3 style={{ fontSize: '18px', marginBottom: '12px', marginTop: '32px' }}>Other Compound Components</h3>
+        <h3 style={{ fontSize: '18px', marginBottom: '12px', marginTop: '32px' }}>
+          Other Compound Components
+        </h3>
         <p style={{ color: 'var(--ai-color-text-secondary)', fontSize: '14px' }}>
-          Card.Header, Card.Body, Card.Footer, Card.Description, Card.Meta, Card.ChipGroup accept standard HTML props for their respective elements.
-          Card.Chip inherits all <a href="?path=/story/primitive-components-chips--chips" style={{ color: 'var(--ai-color-accent-blue)', textDecoration: 'none' }}>Chip props</a>.
+          Card.Header, Card.Body, Card.Footer, Card.Description, Card.Meta, Card.ChipGroup accept
+          standard HTML props for their respective elements. Card.Chip inherits all{' '}
+          <a
+            href="?path=/story/primitive-components-chips--chips"
+            style={{ color: 'var(--ai-color-accent-blue)', textDecoration: 'none' }}
+          >
+            Chip props
+          </a>
+          .
         </p>
       </section>
     </div>

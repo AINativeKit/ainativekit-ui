@@ -6,4 +6,3 @@
 module.exports = {
   'enforce-tier-dependencies': require('./enforce-tier-dependencies.js'),
 };
-

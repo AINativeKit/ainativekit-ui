@@ -33,8 +33,7 @@ export interface ListHeaderProps {
   action?: ReactNode;
 }
 
-export interface ListProps<T = unknown>
-  extends Omit<ComponentPropsWithoutRef<'div'>, 'children'> {
+export interface ListProps<T = unknown> extends Omit<ComponentPropsWithoutRef<'div'>, 'children'> {
   /**
    * Optional header configuration (title, subtitle, thumbnail, actions).
    */
@@ -116,10 +115,7 @@ export interface ListProps<T = unknown>
   emptyState?: React.ReactNode;
 }
 
-const ListInner = <T,>(
-  props: ListProps<T>,
-  ref: React.ForwardedRef<HTMLDivElement>
-) => {
+const ListInner = <T,>(props: ListProps<T>, ref: React.ForwardedRef<HTMLDivElement>) => {
   const {
     header,
     items,
@@ -146,16 +142,11 @@ const ListInner = <T,>(
 
     if (typeof header.thumbnail === 'string') {
       const alt =
-        header.thumbnailAlt ||
-        (typeof header.title === 'string' ? header.title : 'List thumbnail');
+        header.thumbnailAlt || (typeof header.title === 'string' ? header.title : 'List thumbnail');
 
       return (
         <div className={styles.headerMedia}>
-          <img
-            src={header.thumbnail}
-            alt={alt}
-            className={styles.headerMediaImage}
-          />
+          <img src={header.thumbnail} alt={alt} className={styles.headerMediaImage} />
         </div>
       );
     }
@@ -178,7 +169,12 @@ const ListInner = <T,>(
       <div key={i} className={styles.listItemWrapper} style={{ pointerEvents: 'none' }}>
         <div className={styles.listItem}>
           <div className={styles.itemMedia}>
-            <Skeleton width={40} height={40} animation style={{ borderRadius: 'var(--ai-radius-md)' }} />
+            <Skeleton
+              width={40}
+              height={40}
+              animation
+              style={{ borderRadius: 'var(--ai-radius-md)' }}
+            />
           </div>
           <div className={styles.itemBody}>
             <div className={styles.itemHeader}>
@@ -206,20 +202,13 @@ const ListInner = <T,>(
               {renderHeaderThumbnail()}
               <div className={styles.headerText}>
                 <h2 className={styles.headerTitle}>{header.title}</h2>
-                {header.subtitle && (
-                  <p className={styles.headerSubtitle}>{header.subtitle}</p>
-                )}
+                {header.subtitle && <p className={styles.headerSubtitle}>{header.subtitle}</p>}
               </div>
             </div>
           </div>
         )}
         <div className={styles.errorContainer}>
-          <Alert
-            layout="card"
-            title={errorTitle}
-            message={errorMessage}
-            onAction={onErrorRetry}
-          />
+          <Alert layout="card" title={errorTitle} message={errorMessage} onAction={onErrorRetry} />
         </div>
       </div>
     );
@@ -229,11 +218,7 @@ const ListInner = <T,>(
   const renderEmptyState = () => {
     // Custom empty state
     if (emptyState) {
-      return (
-        <div className={styles.emptyContainer}>
-          {emptyState}
-        </div>
-      );
+      return <div className={styles.emptyContainer}>{emptyState}</div>;
     }
 
     // Default empty state with title and message
@@ -260,13 +245,9 @@ const ListInner = <T,>(
             {renderHeaderThumbnail()}
             <div className={styles.headerText}>
               <h2 className={styles.headerTitle}>{header.title}</h2>
-              {header.subtitle && (
-                <p className={styles.headerSubtitle}>{header.subtitle}</p>
-              )}
+              {header.subtitle && <p className={styles.headerSubtitle}>{header.subtitle}</p>}
             </div>
-            {header.action && (
-              <div className={styles.headerActionDesktop}>{header.action}</div>
-            )}
+            {header.action && <div className={styles.headerActionDesktop}>{header.action}</div>}
           </div>
         </div>
       )}
@@ -275,13 +256,11 @@ const ListInner = <T,>(
         {loading
           ? renderLoading()
           : items.length > 0
-          ? items.map((item, index) => renderItem(item, index))
-          : renderEmptyState()}
+            ? items.map((item, index) => renderItem(item, index))
+            : renderEmptyState()}
       </div>
 
-      {header?.action && (
-        <div className={styles.headerActionMobile}>{header.action}</div>
-      )}
+      {header?.action && <div className={styles.headerActionMobile}>{header.action}</div>}
     </div>
   );
 };

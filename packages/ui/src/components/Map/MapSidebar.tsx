@@ -62,9 +62,7 @@ export const MapSidebar: React.FC<MapSidebarProps> = ({
   // Scroll to selected card
   useEffect(() => {
     if (selectedId && scrollRef.current) {
-      const selectedCard = scrollRef.current.querySelector(
-        `[data-location-id="${selectedId}"]`
-      );
+      const selectedCard = scrollRef.current.querySelector(`[data-location-id="${selectedId}"]`);
       if (selectedCard) {
         selectedCard.scrollIntoView({
           behavior: 'smooth',
@@ -86,25 +84,22 @@ export const MapSidebar: React.FC<MapSidebarProps> = ({
             <React.Fragment key={location.id}>
               <button
                 type="button"
-                className={cn(
-                  styles.listItem,
-                  selectedId === location.id && styles.selected
-                )}
+                className={cn(styles.listItem, selectedId === location.id && styles.selected)}
                 data-location-id={location.id}
                 onClick={() => onSelect(location)}
               >
-                <img
-                  src={location.thumbnail}
-                  alt={location.name}
-                  className={styles.thumbnail}
-                />
+                <img src={location.thumbnail} alt={location.name} className={styles.thumbnail} />
                 <div className={styles.itemContent}>
                   <div className={styles.itemTitle}>{location.name}</div>
                   {location.description && (
                     <div className={styles.itemSubtitle}>{location.description}</div>
                   )}
                   {location.features && location.features.length > 0 && (
-                    <Features items={location.features} iconSize={12} className={styles.itemFeatures} />
+                    <Features
+                      items={location.features}
+                      iconSize={12}
+                      className={styles.itemFeatures}
+                    />
                   )}
                 </div>
               </button>
