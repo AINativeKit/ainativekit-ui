@@ -1,6 +1,7 @@
 import React from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import type { EmblaOptionsType, EmblaCarouselType } from 'embla-carousel';
+import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures';
 import { Button } from '../Button';
 import { Card } from '../Card';
 import { Alert } from '../Alert';
@@ -83,6 +84,12 @@ export interface CarouselProps {
    */
   onApi?: (api: EmblaCarouselType | null) => void;
 
+  /**
+   * Enable drag-free scrolling (free-scrolling without snapping to slides).
+   * @default true
+   */
+  dragFree?: boolean;
+
   // Phase 1: Loading State
   /**
    * Loading state - renders children with loading prop or skeleton slides
@@ -156,6 +163,7 @@ export const Carousel: React.FC<CarouselProps> = ({
   startInset,
   viewportPadding,
   onApi,
+  dragFree = true,
   // Phase 1 props
   loading = false,
   loadingSlides = 6,
@@ -173,10 +181,10 @@ export const Carousel: React.FC<CarouselProps> = ({
     loop,
     containScroll: loop ? 'keepSnaps' : 'trimSnaps',
     slidesToScroll: 'auto',
-    dragFree: false,
+    dragFree,
   };
 
-  const [emblaRef, emblaApi] = useEmblaCarousel(options);
+  const [emblaRef, emblaApi] = useEmblaCarousel(options, [WheelGesturesPlugin()]);
   const [canPrev, setCanPrev] = React.useState(false);
   const [canNext, setCanNext] = React.useState(false);
   const containerStyle = {
