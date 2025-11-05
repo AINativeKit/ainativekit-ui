@@ -76,7 +76,7 @@
 
   --ai-font-size-h3: 18px;
   --ai-line-height-h3: 26px;
-  --ai-font-weight-h3: var(--ai-font-weight-semibold);
+  --ai-font-weight-h3: var(--ai-font-weight-normal);
   --ai-letter-spacing-h3: -0.45px;
 
   --ai-font-size-body: 16px;
@@ -95,12 +95,12 @@
   --ai-letter-spacing-body-light: -0.4px;
 
   --ai-font-size-body-small: 14px;
-  --ai-line-height-body-small: 18px;
+  --ai-line-height-body-small: 20px;
   --ai-font-weight-body-small: var(--ai-font-weight-normal);
   --ai-letter-spacing-body-small: -0.3px;
 
   --ai-font-size-body-small-emph: 14px;
-  --ai-line-height-body-small-emph: 18px;
+  --ai-line-height-body-small-emph: 20px;
   --ai-font-weight-body-small-emph: var(--ai-font-weight-semibold);
   --ai-letter-spacing-body-small-emph: -0.3px;
 

@@ -5,8 +5,8 @@ declare const styles: {
   readonly imageGrid: string;
   readonly imageGridItem: string;
   readonly contentSection: string;
-  readonly header: string;
-  readonly headerText: string;
+  readonly titleRow: string;
+  readonly titleGroup: string;
   readonly title: string;
   readonly subtitle: string;
   readonly badge: string;

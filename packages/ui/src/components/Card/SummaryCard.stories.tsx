@@ -25,6 +25,7 @@ const SAMPLE_IMAGES = {
 const SAMPLE_IMAGE_KEYS = ['pizza', 'pasta', 'salad', 'dessert'] as const;
 
 const CARD_WIDTH = 345;
+const COMPACT_CARD_WIDTH = 280;
 
 // Main unified SummaryCard showcase component
 const SummaryCardsComponent: React.FC = () => {
@@ -480,7 +481,7 @@ const SummaryCardsComponent: React.FC = () => {
               ]}
               buttonText="Order now"
               onButtonClick={() => alert('Order clicked!')}
-              style={{ width: '220px' }}
+              style={{ width: `${COMPACT_CARD_WIDTH}px` }}
             />
             <pre style={{ flex: 1, minWidth: '300px', background: 'var(--ai-color-bg-secondary)', border: '1px solid var(--ai-color-border)', borderRadius: '8px', padding: '16px', fontSize: '12px', lineHeight: '1.5', overflow: 'auto', margin: 0 }}>
 {`<SummaryCard
@@ -497,7 +498,7 @@ const SummaryCardsComponent: React.FC = () => {
     { label: 'Wood-fired' }
   ]}
   buttonText="Order now"
-  style={{ width: '220px' }}
+  style={{ width: '280px' }}
 />`}
             </pre>
           </div>
@@ -508,12 +509,11 @@ const SummaryCardsComponent: React.FC = () => {
           <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
             Multiple Cards in Grid
           </h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '16px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: `repeat(auto-fill, minmax(${COMPACT_CARD_WIDTH}px, 1fr))`, gap: '16px' }}>
             {[
               { id: '1', title: "Tony's Pizzeria", subtitle: '123 Main Street', image: 'https://persistent.oaistatic.com/pizzaz/pizzaz-1.png', description: 'Award-winning Neapolitan pizzas with wood-fired oven.', badge: '4.8', features: ['$$$', 'Neapolitan', 'Wood-fired'] },
               { id: '2', title: 'Slice Haven', subtitle: '456 Park Avenue', image: 'https://persistent.oaistatic.com/pizzaz/pizzaz-3.png', description: 'New York style slices with fresh mozzarella.', badge: '4.6', features: ['$$', 'Slices', 'Fresh'] },
               { id: '3', title: 'Pesto Kitchen', subtitle: '789 Garden Lane', image: 'https://persistent.oaistatic.com/pizzaz/pizzaz-5.png', description: 'Creative pesto-based pizzas with seasonal ingredients.', badge: '4.7', features: ['$$', 'Pesto', 'Creative'] },
-              { id: '4', title: 'Margherita Express', subtitle: '321 Market Street', image: 'https://persistent.oaistatic.com/pizzaz/pizzaz-6.png', description: 'Fresh mozzarella and basil prepared daily.', badge: '4.5', features: ['$$', 'Margherita', 'Fresh'] },
             ].map((r) => (
               <SummaryCard key={r.id} images={r.image} title={r.title} subtitle={r.subtitle} badge={r.badge} size="compact" imageAspectRatio="4/3" description={r.description} metadata={r.features.map((f, i, arr) => ({ label: f, separator: i < arr.length - 1 ? '•' : undefined }))} buttonText="Order now" onButtonClick={() => alert(`Order from ${r.title}`)} style={{ width: '100%' }} />
             ))}
@@ -564,7 +564,7 @@ const SummaryCardsComponent: React.FC = () => {
           <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
             Image Aspect Ratio Options
           </h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '16px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: `repeat(auto-fill, minmax(${COMPACT_CARD_WIDTH}px, 1fr))`, gap: '16px' }}>
             <SummaryCard images={SAMPLE_IMAGES.restaurant} title="4:3 Classic" subtitle="Recommended" badge="4.8" size="compact" imageAspectRatio="4/3" description="Balanced proportions, perfect for most content" metadata={[{ label: 'Default' }]} style={{ width: '100%' }} />
             <SummaryCard images={SAMPLE_IMAGES.restaurant} title="16:9 Widescreen" subtitle="Cinematic" badge="4.7" size="compact" imageAspectRatio="16/9" description="Wide format for landscape-oriented content" metadata={[{ label: 'Landscape' }]} style={{ width: '100%' }} />
             <SummaryCard images={SAMPLE_IMAGES.restaurant} title="1:1 Square" subtitle="Symmetric" badge="4.6" size="compact" imageAspectRatio="1/1" description="Square format for symmetric compositions" metadata={[{ label: 'Square' }]} style={{ width: '100%' }} />

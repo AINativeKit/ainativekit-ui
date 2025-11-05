@@ -1,12 +1,15 @@
 /* SummaryCard Container */
 .summaryCard {
-  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ai-spacing-8); /* 16px gap between major sections */
   overflow: hidden;
 }
 
 /* Image Section */
 .imageSection {
-  margin: var(--ai-spacing-4) var(--ai-spacing-4) 0 var(--ai-spacing-4); /* 16px top/sides, 0 bottom */
+  margin: 0;
+  padding: 0; /* No padding - card padding handles it */
 }
 
 .imageSingle {
@@ -155,25 +158,29 @@
   pointer-events: none;
 }
 
-/* Content Section - Groups header, description, metadata */
+/* Content Section - Groups all content: title, metadata, description */
 .contentSection {
-  padding: var(--ai-spacing-4) var(--ai-spacing-8); /* 16px vertical, 32px horizontal */
+  padding: 0 var(--ai-spacing-4); /* 0 vertical, 8px horizontal */
   display: flex;
   flex-direction: column;
-  gap: var(--ai-spacing-2); /* 8px between children */
+  gap: var(--ai-spacing-4); /* 8px between elements inside content */
 }
 
-/* Header Section */
-.header {
+/* Title Row - Title/subtitle + badge on same row */
+.titleRow {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: var(--ai-spacing-8); /* Gap between title/subtitle and badge */
+  gap: var(--ai-spacing-8); /* Gap between title group and badge */
 }
 
-.headerText {
+/* Title Group - Title + subtitle with tighter spacing */
+.titleGroup {
   flex: 1;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ai-spacing-1); /* 4px between title and subtitle */
 }
 
 .title {
@@ -195,8 +202,8 @@
   line-height: var(--ai-line-height-body-small);
   font-weight: var(--ai-font-weight-body-small);
   letter-spacing: var(--ai-letter-spacing-body-small);
-  color: var(--ai-color-text-secondary); /* Changed from primary to secondary for better hierarchy */
-  margin: var(--ai-spacing-2) 0 0 0; /* Keep spacing from title within header */
+  color: var(--ai-color-text-secondary);
+  margin: 0;
 
   /* Truncate to single line with ellipsis */
   overflow: hidden;
@@ -211,10 +218,11 @@
 /* Description Section */
 .description {
   font-size: var(--ai-font-size-body-small);
-  line-height: 20px; /* Increased from 18px for better readability */
+  line-height: var(--ai-line-height-body-small); /* Now 20px from token update */
   font-weight: var(--ai-font-weight-body-small);
   letter-spacing: var(--ai-letter-spacing-body-small);
   color: var(--ai-color-text-secondary);
+  margin: 0; /* Remove default browser margin */
 
   /* Clamp to 2 lines with ellipsis */
   display: -webkit-box;
@@ -245,7 +253,7 @@
 
 /* Button Section */
 .buttonSection {
-  padding: var(--ai-spacing-6) var(--ai-spacing-4) var(--ai-spacing-4); /* 24px top, 16px sides/bottom */
+  padding: 0 var(--ai-spacing-2); /* 0 vertical, 4px horizontal - creates 12px total with card padding */
 }
 
 .button {
@@ -254,23 +262,20 @@
 
 /* Error State */
 .errorContainer {
-  padding: var(--ai-spacing-8);
+  padding: 0; /* Card padding handles spacing */
 }
 
 /* Loading State */
 .loadingContainer {
   padding: 0;
-}
-
-/* Add bottom padding to loading state elements when they're last visible element (before visuallyHidden span) */
-.loadingContainer > .header:nth-last-child(2),
-.loadingContainer > div:nth-last-child(2):not(.buttonContainer) {
-  margin-bottom: var(--ai-spacing-4); /* 16px bottom */
+  display: flex;
+  flex-direction: column;
+  gap: var(--ai-spacing-8); /* 16px gap between major sections - same as card */
 }
 
 /* Empty State */
 .emptyContainer {
-  padding: var(--ai-spacing-8);
+  padding: 0; /* Card padding handles spacing */
 }
 
 .emptyState {

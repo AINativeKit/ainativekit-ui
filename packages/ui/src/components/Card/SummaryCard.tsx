@@ -351,7 +351,7 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
   return (
     <Card
       ref={ref}
-      padding={0}
+      padding={8}
       className={cn(styles.summaryCard, className)}
       data-size={size}
       {...cardProps}
@@ -360,30 +360,29 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
       {loading && isSingleImage && (
         <div className={styles.loadingContainer} role="status" aria-live="polite">
           {/* Image Skeleton */}
-          <div style={{ margin: 'var(--ai-spacing-4)' }}>
+          <div className={styles.imageSection}>
             <Skeleton width="100%" height={244} borderRadius={16} />
           </div>
 
-          {/* Header Skeleton */}
-          {hasHeader && (
-            <div className={styles.header}>
-              <div className={styles.headerText}>
-                <Skeleton width="60%" height={24} />
-                {subtitle && (
-                  <Skeleton width="40%" height={16} style={{ marginTop: 'var(--ai-spacing-2)' }} />
-                )}
-              </div>
-              {badge && <Skeleton width={50} height={28} borderRadius={14} />}
-            </div>
-          )}
+          {/* Content Skeleton */}
+          {(hasHeader || hasDescription) && (
+            <div className={styles.contentSection}>
+              {hasHeader && (
+                <div className={styles.titleRow}>
+                  <div className={styles.titleGroup}>
+                    <Skeleton width="60%" height={24} />
+                    {subtitle && <Skeleton width="40%" height={16} />}
+                  </div>
+                  {badge && <Skeleton width={50} height={28} borderRadius={14} />}
+                </div>
+              )}
 
-          {/* Description Skeleton */}
-          {hasDescription && (
-            <div
-              style={{ margin: 'var(--ai-spacing-4) var(--ai-spacing-8) 0 var(--ai-spacing-8)' }}
-            >
-              <Skeleton width="100%" height={14} />
-              <Skeleton width="80%" height={14} style={{ marginTop: 'var(--ai-spacing-2)' }} />
+              {hasDescription && (
+                <div>
+                  <Skeleton width="100%" height={14} />
+                  <Skeleton width="80%" height={14} style={{ marginTop: 'var(--ai-spacing-2)' }} />
+                </div>
+              )}
             </div>
           )}
 
@@ -402,36 +401,33 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
       {loading && isGridImages && (
         <div className={styles.loadingContainer} role="status" aria-live="polite">
           {/* Grid Skeleton */}
-          <div
-            className={styles.imageGrid}
-            data-image-count={skeletonImageCount}
-            style={{ margin: 'var(--ai-spacing-4)' }}
-          >
-            {Array.from({ length: Math.min(skeletonImageCount, 4) }).map((_, index) => (
-              <Skeleton key={index} width="100%" height="100%" borderRadius={2} />
-            ))}
+          <div className={styles.imageSection}>
+            <div className={styles.imageGrid} data-image-count={skeletonImageCount}>
+              {Array.from({ length: Math.min(skeletonImageCount, 4) }).map((_, index) => (
+                <Skeleton key={index} width="100%" height="100%" borderRadius={2} />
+              ))}
+            </div>
           </div>
 
-          {/* Header Skeleton */}
-          {hasHeader && (
-            <div className={styles.header}>
-              <div className={styles.headerText}>
-                <Skeleton width="60%" height={24} />
-                {subtitle && (
-                  <Skeleton width="40%" height={16} style={{ marginTop: 'var(--ai-spacing-2)' }} />
-                )}
-              </div>
-              {badge && <Skeleton width={50} height={28} borderRadius={14} />}
-            </div>
-          )}
+          {/* Content Skeleton */}
+          {(hasHeader || hasDescription) && (
+            <div className={styles.contentSection}>
+              {hasHeader && (
+                <div className={styles.titleRow}>
+                  <div className={styles.titleGroup}>
+                    <Skeleton width="60%" height={24} />
+                    {subtitle && <Skeleton width="40%" height={16} />}
+                  </div>
+                  {badge && <Skeleton width={50} height={28} borderRadius={14} />}
+                </div>
+              )}
 
-          {/* Description Skeleton */}
-          {hasDescription && (
-            <div
-              style={{ margin: 'var(--ai-spacing-4) var(--ai-spacing-8) 0 var(--ai-spacing-8)' }}
-            >
-              <Skeleton width="100%" height={14} />
-              <Skeleton width="80%" height={14} style={{ marginTop: 'var(--ai-spacing-2)' }} />
+              {hasDescription && (
+                <div>
+                  <Skeleton width="100%" height={14} />
+                  <Skeleton width="80%" height={14} style={{ marginTop: 'var(--ai-spacing-2)' }} />
+                </div>
+              )}
             </div>
           )}
 
@@ -449,30 +445,25 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
       {/* Loading State - No Images */}
       {loading && !hasImages && (
         <div className={styles.loadingContainer} role="status" aria-live="polite">
-          {/* Header Skeleton */}
-          {hasHeader && (
-            <div className={styles.header}>
-              <div className={styles.headerText}>
-                <Skeleton width="60%" height={24} />
-                {subtitle && (
-                  <Skeleton width="40%" height={16} style={{ marginTop: 'var(--ai-spacing-2)' }} />
-                )}
-              </div>
-              {badge && <Skeleton width={50} height={28} borderRadius={14} />}
-            </div>
-          )}
+          {/* Content Skeleton */}
+          {(hasHeader || hasDescription) && (
+            <div className={styles.contentSection}>
+              {hasHeader && (
+                <div className={styles.titleRow}>
+                  <div className={styles.titleGroup}>
+                    <Skeleton width="60%" height={24} />
+                    {subtitle && <Skeleton width="40%" height={16} />}
+                  </div>
+                  {badge && <Skeleton width={50} height={28} borderRadius={14} />}
+                </div>
+              )}
 
-          {/* Description Skeleton */}
-          {hasDescription && (
-            <div
-              style={{
-                margin: hasHeader
-                  ? 'var(--ai-spacing-4) var(--ai-spacing-8) 0 var(--ai-spacing-8)'
-                  : 'var(--ai-spacing-8)',
-              }}
-            >
-              <Skeleton width="100%" height={14} />
-              <Skeleton width="80%" height={14} style={{ marginTop: 'var(--ai-spacing-2)' }} />
+              {hasDescription && (
+                <div>
+                  <Skeleton width="100%" height={14} />
+                  <Skeleton width="80%" height={14} style={{ marginTop: 'var(--ai-spacing-2)' }} />
+                </div>
+              )}
             </div>
           )}
 
@@ -505,9 +496,11 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
         <div className={styles.emptyContainer}>
           {/* Keep header if present */}
           {hasHeader && (
-            <div className={styles.header}>
-              {title && <h3 className={styles.title}>{title}</h3>}
-              {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
+            <div className={styles.titleRow}>
+              <div className={styles.titleGroup}>
+                {title && <h3 className={styles.title}>{title}</h3>}
+                {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
+              </div>
               {renderBadge()}
             </div>
           )}
@@ -557,22 +550,19 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
             </div>
           )}
 
-          {/* Content Section - Groups header, description, metadata */}
+          {/* Content Section - Groups all content: title, metadata, description */}
           {(hasHeader || hasDescription || metadata) && (
             <div className={styles.contentSection}>
-              {/* Header Section */}
+              {/* Title Row - Title/subtitle + badge */}
               {hasHeader && (
-                <div className={styles.header}>
-                  <div className={styles.headerText}>
+                <div className={styles.titleRow}>
+                  <div className={styles.titleGroup}>
                     {title && <h3 className={styles.title}>{title}</h3>}
                     {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
                   </div>
                   {renderBadge()}
                 </div>
               )}
-
-              {/* Description Section */}
-              {hasDescription && <p className={styles.description}>{description}</p>}
 
               {/* Metadata Section */}
               {metadata && metadata.length > 0 && (
@@ -595,6 +585,9 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
                   ))}
                 </div>
               )}
+
+              {/* Description Section */}
+              {hasDescription && <p className={styles.description}>{description}</p>}
             </div>
           )}
 
