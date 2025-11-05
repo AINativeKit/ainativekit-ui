@@ -57,59 +57,76 @@
   --ai-font-family:
     -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
+  /* Base Font Weights */
+  --ai-font-weight-light: 300;
+  --ai-font-weight-normal: 400;
+  --ai-font-weight-medium: 500;
+  --ai-font-weight-semibold: 600;
+  --ai-font-weight-bold: 700;
+
   --ai-font-size-h1: 36px;
   --ai-line-height-h1: 40px;
-  --ai-font-weight-h1: 600;
+  --ai-font-weight-h1: var(--ai-font-weight-semibold);
   --ai-letter-spacing-h1: -0.1px;
 
   --ai-font-size-h2: 24px;
   --ai-line-height-h2: 28px;
-  --ai-font-weight-h2: 600;
+  --ai-font-weight-h2: var(--ai-font-weight-semibold);
   --ai-letter-spacing-h2: -0.25px;
 
   --ai-font-size-h3: 18px;
   --ai-line-height-h3: 26px;
-  --ai-font-weight-h3: 600;
+  --ai-font-weight-h3: var(--ai-font-weight-semibold);
   --ai-letter-spacing-h3: -0.45px;
 
   --ai-font-size-body: 16px;
   --ai-line-height-body: 26px;
-  --ai-font-weight-body: 400;
+  --ai-font-weight-body: var(--ai-font-weight-normal);
   --ai-letter-spacing-body: -0.4px;
 
   --ai-font-size-body-emph: 16px;
   --ai-line-height-body-emph: 26px;
-  --ai-font-weight-body-emph: 600;
+  --ai-font-weight-body-emph: var(--ai-font-weight-semibold);
   --ai-letter-spacing-body-emph: -0.4px;
+
+  --ai-font-size-body-light: 16px;
+  --ai-line-height-body-light: 26px;
+  --ai-font-weight-body-light: var(--ai-font-weight-light);
+  --ai-letter-spacing-body-light: -0.4px;
 
   --ai-font-size-body-small: 14px;
   --ai-line-height-body-small: 18px;
-  --ai-font-weight-body-small: 400;
+  --ai-font-weight-body-small: var(--ai-font-weight-normal);
   --ai-letter-spacing-body-small: -0.3px;
 
   --ai-font-size-body-small-emph: 14px;
   --ai-line-height-body-small-emph: 18px;
-  --ai-font-weight-body-small-emph: 600;
+  --ai-font-weight-body-small-emph: var(--ai-font-weight-semibold);
   --ai-letter-spacing-body-small-emph: -0.3px;
+
+  --ai-font-size-body-small-light: 14px;
+  --ai-line-height-body-small-light: 18px;
+  --ai-font-weight-body-small-light: var(--ai-font-weight-light);
+  --ai-letter-spacing-body-small-light: -0.3px;
 
   --ai-font-size-caption: 12px;
   --ai-line-height-caption: 16px;
-  --ai-font-weight-caption: 400;
+  --ai-font-weight-caption: var(--ai-font-weight-normal);
   --ai-letter-spacing-caption: -0.1px;
 
   --ai-font-size-caption-emph: 12px;
   --ai-line-height-caption-emph: 16px;
-  --ai-font-weight-caption-emph: 600;
+  --ai-font-weight-caption-emph: var(--ai-font-weight-semibold);
   --ai-letter-spacing-caption-emph: -0.1px;
 
   --ai-font-size-button: 15px;
   --ai-line-height-button: 24px;
-  --ai-font-weight-button: 500;
+  --ai-font-weight-button: var(--ai-font-weight-medium);
   --ai-letter-spacing-button: -0.24px;
 
   --ai-font-size-badge: 14px;
   --ai-line-height-badge: 18px;
-  --ai-font-weight-badge: 600;
+  --ai-font-weight-badge: var(--ai-font-weight-semibold);
   --ai-letter-spacing-badge: 0px;
 
   /* Spacing */
@@ -274,6 +291,14 @@
   letter-spacing: var(--ai-letter-spacing-body-emph);
 }
 
+.ai-body-light {
+  font-family: var(--ai-font-family);
+  font-size: var(--ai-font-size-body-light);
+  line-height: var(--ai-line-height-body-light);
+  font-weight: var(--ai-font-weight-body-light);
+  letter-spacing: var(--ai-letter-spacing-body-light);
+}
+
 .ai-body-small {
   font-family: var(--ai-font-family);
   font-size: var(--ai-font-size-body-small);
@@ -288,6 +313,14 @@
   line-height: var(--ai-line-height-body-small-emph);
   font-weight: var(--ai-font-weight-body-small-emph);
   letter-spacing: var(--ai-letter-spacing-body-small-emph);
+}
+
+.ai-body-small-light {
+  font-family: var(--ai-font-family);
+  font-size: var(--ai-font-size-body-small-light);
+  line-height: var(--ai-line-height-body-small-light);
+  font-weight: var(--ai-font-weight-body-small-light);
+  letter-spacing: var(--ai-letter-spacing-body-small-light);
 }
 
 .ai-caption {

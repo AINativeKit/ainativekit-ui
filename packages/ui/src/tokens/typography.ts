@@ -73,6 +73,18 @@ export const typography = {
       a11y: 'Use <strong> or <b> for semantic emphasis',
     },
   },
+  bodyLight: {
+    fontSize: '16px',
+    lineHeight: '26px',
+    fontWeight: 300,
+    letterSpacing: '-0.4px',
+    className: 'ai-body-light',
+    meta: {
+      description: 'Light weight body text',
+      usage: 'Use for subtle, less prominent body text or decorative elements',
+      a11y: 'Ensure sufficient contrast when using lighter weights',
+    },
+  },
   bodySmall: {
     fontSize: '14px',
     lineHeight: '18px',
@@ -95,6 +107,18 @@ export const typography = {
       description: 'Emphasized smaller body text',
       usage: 'Use for emphasized secondary information',
       a11y: 'Use <strong> or <b> for semantic emphasis',
+    },
+  },
+  bodySmallLight: {
+    fontSize: '14px',
+    lineHeight: '18px',
+    fontWeight: 300,
+    letterSpacing: '-0.3px',
+    className: 'ai-body-small-light',
+    meta: {
+      description: 'Light weight smaller body text',
+      usage: 'Use for subtle secondary information or decorative text',
+      a11y: 'Ensure sufficient contrast and readability at this smaller size',
     },
   },
   caption: {

@@ -43,7 +43,7 @@
 }
 
 .resultsCount {
-  font-weight: 500;
+  font-weight: var(--ai-font-weight-medium);
 }
 
 .settingsIcon {
