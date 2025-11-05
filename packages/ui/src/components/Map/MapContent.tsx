@@ -59,6 +59,86 @@ const MapFlyer: React.FC<{
   return null;
 };
 
+// Component to handle trackpad pinch-to-zoom (detects Ctrl+wheel events)
+const PinchZoomHandler: React.FC = () => {
+  const map = useMap();
+  const accumulatedDelta = useRef<number>(0);
+  const zoomTimer = useRef<NodeJS.Timeout | null>(null);
+  const lastMousePos = useRef<L.Point | null>(null);
+
+  useEffect(() => {
+    const container = map.getContainer();
+
+    function performZoom() {
+      const delta = accumulatedDelta.current;
+      accumulatedDelta.current = 0;
+
+      if (!delta) return;
+
+      const currentZoom = map.getZoom();
+
+      // Use Leaflet's approach: map delta with sigmoid function to smooth zoom range
+      // This creates smooth, proportional zooming like the +/- buttons
+      const wheelPxPerZoomLevel = 60; // Leaflet default
+      const d2 = delta / (wheelPxPerZoomLevel * 4);
+      const d3 = 4 * Math.log(2 / (1 + Math.exp(-Math.abs(d2)))) / Math.LN2;
+      const d4 = Math.ceil(d3); // Snap to integer zoom levels
+      const zoomDelta = delta > 0 ? -d4 : d4;
+
+      const newZoom = Math.max(
+        map.getMinZoom(),
+        Math.min(map.getMaxZoom(), currentZoom + zoomDelta)
+      );
+
+      if (newZoom === currentZoom) return;
+
+      // Zoom around mouse position if available, otherwise center
+      if (lastMousePos.current) {
+        const point = lastMousePos.current;
+        const latLng = map.containerPointToLatLng(point);
+        map.setZoomAround(latLng, newZoom, { animate: true });
+      } else {
+        map.setZoom(newZoom, { animate: true });
+      }
+
+      lastMousePos.current = null;
+    }
+
+    function handleWheel(e: WheelEvent) {
+      // Trackpad pinch gestures come through as wheel events with ctrlKey=true
+      if (e.ctrlKey) {
+        e.preventDefault(); // Prevent browser page zoom
+        e.stopPropagation();
+
+        // Accumulate delta values (like Leaflet does)
+        accumulatedDelta.current += e.deltaY;
+
+        // Store mouse position for zooming around cursor
+        lastMousePos.current = map.mouseEventToContainerPoint(e as any);
+
+        // Use shorter debounce (10ms instead of 40ms) for more responsive continuous zooming
+        if (zoomTimer.current) {
+          clearTimeout(zoomTimer.current);
+        }
+        zoomTimer.current = setTimeout(performZoom, 10);
+      }
+      // If ctrlKey is false, it's a normal scroll - let it bubble to scroll the page
+    }
+
+    // CRITICAL: Use { passive: false } to allow preventDefault()
+    container.addEventListener('wheel', handleWheel, { passive: false });
+
+    return () => {
+      container.removeEventListener('wheel', handleWheel);
+      if (zoomTimer.current) {
+        clearTimeout(zoomTimer.current);
+      }
+    };
+  }, [map]);
+
+  return null;
+};
+
 const DEFAULT_TILE_URL =
   'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png';
 
@@ -103,6 +183,7 @@ export const MapContent: React.FC<MapViewProps> = ({
   className,
   style,
   isInspectorOpen,
+  scrollWheelZoom = false,
 }) => {
   const containerClassName = className
     ? `${styles.mapContainer} ${className}`
@@ -151,9 +232,12 @@ export const MapContent: React.FC<MapViewProps> = ({
         center={defaultCenter}
         zoom={defaultZoom}
         className={styles.map}
-        scrollWheelZoom
+        scrollWheelZoom={scrollWheelZoom}
+        touchZoom={scrollWheelZoom}
+        dragging={true}
       >
         <MapFlyer selectedId={selectedId} locations={locations} isInspectorOpen={isInspectorOpen} />
+        {!scrollWheelZoom && <PinchZoomHandler />}
         <TileLayer
           url={DEFAULT_TILE_URL}
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'

@@ -105,6 +105,7 @@ export const FullscreenMap: React.FC<FullscreenMapProps> = ({
   emptyTitle = 'No locations',
   emptyMessage = 'No locations to display',
   onCollapse,
+  scrollWheelZoom = true,
   ...mapProps
 }) => {
   const [isMounted, setIsMounted] = React.useState(false);
@@ -160,6 +161,7 @@ export const FullscreenMap: React.FC<FullscreenMapProps> = ({
             selectedId={undefined}
             loading={false}
             error={false}
+            scrollWheelZoom={scrollWheelZoom}
             className={styles.fallbackMap}
           />
           <div className={styles.fallbackOverlay}>
@@ -209,6 +211,7 @@ export const FullscreenMap: React.FC<FullscreenMapProps> = ({
             selectedId={selectedId}
             onLocationSelect={onLocationSelect}
             isInspectorOpen={!!selectedLocation}
+            scrollWheelZoom={scrollWheelZoom}
             {...mapProps}
             className={styles.map}
           />

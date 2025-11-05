@@ -253,10 +253,14 @@ const FullscreenMapDoc: FC = () => {
             the Apps surface.
           </li>
           <li>
-            Use inspector notes to summarise key attributes so users don’t rely solely on the map.
+            Use inspector notes to summarise key attributes so users don't rely solely on the map.
           </li>
           <li>
             Respect layout breakpoints—sidebar hides under 1024px with the carousel taking over.
+          </li>
+          <li>
+            Fullscreen maps use native scroll wheel zoom by default (`scrollWheelZoom=true`) for the
+            best desktop experience, while compact maps use custom pinch-to-zoom handlers.
           </li>
         </ul>
       </section>

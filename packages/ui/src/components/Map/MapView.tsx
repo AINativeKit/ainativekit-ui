@@ -81,6 +81,14 @@ export interface MapViewProps {
    */
   error?: boolean;
 
+  /**
+   * Enable scroll wheel zoom on the map.
+   * When true, uses native Leaflet scroll wheel zoom (best for full-screen maps).
+   * When false, disables scroll wheel but enables custom pinch-to-zoom (best for embedded maps).
+   * @default false
+   */
+  scrollWheelZoom?: boolean;
+
   // Additional map configuration props can be introduced over time.
 }
 
