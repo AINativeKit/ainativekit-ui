@@ -200,7 +200,7 @@ describe('Design Tokens', () => {
     });
 
     it('should include all defined typography tokens', () => {
-      expect(Object.keys(typography).length).toBe(11);
+      expect(Object.keys(typography).length).toBe(13);
     });
   });
 

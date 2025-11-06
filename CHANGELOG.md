@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] - 2025-11-06
+
+### Added
+
+- **SummaryCard Enhancements**:
+  - Top overlay support with `topOverlay` prop and helper component
+  - Configurable description lines with `maxDescriptionLines` prop
+  - Loading skeleton states for better UX
+  - Flat variant with edge-to-edge layout for immersive designs
+- **Map Component**: Configurable scroll wheel zoom controls
+- **Carousel Component**: Drag-free scrolling and trackpad support
+- **Typography System**: Complete font weight token system with light variants
+
+### Changed
+
+- **Card Component**: Reduced spacing for more compact design
+- **SummaryCard**: Consolidated DiscoveryCard functionality with improved structure
+
+### Fixed
+
+- Pizza restaurant description and SummaryCard dimension adjustments
+
 ## [0.4.0] - 2025-11-03
 
 ### Added
@@ -103,5 +125,6 @@ This library follows [Semantic Versioning](https://semver.org/):
 
 ---
 
+[0.5.0]: https://github.com/ainativekit/ainativekit-ui/releases/tag/v0.5.0
 [0.4.0]: https://github.com/ainativekit/ainativekit-ui/releases/tag/v0.4.0
 [0.1.0]: https://github.com/ainativekit/ainativekit-ui/releases/tag/v0.1.0
