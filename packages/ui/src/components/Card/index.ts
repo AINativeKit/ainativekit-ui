@@ -30,7 +30,12 @@ export { ImageCard } from './ImageCard';
 export type { ImageCardProps } from './ImageCard';
 
 export { SummaryCard } from './SummaryCard';
-export type { SummaryCardProps, SummaryCardImage, SummaryCardMetadata } from './SummaryCard';
+export type {
+  SummaryCardProps,
+  SummaryCardImage,
+  SummaryCardMetadata,
+  SummaryCardOverlayProps,
+} from './SummaryCard';
 
 export { ListCard } from './ListCard';
 export type { ListCardProps, ListCardItem, ListCardImage } from './ListCard';

@@ -713,4 +713,198 @@ describe('SummaryCard', () => {
       expect(handleSingleLoad).not.toHaveBeenCalled();
     });
   });
+
+  describe('Top Overlay', () => {
+    it('renders custom topOverlay content', () => {
+      render(
+        <SummaryCard
+          images="test.jpg"
+          title="Test Card"
+          topOverlay={<div data-testid="custom-overlay">Custom Overlay</div>}
+        />
+      );
+
+      expect(screen.getByTestId('custom-overlay')).toBeInTheDocument();
+      expect(screen.getByText('Custom Overlay')).toBeInTheDocument();
+    });
+
+    it('renders SummaryCard.Overlay helper component', () => {
+      render(
+        <SummaryCard
+          images="test.jpg"
+          title="Test Card"
+          topOverlay={
+            <SummaryCard.Overlay background="dark" height={40} align="center">
+              <span data-testid="overlay-content">Logo</span>
+            </SummaryCard.Overlay>
+          }
+        />
+      );
+
+      expect(screen.getByTestId('overlay-content')).toBeInTheDocument();
+      expect(screen.getByText('Logo')).toBeInTheDocument();
+    });
+
+    it('does not render overlay when topOverlay is not provided', () => {
+      const { container } = render(<SummaryCard images="test.jpg" title="Test Card" />);
+      const overlays = container.querySelectorAll('[class*="topOverlay"]');
+      expect(overlays).toHaveLength(0);
+    });
+
+    it('renders overlay with single image', () => {
+      render(
+        <SummaryCard
+          images="test.jpg"
+          topOverlay={<div data-testid="single-overlay">Logo</div>}
+        />
+      );
+
+      expect(screen.getByTestId('single-overlay')).toBeInTheDocument();
+    });
+
+    it('renders overlay with grid images', () => {
+      render(
+        <SummaryCard
+          images={[
+            { src: 'img1.jpg', alt: 'Image 1' },
+            { src: 'img2.jpg', alt: 'Image 2' },
+            { src: 'img3.jpg', alt: 'Image 3' },
+          ]}
+          topOverlay={<div data-testid="grid-overlay">Logo</div>}
+        />
+      );
+
+      expect(screen.getByTestId('grid-overlay')).toBeInTheDocument();
+    });
+
+    it('applies correct background styles for Overlay component', () => {
+      const { container } = render(
+        <SummaryCard
+          images="test.jpg"
+          topOverlay={
+            <SummaryCard.Overlay background="dark">
+              <span>Content</span>
+            </SummaryCard.Overlay>
+          }
+        />
+      );
+
+      const overlay = container.querySelector('[class*="topOverlay"]');
+      expect(overlay).toHaveStyle({ background: 'rgba(0, 0, 0, 0.6)' });
+    });
+
+    it('applies custom background color for Overlay component', () => {
+      const { container } = render(
+        <SummaryCard
+          images="test.jpg"
+          topOverlay={
+            <SummaryCard.Overlay background="rgba(255, 0, 0, 0.8)">
+              <span>Content</span>
+            </SummaryCard.Overlay>
+          }
+        />
+      );
+
+      const overlay = container.querySelector('[class*="topOverlay"]');
+      expect(overlay).toHaveStyle({ background: 'rgba(255, 0, 0, 0.8)' });
+    });
+
+    it('applies correct alignment styles for Overlay component', () => {
+      const { container } = render(
+        <SummaryCard
+          images="test.jpg"
+          topOverlay={
+            <SummaryCard.Overlay align="right">
+              <span>Content</span>
+            </SummaryCard.Overlay>
+          }
+        />
+      );
+
+      const overlay = container.querySelector('[class*="topOverlay"]');
+      expect(overlay).toHaveStyle({ justifyContent: 'flex-end' });
+    });
+
+    it('applies custom height for Overlay component', () => {
+      const { container } = render(
+        <SummaryCard
+          images="test.jpg"
+          topOverlay={
+            <SummaryCard.Overlay height={60}>
+              <span>Content</span>
+            </SummaryCard.Overlay>
+          }
+        />
+      );
+
+      const overlay = container.querySelector('[class*="topOverlay"]');
+      expect(overlay).toHaveStyle({ height: '60px' });
+    });
+
+    it('applies custom padding for Overlay component', () => {
+      const { container } = render(
+        <SummaryCard
+          images="test.jpg"
+          topOverlay={
+            <SummaryCard.Overlay padding={16}>
+              <span>Content</span>
+            </SummaryCard.Overlay>
+          }
+        />
+      );
+
+      const overlay = container.querySelector('[class*="topOverlay"]');
+      expect(overlay).toHaveStyle({ padding: '16px' });
+    });
+
+    it('works with flat variant', () => {
+      render(
+        <SummaryCard
+          images="test.jpg"
+          title="Test Card"
+          variant="flat"
+          topOverlay={<div data-testid="flat-overlay">Logo</div>}
+        />
+      );
+
+      expect(screen.getByTestId('flat-overlay')).toBeInTheDocument();
+      expect(screen.getByText('Test Card')).toBeInTheDocument();
+    });
+
+    it('works with compact size', () => {
+      render(
+        <SummaryCard
+          images="test.jpg"
+          title="Test Card"
+          size="compact"
+          topOverlay={<div data-testid="compact-overlay">Logo</div>}
+        />
+      );
+
+      expect(screen.getByTestId('compact-overlay')).toBeInTheDocument();
+      expect(screen.getByText('Test Card')).toBeInTheDocument();
+    });
+
+    it('works with different aspect ratios', () => {
+      const { rerender } = render(
+        <SummaryCard
+          images="test.jpg"
+          imageAspectRatio="16/9"
+          topOverlay={<div data-testid="overlay-16-9">Logo</div>}
+        />
+      );
+
+      expect(screen.getByTestId('overlay-16-9')).toBeInTheDocument();
+
+      rerender(
+        <SummaryCard
+          images="test.jpg"
+          imageAspectRatio="4/3"
+          topOverlay={<div data-testid="overlay-4-3">Logo</div>}
+        />
+      );
+
+      expect(screen.getByTestId('overlay-4-3')).toBeInTheDocument();
+    });
+  });
 });

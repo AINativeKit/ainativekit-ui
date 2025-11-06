@@ -1388,6 +1388,425 @@ const SummaryCardsComponent: React.FC = () => {
         </div>
       </section>
 
+      {/* Top Overlay */}
+      <section style={{ marginBottom: '64px' }}>
+        <header style={{ marginBottom: '24px' }}>
+          <h2 style={{ marginBottom: '8px' }}>Top Overlay</h2>
+          <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
+            Add logos, badges, or custom content on top of images
+          </p>
+        </header>
+
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
+          {/* Logo with dark background */}
+          <div>
+            <h3
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
+              Logo Overlay - Dark Background
+            </h3>
+            <SummaryCard
+              images="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80"
+              title="Luxury Beach House"
+              subtitle="98 Parnki Parade, Palm Beach"
+              badge="$4,449,000"
+              badgeVariant="filled"
+              description="Stunning oceanfront property with modern architecture"
+              metadata={[
+                { label: '5 beds' },
+                { label: '2 baths' },
+                { label: '625m²' },
+              ]}
+              buttonText="View property"
+              topOverlay={
+                <SummaryCard.Overlay background="dark" height={40} align="center">
+                  <svg width="80" height="24" viewBox="0 0 80 24" fill="none">
+                    <rect width="80" height="24" rx="4" fill="#1E3A8A" />
+                    <text
+                      x="40"
+                      y="15"
+                      textAnchor="middle"
+                      fill="white"
+                      fontSize="12"
+                      fontWeight="600"
+                      fontFamily="system-ui, sans-serif"
+                    >
+                      LOGO
+                    </text>
+                  </svg>
+                </SummaryCard.Overlay>
+              }
+              style={{ maxWidth: `${CARD_WIDTH}px` }}
+            />
+            <p
+              style={{
+                fontSize: '12px',
+                color: 'var(--ai-color-text-secondary)',
+                marginTop: '8px',
+              }}
+            >
+              ✓ Dark semi-transparent background
+            </p>
+          </div>
+
+          {/* Logo with light background */}
+          <div>
+            <h3
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
+              Logo Overlay - Light Background
+            </h3>
+            <SummaryCard
+              images="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80"
+              title="Modern Villa"
+              subtitle="123 Coastal Drive"
+              badge="Featured"
+              description="Contemporary design with panoramic views"
+              buttonText="Schedule Tour"
+              topOverlay={
+                <SummaryCard.Overlay background="light" height={40} align="center">
+                  <svg width="80" height="24" viewBox="0 0 80 24" fill="none">
+                    <rect width="80" height="24" rx="4" fill="#000000" />
+                    <text
+                      x="40"
+                      y="15"
+                      textAnchor="middle"
+                      fill="white"
+                      fontSize="12"
+                      fontWeight="600"
+                      fontFamily="system-ui, sans-serif"
+                    >
+                      BRAND
+                    </text>
+                  </svg>
+                </SummaryCard.Overlay>
+              }
+              style={{ maxWidth: `${CARD_WIDTH}px` }}
+            />
+            <p
+              style={{
+                fontSize: '12px',
+                color: 'var(--ai-color-text-secondary)',
+                marginTop: '8px',
+              }}
+            >
+              ✓ Light semi-transparent background
+            </p>
+          </div>
+
+          {/* Custom styled overlay - Navy background */}
+          <div>
+            <h3
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
+              Custom Background Color
+            </h3>
+            <SummaryCard
+              images="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80"
+              title="Coastal Retreat"
+              subtitle="Ocean View Estate"
+              badge="New"
+              badgeVariant="success"
+              description="Exclusive waterfront property"
+              buttonText="Learn More"
+              topOverlay={
+                <SummaryCard.Overlay background="rgba(30, 58, 138, 0.9)" height={40} align="center">
+                  <span style={{ color: 'white', fontSize: '14px', fontWeight: 600 }}>
+                    PREMIUM LISTING
+                  </span>
+                </SummaryCard.Overlay>
+              }
+              style={{ maxWidth: `${CARD_WIDTH}px` }}
+            />
+            <p
+              style={{
+                fontSize: '12px',
+                color: 'var(--ai-color-text-secondary)',
+                marginTop: '8px',
+              }}
+            >
+              ✓ Custom color (navy blue)
+            </p>
+          </div>
+
+          {/* Grid images with overlay */}
+          <div>
+            <h3
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
+              Overlay on Grid Images
+            </h3>
+            <SummaryCard
+              images={[
+                { src: SAMPLE_IMAGES.pizza, alt: 'Pizza' },
+                { src: SAMPLE_IMAGES.pasta, alt: 'Pasta' },
+                { src: SAMPLE_IMAGES.salad, alt: 'Salad' },
+              ]}
+              title="Italian Restaurant"
+              subtitle="Authentic Cuisine"
+              badge="4.8"
+              description="Experience traditional Italian dishes"
+              buttonText="Order Now"
+              topOverlay={
+                <SummaryCard.Overlay background="dark" height={40} align="left" padding={12}>
+                  <svg width="60" height="20" viewBox="0 0 60 20" fill="none">
+                    <rect width="60" height="20" rx="3" fill="#DC2626" />
+                    <text
+                      x="30"
+                      y="13"
+                      textAnchor="middle"
+                      fill="white"
+                      fontSize="11"
+                      fontWeight="700"
+                      fontFamily="system-ui, sans-serif"
+                    >
+                      NEW
+                    </text>
+                  </svg>
+                </SummaryCard.Overlay>
+              }
+              style={{ maxWidth: `${CARD_WIDTH}px` }}
+            />
+            <p
+              style={{
+                fontSize: '12px',
+                color: 'var(--ai-color-text-secondary)',
+                marginTop: '8px',
+              }}
+            >
+              ✓ Overlay works with grid layout
+            </p>
+          </div>
+
+          {/* Left-aligned overlay */}
+          <div>
+            <h3
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
+              Left-Aligned Content
+            </h3>
+            <SummaryCard
+              images={SAMPLE_IMAGES.restaurant}
+              title="Cafe Bistro"
+              subtitle="Downtown Location"
+              badge="Open"
+              description="Cozy atmosphere with artisan coffee"
+              buttonText="Visit Us"
+              topOverlay={
+                <SummaryCard.Overlay background="transparent" height={40} align="left" padding={12}>
+                  <div
+                    style={{
+                      background: 'rgba(220, 38, 38, 0.9)',
+                      padding: '4px 12px',
+                      borderRadius: '4px',
+                      color: 'white',
+                      fontSize: '12px',
+                      fontWeight: 600,
+                    }}
+                  >
+                    -20% OFF
+                  </div>
+                </SummaryCard.Overlay>
+              }
+              style={{ maxWidth: `${CARD_WIDTH}px` }}
+            />
+            <p
+              style={{
+                fontSize: '12px',
+                color: 'var(--ai-color-text-secondary)',
+                marginTop: '8px',
+              }}
+            >
+              ✓ align="left" with custom badge
+            </p>
+          </div>
+
+          {/* Right-aligned overlay */}
+          <div>
+            <h3
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
+              Right-Aligned Content
+            </h3>
+            <SummaryCard
+              images={SAMPLE_IMAGES.restaurant}
+              title="Steakhouse"
+              subtitle="Premium Cuts"
+              description="Fine dining experience with aged beef"
+              buttonText="Reserve"
+              topOverlay={
+                <SummaryCard.Overlay background="transparent" height={40} align="right" padding={12}>
+                  <div
+                    style={{
+                      background: 'rgba(0, 0, 0, 0.7)',
+                      padding: '6px 10px',
+                      borderRadius: '20px',
+                      color: 'white',
+                      fontSize: '12px',
+                      fontWeight: 600,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '4px',
+                    }}
+                  >
+                    <span>★</span>
+                    <span>Featured</span>
+                  </div>
+                </SummaryCard.Overlay>
+              }
+              style={{ maxWidth: `${CARD_WIDTH}px` }}
+            />
+            <p
+              style={{
+                fontSize: '12px',
+                color: 'var(--ai-color-text-secondary)',
+                marginTop: '8px',
+              }}
+            >
+              ✓ align="right" with badge pill
+            </p>
+          </div>
+
+          {/* Flat variant with overlay */}
+          <div>
+            <h3
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
+              Flat Variant with Overlay
+            </h3>
+            <SummaryCard
+              images="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80"
+              title="Penthouse Suite"
+              subtitle="City Center"
+              badge="Premium"
+              badgeVariant="filled"
+              description="Luxury high-rise living with panoramic city views"
+              variant="flat"
+              topOverlay={
+                <SummaryCard.Overlay background="rgba(0, 0, 0, 0.8)" height={40} align="center">
+                  <svg width="100" height="28" viewBox="0 0 100 28" fill="none">
+                    <text
+                      x="50"
+                      y="18"
+                      textAnchor="middle"
+                      fill="white"
+                      fontSize="14"
+                      fontWeight="700"
+                      fontFamily="system-ui, sans-serif"
+                      letterSpacing="1"
+                    >
+                      EXCLUSIVE
+                    </text>
+                  </svg>
+                </SummaryCard.Overlay>
+              }
+              style={{ maxWidth: `${CARD_WIDTH}px` }}
+            />
+            <p
+              style={{
+                fontSize: '12px',
+                color: 'var(--ai-color-text-secondary)',
+                marginTop: '8px',
+              }}
+            >
+              ✓ variant="flat" (edge-to-edge)
+            </p>
+          </div>
+
+          {/* Compact size with overlay */}
+          <div>
+            <h3
+              style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                marginBottom: '12px',
+                color: 'var(--ai-color-text-primary)',
+              }}
+            >
+              Compact Size with Overlay
+            </h3>
+            <SummaryCard
+              images="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80"
+              title="Cozy Apartment"
+              subtitle="Downtown"
+              badge="$850K"
+              description="Perfect starter home in prime location"
+              size="compact"
+              topOverlay={
+                <SummaryCard.Overlay background="dark" height={36} align="left" padding={10}>
+                  <svg width="50" height="20" viewBox="0 0 50 20" fill="none">
+                    <rect width="50" height="20" rx="3" fill="#10B981" />
+                    <text
+                      x="25"
+                      y="13"
+                      textAnchor="middle"
+                      fill="white"
+                      fontSize="10"
+                      fontWeight="700"
+                      fontFamily="system-ui, sans-serif"
+                    >
+                      HOT
+                    </text>
+                  </svg>
+                </SummaryCard.Overlay>
+              }
+              style={{ maxWidth: `${COMPACT_CARD_WIDTH}px` }}
+            />
+            <p
+              style={{
+                fontSize: '12px',
+                color: 'var(--ai-color-text-secondary)',
+                marginTop: '8px',
+              }}
+            >
+              ✓ size="compact" (denser layout)
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Real-World Example */}
       <section style={{ marginBottom: '64px' }}>
         <header style={{ marginBottom: '24px' }}>
@@ -1579,6 +1998,11 @@ const SummaryCardsComponent: React.FC = () => {
               name: 'onImagesError',
               type: '(index: number, event: React.SyntheticEvent<HTMLImageElement>) => void',
               description: 'Callback when grid image fails (includes image index)',
+            },
+            {
+              name: 'topOverlay',
+              type: 'React.ReactNode',
+              description: 'Custom overlay content to render at the top of the image (e.g., logos, badges)',
             },
             {
               name: 'className',

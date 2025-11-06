@@ -243,6 +243,24 @@ export interface SummaryCardProps extends Omit<CardProps, 'children'> {
    * Callback when a grid image fails to load (includes index)
    */
   onImagesError?: (index: number, event: React.SyntheticEvent<HTMLImageElement>) => void;
+
+  /**
+   * Custom overlay content to render at the top of the image
+   * Can be used for logos, badges, or any custom React elements
+   *
+   * @example
+   * ```tsx
+   * <SummaryCard
+   *   images="property.jpg"
+   *   topOverlay={
+   *     <SummaryCard.Overlay background="dark" height={40} align="center">
+   *       <img src="logo.png" alt="Company Logo" style={{ height: 24 }} />
+   *     </SummaryCard.Overlay>
+   *   }
+   * />
+   * ```
+   */
+  topOverlay?: React.ReactNode;
 }
 
 /**
@@ -254,6 +272,103 @@ const normalizeImage = (image: string | SummaryCardImage): SummaryCardImage => {
   }
   return image;
 };
+
+/**
+ * Props for SummaryCard.Overlay helper component
+ */
+export interface SummaryCardOverlayProps {
+  /**
+   * Background style for the overlay
+   * - "dark": Semi-transparent dark background (rgba(0, 0, 0, 0.6))
+   * - "light": Semi-transparent light background (rgba(255, 255, 255, 0.8))
+   * - "transparent": No background
+   * - Custom string: Any valid CSS color value
+   * @default "dark"
+   */
+  background?: 'dark' | 'light' | 'transparent' | string;
+
+  /**
+   * Height of the overlay
+   * @default 40
+   */
+  height?: number | string;
+
+  /**
+   * Horizontal alignment of content
+   * @default "center"
+   */
+  align?: 'left' | 'center' | 'right';
+
+  /**
+   * Padding inside the overlay
+   * @default 8
+   */
+  padding?: number;
+
+  /**
+   * Content to render inside the overlay
+   */
+  children: React.ReactNode;
+
+  /**
+   * Additional CSS class name
+   */
+  className?: string;
+}
+
+/**
+ * Helper component for creating consistently styled overlays on SummaryCard images
+ *
+ * @example
+ * ```tsx
+ * <SummaryCard
+ *   images="property.jpg"
+ *   topOverlay={
+ *     <SummaryCard.Overlay background="dark" height={40} align="center">
+ *       <img src="logo.png" alt="Logo" style={{ height: 24 }} />
+ *     </SummaryCard.Overlay>
+ *   }
+ * />
+ * ```
+ */
+const SummaryCardOverlay = React.forwardRef<HTMLDivElement, SummaryCardOverlayProps>(
+  ({ background = 'dark', height = 40, align = 'center', padding = 8, children, className }, ref) => {
+    // Map background presets to CSS values
+    const backgroundMap: Record<string, string> = {
+      dark: 'rgba(0, 0, 0, 0.6)',
+      light: 'rgba(255, 255, 255, 0.8)',
+      transparent: 'transparent',
+    };
+
+    const backgroundValue = backgroundMap[background] || background;
+
+    // Map align to justify-content values
+    const justifyContentMap: Record<string, string> = {
+      left: 'flex-start',
+      center: 'center',
+      right: 'flex-end',
+    };
+
+    const justifyContent = justifyContentMap[align] || 'center';
+
+    return (
+      <div
+        ref={ref}
+        className={cn(styles.topOverlay, className)}
+        style={{
+          background: backgroundValue,
+          height: typeof height === 'number' ? `${height}px` : height,
+          justifyContent,
+          padding: `${padding}px`,
+        }}
+      >
+        {children}
+      </div>
+    );
+  }
+);
+
+SummaryCardOverlay.displayName = 'SummaryCard.Overlay';
 
 /**
  * SummaryCard component for displaying entity information with images.
@@ -292,7 +407,7 @@ const normalizeImage = (image: string | SummaryCardImage): SummaryCardImage => {
  * />
  * ```
  */
-export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((props, ref) => {
+const SummaryCardComponent = React.forwardRef<HTMLDivElement, SummaryCardProps>((props, ref) => {
   const {
     images,
     title,
@@ -324,6 +439,7 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
     onImageError,
     onImagesLoad,
     onImagesError,
+    topOverlay,
     className,
     ...cardProps
   } = props;
@@ -572,33 +688,39 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
           {hasImages && (
             <div className={styles.imageSection}>
               {isSingleImage && (
-                <img
-                  src={imageArray[0].src}
-                  alt={imageArray[0].alt}
-                  className={styles.imageSingle}
-                  data-aspect={imageAspectRatio}
-                  loading={imageArray[0].lazy !== false && imageLazy ? 'lazy' : 'eager'}
-                  onLoad={onImageLoad}
-                  onError={onImageError}
-                />
+                <>
+                  <img
+                    src={imageArray[0].src}
+                    alt={imageArray[0].alt}
+                    className={styles.imageSingle}
+                    data-aspect={imageAspectRatio}
+                    loading={imageArray[0].lazy !== false && imageLazy ? 'lazy' : 'eager'}
+                    onLoad={onImageLoad}
+                    onError={onImageError}
+                  />
+                  {topOverlay && topOverlay}
+                </>
               )}
               {isGridImages && (
-                <div className={styles.imageGrid} data-image-count={imageCount}>
-                  {displayImages.map((image, index) => (
-                    <img
-                      key={index}
-                      src={image.src}
-                      alt={image.alt}
-                      className={styles.imageGridItem}
-                      loading={image.lazy !== false && imageLazy ? 'lazy' : 'eager'}
-                      onLoad={onImagesLoad ? (e) => onImagesLoad(index, e) : undefined}
-                      onError={onImagesError ? (e) => onImagesError(index, e) : undefined}
-                    />
-                  ))}
-                  {hasOverflow && (
-                    <div className={styles.overflowIndicator}>+{imageArray.length - 4}</div>
-                  )}
-                </div>
+                <>
+                  <div className={styles.imageGrid} data-image-count={imageCount}>
+                    {displayImages.map((image, index) => (
+                      <img
+                        key={index}
+                        src={image.src}
+                        alt={image.alt}
+                        className={styles.imageGridItem}
+                        loading={image.lazy !== false && imageLazy ? 'lazy' : 'eager'}
+                        onLoad={onImagesLoad ? (e) => onImagesLoad(index, e) : undefined}
+                        onError={onImagesError ? (e) => onImagesError(index, e) : undefined}
+                      />
+                    ))}
+                    {hasOverflow && (
+                      <div className={styles.overflowIndicator}>+{imageArray.length - 4}</div>
+                    )}
+                  </div>
+                  {topOverlay && topOverlay}
+                </>
               )}
             </div>
           )}
@@ -670,4 +792,12 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
   );
 });
 
-SummaryCard.displayName = 'SummaryCard';
+SummaryCardComponent.displayName = 'SummaryCard';
+
+// Create typed SummaryCard with Overlay subcomponent
+export const SummaryCard = SummaryCardComponent as typeof SummaryCardComponent & {
+  Overlay: typeof SummaryCardOverlay;
+};
+
+// Attach Overlay component to SummaryCard
+SummaryCard.Overlay = SummaryCardOverlay;
