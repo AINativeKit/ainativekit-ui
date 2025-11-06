@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { SummaryCard } from './SummaryCard';
+import { Button } from '../Button';
 import { PropsTable } from '../../tokens/PropsTable';
 
 const meta: Meta<typeof SummaryCard> = {
@@ -26,6 +27,217 @@ const SAMPLE_IMAGE_KEYS = ['pizza', 'pasta', 'salad', 'dessert'] as const;
 
 const CARD_WIDTH = 345;
 const COMPACT_CARD_WIDTH = 280;
+
+// Interactive loading transition demo
+const LoadingTransitionDemo: React.FC = () => {
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [autoToggle, setAutoToggle] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!autoToggle) return;
+    const interval = setInterval(() => {
+      setIsLoading((prev) => !prev);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [autoToggle]);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+        <Button
+          variant="secondary"
+          onClick={() => setIsLoading((prev) => !prev)}
+        >
+          {isLoading ? '▶️ Show Content' : '⏸️ Show Loading'}
+        </Button>
+        <Button
+          variant={autoToggle ? 'primary' : 'secondary'}
+          onClick={() => setAutoToggle((prev) => !prev)}
+        >
+          {autoToggle ? '⏹️ Stop Auto-Toggle' : '🔄 Auto-Toggle (2s)'}
+        </Button>
+        <span style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
+          Current: <strong>{isLoading ? 'Loading' : 'Loaded'}</strong>
+        </span>
+      </div>
+
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+          gap: '24px',
+          alignItems: 'start',
+        }}
+      >
+        <div>
+          <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+            Single Image - Watch for layout shift (there should be none!)
+          </p>
+          <SummaryCard
+            images={SAMPLE_IMAGES.restaurant}
+            imageAspectRatio="4/3"
+            title="Little Nona's"
+            subtitle="1427 Via Campania"
+            badge="9.2"
+            description="A tiny, brick-walled trattoria tucked down a side street near Washington Square Park."
+            descriptionLines={2}
+            buttonText="Reserve Table"
+            loading={isLoading}
+            style={{ maxWidth: `${CARD_WIDTH}px` }}
+          />
+        </div>
+
+        <div>
+          <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+            Grid Images - 3 images layout
+          </p>
+          <SummaryCard
+            images={[
+              { src: SAMPLE_IMAGES.pizza, alt: 'Pizza' },
+              { src: SAMPLE_IMAGES.pasta, alt: 'Pasta' },
+              { src: SAMPLE_IMAGES.salad, alt: 'Salad' },
+            ]}
+            title="Italian Favorites"
+            subtitle="Best dishes"
+            badge="9.5"
+            description="Authentic Italian cuisine with fresh ingredients and traditional recipes."
+            descriptionLines={2}
+            buttonText="Order Now"
+            loading={isLoading}
+            loadingImageCount={3}
+            style={{ maxWidth: `${CARD_WIDTH}px` }}
+          />
+        </div>
+
+        <div>
+          <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+            Compact Size with 3 lines
+          </p>
+          <SummaryCard
+            images={SAMPLE_IMAGES.restaurant}
+            imageAspectRatio="4/3"
+            title="Compact Card"
+            subtitle="Dense layout"
+            badge="9.0"
+            size="compact"
+            description="A tiny, brick-walled trattoria tucked down a side street near Washington Square Park. The windows glow warm gold at night."
+            descriptionLines={3}
+            buttonText="View"
+            loading={isLoading}
+            style={{ maxWidth: `${CARD_WIDTH}px` }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Interactive flat variant loading transition demo
+const FlatLoadingTransitionDemo: React.FC = () => {
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [autoToggle, setAutoToggle] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!autoToggle) return;
+    const interval = setInterval(() => {
+      setIsLoading((prev) => !prev);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [autoToggle]);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+        <Button
+          variant="secondary"
+          onClick={() => setIsLoading((prev) => !prev)}
+        >
+          {isLoading ? '▶️ Show Content' : '⏸️ Show Loading'}
+        </Button>
+        <Button
+          variant={autoToggle ? 'primary' : 'secondary'}
+          onClick={() => setAutoToggle((prev) => !prev)}
+        >
+          {autoToggle ? '⏹️ Stop Auto-Toggle' : '🔄 Auto-Toggle (2s)'}
+        </Button>
+        <span style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
+          Current: <strong>{isLoading ? 'Loading' : 'Loaded'}</strong>
+        </span>
+      </div>
+
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+          gap: '24px',
+          alignItems: 'start',
+        }}
+      >
+        <div>
+          <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+            Flat + Single Image - Edge-to-edge layout
+          </p>
+          <SummaryCard
+            variant="flat"
+            images={SAMPLE_IMAGES.restaurant}
+            imageAspectRatio="4/3"
+            title="Pizzeria Bella"
+            subtitle="123 Main Street"
+            badge="4.8"
+            description="Authentic wood-fired pizzas with fresh ingredients and traditional recipes."
+            descriptionLines={2}
+            buttonText="Order Now"
+            loading={isLoading}
+            style={{ maxWidth: `${CARD_WIDTH}px` }}
+          />
+        </div>
+
+        <div>
+          <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+            Flat + Grid (Perfect for Carousels)
+          </p>
+          <SummaryCard
+            variant="flat"
+            images={[
+              { src: SAMPLE_IMAGES.pizza, alt: 'Pizza' },
+              { src: SAMPLE_IMAGES.pasta, alt: 'Pasta' },
+              { src: SAMPLE_IMAGES.salad, alt: 'Salad' },
+            ]}
+            title="Italian Collection"
+            subtitle="3 dishes"
+            badge="9.5"
+            description="Our most popular Italian dishes featuring authentic ingredients."
+            descriptionLines={2}
+            buttonText="Explore Menu"
+            loading={isLoading}
+            loadingImageCount={3}
+            style={{ maxWidth: `${CARD_WIDTH}px` }}
+          />
+        </div>
+
+        <div>
+          <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+            Flat + Compact (Discovery Mode)
+          </p>
+          <SummaryCard
+            variant="flat"
+            size="compact"
+            images={SAMPLE_IMAGES.restaurant}
+            imageAspectRatio="4/3"
+            title="Trattoria Roma"
+            subtitle="456 Park Ave"
+            badge="9.2"
+            description="Cozy Italian trattoria with homemade pasta and traditional recipes from Rome."
+            descriptionLines={3}
+            buttonText="Reserve"
+            loading={isLoading}
+            style={{ maxWidth: `${COMPACT_CARD_WIDTH}px` }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 // Main unified SummaryCard showcase component
 const SummaryCardsComponent: React.FC = () => {
@@ -645,6 +857,265 @@ const SummaryCardsComponent: React.FC = () => {
         </div>
       </section>
 
+      {/* Layout Shift Prevention - NEW */}
+      <section style={{ marginBottom: '64px' }}>
+        <header style={{ marginBottom: '24px' }}>
+          <h2 style={{ marginBottom: '8px' }}>Layout Shift Prevention (NEW)</h2>
+          <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
+            Loading skeletons now match real content dimensions exactly using CSS aspect-ratio and dynamic description lines.
+            Smooth fade transitions with 100ms delay prevent flash on fast loads.
+          </p>
+        </header>
+
+        {/* Description Lines */}
+        <div style={{ marginBottom: '32px' }}>
+          <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+            descriptionLines Prop - Skeleton Matches Content
+          </h3>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+              gap: '24px',
+              alignItems: 'start',
+            }}
+          >
+            <div>
+              <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+                descriptionLines={1} (skeleton & content)
+              </p>
+              <SummaryCard
+                images={SAMPLE_IMAGES.restaurant}
+                title="One Line Description"
+                subtitle="Short content"
+                badge="9.2"
+                description="A tiny, brick-walled trattoria tucked down a side street."
+                descriptionLines={1}
+                buttonText="View"
+                loading={true}
+                style={{ maxWidth: `${CARD_WIDTH}px` }}
+              />
+            </div>
+
+            <div>
+              <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+                descriptionLines={2} (default)
+              </p>
+              <SummaryCard
+                images={SAMPLE_IMAGES.restaurant}
+                title="Two Line Description"
+                subtitle="Standard content"
+                badge="9.2"
+                description="A tiny, brick-walled trattoria tucked down a side street near Washington Square Park."
+                descriptionLines={2}
+                buttonText="View"
+                loading={true}
+                style={{ maxWidth: `${CARD_WIDTH}px` }}
+              />
+            </div>
+
+            <div>
+              <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+                descriptionLines={3}
+              </p>
+              <SummaryCard
+                images={SAMPLE_IMAGES.restaurant}
+                title="Three Line Description"
+                subtitle="Longer content"
+                badge="9.2"
+                description="A tiny, brick-walled trattoria tucked down a side street near Washington Square Park. The windows glow warm gold at night, and the smell of slow-simmered tomato sauce drifts out onto the sidewalk."
+                descriptionLines={3}
+                buttonText="View"
+                loading={true}
+                style={{ maxWidth: `${CARD_WIDTH}px` }}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Aspect Ratio Loading States */}
+        <div style={{ marginBottom: '32px' }}>
+          <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+            imageAspectRatio - Skeleton Matches Image Dimensions
+          </h3>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+              gap: '24px',
+              alignItems: 'start',
+            }}
+          >
+            <div>
+              <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+                imageAspectRatio="16/9" (widescreen)
+              </p>
+              <SummaryCard
+                images={SAMPLE_IMAGES.restaurant}
+                imageAspectRatio="16/9"
+                title="Widescreen Aspect"
+                subtitle="16:9 format"
+                badge="9.2"
+                description="Skeleton uses CSS aspect-ratio to match exact image height"
+                buttonText="View"
+                loading={true}
+                style={{ maxWidth: `${CARD_WIDTH}px` }}
+              />
+            </div>
+
+            <div>
+              <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+                imageAspectRatio="4/3" (classic)
+              </p>
+              <SummaryCard
+                images={SAMPLE_IMAGES.restaurant}
+                imageAspectRatio="4/3"
+                title="Classic Aspect"
+                subtitle="4:3 format"
+                badge="9.2"
+                description="Prevents layout shift when transitioning from skeleton to image"
+                buttonText="View"
+                loading={true}
+                style={{ maxWidth: `${CARD_WIDTH}px` }}
+              />
+            </div>
+
+            <div>
+              <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+                imageAspectRatio="1/1" (square)
+              </p>
+              <SummaryCard
+                images={SAMPLE_IMAGES.restaurant}
+                imageAspectRatio="1/1"
+                title="Square Aspect"
+                subtitle="1:1 format"
+                badge="9.2"
+                description="All aspect ratios supported with zero layout shift"
+                buttonText="View"
+                loading={true}
+                style={{ maxWidth: `${CARD_WIDTH}px` }}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Flat Variant Loading States */}
+        <div style={{ marginBottom: '32px' }}>
+          <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+            Flat Variant - Edge-to-Edge with No Layout Shift
+          </h3>
+          <p style={{ fontSize: '13px', color: 'var(--ai-color-text-secondary)', marginBottom: '16px' }}>
+            Flat variant cards (zero padding, no elevation) also maintain perfect layout stability during loading transitions.
+          </p>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+              gap: '24px',
+              alignItems: 'start',
+            }}
+          >
+            <div>
+              <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+                Flat + Single Image
+              </p>
+              <SummaryCard
+                variant="flat"
+                images={SAMPLE_IMAGES.restaurant}
+                imageAspectRatio="4/3"
+                title="Flat Card Loading"
+                subtitle="Edge-to-edge"
+                badge="9.2"
+                description="No padding or elevation, perfect for grids and carousels"
+                descriptionLines={2}
+                buttonText="Order"
+                loading={true}
+                style={{ maxWidth: `${CARD_WIDTH}px` }}
+              />
+            </div>
+
+            <div>
+              <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+                Flat + Grid Images
+              </p>
+              <SummaryCard
+                variant="flat"
+                images={[
+                  { src: SAMPLE_IMAGES.pizza, alt: 'Pizza' },
+                  { src: SAMPLE_IMAGES.pasta, alt: 'Pasta' },
+                  { src: SAMPLE_IMAGES.salad, alt: 'Salad' },
+                ]}
+                title="Grid Layout Flat"
+                subtitle="3 images"
+                badge="9.5"
+                description="Seamless grid layout with loading state"
+                descriptionLines={2}
+                buttonText="View"
+                loading={true}
+                loadingImageCount={3}
+                style={{ maxWidth: `${CARD_WIDTH}px` }}
+              />
+            </div>
+
+            <div>
+              <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+                Flat + Compact Size
+              </p>
+              <SummaryCard
+                variant="flat"
+                size="compact"
+                images={SAMPLE_IMAGES.restaurant}
+                imageAspectRatio="4/3"
+                title="Compact Flat"
+                subtitle="Dense & seamless"
+                badge="9.0"
+                description="Perfect for discovery carousels with no wasted space"
+                descriptionLines={2}
+                buttonText="Explore"
+                loading={true}
+                style={{ maxWidth: `${CARD_WIDTH}px` }}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Live Transition Demo */}
+        <div style={{ marginBottom: '32px' }}>
+          <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+            Live Loading → Loaded Transition
+          </h3>
+          <p style={{ fontSize: '13px', color: 'var(--ai-color-text-secondary)', marginBottom: '16px' }}>
+            Watch the smooth fade transition with 100ms delay. Toggle between loading and loaded states - no layout shift!
+          </p>
+          <LoadingTransitionDemo />
+        </div>
+
+        {/* Flat Variant Live Demo */}
+        <div style={{ marginBottom: '32px' }}>
+          <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+            Live Flat Variant Transitions
+          </h3>
+          <p style={{ fontSize: '13px', color: 'var(--ai-color-text-secondary)', marginBottom: '16px' }}>
+            Interactive demo for flat variant cards - watch edge-to-edge content transition smoothly.
+          </p>
+          <FlatLoadingTransitionDemo />
+        </div>
+
+        {/* Best Practices */}
+        <div style={{ background: 'var(--ai-color-bg-secondary)', border: '1px solid var(--ai-color-border)', borderRadius: '8px', padding: '16px' }}>
+          <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '8px', color: 'var(--ai-color-text-primary)' }}>
+            Industry Best Practices Implemented
+          </h3>
+          <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '13px', lineHeight: '1.6', color: 'var(--ai-color-text-secondary)' }}>
+            <li><strong>CSS aspect-ratio:</strong> Responsive skeleton dimensions without fixed pixel heights</li>
+            <li><strong>Dynamic line-clamp:</strong> Description skeleton matches configured line count</li>
+            <li><strong>Opacity fade:</strong> Smooth 300ms transition between loading and content states</li>
+            <li><strong>Delayed animation:</strong> 100ms delay prevents flash on fast loads (&lt;100ms)</li>
+            <li><strong>Zero CLS:</strong> Cumulative Layout Shift score remains 0 during transitions</li>
+          </ul>
+        </div>
+      </section>
+
       {/* States */}
       <section style={{ marginBottom: '64px' }}>
         <header style={{ marginBottom: '24px' }}>
@@ -1010,6 +1481,12 @@ const SummaryCardsComponent: React.FC = () => {
               name: 'description',
               type: 'string',
               description: 'Main description text content',
+            },
+            {
+              name: 'descriptionLines',
+              type: 'number',
+              default: '2',
+              description: 'Number of lines to display for description (applies line-clamp to content and determines skeleton line count)',
             },
             {
               name: 'metadata',

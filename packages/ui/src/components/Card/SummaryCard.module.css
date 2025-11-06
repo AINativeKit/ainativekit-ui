@@ -234,9 +234,10 @@
   color: var(--ai-color-text-secondary);
   margin: 0; /* Remove default browser margin */
 
-  /* Clamp to 2 lines with ellipsis */
+  /* Clamp to configurable number of lines with ellipsis */
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: var(--description-lines, 2);
+  line-clamp: var(--description-lines, 2);
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -294,6 +295,36 @@
   display: flex;
   flex-direction: column;
   gap: var(--ai-spacing-8); /* 16px gap between major sections - same as card */
+  animation: fadeInSkeleton 500ms ease-out forwards;
+  animation-delay: 100ms; /* Prevents flash on fast loads */
+}
+
+@keyframes fadeInSkeleton {
+  0%, 50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Skeleton image containers with aspect-ratio to prevent layout shift */
+.skeletonImageContainer {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.skeletonImageContainer[data-aspect='auto'] {
+  height: 244px;
+}
+
+.skeletonImageContainer[data-aspect='16/9'] {
+  aspect-ratio: 16 / 9;
+}
+
+.skeletonImageContainer[data-aspect='4/3'] {
+  aspect-ratio: 4 / 3;
+}
+
+.skeletonImageContainer[data-aspect='1/1'] {
+  aspect-ratio: 1 / 1;
 }
 
 /* Empty State */

@@ -115,6 +115,13 @@ export interface SummaryCardProps extends Omit<CardProps, 'children'> {
   description?: string;
 
   /**
+   * Number of lines to display for description text
+   * Applies line-clamp to actual content and determines skeleton line count
+   * @default 2
+   */
+  descriptionLines?: number;
+
+  /**
    * Metadata items to display below description (e.g., read time, date).
    * Array of items with optional icon and label.
    *
@@ -296,6 +303,7 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
     size = 'default',
     imageAspectRatio = 'auto',
     description,
+    descriptionLines = 2,
     metadata,
     buttonText,
     onButtonClick,
@@ -386,7 +394,9 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
         <div className={styles.loadingContainer} role="status" aria-live="polite">
           {/* Image Skeleton */}
           <div className={styles.imageSection}>
-            <Skeleton width="100%" height={244} borderRadius={16} />
+            <div className={styles.skeletonImageContainer} data-aspect={imageAspectRatio}>
+              <Skeleton width="100%" height="100%" borderRadius={16} />
+            </div>
           </div>
 
           {/* Content Skeleton */}
@@ -404,8 +414,14 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
 
               {hasDescription && (
                 <div>
-                  <Skeleton width="100%" height={14} />
-                  <Skeleton width="80%" height={14} style={{ marginTop: 'var(--ai-spacing-2)' }} />
+                  {Array.from({ length: descriptionLines }).map((_, index) => (
+                    <Skeleton
+                      key={index}
+                      width={index === descriptionLines - 1 ? '80%' : '100%'}
+                      height={14}
+                      style={index > 0 ? { marginTop: 'var(--ai-spacing-2)' } : undefined}
+                    />
+                  ))}
                 </div>
               )}
             </div>
@@ -414,7 +430,7 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
           {/* Button Skeleton */}
           {hasButton && (
             <div className={styles.buttonSection}>
-              <Skeleton width="100%" height={44} borderRadius={8} />
+              <Skeleton width="100%" height={44} borderRadius={22} />
             </div>
           )}
 
@@ -429,7 +445,7 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
           <div className={styles.imageSection}>
             <div className={styles.imageGrid} data-image-count={skeletonImageCount}>
               {Array.from({ length: Math.min(skeletonImageCount, 4) }).map((_, index) => (
-                <Skeleton key={index} width="100%" height="100%" borderRadius={2} />
+                <Skeleton key={index} width="100%" height="100%" borderRadius={4} />
               ))}
             </div>
           </div>
@@ -449,8 +465,14 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
 
               {hasDescription && (
                 <div>
-                  <Skeleton width="100%" height={14} />
-                  <Skeleton width="80%" height={14} style={{ marginTop: 'var(--ai-spacing-2)' }} />
+                  {Array.from({ length: descriptionLines }).map((_, index) => (
+                    <Skeleton
+                      key={index}
+                      width={index === descriptionLines - 1 ? '80%' : '100%'}
+                      height={14}
+                      style={index > 0 ? { marginTop: 'var(--ai-spacing-2)' } : undefined}
+                    />
+                  ))}
                 </div>
               )}
             </div>
@@ -459,7 +481,7 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
           {/* Button Skeleton */}
           {hasButton && (
             <div className={styles.buttonSection}>
-              <Skeleton width="100%" height={44} borderRadius={8} />
+              <Skeleton width="100%" height={44} borderRadius={22} />
             </div>
           )}
 
@@ -485,8 +507,14 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
 
               {hasDescription && (
                 <div>
-                  <Skeleton width="100%" height={14} />
-                  <Skeleton width="80%" height={14} style={{ marginTop: 'var(--ai-spacing-2)' }} />
+                  {Array.from({ length: descriptionLines }).map((_, index) => (
+                    <Skeleton
+                      key={index}
+                      width={index === descriptionLines - 1 ? '80%' : '100%'}
+                      height={14}
+                      style={index > 0 ? { marginTop: 'var(--ai-spacing-2)' } : undefined}
+                    />
+                  ))}
                 </div>
               )}
             </div>
@@ -495,7 +523,7 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
           {/* Button Skeleton */}
           {hasButton && (
             <div className={styles.buttonSection}>
-              <Skeleton width="100%" height={44} borderRadius={8} />
+              <Skeleton width="100%" height={44} borderRadius={22} />
             </div>
           )}
 
@@ -612,7 +640,14 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
               )}
 
               {/* Description Section */}
-              {hasDescription && <p className={styles.description}>{description}</p>}
+              {hasDescription && (
+                <p
+                  className={styles.description}
+                  style={{ '--description-lines': descriptionLines } as React.CSSProperties}
+                >
+                  {description}
+                </p>
+              )}
             </div>
           )}
 

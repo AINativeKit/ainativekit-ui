@@ -4,6 +4,7 @@ import { Carousel } from './Carousel';
 import { ImageCard } from '../Card/ImageCard';
 import { SummaryCard } from '../Card/SummaryCard';
 import { ListCard } from '../Card/ListCard';
+import { Button } from '../Button';
 import { PropsTable } from '../../tokens/PropsTable';
 
 const meta: Meta<typeof Carousel> = {
@@ -28,6 +29,195 @@ const sampleImages = [
 
 const pepperoniImage =
   'https://images.unsplash.com/photo-1628840042765-356cda07504e?w=200&auto=format&fit=crop';
+
+// Interactive SummaryCard + Carousel demo
+const SummaryCardCarouselDemo: React.FC = () => {
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [autoToggle, setAutoToggle] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!autoToggle) return;
+    const interval = setInterval(() => {
+      setIsLoading((prev) => !prev);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [autoToggle]);
+
+  // Sample restaurant data
+  const restaurants = [
+    {
+      id: '1',
+      title: "Tony's Pizzeria",
+      subtitle: '123 Main Street',
+      image: 'https://persistent.oaistatic.com/pizzaz/pizzaz-1.png',
+      description: 'Award-winning Neapolitan pizzas with wood-fired oven and fresh ingredients.',
+      badge: '4.8',
+      features: ['$$$', 'Neapolitan', 'Wood-fired'],
+    },
+    {
+      id: '2',
+      title: 'Slice Haven',
+      subtitle: '456 Park Avenue',
+      image: 'https://persistent.oaistatic.com/pizzaz/pizzaz-3.png',
+      description: 'New York style slices with fresh mozzarella and authentic recipes.',
+      badge: '4.6',
+      features: ['$$', 'NY Style', 'Fresh'],
+    },
+    {
+      id: '3',
+      title: 'Pesto Kitchen',
+      subtitle: '789 Garden Lane',
+      image: 'https://persistent.oaistatic.com/pizzaz/pizzaz-5.png',
+      description: 'Creative pesto-based pizzas with seasonal ingredients from local farms.',
+      badge: '4.7',
+      features: ['$$', 'Pesto', 'Creative'],
+    },
+    {
+      id: '4',
+      title: 'Margherita Express',
+      subtitle: '321 Oak Boulevard',
+      image: 'https://persistent.oaistatic.com/pizzaz/pizzaz-2.png',
+      description: 'Classic Margherita pizzas made with imported Italian ingredients.',
+      badge: '4.9',
+      features: ['$$$', 'Classic', 'Italian'],
+    },
+    {
+      id: '5',
+      title: 'Rustica Oven',
+      subtitle: '654 Elm Street',
+      image: 'https://persistent.oaistatic.com/pizzaz/pizzaz-4.png',
+      description: 'Rustic Italian pizzas baked in traditional stone ovens.',
+      badge: '4.5',
+      features: ['$$', 'Rustic', 'Stone Oven'],
+    },
+  ];
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <div
+        style={{
+          background: 'var(--ai-color-bg-secondary)',
+          padding: '12px',
+          borderRadius: '8px',
+          fontSize: '12px',
+          color: 'var(--ai-color-text-secondary)',
+        }}
+      >
+        💡 <strong>Recommended Pattern:</strong> Pass SummaryCards with{' '}
+        <code
+          style={{
+            background: 'var(--ai-color-bg-primary)',
+            padding: '2px 6px',
+            borderRadius: '3px',
+            fontSize: '11px',
+          }}
+        >
+          loading=true
+        </code>{' '}
+        to Carousel. The layout shift prevention in SummaryCard ensures cards maintain their
+        dimensions during loading, enabling smooth carousel scrolling.
+      </div>
+
+      <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
+        <Button
+          variant="secondary"
+          onClick={() => setIsLoading((prev) => !prev)}
+        >
+          {isLoading ? '▶️ Show Content' : '⏸️ Show Loading'}
+        </Button>
+        <Button
+          variant={autoToggle ? 'primary' : 'secondary'}
+          onClick={() => setAutoToggle((prev) => !prev)}
+        >
+          {autoToggle ? '⏹️ Stop Auto-Toggle' : '🔄 Auto-Toggle (3s)'}
+        </Button>
+        <span style={{ fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
+          Current: <strong>{isLoading ? 'Loading' : 'Loaded'}</strong>
+        </span>
+      </div>
+
+      <Carousel align="start" flushStart showNavigation showEdgeGradients>
+        {restaurants.map((restaurant) => (
+          <div key={restaurant.id} style={{ width: '280px', flexShrink: 0 }}>
+            <SummaryCard
+              variant="flat"
+              size="compact"
+              images={restaurant.image}
+              imageAspectRatio="4/3"
+              title={restaurant.title}
+              subtitle={restaurant.subtitle}
+              badge={restaurant.badge}
+              description={restaurant.description}
+              descriptionLines={2}
+              metadata={restaurant.features.map((f, i, arr) => ({
+                label: f,
+                separator: i < arr.length - 1 ? '•' : undefined,
+              }))}
+              buttonText="Order now"
+              onButtonClick={() => alert(`Order from ${restaurant.title}`)}
+              loading={isLoading}
+            />
+          </div>
+        ))}
+      </Carousel>
+
+      <div
+        style={{
+          marginTop: '8px',
+          fontSize: '12px',
+          color: 'var(--ai-color-text-secondary)',
+          lineHeight: '1.5',
+        }}
+      >
+        <strong>Key Benefits:</strong>
+        <ul style={{ margin: '4px 0 0 0', paddingLeft: '20px' }}>
+          <li>Cards maintain exact dimensions during loading → no carousel jump or shift</li>
+          <li>Smooth scrolling during transitions (try scrolling while toggling!)</li>
+          <li>Flat variant perfect for seamless carousel integration</li>
+          <li>Compact size + 4:3 aspect ratio optimized for discovery interfaces</li>
+        </ul>
+      </div>
+
+      <details style={{ marginTop: '12px', cursor: 'pointer' }}>
+        <summary style={{ fontWeight: 600, marginBottom: '12px' }}>Show code</summary>
+        <div
+          style={{
+            backgroundColor: 'var(--ai-color-bg-tertiary)',
+            padding: '16px',
+            borderRadius: '8px',
+            fontFamily: 'monospace',
+            fontSize: '13px',
+            marginTop: '12px',
+          }}
+        >
+          <code style={{ whiteSpace: 'pre' }}>{`<Carousel align="start" flushStart>
+  {restaurants.map((restaurant) => (
+    <div key={restaurant.id} style={{ width: '280px', flexShrink: 0 }}>
+      <SummaryCard
+        variant="flat"
+        size="compact"
+        images={restaurant.image}
+        imageAspectRatio="4/3"
+        title={restaurant.title}
+        subtitle={restaurant.subtitle}
+        badge={restaurant.badge}
+        description={restaurant.description}
+        descriptionLines={2}
+        metadata={restaurant.features.map((f, i, arr) => ({
+          label: f,
+          separator: i < arr.length - 1 ? '•' : undefined,
+        }))}
+        buttonText="Order now"
+        loading={isLoading}
+      />
+    </div>
+  ))}
+</Carousel>`}</code>
+        </div>
+      </details>
+    </div>
+  );
+};
 
 // Main unified Carousel showcase component
 const CarouselsComponent: React.FC = () => {
@@ -610,6 +800,24 @@ Current: {currentSlide + 1} of {total}`}</code>
 </Carousel>`}</code>
               </div>
             </details>
+          </div>
+
+          {/* Loading State with SummaryCard - Interactive Demo */}
+          <div style={{ marginBottom: '32px' }}>
+            <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>
+              Loading State with SummaryCard (Interactive)
+            </h3>
+            <p
+              style={{
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+                marginBottom: '12px',
+              }}
+            >
+              SummaryCard with layout shift prevention works perfectly in Carousel. Toggle to see
+              smooth transitions with no jumping during loading state changes.
+            </p>
+            <SummaryCardCarouselDemo />
           </div>
 
           {/* Loading State - Fallback Pattern */}
