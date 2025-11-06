@@ -9,7 +9,7 @@
 .cardBody {
   display: flex;
   flex-direction: column;
-  gap: var(--ai-spacing-6); /* 12px - comfortable spacing for main content */
+  gap: var(--ai-spacing-4); /* 8px - comfortable spacing for main content */
   flex: 1;
 }
 

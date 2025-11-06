@@ -101,7 +101,7 @@ const CardBase = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
     border = 'heavy',
     hoverElevationLevel,
     interactive = false,
-    padding = 'var(--ai-spacing-12)',
+    padding = 'var(--ai-spacing-8)',
     loading = false,
     skeleton,
     error = false,
