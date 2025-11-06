@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - **Card Component**: Reduced spacing for more compact design
+- **Card Loading UI**: Improve loading UI to be responsive to smoothly transit to data state. 
 - **SummaryCard**: Consolidated DiscoveryCard functionality with improved structure
 
 ### Fixed
