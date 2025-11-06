@@ -84,6 +84,14 @@ export interface SummaryCardProps extends Omit<CardProps, 'children'> {
   badgeVariant?: BadgeVariant;
 
   /**
+   * Card variant
+   * - "default": Standard card with padding and elevation
+   * - "flat": Edge-to-edge layout with no padding or elevation
+   * @default "default"
+   */
+  variant?: 'default' | 'flat';
+
+  /**
    * Card size/density
    * - "default": Spacious layout, heading3 title, bodySmall subtitle
    * - "compact": Dense layout, bodyEmph title, caption subtitle (DiscoveryCard style)
@@ -146,6 +154,15 @@ export interface SummaryCardProps extends Omit<CardProps, 'children'> {
    * Button disabled state.
    */
   buttonDisabled?: boolean;
+
+  /**
+   * Button full width on desktop.
+   * - undefined: Auto (full-width for default variant, auto-width for flat variant)
+   * - true: Full width on all screen sizes
+   * - false: Auto width on desktop (min 120px), full width on mobile
+   * @default undefined (auto based on variant)
+   */
+  buttonFullWidth?: boolean;
 
   // Phase 1: Critical Improvements (P0)
   /**
@@ -275,6 +292,7 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
     subtitle,
     badge,
     badgeVariant = 'default',
+    variant = 'default',
     size = 'default',
     imageAspectRatio = 'auto',
     description,
@@ -282,6 +300,7 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
     buttonText,
     onButtonClick,
     buttonDisabled = false,
+    buttonFullWidth,
     // Phase 1 props
     loading = false,
     loadingImageCount,
@@ -327,6 +346,10 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
   const defaultLoadingCount = hasImages && !isSingleImage ? 3 : 1;
   const skeletonImageCount = loadingImageCount ?? defaultLoadingCount;
 
+  // Button width logic: auto-determine based on variant if not explicitly set
+  // Default variant: full-width, Flat variant: auto-width (not full)
+  const isButtonFullWidth = buttonFullWidth ?? variant === 'default';
+
   // Helper to render badge/chip based on text length
   const renderBadge = () => {
     if (badge === undefined) return null;
@@ -351,9 +374,11 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
   return (
     <Card
       ref={ref}
-      padding={8}
+      padding={variant === 'flat' ? 0 : 8}
+      elevationLevel={variant === 'flat' ? 0 : cardProps.elevationLevel}
       className={cn(styles.summaryCard, className)}
       data-size={size}
+      data-variant={variant}
       {...cardProps}
     >
       {/* Loading State - Single Image */}
@@ -593,7 +618,7 @@ export const SummaryCard = React.forwardRef<HTMLDivElement, SummaryCardProps>((p
 
           {/* Action Button */}
           {hasButton && (
-            <div className={styles.buttonSection}>
+            <div className={styles.buttonSection} data-full-width={isButtonFullWidth}>
               <Button
                 variant="primary"
                 onClick={onButtonClick}

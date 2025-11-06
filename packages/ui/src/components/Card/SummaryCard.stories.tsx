@@ -450,6 +450,79 @@ const SummaryCardsComponent: React.FC = () => {
         </div>
       </section>
 
+      {/* Flat Variant - Edge-to-Edge Layout */}
+      <section style={{ marginBottom: '64px' }}>
+        <header style={{ marginBottom: '24px' }}>
+          <h2 style={{ marginBottom: '8px' }}>Flat Variant - Edge-to-Edge Layout</h2>
+          <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
+            Zero-elevation, edge-to-edge layout with no padding. Perfect for seamless integration in grids, carousels, or when the container provides spacing. Uses variant="flat".
+          </p>
+        </header>
+
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            gap: '24px',
+            alignItems: 'start',
+          }}
+        >
+          <SummaryCard
+            variant="flat"
+            images={SAMPLE_IMAGES.restaurant}
+            title="Flat Variant"
+            subtitle="No padding or elevation"
+            badge="9.2"
+            description="Content extends to card edges for seamless layouts"
+            buttonText="View Details"
+            style={{ maxWidth: `${CARD_WIDTH}px` }}
+          />
+          <SummaryCard
+            variant="flat"
+            images={[
+              { src: SAMPLE_IMAGES.pizza, alt: 'Pizza' },
+              { src: SAMPLE_IMAGES.pasta, alt: 'Pasta' },
+              { src: SAMPLE_IMAGES.salad, alt: 'Salad' },
+            ]}
+            title="Grid with Flat"
+            subtitle="Edge-to-edge grid"
+            badge="9.0"
+            description="Image grid and content aligned to edges"
+            buttonText="Explore"
+            style={{ maxWidth: `${CARD_WIDTH}px` }}
+          />
+          <SummaryCard
+            variant="flat"
+            size="compact"
+            imageAspectRatio="4/3"
+            images={SAMPLE_IMAGES.restaurant}
+            title="Flat + Compact"
+            subtitle="Dense & seamless"
+            badge="8.8"
+            description="Combine flat variant with compact size"
+            metadata={[
+              { label: '$$$', separator: '•' },
+              { label: 'Italian', separator: '•' },
+              { label: 'Open' },
+            ]}
+            buttonText="Order Now"
+            style={{ maxWidth: `${CARD_WIDTH}px` }}
+          />
+        </div>
+
+        <div style={{ marginTop: '24px', background: 'var(--ai-color-bg-secondary)', border: '1px solid var(--ai-color-border)', borderRadius: '8px', padding: '16px' }}>
+          <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '8px', color: 'var(--ai-color-text-primary)' }}>
+            Use Cases
+          </h3>
+          <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '13px', lineHeight: '1.6', color: 'var(--ai-color-text-secondary)' }}>
+            <li><strong>Tight Grids:</strong> Cards in dense grid layouts where container provides spacing</li>
+            <li><strong>Carousels:</strong> Seamless scrolling experiences without visual gaps</li>
+            <li><strong>Mobile Optimization:</strong> Maximize content area on small screens</li>
+            <li><strong>Custom Containers:</strong> When parent element handles padding and elevation</li>
+          </ul>
+        </div>
+      </section>
+
       {/* Discovery/Browse Mode - Compact Size (NEW - replaces DiscoveryCard) */}
       <section style={{ marginBottom: '64px' }}>
         <header style={{ marginBottom: '24px' }}>
@@ -916,6 +989,24 @@ const SummaryCardsComponent: React.FC = () => {
               description: 'Badge styling variant',
             },
             {
+              name: 'variant',
+              type: "'default' | 'flat'",
+              default: "'default'",
+              description: 'Card variant - "flat" for edge-to-edge layout with no padding or elevation',
+            },
+            {
+              name: 'size',
+              type: "'default' | 'compact'",
+              default: "'default'",
+              description: 'Card size/density - "compact" for dense layouts',
+            },
+            {
+              name: 'imageAspectRatio',
+              type: "'auto' | '16/9' | '4/3' | '1/1'",
+              default: "'auto'",
+              description: 'Image aspect ratio for single images',
+            },
+            {
               name: 'description',
               type: 'string',
               description: 'Main description text content',
@@ -935,6 +1026,12 @@ const SummaryCardsComponent: React.FC = () => {
               name: 'onButtonClick',
               type: '() => void',
               description: 'Button click handler',
+            },
+            {
+              name: 'buttonFullWidth',
+              type: 'boolean',
+              default: 'Auto (true for default, false for flat)',
+              description: 'Button full width on desktop. Auto-determined based on variant if not set.',
             },
             {
               name: 'loading',

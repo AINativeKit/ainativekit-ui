@@ -6,6 +6,11 @@
   overflow: hidden;
 }
 
+/* Flat variant - Remove border for seamless appearance */
+.summaryCard[data-variant='flat'] {
+  border: none;
+}
+
 /* Image Section */
 .imageSection {
   margin: 0;
@@ -166,6 +171,11 @@
   gap: var(--ai-spacing-4); /* 8px between elements inside content */
 }
 
+/* Flat variant - Remove horizontal padding for edge-to-edge layout */
+.summaryCard[data-variant='flat'] .contentSection {
+  padding: 0;
+}
+
 /* Title Row - Title/subtitle + badge on same row */
 .titleRow {
   display: flex;
@@ -256,8 +266,21 @@
   padding: 0 var(--ai-spacing-2); /* 0 vertical, 4px horizontal - creates 12px total with card padding */
 }
 
+/* Flat variant - Remove horizontal padding for edge-to-edge layout */
+.summaryCard[data-variant='flat'] .buttonSection {
+  padding: 0;
+}
+
 .button {
   width: 100%;
+}
+
+/* Desktop: Button auto-width when not full-width */
+@media (min-width: 768px) {
+  .buttonSection[data-full-width='false'] .button {
+    width: auto;
+    min-width: 120px;
+  }
 }
 
 /* Error State */
