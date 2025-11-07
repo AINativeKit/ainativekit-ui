@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] - 2025-01-XX
+
+### Fixed
+
+- **SummaryCard**: Prevent layout shift during loading to data mode transition
+  - Set explicit height on description skeleton wrapper to match description's rendered height
+  - Normal mode: includes marginTop spacing (2px between lines)
+  - Compact mode: accounts for webkit-line-clamp rendering difference (-2px adjustment)
+  - Button skeleton width now matches actual button width for flat variant (auto-width 160px)
+
 ## [0.5.0] - 2025-11-06
 
 ### Added
