@@ -127,6 +127,30 @@ const LoadingTransitionDemo: React.FC = () => {
             style={{ maxWidth: `${CARD_WIDTH}px` }}
           />
         </div>
+
+        <div>
+          <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+            With Metadata Skeleton (NEW)
+          </p>
+          <SummaryCard
+            images={SAMPLE_IMAGES.restaurant}
+            imageAspectRatio="4/3"
+            title="Card with Metadata"
+            subtitle="Airbnb style"
+            badge="4.8"
+            description="Stunning oceanfront property with modern architecture and beach access."
+            descriptionLines={2}
+            metadata={[
+              { label: '3 bed' },
+              { label: '2 bath' },
+              { label: 'Beach view' },
+              { label: 'Breakfast' },
+            ]}
+            buttonText="View Details"
+            loading={isLoading}
+            style={{ maxWidth: `${CARD_WIDTH}px` }}
+          />
+        </div>
       </div>
     </div>
   );
@@ -1101,6 +1125,89 @@ const SummaryCardsComponent: React.FC = () => {
           <FlatLoadingTransitionDemo />
         </div>
 
+        {/* Metadata Skeleton */}
+        <div style={{ marginBottom: '32px' }}>
+          <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+            Metadata Skeleton Support (NEW)
+          </h3>
+          <p style={{ fontSize: '13px', color: 'var(--ai-color-text-secondary)', marginBottom: '16px' }}>
+            When loading=true and metadata array is provided, skeleton automatically renders placeholders
+            for each metadata item - no manual configuration needed!
+          </p>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+              gap: '24px',
+              alignItems: 'start',
+            }}
+          >
+            <div>
+              <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+                2 metadata items (loading)
+              </p>
+              <SummaryCard
+                images={SAMPLE_IMAGES.restaurant}
+                imageAspectRatio="4/3"
+                title="Restaurant Card"
+                subtitle="With metadata"
+                badge="9.2"
+                description="Sample description text"
+                descriptionLines={2}
+                metadata={[
+                  { icon: 'clock', label: '10 min' },
+                  { icon: 'map-pin', label: 'Downtown' },
+                ]}
+                buttonText="View"
+                loading={true}
+                style={{ maxWidth: `${CARD_WIDTH}px` }}
+              />
+            </div>
+
+            <div>
+              <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+                4 metadata items (Airbnb style)
+              </p>
+              <SummaryCard
+                images={SAMPLE_IMAGES.restaurant}
+                imageAspectRatio="4/3"
+                title="Beach House"
+                subtitle="Oceanfront property"
+                badge="4.8"
+                description="Stunning views with modern architecture"
+                descriptionLines={2}
+                metadata={[
+                  { label: '3 bed' },
+                  { label: '2 bath' },
+                  { label: 'Beach view' },
+                  { label: 'Breakfast' },
+                ]}
+                buttonText="View Details"
+                loading={true}
+                style={{ maxWidth: `${CARD_WIDTH}px` }}
+              />
+            </div>
+
+            <div>
+              <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+                No metadata (no skeleton)
+              </p>
+              <SummaryCard
+                images={SAMPLE_IMAGES.restaurant}
+                imageAspectRatio="4/3"
+                title="Simple Card"
+                subtitle="No metadata"
+                badge="9.0"
+                description="Card without metadata items"
+                descriptionLines={2}
+                buttonText="View"
+                loading={true}
+                style={{ maxWidth: `${CARD_WIDTH}px` }}
+              />
+            </div>
+          </div>
+        </div>
+
         {/* Best Practices */}
         <div style={{ background: 'var(--ai-color-bg-secondary)', border: '1px solid var(--ai-color-border)', borderRadius: '8px', padding: '16px' }}>
           <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '8px', color: 'var(--ai-color-text-primary)' }}>
@@ -1109,6 +1216,7 @@ const SummaryCardsComponent: React.FC = () => {
           <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '13px', lineHeight: '1.6', color: 'var(--ai-color-text-secondary)' }}>
             <li><strong>CSS aspect-ratio:</strong> Responsive skeleton dimensions without fixed pixel heights</li>
             <li><strong>Dynamic line-clamp:</strong> Description skeleton matches configured line count</li>
+            <li><strong>Metadata skeleton auto-detect:</strong> Skeleton count matches metadata array length</li>
             <li><strong>Opacity fade:</strong> Smooth 300ms transition between loading and content states</li>
             <li><strong>Delayed animation:</strong> 100ms delay prevents flash on fast loads (&lt;100ms)</li>
             <li><strong>Zero CLS:</strong> Cumulative Layout Shift score remains 0 during transitions</li>

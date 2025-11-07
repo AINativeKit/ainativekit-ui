@@ -242,12 +242,36 @@
   overflow: hidden;
 }
 
+/* Description Skeleton Wrapper - explicit height to match description */
+.descriptionSkeleton {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* Match description height exactly - include marginTop spacing (2px between lines) */
+  height: calc(var(--ai-line-height-body-small) * var(--description-lines, 2) + 2px * (var(--description-lines, 2) - 1));
+}
+
+/* Compact size uses caption line-height - match description's actual rendered height (slightly shorter due to webkit-line-clamp) */
+.summaryCard[data-size='compact'] .descriptionSkeleton {
+  height: calc(var(--ai-line-height-caption) * var(--description-lines, 2) - 2px);
+  gap: 0; /* No gap - line-height handles spacing in description */
+}
+
 /* Metadata Section */
 .metadata {
   font-size: var(--ai-font-size-body-small);
   color: var(--ai-color-text-secondary);
   display: flex;
   gap: var(--ai-spacing-4);
+}
+
+.metadataItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: var(--ai-line-height-body-small); /* 20px - matches skeleton height exactly */
+  line-height: var(--ai-line-height-body-small); /* Prevent line-height from affecting height */
+  box-sizing: border-box; /* Ensure consistent box model */
 }
 
 .customIcon {

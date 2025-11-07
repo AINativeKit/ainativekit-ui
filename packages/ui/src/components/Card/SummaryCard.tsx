@@ -125,6 +125,9 @@ export interface SummaryCardProps extends Omit<CardProps, 'children'> {
    * Metadata items to display below description (e.g., read time, date).
    * Array of items with optional icon and label.
    *
+   * When loading={true}, the skeleton will automatically render the same number
+   * of skeleton placeholders as items in the metadata array (similar to descriptionLines behavior).
+   *
    * Icons can be:
    * - Icon name string from the icon library (e.g., 'clock', 'calendar-today')
    * - Custom React element (e.g., <CustomIcon />, <svg>...</svg>)
@@ -505,7 +508,7 @@ const SummaryCardComponent = React.forwardRef<HTMLDivElement, SummaryCardProps>(
       data-variant={variant}
       {...cardProps}
     >
-      {/* Loading State - Single Image */}
+      {/* Loading State - Single Image  */}
       {loading && isSingleImage && (
         <div className={styles.loadingContainer} role="status" aria-live="polite">
           {/* Image Skeleton */}
@@ -516,7 +519,7 @@ const SummaryCardComponent = React.forwardRef<HTMLDivElement, SummaryCardProps>(
           </div>
 
           {/* Content Skeleton */}
-          {(hasHeader || hasDescription) && (
+          {(hasHeader || hasDescription || metadata) && (
             <div className={styles.contentSection}>
               {hasHeader && (
                 <div className={styles.titleRow}>
@@ -528,14 +531,28 @@ const SummaryCardComponent = React.forwardRef<HTMLDivElement, SummaryCardProps>(
                 </div>
               )}
 
+               {/* Metadata Skeleton */}
+               {metadata && metadata.length > 0 && (
+                <div className={styles.metadata}>
+                  {metadata.map((_, index) => (
+                    <Skeleton
+                      key={index}
+                      width={60}
+                      height={20}
+                      borderRadius={8}
+                    />
+                  ))}
+                </div>
+              )}
+
               {hasDescription && (
-                <div>
+                <div className={styles.descriptionSkeleton} style={{ '--description-lines': descriptionLines } as React.CSSProperties}>
                   {Array.from({ length: descriptionLines }).map((_, index) => (
                     <Skeleton
                       key={index}
                       width={index === descriptionLines - 1 ? '80%' : '100%'}
-                      height={14}
-                      style={index > 0 ? { marginTop: 'var(--ai-spacing-2)' } : undefined}
+                      height={size === 'compact' ? 16 : 20}
+                      style={index > 0 && size !== 'compact' ? { marginTop: '2px' } : undefined}
                     />
                   ))}
                 </div>
@@ -545,8 +562,8 @@ const SummaryCardComponent = React.forwardRef<HTMLDivElement, SummaryCardProps>(
 
           {/* Button Skeleton */}
           {hasButton && (
-            <div className={styles.buttonSection}>
-              <Skeleton width="100%" height={44} borderRadius={22} />
+            <div className={styles.buttonSection} data-full-width={isButtonFullWidth}>
+              <Skeleton width={isButtonFullWidth ? "100%" : 160} height={44} borderRadius={22} />
             </div>
           )}
 
@@ -567,7 +584,7 @@ const SummaryCardComponent = React.forwardRef<HTMLDivElement, SummaryCardProps>(
           </div>
 
           {/* Content Skeleton */}
-          {(hasHeader || hasDescription) && (
+          {(hasHeader || hasDescription || metadata) && (
             <div className={styles.contentSection}>
               {hasHeader && (
                 <div className={styles.titleRow}>
@@ -580,13 +597,27 @@ const SummaryCardComponent = React.forwardRef<HTMLDivElement, SummaryCardProps>(
               )}
 
               {hasDescription && (
-                <div>
+                <div className={styles.descriptionSkeleton} style={{ '--description-lines': descriptionLines } as React.CSSProperties}>
                   {Array.from({ length: descriptionLines }).map((_, index) => (
                     <Skeleton
                       key={index}
                       width={index === descriptionLines - 1 ? '80%' : '100%'}
-                      height={14}
-                      style={index > 0 ? { marginTop: 'var(--ai-spacing-2)' } : undefined}
+                      height={size === 'compact' ? 16 : 20}
+                      style={index > 0 && size !== 'compact' ? { marginTop: '2px' } : undefined}
+                    />
+                  ))}
+                </div>
+              )}
+
+              {/* Metadata Skeleton */}
+              {metadata && metadata.length > 0 && (
+                <div className={styles.metadata}>
+                  {metadata.map((_, index) => (
+                    <Skeleton
+                      key={index}
+                      width={60}
+                      height={20}
+                      borderRadius={8}
                     />
                   ))}
                 </div>
@@ -596,8 +627,8 @@ const SummaryCardComponent = React.forwardRef<HTMLDivElement, SummaryCardProps>(
 
           {/* Button Skeleton */}
           {hasButton && (
-            <div className={styles.buttonSection}>
-              <Skeleton width="100%" height={44} borderRadius={22} />
+            <div className={styles.buttonSection} data-full-width={isButtonFullWidth}>
+              <Skeleton width={isButtonFullWidth ? "100%" : 160} height={44} borderRadius={22} />
             </div>
           )}
 
@@ -609,7 +640,7 @@ const SummaryCardComponent = React.forwardRef<HTMLDivElement, SummaryCardProps>(
       {loading && !hasImages && (
         <div className={styles.loadingContainer} role="status" aria-live="polite">
           {/* Content Skeleton */}
-          {(hasHeader || hasDescription) && (
+          {(hasHeader || hasDescription || metadata) && (
             <div className={styles.contentSection}>
               {hasHeader && (
                 <div className={styles.titleRow}>
@@ -622,13 +653,27 @@ const SummaryCardComponent = React.forwardRef<HTMLDivElement, SummaryCardProps>(
               )}
 
               {hasDescription && (
-                <div>
+                <div className={styles.descriptionSkeleton} style={{ '--description-lines': descriptionLines } as React.CSSProperties}>
                   {Array.from({ length: descriptionLines }).map((_, index) => (
                     <Skeleton
                       key={index}
                       width={index === descriptionLines - 1 ? '80%' : '100%'}
-                      height={14}
-                      style={index > 0 ? { marginTop: 'var(--ai-spacing-2)' } : undefined}
+                      height={size === 'compact' ? 16 : 20}
+                      style={index > 0 && size !== 'compact' ? { marginTop: '2px' } : undefined}
+                    />
+                  ))}
+                </div>
+              )}
+
+              {/* Metadata Skeleton */}
+              {metadata && metadata.length > 0 && (
+                <div className={styles.metadata}>
+                  {metadata.map((_, index) => (
+                    <Skeleton
+                      key={index}
+                      width={60}
+                      height={20}
+                      borderRadius={8}
                     />
                   ))}
                 </div>
@@ -638,8 +683,8 @@ const SummaryCardComponent = React.forwardRef<HTMLDivElement, SummaryCardProps>(
 
           {/* Button Skeleton */}
           {hasButton && (
-            <div className={styles.buttonSection}>
-              <Skeleton width="100%" height={44} borderRadius={22} />
+            <div className={styles.buttonSection} data-full-width={isButtonFullWidth}>
+              <Skeleton width={isButtonFullWidth ? "100%" : 160} height={44} borderRadius={22} />
             </div>
           )}
 
@@ -744,7 +789,7 @@ const SummaryCardComponent = React.forwardRef<HTMLDivElement, SummaryCardProps>(
                 <div className={styles.metadata}>
                   {metadata.map((item, index) => (
                     <React.Fragment key={index}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <div className={styles.metadataItem}>
                         {item.icon &&
                           (typeof item.icon === 'string' ? (
                             <Icon name={item.icon as IconName} size="sm" tone="secondary" />
