@@ -7,6 +7,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.7.0] - 2025-11-08
+
+### Added
+
+- **Responsive Breakpoints**: Standardized breakpoint system across all components
+  - Added design tokens for breakpoints (640px tablet, 768px desktop, 1024px desktop-wide)
+  - Comprehensive Storybook documentation with interactive demos
+  - Live viewport width indicators for testing responsive behavior
+  - ChatGPT Desktop widget strategy (768px width optimization)
+
+### Fixed
+
+- **SummaryCard**: Button skeleton width now responsive in loading states
+  - Use CSS custom property (--button-skeleton-width) for dynamic width calculation
+  - Calculate width based on button text length (min 88px, max 200px)
+  - Preserve media query behavior for responsive breakpoints
+  - Loading state buttons now match data state widths at all breakpoints
+
+### Changed
+
+- **Responsive Breakpoints**: Standardized media queries across components
+  - List component: 640px (ensures desktop layout at 768px ChatGPT widget width)
+  - Card/SummaryCard/Album: 768px (button auto-width at ChatGPT widget size)
+  - FullscreenMap: 1024px (sidebar only on wide screens)
+  - All breakpoints use hardcoded px values with inline comments
+  - Design tokens serve as documentation reference
+
 ## [0.6.0] - 2025-11-07
 
 ### Fixed
