@@ -28,7 +28,7 @@ This project follows a [Code of Conduct](./CODE_OF_CONDUCT.md).
 
 ```bash
 # Clone the repository
-git clone https://github.com/ainativekit/ainativekit-ui.git
+git clone https://github.com/AINativeKit/ainativekit-ui.git
 cd ainativekit-ui
 
 # Install dependencies

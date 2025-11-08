@@ -473,7 +473,7 @@ const OpenAiHooksPlayground: React.FC<PlaygroundArgs> = (args) => {
           >
             📖 <strong>Need detailed documentation?</strong> Check out the{' '}
             <a
-              href="https://github.com/ainativekit/ainativekit-ui/blob/main/packages/ui/docs/guides/useOpenAiGlobal.md"
+              href="https://github.com/AINativeKit/ainativekit-ui/blob/main/packages/ui/docs/guides/useOpenAiGlobal.md"
               target="_blank"
               rel="noopener noreferrer"
               style={{

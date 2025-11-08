@@ -86,6 +86,6 @@ Complex, domain-specific, feature-complete patterns.
 
 ## Links
 
-- [GitHub Repository](https://github.com/ainativekit/ainativekit-ui)
+- [GitHub Repository](https://github.com/AINativeKit/ainativekit-ui)
 - [Storybook](https://www.ainativekit.com)
 - [NPM Package](https://www.npmjs.com/package/@ainativekit/ui)
