@@ -11,7 +11,7 @@
 }
 
 /* Show sidebar on desktop, hide on mobile */
-@media (min-width: 1024px) {
+@media (min-width: 1024px) /* desktop-wide */ {
   .sidebar {
     display: block;
   }

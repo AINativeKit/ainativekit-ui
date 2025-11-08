@@ -13,7 +13,7 @@
   overflow: hidden;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 640px) /* tablet */ {
   .listContainer {
     border-radius: var(--ai-radius-xl);
     padding: 0 var(--ai-spacing-10) var(--ai-spacing-6);
@@ -52,7 +52,7 @@
   display: block;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 640px) /* tablet */ {
   .headerMedia {
     width: 72px;
     height: 72px;
@@ -79,7 +79,7 @@
   white-space: normal;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 640px) /* tablet */ {
   .headerTitle {
     font-size: 20px;
     line-height: 28px;
@@ -106,7 +106,7 @@
   padding-right: var(--ai-spacing-4);
 }
 
-@media (min-width: 640px) {
+@media (min-width: 640px) /* tablet */ {
   .headerActionDesktop {
     display: flex;
   }
@@ -123,7 +123,7 @@
   width: 100%;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 640px) /* tablet */ {
   .headerActionMobile {
     display: none;
   }
@@ -190,7 +190,7 @@
   min-width: 0;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 640px) /* tablet */ {
   .listItemWrapper {
     padding: 0 var(--ai-spacing-6);
     margin: 0 calc(var(--ai-spacing-2) * -1);
@@ -226,7 +226,7 @@
   padding: var(--ai-spacing-6) 0;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 640px) /* tablet */ {
   .listItem {
     grid-template-columns: auto auto minmax(0, 1fr) auto;
     column-gap: var(--ai-spacing-4);
@@ -259,7 +259,7 @@
   grid-column: 1;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 640px) /* tablet */ {
   .itemMedia {
     width: 44px;
     height: 44px;
@@ -287,7 +287,7 @@
   white-space: nowrap;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 640px) /* tablet */ {
   .itemTitle {
     font-size: var(--ai-font-size-body);
     line-height: var(--ai-line-height-body);
@@ -348,7 +348,7 @@
   letter-spacing: var(--ai-letter-spacing-body-small);
 }
 
-@media (min-width: 640px) {
+@media (min-width: 640px) /* tablet */ {
   .itemMetadataInline {
     display: none;
   }
@@ -398,7 +398,7 @@
   flex-shrink: 0;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 640px) /* tablet */ {
   .itemRank {
     display: block;
     grid-column: 2;
@@ -410,7 +410,7 @@
   display: none;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 640px) /* tablet */ {
   .itemMetadataDesktop {
     display: block;
     padding: var(--ai-spacing-1) var(--ai-spacing-2);
@@ -440,7 +440,7 @@
     transform 0.1s ease;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 640px) /* tablet */ {
   .itemBody {
     grid-column: 3;
   }

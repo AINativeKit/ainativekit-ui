@@ -44,10 +44,7 @@ const LoadingTransitionDemo: React.FC = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-        <Button
-          variant="secondary"
-          onClick={() => setIsLoading((prev) => !prev)}
-        >
+        <Button variant="secondary" onClick={() => setIsLoading((prev) => !prev)}>
           {isLoading ? '▶️ Show Content' : '⏸️ Show Loading'}
         </Button>
         <Button
@@ -70,7 +67,13 @@ const LoadingTransitionDemo: React.FC = () => {
         }}
       >
         <div>
-          <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+          <p
+            style={{
+              fontSize: '12px',
+              color: 'var(--ai-color-text-secondary)',
+              marginBottom: '8px',
+            }}
+          >
             Single Image - Watch for layout shift (there should be none!)
           </p>
           <SummaryCard
@@ -88,7 +91,13 @@ const LoadingTransitionDemo: React.FC = () => {
         </div>
 
         <div>
-          <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+          <p
+            style={{
+              fontSize: '12px',
+              color: 'var(--ai-color-text-secondary)',
+              marginBottom: '8px',
+            }}
+          >
             Grid Images - 3 images layout
           </p>
           <SummaryCard
@@ -110,7 +119,13 @@ const LoadingTransitionDemo: React.FC = () => {
         </div>
 
         <div>
-          <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+          <p
+            style={{
+              fontSize: '12px',
+              color: 'var(--ai-color-text-secondary)',
+              marginBottom: '8px',
+            }}
+          >
             Compact Size with 3 lines
           </p>
           <SummaryCard
@@ -129,7 +144,13 @@ const LoadingTransitionDemo: React.FC = () => {
         </div>
 
         <div>
-          <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+          <p
+            style={{
+              fontSize: '12px',
+              color: 'var(--ai-color-text-secondary)',
+              marginBottom: '8px',
+            }}
+          >
             With Metadata Skeleton (NEW)
           </p>
           <SummaryCard
@@ -172,10 +193,7 @@ const FlatLoadingTransitionDemo: React.FC = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-        <Button
-          variant="secondary"
-          onClick={() => setIsLoading((prev) => !prev)}
-        >
+        <Button variant="secondary" onClick={() => setIsLoading((prev) => !prev)}>
           {isLoading ? '▶️ Show Content' : '⏸️ Show Loading'}
         </Button>
         <Button
@@ -198,7 +216,13 @@ const FlatLoadingTransitionDemo: React.FC = () => {
         }}
       >
         <div>
-          <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+          <p
+            style={{
+              fontSize: '12px',
+              color: 'var(--ai-color-text-secondary)',
+              marginBottom: '8px',
+            }}
+          >
             Flat + Single Image - Edge-to-edge layout
           </p>
           <SummaryCard
@@ -217,7 +241,13 @@ const FlatLoadingTransitionDemo: React.FC = () => {
         </div>
 
         <div>
-          <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+          <p
+            style={{
+              fontSize: '12px',
+              color: 'var(--ai-color-text-secondary)',
+              marginBottom: '8px',
+            }}
+          >
             Flat + Grid (Perfect for Carousels)
           </p>
           <SummaryCard
@@ -240,7 +270,13 @@ const FlatLoadingTransitionDemo: React.FC = () => {
         </div>
 
         <div>
-          <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+          <p
+            style={{
+              fontSize: '12px',
+              color: 'var(--ai-color-text-secondary)',
+              marginBottom: '8px',
+            }}
+          >
             Flat + Compact (Discovery Mode)
           </p>
           <SummaryCard
@@ -252,7 +288,7 @@ const FlatLoadingTransitionDemo: React.FC = () => {
             subtitle="456 Park Ave"
             badge="9.2"
             description="Cozy Italian trattoria with homemade pasta and traditional recipes from Rome."
-            descriptionLines={3}
+            descriptionLines={2}
             buttonText="Reserve"
             loading={isLoading}
             style={{ maxWidth: `${COMPACT_CARD_WIDTH}px` }}
@@ -691,7 +727,8 @@ const SummaryCardsComponent: React.FC = () => {
         <header style={{ marginBottom: '24px' }}>
           <h2 style={{ marginBottom: '8px' }}>Flat Variant - Edge-to-Edge Layout</h2>
           <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
-            Zero-elevation, edge-to-edge layout with no padding. Perfect for seamless integration in grids, carousels, or when the container provides spacing. Uses variant="flat".
+            Zero-elevation, edge-to-edge layout with no padding. Perfect for seamless integration in
+            grids, carousels, or when the container provides spacing. Uses variant="flat".
           </p>
         </header>
 
@@ -746,15 +783,47 @@ const SummaryCardsComponent: React.FC = () => {
           />
         </div>
 
-        <div style={{ marginTop: '24px', background: 'var(--ai-color-bg-secondary)', border: '1px solid var(--ai-color-border)', borderRadius: '8px', padding: '16px' }}>
-          <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '8px', color: 'var(--ai-color-text-primary)' }}>
+        <div
+          style={{
+            marginTop: '24px',
+            background: 'var(--ai-color-bg-secondary)',
+            border: '1px solid var(--ai-color-border)',
+            borderRadius: '8px',
+            padding: '16px',
+          }}
+        >
+          <h3
+            style={{
+              fontSize: '14px',
+              fontWeight: '600',
+              marginBottom: '8px',
+              color: 'var(--ai-color-text-primary)',
+            }}
+          >
             Use Cases
           </h3>
-          <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '13px', lineHeight: '1.6', color: 'var(--ai-color-text-secondary)' }}>
-            <li><strong>Tight Grids:</strong> Cards in dense grid layouts where container provides spacing</li>
-            <li><strong>Carousels:</strong> Seamless scrolling experiences without visual gaps</li>
-            <li><strong>Mobile Optimization:</strong> Maximize content area on small screens</li>
-            <li><strong>Custom Containers:</strong> When parent element handles padding and elevation</li>
+          <ul
+            style={{
+              margin: 0,
+              paddingLeft: '20px',
+              fontSize: '13px',
+              lineHeight: '1.6',
+              color: 'var(--ai-color-text-secondary)',
+            }}
+          >
+            <li>
+              <strong>Tight Grids:</strong> Cards in dense grid layouts where container provides
+              spacing
+            </li>
+            <li>
+              <strong>Carousels:</strong> Seamless scrolling experiences without visual gaps
+            </li>
+            <li>
+              <strong>Mobile Optimization:</strong> Maximize content area on small screens
+            </li>
+            <li>
+              <strong>Custom Containers:</strong> When parent element handles padding and elevation
+            </li>
           </ul>
         </div>
       </section>
@@ -764,14 +833,22 @@ const SummaryCardsComponent: React.FC = () => {
         <header style={{ marginBottom: '24px' }}>
           <h2 style={{ marginBottom: '8px' }}>Discovery/Browse Mode - Compact Size (NEW)</h2>
           <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
-            Dense layout optimized for carousels and discovery interfaces. Use size="compact" with imageAspectRatio="4/3" to replicate DiscoveryCard.
-            Perfect for restaurant listings, product catalogs, and content discovery.
+            Dense layout optimized for carousels and discovery interfaces. Use size="compact" with
+            imageAspectRatio="4/3" to replicate DiscoveryCard. Perfect for restaurant listings,
+            product catalogs, and content discovery.
           </p>
         </header>
 
         {/* Single Card with Code Example */}
         <div style={{ marginBottom: '32px' }}>
-          <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+          <h3
+            style={{
+              fontSize: '14px',
+              fontWeight: '600',
+              marginBottom: '12px',
+              color: 'var(--ai-color-text-primary)',
+            }}
+          >
             Single Card Example
           </h3>
           <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
@@ -792,8 +869,21 @@ const SummaryCardsComponent: React.FC = () => {
               onButtonClick={() => alert('Order clicked!')}
               style={{ width: `${COMPACT_CARD_WIDTH}px` }}
             />
-            <pre style={{ flex: 1, minWidth: '300px', background: 'var(--ai-color-bg-secondary)', border: '1px solid var(--ai-color-border)', borderRadius: '8px', padding: '16px', fontSize: '12px', lineHeight: '1.5', overflow: 'auto', margin: 0 }}>
-{`<SummaryCard
+            <pre
+              style={{
+                flex: 1,
+                minWidth: '300px',
+                background: 'var(--ai-color-bg-secondary)',
+                border: '1px solid var(--ai-color-border)',
+                borderRadius: '8px',
+                padding: '16px',
+                fontSize: '12px',
+                lineHeight: '1.5',
+                overflow: 'auto',
+                margin: 0,
+              }}
+            >
+              {`<SummaryCard
   images="..."
   title="Tony's Pizzeria"
   subtitle="123 Main Street"
@@ -815,38 +905,138 @@ const SummaryCardsComponent: React.FC = () => {
 
         {/* Grid of Cards */}
         <div style={{ marginBottom: '32px' }}>
-          <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+          <h3
+            style={{
+              fontSize: '14px',
+              fontWeight: '600',
+              marginBottom: '12px',
+              color: 'var(--ai-color-text-primary)',
+            }}
+          >
             Multiple Cards in Grid
           </h3>
-          <div style={{ display: 'grid', gridTemplateColumns: `repeat(auto-fill, minmax(${COMPACT_CARD_WIDTH}px, 1fr))`, gap: '16px' }}>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: `repeat(auto-fill, minmax(${COMPACT_CARD_WIDTH}px, 1fr))`,
+              gap: '16px',
+            }}
+          >
             {[
-              { id: '1', title: "Tony's Pizzeria", subtitle: '123 Main Street', image: 'https://persistent.oaistatic.com/pizzaz/pizzaz-1.png', description: 'Award-winning Neapolitan pizzas with wood-fired oven.', badge: '4.8', features: ['$$$', 'Neapolitan', 'Wood-fired'] },
-              { id: '2', title: 'Slice Haven', subtitle: '456 Park Avenue', image: 'https://persistent.oaistatic.com/pizzaz/pizzaz-3.png', description: 'New York style slices with fresh mozzarella.', badge: '4.6', features: ['$$', 'Slices', 'Fresh'] },
-              { id: '3', title: 'Pesto Kitchen', subtitle: '789 Garden Lane', image: 'https://persistent.oaistatic.com/pizzaz/pizzaz-5.png', description: 'Creative pesto-based pizzas with seasonal ingredients.', badge: '4.7', features: ['$$', 'Pesto', 'Creative'] },
+              {
+                id: '1',
+                title: "Tony's Pizzeria",
+                subtitle: '123 Main Street',
+                image: 'https://persistent.oaistatic.com/pizzaz/pizzaz-1.png',
+                description: 'Award-winning Neapolitan pizzas with wood-fired oven.',
+                badge: '4.8',
+                features: ['$$$', 'Neapolitan', 'Wood-fired'],
+              },
+              {
+                id: '2',
+                title: 'Slice Haven',
+                subtitle: '456 Park Avenue',
+                image: 'https://persistent.oaistatic.com/pizzaz/pizzaz-3.png',
+                description: 'New York style slices with fresh mozzarella.',
+                badge: '4.6',
+                features: ['$$', 'Slices', 'Fresh'],
+              },
+              {
+                id: '3',
+                title: 'Pesto Kitchen',
+                subtitle: '789 Garden Lane',
+                image: 'https://persistent.oaistatic.com/pizzaz/pizzaz-5.png',
+                description: 'Creative pesto-based pizzas with seasonal ingredients.',
+                badge: '4.7',
+                features: ['$$', 'Pesto', 'Creative'],
+              },
             ].map((r) => (
-              <SummaryCard key={r.id} images={r.image} title={r.title} subtitle={r.subtitle} badge={r.badge} size="compact" imageAspectRatio="4/3" description={r.description} metadata={r.features.map((f, i, arr) => ({ label: f, separator: i < arr.length - 1 ? '•' : undefined }))} buttonText="Order now" onButtonClick={() => alert(`Order from ${r.title}`)} style={{ width: '100%' }} />
+              <SummaryCard
+                key={r.id}
+                images={r.image}
+                title={r.title}
+                subtitle={r.subtitle}
+                badge={r.badge}
+                size="compact"
+                imageAspectRatio="4/3"
+                description={r.description}
+                metadata={r.features.map((f, i, arr) => ({
+                  label: f,
+                  separator: i < arr.length - 1 ? '•' : undefined,
+                }))}
+                buttonText="Order now"
+                onButtonClick={() => alert(`Order from ${r.title}`)}
+                style={{ width: '100%' }}
+              />
             ))}
           </div>
         </div>
 
         {/* Key Features */}
         <div style={{ marginBottom: '32px' }}>
-          <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+          <h3
+            style={{
+              fontSize: '14px',
+              fontWeight: '600',
+              marginBottom: '12px',
+              color: 'var(--ai-color-text-primary)',
+            }}
+          >
             Key Features
           </h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '12px' }}>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+              gap: '12px',
+            }}
+          >
             {[
-              { emoji: '🖼️', title: '4:3 Aspect Ratio', desc: 'Balanced proportions for content preview' },
-              { emoji: '⭐', title: 'Badge Support', desc: 'Display ratings with flexible variants' },
+              {
+                emoji: '🖼️',
+                title: '4:3 Aspect Ratio',
+                desc: 'Balanced proportions for content preview',
+              },
+              {
+                emoji: '⭐',
+                title: 'Badge Support',
+                desc: 'Display ratings with flexible variants',
+              },
               { emoji: '✨', title: 'Metadata Separators', desc: 'Custom separators (•, |, etc.)' },
               { emoji: '📝', title: 'Dense Typography', desc: 'Compact text for info density' },
               { emoji: '🎨', title: 'Design Tokens', desc: 'Consistent theming' },
               { emoji: '🔘', title: 'Action Button', desc: 'Built-in CTA button' },
             ].map((f) => (
-              <div key={f.title} style={{ background: 'var(--ai-color-bg-secondary)', border: '1px solid var(--ai-color-border)', borderRadius: '8px', padding: '12px' }}>
+              <div
+                key={f.title}
+                style={{
+                  background: 'var(--ai-color-bg-secondary)',
+                  border: '1px solid var(--ai-color-border)',
+                  borderRadius: '8px',
+                  padding: '12px',
+                }}
+              >
                 <div style={{ fontSize: '20px', marginBottom: '6px' }}>{f.emoji}</div>
-                <h4 style={{ margin: '0 0 4px 0', fontSize: '12px', fontWeight: '600', color: 'var(--ai-color-text-primary)' }}>{f.title}</h4>
-                <p style={{ margin: 0, fontSize: '11px', color: 'var(--ai-color-text-secondary)', lineHeight: '1.4' }}>{f.desc}</p>
+                <h4
+                  style={{
+                    margin: '0 0 4px 0',
+                    fontSize: '12px',
+                    fontWeight: '600',
+                    color: 'var(--ai-color-text-primary)',
+                  }}
+                >
+                  {f.title}
+                </h4>
+                <p
+                  style={{
+                    margin: 0,
+                    fontSize: '11px',
+                    color: 'var(--ai-color-text-secondary)',
+                    lineHeight: '1.4',
+                  }}
+                >
+                  {f.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -854,29 +1044,102 @@ const SummaryCardsComponent: React.FC = () => {
 
         {/* Use Cases */}
         <div style={{ marginBottom: '32px' }}>
-          <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+          <h3
+            style={{
+              fontSize: '14px',
+              fontWeight: '600',
+              marginBottom: '12px',
+              color: 'var(--ai-color-text-primary)',
+            }}
+          >
             Use Cases
           </h3>
-          <div style={{ background: 'var(--ai-color-bg-secondary)', border: '1px solid var(--ai-color-border)', borderRadius: '8px', padding: '16px', fontSize: '13px', lineHeight: '1.6', color: 'var(--ai-color-text-secondary)' }}>
+          <div
+            style={{
+              background: 'var(--ai-color-bg-secondary)',
+              border: '1px solid var(--ai-color-border)',
+              borderRadius: '8px',
+              padding: '16px',
+              fontSize: '13px',
+              lineHeight: '1.6',
+              color: 'var(--ai-color-text-secondary)',
+            }}
+          >
             <ul style={{ margin: 0, paddingLeft: '20px' }}>
-              <li><strong>Restaurant Discovery:</strong> Browse restaurants with ratings, pricing, and cuisine types in carousels</li>
-              <li><strong>Product Catalogs:</strong> Display products in grid or carousel layouts with quick actions</li>
-              <li><strong>Hotel/Travel:</strong> Show accommodations with amenities and booking options</li>
-              <li><strong>Content Discovery:</strong> Browse articles, videos with rich previews</li>
-              <li><strong>E-commerce:</strong> Product showcase with ratings and quick-buy actions</li>
+              <li>
+                <strong>Restaurant Discovery:</strong> Browse restaurants with ratings, pricing, and
+                cuisine types in carousels
+              </li>
+              <li>
+                <strong>Product Catalogs:</strong> Display products in grid or carousel layouts with
+                quick actions
+              </li>
+              <li>
+                <strong>Hotel/Travel:</strong> Show accommodations with amenities and booking
+                options
+              </li>
+              <li>
+                <strong>Content Discovery:</strong> Browse articles, videos with rich previews
+              </li>
+              <li>
+                <strong>E-commerce:</strong> Product showcase with ratings and quick-buy actions
+              </li>
             </ul>
           </div>
         </div>
 
         {/* Aspect Ratio Variants */}
         <div>
-          <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+          <h3
+            style={{
+              fontSize: '14px',
+              fontWeight: '600',
+              marginBottom: '12px',
+              color: 'var(--ai-color-text-primary)',
+            }}
+          >
             Image Aspect Ratio Options
           </h3>
-          <div style={{ display: 'grid', gridTemplateColumns: `repeat(auto-fill, minmax(${COMPACT_CARD_WIDTH}px, 1fr))`, gap: '16px' }}>
-            <SummaryCard images={SAMPLE_IMAGES.restaurant} title="4:3 Classic" subtitle="Recommended" badge="4.8" size="compact" imageAspectRatio="4/3" description="Balanced proportions, perfect for most content" metadata={[{ label: 'Default' }]} style={{ width: '100%' }} />
-            <SummaryCard images={SAMPLE_IMAGES.restaurant} title="16:9 Widescreen" subtitle="Cinematic" badge="4.7" size="compact" imageAspectRatio="16/9" description="Wide format for landscape-oriented content" metadata={[{ label: 'Landscape' }]} style={{ width: '100%' }} />
-            <SummaryCard images={SAMPLE_IMAGES.restaurant} title="1:1 Square" subtitle="Symmetric" badge="4.6" size="compact" imageAspectRatio="1/1" description="Square format for symmetric compositions" metadata={[{ label: 'Square' }]} style={{ width: '100%' }} />
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: `repeat(auto-fill, minmax(${COMPACT_CARD_WIDTH}px, 1fr))`,
+              gap: '16px',
+            }}
+          >
+            <SummaryCard
+              images={SAMPLE_IMAGES.restaurant}
+              title="4:3 Classic"
+              subtitle="Recommended"
+              badge="4.8"
+              size="compact"
+              imageAspectRatio="4/3"
+              description="Balanced proportions, perfect for most content"
+              metadata={[{ label: 'Default' }]}
+              style={{ width: '100%' }}
+            />
+            <SummaryCard
+              images={SAMPLE_IMAGES.restaurant}
+              title="16:9 Widescreen"
+              subtitle="Cinematic"
+              badge="4.7"
+              size="compact"
+              imageAspectRatio="16/9"
+              description="Wide format for landscape-oriented content"
+              metadata={[{ label: 'Landscape' }]}
+              style={{ width: '100%' }}
+            />
+            <SummaryCard
+              images={SAMPLE_IMAGES.restaurant}
+              title="1:1 Square"
+              subtitle="Symmetric"
+              badge="4.6"
+              size="compact"
+              imageAspectRatio="1/1"
+              description="Square format for symmetric compositions"
+              metadata={[{ label: 'Square' }]}
+              style={{ width: '100%' }}
+            />
           </div>
         </div>
       </section>
@@ -886,14 +1149,22 @@ const SummaryCardsComponent: React.FC = () => {
         <header style={{ marginBottom: '24px' }}>
           <h2 style={{ marginBottom: '8px' }}>Layout Shift Prevention (NEW)</h2>
           <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
-            Loading skeletons now match real content dimensions exactly using CSS aspect-ratio and dynamic description lines.
-            Smooth fade transitions with 100ms delay prevent flash on fast loads.
+            Loading skeletons now match real content dimensions exactly using CSS aspect-ratio and
+            dynamic description lines. Smooth fade transitions with 100ms delay prevent flash on
+            fast loads.
           </p>
         </header>
 
         {/* Description Lines */}
         <div style={{ marginBottom: '32px' }}>
-          <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+          <h3
+            style={{
+              fontSize: '14px',
+              fontWeight: '600',
+              marginBottom: '12px',
+              color: 'var(--ai-color-text-primary)',
+            }}
+          >
             descriptionLines Prop - Skeleton Matches Content
           </h3>
           <div
@@ -905,7 +1176,13 @@ const SummaryCardsComponent: React.FC = () => {
             }}
           >
             <div>
-              <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+              <p
+                style={{
+                  fontSize: '12px',
+                  color: 'var(--ai-color-text-secondary)',
+                  marginBottom: '8px',
+                }}
+              >
                 descriptionLines={1} (skeleton & content)
               </p>
               <SummaryCard
@@ -922,7 +1199,13 @@ const SummaryCardsComponent: React.FC = () => {
             </div>
 
             <div>
-              <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+              <p
+                style={{
+                  fontSize: '12px',
+                  color: 'var(--ai-color-text-secondary)',
+                  marginBottom: '8px',
+                }}
+              >
                 descriptionLines={2} (default)
               </p>
               <SummaryCard
@@ -939,7 +1222,13 @@ const SummaryCardsComponent: React.FC = () => {
             </div>
 
             <div>
-              <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+              <p
+                style={{
+                  fontSize: '12px',
+                  color: 'var(--ai-color-text-secondary)',
+                  marginBottom: '8px',
+                }}
+              >
                 descriptionLines={3}
               </p>
               <SummaryCard
@@ -959,7 +1248,14 @@ const SummaryCardsComponent: React.FC = () => {
 
         {/* Aspect Ratio Loading States */}
         <div style={{ marginBottom: '32px' }}>
-          <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+          <h3
+            style={{
+              fontSize: '14px',
+              fontWeight: '600',
+              marginBottom: '12px',
+              color: 'var(--ai-color-text-primary)',
+            }}
+          >
             imageAspectRatio - Skeleton Matches Image Dimensions
           </h3>
           <div
@@ -971,7 +1267,13 @@ const SummaryCardsComponent: React.FC = () => {
             }}
           >
             <div>
-              <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+              <p
+                style={{
+                  fontSize: '12px',
+                  color: 'var(--ai-color-text-secondary)',
+                  marginBottom: '8px',
+                }}
+              >
                 imageAspectRatio="16/9" (widescreen)
               </p>
               <SummaryCard
@@ -988,7 +1290,13 @@ const SummaryCardsComponent: React.FC = () => {
             </div>
 
             <div>
-              <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+              <p
+                style={{
+                  fontSize: '12px',
+                  color: 'var(--ai-color-text-secondary)',
+                  marginBottom: '8px',
+                }}
+              >
                 imageAspectRatio="4/3" (classic)
               </p>
               <SummaryCard
@@ -1005,7 +1313,13 @@ const SummaryCardsComponent: React.FC = () => {
             </div>
 
             <div>
-              <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+              <p
+                style={{
+                  fontSize: '12px',
+                  color: 'var(--ai-color-text-secondary)',
+                  marginBottom: '8px',
+                }}
+              >
                 imageAspectRatio="1/1" (square)
               </p>
               <SummaryCard
@@ -1025,11 +1339,25 @@ const SummaryCardsComponent: React.FC = () => {
 
         {/* Flat Variant Loading States */}
         <div style={{ marginBottom: '32px' }}>
-          <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+          <h3
+            style={{
+              fontSize: '14px',
+              fontWeight: '600',
+              marginBottom: '12px',
+              color: 'var(--ai-color-text-primary)',
+            }}
+          >
             Flat Variant - Edge-to-Edge with No Layout Shift
           </h3>
-          <p style={{ fontSize: '13px', color: 'var(--ai-color-text-secondary)', marginBottom: '16px' }}>
-            Flat variant cards (zero padding, no elevation) also maintain perfect layout stability during loading transitions.
+          <p
+            style={{
+              fontSize: '13px',
+              color: 'var(--ai-color-text-secondary)',
+              marginBottom: '16px',
+            }}
+          >
+            Flat variant cards (zero padding, no elevation) also maintain perfect layout stability
+            during loading transitions.
           </p>
           <div
             style={{
@@ -1040,7 +1368,13 @@ const SummaryCardsComponent: React.FC = () => {
             }}
           >
             <div>
-              <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+              <p
+                style={{
+                  fontSize: '12px',
+                  color: 'var(--ai-color-text-secondary)',
+                  marginBottom: '8px',
+                }}
+              >
                 Flat + Single Image
               </p>
               <SummaryCard
@@ -1059,7 +1393,13 @@ const SummaryCardsComponent: React.FC = () => {
             </div>
 
             <div>
-              <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+              <p
+                style={{
+                  fontSize: '12px',
+                  color: 'var(--ai-color-text-secondary)',
+                  marginBottom: '8px',
+                }}
+              >
                 Flat + Grid Images
               </p>
               <SummaryCard
@@ -1082,7 +1422,13 @@ const SummaryCardsComponent: React.FC = () => {
             </div>
 
             <div>
-              <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+              <p
+                style={{
+                  fontSize: '12px',
+                  color: 'var(--ai-color-text-secondary)',
+                  marginBottom: '8px',
+                }}
+              >
                 Flat + Compact Size
               </p>
               <SummaryCard
@@ -1105,34 +1451,75 @@ const SummaryCardsComponent: React.FC = () => {
 
         {/* Live Transition Demo */}
         <div style={{ marginBottom: '32px' }}>
-          <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+          <h3
+            style={{
+              fontSize: '14px',
+              fontWeight: '600',
+              marginBottom: '12px',
+              color: 'var(--ai-color-text-primary)',
+            }}
+          >
             Live Loading → Loaded Transition
           </h3>
-          <p style={{ fontSize: '13px', color: 'var(--ai-color-text-secondary)', marginBottom: '16px' }}>
-            Watch the smooth fade transition with 100ms delay. Toggle between loading and loaded states - no layout shift!
+          <p
+            style={{
+              fontSize: '13px',
+              color: 'var(--ai-color-text-secondary)',
+              marginBottom: '16px',
+            }}
+          >
+            Watch the smooth fade transition with 100ms delay. Toggle between loading and loaded
+            states - no layout shift!
           </p>
           <LoadingTransitionDemo />
         </div>
 
         {/* Flat Variant Live Demo */}
         <div style={{ marginBottom: '32px' }}>
-          <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+          <h3
+            style={{
+              fontSize: '14px',
+              fontWeight: '600',
+              marginBottom: '12px',
+              color: 'var(--ai-color-text-primary)',
+            }}
+          >
             Live Flat Variant Transitions
           </h3>
-          <p style={{ fontSize: '13px', color: 'var(--ai-color-text-secondary)', marginBottom: '16px' }}>
-            Interactive demo for flat variant cards - watch edge-to-edge content transition smoothly.
+          <p
+            style={{
+              fontSize: '13px',
+              color: 'var(--ai-color-text-secondary)',
+              marginBottom: '16px',
+            }}
+          >
+            Interactive demo for flat variant cards - watch edge-to-edge content transition
+            smoothly.
           </p>
           <FlatLoadingTransitionDemo />
         </div>
 
         {/* Metadata Skeleton */}
         <div style={{ marginBottom: '32px' }}>
-          <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '12px', color: 'var(--ai-color-text-primary)' }}>
+          <h3
+            style={{
+              fontSize: '14px',
+              fontWeight: '600',
+              marginBottom: '12px',
+              color: 'var(--ai-color-text-primary)',
+            }}
+          >
             Metadata Skeleton Support (NEW)
           </h3>
-          <p style={{ fontSize: '13px', color: 'var(--ai-color-text-secondary)', marginBottom: '16px' }}>
-            When loading=true and metadata array is provided, skeleton automatically renders placeholders
-            for each metadata item - no manual configuration needed!
+          <p
+            style={{
+              fontSize: '13px',
+              color: 'var(--ai-color-text-secondary)',
+              marginBottom: '16px',
+            }}
+          >
+            When loading=true and metadata array is provided, skeleton automatically renders
+            placeholders for each metadata item - no manual configuration needed!
           </p>
           <div
             style={{
@@ -1143,7 +1530,13 @@ const SummaryCardsComponent: React.FC = () => {
             }}
           >
             <div>
-              <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+              <p
+                style={{
+                  fontSize: '12px',
+                  color: 'var(--ai-color-text-secondary)',
+                  marginBottom: '8px',
+                }}
+              >
                 2 metadata items (loading)
               </p>
               <SummaryCard
@@ -1165,7 +1558,13 @@ const SummaryCardsComponent: React.FC = () => {
             </div>
 
             <div>
-              <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+              <p
+                style={{
+                  fontSize: '12px',
+                  color: 'var(--ai-color-text-secondary)',
+                  marginBottom: '8px',
+                }}
+              >
                 4 metadata items (Airbnb style)
               </p>
               <SummaryCard
@@ -1189,7 +1588,13 @@ const SummaryCardsComponent: React.FC = () => {
             </div>
 
             <div>
-              <p style={{ fontSize: '12px', color: 'var(--ai-color-text-secondary)', marginBottom: '8px' }}>
+              <p
+                style={{
+                  fontSize: '12px',
+                  color: 'var(--ai-color-text-secondary)',
+                  marginBottom: '8px',
+                }}
+              >
                 No metadata (no skeleton)
               </p>
               <SummaryCard
@@ -1209,17 +1614,56 @@ const SummaryCardsComponent: React.FC = () => {
         </div>
 
         {/* Best Practices */}
-        <div style={{ background: 'var(--ai-color-bg-secondary)', border: '1px solid var(--ai-color-border)', borderRadius: '8px', padding: '16px' }}>
-          <h3 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '8px', color: 'var(--ai-color-text-primary)' }}>
+        <div
+          style={{
+            background: 'var(--ai-color-bg-secondary)',
+            border: '1px solid var(--ai-color-border)',
+            borderRadius: '8px',
+            padding: '16px',
+          }}
+        >
+          <h3
+            style={{
+              fontSize: '14px',
+              fontWeight: '600',
+              marginBottom: '8px',
+              color: 'var(--ai-color-text-primary)',
+            }}
+          >
             Industry Best Practices Implemented
           </h3>
-          <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '13px', lineHeight: '1.6', color: 'var(--ai-color-text-secondary)' }}>
-            <li><strong>CSS aspect-ratio:</strong> Responsive skeleton dimensions without fixed pixel heights</li>
-            <li><strong>Dynamic line-clamp:</strong> Description skeleton matches configured line count</li>
-            <li><strong>Metadata skeleton auto-detect:</strong> Skeleton count matches metadata array length</li>
-            <li><strong>Opacity fade:</strong> Smooth 300ms transition between loading and content states</li>
-            <li><strong>Delayed animation:</strong> 100ms delay prevents flash on fast loads (&lt;100ms)</li>
-            <li><strong>Zero CLS:</strong> Cumulative Layout Shift score remains 0 during transitions</li>
+          <ul
+            style={{
+              margin: 0,
+              paddingLeft: '20px',
+              fontSize: '13px',
+              lineHeight: '1.6',
+              color: 'var(--ai-color-text-secondary)',
+            }}
+          >
+            <li>
+              <strong>CSS aspect-ratio:</strong> Responsive skeleton dimensions without fixed pixel
+              heights
+            </li>
+            <li>
+              <strong>Dynamic line-clamp:</strong> Description skeleton matches configured line
+              count
+            </li>
+            <li>
+              <strong>Metadata skeleton auto-detect:</strong> Skeleton count matches metadata array
+              length
+            </li>
+            <li>
+              <strong>Opacity fade:</strong> Smooth 300ms transition between loading and content
+              states
+            </li>
+            <li>
+              <strong>Delayed animation:</strong> 100ms delay prevents flash on fast loads
+              (&lt;100ms)
+            </li>
+            <li>
+              <strong>Zero CLS:</strong> Cumulative Layout Shift score remains 0 during transitions
+            </li>
           </ul>
         </div>
       </section>
@@ -1532,11 +1976,7 @@ const SummaryCardsComponent: React.FC = () => {
               badge="$4,449,000"
               badgeVariant="filled"
               description="Stunning oceanfront property with modern architecture"
-              metadata={[
-                { label: '5 beds' },
-                { label: '2 baths' },
-                { label: '625m²' },
-              ]}
+              metadata={[{ label: '5 beds' }, { label: '2 baths' }, { label: '625m²' }]}
               buttonText="View property"
               topOverlay={
                 <SummaryCard.Overlay background="dark" height={40} align="center">
@@ -1780,7 +2220,12 @@ const SummaryCardsComponent: React.FC = () => {
               description="Fine dining experience with aged beef"
               buttonText="Reserve"
               topOverlay={
-                <SummaryCard.Overlay background="transparent" height={40} align="right" padding={12}>
+                <SummaryCard.Overlay
+                  background="transparent"
+                  height={40}
+                  align="right"
+                  padding={12}
+                >
                   <div
                     style={{
                       background: 'rgba(0, 0, 0, 0.7)',
@@ -1990,7 +2435,8 @@ const SummaryCardsComponent: React.FC = () => {
               name: 'variant',
               type: "'default' | 'flat'",
               default: "'default'",
-              description: 'Card variant - "flat" for edge-to-edge layout with no padding or elevation',
+              description:
+                'Card variant - "flat" for edge-to-edge layout with no padding or elevation',
             },
             {
               name: 'size',
@@ -2013,7 +2459,8 @@ const SummaryCardsComponent: React.FC = () => {
               name: 'descriptionLines',
               type: 'number',
               default: '2',
-              description: 'Number of lines to display for description (applies line-clamp to content and determines skeleton line count)',
+              description:
+                'Number of lines to display for description (applies line-clamp to content and determines skeleton line count)',
             },
             {
               name: 'metadata',
@@ -2035,7 +2482,8 @@ const SummaryCardsComponent: React.FC = () => {
               name: 'buttonFullWidth',
               type: 'boolean',
               default: 'Auto (true for default, false for flat)',
-              description: 'Button full width on desktop. Auto-determined based on variant if not set.',
+              description:
+                'Button full width on desktop. Auto-determined based on variant if not set.',
             },
             {
               name: 'loading',
@@ -2110,7 +2558,8 @@ const SummaryCardsComponent: React.FC = () => {
             {
               name: 'topOverlay',
               type: 'React.ReactNode',
-              description: 'Custom overlay content to render at the top of the image (e.g., logos, badges)',
+              description:
+                'Custom overlay content to render at the top of the image (e.g., logos, badges)',
             },
             {
               name: 'className',

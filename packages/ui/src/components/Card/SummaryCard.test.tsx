@@ -753,10 +753,7 @@ describe('SummaryCard', () => {
 
     it('renders overlay with single image', () => {
       render(
-        <SummaryCard
-          images="test.jpg"
-          topOverlay={<div data-testid="single-overlay">Logo</div>}
-        />
+        <SummaryCard images="test.jpg" topOverlay={<div data-testid="single-overlay">Logo</div>} />
       );
 
       expect(screen.getByTestId('single-overlay')).toBeInTheDocument();

@@ -18,6 +18,7 @@ declare const styles: {
   readonly metadataSeparator: string;
   readonly buttonSection: string;
   readonly button: string;
+  readonly buttonSkeletonWrapper: string;
   readonly overflowIndicator: string;
   readonly loadingContainer: string;
   readonly skeletonImageContainer: string;

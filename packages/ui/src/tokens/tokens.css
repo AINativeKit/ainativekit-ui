@@ -183,6 +183,11 @@
   --ai-opacity-subtle: 0.7;
   --ai-opacity-muted: 0.5;
   --ai-opacity-disabled: 0.3;
+
+  /* Breakpoints - ChatGPT Desktop widget width is 768px */
+  --ai-breakpoint-tablet: 640px; /* Tablet and up */
+  --ai-breakpoint-desktop: 768px; /* Desktop and up (ChatGPT widgets = 768px) */
+  --ai-breakpoint-desktop-wide: 1024px; /* Wide desktop / fullscreen layouts */
 }
 
 [data-theme='dark'] {

@@ -118,7 +118,8 @@ const pizzaRestaurants: PizzaRestaurant[] = [
     title: 'Dough-Re-Mi',
     subtitle: '512 Harmony Avenue',
     image: 'https://persistent.oaistatic.com/pizzaz/pizzaz-4.png',
-    description: 'Focaccia-style squares with fluffy, airy texture and perfectly crispy edges. A late-night favorite among locals who crave authentic Italian-style pizza.',
+    description:
+      'Focaccia-style squares with fluffy, airy texture and perfectly crispy edges. A late-night favorite among locals who crave authentic Italian-style pizza.',
     badge: '4.6',
     features: ['$$', 'Focaccia', 'Late-night'],
   },
@@ -582,7 +583,7 @@ const IntroductionPage = () => {
                   badge={restaurant.badge}
                   size="compact"
                   imageAspectRatio="4/3"
-                  metadata={restaurant.features.map(f => ({ label: f, separator: '•' }))}
+                  metadata={restaurant.features.map((f) => ({ label: f, separator: '•' }))}
                   description={restaurant.description}
                   buttonText="Order now"
                   onButtonClick={() => alert(`Order from ${restaurant.title}`)}
@@ -939,8 +940,8 @@ const IntroductionPage = () => {
               more
             </li>
             <li>
-              <strong>Cards</strong>: SummaryCard (with compact variant), ImageCard, ListCard with all
-              features
+              <strong>Cards</strong>: SummaryCard (with compact variant), ImageCard, ListCard with
+              all features
             </li>
             <li>
               <strong>Patterns</strong>: Carousel, List, Album, Map with complete examples

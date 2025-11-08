@@ -3,7 +3,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { colors, typography, radius, elevation } from './index';
 import { spacing as spacingRaw } from './spacing'; // Use raw for display in Storybook
 import type { ElevationLevel } from './elevation';
-import { Card } from '../components/Card';
+import { Card, SummaryCard } from '../components/Card';
+import { List, ListItem } from '../components/List';
+import { Button } from '../components/Button';
 import { PropsTable } from './PropsTable';
 import { codeBlockStyles } from '../components/storybook/codeBlockStyles';
 
@@ -1403,4 +1405,476 @@ console.log(\`Font size: \${typography.body.fontSize}\`);`,
 
 export const TokenHelpers: StoryObj = {
   render: () => <TokenHelpersComponent />,
+};
+
+// Responsive Breakpoints Component
+const ResponsiveBreakpointsComponent: React.FC = () => {
+  const pizzaPlaces = [
+    {
+      id: '1',
+      name: "Tony's Pizza Napoletana",
+      city: 'North Beach',
+      rating: 4.8,
+      thumbnail: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=200&h=200&fit=crop',
+    },
+    {
+      id: '2',
+      name: 'Golden Boy Pizza',
+      city: 'North Beach',
+      rating: 4.6,
+      thumbnail: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200&h=200&fit=crop',
+    },
+  ];
+
+  React.useEffect(() => {
+    const updateViewportWidth = () => {
+      const width = window.innerWidth;
+      const viewportSpan = document.getElementById('viewport-width');
+      const viewportSpanList = document.getElementById('viewport-width-list');
+      if (viewportSpan) viewportSpan.textContent = String(width);
+      if (viewportSpanList) viewportSpanList.textContent = String(width);
+    };
+    updateViewportWidth();
+    window.addEventListener('resize', updateViewportWidth);
+    return () => window.removeEventListener('resize', updateViewportWidth);
+  }, []);
+
+  return (
+    <div style={{ padding: '24px', maxWidth: '100%' }}>
+      <div style={{ marginBottom: 'var(--ai-spacing-24)' }}>
+        <h1
+          style={{
+            fontSize: 'var(--ai-font-size-h2)',
+            fontWeight: 'var(--ai-font-weight-h2)',
+            marginBottom: 'var(--ai-spacing-8)',
+          }}
+        >
+          Responsive Breakpoint Reference
+        </h1>
+        <p
+          style={{
+            fontSize: 'var(--ai-font-size-body)',
+            color: 'var(--ai-color-text-secondary)',
+            marginBottom: 'var(--ai-spacing-12)',
+            lineHeight: 1.6,
+          }}
+        >
+          This guide shows how AINativeKit UI components respond at different viewport widths. Try
+          resizing your browser to see the responsive behavior.
+        </p>
+
+        <table
+          style={{
+            width: '100%',
+            borderCollapse: 'collapse',
+            marginBottom: 'var(--ai-spacing-16)',
+            fontSize: 'var(--ai-font-size-body-small)',
+          }}
+        >
+          <thead>
+            <tr>
+              <th
+                style={{
+                  backgroundColor: 'var(--ai-color-bg-secondary)',
+                  padding: 'var(--ai-spacing-4) var(--ai-spacing-6)',
+                  textAlign: 'left',
+                  fontWeight: 'var(--ai-font-weight-semibold)',
+                  borderBottom: '2px solid var(--ai-color-border-default)',
+                }}
+              >
+                Breakpoint
+              </th>
+              <th
+                style={{
+                  backgroundColor: 'var(--ai-color-bg-secondary)',
+                  padding: 'var(--ai-spacing-4) var(--ai-spacing-6)',
+                  textAlign: 'left',
+                  fontWeight: 'var(--ai-font-weight-semibold)',
+                  borderBottom: '2px solid var(--ai-color-border-default)',
+                }}
+              >
+                Value
+              </th>
+              <th
+                style={{
+                  backgroundColor: 'var(--ai-color-bg-secondary)',
+                  padding: 'var(--ai-spacing-4) var(--ai-spacing-6)',
+                  textAlign: 'left',
+                  fontWeight: 'var(--ai-font-weight-semibold)',
+                  borderBottom: '2px solid var(--ai-color-border-default)',
+                }}
+              >
+                Used By
+              </th>
+              <th
+                style={{
+                  backgroundColor: 'var(--ai-color-bg-secondary)',
+                  padding: 'var(--ai-spacing-4) var(--ai-spacing-6)',
+                  textAlign: 'left',
+                  fontWeight: 'var(--ai-font-weight-semibold)',
+                  borderBottom: '2px solid var(--ai-color-border-default)',
+                }}
+              >
+                Behavior
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td
+                style={{
+                  padding: 'var(--ai-spacing-4) var(--ai-spacing-6)',
+                  borderBottom: '1px solid var(--ai-color-border-light)',
+                }}
+              >
+                <code>tablet</code>
+              </td>
+              <td
+                style={{
+                  padding: 'var(--ai-spacing-4) var(--ai-spacing-6)',
+                  borderBottom: '1px solid var(--ai-color-border-light)',
+                }}
+              >
+                <code>640px</code>
+              </td>
+              <td
+                style={{
+                  padding: 'var(--ai-spacing-4) var(--ai-spacing-6)',
+                  borderBottom: '1px solid var(--ai-color-border-light)',
+                }}
+              >
+                List
+              </td>
+              <td
+                style={{
+                  padding: 'var(--ai-spacing-4) var(--ai-spacing-6)',
+                  borderBottom: '1px solid var(--ai-color-border-light)',
+                }}
+              >
+                Desktop layout active (ensures button is top-right at 768px ChatGPT widget width)
+              </td>
+            </tr>
+            <tr>
+              <td
+                style={{
+                  padding: 'var(--ai-spacing-4) var(--ai-spacing-6)',
+                  borderBottom: '1px solid var(--ai-color-border-light)',
+                }}
+              >
+                <code>desktop</code>
+              </td>
+              <td
+                style={{
+                  padding: 'var(--ai-spacing-4) var(--ai-spacing-6)',
+                  borderBottom: '1px solid var(--ai-color-border-light)',
+                }}
+              >
+                <code>768px</code>
+              </td>
+              <td
+                style={{
+                  padding: 'var(--ai-spacing-4) var(--ai-spacing-6)',
+                  borderBottom: '1px solid var(--ai-color-border-light)',
+                }}
+              >
+                Card, SummaryCard, Album
+              </td>
+              <td
+                style={{
+                  padding: 'var(--ai-spacing-4) var(--ai-spacing-6)',
+                  borderBottom: '1px solid var(--ai-color-border-light)',
+                }}
+              >
+                Button auto-width, optimized layouts (ChatGPT Desktop widget = 768px)
+              </td>
+            </tr>
+            <tr>
+              <td
+                style={{
+                  padding: 'var(--ai-spacing-4) var(--ai-spacing-6)',
+                  borderBottom: '1px solid var(--ai-color-border-light)',
+                }}
+              >
+                <code>desktop-wide</code>
+              </td>
+              <td
+                style={{
+                  padding: 'var(--ai-spacing-4) var(--ai-spacing-6)',
+                  borderBottom: '1px solid var(--ai-color-border-light)',
+                }}
+              >
+                <code>1024px</code>
+              </td>
+              <td
+                style={{
+                  padding: 'var(--ai-spacing-4) var(--ai-spacing-6)',
+                  borderBottom: '1px solid var(--ai-color-border-light)',
+                }}
+              >
+                FullscreenMap
+              </td>
+              <td
+                style={{
+                  padding: 'var(--ai-spacing-4) var(--ai-spacing-6)',
+                  borderBottom: '1px solid var(--ai-color-border-light)',
+                }}
+              >
+                Sidebar visible, fullscreen layouts for wide screens
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style={{ marginBottom: 'var(--ai-spacing-24)' }}>
+        <h2
+          style={{
+            fontSize: 'var(--ai-font-size-h2)',
+            fontWeight: 'var(--ai-font-weight-h2)',
+            marginBottom: 'var(--ai-spacing-8)',
+          }}
+        >
+          SummaryCard - Button Width (768px breakpoint)
+        </h2>
+        <p
+          style={{
+            fontSize: 'var(--ai-font-size-body)',
+            color: 'var(--ai-color-text-secondary)',
+            marginBottom: 'var(--ai-spacing-12)',
+            lineHeight: 1.6,
+          }}
+        >
+          At <strong>768px and above</strong>, buttons automatically switch from full-width to
+          auto-width. This ensures optimal display in ChatGPT Desktop widgets (768px width).
+        </p>
+        <p
+          style={{
+            fontSize: 'var(--ai-font-size-body)',
+            color: 'var(--ai-color-text-secondary)',
+            marginBottom: 'var(--ai-spacing-12)',
+            lineHeight: 1.6,
+          }}
+        >
+          <strong>Try this:</strong> Resize your browser below and above 768px to see the button
+          width change.
+        </p>
+
+        <div
+          style={{
+            border: '2px solid var(--ai-color-border-default)',
+            borderRadius: 'var(--ai-radius-xl)',
+            padding: 'var(--ai-spacing-8)',
+            marginBottom: 'var(--ai-spacing-12)',
+            backgroundColor: 'var(--ai-color-bg-secondary)',
+          }}
+        >
+          <div
+            style={{
+              fontSize: 'var(--ai-font-size-caption)',
+              color: 'var(--ai-color-text-secondary)',
+              marginBottom: 'var(--ai-spacing-4)',
+              fontFamily: 'monospace',
+            }}
+          >
+            Current viewport: <span id="viewport-width"></span>px (Button switches at ≥768px)
+          </div>
+          <div style={{ maxWidth: '360px' }}>
+            <SummaryCard
+              elevationLevel={1}
+              images="https://persistent.oaistatic.com/pizzaz/pizzaz-1.png"
+              title="Little Nona's"
+              subtitle="1427 Via Campania, North Beach"
+              badge="9.2"
+              badgeVariant="success"
+              description="A tiny, brick-walled trattoria tucked down a side street near Washington Square Park."
+              metadata={[
+                { icon: 'star', label: '9.2 rating' },
+                { icon: 'map-pin', label: 'North Beach' },
+              ]}
+              buttonText="Reserve Table"
+              onButtonClick={() => alert('Reservation clicked!')}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div style={{ marginBottom: 'var(--ai-spacing-24)' }}>
+        <h2
+          style={{
+            fontSize: 'var(--ai-font-size-h2)',
+            fontWeight: 'var(--ai-font-weight-h2)',
+            marginBottom: 'var(--ai-spacing-8)',
+          }}
+        >
+          List - Layout Change (640px breakpoint)
+        </h2>
+        <p
+          style={{
+            fontSize: 'var(--ai-font-size-body)',
+            color: 'var(--ai-color-text-secondary)',
+            marginBottom: 'var(--ai-spacing-12)',
+            lineHeight: 1.6,
+          }}
+        >
+          At <strong>640px and above</strong>, the List header button moves from bottom (mobile) to
+          top-right (desktop). This ensures the desktop layout is active at 768px ChatGPT widget
+          width.
+        </p>
+        <p
+          style={{
+            fontSize: 'var(--ai-font-size-body)',
+            color: 'var(--ai-color-text-secondary)',
+            marginBottom: 'var(--ai-spacing-12)',
+            lineHeight: 1.6,
+          }}
+        >
+          <strong>Try this:</strong> Resize your browser below and above 640px to see the "Save
+          List" button position change.
+        </p>
+
+        <div
+          style={{
+            border: '2px solid var(--ai-color-border-default)',
+            borderRadius: 'var(--ai-radius-xl)',
+            padding: 'var(--ai-spacing-8)',
+            marginBottom: 'var(--ai-spacing-12)',
+            backgroundColor: 'var(--ai-color-bg-secondary)',
+          }}
+        >
+          <div
+            style={{
+              fontSize: 'var(--ai-font-size-caption)',
+              color: 'var(--ai-color-text-secondary)',
+              marginBottom: 'var(--ai-spacing-4)',
+              fontFamily: 'monospace',
+            }}
+          >
+            Current viewport: <span id="viewport-width-list"></span>px (Layout switches at ≥640px)
+          </div>
+          <List
+            header={{
+              title: 'Top Pizza Places',
+              subtitle: 'Best pizzerias in San Francisco',
+              thumbnail:
+                'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=200&h=200&fit=crop',
+              action: <Button variant="primary">Save List</Button>,
+            }}
+            items={pizzaPlaces}
+            renderItem={(place, index) => (
+              <ListItem
+                key={place.id}
+                rank={index + 1}
+                title={place.name}
+                features={[{ icon: 'star', label: `${place.rating}` }]}
+                media={place.thumbnail}
+                mediaAlt={place.name}
+                metadata={place.city}
+                onClick={() => alert(`Selected ${place.name}`)}
+                interactive
+              />
+            )}
+          />
+        </div>
+      </div>
+
+      <div style={{ marginBottom: 'var(--ai-spacing-24)' }}>
+        <h2
+          style={{
+            fontSize: 'var(--ai-font-size-h2)',
+            fontWeight: 'var(--ai-font-weight-h2)',
+            marginBottom: 'var(--ai-spacing-8)',
+          }}
+        >
+          ChatGPT Widget Strategy
+        </h2>
+        <p
+          style={{
+            fontSize: 'var(--ai-font-size-body)',
+            color: 'var(--ai-color-text-secondary)',
+            marginBottom: 'var(--ai-spacing-12)',
+            lineHeight: 1.6,
+          }}
+        >
+          <strong>Key Insight:</strong> ChatGPT Desktop widgets are exactly 768px wide. Our
+          breakpoint strategy ensures optimal display:
+        </p>
+        <ul
+          style={{
+            fontSize: 'var(--ai-font-size-body)',
+            color: 'var(--ai-color-text-secondary)',
+            paddingLeft: 'var(--ai-spacing-16)',
+            lineHeight: 1.8,
+          }}
+        >
+          <li>
+            <strong>List component</strong> uses 640px so it's in desktop mode at 768px (button in
+            top-right)
+          </li>
+          <li>
+            <strong>Card components</strong> use 768px to show auto-width buttons at ChatGPT widget
+            size
+          </li>
+          <li>
+            <strong>Map component</strong> uses 1024px for sidebar (fullscreen only on wide screens)
+          </li>
+        </ul>
+      </div>
+
+      <div style={{ marginBottom: 'var(--ai-spacing-24)' }}>
+        <h2
+          style={{
+            fontSize: 'var(--ai-font-size-h2)',
+            fontWeight: 'var(--ai-font-weight-h2)',
+            marginBottom: 'var(--ai-spacing-8)',
+          }}
+        >
+          Implementation Notes
+        </h2>
+        <p
+          style={{
+            fontSize: 'var(--ai-font-size-body)',
+            color: 'var(--ai-color-text-secondary)',
+            marginBottom: 'var(--ai-spacing-12)',
+            lineHeight: 1.6,
+          }}
+        >
+          <strong>Why hardcoded pixel values?</strong> CSS custom properties cannot be used in{' '}
+          <code>@media</code> query conditions - this is a fundamental browser limitation. Our
+          approach follows industry best practices (Tailwind CSS, Bootstrap, Material-UI).
+        </p>
+        <p
+          style={{
+            fontSize: 'var(--ai-font-size-body)',
+            color: 'var(--ai-color-text-secondary)',
+            marginBottom: 'var(--ai-spacing-12)',
+            lineHeight: 1.6,
+          }}
+        >
+          The design tokens in <code>tokens.css</code> serve as documentation and reference for
+          developers:
+        </p>
+        <div
+          style={{
+            fontSize: 'var(--ai-font-size-body-small)',
+            color: 'var(--ai-color-text-secondary)',
+            fontFamily: 'monospace',
+            backgroundColor: 'var(--ai-color-bg-tertiary)',
+            padding: 'var(--ai-spacing-8)',
+            borderRadius: 'var(--ai-radius-base)',
+            overflowX: 'auto',
+          }}
+        >
+          --ai-breakpoint-tablet: 640px;
+          <br />
+          --ai-breakpoint-desktop: 768px;
+          <br />
+          --ai-breakpoint-desktop-wide: 1024px;
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const ResponsiveBreakpoints: StoryObj = {
+  render: () => <ResponsiveBreakpointsComponent />,
 };

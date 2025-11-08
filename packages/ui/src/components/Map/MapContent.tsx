@@ -81,7 +81,7 @@ const PinchZoomHandler: React.FC = () => {
       // This creates smooth, proportional zooming like the +/- buttons
       const wheelPxPerZoomLevel = 60; // Leaflet default
       const d2 = delta / (wheelPxPerZoomLevel * 4);
-      const d3 = 4 * Math.log(2 / (1 + Math.exp(-Math.abs(d2)))) / Math.LN2;
+      const d3 = (4 * Math.log(2 / (1 + Math.exp(-Math.abs(d2))))) / Math.LN2;
       const d4 = Math.ceil(d3); // Snap to integer zoom levels
       const zoomDelta = delta > 0 ? -d4 : d4;
 

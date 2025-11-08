@@ -335,7 +335,10 @@ export interface SummaryCardOverlayProps {
  * ```
  */
 const SummaryCardOverlay = React.forwardRef<HTMLDivElement, SummaryCardOverlayProps>(
-  ({ background = 'dark', height = 40, align = 'center', padding = 8, children, className }, ref) => {
+  (
+    { background = 'dark', height = 40, align = 'center', padding = 8, children, className },
+    ref
+  ) => {
     // Map background presets to CSS values
     const backgroundMap: Record<string, string> = {
       dark: 'rgba(0, 0, 0, 0.6)',
@@ -477,6 +480,12 @@ const SummaryCardComponent = React.forwardRef<HTMLDivElement, SummaryCardProps>(
   // Default variant: full-width, Flat variant: auto-width (not full)
   const isButtonFullWidth = buttonFullWidth ?? variant === 'default';
 
+  // Calculate approximate button skeleton width based on text length
+  // Average character width ~8px + padding (24px each side = 48px total)
+  const buttonSkeletonWidth = buttonText
+    ? Math.max(88, Math.min(buttonText.length * 8 + 48, 200))
+    : 140;
+
   // Helper to render badge/chip based on text length
   const renderBadge = () => {
     if (badge === undefined) return null;
@@ -531,22 +540,20 @@ const SummaryCardComponent = React.forwardRef<HTMLDivElement, SummaryCardProps>(
                 </div>
               )}
 
-               {/* Metadata Skeleton */}
-               {metadata && metadata.length > 0 && (
+              {/* Metadata Skeleton */}
+              {metadata && metadata.length > 0 && (
                 <div className={styles.metadata}>
                   {metadata.map((_, index) => (
-                    <Skeleton
-                      key={index}
-                      width={60}
-                      height={20}
-                      borderRadius={8}
-                    />
+                    <Skeleton key={index} width={60} height={20} borderRadius={8} />
                   ))}
                 </div>
               )}
 
               {hasDescription && (
-                <div className={styles.descriptionSkeleton} style={{ '--description-lines': descriptionLines } as React.CSSProperties}>
+                <div
+                  className={styles.descriptionSkeleton}
+                  style={{ '--description-lines': descriptionLines } as React.CSSProperties}
+                >
                   {Array.from({ length: descriptionLines }).map((_, index) => (
                     <Skeleton
                       key={index}
@@ -563,7 +570,18 @@ const SummaryCardComponent = React.forwardRef<HTMLDivElement, SummaryCardProps>(
           {/* Button Skeleton */}
           {hasButton && (
             <div className={styles.buttonSection} data-full-width={isButtonFullWidth}>
-              <Skeleton width={isButtonFullWidth ? "100%" : 160} height={44} borderRadius={22} />
+              <div
+                className={styles.buttonSkeletonWrapper}
+                style={
+                  !isButtonFullWidth
+                    ? ({
+                        '--button-skeleton-width': `${buttonSkeletonWidth}px`,
+                      } as React.CSSProperties)
+                    : undefined
+                }
+              >
+                <Skeleton width="100%" height={44} borderRadius={22} />
+              </div>
             </div>
           )}
 
@@ -597,7 +615,10 @@ const SummaryCardComponent = React.forwardRef<HTMLDivElement, SummaryCardProps>(
               )}
 
               {hasDescription && (
-                <div className={styles.descriptionSkeleton} style={{ '--description-lines': descriptionLines } as React.CSSProperties}>
+                <div
+                  className={styles.descriptionSkeleton}
+                  style={{ '--description-lines': descriptionLines } as React.CSSProperties}
+                >
                   {Array.from({ length: descriptionLines }).map((_, index) => (
                     <Skeleton
                       key={index}
@@ -613,12 +634,7 @@ const SummaryCardComponent = React.forwardRef<HTMLDivElement, SummaryCardProps>(
               {metadata && metadata.length > 0 && (
                 <div className={styles.metadata}>
                   {metadata.map((_, index) => (
-                    <Skeleton
-                      key={index}
-                      width={60}
-                      height={20}
-                      borderRadius={8}
-                    />
+                    <Skeleton key={index} width={60} height={20} borderRadius={8} />
                   ))}
                 </div>
               )}
@@ -628,7 +644,18 @@ const SummaryCardComponent = React.forwardRef<HTMLDivElement, SummaryCardProps>(
           {/* Button Skeleton */}
           {hasButton && (
             <div className={styles.buttonSection} data-full-width={isButtonFullWidth}>
-              <Skeleton width={isButtonFullWidth ? "100%" : 160} height={44} borderRadius={22} />
+              <div
+                className={styles.buttonSkeletonWrapper}
+                style={
+                  !isButtonFullWidth
+                    ? ({
+                        '--button-skeleton-width': `${buttonSkeletonWidth}px`,
+                      } as React.CSSProperties)
+                    : undefined
+                }
+              >
+                <Skeleton width="100%" height={44} borderRadius={22} />
+              </div>
             </div>
           )}
 
@@ -653,7 +680,10 @@ const SummaryCardComponent = React.forwardRef<HTMLDivElement, SummaryCardProps>(
               )}
 
               {hasDescription && (
-                <div className={styles.descriptionSkeleton} style={{ '--description-lines': descriptionLines } as React.CSSProperties}>
+                <div
+                  className={styles.descriptionSkeleton}
+                  style={{ '--description-lines': descriptionLines } as React.CSSProperties}
+                >
                   {Array.from({ length: descriptionLines }).map((_, index) => (
                     <Skeleton
                       key={index}
@@ -669,12 +699,7 @@ const SummaryCardComponent = React.forwardRef<HTMLDivElement, SummaryCardProps>(
               {metadata && metadata.length > 0 && (
                 <div className={styles.metadata}>
                   {metadata.map((_, index) => (
-                    <Skeleton
-                      key={index}
-                      width={60}
-                      height={20}
-                      borderRadius={8}
-                    />
+                    <Skeleton key={index} width={60} height={20} borderRadius={8} />
                   ))}
                 </div>
               )}
@@ -684,7 +709,18 @@ const SummaryCardComponent = React.forwardRef<HTMLDivElement, SummaryCardProps>(
           {/* Button Skeleton */}
           {hasButton && (
             <div className={styles.buttonSection} data-full-width={isButtonFullWidth}>
-              <Skeleton width={isButtonFullWidth ? "100%" : 160} height={44} borderRadius={22} />
+              <div
+                className={styles.buttonSkeletonWrapper}
+                style={
+                  !isButtonFullWidth
+                    ? ({
+                        '--button-skeleton-width': `${buttonSkeletonWidth}px`,
+                      } as React.CSSProperties)
+                    : undefined
+                }
+              >
+                <Skeleton width="100%" height={44} borderRadius={22} />
+              </div>
             </div>
           )}
 

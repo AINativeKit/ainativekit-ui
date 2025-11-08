@@ -119,10 +119,7 @@ const SummaryCardCarouselDemo: React.FC = () => {
       </div>
 
       <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
-        <Button
-          variant="secondary"
-          onClick={() => setIsLoading((prev) => !prev)}
-        >
+        <Button variant="secondary" onClick={() => setIsLoading((prev) => !prev)}>
           {isLoading ? '▶️ Show Content' : '⏸️ Show Loading'}
         </Button>
         <Button

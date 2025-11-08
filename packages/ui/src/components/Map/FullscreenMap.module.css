@@ -30,7 +30,7 @@
 }
 
 /* Desktop: adjust for sidebar */
-@media (min-width: 1024px) {
+@media (min-width: 1024px) /* desktop-wide */ {
   .mapWrapper {
     left: 340px;
     right: var(--ai-spacing-4);
@@ -50,7 +50,7 @@
 }
 
 /* Hide carousel on desktop */
-@media (min-width: 1024px) {
+@media (min-width: 1024px) /* desktop-wide */ {
   .mobileCarousel {
     display: none;
   }

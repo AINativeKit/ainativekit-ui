@@ -41,7 +41,7 @@
   z-index: 10;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) /* desktop */ {
   .filmStripContainer {
     display: block;
   }
@@ -58,7 +58,7 @@
   overflow: hidden;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) /* desktop */ {
   .photoContainer {
     padding: var(--ai-spacing-20);
     padding-left: var(--ai-spacing-16);
@@ -131,7 +131,7 @@
   right: var(--ai-spacing-4);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) /* desktop */ {
   .navButton {
     display: none;
   }
