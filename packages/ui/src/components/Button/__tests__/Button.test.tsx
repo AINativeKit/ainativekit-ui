@@ -185,7 +185,7 @@ describe('Button', () => {
     });
 
     it('should update when brand colors change', () => {
-      const { container, rerender } = render(
+      const { rerender } = render(
         <ThemeProvider brandColors={{ primary: '#6B46C1' }}>
           <Button variant="primary" color="primary">
             Button

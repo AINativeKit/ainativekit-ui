@@ -828,6 +828,220 @@ const SummaryCardsComponent: React.FC = () => {
         </div>
       </section>
 
+      {/* Button Width Behavior */}
+      <section style={{ marginBottom: '64px' }}>
+        <header style={{ marginBottom: '24px' }}>
+          <h2 style={{ marginBottom: '8px' }}>Button Width Behavior</h2>
+          <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
+            SummaryCard buttons have fixed, predictable widths based on the buttonFullWidth prop.
+            Button width does NOT change based on container or viewport size.
+          </p>
+        </header>
+
+        {/* buttonFullWidth prop examples */}
+        <div style={{ marginBottom: '48px' }}>
+          <h3 style={{ marginBottom: '12px', fontSize: '16px', fontWeight: 600 }}>
+            buttonFullWidth Prop Behavior
+          </h3>
+          <p
+            style={{
+              color: 'var(--ai-color-text-secondary)',
+              fontSize: '14px',
+              marginBottom: '16px',
+            }}
+          >
+            The button width is determined by the buttonFullWidth prop and never changes based on
+            container or viewport size.
+          </p>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+              gap: '24px',
+              marginBottom: '16px',
+            }}
+          >
+            <div>
+              <p style={{ fontSize: '12px', marginBottom: '8px', fontWeight: 600 }}>
+                buttonFullWidth={'{true}'}
+              </p>
+              <SummaryCard
+                images={SAMPLE_IMAGES.restaurant}
+                title="Full Width Button"
+                subtitle="Always 100% width"
+                badge="9.2"
+                description="Button spans the full width of the card"
+                buttonText="Reserve Table"
+                buttonFullWidth={true}
+                style={{ maxWidth: `${CARD_WIDTH}px` }}
+              />
+            </div>
+
+            <div>
+              <p style={{ fontSize: '12px', marginBottom: '8px', fontWeight: 600 }}>
+                buttonFullWidth={'{false}'}
+              </p>
+              <SummaryCard
+                images={SAMPLE_IMAGES.pizza}
+                title="Auto Width Button"
+                subtitle="Always auto (min 120px)"
+                badge="8.5"
+                description="Button is auto-width with minimum 120px"
+                buttonText="Order Now"
+                buttonFullWidth={false}
+                style={{ maxWidth: `${CARD_WIDTH}px` }}
+              />
+            </div>
+
+            <div>
+              <p style={{ fontSize: '12px', marginBottom: '8px', fontWeight: 600 }}>
+                buttonFullWidth={'{undefined}'} (flat variant)
+              </p>
+              <SummaryCard
+                variant="flat"
+                images={SAMPLE_IMAGES.pasta}
+                title="Default Behavior"
+                subtitle="Auto for flat variant"
+                badge="9.0"
+                description="Flat variant defaults to auto-width button"
+                buttonText="View Menu"
+                style={{ maxWidth: `${CARD_WIDTH}px` }}
+              />
+            </div>
+          </div>
+          <p
+            style={{
+              color: 'var(--ai-color-text-secondary)',
+              fontSize: '12px',
+              fontStyle: 'italic',
+            }}
+          >
+            ✅ Button widths remain consistent regardless of card container size
+          </p>
+        </div>
+
+        {/* Loading State Example */}
+        <div style={{ marginBottom: '48px' }}>
+          <h3 style={{ marginBottom: '12px', fontSize: '16px', fontWeight: 600 }}>
+            Loading State - Skeleton Consistency
+          </h3>
+          <p
+            style={{
+              color: 'var(--ai-color-text-secondary)',
+              fontSize: '14px',
+              marginBottom: '16px',
+            }}
+          >
+            Skeleton buttons now match real button widths (fixes Issue #15).
+          </p>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+              gap: '24px',
+              marginBottom: '16px',
+            }}
+          >
+            <div>
+              <p style={{ fontSize: '12px', marginBottom: '8px', fontWeight: 600 }}>
+                buttonFullWidth={'{false}'} - Loading
+              </p>
+              <SummaryCard
+                title="Loading State"
+                subtitle="Auto Width Button"
+                description="Skeleton button is auto-width (min 120px)"
+                buttonText="View Details"
+                buttonFullWidth={false}
+                loading={true}
+                style={{ maxWidth: `${CARD_WIDTH}px` }}
+              />
+            </div>
+
+            <div>
+              <p style={{ fontSize: '12px', marginBottom: '8px', fontWeight: 600 }}>
+                buttonFullWidth={'{false}'} - Loaded
+              </p>
+              <SummaryCard
+                images={SAMPLE_IMAGES.pizza}
+                title="Loaded State"
+                subtitle="Auto Width Button"
+                description="Real button is auto-width (min 120px)"
+                buttonText="View Details"
+                buttonFullWidth={false}
+                style={{ maxWidth: `${CARD_WIDTH}px` }}
+              />
+            </div>
+          </div>
+          <p
+            style={{
+              color: 'var(--ai-color-text-secondary)',
+              fontSize: '12px',
+              fontStyle: 'italic',
+            }}
+          >
+            ✅ Skeleton and real buttons have identical widths
+          </p>
+        </div>
+
+        {/* Technical Details */}
+        <div
+          style={{
+            padding: '24px',
+            background: 'var(--ai-color-bg-secondary)',
+            borderRadius: '8px',
+          }}
+        >
+          <h3 style={{ marginBottom: '12px', fontSize: '16px', fontWeight: 600 }}>
+            Implementation
+          </h3>
+          <div style={{ fontSize: '14px', lineHeight: '1.6' }}>
+            <p style={{ marginBottom: '12px' }}>
+              SummaryCard uses <strong>simple CSS</strong> for predictable button widths:
+            </p>
+            <pre
+              style={{
+                background: 'var(--ai-color-bg-primary)',
+                padding: '12px',
+                borderRadius: '4px',
+                overflow: 'auto',
+                fontSize: '12px',
+                marginBottom: '12px',
+              }}
+            >
+              {`/* Default: Full width */
+.button {
+  width: 100%;
+}
+
+/* When buttonFullWidth={false}: Auto width */
+.buttonSection[data-full-width='false'] .button {
+  width: auto;
+  min-width: 120px;
+}
+
+/* Skeleton matches button */
+.buttonSection[data-full-width='false'] .buttonSkeletonWrapper {
+  width: var(--button-skeleton-width, 140px);
+}`}
+            </pre>
+            <ul style={{ margin: 0, paddingLeft: '20px' }}>
+              <li>
+                <strong>No responsive behavior</strong> - Button width is fixed based on prop
+              </li>
+              <li>
+                <strong>Predictable</strong> - Same width regardless of container or viewport size
+              </li>
+              <li>
+                <strong>Simple</strong> - No container queries needed for SummaryCard buttons
+              </li>
+              <li>
+                <strong>Consistent</strong> - Skeleton and real buttons always match
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       {/* Discovery/Browse Mode - Compact Size (NEW - replaces DiscoveryCard) */}
       <section style={{ marginBottom: '64px' }}>
         <header style={{ marginBottom: '24px' }}>

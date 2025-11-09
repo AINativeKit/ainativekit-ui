@@ -166,10 +166,10 @@ export interface SummaryCardProps extends Omit<CardProps, 'children'> {
   buttonDisabled?: boolean;
 
   /**
-   * Button full width on desktop.
+   * Button width behavior
    * - undefined: Auto (full-width for default variant, auto-width for flat variant)
-   * - true: Full width on all screen sizes
-   * - false: Auto width on desktop (min 120px), full width on mobile
+   * - true: Full width (100%)
+   * - false: Auto width (min 120px)
    * @default undefined (auto based on variant)
    */
   buttonFullWidth?: boolean;

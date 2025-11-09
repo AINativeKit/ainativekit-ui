@@ -7,6 +7,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.8.0] - 2025-11-08
+
+### Fixed
+
+- **SummaryCard**: Button skeleton width now matches button width (Issue #15)
+  - Skeleton buttons use the same width logic as real buttons
+  - `buttonFullWidth={false}` → auto-width (min 120px) for both skeleton and button
+  - `buttonFullWidth={true}` → full-width (100%) for both skeleton and button
+  - `buttonFullWidth={undefined}` → variant-based (full for default, auto for flat)
+
+### Changed
+
+- **SummaryCard**: Simplified `buttonFullWidth` behavior
+  - `buttonFullWidth={false}`: Always auto-width (min 120px)
+  - `buttonFullWidth={true}`: Always full-width (100%)
+  - `buttonFullWidth={undefined}`: Full-width for default variant, auto-width for flat variant
+  - Button width is now fixed and predictable - no responsive behavior
+  - Simpler implementation using standard CSS
+
+### Technical Details
+
+All components use simple, predictable viewport-based media queries for responsive behavior:
+
+```css
+/* SummaryCard: Fixed button widths based on prop */
+.buttonSection[data-full-width='false'] .button {
+  width: auto;
+  min-width: 120px;
+}
+
+/* List & AlbumViewer: Viewport-based responsive behavior */
+@media (min-width: 640px) {
+  /* Tablet/desktop styles */
+}
+```
+
 ## [0.7.0] - 2025-11-08
 
 ### Added

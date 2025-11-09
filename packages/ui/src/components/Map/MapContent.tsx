@@ -114,6 +114,7 @@ const PinchZoomHandler: React.FC = () => {
         accumulatedDelta.current += e.deltaY;
 
         // Store mouse position for zooming around cursor
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         lastMousePos.current = map.mouseEventToContainerPoint(e as any);
 
         // Use shorter debounce (10ms instead of 40ms) for more responsive continuous zooming
