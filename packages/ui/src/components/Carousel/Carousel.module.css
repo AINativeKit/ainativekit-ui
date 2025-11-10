@@ -50,13 +50,11 @@
 .emblaContainer {
   display: flex;
   align-items: stretch;
-  margin-left: calc(var(--carousel-gap, 0) / -2);
-  margin-right: calc(var(--carousel-gap, 0) / -2);
+  gap: var(--carousel-gap, 0);
   padding-left: var(--carousel-start-inset, 0);
 }
 
 .emblaContainerFlushStart {
-  margin-left: 0;
   --carousel-start-inset: 0;
 }
 
@@ -64,12 +62,6 @@
 .emblaSlide {
   flex: 0 0 auto;
   min-width: 0;
-  padding-left: calc(var(--carousel-gap, 0) / 2);
-  padding-right: calc(var(--carousel-gap, 0) / 2);
-}
-
-.emblaSlideFlushStart:first-child {
-  padding-left: 0;
 }
 
 /* Edge Gradients */

@@ -1031,7 +1031,7 @@ Current: {currentSlide + 1} of {total}`}</code>
           </div>
 
           {/* Two Slides */}
-          <div>
+          <div style={{ marginBottom: '32px' }}>
             <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>Two Slides</h3>
             <p
               style={{
@@ -1049,6 +1049,68 @@ Current: {currentSlide + 1} of {total}`}</code>
                 </div>
               ))}
             </Carousel>
+          </div>
+
+          {/* Constrained Container - Issue #17 Fix */}
+          <div>
+            <h3 style={{ fontSize: '16px', marginBottom: '12px' }}>
+              Carousel in Width-Constrained Container
+            </h3>
+            <p
+              style={{
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+                marginBottom: '12px',
+              }}
+            >
+              Tests fix for Issue #17: Carousel should not cause horizontal page overflow when
+              placed in width-constrained containers (e.g., ChatGPT widgets with constrained iframe
+              widths)
+            </p>
+            <div
+              style={{
+                maxWidth: '768px',
+                margin: '0 auto',
+                border: '2px solid var(--ai-color-border-light)',
+                borderRadius: '8px',
+                padding: '16px',
+                backgroundColor: 'var(--ai-color-bg-secondary)',
+              }}
+            >
+              <div
+                style={{
+                  marginBottom: '12px',
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  color: 'var(--ai-color-text-secondary)',
+                }}
+              >
+                Container: max-width: 768px
+              </div>
+              <Carousel gap="16px" align="start">
+                {sampleImages.slice(0, 5).map((image, index) => (
+                  <div key={index} style={{ width: '240px', flexShrink: 0 }}>
+                    <ImageCard
+                      image={image}
+                      title={`Image ${index + 1}`}
+                      subtitle="No overflow!"
+                      size="compact"
+                    />
+                  </div>
+                ))}
+              </Carousel>
+            </div>
+            <div
+              style={{
+                marginTop: '12px',
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+                fontStyle: 'italic',
+              }}
+            >
+              ✅ Expected: No horizontal scrollbar at page level. Carousel fully contained within
+              bordered container.
+            </div>
           </div>
         </div>
       </section>

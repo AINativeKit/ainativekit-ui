@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.9.0] - 2025-11-10
+
+### Fixed
+
+- **Carousel**: Fixed horizontal page overflow in width-constrained containers (Issue #17)
+  - Replaced negative margin gap implementation with CSS `gap` property
+  - Carousel now properly contains itself without requiring parent containers to use `overflow-x: hidden`
+  - Self-contained component handles its own overflow correctly
+
 ## [0.8.0] - 2025-11-09
 
 ### Fixed
