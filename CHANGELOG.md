@@ -7,6 +7,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.10.0] - 2025-11-11
+
+### Changed
+
+- **Repository Rename**: Renamed from `ainativekit-ui` to `chatgpt-apps-sdk-ui` for improved discoverability
+  - GitHub repository now at `AINativeKit/chatgpt-apps-sdk-ui`
+  - NPM package name remains `@ainativekit/ui` for backward compatibility
+  - All documentation URLs updated to reflect new repository name
+
+- **Branding & Positioning**: Updated to "AINativeKit - ChatGPT Apps SDK UI"
+  - Emphasizes "ChatGPT Apps SDK" positioning for better SEO and target audience clarity
+  - Subtitle: "The React UI library for ChatGPT Apps SDK"
+  - Tagline: "Build beautiful ChatGPT Apps 10x faster"
+
+- **Documentation Enhancements**:
+  - Added "Who This Is For" section targeting ChatGPT Apps developers
+  - Added comparison table showing value proposition (before/after scenarios)
+  - Replaced Contributing section with "Support the Project" featuring stronger CTAs
+  - Added SEO footer with keywords and descriptive paragraph for search optimization
+  - Updated badges: added npm downloads and GitHub stars, removed TypeScript badge
+
+- **NPM Optimization**:
+  - Updated package description to emphasize "ChatGPT Apps SDK"
+  - Added 5 new high-value keywords: `chatgpt-apps-sdk`, `react-components`, `ui-components`, `chatgpt-ui`, `mcp`
+
+**Note**: This is a documentation and marketing release. No breaking changes to components or APIs.
+
 ## [0.9.0] - 2025-11-10
 
 ### Fixed
@@ -208,6 +235,11 @@ This library follows [Semantic Versioning](https://semver.org/):
 
 ---
 
+[0.10.0]: https://github.com/AINativeKit/chatgpt-apps-sdk-ui/releases/tag/v0.10.0
+[0.9.0]: https://github.com/AINativeKit/chatgpt-apps-sdk-ui/releases/tag/v0.9.0
+[0.8.0]: https://github.com/AINativeKit/chatgpt-apps-sdk-ui/releases/tag/v0.8.0
+[0.7.0]: https://github.com/AINativeKit/chatgpt-apps-sdk-ui/releases/tag/v0.7.0
+[0.6.0]: https://github.com/AINativeKit/chatgpt-apps-sdk-ui/releases/tag/v0.6.0
 [0.5.0]: https://github.com/AINativeKit/chatgpt-apps-sdk-ui/releases/tag/v0.5.0
 [0.4.0]: https://github.com/AINativeKit/chatgpt-apps-sdk-ui/releases/tag/v0.4.0
 [0.1.0]: https://github.com/AINativeKit/chatgpt-apps-sdk-ui/releases/tag/v0.1.0
