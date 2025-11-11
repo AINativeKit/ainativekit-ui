@@ -2,10 +2,10 @@
 
 // Primitives (basic building blocks)
 export { Badge } from './Badge';
-export type { BadgeProps } from './Badge';
+export type { BadgeProps, BadgeVariant, BadgeSize } from './Badge';
 
 export { Button } from './Button';
-export type { ButtonProps } from './Button';
+export type { ButtonProps, ButtonVariant } from './Button';
 
 export { Chip } from './Chip';
 export type { ChipProps, ChipSize, ChipVariant } from './Chip';
@@ -18,6 +18,9 @@ export type { IconProps } from './Icon';
 
 export { Skeleton } from './Skeleton';
 export type { SkeletonProps, SkeletonVariant } from './Skeleton';
+
+export { Features } from './Feature';
+export type { FeaturesProps, FeatureItem } from './Feature';
 
 // Composed (medium complexity, general-purpose)
 export { Card, ImageCard, SummaryCard, ListCard } from './Card';
@@ -51,6 +54,7 @@ export type {
 } from './Album';
 
 export {
+  Map,
   MapView,
   CompactMap,
   LocationCarousel,
@@ -58,8 +62,12 @@ export {
   FullscreenMap,
   MapSidebar,
   MapInspector,
+  ErrorStateDisplay,
+  getErrorState,
+  resolveErrorStateValues,
 } from './Map';
 export type {
+  MapProps,
   MapViewProps,
   CompactMapProps,
   LocationCarouselProps,
@@ -67,6 +75,13 @@ export type {
   FullscreenMapProps,
   MapSidebarProps,
   MapInspectorProps,
+  ErrorStateDisplayProps,
+  ErrorStateConfig,
+  ErrorStateDefaults,
+  ErrorStateProps,
   LocationData,
   Feature,
+  Action,
+  ListItem as MapListItem,
+  GenericList,
 } from './Map';

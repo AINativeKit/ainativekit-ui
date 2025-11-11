@@ -28,4 +28,4 @@ export type { ErrorStateDisplayProps } from './ErrorStateDisplay';
 export { getErrorState, resolveErrorStateValues } from './useErrorState';
 export type { ErrorStateConfig, ErrorStateDefaults, ErrorStateProps } from './useErrorState';
 
-export type { LocationData, Feature } from './types';
+export type { LocationData, Feature, Action, ListItem, GenericList } from './types';
