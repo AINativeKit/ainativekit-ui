@@ -6,7 +6,7 @@
 
 [![npm version](https://img.shields.io/npm/v/@ainativekit/ui.svg)](https://www.npmjs.com/package/@ainativekit/ui)
 [![npm downloads](https://img.shields.io/npm/dm/@ainativekit/ui.svg)](https://www.npmjs.com/package/@ainativekit/ui)
-[![GitHub stars](https://img.shields.io/github/stars/AINativeKit/chatgpt-apps-sdk-ui?style=social)](https://github.com/AINativeKit/chatgpt-apps-sdk-ui)
+[![GitHub stars](https://badgen.net/github/stars/AINativeKit/chatgpt-apps-sdk-ui?color=yellow)](https://github.com/AINativeKit/chatgpt-apps-sdk-ui)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Storybook](https://img.shields.io/badge/Storybook-%23FF4785.svg?logo=storybook&logoColor=white)](https://www.ainativekit.com)
 
