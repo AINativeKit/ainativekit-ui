@@ -1,11 +1,13 @@
-# 🧩 AI Native Kit UI
+# 🧩 AINativeKit - ChatGPT Apps SDK UI
 
-> **Instantly turn MCP JSON results into polished ChatGPT App UIs.**
-> OpenAI Figma‑aligned **React** components purpose‑built for the [ChatGPT Apps SDK](https://developers.openai.com/apps-sdk).
+**The React UI library for [ChatGPT Apps SDK](https://developers.openai.com/apps-sdk)**
+
+> Production-ready components, hooks, and design system to build beautiful ChatGPT Apps 10x faster. OpenAI Figma-aligned, fully typed, and accessible.
 
 [![npm version](https://img.shields.io/npm/v/@ainativekit/ui.svg)](https://www.npmjs.com/package/@ainativekit/ui)
+[![npm downloads](https://img.shields.io/npm/dm/@ainativekit/ui.svg)](https://www.npmjs.com/package/@ainativekit/ui)
+[![GitHub stars](https://img.shields.io/github/stars/AINativeKit/chatgpt-apps-sdk-ui?style=social)](https://github.com/AINativeKit/chatgpt-apps-sdk-ui)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![TypeScript](https://img.shields.io/badge/TypeScript-%233178C6.svg?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Storybook](https://img.shields.io/badge/Storybook-%23FF4785.svg?logo=storybook&logoColor=white)](https://www.ainativekit.com)
 
 ![AINativeKit - ChatGPT Apps SDK UI demo](https://raw.githubusercontent.com/AINativeKit/chatgpt-apps-sdk-ui/main/assets/ainativekit-ui-demo.gif)
@@ -26,6 +28,15 @@
 
 > **Why now?** ChatGPT Apps (via the Apps SDK) expose results + UI metadata. This kit renders those results as native widgets with minimal code.
 
+## 👥 Who This Is For
+
+**You should use AINativeKit if you're:**
+- ✅ Building ChatGPT Apps with the [Apps SDK](https://developers.openai.com/apps-sdk)
+- ✅ Converting MCP/tool JSON outputs into user interfaces
+- ✅ Want production-ready components instead of building from scratch
+- ✅ Need OpenAI Figma design consistency out-of-the-box
+- ✅ Value TypeScript, accessibility, and developer experience
+
 ## 💡 Why You'll Love It
 
 | Developer Pain Point                | How AINativeKit UI Helps                                                    |
@@ -35,6 +46,19 @@
 | Inconsistent design & icons         | **Figma‑aligned** tokens + **typed icon library** ensure visual consistency |
 | Accessibility concerns              | **WCAG 2.1 AA** mindful components with ARIA support                        |
 | Poor developer experience           | 100% **TypeScript**, IntelliSense, Storybook docs                           |
+
+## 🆚 Why AINativeKit - ChatGPT Apps SDK UI?
+
+| What You'd Usually Do | With AINativeKit |
+| --------------------- | ---------------- |
+| ❌ Hand-wire 50+ lines of JSX per card | ✅ `<SummaryCard {...data} />` |
+| ❌ Search for Figma design specs | ✅ Figma-aligned tokens included |
+| ❌ Build icons from scratch | ✅ 417 typed icons ready |
+| ❌ Set up dark mode manually | ✅ Automatic theme detection |
+| ❌ Write custom hooks for SDK | ✅ `useOpenAiGlobal()` hooks included |
+| ❌ Test accessibility yourself | ✅ WCAG 2.1 AA tested |
+
+**Bottom line:** Ship features, not infrastructure.
 
 ## 🚀 Core Features
 
@@ -428,15 +452,16 @@ Repository (for documentation & tooling):
 
 Have ideas? Please open an issue or PR!
 
-## 🤝 Contributing
+## 🌟 Support the Project
 
-Contributions welcome! Please:
+If AINativeKit saves you time:
 
-1. **Star** the repo to support visibility 🙌
-2. **Open an issue** to discuss new features/bugs
-3. **Fork** -> create a feature branch -> open a **PR**
+1. **⭐ Star this repo** - Helps other ChatGPT Apps developers discover us
+2. **🐦 Share on Twitter/X** - Spread the word about building ChatGPT Apps faster
+3. **💬 Join discussions** - Share what you're building in [GitHub Discussions](https://github.com/AINativeKit/chatgpt-apps-sdk-ui/discussions)
+4. **🤝 Contribute** - See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for guidelines
 
-See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for guidelines.
+**Every star helps us grow the ChatGPT Apps SDK ecosystem!**
 
 ## 🔗 Links
 
@@ -451,4 +476,10 @@ Built for the **OpenAI Apps SDK** community. Inspired by ChatGPT App examples, O
 
 **Made with ❤️ by and for ChatGPT App developers.**
 
-Stop wiring UIs manually, start shipping faster with **AI Native Kit UI**.
+Stop wiring UIs manually, start shipping faster with **AINativeKit**.
+
+---
+
+**Keywords:** ChatGPT Apps SDK, ChatGPT UI components, React ChatGPT library, OpenAI Apps SDK UI, ChatGPT components, MCP JSON to UI, ChatGPT widget components, OpenAI Figma design system, React UI library, ChatGPT Apps development
+
+_AINativeKit is the React component library for developers building ChatGPT Apps with the official OpenAI Apps SDK. Get production-ready UI components, hooks, icons, and design tokens - all optimized for ChatGPT Apps._
