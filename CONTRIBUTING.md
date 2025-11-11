@@ -28,8 +28,8 @@ This project follows a [Code of Conduct](./CODE_OF_CONDUCT.md).
 
 ```bash
 # Clone the repository
-git clone https://github.com/AINativeKit/ainativekit-ui.git
-cd ainativekit-ui
+git clone https://github.com/AINativeKit/chatgpt-apps-sdk-ui.git
+cd chatgpt-apps-sdk-ui
 
 # Install dependencies
 pnpm install

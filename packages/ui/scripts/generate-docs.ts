@@ -375,7 +375,7 @@ ${CATEGORIES.patterns.map((c) => `- [${c}](/components/patterns/${c.toLowerCase(
 
 ## Links
 
-- [GitHub Repository](https://github.com/AINativeKit/ainativekit-ui)
+- [GitHub Repository](https://github.com/AINativeKit/chatgpt-apps-sdk-ui)
 - [Storybook](https://www.ainativekit.com)
 - [NPM Package](https://www.npmjs.com/package/@ainativekit/ui)
 `;

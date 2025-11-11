@@ -8,7 +8,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-%233178C6.svg?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Storybook](https://img.shields.io/badge/Storybook-%23FF4785.svg?logo=storybook&logoColor=white)](https://www.ainativekit.com)
 
-![AINativeKit UI demo](https://raw.githubusercontent.com/AINativeKit/ainativekit-ui/main/assets/ainativekit-ui-demo.gif)
+![AINativeKit - ChatGPT Apps SDK UI demo](https://raw.githubusercontent.com/AINativeKit/chatgpt-apps-sdk-ui/main/assets/ainativekit-ui-demo.gif)
 
 <p>
   <b><a href="https://www.ainativekit.com">🎪 Live Storybook</a></b> ·
@@ -442,8 +442,8 @@ See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for guidelines.
 
 - **Storybook:** https://www.ainativekit.com
 - **NPM:** https://www.npmjs.com/package/@ainativekit/ui
-- **GitHub:** https://github.com/AINativeKit/ainativekit-ui
-- **Issues:** https://github.com/AINativeKit/ainativekit-ui/issues
+- **GitHub:** https://github.com/AINativeKit/chatgpt-apps-sdk-ui
+- **Issues:** https://github.com/AINativeKit/chatgpt-apps-sdk-ui/issues
 
 ## 🙏 Acknowledgments
 

@@ -956,7 +956,7 @@ const IntroductionPage = () => {
         <div style={assistantParagraphStyle}>
           <strong>We're open source! 🌟</strong> Join us on{' '}
           <a
-            href="https://github.com/AINativeKit/ainativekit-ui"
+            href="https://github.com/AINativeKit/chatgpt-apps-sdk-ui"
             target="_blank"
             rel="noopener noreferrer"
             style={{ color: 'var(--ai-color-text-primary)', textDecoration: 'underline' }}
