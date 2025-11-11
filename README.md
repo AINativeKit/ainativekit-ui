@@ -53,7 +53,7 @@
 | --------------------- | ---------------- |
 | ❌ Hand-wire 50+ lines of JSX per card | ✅ `<SummaryCard {...data} />` |
 | ❌ Search for Figma design specs | ✅ Figma-aligned tokens included |
-| ❌ Build icons from scratch | ✅ 417 typed icons ready |
+| ❌ Build icons from scratch | ✅ 417 OpenAI typed icons ready |
 | ❌ Set up dark mode manually | ✅ Automatic theme detection |
 | ❌ Write custom hooks for SDK | ✅ `useOpenAiGlobal()` hooks included |
 | ❌ Test accessibility yourself | ✅ WCAG 2.1 AA tested |
@@ -477,9 +477,3 @@ Built for the **OpenAI Apps SDK** community. Inspired by ChatGPT App examples, O
 **Made with ❤️ by and for ChatGPT App developers.**
 
 Stop wiring UIs manually, start shipping faster with **AINativeKit**.
-
----
-
-**Keywords:** ChatGPT Apps SDK, ChatGPT UI components, React ChatGPT library, OpenAI Apps SDK UI, ChatGPT components, MCP JSON to UI, ChatGPT widget components, OpenAI Figma design system, React UI library, ChatGPT Apps development
-
-_AINativeKit is the React component library for developers building ChatGPT Apps with the official OpenAI Apps SDK. Get production-ready UI components, hooks, icons, and design tokens - all optimized for ChatGPT Apps._
