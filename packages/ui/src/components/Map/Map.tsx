@@ -73,14 +73,32 @@ export const Map: React.FC<MapProps> = ({
   const isControlled = controlledIsFullscreen !== undefined;
   const isFullscreen = isControlled ? controlledIsFullscreen : internalIsFullscreen;
 
-  const handleExpand = () => {
+  const handleExpand = async () => {
+    // Request fullscreen mode from ChatGPT host
+    if (window.openai?.requestDisplayMode) {
+      try {
+        await window.openai.requestDisplayMode({ mode: 'fullscreen' });
+      } catch (error) {
+        console.warn('Failed to request fullscreen mode:', error);
+      }
+    }
+
     if (!isControlled) {
       setInternalIsFullscreen(true);
     }
     onToggleFullscreen?.(true);
   };
 
-  const handleCollapse = () => {
+  const handleCollapse = async () => {
+    // Request inline mode from ChatGPT host
+    if (window.openai?.requestDisplayMode) {
+      try {
+        await window.openai.requestDisplayMode({ mode: 'inline' });
+      } catch (error) {
+        console.warn('Failed to request inline mode:', error);
+      }
+    }
+
     if (!isControlled) {
       setInternalIsFullscreen(false);
     }
