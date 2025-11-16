@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.11.0] - 2025-11-16
+
+### Added
+
+- **Light/Dark Mode Brand Colors**: Brand colors now support theme-aware variants
+  - New `BrandColorValue` type: `string | { light: string; dark: string }`
+  - Specify different colors for light and dark themes: `{ light: '#059669', dark: '#34D399' }`
+  - Backward compatible - existing string colors work unchanged
+  - Automatic CSS generation for both themes using data-attribute selectors
+  - Validation caching prevents duplicate console warnings for string colors
+  - Comprehensive unit tests for all light/dark mode scenarios
+
+### Changed
+
+- **Documentation**: Updated all README files with brand color customization examples
+  - Added "Brand Color Customization" section with light/dark mode examples
+  - Replaced brand-specific color examples with generic Tailwind CSS colors
+  - Updated TOKEN_USAGE.md with CSS variable reference table
+
+### Fixed
+
+- **ESLint Configuration**: Added missing TypeScript ESLint plugins to workspace root
+  - Resolves ESLint plugin resolution errors
+
 ## [0.10.0] - 2025-11-11
 
 ### Changed
