@@ -306,6 +306,50 @@ function MyApp() {
 - `defaultTheme` - Initial theme ('light' or 'dark'), default: 'light'
 - `storageKey` - LocalStorage key for persistence, default: 'ainativekit-theme'
 - `enableSystemTheme` - Detect system preference, default: true
+- `brandColors` - Custom brand color overrides (see Brand Color Customization below)
+
+### Brand Color Customization
+
+Override default brand colors to match your app's identity. Brand colors support both simple strings and light/dark mode variants:
+
+```tsx
+import { ThemeProvider } from '@ainativekit/ui';
+
+function App() {
+  return (
+    <ThemeProvider
+      defaultTheme="light"
+      brandColors={{
+        // Simple: Same color for both light and dark modes
+        primary: '#6366F1', // Indigo
+
+        // Light/dark variants: Different colors per mode
+        success: { light: '#059669', dark: '#34D399' },
+        warning: { light: '#D97706', dark: '#FBBF24' },
+        error: { light: '#DC2626', dark: '#F87171' },
+      }}
+    >
+      <MyApp />
+    </ThemeProvider>
+  );
+}
+```
+
+**Brand Color Options:**
+
+| Color     | Purpose                                    |
+| --------- | ------------------------------------------ |
+| `primary` | Main actions, links, primary buttons       |
+| `success` | Positive states, confirmations             |
+| `warning` | Caution messages, warnings                 |
+| `error`   | Error states, destructive actions          |
+
+**Color Value Formats:**
+
+- **String** (e.g., `'#6366F1'`): Same color for both light and dark modes
+- **Object** (e.g., `{ light: '#059669', dark: '#34D399' }`): Different colors per mode
+
+The library automatically validates color contrast ratios and warns about potential accessibility issues.
 
 ## 📘 TypeScript Support
 

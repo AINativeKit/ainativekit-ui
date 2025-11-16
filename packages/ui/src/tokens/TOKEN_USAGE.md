@@ -156,6 +156,48 @@ import { colors, cssVar } from '@ainativekit/ui/tokens';
 'outline' | 'border-light' | 'border-default' | 'border-heavy';
 ```
 
+#### Customizing Brand Colors
+
+You can override default brand colors via ThemeProvider. Brand colors support both simple strings and light/dark mode variants:
+
+```tsx
+import { ThemeProvider } from '@ainativekit/ui';
+
+function App() {
+  return (
+    <ThemeProvider
+      brandColors={{
+        // Simple: Same color for both light and dark modes
+        primary: '#6366F1', // Indigo
+
+        // Light/dark variants: Different colors per mode
+        success: { light: '#059669', dark: '#34D399' },
+        warning: { light: '#D97706', dark: '#FBBF24' },
+        error: { light: '#DC2626', dark: '#F87171' },
+      }}
+    >
+      <MyApp />
+    </ThemeProvider>
+  );
+}
+```
+
+**Available Brand Color Keys:**
+
+| Key       | CSS Variable          | Purpose                            |
+| --------- | --------------------- | ---------------------------------- |
+| `primary` | `--ai-brand-primary`  | Main actions, links                |
+| `success` | `--ai-brand-success`  | Positive states                    |
+| `warning` | `--ai-brand-warning`  | Caution messages                   |
+| `error`   | `--ai-brand-error`    | Error states                       |
+
+**Color Value Formats:**
+
+- **String** (e.g., `'#6366F1'`): Same color for both light and dark modes
+- **Object** (e.g., `{ light: '#059669', dark: '#34D399' }`): Theme-aware colors
+
+Custom brand colors are automatically validated for contrast ratios and accessibility.
+
 ### Typography
 
 Apply complete typography styles with font size, line height, weight, and letter spacing.
