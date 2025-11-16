@@ -401,6 +401,159 @@ describe('ThemeProvider', () => {
     });
   });
 
+  describe('light/dark mode brand color variants', () => {
+    it('should support object format with light/dark variants', () => {
+      render(
+        <ThemeProvider
+          brandColors={{
+            primary: { light: '#6366F1', dark: '#818CF8' },
+          }}
+        >
+          <div>Test</div>
+        </ThemeProvider>
+      );
+
+      const styleElement = document.querySelector('[data-ainativekit-brand-colors]');
+      // Should contain both light and dark mode colors
+      expect(styleElement?.textContent).toContain('#6366F1');
+      expect(styleElement?.textContent).toContain('#818CF8');
+    });
+
+    it('should generate separate CSS blocks for light and dark themes', () => {
+      render(
+        <ThemeProvider
+          brandColors={{
+            primary: { light: '#059669', dark: '#34D399' },
+          }}
+        >
+          <div>Test</div>
+        </ThemeProvider>
+      );
+
+      const styleElement = document.querySelector('[data-ainativekit-brand-colors]');
+      const css = styleElement?.textContent || '';
+
+      // Should have light mode block
+      expect(css).toContain('html[data-ainativekit-brand]');
+      // Should have dark mode block
+      expect(css).toContain('[data-theme="dark"]');
+    });
+
+    it('should use same color for both modes when string value provided', () => {
+      render(
+        <ThemeProvider
+          brandColors={{
+            primary: '#6366F1', // Same for both modes
+          }}
+        >
+          <div>Test</div>
+        </ThemeProvider>
+      );
+
+      const styleElement = document.querySelector('[data-ainativekit-brand-colors]');
+      const css = styleElement?.textContent || '';
+
+      // Should appear in both light and dark blocks
+      const matches = css.match(/#6366F1/g);
+      expect(matches?.length).toBeGreaterThanOrEqual(2);
+    });
+
+    it('should not duplicate warnings for string brand colors', () => {
+      consoleWarnSpy.mockClear();
+
+      render(
+        <ThemeProvider
+          brandColors={{
+            primary: '#AAAAAA', // Poor contrast - should warn only once
+          }}
+        >
+          <div>Test</div>
+        </ThemeProvider>
+      );
+
+      // Count warnings about contrast for primary color
+      const contrastWarnings = consoleWarnSpy.mock.calls.filter(
+        (call) =>
+          call[0].includes('primary') && call[0].includes('WCAG AA contrast requirements')
+      );
+
+      // Should only warn once, not twice (once for light, once for dark)
+      expect(contrastWarnings.length).toBe(1);
+    });
+
+    it('should warn separately for different light/dark colors in object format', () => {
+      consoleWarnSpy.mockClear();
+
+      render(
+        <ThemeProvider
+          brandColors={{
+            primary: {
+              light: '#AAAAAA', // Poor contrast in light mode
+              dark: '#888888', // Poor contrast in dark mode (different color)
+            },
+          }}
+        >
+          <div>Test</div>
+        </ThemeProvider>
+      );
+
+      // Should warn twice - once for each different color
+      const contrastWarnings = consoleWarnSpy.mock.calls.filter((call) =>
+        call[0].includes('WCAG AA contrast requirements')
+      );
+
+      expect(contrastWarnings.length).toBe(2);
+    });
+
+    it('should support mixed string and object brand colors', () => {
+      render(
+        <ThemeProvider
+          brandColors={{
+            primary: '#6366F1', // String - same for both modes
+            success: { light: '#059669', dark: '#34D399' }, // Object - different per mode
+            warning: { light: '#D97706', dark: '#FBBF24' },
+            error: '#DC2626', // String - same for both modes
+          }}
+        >
+          <div>Test</div>
+        </ThemeProvider>
+      );
+
+      const styleElement = document.querySelector('[data-ainativekit-brand-colors]');
+      const css = styleElement?.textContent || '';
+
+      // Check string values appear (used in both modes)
+      expect(css).toContain('#6366F1');
+      expect(css).toContain('#DC2626');
+
+      // Check object values appear
+      expect(css).toContain('#059669'); // success light
+      expect(css).toContain('#34D399'); // success dark
+      expect(css).toContain('#D97706'); // warning light
+      expect(css).toContain('#FBBF24'); // warning dark
+    });
+
+    it('should apply correct hover/active mix colors per theme', () => {
+      render(
+        <ThemeProvider
+          brandColors={{
+            primary: { light: '#6366F1', dark: '#818CF8' },
+          }}
+        >
+          <div>Test</div>
+        </ThemeProvider>
+      );
+
+      const styleElement = document.querySelector('[data-ainativekit-brand-colors]');
+      const css = styleElement?.textContent || '';
+
+      // Light mode should mix with black
+      expect(css).toContain('black');
+      // Dark mode should mix with white
+      expect(css).toContain('white');
+    });
+  });
+
   describe('hex color normalization (end-to-end)', () => {
     it('should normalize colors without # prefix', () => {
       render(
