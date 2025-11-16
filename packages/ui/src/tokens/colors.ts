@@ -171,18 +171,32 @@ export type ColorTheme = typeof colors.light;
 export type ThemeMode = 'light' | 'dark';
 
 /**
+ * Brand color value that supports both simple strings and light/dark mode variants
+ * - String: Same color for both light and dark modes
+ * - Object: Different colors for light and dark modes (following ConstructKit pattern)
+ *
+ * @example
+ * // Simple (same color for both modes)
+ * primary: '#6366F1'
+ *
+ * // Light/dark variants (different colors per mode)
+ * success: { light: '#059669', dark: '#34D399' }
+ */
+export type BrandColorValue = string | { light: string; dark: string };
+
+/**
  * Brand color configuration for customizing theme colors
  * Used by ThemeProvider to override default brand colors
  */
 export interface BrandColorConfig {
   /** Primary brand color (used for main actions, links, etc.) */
-  primary?: string;
+  primary?: BrandColorValue;
   /** Success color (used for positive actions, success states) */
-  success?: string;
+  success?: BrandColorValue;
   /** Warning color (used for warning states, caution messages) */
-  warning?: string;
+  warning?: BrandColorValue;
   /** Error color (used for error states, destructive actions) */
-  error?: string;
+  error?: BrandColorValue;
 }
 
 /**

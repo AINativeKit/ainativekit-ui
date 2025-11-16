@@ -16,7 +16,7 @@ export * from './icon-utils';
 export * from './utility-classes';
 
 // Export types
-export type { ColorTheme, ThemeMode } from './colors';
+export type { ColorTheme, ThemeMode, BrandColorConfig, BrandColorValue } from './colors';
 export type { ElevationLevel, ElevationDefinition } from './elevation';
 export type { SpacingScale } from './spacing';
 export type { ColorPath, RadiusScale, TypographyStyle, OpacityPreset } from './token-helpers';

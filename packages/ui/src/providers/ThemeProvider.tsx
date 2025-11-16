@@ -9,7 +9,7 @@ import React, {
 } from 'react';
 import { useOpenAiGlobal } from '../hooks/openai/useOpenAiGlobal';
 import type { Theme } from '../hooks/openai/types';
-import type { BrandColorConfig } from '../tokens/colors';
+import type { BrandColorConfig, BrandColorValue } from '../tokens/colors';
 import {
   getContrastColor,
   validateContrast,
@@ -92,86 +92,140 @@ export interface ThemeProviderProps {
 
 /**
  * Generate CSS custom properties from brand color configuration
+ * Uses data-attribute selectors for explicit, predictable specificity
  */
-function generateBrandColorCSS(brandColors: BrandColorConfig, theme: Theme): string {
-  const isDark = theme === 'dark';
-  const mixColor = isDark ? 'white' : 'black';
-  const hoverPercent = isDark ? '85%' : '85%';
-  const activePercent = isDark ? '90%' : '75%';
+function generateBrandColorCSS(brandColors: BrandColorConfig, _theme: Theme): string {
+  const lightStyles: string[] = [];
+  const darkStyles: string[] = [];
 
-  const styles: string[] = [];
+  // Track validated colors to avoid duplicate warnings for string values
+  const validatedColors = new Map<string, { normalized: string; onColor: string }>();
 
-  // Helper to validate and add color with warnings
-  const addColorVariable = (colorKey: keyof BrandColorConfig, varName: string, value: string) => {
-    // Validate hex color format first
-    if (!isValidHexColor(value)) {
-      console.warn(
-        `[ThemeProvider] Invalid hex color format for brand ${colorKey}: "${value}". ` +
-          `Expected format: #RGB, #RRGGBB, or #RRGGBBAA. This color will be skipped.`
-      );
-      return; // Skip invalid colors
+  // Helper to resolve color value for a specific theme
+  const resolveColorValue = (value: BrandColorValue, forTheme: 'light' | 'dark'): string => {
+    if (typeof value === 'string') {
+      return value;
     }
-
-    // Normalize the color to standard format with #
-    const normalizedValue = normalizeHexColor(value);
-    if (!normalizedValue) {
-      console.warn(
-        `[ThemeProvider] Failed to normalize color "${value}" for brand ${colorKey}. This color will be skipped.`
-      );
-      return;
-    }
-
-    // Check if color has alpha channel (8-digit hex)
-    const hasAlpha = normalizedValue.length === 9;
-    if (hasAlpha) {
-      console.warn(
-        `[ThemeProvider] Brand ${colorKey} color "${normalizedValue}" contains an alpha channel. ` +
-          `Contrast validation will be performed on the opaque base color (alpha channel stripped). ` +
-          `Actual contrast may vary depending on background opacity.`
-      );
-    }
-
-    // Validate contrast for on-color (text on brand color)
-    // Note: For 8-digit colors, we validate against the opaque RGB values
-    const onColor = getContrastColor(normalizedValue);
-    const contrastResult = validateContrast(onColor, normalizedValue);
-
-    if (!contrastResult.valid) {
-      console.warn(
-        `[ThemeProvider] Brand ${colorKey} color "${normalizedValue}" may not meet WCAG AA contrast requirements (ratio: ${contrastResult.ratio?.toFixed(2)}). Consider using a different color.`
-      );
-    }
-
-    styles.push(`--ai-color-${varName}: ${normalizedValue};`);
-    styles.push(
-      `--ai-color-${varName}-hover: color-mix(in srgb, var(--ai-color-${varName}) ${hoverPercent}, ${mixColor});`
-    );
-    styles.push(
-      `--ai-color-${varName}-active: color-mix(in srgb, var(--ai-color-${varName}) ${activePercent}, ${mixColor});`
-    );
-    styles.push(`--ai-color-brand-on-${colorKey}: ${onColor};`);
+    return forTheme === 'dark' ? value.dark : value.light;
   };
 
-  // Generate CSS for each provided brand color
+  // Helper to validate and add color with warnings for a specific theme
+  const addColorVariable = (
+    colorKey: keyof BrandColorConfig,
+    varName: string,
+    value: string,
+    targetStyles: string[],
+    themeName: 'light' | 'dark'
+  ) => {
+    const cacheKey = `${colorKey}:${value}`;
+    let normalizedValue: string;
+    let onColor: string;
+
+    // Check if we've already validated this exact color value
+    const cached = validatedColors.get(cacheKey);
+    if (cached) {
+      // Use cached validation results (avoids duplicate warnings)
+      normalizedValue = cached.normalized;
+      onColor = cached.onColor;
+    } else {
+      // Validate hex color format first
+      if (!isValidHexColor(value)) {
+        console.warn(
+          `[ThemeProvider] Invalid hex color format for brand ${colorKey}: "${value}". ` +
+            `Expected format: #RGB, #RRGGBB, or #RRGGBBAA. This color will be skipped.`
+        );
+        return; // Skip invalid colors
+      }
+
+      // Normalize the color to standard format with #
+      const normalized = normalizeHexColor(value);
+      if (!normalized) {
+        console.warn(
+          `[ThemeProvider] Failed to normalize color "${value}" for brand ${colorKey}. This color will be skipped.`
+        );
+        return;
+      }
+      normalizedValue = normalized;
+
+      // Check if color has alpha channel (8-digit hex)
+      const hasAlpha = normalizedValue.length === 9;
+      if (hasAlpha) {
+        console.warn(
+          `[ThemeProvider] Brand ${colorKey} color "${normalizedValue}" contains an alpha channel. ` +
+            `Contrast validation will be performed on the opaque base color (alpha channel stripped). ` +
+            `Actual contrast may vary depending on background opacity.`
+        );
+      }
+
+      // Validate contrast for on-color (text on brand color)
+      // Note: For 8-digit colors, we validate against the opaque RGB values
+      onColor = getContrastColor(normalizedValue);
+      const contrastResult = validateContrast(onColor, normalizedValue);
+
+      if (!contrastResult.valid) {
+        console.warn(
+          `[ThemeProvider] Brand ${colorKey} color "${normalizedValue}" may not meet WCAG AA contrast requirements (ratio: ${contrastResult.ratio?.toFixed(2)}). Consider using a different color.`
+        );
+      }
+
+      // Cache the validation results
+      validatedColors.set(cacheKey, { normalized: normalizedValue, onColor });
+    }
+
+    const isDark = themeName === 'dark';
+    const mixColor = isDark ? 'white' : 'black';
+    const hoverPercent = isDark ? '85%' : '85%';
+    const activePercent = isDark ? '90%' : '75%';
+
+    targetStyles.push(`--ai-color-${varName}: ${normalizedValue};`);
+    targetStyles.push(
+      `--ai-color-${varName}-hover: color-mix(in srgb, var(--ai-color-${varName}) ${hoverPercent}, ${mixColor});`
+    );
+    targetStyles.push(
+      `--ai-color-${varName}-active: color-mix(in srgb, var(--ai-color-${varName}) ${activePercent}, ${mixColor});`
+    );
+    targetStyles.push(`--ai-color-brand-on-${colorKey}: ${onColor};`);
+  };
+
+  // Generate CSS for each provided brand color for both themes
   if (brandColors.primary) {
-    addColorVariable('primary', 'brand-primary', brandColors.primary);
+    addColorVariable('primary', 'brand-primary', resolveColorValue(brandColors.primary, 'light'), lightStyles, 'light');
+    addColorVariable('primary', 'brand-primary', resolveColorValue(brandColors.primary, 'dark'), darkStyles, 'dark');
   }
   if (brandColors.success) {
-    addColorVariable('success', 'brand-success', brandColors.success);
+    addColorVariable('success', 'brand-success', resolveColorValue(brandColors.success, 'light'), lightStyles, 'light');
+    addColorVariable('success', 'brand-success', resolveColorValue(brandColors.success, 'dark'), darkStyles, 'dark');
   }
   if (brandColors.warning) {
-    addColorVariable('warning', 'brand-warning', brandColors.warning);
+    addColorVariable('warning', 'brand-warning', resolveColorValue(brandColors.warning, 'light'), lightStyles, 'light');
+    addColorVariable('warning', 'brand-warning', resolveColorValue(brandColors.warning, 'dark'), darkStyles, 'dark');
   }
   if (brandColors.error) {
-    addColorVariable('error', 'brand-error', brandColors.error);
+    addColorVariable('error', 'brand-error', resolveColorValue(brandColors.error, 'light'), lightStyles, 'light');
+    addColorVariable('error', 'brand-error', resolveColorValue(brandColors.error, 'dark'), darkStyles, 'dark');
   }
 
   // Return empty if no custom colors provided
-  if (styles.length === 0) return '';
+  if (lightStyles.length === 0 && darkStyles.length === 0) return '';
 
-  // Wrap in appropriate selector
-  const selector = isDark ? '[data-theme="dark"]' : ':root';
-  return `${selector} {\n  ${styles.join('\n  ')}\n}`;
+  // Generate CSS using data-attribute selectors for explicit specificity
+  // This approach is cleaner than :root:root hacks and more maintainable
+  const cssBlocks: string[] = [];
+
+  if (lightStyles.length > 0) {
+    // Light mode: applies when brand colors are active (attribute on html)
+    cssBlocks.push(`html[data-ainativekit-brand] {\n  ${lightStyles.join('\n  ')}\n}`);
+  }
+
+  if (darkStyles.length > 0) {
+    // Dark mode: applies when both brand colors and dark theme are active
+    // Handles both global (html) and scoped (container) theme attributes
+    cssBlocks.push(
+      `html[data-ainativekit-brand][data-theme="dark"],\nhtml[data-ainativekit-brand] [data-theme="dark"] {\n  ${darkStyles.join('\n  ')}\n}`
+    );
+  }
+
+  return cssBlocks.join('\n\n');
 }
 
 /**
@@ -344,18 +398,22 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     }
   }, [chatGPTTheme, enableSystemTheme, storageKey]);
 
-  // Inject brand color CSS
+  // Inject brand color CSS and set data attribute
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
     if (!brandColorCSS) {
-      // No custom colors, remove style element if it exists
+      // No custom colors, remove style element and data attribute if they exist
       if (styleElementRef.current) {
         styleElementRef.current.remove();
         styleElementRef.current = null;
       }
+      document.documentElement.removeAttribute('data-ainativekit-brand');
       return;
     }
+
+    // Set data attribute on html element to activate brand color selectors
+    document.documentElement.setAttribute('data-ainativekit-brand', 'true');
 
     // Create or update style element
     if (!styleElementRef.current) {
@@ -375,6 +433,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
         styleElementRef.current.remove();
         styleElementRef.current = null;
       }
+      document.documentElement.removeAttribute('data-ainativekit-brand');
     };
   }, [brandColorCSS]);
 
