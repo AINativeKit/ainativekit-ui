@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.12.0] - 2025-11-17
+
+### Changed
+
+- **Carousel**: Default viewport padding is now `0` instead of `var(--ai-spacing-10)`
+  - Padding is now opt-in instead of opt-out
+  - Prevents layout issues in constrained spaces (e.g., 640px ChatGPT iframe)
+  - Use `viewportPadding="var(--ai-spacing-10)"` to restore previous behavior
+
+### Fixed
+
+- **SummaryCard.Overlay**: Height calculation now correctly includes padding
+  - Added `box-sizing: border-box` so `height={40}` with `padding={8}` results in 40px total, not 56px
+  - Overlay content now clips properly to image rounded corners with `overflow: hidden`
+
 ## [0.11.0] - 2025-11-16
 
 ### Added
