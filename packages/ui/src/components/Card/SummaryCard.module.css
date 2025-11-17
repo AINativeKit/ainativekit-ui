@@ -17,7 +17,7 @@
   position: relative;
 }
 
-/* Flat variant - Match Card's border-radius */
+/* Flat variant - imageSection uses Card's border-radius */
 .summaryCard[data-variant='flat'] .imageSection {
   border-radius: var(--ai-radius-xl);
 }
@@ -28,7 +28,7 @@
   border-top-right-radius: calc(var(--ai-radius-xl) + 2px);
 }
 
-/* Flat variant - Match Card's border-radius */
+/* Flat variant - topOverlay uses Card's border-radius */
 .summaryCard[data-variant='flat'] .topOverlay {
   border-top-left-radius: var(--ai-radius-xl);
   border-top-right-radius: var(--ai-radius-xl);
