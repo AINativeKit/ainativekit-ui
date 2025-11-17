@@ -767,7 +767,7 @@ const SummaryCardComponent = React.forwardRef<HTMLDivElement, SummaryCardProps>(
         <>
           {/* Image Section */}
           {hasImages && (
-            <div className={styles.imageWrapper}>
+            <div className={styles.imageWrapper} data-has-overlay={topOverlay ? 'true' : undefined}>
               <div className={styles.imageSection}>
                 {isSingleImage && (
                   <img

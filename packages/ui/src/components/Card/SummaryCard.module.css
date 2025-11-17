@@ -17,12 +17,15 @@
   position: relative;
 }
 
-/* Flat variant - Clip image slightly more to fill behind overlay corners */
+/* Flat variant - Match Card's border-radius */
 .summaryCard[data-variant='flat'] .imageSection {
+  border-radius: var(--ai-radius-xl);
+}
+
+/* Flat variant with overlay - Slightly larger top radius to fill behind overlay corners */
+.summaryCard[data-variant='flat'] .imageWrapper[data-has-overlay='true'] .imageSection {
   border-top-left-radius: calc(var(--ai-radius-xl) + 2px);
   border-top-right-radius: calc(var(--ai-radius-xl) + 2px);
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
 }
 
 /* Flat variant - Match Card's border-radius */
@@ -38,8 +41,11 @@
 
 /* Image Section */
 .imageSection {
+  position: relative;
   margin: 0;
-  padding: 0; /* No padding - card padding handles it */
+  padding: 0;
+  overflow: hidden;
+  border-radius: 16px;
 }
 
 .imageSingle {
@@ -437,7 +443,7 @@
   border: 0;
 }
 
-/* Top Overlay */
+/* Top Overlay - Positioned inside imageWrapper, sibling to imageSection */
 .topOverlay {
   position: absolute;
   top: 0;
@@ -445,15 +451,8 @@
   right: 0;
   display: flex;
   align-items: center;
-  z-index: 1; /* Above image, below loading/error states */
-  border-radius: 16px 16px 0 0; /* Match image top corners */
-  pointer-events: auto; /* Allow interaction if needed */
-  box-sizing: border-box; /* Include padding in height calculation */
-}
-
-/* Image Section - Make it position relative for absolute overlay positioning */
-.imageSection {
-  position: relative;
-  overflow: hidden; /* Clip overlay to match image border-radius */
-  border-radius: 16px; /* Match image border-radius for proper overlay clipping */
+  z-index: 1;
+  border-radius: 16px 16px 0 0;
+  pointer-events: auto;
+  box-sizing: border-box;
 }
