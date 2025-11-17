@@ -1,5 +1,6 @@
 declare const styles: {
   readonly summaryCard: string;
+  readonly imageWrapper: string;
   readonly imageSection: string;
   readonly imageSingle: string;
   readonly imageGrid: string;

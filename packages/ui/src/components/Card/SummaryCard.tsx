@@ -767,9 +767,9 @@ const SummaryCardComponent = React.forwardRef<HTMLDivElement, SummaryCardProps>(
         <>
           {/* Image Section */}
           {hasImages && (
-            <div className={styles.imageSection}>
-              {isSingleImage && (
-                <>
+            <div className={styles.imageWrapper}>
+              <div className={styles.imageSection}>
+                {isSingleImage && (
                   <img
                     src={imageArray[0].src}
                     alt={imageArray[0].alt}
@@ -779,30 +779,29 @@ const SummaryCardComponent = React.forwardRef<HTMLDivElement, SummaryCardProps>(
                     onLoad={onImageLoad}
                     onError={onImageError}
                   />
-                  {topOverlay && topOverlay}
-                </>
-              )}
-              {isGridImages && (
-                <>
-                  <div className={styles.imageGrid} data-image-count={imageCount}>
-                    {displayImages.map((image, index) => (
-                      <img
-                        key={index}
-                        src={image.src}
-                        alt={image.alt}
-                        className={styles.imageGridItem}
-                        loading={image.lazy !== false && imageLazy ? 'lazy' : 'eager'}
-                        onLoad={onImagesLoad ? (e) => onImagesLoad(index, e) : undefined}
-                        onError={onImagesError ? (e) => onImagesError(index, e) : undefined}
-                      />
-                    ))}
-                    {hasOverflow && (
-                      <div className={styles.overflowIndicator}>+{imageArray.length - 4}</div>
-                    )}
-                  </div>
-                  {topOverlay && topOverlay}
-                </>
-              )}
+                )}
+                {isGridImages && (
+                  <>
+                    <div className={styles.imageGrid} data-image-count={imageCount}>
+                      {displayImages.map((image, index) => (
+                        <img
+                          key={index}
+                          src={image.src}
+                          alt={image.alt}
+                          className={styles.imageGridItem}
+                          loading={image.lazy !== false && imageLazy ? 'lazy' : 'eager'}
+                          onLoad={onImagesLoad ? (e) => onImagesLoad(index, e) : undefined}
+                          onError={onImagesError ? (e) => onImagesError(index, e) : undefined}
+                        />
+                      ))}
+                      {hasOverflow && (
+                        <div className={styles.overflowIndicator}>+{imageArray.length - 4}</div>
+                      )}
+                    </div>
+                  </>
+                )}
+              </div>
+              {topOverlay && topOverlay}
             </div>
           )}
 

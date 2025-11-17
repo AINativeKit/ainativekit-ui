@@ -2574,6 +2574,74 @@ const SummaryCardsComponent: React.FC = () => {
         </div>
       </section>
 
+      {/* Overlay Border Artifact Test */}
+      <section style={{ marginBottom: '64px' }}>
+        <header style={{ marginBottom: '24px' }}>
+          <h2 style={{ marginBottom: '8px' }}>Overlay Border Artifact Test</h2>
+          <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
+            Test various solid color overlays on flat variant cards to check for border artifacts
+            (especially visible in dark mode)
+          </p>
+        </header>
+
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+            gap: '24px',
+          }}
+        >
+          {/* Bright colors - high visibility for artifacts */}
+          {[
+            { color: '#FF3333', label: 'Bright Red', textColor: 'white' },
+            { color: '#33FF33', label: 'Bright Green', textColor: 'black' },
+            { color: '#3366FF', label: 'Bright Blue', textColor: 'white' },
+            { color: '#FFFF33', label: 'Bright Yellow', textColor: 'black' },
+            { color: '#FF33FF', label: 'Bright Magenta', textColor: 'white' },
+            { color: '#33FFFF', label: 'Bright Cyan', textColor: 'black' },
+            // Dark colors - shows artifacts on light edges in dark mode
+            { color: '#1A1A1A', label: 'Near Black', textColor: 'white' },
+            { color: '#2D2D2D', label: 'Dark Gray', textColor: 'white' },
+            { color: '#0F172A', label: 'Slate Dark', textColor: 'white' },
+            { color: '#18181B', label: 'Zinc Dark', textColor: 'white' },
+          ].map(({ color, label, textColor }) => (
+            <div key={color}>
+              <SummaryCard
+                variant="flat"
+                imageAspectRatio="1/1"
+                images="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80"
+                title="$1,200,000"
+                subtitle="123 Main Street"
+                buttonText="View property"
+                topOverlay={
+                  <SummaryCard.Overlay background={color} height={40} align="center">
+                    <span
+                      style={{
+                        color: textColor,
+                        fontWeight: 600,
+                        fontSize: '14px',
+                      }}
+                    >
+                      Agency • {label}
+                    </span>
+                  </SummaryCard.Overlay>
+                }
+              />
+              <p
+                style={{
+                  fontSize: '11px',
+                  color: 'var(--ai-color-text-secondary)',
+                  marginTop: '8px',
+                  fontFamily: 'monospace',
+                }}
+              >
+                {color}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Real-World Example */}
       <section style={{ marginBottom: '64px' }}>
         <header style={{ marginBottom: '24px' }}>

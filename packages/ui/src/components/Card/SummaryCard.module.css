@@ -9,6 +9,31 @@
 /* Flat variant - Remove border for seamless appearance */
 .summaryCard[data-variant='flat'] {
   border: none;
+  overflow: visible; /* Allow Card's overflow:hidden to do the clipping */
+}
+
+/* Image Wrapper - Positioning context for overlay */
+.imageWrapper {
+  position: relative;
+}
+
+/* Flat variant - Clip image slightly more to fill behind overlay corners */
+.summaryCard[data-variant='flat'] .imageSection {
+  border-top-left-radius: calc(var(--ai-radius-xl) + 2px);
+  border-top-right-radius: calc(var(--ai-radius-xl) + 2px);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* Flat variant - Match Card's border-radius */
+.summaryCard[data-variant='flat'] .topOverlay {
+  border-top-left-radius: var(--ai-radius-xl);
+  border-top-right-radius: var(--ai-radius-xl);
+}
+
+/* Flat variant - Remove image's own border-radius, let imageSection clip it */
+.summaryCard[data-variant='flat'] .imageSingle {
+  border-radius: 0;
 }
 
 /* Image Section */
