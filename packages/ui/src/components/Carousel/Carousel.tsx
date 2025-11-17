@@ -75,7 +75,7 @@ export interface CarouselProps {
 
   /**
    * Custom viewport padding (top and bottom).
-   * @default 'var(--ai-spacing-10)'
+   * @default '0'
    */
   viewportPadding?: string;
 

@@ -43,7 +43,7 @@
 .emblaViewport {
   position: relative;
   overflow: hidden;
-  padding: var(--carousel-viewport-padding, var(--ai-spacing-10)) 0;
+  padding: var(--carousel-viewport-padding, 0) 0;
 }
 
 /* Embla Container (flex container for slides) */

@@ -32,7 +32,7 @@ Optional when using loading, error, or empty states. |
 | `flushStart` | `boolean \| undefined` | `false` | Remove the leading offset so the first slide is flush with the viewport start. |
 | `startInset` | `string \| undefined` | `'0'` | Custom left inset inside the carousel container.
 Useful for re-introducing padding when using `flushStart`. |
-| `viewportPadding` | `string \| undefined` | `'var(--ai-spacing-10)'` | Custom viewport padding (top and bottom). |
+| `viewportPadding` | `string \| undefined` | `'0'` | Custom viewport padding (top and bottom). |
 | `onApi` | `((api: import("/Users/jakelin/dev/ai/ai-native-kit/ainativekit-ui/node_modules/.pnpm/embla-carousel@8.6.0/node_modules/embla-carousel/esm/components/EmblaCarousel").EmblaCarouselType \| null) => void) \| undefined` | - | Optional callback that receives the Embla API instance once ready. |
 | `loading` | `boolean \| undefined` | `false` | Loading state - renders children with loading prop or skeleton slides |
 | `loadingSlides` | `number \| undefined` | `6` | Number of skeleton slides to show when loading and no children provided |

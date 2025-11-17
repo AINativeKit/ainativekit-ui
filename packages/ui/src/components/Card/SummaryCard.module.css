@@ -423,6 +423,7 @@
   z-index: 1; /* Above image, below loading/error states */
   border-radius: 16px 16px 0 0; /* Match image top corners */
   pointer-events: auto; /* Allow interaction if needed */
+  box-sizing: border-box; /* Include padding in height calculation */
 }
 
 /* Image Section - Make it position relative for absolute overlay positioning */
