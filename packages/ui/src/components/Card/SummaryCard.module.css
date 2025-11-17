@@ -429,4 +429,6 @@
 /* Image Section - Make it position relative for absolute overlay positioning */
 .imageSection {
   position: relative;
+  overflow: hidden; /* Clip overlay to match image border-radius */
+  border-radius: 16px; /* Match image border-radius for proper overlay clipping */
 }
