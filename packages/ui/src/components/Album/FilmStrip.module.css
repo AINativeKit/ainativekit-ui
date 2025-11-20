@@ -9,37 +9,34 @@
   pointer-events: auto;
 }
 
-/* Thumbnail List - Scrollable */
-.thumbnailList {
+/* Thumbnail Viewport - Embla Container */
+.thumbnailViewport {
   height: 100%;
   width: 100%;
-  overflow-y: auto;
-  overflow-x: visible;
+  overflow: hidden;
+}
+
+/* Thumbnail Center Wrapper - Centers thumbnails vertically */
+.thumbnailCenterWrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Thumbnail Container - Embla Slides Wrapper */
+.thumbnailContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   padding: var(--ai-spacing-10);
   gap: var(--ai-spacing-10);
-  scrollbar-width: thin;
-  box-sizing: border-box;
 }
 
-.thumbnailList::-webkit-scrollbar {
-  width: 4px;
-}
-
-.thumbnailList::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.thumbnailList::-webkit-scrollbar-thumb {
-  background: var(--ai-color-border-default);
-  border-radius: 2px;
-}
-
-.thumbnailList::-webkit-scrollbar-thumb:hover {
-  background: var(--ai-color-border-heavy);
+/* Thumbnail Slide - Embla Slide */
+.thumbnailSlide {
+  flex: 0 0 auto;
+  width: 100%;
 }
 
 /* Thumbnail Button */

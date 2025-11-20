@@ -163,6 +163,12 @@ const sampleAlbums: AlbumType[] = [
       },
     ],
   },
+  {
+    id: 'empty-album',
+    title: 'Empty Album',
+    cover: 'https://persistent.oaistatic.com/pizzaz/pizzaz-1.png',
+    photos: [],
+  },
 ];
 
 const meta: Meta<typeof Album> = {
@@ -181,6 +187,9 @@ const AlbumSystemComponent: React.FC = () => {
   const [selectedAlbum, setSelectedAlbum] = useState<AlbumType | null>(null);
   const [showViewer, setShowViewer] = useState(false);
   const [viewerAlbum, setViewerAlbum] = useState<AlbumType | null>(null);
+  const [showEmptyDefault, setShowEmptyDefault] = useState(false);
+  const [showEmptyCustom, setShowEmptyCustom] = useState(false);
+  const [showEmptyHidden, setShowEmptyHidden] = useState(false);
 
   return (
     <div style={{ padding: '24px', maxWidth: '100%' }}>
@@ -463,8 +472,199 @@ const AlbumSystemComponent: React.FC = () => {
         >
           <p style={{ margin: 0, fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
             <strong>Viewer Features:</strong> Arrow key navigation, ESC to close, photo counter,
-            responsive layouts, smooth transitions
+            responsive layouts, smooth transitions, Embla carousel for touch/swipe navigation
           </p>
+        </div>
+      </section>
+
+      {/* Responsive Behavior */}
+      <section style={{ marginBottom: '64px' }}>
+        <header style={{ marginBottom: '24px' }}>
+          <h2 style={{ marginBottom: '8px' }}>Responsive Behavior</h2>
+          <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
+            AlbumViewer adapts to different screen sizes with three breakpoints
+          </p>
+        </header>
+
+        <div
+          style={{
+            padding: '16px',
+            backgroundColor: 'var(--ai-color-bg-secondary)',
+            borderRadius: '8px',
+            marginBottom: '16px',
+          }}
+        >
+          <h3 style={{ fontSize: '14px', marginTop: 0, marginBottom: '12px' }}>
+            Mobile (&lt; 640px)
+          </h3>
+          <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
+            <li>No thumbnail sidebar</li>
+            <li>Touch-enabled swipe navigation</li>
+            <li>Prev/Next navigation buttons visible</li>
+            <li>Minimal padding (8px horizontal, 8px vertical)</li>
+            <li>Photo counter centered at bottom</li>
+          </ul>
+        </div>
+
+        <div
+          style={{
+            padding: '16px',
+            backgroundColor: 'var(--ai-color-bg-secondary)',
+            borderRadius: '8px',
+            marginBottom: '16px',
+          }}
+        >
+          <h3 style={{ fontSize: '14px', marginTop: 0, marginBottom: '12px' }}>
+            Tablet (≥ 640px)
+          </h3>
+          <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
+            <li>Thumbnail sidebar appears (160px width)</li>
+            <li>Thumbnails centered vertically in sidebar</li>
+            <li>Navigation buttons hidden (sidebar provides navigation)</li>
+            <li>Increased padding (16px horizontal, 16px vertical)</li>
+            <li>Photo counter offset to center over photo area</li>
+            <li>Embla carousel synchronization between main view and thumbnails</li>
+          </ul>
+        </div>
+
+        <div
+          style={{
+            padding: '16px',
+            backgroundColor: 'var(--ai-color-bg-secondary)',
+            borderRadius: '8px',
+          }}
+        >
+          <h3 style={{ fontSize: '14px', marginTop: 0, marginBottom: '12px' }}>
+            Desktop-wide (≥ 1024px)
+          </h3>
+          <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
+            <li>All tablet features maintained</li>
+            <li>Maximum padding for optimal viewing (24px horizontal, 24px vertical)</li>
+            <li>Generous breathing room around photos</li>
+          </ul>
+        </div>
+
+        <div
+          style={{
+            padding: '16px',
+            backgroundColor: 'var(--ai-color-bg-tertiary)',
+            borderRadius: '8px',
+            marginTop: '16px',
+          }}
+        >
+          <p style={{ margin: 0, fontSize: '13px', color: 'var(--ai-color-text-secondary)', fontStyle: 'italic' }}>
+            <strong>Note:</strong> All breakpoints use CSS custom properties from the design system
+            (--ai-breakpoint-tablet: 640px, --ai-breakpoint-desktop-wide: 1024px)
+          </p>
+        </div>
+      </section>
+
+      {/* AlbumViewer Empty States */}
+      <section style={{ marginBottom: '64px' }}>
+        <header style={{ marginBottom: '24px' }}>
+          <h2 style={{ marginBottom: '8px' }}>AlbumViewer Empty States</h2>
+          <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
+            Handling albums with no photos using default, custom, or hidden empty states
+          </p>
+        </header>
+
+        <div style={{ marginBottom: '32px' }}>
+          <h3
+            style={{
+              fontSize: '14px',
+              marginBottom: '12px',
+              color: 'var(--ai-color-text-secondary)',
+            }}
+          >
+            Default Empty State
+          </h3>
+          <p style={{ fontSize: '14px', marginBottom: '12px', color: 'var(--ai-color-text-secondary)' }}>
+            Shows default "No photos available" message with close button
+          </p>
+          <Button onClick={() => setShowEmptyDefault(true)}>
+            Open Empty Album (Default)
+          </Button>
+          {showEmptyDefault && (
+            <AlbumViewer
+              album={sampleAlbums[5]}
+              onClose={() => setShowEmptyDefault(false)}
+            />
+          )}
+        </div>
+
+        <div style={{ marginBottom: '32px' }}>
+          <h3
+            style={{
+              fontSize: '14px',
+              marginBottom: '12px',
+              color: 'var(--ai-color-text-secondary)',
+            }}
+          >
+            Custom Empty State Content
+          </h3>
+          <p style={{ fontSize: '14px', marginBottom: '12px', color: 'var(--ai-color-text-secondary)' }}>
+            Provide custom UI via emptyStateContent prop
+          </p>
+          <Button onClick={() => setShowEmptyCustom(true)} variant="secondary">
+            Open Empty Album (Custom)
+          </Button>
+          {showEmptyCustom && (
+            <AlbumViewer
+              album={sampleAlbums[5]}
+              onClose={() => setShowEmptyCustom(false)}
+              emptyStateContent={
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: '100%',
+                  gap: '16px',
+                }}>
+                  <div style={{
+                    fontSize: '48px',
+                  }}>
+                    📸
+                  </div>
+                  <h3 style={{ margin: 0, fontSize: '20px' }}>No Photos Yet</h3>
+                  <p style={{ margin: 0, color: 'var(--ai-color-text-secondary)' }}>
+                    This album is waiting for its first photo
+                  </p>
+                  <Button onClick={() => setShowEmptyCustom(false)}>
+                    Close Viewer
+                  </Button>
+                </div>
+              }
+            />
+          )}
+        </div>
+
+        <div>
+          <h3
+            style={{
+              fontSize: '14px',
+              marginBottom: '12px',
+              color: 'var(--ai-color-text-secondary)',
+            }}
+          >
+            Hide When Empty
+          </h3>
+          <p style={{ fontSize: '14px', marginBottom: '12px', color: 'var(--ai-color-text-secondary)' }}>
+            Returns null when album has no photos (hideWhenEmpty=true)
+          </p>
+          <Button onClick={() => setShowEmptyHidden(true)} variant="secondary">
+            Try Opening Empty Album (Hidden)
+          </Button>
+          <p style={{ fontSize: '12px', marginTop: '8px', color: 'var(--ai-color-text-secondary)', fontStyle: 'italic' }}>
+            Note: Nothing will appear because the viewer returns null when empty
+          </p>
+          {showEmptyHidden && (
+            <AlbumViewer
+              album={sampleAlbums[5]}
+              onClose={() => setShowEmptyHidden(false)}
+              hideWhenEmpty={true}
+            />
+          )}
         </div>
       </section>
 
@@ -565,6 +765,44 @@ const AlbumSystemComponent: React.FC = () => {
             {
               name: 'showEdgeGradients',
               description: 'Show edge fade gradients - default: false',
+            },
+          ]}
+        />
+      </section>
+
+      <section style={{ marginBottom: '64px' }}>
+        <header style={{ marginBottom: '24px' }}>
+          <h2 style={{ marginBottom: '8px' }}>AlbumViewer Props</h2>
+          <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
+            Fullscreen photo viewer props including empty state handling
+          </p>
+        </header>
+        <PropsTable
+          hideThemeColumn
+          rows={[
+            {
+              name: 'album',
+              description: 'Album object to display. Type: Album (required)',
+            },
+            {
+              name: 'initialPhotoIndex',
+              description: 'Initial photo index to display - default: 0',
+            },
+            {
+              name: 'onClose',
+              description: 'Callback when viewer is closed: () => void',
+            },
+            {
+              name: 'className',
+              description: 'Additional CSS class name for the viewer',
+            },
+            {
+              name: 'emptyStateContent',
+              description: 'Custom content to display when album has no photos. If not provided, shows default empty state with message and close button. Type: React.ReactNode',
+            },
+            {
+              name: 'hideWhenEmpty',
+              description: 'Hide the viewer completely when album has no photos. When true, returns null instead of showing empty state - default: false',
             },
           ]}
         />

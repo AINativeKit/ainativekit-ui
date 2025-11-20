@@ -5,6 +5,8 @@ declare const styles: {
   readonly content: string;
   readonly filmStripContainer: string;
   readonly photoContainer: string;
+  readonly photoCarouselContainer: string;
+  readonly photoSlide: string;
   readonly photoWrapper: string;
   readonly photo: string;
   readonly noPhoto: string;
@@ -13,6 +15,9 @@ declare const styles: {
   readonly navButtonNext: string;
   readonly footer: string;
   readonly counter: string;
+  readonly empty: string;
+  readonly emptyState: string;
+  readonly emptyMessage: string;
 };
 
 export default styles;

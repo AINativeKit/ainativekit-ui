@@ -20,4 +20,7 @@ export type { AlbumViewerProps } from './AlbumViewer';
 export { FilmStrip } from './FilmStrip';
 export type { FilmStripProps } from './FilmStrip';
 
+// Note: The Album data type is exported as 'AlbumType' to avoid naming collision
+// with the Album React component (line 8). Import the data type as:
+// import type { AlbumType, Photo } from '@ainativekit/ui';
 export type { Album as AlbumType, Photo } from './types';

@@ -1,4 +1,5 @@
 import React from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
 import { cn } from '../../utils/cn';
 import { Button } from '../Button';
 import { FilmStrip } from './FilmStrip';
@@ -26,6 +27,19 @@ export interface AlbumViewerProps {
    * Additional class name
    */
   className?: string;
+
+  /**
+   * Custom content to display when album has no photos.
+   * If not provided, shows default empty state with message and close button.
+   */
+  emptyStateContent?: React.ReactNode;
+
+  /**
+   * Hide the viewer completely when album has no photos.
+   * When true, returns null instead of showing empty state.
+   * @default false
+   */
+  hideWhenEmpty?: boolean;
 }
 
 /**
@@ -52,44 +66,139 @@ export const AlbumViewer: React.FC<AlbumViewerProps> = ({
   initialPhotoIndex = 0,
   onClose,
   className,
+  emptyStateContent,
+  hideWhenEmpty = false,
 }) => {
-  const [currentIndex, setCurrentIndex] = React.useState(initialPhotoIndex);
+  // Validate photos array
+  const hasPhotos = album.photos && album.photos.length > 0;
+
+  // Clamp initialPhotoIndex to valid range
+  const validInitialIndex = hasPhotos
+    ? Math.max(0, Math.min(album.photos.length - 1, initialPhotoIndex))
+    : 0;
+
+  // Initialize state - must be called unconditionally (before any early returns)
+  const [currentIndex, setCurrentIndex] = React.useState(validInitialIndex);
+
+  // Set up Embla Carousel for swipe navigation
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: 'center',
+    loop: false,
+    containScroll: 'trimSnaps',
+    startIndex: validInitialIndex,
+  });
 
   // Reset index when album changes
   React.useEffect(() => {
-    setCurrentIndex(initialPhotoIndex);
-  }, [album.id, initialPhotoIndex]);
+    setCurrentIndex(validInitialIndex);
+    if (emblaApi) {
+      emblaApi.scrollTo(validInitialIndex);
+    }
+  }, [album.id, validInitialIndex, emblaApi]);
 
-  // Keyboard navigation
+  // Sync embla carousel with currentIndex state
   React.useEffect(() => {
+    if (!emblaApi) return;
+
+    const onSelect = () => {
+      setCurrentIndex(emblaApi.selectedScrollSnap());
+    };
+
+    emblaApi.on('select', onSelect);
+    return () => {
+      emblaApi.off('select', onSelect);
+    };
+  }, [emblaApi]);
+
+  // Check if we're actually rendering the viewer (not hiding when empty)
+  const isViewerVisible = hasPhotos || !hideWhenEmpty;
+
+  // Keyboard navigation - only when viewer is visible
+  React.useEffect(() => {
+    if (!isViewerVisible) return;
+
     const handleKeyDown = (event: KeyboardEvent) => {
       switch (event.key) {
         case 'Escape':
           onClose?.();
           break;
         case 'ArrowLeft':
-          setCurrentIndex((prev) => Math.max(0, prev - 1));
+          if (hasPhotos && emblaApi) {
+            emblaApi.scrollPrev();
+          }
           break;
         case 'ArrowRight':
-          setCurrentIndex((prev) => Math.min(album.photos.length - 1, prev + 1));
+          if (hasPhotos && emblaApi) {
+            emblaApi.scrollNext();
+          }
           break;
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [album.photos.length, onClose]);
+  }, [isViewerVisible, hasPhotos, emblaApi, onClose]);
 
-  // Prevent body scroll when viewer is open
+  // Prevent body scroll when viewer is visible
   React.useEffect(() => {
+    if (!isViewerVisible) return;
+
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     return () => {
       document.body.style.overflow = originalOverflow;
     };
-  }, []);
+  }, [isViewerVisible]);
 
-  const currentPhoto = album.photos[currentIndex];
+  // Development warning for empty albums
+  React.useEffect(() => {
+    if (process.env.NODE_ENV === 'development' && !hasPhotos) {
+      console.warn(
+        '[AlbumViewer] Album has no photos. Consider checking before rendering.',
+        { albumId: album.id, albumTitle: album.title }
+      );
+    }
+  }, [hasPhotos, album.id, album.title]);
+
+  // Handle empty state
+  if (!hasPhotos) {
+    // Hide completely if requested
+    if (hideWhenEmpty) {
+      return null;
+    }
+
+    // Custom empty state
+    if (emptyStateContent) {
+      return (
+        <div className={cn(styles.albumViewer, className)} role="dialog" aria-modal="true">
+          {emptyStateContent}
+        </div>
+      );
+    }
+
+    // Default empty state
+    return (
+      <div
+        className={cn(styles.albumViewer, styles.empty, className)}
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${album.title} viewer`}
+      >
+        <div className={styles.header}>
+          <Button
+            variant="ghost"
+            iconOnly="x-crossed"
+            onClick={onClose}
+            aria-label="Close viewer"
+            className={styles.closeButton}
+          />
+        </div>
+        <div className={styles.emptyState}>
+          <p className={styles.emptyMessage}>No photos available</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -117,26 +226,27 @@ export const AlbumViewer: React.FC<AlbumViewerProps> = ({
             selectedIndex={currentIndex}
             onSelect={setCurrentIndex}
             albumTitle={album.title}
+            mainApi={emblaApi}
           />
         </div>
 
         {/* Main Photo Display */}
-        <div className={styles.photoContainer}>
-          {currentPhoto ? (
-            <div className={styles.photoWrapper}>
-              <img
-                src={currentPhoto.url}
-                alt={
-                  currentPhoto.alt ||
-                  currentPhoto.title ||
-                  `${album.title} - Photo ${currentIndex + 1}`
-                }
-                className={styles.photo}
-              />
-            </div>
-          ) : (
-            <div className={styles.noPhoto}>No photo available</div>
-          )}
+        <div className={styles.photoContainer} ref={emblaRef}>
+          <div className={styles.photoCarouselContainer}>
+            {album.photos.map((photo, index) => (
+              <div key={photo.id} className={styles.photoSlide}>
+                <div className={styles.photoWrapper}>
+                  <img
+                    src={photo.url}
+                    alt={
+                      photo.alt || photo.title || `${album.title} - Photo ${index + 1}`
+                    }
+                    className={styles.photo}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -147,7 +257,7 @@ export const AlbumViewer: React.FC<AlbumViewerProps> = ({
             <Button
               variant="ghost"
               iconOnly="arrow-left-sm"
-              onClick={() => setCurrentIndex((prev) => prev - 1)}
+              onClick={() => emblaApi?.scrollPrev()}
               aria-label="Previous photo"
               className={cn(styles.navButton, styles.navButtonPrev)}
             />
@@ -156,7 +266,7 @@ export const AlbumViewer: React.FC<AlbumViewerProps> = ({
             <Button
               variant="ghost"
               iconOnly="arrow-right-sm"
-              onClick={() => setCurrentIndex((prev) => prev + 1)}
+              onClick={() => emblaApi?.scrollNext()}
               aria-label="Next photo"
               className={cn(styles.navButton, styles.navButtonNext)}
             />
@@ -164,12 +274,14 @@ export const AlbumViewer: React.FC<AlbumViewerProps> = ({
         </>
       )}
 
-      {/* Photo Counter */}
-      <div className={styles.footer}>
-        <div className={styles.counter}>
-          {currentIndex + 1} / {album.photos.length}
+      {/* Photo Counter - Only show when there are multiple photos */}
+      {album.photos.length > 1 && (
+        <div className={styles.footer}>
+          <div className={styles.counter}>
+            {currentIndex + 1} / {album.photos.length}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

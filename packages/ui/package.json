@@ -116,6 +116,7 @@
   },
   "dependencies": {
     "embla-carousel": "^8.6.0",
-    "embla-carousel-react": "^8.6.0"
+    "embla-carousel-react": "^8.6.0",
+    "embla-carousel-wheel-gestures": "^8.1.0"
   }
 }
