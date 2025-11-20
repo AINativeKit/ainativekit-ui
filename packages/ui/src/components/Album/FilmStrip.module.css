@@ -16,7 +16,7 @@
   overflow: hidden;
 }
 
-/* Thumbnail Center Wrapper - Centers thumbnails vertically */
+/* Thumbnail Center Wrapper */
 .thumbnailCenterWrapper {
   min-height: 100%;
   display: flex;
@@ -29,8 +29,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: var(--ai-spacing-6);
   padding: var(--ai-spacing-10);
-  gap: var(--ai-spacing-10);
 }
 
 /* Thumbnail Slide - Embla Slide */
