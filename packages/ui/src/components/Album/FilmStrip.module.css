@@ -19,6 +19,9 @@
   padding-bottom: var(--ai-spacing-6);
   box-sizing: border-box;
   scroll-behavior: smooth; /* Smooth scrolling for scrollIntoView */
+  -webkit-overflow-scrolling: touch; /* Momentum scrolling on iOS */
+  overscroll-behavior-y: contain; /* Prevent pull-to-refresh */
+  touch-action: pan-y; /* Only allow vertical scrolling */
 }
 
 /* Thumbnail Container */
