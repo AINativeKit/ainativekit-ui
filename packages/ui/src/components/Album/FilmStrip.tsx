@@ -90,7 +90,7 @@ export const FilmStrip: React.FC<FilmStripProps> = ({
 
   // Sync thumbnail scroll when main carousel changes
   React.useEffect(() => {
-    if (!mainApi) return;
+    if (!mainApi) return undefined;
 
     const onMainSelect = () => {
       const selected = mainApi.selectedScrollSnap();
@@ -113,7 +113,9 @@ export const FilmStrip: React.FC<FilmStripProps> = ({
     }
 
     mainApi.on('select', onMainSelect);
-    return () => mainApi.off('select', onMainSelect);
+    return () => {
+      mainApi.off('select', onMainSelect);
+    };
   }, [mainApi, selectedIndex]);
 
   return (
