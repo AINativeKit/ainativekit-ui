@@ -77,6 +77,9 @@ export default meta;
 
 const CompactMapDoc: FC = () => {
   const [selectedId, setSelectedId] = useState<string | undefined>(undefined);
+  const [pinSelectedId, setPinSelectedId] = useState<string | undefined>(undefined);
+  const [dotSelectedId, setDotSelectedId] = useState<string | undefined>(undefined);
+  const [hybridSelectedId, setHybridSelectedId] = useState<string | undefined>(undefined);
   const locations = useMemo(() => sampleLocations, []);
 
   return (
@@ -337,8 +340,8 @@ const CompactMapDoc: FC = () => {
             </h3>
             <CompactMap
               locations={locations}
-              selectedId={selectedId}
-              onLocationSelect={setSelectedId}
+              selectedId={pinSelectedId}
+              onLocationSelect={setPinSelectedId}
               markerVariant="pin"
               height={CHATGPT_APP_HEIGHT}
             />
@@ -356,8 +359,8 @@ const CompactMapDoc: FC = () => {
             </h3>
             <CompactMap
               locations={locations}
-              selectedId={selectedId}
-              onLocationSelect={setSelectedId}
+              selectedId={dotSelectedId}
+              onLocationSelect={setDotSelectedId}
               markerVariant="dot"
               height={CHATGPT_APP_HEIGHT}
             />
@@ -375,8 +378,8 @@ const CompactMapDoc: FC = () => {
             </h3>
             <CompactMap
               locations={locations}
-              selectedId={selectedId}
-              onLocationSelect={setSelectedId}
+              selectedId={hybridSelectedId}
+              onLocationSelect={setHybridSelectedId}
               markerVariant="hybrid"
               height={CHATGPT_APP_HEIGHT}
             />
