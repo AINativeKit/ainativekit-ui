@@ -21,7 +21,7 @@
 
 .selectedMarker {
   z-index: 1000;
-  filter: drop-shadow(0px 0px 8px color-mix(in srgb, var(--ai-color-accent-blue) 40%, transparent));
+  transform: scale(1.1);
   backface-visibility: hidden;
 }
 
@@ -33,7 +33,7 @@
   padding: var(--ai-spacing-6) var(--ai-spacing-8);
   background: var(--ai-color-bg-primary);
   border-radius: var(--ai-radius-xl);
-  box-shadow: var(--ai-elevation-1-shadow);
+  border: 1px solid var(--ai-color-border-light);
   position: relative;
   display: flex;
   flex-direction: row;
@@ -51,7 +51,7 @@
   background: var(--ai-color-bg-primary);
   transform: translateX(-50%) rotate(45deg);
   border-radius: 3px;
-  box-shadow: var(--ai-elevation-1-shadow);
+  border: 1px solid var(--ai-color-border-light);
 }
 
 .popupTitle {
@@ -120,8 +120,7 @@
 
 /* Zoom controls styling */
 :global(.leaflet-control-zoom) {
-  border: none !important;
-  box-shadow: var(--ai-elevation-1-shadow);
+  border: 1px solid var(--ai-color-border-light) !important;
   background: var(--ai-color-bg-primary);
   border-radius: var(--ai-radius-base);
   overflow: hidden;
@@ -130,12 +129,12 @@
 /* ========== DARK MODE OVERRIDES ========== */
 :global([data-theme='dark']) .popup {
   background: var(--ai-color-bg-primary);
-  box-shadow: var(--ai-elevation-4-shadow);
+  border-color: var(--ai-color-border-medium);
 }
 
 :global([data-theme='dark']) .popup::after {
   background: var(--ai-color-bg-primary);
-  box-shadow: var(--ai-elevation-3-shadow);
+  border-color: var(--ai-color-border-medium);
 }
 
 :global([data-theme='dark']) .popupTitle {

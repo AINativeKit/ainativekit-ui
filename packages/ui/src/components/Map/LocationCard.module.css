@@ -31,7 +31,7 @@
 .locationCard.selected {
   background-color: var(--ai-color-bg-tertiary);
   border-color: var(--ai-color-accent-blue);
-  box-shadow: var(--ai-elevation-1-shadow);
+  border-width: 2px;
 }
 
 /* Loading State */

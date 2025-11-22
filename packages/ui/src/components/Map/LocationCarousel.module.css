@@ -6,7 +6,7 @@
   right: 0;
   z-index: 20;
   pointer-events: none;
-  padding-bottom: 12px;
+  padding-bottom: var(--ai-spacing-6);
 }
 
 /* Make carousel interactive */

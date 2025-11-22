@@ -88,9 +88,7 @@
   max-height: min(85vh, 600px);
   border-radius: var(--ai-radius-xl);
   border: 1px solid var(--ai-color-border-default);
-  box-shadow:
-    0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--ai-elevation-2-shadow);
 }
 
 /* Sidebar content styling */

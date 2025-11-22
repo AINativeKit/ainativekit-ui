@@ -4,7 +4,7 @@
   border-radius: var(--ai-radius-xl);
   overflow: hidden;
   background: var(--ai-color-bg-primary);
-  box-shadow: var(--ai-elevation-2-shadow);
+  border: 1px solid var(--ai-color-border-light);
 }
 
 .mapLayer {
