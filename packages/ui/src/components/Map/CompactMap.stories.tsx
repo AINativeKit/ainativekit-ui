@@ -238,6 +238,97 @@ const CompactMapDoc: FC = () => {
         </ul>
       </section>
 
+      <section style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        <header>
+          <h2 style={{ marginBottom: '8px' }}>Custom Icon Elements</h2>
+          <p style={{ margin: 0, color: 'var(--ai-color-text-secondary)' }}>
+            Features support custom React elements as icons alongside standard icon strings.
+          </p>
+        </header>
+
+        <div style={heroStyle}>
+          <CompactMap
+            locations={[
+              {
+                id: 'custom-icon-demo',
+                name: 'Restaurant with Custom Icons',
+                subtitle: 'Fine Dining · Downtown',
+                coords: [37.7749, -122.4194],
+                description: 'Example showing custom React element icons in features',
+                thumbnail: 'https://persistent.oaistatic.com/pizzaz/pizzaz-1.png',
+                features: [
+                  {
+                    icon: (
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        style={{ color: '#ef4444' }}
+                      >
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                      </svg>
+                    ),
+                    label: 'Popular',
+                  },
+                  {
+                    icon: (
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        style={{ color: '#f97316' }}
+                      >
+                        <path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z" />
+                      </svg>
+                    ),
+                    label: 'Trending',
+                  },
+                  { icon: 'star', label: '4.9' },
+                  { label: '$$$' },
+                ],
+              },
+            ]}
+            defaultCenter={[37.7749, -122.4194]}
+            defaultZoom={13}
+            height={CHATGPT_APP_HEIGHT}
+          />
+        </div>
+
+        <div
+          style={{
+            background: 'var(--ai-color-bg-secondary)',
+            borderRadius: '12px',
+            padding: '16px',
+            maxWidth: CHATGPT_APP_WIDTH,
+            fontSize: '13px',
+          }}
+        >
+          <p style={{ margin: '0 0 12px 0' }}>
+            <strong>Use cases:</strong> Custom brand icons, third-party icon libraries (Heroicons,
+            Lucide, Font Awesome), colored/themed icons, animated badges.
+          </p>
+          <pre
+            style={{
+              margin: 0,
+              padding: '12px',
+              background: 'var(--ai-color-bg-primary)',
+              borderRadius: '8px',
+              fontSize: '12px',
+              fontFamily: 'monospace',
+              overflow: 'auto',
+            }}
+          >
+            {`features: [
+  { icon: <CustomHeartSVG />, label: 'Popular' },  // Custom React element
+  { icon: 'star', label: '4.9' },                  // Standard icon string
+  { label: '$$$' }                                 // No icon
+]`}
+          </pre>
+        </div>
+      </section>
+
       <section style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
         <header>
           <h2 style={{ marginBottom: '8px' }}>Props</h2>

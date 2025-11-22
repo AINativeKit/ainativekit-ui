@@ -136,7 +136,7 @@ const sampleLocations: LocationData[] = [
 ];
 
 const meta: Meta<typeof MapView> = {
-  title: 'Composed Components/Maps/Maps',
+  title: 'Composed Components/Maps',
   component: MapView,
   parameters: {
     layout: 'padded',

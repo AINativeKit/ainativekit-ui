@@ -29,15 +29,16 @@
 .popup {
   font-family: var(--ai-font-family);
   min-width: 220px;
-  max-width: 320px;
+  max-width: 360px;
   padding: var(--ai-spacing-6) var(--ai-spacing-8);
   background: var(--ai-color-bg-primary);
   border-radius: var(--ai-radius-xl);
   box-shadow: var(--ai-elevation-1-shadow);
   position: relative;
   display: flex;
-  flex-direction: column;
-  gap: 0;
+  flex-direction: row;
+  gap: var(--ai-spacing-4);
+  align-items: flex-start;
 }
 
 .popup::after {
@@ -59,6 +60,31 @@
   font-weight: var(--ai-font-weight-body-emph);
   letter-spacing: var(--ai-letter-spacing-body-emph);
   color: var(--ai-color-text-primary);
+  margin: 0;
+}
+
+.popupThumbnail {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--ai-radius-md);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.popupContent {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ai-spacing-2);
+}
+
+.popupSubtitle {
+  font-size: var(--ai-font-size-body-small);
+  line-height: var(--ai-line-height-body-small);
+  font-weight: var(--ai-font-weight-body-small);
+  letter-spacing: var(--ai-letter-spacing-body-small);
+  color: var(--ai-color-text-secondary);
   margin: 0;
 }
 

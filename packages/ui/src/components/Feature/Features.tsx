@@ -4,7 +4,7 @@ import type { IconName } from '../../tokens/icons';
 import { cn } from '../../utils/cn';
 import styles from './Features.module.css';
 
-export type FeatureItem = string | { icon?: IconName; label: string };
+export type FeatureItem = string | { icon?: IconName | React.ReactElement; label: string };
 
 export interface FeaturesProps {
   /**
@@ -70,7 +70,13 @@ export const Features = React.forwardRef<HTMLDivElement, FeaturesProps>(
           return (
             <React.Fragment key={`${label}-${idx}`}>
               <span className={styles.item}>
-                {icon && <Icon name={icon} size={iconSize} className={styles.icon} />}
+                {icon && (
+                  typeof icon === 'string' ? (
+                    <Icon name={icon as IconName} size={iconSize} className={styles.icon} />
+                  ) : (
+                    <span className={styles.icon}>{icon}</span>
+                  )
+                )}
                 <span>{label}</span>
               </span>
               {!isLast && <span className={styles.separator}>{separator}</span>}

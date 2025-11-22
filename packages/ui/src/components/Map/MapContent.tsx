@@ -4,6 +4,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import type { MapViewProps } from './MapView';
 import type { LocationData } from './types';
+import { Features } from '../Feature/Features';
 import styles from './Map.module.css';
 
 // Component to handle map flying to selected location
@@ -156,7 +157,7 @@ function createMarkerIcon(color: string, isSelected: boolean) {
     <svg xmlns="http://www.w3.org/2000/svg" width="29" height="43" viewBox="0 0 29 43">
       <path fill="${color}" stroke="var(--ai-color-bg-primary)" stroke-width="2" d="M14.5 1C7.596 1 2 6.596 2 13.5c0 8.437 12.5 28.5 12.5 28.5S27 21.937 27 13.5C27 6.596 21.404 1 14.5 1z" />
       <circle cx="14.5" cy="13.5" r="6" fill="#ffffff" />
-      ${innerCircle.replace('cx="13.5" cy="12.5"', 'cx="14.5" cy="13.5"')}
+      ${innerCircle}
     </svg>
   `;
 
@@ -279,10 +280,22 @@ export const MapContent: React.FC<MapViewProps> = ({
             >
               <Popup>
                 <article className={styles.popup}>
-                  <h3 className={styles.popupTitle}>{location.name}</h3>
-                  {location.description && (
-                    <div className={styles.popupDescription}>{location.description}</div>
+                  {location.thumbnail && (
+                    <img
+                      src={location.thumbnail}
+                      alt={location.name}
+                      className={styles.popupThumbnail}
+                    />
                   )}
+                  <div className={styles.popupContent}>
+                    <h3 className={styles.popupTitle}>{location.name}</h3>
+                    {location.subtitle && (
+                      <div className={styles.popupSubtitle}>{location.subtitle}</div>
+                    )}
+                    {location.features && location.features.length > 0 && (
+                      <Features items={location.features} iconSize={14} />
+                    )}
+                  </div>
                 </article>
               </Popup>
             </Marker>
