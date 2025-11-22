@@ -199,7 +199,7 @@ export const LocationCarousel: React.FC<LocationCarouselProps> = ({
             <LocationCard
               image={location.thumbnail}
               title={location.name}
-              subtitle={location.description}
+              subtitle={location.subtitle}
               features={location.features}
               selected={location.id === selectedId}
               onClick={() => onLocationSelect?.(location.id)}

@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import type { CSSProperties, FC } from 'react';
+import type { FC } from 'react';
 import type { Meta } from '@storybook/react';
 import { CompactMap } from './CompactMap';
 import type { LocationData } from './types';
@@ -75,15 +75,6 @@ const meta: Meta<typeof CompactMap> = {
 
 export default meta;
 
-const heroStyle: CSSProperties = {
-  width: '100%',
-  maxWidth: CHATGPT_APP_WIDTH,
-  borderRadius: '12px',
-  overflow: 'hidden',
-  border: '1px solid var(--ai-color-border-subtle)',
-  boxShadow: 'var(--ai-elevation-2-shadow)',
-};
-
 const CompactMapDoc: FC = () => {
   const [selectedId, setSelectedId] = useState<string | undefined>(undefined);
   const locations = useMemo(() => sampleLocations, []);
@@ -116,14 +107,12 @@ const CompactMapDoc: FC = () => {
           </p>
         </header>
 
-        <div style={heroStyle}>
-          <CompactMap
-            locations={locations}
-            selectedId={selectedId}
-            onLocationSelect={setSelectedId}
-            height={CHATGPT_APP_HEIGHT}
-          />
-        </div>
+        <CompactMap
+          locations={locations}
+          selectedId={selectedId}
+          onLocationSelect={setSelectedId}
+          height={CHATGPT_APP_HEIGHT}
+        />
 
         <div
           style={{
@@ -165,14 +154,12 @@ const CompactMapDoc: FC = () => {
             >
               Loading
             </h3>
-            <div style={heroStyle}>
-              <CompactMap
-                locations={[]}
-                loading
-                height={CHATGPT_APP_HEIGHT}
-                carouselProps={{ loadingCardCount: 4 }}
-              />
-            </div>
+            <CompactMap
+              locations={[]}
+              loading
+              height={CHATGPT_APP_HEIGHT}
+              carouselProps={{ loadingCardCount: 4 }}
+            />
           </div>
 
           <div>
@@ -185,17 +172,15 @@ const CompactMapDoc: FC = () => {
             >
               Error
             </h3>
-            <div style={heroStyle}>
-              <CompactMap
-                locations={[]}
-                error
-                height={CHATGPT_APP_HEIGHT}
-                carouselProps={{
-                  errorTitle: 'Failed to load locations',
-                  errorMessage: 'Unable to retrieve location data. Please try again.',
-                }}
-              />
-            </div>
+            <CompactMap
+              locations={[]}
+              error
+              height={CHATGPT_APP_HEIGHT}
+              carouselProps={{
+                errorTitle: 'Failed to load locations',
+                errorMessage: 'Unable to retrieve location data. Please try again.',
+              }}
+            />
           </div>
 
           <div>
@@ -208,9 +193,7 @@ const CompactMapDoc: FC = () => {
             >
               Empty
             </h3>
-            <div style={heroStyle}>
-              <CompactMap locations={[]} height={CHATGPT_APP_HEIGHT} />
-            </div>
+            <CompactMap locations={[]} height={CHATGPT_APP_HEIGHT} />
           </div>
         </div>
       </section>
@@ -246,55 +229,53 @@ const CompactMapDoc: FC = () => {
           </p>
         </header>
 
-        <div style={heroStyle}>
-          <CompactMap
-            locations={[
-              {
-                id: 'custom-icon-demo',
-                name: 'Restaurant with Custom Icons',
-                subtitle: 'Fine Dining · Downtown',
-                coords: [37.7749, -122.4194],
-                description: 'Example showing custom React element icons in features',
-                thumbnail: 'https://persistent.oaistatic.com/pizzaz/pizzaz-1.png',
-                features: [
-                  {
-                    icon: (
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        style={{ color: '#ef4444' }}
-                      >
-                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                      </svg>
-                    ),
-                    label: 'Popular',
-                  },
-                  {
-                    icon: (
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        style={{ color: '#f97316' }}
-                      >
-                        <path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z" />
-                      </svg>
-                    ),
-                    label: 'Trending',
-                  },
-                  { icon: 'star', label: '4.9' },
-                  { label: '$$$' },
-                ],
-              },
-            ]}
-            defaultCenter={[37.7749, -122.4194]}
-            defaultZoom={13}
-            height={CHATGPT_APP_HEIGHT}
-          />
-        </div>
+        <CompactMap
+          locations={[
+            {
+              id: 'custom-icon-demo',
+              name: 'Restaurant with Custom Icons',
+              subtitle: 'Fine Dining · Downtown',
+              coords: [37.7749, -122.4194],
+              description: 'Example showing custom React element icons in features',
+              thumbnail: 'https://persistent.oaistatic.com/pizzaz/pizzaz-1.png',
+              features: [
+                {
+                  icon: (
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      style={{ color: '#ef4444' }}
+                    >
+                      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                    </svg>
+                  ),
+                  label: 'Popular',
+                },
+                {
+                  icon: (
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      style={{ color: '#f97316' }}
+                    >
+                      <path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z" />
+                    </svg>
+                  ),
+                  label: 'Trending',
+                },
+                { icon: 'star', label: '4.9' },
+                { label: '$$$' },
+              ],
+            },
+          ]}
+          defaultCenter={[37.7749, -122.4194]}
+          defaultZoom={13}
+          height={CHATGPT_APP_HEIGHT}
+        />
 
         <div
           style={{
@@ -326,6 +307,103 @@ const CompactMapDoc: FC = () => {
   { label: '$$$' }                                 // No icon
 ]`}
           </pre>
+        </div>
+      </section>
+
+      <section style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        <header>
+          <h2 style={{ marginBottom: '8px' }}>Marker Variants</h2>
+          <p style={{ margin: 0, color: 'var(--ai-color-text-secondary)' }}>
+            Choose between traditional pin markers or minimal dot markers based on your design needs.
+          </p>
+        </header>
+
+        <div
+          style={{
+            display: 'grid',
+            gap: '24px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          }}
+        >
+          <div>
+            <h3
+              style={{
+                marginBottom: '12px',
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
+              Pin Markers (default)
+            </h3>
+            <CompactMap
+              locations={locations}
+              selectedId={selectedId}
+              onLocationSelect={setSelectedId}
+              markerVariant="pin"
+              height={CHATGPT_APP_HEIGHT}
+            />
+          </div>
+
+          <div>
+            <h3
+              style={{
+                marginBottom: '12px',
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
+              Dot Markers
+            </h3>
+            <CompactMap
+              locations={locations}
+              selectedId={selectedId}
+              onLocationSelect={setSelectedId}
+              markerVariant="dot"
+              height={CHATGPT_APP_HEIGHT}
+            />
+          </div>
+
+          <div>
+            <h3
+              style={{
+                marginBottom: '12px',
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
+              Hybrid Markers (recommended)
+            </h3>
+            <CompactMap
+              locations={locations}
+              selectedId={selectedId}
+              onLocationSelect={setSelectedId}
+              markerVariant="hybrid"
+              height={CHATGPT_APP_HEIGHT}
+            />
+          </div>
+        </div>
+
+        <div
+          style={{
+            background: 'var(--ai-color-bg-secondary)',
+            borderRadius: '12px',
+            padding: '16px',
+            maxWidth: CHATGPT_APP_WIDTH,
+            fontSize: '13px',
+          }}
+        >
+          <p style={{ margin: '0 0 12px 0' }}>
+            <strong>Pin markers:</strong> Traditional location pins (29×43px) — best for clear
+            destination marking and sparse layouts.
+          </p>
+          <p style={{ margin: '0 0 12px 0' }}>
+            <strong>Dot markers:</strong> Minimal circular dots (16×16px) — ideal for dense clusters,
+            modern minimalist UIs, or data visualization contexts.
+          </p>
+          <p style={{ margin: 0 }}>
+            <strong>Hybrid markers:</strong> Combines both — dots for unselected (reduce clutter),
+            pin for selected (prominent focus). Best balance for most use cases.
+          </p>
         </div>
       </section>
 
@@ -372,6 +450,11 @@ const CompactMapDoc: FC = () => {
               name: 'selectedMarkerColor',
               description:
                 'Marker colour for selected state. Default: var(--ai-color-accent-blue).',
+            },
+            {
+              name: 'markerVariant',
+              description:
+                'Marker style variant: "pin" (pins for all), "dot" (dots for all), or "hybrid" (dots for unselected, pin for selected). Default: "pin".',
             },
             {
               name: 'height',

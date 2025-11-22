@@ -54,6 +54,15 @@ export interface MapViewProps {
   selectedMarkerColor?: string;
 
   /**
+   * Marker style variant.
+   * - 'pin': Traditional location pin markers for all states (29×43px)
+   * - 'dot': Simple circular dot markers for all states (16×16px)
+   * - 'hybrid': Dots for non-selected, pin for selected (recommended for dense layouts)
+   * @default 'pin'
+   */
+  markerVariant?: 'pin' | 'dot' | 'hybrid';
+
+  /**
    * Additional class name for the container.
    */
   className?: string;

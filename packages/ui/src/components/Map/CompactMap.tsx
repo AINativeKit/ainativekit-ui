@@ -64,6 +64,7 @@ export const CompactMap: React.FC<CompactMapProps> = ({
   defaultZoom,
   markerColor,
   selectedMarkerColor,
+  markerVariant,
   isInspectorOpen,
   loading = false,
   error = false,
@@ -95,6 +96,7 @@ export const CompactMap: React.FC<CompactMapProps> = ({
           defaultZoom={defaultZoom}
           markerColor={markerColor}
           selectedMarkerColor={selectedMarkerColor}
+          markerVariant={markerVariant}
           isInspectorOpen={isInspectorOpen}
           loading={loading}
           error={error}

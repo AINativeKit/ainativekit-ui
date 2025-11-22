@@ -144,19 +144,19 @@ const PinchZoomHandler: React.FC = () => {
 const DEFAULT_TILE_URL =
   'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png';
 
-const DEFAULT_ICON_SIZE: [number, number] = [29, 43];
-const DEFAULT_ICON_ANCHOR: [number, number] = [14.5, 43];
-const DEFAULT_POPUP_ANCHOR: [number, number] = [0, -42]; /* Adjusted for custom popup styling */
+const DEFAULT_ICON_SIZE: [number, number] = [28, 40];
+const DEFAULT_ICON_ANCHOR: [number, number] = [14, 40];
+const DEFAULT_POPUP_ANCHOR: [number, number] = [0, -40]; /* Adjusted for custom popup styling */
 
 function createMarkerIcon(color: string, isSelected: boolean) {
   const innerCircle = isSelected
-    ? `<circle cx="14.5" cy="13.5" r="4" fill="${color}" />`
-    : `<circle cx="14.5" cy="13.5" r="3.5" fill="var(--ai-color-border-default)" />`; /* Use token for subtle background */
+    ? `<circle cx="14" cy="13.5" r="4" fill="${color}" />`
+    : `<circle cx="14" cy="13.5" r="3.5" fill="var(--ai-color-border-default)" />`; /* Use token for subtle background */
 
   const svg = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="29" height="43" viewBox="0 0 29 43">
-      <path fill="${color}" stroke="var(--ai-color-bg-primary)" stroke-width="2" d="M14.5 1C7.596 1 2 6.596 2 13.5c0 8.437 12.5 28.5 12.5 28.5S27 21.937 27 13.5C27 6.596 21.404 1 14.5 1z" />
-      <circle cx="14.5" cy="13.5" r="6" fill="#ffffff" />
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="40" viewBox="0 0 28 40">
+      <path fill="${color}" stroke="var(--ai-color-bg-primary)" stroke-width="2" d="M14 1C7.373 1 2 6.373 2 13c0 8 12 26 12 26S26 21 26 13c0-6.627-5.373-12-12-12z" />
+      <circle cx="14" cy="13.5" r="7" fill="#ffffff" />
       ${innerCircle}
     </svg>
   `;
@@ -172,6 +172,36 @@ function createMarkerIcon(color: string, isSelected: boolean) {
   });
 }
 
+/**
+ * Create dot marker icon (16x16px with 2px border)
+ * Uses CSS variables for automatic dark mode support
+ */
+function createDotMarkerIcon(color: string, isSelected: boolean): L.DivIcon {
+  const size = 16;
+
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+      <circle
+        cx="8" cy="8" r="7"
+        fill="${color}"
+        stroke="var(--ai-color-bg-primary)"
+        stroke-width="2"
+      />
+      ${isSelected ? '<circle cx="8" cy="8" r="3" fill="var(--ai-color-bg-primary)" />' : ''}
+    </svg>
+  `;
+
+  const className = isSelected ? `${styles.marker} ${styles.selectedMarker}`.trim() : styles.marker;
+
+  return L.divIcon({
+    html: svg,
+    iconSize: [size, size],
+    iconAnchor: [size / 2, size / 2],
+    popupAnchor: [0, -size / 2],
+    className,
+  });
+}
+
 export const MapContent: React.FC<MapViewProps> = ({
   locations,
   selectedId,
@@ -182,6 +212,7 @@ export const MapContent: React.FC<MapViewProps> = ({
   defaultZoom = 12,
   markerColor = 'var(--ai-color-accent-blue)',
   selectedMarkerColor = 'var(--ai-color-accent-blue, #0285ff)',
+  markerVariant = 'pin',
   className,
   style,
   isInspectorOpen,
@@ -193,14 +224,26 @@ export const MapContent: React.FC<MapViewProps> = ({
 
   const markerRefs = useRef<Map<string, L.Marker>>(new Map());
 
-  const defaultIcon = useMemo(() => createMarkerIcon(markerColor, false), [markerColor]);
+  const defaultIcon = useMemo(
+    () =>
+      markerVariant === 'dot'
+        ? createDotMarkerIcon(markerColor, false)
+        : createMarkerIcon(markerColor, false),
+    [markerColor, markerVariant]
+  );
   const activeIcon = useMemo(
-    () => createMarkerIcon(selectedMarkerColor, false),
-    [selectedMarkerColor]
+    () =>
+      markerVariant === 'dot'
+        ? createDotMarkerIcon(selectedMarkerColor, false)
+        : createMarkerIcon(selectedMarkerColor, false),
+    [selectedMarkerColor, markerVariant]
   );
   const selectedIcon = useMemo(
-    () => createMarkerIcon(selectedMarkerColor, true),
-    [selectedMarkerColor]
+    () =>
+      markerVariant === 'dot'
+        ? createDotMarkerIcon(selectedMarkerColor, true)
+        : createMarkerIcon(selectedMarkerColor, true),
+    [selectedMarkerColor, markerVariant]
   );
 
   useEffect(() => {
@@ -250,9 +293,11 @@ export const MapContent: React.FC<MapViewProps> = ({
           const isActive = location.id === activeId;
           let icon = defaultIcon;
           if (isSelected) {
-            icon = selectedIcon;
+            icon = markerVariant === 'hybrid' ? createMarkerIcon(selectedMarkerColor, true) : selectedIcon;
           } else if (isActive) {
-            icon = activeIcon;
+            icon = markerVariant === 'hybrid' ? createDotMarkerIcon(selectedMarkerColor, false) : activeIcon;
+          } else if (markerVariant === 'hybrid') {
+            icon = createDotMarkerIcon(markerColor, false);
           }
 
           const eventHandlers: Partial<L.LeafletEventHandlerFnMap> = {};
@@ -280,13 +325,6 @@ export const MapContent: React.FC<MapViewProps> = ({
             >
               <Popup>
                 <article className={styles.popup}>
-                  {location.thumbnail && (
-                    <img
-                      src={location.thumbnail}
-                      alt={location.name}
-                      className={styles.popupThumbnail}
-                    />
-                  )}
                   <div className={styles.popupContent}>
                     <h3 className={styles.popupTitle}>{location.name}</h3>
                     {location.subtitle && (
