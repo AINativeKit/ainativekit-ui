@@ -786,7 +786,7 @@ describe('SummaryCard', () => {
         />
       );
 
-      const overlay = container.querySelector('[class*="topOverlay"]');
+      const overlay = container.querySelector('[class*="overlay"]');
       expect(overlay).toHaveStyle({ background: 'rgba(0, 0, 0, 0.6)' });
     });
 
@@ -802,7 +802,7 @@ describe('SummaryCard', () => {
         />
       );
 
-      const overlay = container.querySelector('[class*="topOverlay"]');
+      const overlay = container.querySelector('[class*="overlay"]');
       expect(overlay).toHaveStyle({ background: 'rgba(255, 0, 0, 0.8)' });
     });
 
@@ -818,7 +818,7 @@ describe('SummaryCard', () => {
         />
       );
 
-      const overlay = container.querySelector('[class*="topOverlay"]');
+      const overlay = container.querySelector('[class*="overlay"]');
       expect(overlay).toHaveStyle({ justifyContent: 'flex-end' });
     });
 
@@ -834,7 +834,7 @@ describe('SummaryCard', () => {
         />
       );
 
-      const overlay = container.querySelector('[class*="topOverlay"]');
+      const overlay = container.querySelector('[class*="overlay"]');
       expect(overlay).toHaveStyle({ height: '60px' });
     });
 
@@ -850,7 +850,7 @@ describe('SummaryCard', () => {
         />
       );
 
-      const overlay = container.querySelector('[class*="topOverlay"]');
+      const overlay = container.querySelector('[class*="overlay"]');
       expect(overlay).toHaveStyle({ padding: '16px' });
     });
 
