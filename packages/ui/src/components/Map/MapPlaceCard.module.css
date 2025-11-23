@@ -1,5 +1,5 @@
-/* LocationCard Container */
-.locationCard {
+/* MapPlaceCard Container */
+.mapPlaceCard {
   position: relative;
   display: flex;
   align-items: center;
@@ -12,26 +12,50 @@
   user-select: none;
   transition:
     background-color 0.2s ease,
-    box-shadow 0.2s ease;
+    box-shadow 0.2s ease,
+    border-radius 0.2s ease;
   min-width: 280px;
   max-width: 330px;
 }
 
-.locationCard:hover {
+.mapPlaceCard:hover {
   background-color: var(--ai-color-bg-tertiary);
 }
 
-.locationCard:focus-visible {
+.mapPlaceCard:focus-visible {
   outline: 2px solid var(--ai-color-brand-primary);
   outline-offset: 2px;
 }
 
-/* Selected State */
+/* Selected State - Carousel variant */
 .selected,
-.locationCard.selected {
+.mapPlaceCard.selected {
   background-color: var(--ai-color-bg-tertiary);
   border-color: var(--ai-color-brand-primary);
   border-width: 2px;
+}
+
+/* List Variant */
+.variantList {
+  /* Base class for variant detection - actual styling in compound selectors */
+  position: relative;
+}
+
+/* List Variant - Remove border, rectangle by default, rounded on hover/selected */
+.mapPlaceCard.variantList {
+  border: none;
+  border-radius: 0;
+}
+
+.mapPlaceCard.variantList.selected {
+  background-color: var(--ai-color-bg-secondary);
+  border: none;
+  border-radius: var(--ai-radius-xl);
+}
+
+.mapPlaceCard.variantList:hover {
+  background-color: var(--ai-color-bg-tertiary);
+  border-radius: var(--ai-radius-xl);
 }
 
 /* Loading State */

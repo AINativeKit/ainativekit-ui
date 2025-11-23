@@ -1,6 +1,7 @@
 declare const styles: {
-  readonly locationCard: string;
+  readonly mapPlaceCard: string;
   readonly selected: string;
+  readonly variantList: string;
   readonly loadingCard: string;
   readonly errorCard: string;
   readonly errorContainer: string;

@@ -7,9 +7,11 @@ import { Chip, type ChipProps } from '../Chip';
 import { Features } from '../Feature';
 import { cn } from '../../utils/cn';
 import type { Feature } from './types';
-import styles from './LocationCard.module.css';
+import styles from './MapPlaceCard.module.css';
 
-export interface LocationCardProps {
+export type MapPlaceCardVariant = 'carousel' | 'list';
+
+export interface MapPlaceCardProps {
   /**
    * Thumbnail image URL.
    */
@@ -45,6 +47,14 @@ export interface LocationCardProps {
    * Additional class name.
    */
   className?: string;
+
+  /**
+   * Visual variant for different contexts.
+   * - 'carousel': Subtle selection (border + light background)
+   * - 'list': Prominent selection (highlighted background)
+   * @default 'carousel'
+   */
+  variant?: MapPlaceCardVariant;
 
   // State Management
   /**
@@ -140,7 +150,7 @@ export interface LocationCardProps {
 }
 
 /**
- * LocationCard component - Display location with thumbnail, title, and features.
+ * MapPlaceCard component - Display location with thumbnail, title, and features.
  *
  * Features:
  * - Shows location thumbnail image
@@ -154,7 +164,7 @@ export interface LocationCardProps {
  *
  * @example
  * ```tsx
- * <LocationCard
+ * <MapPlaceCard
  *   image="https://example.com/location.jpg"
  *   title="Central Park"
  *   subtitle="New York, NY"
@@ -169,7 +179,7 @@ export interface LocationCardProps {
  * />
  * ```
  */
-export const LocationCard: React.FC<LocationCardProps> = ({
+export const MapPlaceCard: React.FC<MapPlaceCardProps> = ({
   image,
   title,
   subtitle,
@@ -177,6 +187,7 @@ export const LocationCard: React.FC<LocationCardProps> = ({
   selected = false,
   onClick,
   className,
+  variant = 'carousel',
   loading = false,
   error = false,
   errorTitle = 'Failed to load',
@@ -205,7 +216,7 @@ export const LocationCard: React.FC<LocationCardProps> = ({
   if (showLoading) {
     return (
       <div
-        className={cn(styles.locationCard, styles.loadingCard, className)}
+        className={cn(styles.mapPlaceCard, styles.loadingCard, className)}
         role="status"
         aria-live="polite"
         data-testid={testId}
@@ -223,7 +234,7 @@ export const LocationCard: React.FC<LocationCardProps> = ({
   // Error State
   if (showError) {
     return (
-      <div className={cn(styles.locationCard, styles.errorCard, className)} data-testid={testId}>
+      <div className={cn(styles.mapPlaceCard, styles.errorCard, className)} data-testid={testId}>
         <div className={styles.errorContainer}>
           <ErrorStateDisplay
             state="error"
@@ -241,7 +252,7 @@ export const LocationCard: React.FC<LocationCardProps> = ({
   // Empty State
   if (showEmpty) {
     return (
-      <div className={cn(styles.locationCard, styles.emptyCard, className)} data-testid={testId}>
+      <div className={cn(styles.mapPlaceCard, styles.emptyCard, className)} data-testid={testId}>
         <div className={styles.emptyContainer}>
           <div className={styles.emptyTitle}>{emptyTitle}</div>
           {emptyMessage && <div className={styles.emptyMessage}>{emptyMessage}</div>}
@@ -251,7 +262,12 @@ export const LocationCard: React.FC<LocationCardProps> = ({
   }
 
   // Normal Content
-  const cardClassName = cn(styles.locationCard, selected && styles.selected, className);
+  const cardClassName = cn(
+    styles.mapPlaceCard,
+    variant === 'list' && styles.variantList,
+    selected && styles.selected,
+    className
+  );
 
   return (
     <div
@@ -324,4 +340,4 @@ export const LocationCard: React.FC<LocationCardProps> = ({
   );
 };
 
-LocationCard.displayName = 'LocationCard';
+MapPlaceCard.displayName = 'MapPlaceCard';

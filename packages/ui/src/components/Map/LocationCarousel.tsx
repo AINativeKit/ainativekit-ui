@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import type { EmblaCarouselType } from 'embla-carousel';
 import { Carousel } from '../Carousel';
-import { LocationCard } from './LocationCard';
+import { MapPlaceCard } from './MapPlaceCard';
 import { cn } from '../../utils/cn';
 import type { LocationData } from './types';
 import styles from './LocationCarousel.module.css';
@@ -131,7 +131,7 @@ export const LocationCarousel: React.FC<LocationCarouselProps> = ({
         >
           {Array.from({ length: loadingCardCount }).map((_, i) => (
             <div key={i} className={styles.cardWrapper}>
-              <LocationCard loading />
+              <MapPlaceCard loading />
             </div>
           ))}
         </Carousel>
@@ -196,7 +196,7 @@ export const LocationCarousel: React.FC<LocationCarouselProps> = ({
       >
         {locations.map((location) => (
           <div key={location.id} className={styles.cardWrapper} data-location-id={location.id}>
-            <LocationCard
+            <MapPlaceCard
               image={location.thumbnail}
               title={location.name}
               subtitle={location.subtitle}

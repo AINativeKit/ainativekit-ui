@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Icon } from '../Icon';
-import { Features } from '../Feature';
+import { MapPlaceCard } from './MapPlaceCard';
 import { cn } from '../../utils/cn';
 import type { LocationData } from './types';
 import styles from './MapSidebar.module.css';
@@ -80,31 +80,19 @@ export const MapSidebar: React.FC<MapSidebarProps> = ({
           <Icon name="settings-cog" size={20} className={styles.settingsIcon} />
         </div>
         <div className={styles.list}>
-          {locations.map((location, index) => (
-            <React.Fragment key={location.id}>
-              <button
-                type="button"
-                className={cn(styles.listItem, selectedId === location.id && styles.selected)}
-                data-location-id={location.id}
+          {locations.map((location) => (
+            <div key={location.id} data-location-id={location.id}>
+              <MapPlaceCard
+                image={location.thumbnail}
+                title={location.name}
+                subtitle={location.subtitle || location.description}
+                features={location.features}
+                selected={selectedId === location.id}
                 onClick={() => onSelect(location)}
-              >
-                <img src={location.thumbnail} alt={location.name} className={styles.thumbnail} />
-                <div className={styles.itemContent}>
-                  <div className={styles.itemTitle}>{location.name}</div>
-                  {location.description && (
-                    <div className={styles.itemSubtitle}>{location.description}</div>
-                  )}
-                  {location.features && location.features.length > 0 && (
-                    <Features
-                      items={location.features}
-                      iconSize={12}
-                      className={styles.itemFeatures}
-                    />
-                  )}
-                </div>
-              </button>
-              {index < locations.length - 1 && <div className={styles.divider} />}
-            </React.Fragment>
+                variant="list"
+                className={styles.listItem}
+              />
+            </div>
           ))}
         </div>
       </div>

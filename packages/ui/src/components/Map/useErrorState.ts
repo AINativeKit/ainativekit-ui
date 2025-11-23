@@ -1,6 +1,6 @@
 /**
  * Unified error/empty state management for Map components
- * Eliminates code duplication across FullscreenMap, CompactMap, LocationCard, etc.
+ * Eliminates code duplication across FullscreenMap, CompactMap, MapPlaceCard, etc.
  */
 
 export interface ErrorStateConfig {

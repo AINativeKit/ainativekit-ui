@@ -19,8 +19,8 @@ export type { MapSidebarProps } from './MapSidebar';
 export { MapInspector } from './MapInspector';
 export type { MapInspectorProps } from './MapInspector';
 
-export { LocationCard } from './LocationCard';
-export type { LocationCardProps } from './LocationCard';
+export { MapPlaceCard } from './MapPlaceCard';
+export type { MapPlaceCardProps, MapPlaceCardVariant } from './MapPlaceCard';
 
 export { ErrorStateDisplay } from './ErrorStateDisplay';
 export type { ErrorStateDisplayProps } from './ErrorStateDisplay';

@@ -901,9 +901,9 @@ const handleMapToggle = (fullscreen: boolean) => {
         <header style={{ marginBottom: '16px' }}>
           <h2 style={{ marginBottom: '8px' }}>Related Components</h2>
           <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
-            For detailed <strong>LocationCard</strong> documentation including badges, multi-line
+            For detailed <strong>MapPlaceCard</strong> documentation including badges, multi-line
             text, loading/error/empty states, and image controls, see the{' '}
-            <strong>LocationCard</strong> story in the sidebar.
+            <strong>MapPlaceCard</strong> story in the sidebar.
           </p>
         </header>
       </section>

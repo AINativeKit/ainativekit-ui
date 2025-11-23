@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { LocationCard } from './LocationCard';
+import { MapPlaceCard } from './MapPlaceCard';
 
-const meta: Meta<typeof LocationCard> = {
+const meta: Meta<typeof MapPlaceCard> = {
   title: 'Composed Components/Cards/Location Cards',
-  component: LocationCard,
+  component: MapPlaceCard,
   parameters: {
     layout: 'padded',
   },
@@ -39,13 +39,13 @@ const SAMPLE_LOCATIONS = [
 ];
 
 // Main unified showcase component
-const LocationCardShowcase: React.FC = () => {
+const MapPlaceCardShowcase: React.FC = () => {
   const [selectedId, setSelectedId] = useState<string>('1');
   const [retryCount, setRetryCount] = useState(0);
 
   return (
     <div style={{ padding: '24px' }}>
-      <h1 style={{ marginBottom: '32px' }}>LocationCard System</h1>
+      <h1 style={{ marginBottom: '32px' }}>MapPlaceCard System</h1>
 
       {/* Overview */}
       <section style={{ marginBottom: '64px' }}>
@@ -65,7 +65,7 @@ const LocationCardShowcase: React.FC = () => {
       {/* Variants Gallery */}
       <section style={{ marginBottom: '64px' }}>
         <header style={{ marginBottom: '24px' }}>
-          <h2 style={{ marginBottom: '8px' }}>LocationCard Variants</h2>
+          <h2 style={{ marginBottom: '8px' }}>MapPlaceCard Variants</h2>
           <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
             Different content configurations and states
           </p>
@@ -76,17 +76,17 @@ const LocationCardShowcase: React.FC = () => {
             Standard Locations
           </h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '600px' }}>
-            <LocationCard
+            <MapPlaceCard
               {...SAMPLE_LOCATIONS[0]}
               selected={selectedId === '1'}
               onClick={() => setSelectedId('1')}
             />
-            <LocationCard
+            <MapPlaceCard
               {...SAMPLE_LOCATIONS[1]}
               selected={selectedId === '2'}
               onClick={() => setSelectedId('2')}
             />
-            <LocationCard
+            <MapPlaceCard
               {...SAMPLE_LOCATIONS[2]}
               selected={selectedId === '3'}
               onClick={() => setSelectedId('3')}
@@ -99,12 +99,12 @@ const LocationCardShowcase: React.FC = () => {
             Minimal Content
           </h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '600px' }}>
-            <LocationCard
+            <MapPlaceCard
               image={SAMPLE_LOCATIONS[0].image}
               title="Simple Location"
               onClick={() => console.log('Clicked')}
             />
-            <LocationCard
+            <MapPlaceCard
               image={SAMPLE_LOCATIONS[1].image}
               title="With Subtitle Only"
               subtitle="Description text"
@@ -118,9 +118,9 @@ const LocationCardShowcase: React.FC = () => {
             With Badges & Chips
           </h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '600px' }}>
-            <LocationCard {...SAMPLE_LOCATIONS[0]} badge="New" badgeVariant="success" />
-            <LocationCard {...SAMPLE_LOCATIONS[1]} badge="Popular" badgeVariant="filled" />
-            <LocationCard {...SAMPLE_LOCATIONS[2]} badge={5} badgeVariant="default" />
+            <MapPlaceCard {...SAMPLE_LOCATIONS[0]} badge="New" badgeVariant="success" />
+            <MapPlaceCard {...SAMPLE_LOCATIONS[1]} badge="Popular" badgeVariant="filled" />
+            <MapPlaceCard {...SAMPLE_LOCATIONS[2]} badge={5} badgeVariant="default" />
           </div>
         </div>
       </section>
@@ -146,7 +146,7 @@ const LocationCardShowcase: React.FC = () => {
             >
               Loading
             </h3>
-            <LocationCard
+            <MapPlaceCard
               image={SAMPLE_LOCATIONS[0].image}
               title="Loading Location"
               loading={true}
@@ -164,7 +164,7 @@ const LocationCardShowcase: React.FC = () => {
             >
               Error (with retry)
             </h3>
-            <LocationCard
+            <MapPlaceCard
               image={SAMPLE_LOCATIONS[0].image}
               title="Error Location"
               error={true}
@@ -188,7 +188,7 @@ const LocationCardShowcase: React.FC = () => {
             >
               Empty
             </h3>
-            <LocationCard
+            <MapPlaceCard
               image=""
               title=""
               emptyTitle="No location selected"
@@ -218,7 +218,7 @@ const LocationCardShowcase: React.FC = () => {
           <h3 style={{ fontSize: '18px', marginBottom: '16px' }}>Nearby Locations</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {SAMPLE_LOCATIONS.map((location, index) => (
-              <LocationCard
+              <MapPlaceCard
                 key={index}
                 {...location}
                 selected={selectedId === `real-${index}`}
@@ -307,7 +307,7 @@ const LocationCardShowcase: React.FC = () => {
         <header style={{ marginBottom: '24px' }}>
           <h2 style={{ marginBottom: '8px' }}>Props Reference</h2>
           <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
-            Complete API documentation for LocationCard
+            Complete API documentation for MapPlaceCard
           </p>
         </header>
 
@@ -528,6 +528,6 @@ const LocationCardShowcase: React.FC = () => {
   );
 };
 
-export const LocationCards: StoryObj = {
-  render: () => <LocationCardShowcase />,
+export const MapPlaceCards: StoryObj = {
+  render: () => <MapPlaceCardShowcase />,
 };
