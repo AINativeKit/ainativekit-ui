@@ -5,7 +5,8 @@ import 'leaflet/dist/leaflet.css';
 import type { MapViewProps } from './MapView';
 import type { LocationData } from './types';
 import { Features } from '../Feature/Features';
-import { useThemeContext } from '../../providers/ThemeProvider';
+import { ThemeContext } from '../../providers/ThemeProvider';
+import type { ThemeContextValue } from '../../providers/ThemeProvider';
 import styles from './Map.module.css';
 
 // Component to handle map flying to selected location
@@ -223,13 +224,15 @@ export const MapContent: React.FC<MapViewProps> = ({
 
   const markerRefs = useRef<Map<string, L.Marker>>(new Map());
 
-  // Get resolved brand color from theme
-  const { brandColors, theme } = useThemeContext();
+  // Get resolved brand color from theme (optional - graceful fallback)
+  const themeContext: ThemeContextValue | null = React.useContext(ThemeContext);
+  const brandColors = themeContext?.brandColors;
+  const theme = themeContext?.theme || 'light';
   const primaryColor = brandColors?.primary;
   const MARKER_COLOR =
     typeof primaryColor === 'string'
       ? primaryColor
-      : primaryColor?.[theme] || primaryColor?.light || '#e4002b';
+      : primaryColor?.[theme] || primaryColor?.light || 'var(--ai-color-brand-primary)';
 
   const defaultIcon = useMemo(
     () =>
