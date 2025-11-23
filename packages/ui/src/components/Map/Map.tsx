@@ -57,8 +57,6 @@ export const Map: React.FC<MapProps> = ({
   onLocationActive,
   defaultCenter,
   defaultZoom,
-  markerColor,
-  selectedMarkerColor,
   markerVariant,
   isInspectorOpen,
   loading = false,
@@ -115,8 +113,6 @@ export const Map: React.FC<MapProps> = ({
     onLocationActive,
     defaultCenter,
     defaultZoom,
-    markerColor,
-    selectedMarkerColor,
     markerVariant,
     isInspectorOpen,
     loading,
@@ -140,8 +136,6 @@ export const Map: React.FC<MapProps> = ({
           onLocationActive={onLocationActive}
           defaultCenter={defaultCenter}
           defaultZoom={defaultZoom}
-          markerColor={markerColor}
-          selectedMarkerColor={selectedMarkerColor}
           markerVariant={markerVariant}
           isInspectorOpen={isInspectorOpen}
           loading={loading}

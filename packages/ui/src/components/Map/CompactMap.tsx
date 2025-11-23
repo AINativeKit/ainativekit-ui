@@ -62,8 +62,6 @@ export const CompactMap: React.FC<CompactMapProps> = ({
   onLocationActive,
   defaultCenter,
   defaultZoom,
-  markerColor,
-  selectedMarkerColor,
   markerVariant,
   isInspectorOpen,
   loading = false,
@@ -94,8 +92,6 @@ export const CompactMap: React.FC<CompactMapProps> = ({
           onLocationActive={onLocationActive}
           defaultCenter={defaultCenter}
           defaultZoom={defaultZoom}
-          markerColor={markerColor}
-          selectedMarkerColor={selectedMarkerColor}
           markerVariant={markerVariant}
           isInspectorOpen={isInspectorOpen}
           loading={loading}

@@ -42,18 +42,6 @@ export interface MapViewProps {
   defaultZoom?: number;
 
   /**
-   * Color for default markers.
-   * @default 'var(--ai-color-accent-blue)'
-   */
-  markerColor?: string;
-
-  /**
-   * Color for selected marker.
-   * @default 'var(--ai-color-accent-blue)'
-   */
-  selectedMarkerColor?: string;
-
-  /**
    * Marker style variant.
    * - 'pin': Traditional location pin markers for all states (29×43px)
    * - 'dot': Simple circular dot markers for all states (16×16px)

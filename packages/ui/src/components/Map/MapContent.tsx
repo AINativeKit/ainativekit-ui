@@ -210,8 +210,6 @@ export const MapContent: React.FC<MapViewProps> = ({
   onLocationActive,
   defaultCenter = [37.7749, -122.4194],
   defaultZoom = 12,
-  markerColor = 'var(--ai-color-accent-blue)',
-  selectedMarkerColor = 'var(--ai-color-accent-blue, #0285ff)',
   markerVariant = 'pin',
   className,
   style,
@@ -224,26 +222,29 @@ export const MapContent: React.FC<MapViewProps> = ({
 
   const markerRefs = useRef<Map<string, L.Marker>>(new Map());
 
+  // Marker color from theme (centralized)
+  const MARKER_COLOR = 'var(--ai-color-brand-primary)';
+
   const defaultIcon = useMemo(
     () =>
       markerVariant === 'dot'
-        ? createDotMarkerIcon(markerColor, false)
-        : createMarkerIcon(markerColor, false),
-    [markerColor, markerVariant]
+        ? createDotMarkerIcon(MARKER_COLOR, false)
+        : createMarkerIcon(MARKER_COLOR, false),
+    [markerVariant]
   );
   const activeIcon = useMemo(
     () =>
       markerVariant === 'dot'
-        ? createDotMarkerIcon(selectedMarkerColor, false)
-        : createMarkerIcon(selectedMarkerColor, false),
-    [selectedMarkerColor, markerVariant]
+        ? createDotMarkerIcon(MARKER_COLOR, false)
+        : createMarkerIcon(MARKER_COLOR, false),
+    [markerVariant]
   );
   const selectedIcon = useMemo(
     () =>
       markerVariant === 'dot'
-        ? createDotMarkerIcon(selectedMarkerColor, true)
-        : createMarkerIcon(selectedMarkerColor, true),
-    [selectedMarkerColor, markerVariant]
+        ? createDotMarkerIcon(MARKER_COLOR, true)
+        : createMarkerIcon(MARKER_COLOR, true),
+    [markerVariant]
   );
 
   useEffect(() => {
@@ -293,11 +294,11 @@ export const MapContent: React.FC<MapViewProps> = ({
           const isActive = location.id === activeId;
           let icon = defaultIcon;
           if (isSelected) {
-            icon = markerVariant === 'hybrid' ? createMarkerIcon(selectedMarkerColor, true) : selectedIcon;
+            icon = markerVariant === 'hybrid' ? createMarkerIcon(MARKER_COLOR, true) : selectedIcon;
           } else if (isActive) {
-            icon = markerVariant === 'hybrid' ? createDotMarkerIcon(selectedMarkerColor, false) : activeIcon;
+            icon = markerVariant === 'hybrid' ? createDotMarkerIcon(MARKER_COLOR, false) : activeIcon;
           } else if (markerVariant === 'hybrid') {
-            icon = createDotMarkerIcon(markerColor, false);
+            icon = createDotMarkerIcon(MARKER_COLOR, false);
           }
 
           const eventHandlers: Partial<L.LeafletEventHandlerFnMap> = {};

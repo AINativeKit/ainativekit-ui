@@ -446,18 +446,9 @@ const CompactMapDoc: FC = () => {
               description: 'Default zoom level. Default: 12.',
             },
             {
-              name: 'markerColor',
-              description: 'Marker colour for default state. Default: var(--ai-color-accent-blue).',
-            },
-            {
-              name: 'selectedMarkerColor',
-              description:
-                'Marker colour for selected state. Default: var(--ai-color-accent-blue).',
-            },
-            {
               name: 'markerVariant',
               description:
-                'Marker style variant: "pin" (pins for all), "dot" (dots for all), or "hybrid" (dots for unselected, pin for selected). Default: "pin".',
+                'Marker style variant: "pin" (pins for all), "dot" (dots for all), or "hybrid" (dots for unselected, pin for selected). Uses theme brand color. Default: "pin".',
             },
             {
               name: 'height',
