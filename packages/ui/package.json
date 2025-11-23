@@ -1,6 +1,6 @@
 {
   "name": "@ainativekit/ui",
-  "version": "0.13.0",
+  "version": "0.14.0",
   "description": "React UI component library for ChatGPT Apps SDK - Production-ready components, hooks, and design system",
   "type": "module",
   "main": "./dist/index.cjs",
