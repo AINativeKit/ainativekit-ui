@@ -1,5 +1,6 @@
 import type { Decorator, Preview } from '@storybook/react';
 import React from 'react';
+import { ThemeProvider } from '../src/providers/ThemeProvider';
 import '../src/tokens/tokens.css';
 
 const reactWithUse = React as unknown as { use?: typeof React.useContext };
@@ -7,44 +8,13 @@ if (typeof reactWithUse.use !== 'function') {
   reactWithUse.use = React.useContext;
 }
 
-const ThemeWrapper: React.FC<{ theme: 'light' | 'dark'; children: React.ReactNode }> = ({
-  theme,
-  children,
-}) => {
-  React.useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    document.body.style.background = 'var(--ai-color-bg-primary)';
-    document.body.style.color = 'var(--ai-color-text-primary)';
-    document.body.style.fontFamily = 'var(--ai-font-family)';
-
-    return () => {
-      document.body.style.background = '';
-      document.body.style.color = '';
-      document.body.style.fontFamily = '';
-    };
-  }, [theme]);
-
-  return (
-    <div
-      style={{
-        background: 'var(--ai-color-bg-primary)',
-        color: 'var(--ai-color-text-primary)',
-        minHeight: '100vh',
-        transition: 'background 0.2s ease, color 0.2s ease',
-      }}
-    >
-      {children}
-    </div>
-  );
-};
-
 const withTheme: Decorator = (Story, context) => {
   const theme = (context.globals.theme as 'light' | 'dark') ?? 'light';
 
   return (
-    <ThemeWrapper theme={theme}>
+    <ThemeProvider defaultTheme={theme} brandColors={{ primary: '#0285ff' }}>
       <Story />
-    </ThemeWrapper>
+    </ThemeProvider>
   );
 };
 

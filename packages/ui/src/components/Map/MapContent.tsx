@@ -5,6 +5,7 @@ import 'leaflet/dist/leaflet.css';
 import type { MapViewProps } from './MapView';
 import type { LocationData } from './types';
 import { Features } from '../Feature/Features';
+import { useThemeContext } from '../../providers/ThemeProvider';
 import styles from './Map.module.css';
 
 // Component to handle map flying to selected location
@@ -222,29 +223,34 @@ export const MapContent: React.FC<MapViewProps> = ({
 
   const markerRefs = useRef<Map<string, L.Marker>>(new Map());
 
-  // Marker color from theme (centralized)
-  const MARKER_COLOR = 'var(--ai-color-brand-primary)';
+  // Get resolved brand color from theme
+  const { brandColors, theme } = useThemeContext();
+  const primaryColor = brandColors?.primary;
+  const MARKER_COLOR =
+    typeof primaryColor === 'string'
+      ? primaryColor
+      : primaryColor?.[theme] || primaryColor?.light || '#e4002b';
 
   const defaultIcon = useMemo(
     () =>
       markerVariant === 'dot'
         ? createDotMarkerIcon(MARKER_COLOR, false)
         : createMarkerIcon(MARKER_COLOR, false),
-    [markerVariant]
+    [markerVariant, MARKER_COLOR]
   );
   const activeIcon = useMemo(
     () =>
       markerVariant === 'dot'
         ? createDotMarkerIcon(MARKER_COLOR, false)
         : createMarkerIcon(MARKER_COLOR, false),
-    [markerVariant]
+    [markerVariant, MARKER_COLOR]
   );
   const selectedIcon = useMemo(
     () =>
       markerVariant === 'dot'
         ? createDotMarkerIcon(MARKER_COLOR, true)
         : createMarkerIcon(MARKER_COLOR, true),
-    [markerVariant]
+    [markerVariant, MARKER_COLOR]
   );
 
   useEffect(() => {
@@ -271,6 +277,27 @@ export const MapContent: React.FC<MapViewProps> = ({
       }
     }
   }, [selectedId]);
+
+  // Update marker icons when selection changes
+  useEffect(() => {
+    markerRefs.current.forEach((marker, locationId) => {
+      const isSelected = locationId === selectedId;
+      const isActive = locationId === activeId;
+
+      let icon;
+      if (isSelected) {
+        icon = markerVariant === 'hybrid' ? createMarkerIcon(MARKER_COLOR, true) : selectedIcon;
+      } else if (isActive) {
+        icon = markerVariant === 'hybrid' ? createDotMarkerIcon(MARKER_COLOR, false) : activeIcon;
+      } else if (markerVariant === 'hybrid') {
+        icon = createDotMarkerIcon(MARKER_COLOR, false);
+      } else {
+        icon = defaultIcon;
+      }
+
+      marker.setIcon(icon);
+    });
+  }, [selectedId, activeId, markerVariant, defaultIcon, activeIcon, selectedIcon, MARKER_COLOR]);
 
   return (
     <div className={containerClassName} style={style}>
