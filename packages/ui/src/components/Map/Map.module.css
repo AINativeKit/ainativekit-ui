@@ -45,13 +45,14 @@
   content: '';
   position: absolute;
   left: 50%;
-  bottom: -6px;
+  bottom: -8px;
   width: 14px;
   height: 14px;
   background: var(--ai-color-bg-primary);
   transform: translateX(-50%) rotate(45deg);
-  border-radius: 3px;
-  border: 1px solid var(--ai-color-border-light);
+  border-radius: 4px;
+  border-bottom: 1px solid var(--ai-color-border-light);
+  border-right: 1px solid var(--ai-color-border-light);
 }
 
 .popupTitle {
