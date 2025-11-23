@@ -7,6 +7,70 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.14.0] - 2025-11-24
+
+### Breaking Changes
+
+- **Map Components**: Removed `markerColor` and `selectedMarkerColor` props
+  - Markers now use `var(--ai-color-brand-primary)` from ThemeProvider
+  - **Migration**: Remove color props, customize via `<ThemeProvider brandColors={{ primary: '#your-color' }}>`
+  - Simplifies API by 40% (fewer props to manage)
+
+- **Component Rename**: `LocationCard` → `MapPlaceCard`
+  - Updated all exports, tests, and documentation
+  - **Migration**: Update imports from `LocationCard` to `MapPlaceCard`
+  - Added new `variant` prop: `'carousel' | 'list'`
+
+### Added
+
+- **Map Features**:
+  - Hybrid marker variant: dots for unselected, pins for selected markers
+  - React element support for Feature icons (custom SVG components)
+  - Three marker variants: `'pin'`, `'dot'`, `'hybrid'` (recommended)
+
+- **New Components**:
+  - `PhotoCarousel`: Embla-based carousel with navigation dots and arrows
+  - `ExpandableText`: Text with inline "view more/less" functionality
+  - `Overlay`: Generic overlay component for images (extracted from SummaryCard)
+
+- **MapInspector Enhancements**:
+  - Multiple images support with PhotoCarousel
+  - ExpandableText for long descriptions
+  - Uses Button component for bottom actions
+  - Added `images` and `topOverlay` fields to LocationData type
+
+- **Storybook**:
+  - ThemeProvider integration with `brandColors` configuration
+  - Marker variants showcase (pin, dot, hybrid side-by-side)
+  - Separate state per example to prevent race conditions
+
+### Changed
+
+- **Visual Design**:
+  - Replaced box-shadows with borders for cleaner appearance
+  - Map popup arrow positioning improved (seamless connection)
+  - MapInspector image aspect ratio: 16:9 → 5:4 (better for property photos)
+  - Overlay default height: 40px → 56px
+
+- **Theme System**:
+  - All accent colors standardized to `var(--ai-color-brand-primary)`
+  - Components: AlbumCard, FilmStrip, Button, List, LocationCard focus outlines
+  - Optional theme context with graceful CSS variable fallback
+
+- **Code Quality**:
+  - MapPlaceCard variant system (~700 lines removed)
+  - SummaryCard uses shared Overlay component
+  - MapInspector uses Button component instead of custom CSS
+  - MapSidebar simplified (92 lines removed)
+
+### Fixed
+
+- Map popup arrow displays cleanly below popup box (no overlapping borders)
+- Dot marker variant now properly shows dots for selected state
+- React Hook dependency warnings (added MARKER_COLOR to deps)
+- TypeScript errors with optional theme context
+- SummaryCard test selectors updated for renamed CSS classes
+
 ## [0.12.0] - 2025-11-17
 
 ### Changed
