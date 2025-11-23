@@ -200,7 +200,7 @@
   letter-spacing: var(--ai-letter-spacing-button);
   border-radius: 22px;
   border: none;
-  background-color: var(--ai-color-accent-blue);
+  background-color: var(--ai-color-brand-primary);
   color: #ffffff; /* White text on colored background */
 
   cursor: pointer;

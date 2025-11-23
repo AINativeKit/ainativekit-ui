@@ -46,7 +46,7 @@
 
 /* ========== PRIMARY VARIANT ========== */
 .buttonPrimary {
-  background-color: var(--ai-color-accent-blue);
+  background-color: var(--ai-color-brand-primary);
   color: #ffffff; /* White text on colored background */
   border: none;
 }
@@ -174,24 +174,7 @@
 /* These classes work with the primary variant to provide semantic coloring */
 
 /* Primary Color (default) */
-.buttonPrimary.colorPrimary {
-  background-color: var(--ai-color-brand-primary);
-  color: var(--ai-color-brand-on-primary);
-}
-
-.buttonPrimary.colorPrimary:not(:disabled):hover {
-  background-color: var(--ai-color-brand-primary-hover);
-}
-
-.buttonPrimary.colorPrimary:not(:disabled):active {
-  background-color: var(--ai-color-brand-primary-active);
-}
-
-.buttonPrimary.colorPrimary .leftIcon,
-.buttonPrimary.colorPrimary .rightIcon,
-.buttonPrimary.colorPrimary .iconOnlyIcon {
-  color: var(--ai-color-brand-on-primary);
-}
+/* Removed .buttonPrimary.colorPrimary - redundant, base .buttonPrimary now uses brand-primary */
 
 /* Success Color */
 .buttonPrimary.colorSuccess {

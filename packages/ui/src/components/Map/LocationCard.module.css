@@ -22,7 +22,7 @@
 }
 
 .locationCard:focus-visible {
-  outline: 2px solid var(--ai-color-accent-blue);
+  outline: 2px solid var(--ai-color-brand-primary);
   outline-offset: 2px;
 }
 
@@ -30,7 +30,7 @@
 .selected,
 .locationCard.selected {
   background-color: var(--ai-color-bg-tertiary);
-  border-color: var(--ai-color-accent-blue);
+  border-color: var(--ai-color-brand-primary);
   border-width: 2px;
 }
 

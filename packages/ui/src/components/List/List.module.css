@@ -206,7 +206,7 @@
 }
 
 .listItemWrapper[data-interactive='true']:focus-visible {
-  outline: 2px solid var(--ai-color-accent-blue);
+  outline: 2px solid var(--ai-color-brand-primary);
   outline-offset: 2px;
 }
 
