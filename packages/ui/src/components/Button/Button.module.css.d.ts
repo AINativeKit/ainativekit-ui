@@ -4,6 +4,7 @@ declare const styles: {
   readonly buttonSecondary: string;
   readonly buttonTertiary: string;
   readonly buttonGhost: string;
+  readonly buttonLink: string;
   readonly buttonIconOnly: string;
   readonly label: string;
   readonly leftIcon: string;

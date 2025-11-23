@@ -29,7 +29,7 @@ declare const styles: {
   readonly emptyState: string;
   readonly emptyTitle: string;
   readonly emptyMessage: string;
-  readonly topOverlay: string;
+  readonly overlay: string;
 };
 
 export default styles;

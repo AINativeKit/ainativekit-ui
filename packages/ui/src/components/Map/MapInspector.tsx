@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Icon } from '../Icon';
+import { Button } from '../Button';
 import { Features } from '../Feature';
+import { PhotoCarousel } from '../PhotoCarousel';
+import { ExpandableText } from '../ExpandableText';
 import { cn } from '../../utils/cn';
 import { GenericList } from './GenericList';
 import type { LocationData } from './types';
@@ -107,9 +110,21 @@ export const MapInspector: React.FC<MapInspectorProps> = ({ location, onClose, c
             <Icon name="close-bold" size={18} />
           </button>
           <div className={styles.scrollableContent}>
-            <div className={styles.imageContainer}>
-              <img src={location.thumbnail} alt={location.name} className={styles.heroImage} />
-            </div>
+            {/* Photo Carousel or Single Image */}
+            {location.images && location.images.length > 0 ? (
+              <PhotoCarousel
+                images={location.images}
+                topOverlay={location.topOverlay}
+                aspectRatio="5/4"
+                showDots
+                showArrows
+                className={styles.photoCarousel}
+              />
+            ) : (
+              <div className={styles.imageContainer}>
+                <img src={location.thumbnail} alt={location.name} className={styles.heroImage} />
+              </div>
+            )}
 
             <div className={styles.detailsSection}>
               <div className={styles.title}>{location.name}</div>
@@ -135,8 +150,24 @@ export const MapInspector: React.FC<MapInspectorProps> = ({ location, onClose, c
                   ))}
                 </div>
               )}
+              {location.headline && <div className={styles.headline}>{location.headline}</div>}
               {location.description && (
-                <div className={styles.description}>{location.description}</div>
+                <ExpandableText
+                  text={location.description}
+                  maxLines={3}
+                  className={styles.description}
+                />
+              )}
+              {location.bottomAction && (
+                <div className={styles.bottomAction}>
+                  <Button
+                    variant="secondary"
+                    onClick={location.bottomAction.onClick}
+                    className={styles.bottomActionButton}
+                  >
+                    {location.bottomAction.label}
+                  </Button>
+                </div>
               )}
             </div>
 

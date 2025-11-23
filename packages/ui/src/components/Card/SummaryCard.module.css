@@ -29,7 +29,7 @@
 }
 
 /* Flat variant - topOverlay uses Card's border-radius */
-.summaryCard[data-variant='flat'] .topOverlay {
+.summaryCard[data-variant='flat'] .overlay {
   border-top-left-radius: var(--ai-radius-xl);
   border-top-right-radius: var(--ai-radius-xl);
 }
@@ -444,7 +444,7 @@
 }
 
 /* Top Overlay - Positioned inside imageWrapper, sibling to imageSection */
-.topOverlay {
+.overlay {
   position: absolute;
   top: 0;
   left: 0;

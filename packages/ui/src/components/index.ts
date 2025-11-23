@@ -22,6 +22,15 @@ export type { SkeletonProps, SkeletonVariant } from './Skeleton';
 export { Features } from './Feature';
 export type { FeaturesProps, FeatureItem } from './Feature';
 
+export { Overlay } from './Overlay';
+export type { OverlayProps } from './Overlay';
+
+export { ExpandableText } from './ExpandableText';
+export type { ExpandableTextProps } from './ExpandableText';
+
+export { PhotoCarousel } from './PhotoCarousel';
+export type { PhotoCarouselProps } from './PhotoCarousel';
+
 // Composed (medium complexity, general-purpose)
 export { Card, ImageCard, SummaryCard, ListCard } from './Card';
 export type {

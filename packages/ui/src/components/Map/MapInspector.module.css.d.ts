@@ -8,6 +8,7 @@ declare const styles: {
   readonly scrollableContent: string;
   readonly imageContainer: string;
   readonly heroImage: string;
+  readonly photoCarousel: string;
   readonly detailsSection: string;
   readonly title: string;
   readonly subtitle: string;
@@ -18,7 +19,10 @@ declare const styles: {
   readonly actions: string;
   readonly primaryButton: string;
   readonly secondaryButton: string;
+  readonly headline: string;
   readonly description: string;
+  readonly bottomAction: string;
+  readonly bottomActionButton: string;
 };
 
 export default styles;

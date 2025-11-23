@@ -6,7 +6,7 @@ import type { IconName } from '../../tokens/icons';
 import type { ColorVariant } from '../../tokens/colors';
 import styles from './Button.module.css';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'ghost';
+export type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'ghost' | 'link';
 
 export interface ButtonProps extends Omit<ComponentPropsWithoutRef<'button'>, 'color'> {
   /**
@@ -117,6 +117,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, r
     secondary: styles.buttonSecondary,
     tertiary: styles.buttonTertiary,
     ghost: styles.buttonGhost,
+    link: styles.buttonLink,
   }[variant];
 
   const colorClass = {

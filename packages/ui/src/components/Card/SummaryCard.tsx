@@ -8,6 +8,7 @@ import { Icon } from '../Icon';
 import type { IconName } from '../../tokens/icons';
 import { Skeleton } from '../Skeleton';
 import { Alert } from '../Alert';
+import { Overlay, type OverlayProps } from '../Overlay';
 import styles from './SummaryCard.module.css';
 
 export interface SummaryCardImage {
@@ -278,103 +279,9 @@ const normalizeImage = (image: string | SummaryCardImage): SummaryCardImage => {
 
 /**
  * Props for SummaryCard.Overlay helper component
+ * @deprecated Use OverlayProps from shared Overlay component
  */
-export interface SummaryCardOverlayProps {
-  /**
-   * Background style for the overlay
-   * - "dark": Semi-transparent dark background (rgba(0, 0, 0, 0.6))
-   * - "light": Semi-transparent light background (rgba(255, 255, 255, 0.8))
-   * - "transparent": No background
-   * - Custom string: Any valid CSS color value
-   * @default "dark"
-   */
-  background?: 'dark' | 'light' | 'transparent' | string;
-
-  /**
-   * Height of the overlay
-   * @default 40
-   */
-  height?: number | string;
-
-  /**
-   * Horizontal alignment of content
-   * @default "center"
-   */
-  align?: 'left' | 'center' | 'right';
-
-  /**
-   * Padding inside the overlay
-   * @default 8
-   */
-  padding?: number;
-
-  /**
-   * Content to render inside the overlay
-   */
-  children: React.ReactNode;
-
-  /**
-   * Additional CSS class name
-   */
-  className?: string;
-}
-
-/**
- * Helper component for creating consistently styled overlays on SummaryCard images
- *
- * @example
- * ```tsx
- * <SummaryCard
- *   images="property.jpg"
- *   topOverlay={
- *     <SummaryCard.Overlay background="dark" height={40} align="center">
- *       <img src="logo.png" alt="Logo" style={{ height: 24 }} />
- *     </SummaryCard.Overlay>
- *   }
- * />
- * ```
- */
-const SummaryCardOverlay = React.forwardRef<HTMLDivElement, SummaryCardOverlayProps>(
-  (
-    { background = 'dark', height = 40, align = 'center', padding = 8, children, className },
-    ref
-  ) => {
-    // Map background presets to CSS values
-    const backgroundMap: Record<string, string> = {
-      dark: 'rgba(0, 0, 0, 0.6)',
-      light: 'rgba(255, 255, 255, 0.8)',
-      transparent: 'transparent',
-    };
-
-    const backgroundValue = backgroundMap[background] || background;
-
-    // Map align to justify-content values
-    const justifyContentMap: Record<string, string> = {
-      left: 'flex-start',
-      center: 'center',
-      right: 'flex-end',
-    };
-
-    const justifyContent = justifyContentMap[align] || 'center';
-
-    return (
-      <div
-        ref={ref}
-        className={cn(styles.topOverlay, className)}
-        style={{
-          background: backgroundValue,
-          height: typeof height === 'number' ? `${height}px` : height,
-          justifyContent,
-          padding: `${padding}px`,
-        }}
-      >
-        {children}
-      </div>
-    );
-  }
-);
-
-SummaryCardOverlay.displayName = 'SummaryCard.Overlay';
+export type SummaryCardOverlayProps = OverlayProps;
 
 /**
  * SummaryCard component for displaying entity information with images.
@@ -876,8 +783,8 @@ SummaryCardComponent.displayName = 'SummaryCard';
 
 // Create typed SummaryCard with Overlay subcomponent
 export const SummaryCard = SummaryCardComponent as typeof SummaryCardComponent & {
-  Overlay: typeof SummaryCardOverlay;
+  Overlay: typeof Overlay;
 };
 
-// Attach Overlay component to SummaryCard
-SummaryCard.Overlay = SummaryCardOverlay;
+// Attach shared Overlay component to SummaryCard
+SummaryCard.Overlay = Overlay;

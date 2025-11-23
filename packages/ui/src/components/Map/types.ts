@@ -91,6 +91,13 @@ export interface LocationData {
   subtitle?: string;
 
   /**
+   * Optional headline (shown between actions and description).
+   * Typically used for auction/sale method information.
+   * @example "Expressions of Interest Closing Tuesday 11 November at 5pm"
+   */
+  headline?: string;
+
+  /**
    * Optional description (shown in main content area).
    */
   description?: string;
@@ -101,6 +108,26 @@ export interface LocationData {
   thumbnail: string;
 
   /**
+   * Array of image URLs for photo carousel.
+   * If provided, MapInspector will display a photo carousel instead of single thumbnail.
+   */
+  images?: string[];
+
+  /**
+   * Optional overlay content to display on top of photos (e.g., branding, logo).
+   * Typically used with PhotoCarousel.Overlay helper component.
+   * @example
+   * ```tsx
+   * topOverlay={
+   *   <PhotoCarousel.Overlay background="#0066CC" align="center">
+   *     <img src="logo.png" alt="Brand" />
+   *   </PhotoCarousel.Overlay>
+   * }
+   * ```
+   */
+  topOverlay?: React.ReactNode;
+
+  /**
    * Configurable feature list (rating, price, etc.).
    */
   features?: Feature[];
@@ -109,6 +136,12 @@ export interface LocationData {
    * Optional action buttons (independent of description).
    */
   actions?: Action[];
+
+  /**
+   * Optional bottom action button (rendered at bottom after description).
+   * Typically used for link-style actions like "View full details".
+   */
+  bottomAction?: Action;
 
   /**
    * Optional generic lists (reviews, related items, etc.).

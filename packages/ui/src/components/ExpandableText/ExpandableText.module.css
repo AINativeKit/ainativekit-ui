@@ -1,0 +1,46 @@
+/* ExpandableText Container */
+.expandableText {
+  position: relative;
+}
+
+/* Text Content */
+.text {
+  margin: 0;
+  font-size: var(--ai-font-size-body);
+  line-height: var(--ai-line-height-body);
+  color: var(--ai-color-text-primary);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Clamped State - Use line-clamp */
+.clamped {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Toggle Button */
+.toggleButton {
+  display: inline;
+  margin-left: var(--ai-spacing-1);
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--ai-color-text-primary);
+  font-size: var(--ai-font-size-body-small);
+  font-weight: var(--ai-font-weight-medium);
+  cursor: pointer;
+  text-decoration: underline;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+.toggleButton:hover {
+  opacity: 0.8;
+}
+
+.toggleButton:active {
+  opacity: 0.6;
+}

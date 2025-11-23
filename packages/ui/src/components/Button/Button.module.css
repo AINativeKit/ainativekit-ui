@@ -135,6 +135,25 @@
   background-color: var(--ai-color-bg-secondary);
 }
 
+/* ========== LINK VARIANT ========== */
+.buttonLink {
+  background-color: transparent;
+  color: var(--ai-color-brand-primary);
+  border: none;
+  padding: 0;
+  text-decoration: underline;
+  font-weight: var(--ai-font-weight-medium);
+}
+
+.buttonLink:not(:disabled):hover {
+  opacity: 0.8;
+  background-color: transparent;
+}
+
+.buttonLink:not(:disabled):active {
+  opacity: 0.6;
+}
+
 /* ========== ICON-ONLY BUTTONS ========== */
 .buttonIconOnly {
   min-width: 44px;

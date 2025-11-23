@@ -114,7 +114,7 @@
   margin: 0;
   padding: 0;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 5 / 4;
   flex-shrink: 0;
   overflow: hidden;
 }
@@ -123,6 +123,13 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Photo Carousel - replaces single heroImage when multiple images available */
+.photoCarousel {
+  width: 100%;
+  flex-shrink: 0;
+  margin: 0;
 }
 
 .detailsSection {
@@ -270,6 +277,16 @@
   opacity: 0.4;
 }
 
+/* Headline - Auction/sale method info (Title 3) */
+.headline {
+  font-size: var(--ai-font-size-h3);
+  line-height: var(--ai-line-height-h3);
+  font-weight: var(--ai-font-weight-medium);
+  letter-spacing: var(--ai-letter-spacing-h3);
+  margin-top: var(--ai-spacing-8);
+  color: var(--ai-color-text-primary);
+}
+
 .description {
   font-size: var(--ai-font-size-body);
   line-height: var(--ai-line-height-body);
@@ -277,4 +294,14 @@
   letter-spacing: var(--ai-letter-spacing-body);
   margin-top: var(--ai-spacing-8);
   color: var(--ai-color-text-primary);
+}
+
+/* Bottom Action - Link button at bottom */
+.bottomAction {
+  margin-top: var(--ai-spacing-8);
+}
+
+/* Full width override for Button component */
+.bottomActionButton {
+  width: 100%;
 }
