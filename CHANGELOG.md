@@ -7,6 +7,47 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.15.0] - 2025-11-25
+
+### Added
+
+- **Map Component Features**:
+  - **Display Mode Synchronization**: Map component now automatically syncs with ChatGPT's `displayMode` changes
+    - Uses `useDisplayMode()` hook to listen for display mode changes from ChatGPT
+    - Clicking ChatGPT's X button automatically collapses the map to compact view
+    - Two-way sync: widget responds to both internal and external display mode changes
+    - Only syncs in uncontrolled mode (respects external state management)
+  - **Auto-Expand on Carousel Click**: New `autoExpandOnCarouselClick` prop for Map component
+    - Automatically expands to fullscreen when user clicks a carousel card
+    - Provides faster access to detailed location information (one click instead of two)
+    - Default: `false` (opt-in behavior)
+  - **Popup Control**: New `showPopup` prop to disable marker popup bubbles
+    - Useful when using external UI like Inspector panels or sidebars for location details
+    - Default: `true` (popups enabled)
+  - **Scroll Wheel Zoom Control**: New `scrollWheelZoom` prop for zoom behavior customization
+    - `true`: Native Leaflet scroll zoom (best for fullscreen maps)
+    - `false`: Custom pinch-to-zoom for embedded maps (default)
+  - **Custom Marker Rendering**: New `renderMarker` API for customizing map markers
+    - Supports React components for markers
+    - Global styling, per-location customization, and hybrid modes
+    - Performance optimized with proper cleanup
+
+### Changed
+
+- **Storybook Documentation**:
+  - Updated Map component docs to document display mode sync behavior
+  - Added ChatGPT Apps SDK Integration section explaining automatic sync
+  - Documented new interaction control props (showPopup, scrollWheelZoom, autoExpandOnCarouselClick)
+  - Added examples for custom marker rendering
+
+### Fixed
+
+- **Map Display Mode Bug**: Fixed issue where clicking ChatGPT's X button didn't collapse the Map component
+  - Previously: Map stayed in fullscreen mode when ChatGPT's displayMode changed to 'inline'
+  - Now: Map automatically collapses to compact view when ChatGPT closes fullscreen
+  - Root cause: Map wasn't listening to ChatGPT's displayMode changes
+  - Solution: Added useDisplayMode() hook with useEffect to sync internal state
+
 ## [0.14.0] - 2025-11-24
 
 ### Breaking Changes
