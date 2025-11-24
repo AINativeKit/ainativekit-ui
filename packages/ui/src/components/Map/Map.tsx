@@ -58,6 +58,7 @@ export const Map: React.FC<MapProps> = ({
   defaultCenter,
   defaultZoom,
   markerVariant,
+  renderMarker,
   isInspectorOpen,
   loading = false,
   error = false,
@@ -114,6 +115,7 @@ export const Map: React.FC<MapProps> = ({
     defaultCenter,
     defaultZoom,
     markerVariant,
+    renderMarker,
     isInspectorOpen,
     loading,
     error,
@@ -128,21 +130,7 @@ export const Map: React.FC<MapProps> = ({
 
       {/* Fullscreen Map */}
       {isFullscreen && (
-        <FullscreenMap
-          locations={locations}
-          selectedId={selectedId}
-          onLocationSelect={onLocationSelect}
-          activeId={activeId}
-          onLocationActive={onLocationActive}
-          defaultCenter={defaultCenter}
-          defaultZoom={defaultZoom}
-          markerVariant={markerVariant}
-          isInspectorOpen={isInspectorOpen}
-          loading={loading}
-          error={error}
-          onCollapse={handleCollapse}
-          {...fullscreenMapProps}
-        />
+        <FullscreenMap {...commonMapProps} onCollapse={handleCollapse} {...fullscreenMapProps} />
       )}
     </>
   );

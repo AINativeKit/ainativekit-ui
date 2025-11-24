@@ -1,13 +1,114 @@
-import React, { useMemo, useRef, useEffect } from 'react';
+import React, { useMemo, useRef, useEffect, useCallback } from 'react';
 import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import type { MapViewProps } from './MapView';
-import type { LocationData } from './types';
+import type { LocationData, RenderMarkerParams } from './types';
 import { Features } from '../Feature/Features';
 import { ThemeContext } from '../../providers/ThemeProvider';
 import type { ThemeContextValue } from '../../providers/ThemeProvider';
 import styles from './Map.module.css';
+
+/**
+ * Lightweight SVG-to-HTML serializer that avoids pulling in react-dom/server.
+ * Only supports SVG elements (our primary use case for custom markers).
+ * Falls back to outerHTML for non-React elements.
+ */
+function serializeReactElement(element: React.ReactElement): string {
+  // If it's an SVG element, serialize it directly
+  if (typeof element.type === 'string' && element.type === 'svg') {
+    const props = element.props || {};
+    const { children, ...attrs } = props;
+
+    // Build attribute string
+    const attrString = Object.entries(attrs)
+      .filter(([key]) => key !== 'dangerouslySetInnerHTML')
+      .map(([key, value]) => {
+        // Convert React prop names to HTML attributes
+        const attrName = key === 'className' ? 'class' :
+                        key === 'strokeWidth' ? 'stroke-width' :
+                        key === 'fillOpacity' ? 'fill-opacity' :
+                        key === 'strokeLinecap' ? 'stroke-linecap' :
+                        key === 'strokeLinejoin' ? 'stroke-linejoin' :
+                        key;
+        return `${attrName}="${value}"`;
+      })
+      .join(' ');
+
+    // Serialize children recursively
+    const childrenHTML = React.Children.toArray(children)
+      .map((child) => {
+        if (typeof child === 'string' || typeof child === 'number') {
+          return String(child);
+        }
+        if (React.isValidElement(child)) {
+          return serializeSVGChild(child);
+        }
+        return '';
+      })
+      .join('');
+
+    return `<svg ${attrString}>${childrenHTML}</svg>`;
+  }
+
+  // For non-SVG elements, create a temp div and use outerHTML
+  const div = document.createElement('div');
+  const ReactDOM = (window as typeof globalThis & { ReactDOM?: { createRoot?: (el: HTMLElement) => { render: (el: React.ReactElement) => void } } }).ReactDOM;
+  const root = ReactDOM?.createRoot?.(div);
+  if (root) {
+    root.render(element);
+    return div.innerHTML;
+  }
+
+  // Fallback: return empty string
+  return '';
+}
+
+/**
+ * Helper to serialize SVG child elements
+ */
+function serializeSVGChild(element: React.ReactElement): string {
+  if (typeof element.type !== 'string') return '';
+
+  const props = element.props || {};
+  const { children, ...attrs } = props;
+  const tagName = element.type;
+
+  // Build attribute string
+  const attrString = Object.entries(attrs)
+    .filter(([key]) => key !== 'dangerouslySetInnerHTML')
+    .map(([key, value]) => {
+      // Convert React prop names to HTML attributes
+      const attrName = key === 'className' ? 'class' :
+                      key === 'strokeWidth' ? 'stroke-width' :
+                      key === 'fillOpacity' ? 'fill-opacity' :
+                      key === 'strokeLinecap' ? 'stroke-linecap' :
+                      key === 'strokeLinejoin' ? 'stroke-linejoin' :
+                      key;
+      return `${attrName}="${value}"`;
+    })
+    .join(' ');
+
+  // Self-closing tags
+  if (!children || (Array.isArray(children) && children.length === 0)) {
+    return `<${tagName} ${attrString} />`;
+  }
+
+  // Serialize children
+  const childrenHTML = React.Children.toArray(children)
+    .map((child) => {
+      if (typeof child === 'string' || typeof child === 'number') {
+        return String(child);
+      }
+      if (React.isValidElement(child)) {
+        return serializeSVGChild(child);
+      }
+      return '';
+    })
+    .join('');
+
+  return `<${tagName} ${attrString}>${childrenHTML}</${tagName}>`;
+}
 
 // Component to handle map flying to selected location
 const MapFlyer: React.FC<{
@@ -175,21 +276,22 @@ function createMarkerIcon(color: string, isSelected: boolean) {
 }
 
 /**
- * Create dot marker icon (16x16px with 2px border)
+ * Create dot marker icon (20x20px with 2px border)
  * Uses CSS variables for automatic dark mode support
+ * Total size: 20×20, Fill: 16×16, Border: 2px
  */
 function createDotMarkerIcon(color: string, isSelected: boolean): L.DivIcon {
-  const size = 16;
+  const size = 20;
 
   const svg = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
       <circle
-        cx="8" cy="8" r="7"
+        cx="10" cy="10" r="8"
         fill="${color}"
         stroke="var(--ai-color-bg-primary)"
         stroke-width="2"
       />
-      ${isSelected ? '<circle cx="8" cy="8" r="3" fill="var(--ai-color-bg-primary)" />' : ''}
+      ${isSelected ? '<circle cx="10" cy="10" r="4" fill="var(--ai-color-bg-primary)" />' : ''}
     </svg>
   `;
 
@@ -204,6 +306,52 @@ function createDotMarkerIcon(color: string, isSelected: boolean): L.DivIcon {
   });
 }
 
+/**
+ * Converts a React element to a Leaflet DivIcon.
+ * Uses lightweight SVG serializer to avoid pulling in react-dom/server.
+ * Automatically extracts size and anchor from SVG width/height attributes.
+ * This follows the industry pattern from Material-UI DataGrid and Ant Design Table.
+ *
+ * @param element - React element returned by renderMarker function
+ * @param isSelected - Whether the marker is selected (for styling)
+ * @returns Leaflet DivIcon ready to use with markers
+ */
+function convertReactMarkerToIcon(element: React.ReactElement, isSelected: boolean): L.DivIcon {
+  // Convert React element to HTML string using lightweight serializer
+  const html = serializeReactElement(element);
+
+  // Extract size from SVG element if available
+  let iconSize: [number, number] = DEFAULT_ICON_SIZE;
+  let iconAnchor: [number, number] = DEFAULT_ICON_ANCHOR;
+  let popupAnchor: [number, number] = DEFAULT_POPUP_ANCHOR;
+
+  if (typeof element.type === 'string' && element.type === 'svg') {
+    const { width, height } = element.props || {};
+
+    // Parse width and height if provided
+    const w = typeof width === 'number' ? width : parseInt(String(width), 10);
+    const h = typeof height === 'number' ? height : parseInt(String(height), 10);
+
+    if (!isNaN(w) && !isNaN(h)) {
+      iconSize = [w, h];
+      // Default anchor to bottom-center for pin-like markers
+      iconAnchor = [w / 2, h];
+      popupAnchor = [0, -h];
+    }
+  }
+
+  // Apply selected class for consistent styling with built-in markers
+  const className = isSelected ? `${styles.marker} ${styles.selectedMarker}`.trim() : styles.marker;
+
+  return L.divIcon({
+    html,
+    iconSize,
+    iconAnchor,
+    popupAnchor,
+    className,
+  });
+}
+
 export const MapContent: React.FC<MapViewProps> = ({
   locations,
   selectedId,
@@ -213,6 +361,7 @@ export const MapContent: React.FC<MapViewProps> = ({
   defaultCenter = [37.7749, -122.4194],
   defaultZoom = 12,
   markerVariant = 'pin',
+  renderMarker,
   className,
   style,
   isInspectorOpen,
@@ -256,6 +405,68 @@ export const MapContent: React.FC<MapViewProps> = ({
     [markerVariant, MARKER_COLOR]
   );
 
+  /**
+   * Get the appropriate icon for a location based on priority system:
+   * 1. Per-location renderMarker (LocationData.renderMarker)
+   * 2. Global renderMarker (MapViewProps.renderMarker)
+   * 3. Built-in markerVariant (pin/dot/hybrid)
+   *
+   * Follows the pattern from Material-UI DataGrid and Ant Design Table.
+   *
+   * If renderMarker returns null, falls back to the next priority level,
+   * enabling patterns like "custom selected, default unselected".
+   */
+  const getIconForLocation = useCallback(
+    (location: LocationData, isSelected: boolean, isActive: boolean): L.DivIcon => {
+      // Determine variant for hybrid mode support
+      const variant: 'pin' | 'dot' =
+        markerVariant === 'hybrid' ? (isSelected ? 'pin' : 'dot') : markerVariant;
+
+      // Build params for renderMarker functions
+      const params: RenderMarkerParams = {
+        location,
+        isSelected,
+        isActive,
+        color: MARKER_COLOR,
+        variant,
+      };
+
+      // Priority 1: Per-location renderMarker
+      if (location.renderMarker) {
+        const element = location.renderMarker(params);
+        // If null is returned, fall through to next priority
+        if (element !== null && element !== undefined) {
+          return convertReactMarkerToIcon(element, isSelected);
+        }
+      }
+
+      // Priority 2: Global renderMarker
+      if (renderMarker) {
+        const element = renderMarker(params);
+        // If null is returned, fall through to built-in markers
+        if (element !== null && element !== undefined) {
+          return convertReactMarkerToIcon(element, isSelected);
+        }
+      }
+
+      // Priority 3: Built-in markerVariant (existing logic)
+      if (isSelected) {
+        return markerVariant === 'hybrid' ? createMarkerIcon(MARKER_COLOR, true) : selectedIcon;
+      }
+
+      if (isActive) {
+        return markerVariant === 'hybrid' ? createDotMarkerIcon(MARKER_COLOR, false) : activeIcon;
+      }
+
+      if (markerVariant === 'hybrid') {
+        return createDotMarkerIcon(MARKER_COLOR, false);
+      }
+
+      return defaultIcon;
+    },
+    [renderMarker, markerVariant, MARKER_COLOR, defaultIcon, activeIcon, selectedIcon]
+  );
+
   useEffect(() => {
     const validIds = new Set(locations.map((location) => location.id));
     markerRefs.current.forEach((_, id) => {
@@ -284,23 +495,18 @@ export const MapContent: React.FC<MapViewProps> = ({
   // Update marker icons when selection changes
   useEffect(() => {
     markerRefs.current.forEach((marker, locationId) => {
+      const location = locations.find((loc) => loc.id === locationId);
+      if (!location) return;
+
       const isSelected = locationId === selectedId;
       const isActive = locationId === activeId;
 
-      let icon;
-      if (isSelected) {
-        icon = markerVariant === 'hybrid' ? createMarkerIcon(MARKER_COLOR, true) : selectedIcon;
-      } else if (isActive) {
-        icon = markerVariant === 'hybrid' ? createDotMarkerIcon(MARKER_COLOR, false) : activeIcon;
-      } else if (markerVariant === 'hybrid') {
-        icon = createDotMarkerIcon(MARKER_COLOR, false);
-      } else {
-        icon = defaultIcon;
-      }
+      // Use getIconForLocation for consistent icon resolution
+      const icon = getIconForLocation(location, isSelected, isActive);
 
       marker.setIcon(icon);
     });
-  }, [selectedId, activeId, markerVariant, defaultIcon, activeIcon, selectedIcon, MARKER_COLOR]);
+  }, [selectedId, activeId, locations, getIconForLocation]);
 
   return (
     <div className={containerClassName} style={style}>
@@ -322,14 +528,9 @@ export const MapContent: React.FC<MapViewProps> = ({
         {locations.map((location) => {
           const isSelected = location.id === selectedId;
           const isActive = location.id === activeId;
-          let icon = defaultIcon;
-          if (isSelected) {
-            icon = markerVariant === 'hybrid' ? createMarkerIcon(MARKER_COLOR, true) : selectedIcon;
-          } else if (isActive) {
-            icon = markerVariant === 'hybrid' ? createDotMarkerIcon(MARKER_COLOR, false) : activeIcon;
-          } else if (markerVariant === 'hybrid') {
-            icon = createDotMarkerIcon(MARKER_COLOR, false);
-          }
+
+          // Use getIconForLocation for consistent icon resolution
+          const icon = getIconForLocation(location, isSelected, isActive);
 
           const eventHandlers: Partial<L.LeafletEventHandlerFnMap> = {};
           if (onLocationSelect) {

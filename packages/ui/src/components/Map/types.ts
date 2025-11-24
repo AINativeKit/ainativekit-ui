@@ -69,6 +69,7 @@ export interface GenericList {
   items: ListItem[];
 }
 
+// Forward declare LocationData to avoid circular reference
 export interface LocationData {
   /**
    * Unique identifier for the location.
@@ -147,4 +148,64 @@ export interface LocationData {
    * Optional generic lists (reviews, related items, etc.).
    */
   lists?: GenericList[];
+
+  /**
+   * Optional custom marker renderer for this specific location.
+   * Overrides the global renderMarker prop on the Map component.
+   *
+   * Follows the same pattern as Ant Design Table's column render
+   * and Material-UI DataGrid's renderCell.
+   *
+   * @example
+   * ```tsx
+   * // Return a React element (SVG, component, etc.)
+   * renderMarker: ({ isSelected, variant, color }) => (
+   *   variant === 'pin'
+   *     ? <CustomPinIcon selected={isSelected} color={color} />
+   *     : <CustomDotIcon selected={isSelected} color={color} />
+   * )
+   *
+   * // Return null to fall back to default markers
+   * renderMarker: ({ isSelected }) => {
+   *   if (!isSelected) return null; // Use default for unselected
+   *   return <CustomSelectedMarker />;
+   * }
+   * ```
+   */
+  renderMarker?: (params: RenderMarkerParams) => React.ReactElement | null;
+}
+
+/**
+ * Parameters passed to the renderMarker function.
+ * Provides all necessary context for rendering custom marker icons.
+ */
+export interface RenderMarkerParams {
+  /**
+   * The location data for this marker.
+   */
+  location: LocationData;
+
+  /**
+   * Whether this marker is currently selected.
+   */
+  isSelected: boolean;
+
+  /**
+   * Whether this marker is currently being hovered (active).
+   */
+  isActive: boolean;
+
+  /**
+   * The theme color to use for this marker.
+   * Automatically resolved from the theme context.
+   */
+  color: string;
+
+  /**
+   * The marker variant for this marker.
+   * When markerVariant="hybrid", this will be 'pin' for selected markers
+   * and 'dot' for unselected markers.
+   * For other markerVariant values, this will match the global setting.
+   */
+  variant: 'pin' | 'dot';
 }

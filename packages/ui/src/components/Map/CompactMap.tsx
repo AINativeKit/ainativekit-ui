@@ -63,6 +63,7 @@ export const CompactMap: React.FC<CompactMapProps> = ({
   defaultCenter,
   defaultZoom,
   markerVariant,
+  renderMarker,
   isInspectorOpen,
   loading = false,
   error = false,
@@ -93,6 +94,7 @@ export const CompactMap: React.FC<CompactMapProps> = ({
           defaultCenter={defaultCenter}
           defaultZoom={defaultZoom}
           markerVariant={markerVariant}
+          renderMarker={renderMarker}
           isInspectorOpen={isInspectorOpen}
           loading={loading}
           error={error}
