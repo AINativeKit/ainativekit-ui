@@ -515,6 +515,90 @@ const CompactMapDoc: FC = () => {
         />
       </section>
 
+      <section style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        <header>
+          <h2 style={{ marginBottom: '8px' }}>Popup Control</h2>
+          <p style={{ margin: 0, color: 'var(--ai-color-text-secondary)' }}>
+            Toggle popup bubbles with the `showPopup` prop. Disable when using external UI like
+            sidebars or inspectors to handle marker interactions.
+          </p>
+        </header>
+
+        <div
+          style={{
+            display: 'grid',
+            gap: '24px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          }}
+        >
+          <div>
+            <h3
+              style={{
+                marginBottom: '12px',
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
+              With Popups (default)
+            </h3>
+            <CompactMap
+              locations={locations.slice(0, 2)}
+              showPopup={true}
+              height={CHATGPT_APP_HEIGHT}
+            />
+            <p
+              style={{
+                marginTop: '12px',
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
+              Click markers to see popup bubbles with location details
+            </p>
+          </div>
+
+          <div>
+            <h3
+              style={{
+                marginBottom: '12px',
+                fontSize: '14px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
+              Without Popups
+            </h3>
+            <CompactMap
+              locations={locations.slice(0, 2)}
+              showPopup={false}
+              height={CHATGPT_APP_HEIGHT}
+            />
+            <p
+              style={{
+                marginTop: '12px',
+                fontSize: '13px',
+                color: 'var(--ai-color-text-secondary)',
+              }}
+            >
+              Uses carousel for marker interactions (cleaner map view)
+            </p>
+          </div>
+        </div>
+
+        <div
+          style={{
+            background: 'var(--ai-color-bg-secondary)',
+            borderRadius: '12px',
+            padding: '16px',
+            maxWidth: CHATGPT_APP_WIDTH,
+            fontSize: '13px',
+          }}
+        >
+          <strong>Usage:</strong> Set `showPopup={'{false}'}` when handling selection via external UI
+          (Inspector panels, sidebars, modals). Keeps the map cleaner and avoids duplicate
+          information.
+        </div>
+      </section>
+
       <section style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
         <header>
           <h2 style={{ marginBottom: '8px' }}>When to Escalate</h2>
@@ -528,7 +612,7 @@ const CompactMapDoc: FC = () => {
             If users need side-by-side Inspector and carousel details, escalate to `FullscreenMap`.
           </li>
           <li>
-            Use `MapView` directly when the carousel isn’t necessary (e.g., single location focus).
+            Use `MapView` directly when the carousel isn't necessary (e.g., single location focus).
           </li>
           <li>
             Keep selection state in a shared store so CompactMap can hand off to fullscreen
