@@ -985,13 +985,29 @@ const handleMapToggle = (fullscreen: boolean) => {
               Auto-Expand on Carousel Click
             </h3>
             <p style={{ margin: '0 0 12px', fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
-              Set <code>autoExpandOnCarouselClick={'{true}'}</code> on <code>CompactMap</code> to
-              automatically expand to fullscreen when users click a carousel card. This provides faster
-              access to detailed location information (one click instead of two).
+              Set <code>autoExpandOnCarouselClick={'{true}'}</code> on the <code>Map</code> component
+              (top-level prop) to automatically expand to fullscreen when users click a carousel card.
+              This provides faster access to detailed location information (one click instead of two).
             </p>
-            <div style={{ fontSize: '13px', color: 'var(--ai-color-text-secondary)' }}>
+            <div style={{ fontSize: '13px', color: 'var(--ai-color-text-secondary)', marginBottom: '12px' }}>
               <strong>Default:</strong> <code>false</code> (users must click expand button manually)
             </div>
+            <pre
+              style={{
+                margin: 0,
+                padding: '12px',
+                background: 'var(--ai-color-bg-tertiary)',
+                borderRadius: '6px',
+                fontSize: '12px',
+                lineHeight: '1.5',
+                fontFamily: 'Monaco, Menlo, monospace',
+              }}
+            >
+              <code>{`<Map
+  locations={locations}
+  autoExpandOnCarouselClick={true}
+/>`}</code>
+            </pre>
           </div>
         </div>
       </section>

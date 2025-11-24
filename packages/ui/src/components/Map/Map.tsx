@@ -15,9 +15,17 @@ export interface MapProps extends Omit<MapViewProps, 'className' | 'style'> {
   onToggleFullscreen?: (isFullscreen: boolean) => void;
 
   /**
+   * Auto-expand to fullscreen when user clicks a carousel card.
+   * When true, selecting a location from the carousel automatically triggers fullscreen
+   * mode with the Inspector panel open.
+   * @default false
+   */
+  autoExpandOnCarouselClick?: boolean;
+
+  /**
    * Props passed to CompactMap when not in fullscreen
    */
-  compactMapProps?: Omit<CompactMapProps, keyof MapViewProps | 'onExpand'>;
+  compactMapProps?: Omit<CompactMapProps, keyof MapViewProps | 'onExpand' | 'autoExpandOnCarouselClick'>;
 
   /**
    * Props passed to FullscreenMap when in fullscreen
@@ -62,6 +70,7 @@ export const Map: React.FC<MapProps> = ({
   isInspectorOpen,
   scrollWheelZoom,
   showPopup,
+  autoExpandOnCarouselClick = false,
   loading = false,
   error = false,
   isFullscreen: controlledIsFullscreen,
@@ -129,7 +138,12 @@ export const Map: React.FC<MapProps> = ({
     <>
       {/* Compact Map */}
       {!isFullscreen && (
-        <CompactMap {...commonMapProps} onExpand={handleExpand} {...compactMapProps} />
+        <CompactMap
+          {...commonMapProps}
+          onExpand={handleExpand}
+          autoExpandOnCarouselClick={autoExpandOnCarouselClick}
+          {...compactMapProps}
+        />
       )}
 
       {/* Fullscreen Map */}
