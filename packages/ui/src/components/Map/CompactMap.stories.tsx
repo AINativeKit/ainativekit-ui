@@ -80,6 +80,8 @@ const CompactMapDoc: FC = () => {
   const [pinSelectedId, setPinSelectedId] = useState<string | undefined>(undefined);
   const [dotSelectedId, setDotSelectedId] = useState<string | undefined>(undefined);
   const [hybridSelectedId, setHybridSelectedId] = useState<string | undefined>(undefined);
+  const [withPopupSelectedId, setWithPopupSelectedId] = useState<string | undefined>(undefined);
+  const [withoutPopupSelectedId, setWithoutPopupSelectedId] = useState<string | undefined>(undefined);
   const locations = useMemo(() => sampleLocations, []);
 
   return (
@@ -542,7 +544,9 @@ const CompactMapDoc: FC = () => {
               With Popups (default)
             </h3>
             <CompactMap
-              locations={locations.slice(0, 2)}
+              locations={locations}
+              selectedId={withPopupSelectedId}
+              onLocationSelect={setWithPopupSelectedId}
               showPopup={true}
               height={CHATGPT_APP_HEIGHT}
             />
@@ -568,7 +572,9 @@ const CompactMapDoc: FC = () => {
               Without Popups
             </h3>
             <CompactMap
-              locations={locations.slice(0, 2)}
+              locations={locations}
+              selectedId={withoutPopupSelectedId}
+              onLocationSelect={setWithoutPopupSelectedId}
               showPopup={false}
               height={CHATGPT_APP_HEIGHT}
             />

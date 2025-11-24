@@ -65,6 +65,8 @@ export const CompactMap: React.FC<CompactMapProps> = ({
   markerVariant,
   renderMarker,
   isInspectorOpen,
+  scrollWheelZoom,
+  showPopup,
   loading = false,
   error = false,
   height = DEFAULT_HEIGHT,
@@ -96,6 +98,8 @@ export const CompactMap: React.FC<CompactMapProps> = ({
           markerVariant={markerVariant}
           renderMarker={renderMarker}
           isInspectorOpen={isInspectorOpen}
+          scrollWheelZoom={scrollWheelZoom}
+          showPopup={showPopup}
           loading={loading}
           error={error}
           className={cn(styles.mapView, mapClassName)}

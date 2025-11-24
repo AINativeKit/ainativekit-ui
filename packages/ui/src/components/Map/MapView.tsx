@@ -126,6 +126,14 @@ export interface MapViewProps {
    */
   scrollWheelZoom?: boolean;
 
+  /**
+   * Show popup bubbles when markers are clicked.
+   * When false, disables the Leaflet popup that appears on marker click.
+   * Useful when you want to handle marker selection with external UI (e.g., a sidebar).
+   * @default true
+   */
+  showPopup?: boolean;
+
   // Additional map configuration props can be introduced over time.
 }
 

@@ -366,6 +366,7 @@ export const MapContent: React.FC<MapViewProps> = ({
   style,
   isInspectorOpen,
   scrollWheelZoom = false,
+  showPopup = true,
 }) => {
   const containerClassName = className
     ? `${styles.mapContainer} ${className}`
@@ -476,8 +477,10 @@ export const MapContent: React.FC<MapViewProps> = ({
     });
   }, [locations]);
 
-  // Open/close popups based on selectedId
+  // Open/close popups based on selectedId (only if showPopup is enabled)
   useEffect(() => {
+    if (!showPopup) return;
+
     // Close all popups
     markerRefs.current.forEach((marker) => {
       marker.closePopup();
@@ -490,7 +493,7 @@ export const MapContent: React.FC<MapViewProps> = ({
         marker.openPopup();
       }
     }
-  }, [selectedId]);
+  }, [selectedId, showPopup]);
 
   // Update marker icons when selection changes
   useEffect(() => {
@@ -555,19 +558,21 @@ export const MapContent: React.FC<MapViewProps> = ({
                 markerRefs.current.delete(location.id);
               }}
             >
-              <Popup>
-                <article className={styles.popup}>
-                  <div className={styles.popupContent}>
-                    <h3 className={styles.popupTitle}>{location.name}</h3>
-                    {location.subtitle && (
-                      <div className={styles.popupSubtitle}>{location.subtitle}</div>
-                    )}
-                    {location.features && location.features.length > 0 && (
-                      <Features items={location.features} iconSize={14} />
-                    )}
-                  </div>
-                </article>
-              </Popup>
+              {showPopup && (
+                <Popup>
+                  <article className={styles.popup}>
+                    <div className={styles.popupContent}>
+                      <h3 className={styles.popupTitle}>{location.name}</h3>
+                      {location.subtitle && (
+                        <div className={styles.popupSubtitle}>{location.subtitle}</div>
+                      )}
+                      {location.features && location.features.length > 0 && (
+                        <Features items={location.features} iconSize={14} />
+                      )}
+                    </div>
+                  </article>
+                </Popup>
+              )}
             </Marker>
           );
         })}

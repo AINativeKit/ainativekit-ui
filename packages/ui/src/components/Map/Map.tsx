@@ -60,6 +60,8 @@ export const Map: React.FC<MapProps> = ({
   markerVariant,
   renderMarker,
   isInspectorOpen,
+  scrollWheelZoom,
+  showPopup,
   loading = false,
   error = false,
   isFullscreen: controlledIsFullscreen,
@@ -117,6 +119,8 @@ export const Map: React.FC<MapProps> = ({
     markerVariant,
     renderMarker,
     isInspectorOpen,
+    scrollWheelZoom,
+    showPopup,
     loading,
     error,
   };
