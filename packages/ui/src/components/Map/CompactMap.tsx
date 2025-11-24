@@ -50,6 +50,14 @@ export interface CompactMapProps extends Omit<MapViewProps, 'className' | 'style
    * Callback when user clicks the expand button to enter fullscreen.
    */
   onExpand?: () => void;
+
+  /**
+   * Auto-expand to fullscreen when user clicks a carousel card.
+   * When true, selecting a location from the carousel automatically triggers onExpand.
+   * When false, users must click the expand button manually.
+   * @default false
+   */
+  autoExpandOnCarouselClick?: boolean;
 }
 
 const DEFAULT_HEIGHT = '478px';
@@ -76,6 +84,7 @@ export const CompactMap: React.FC<CompactMapProps> = ({
   mapStyle,
   carouselProps,
   onExpand,
+  autoExpandOnCarouselClick = false,
 }) => {
   const containerStyle: React.CSSProperties = {
     ...style,
@@ -121,7 +130,15 @@ export const CompactMap: React.FC<CompactMapProps> = ({
       <LocationCarousel
         locations={locations}
         selectedId={selectedId}
-        onLocationSelect={onLocationSelect}
+        onLocationSelect={(id) => {
+          // Set selection first
+          onLocationSelect?.(id);
+
+          // Then trigger fullscreen if auto-expand is enabled
+          if (autoExpandOnCarouselClick && id !== undefined && onExpand) {
+            onExpand();
+          }
+        }}
         loading={loading}
         error={error}
         {...carouselProps}
