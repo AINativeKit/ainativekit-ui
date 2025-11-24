@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { cn } from '../../utils/cn';
+import { SafeBrText } from './SafeBrText';
 import styles from './ExpandableText.module.css';
 
 export interface ExpandableTextProps {
@@ -100,7 +101,7 @@ export const ExpandableText: React.FC<ExpandableTextProps> = ({
           WebkitLineClamp: expanded ? 'unset' : maxLines,
         }}
       >
-        {text}
+        <SafeBrText text={text} />
         {needsTruncation && (
           <button
             className={styles.toggleButton}
