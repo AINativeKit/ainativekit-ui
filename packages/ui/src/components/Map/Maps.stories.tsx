@@ -183,8 +183,10 @@ const MapSystemComponent: React.FC = () => {
               Three component variants for different use cases (Map, CompactMap, FullscreenMap)
             </li>
             <li>Interactive map with location markers and popups</li>
-            <li>Location carousel with synchronized selection</li>
+            <li>Custom marker rendering with React components (renderMarker API)</li>
+            <li>Location carousel with synchronized selection and auto-expand</li>
             <li>Inspector panel with detailed location information</li>
+            <li>Configurable popup bubbles (showPopup prop)</li>
             <li>Loading, error, and empty states built-in</li>
             <li>Responsive design (mobile/desktop)</li>
             <li>Expand/collapse buttons for ChatGPT Apps SDK integration</li>
@@ -893,6 +895,104 @@ const handleMapToggle = (fullscreen: boolean) => {
             All modern browsers with CSS Grid and modern ES6+ support. Leaflet handles map tile
             loading and caching automatically.
           </p>
+        </div>
+      </section>
+
+      {/* Advanced Features */}
+      <section style={{ marginBottom: '64px' }}>
+        <header style={{ marginBottom: '24px' }}>
+          <h2 style={{ marginBottom: '8px' }}>Advanced Features</h2>
+          <p style={{ color: 'var(--ai-color-text-secondary)', margin: 0, fontSize: '14px' }}>
+            Additional map features for customization and interaction control.
+          </p>
+        </header>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          {/* Custom Markers */}
+          <div
+            style={{
+              padding: '16px',
+              background: 'var(--ai-color-bg-secondary)',
+              borderRadius: '12px',
+              border: '1px solid var(--ai-color-border-default)',
+            }}
+          >
+            <h3 style={{ fontSize: '16px', marginBottom: '8px', fontWeight: 600 }}>
+              Custom Marker Rendering
+            </h3>
+            <p style={{ margin: '0 0 12px', fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
+              Use the <code>renderMarker</code> prop to customize map markers with your own React
+              components. Supports global styling, per-location customization, and hybrid modes.
+            </p>
+            <div style={{ fontSize: '13px', color: 'var(--ai-color-text-secondary)' }}>
+              <strong>See:</strong> "Custom Markers" story in the sidebar for comprehensive examples
+              including global markers, hybrid mode, per-location customization, performance optimization,
+              and fallback patterns.
+            </div>
+          </div>
+
+          {/* Popup Control */}
+          <div
+            style={{
+              padding: '16px',
+              background: 'var(--ai-color-bg-secondary)',
+              borderRadius: '12px',
+              border: '1px solid var(--ai-color-border-default)',
+            }}
+          >
+            <h3 style={{ fontSize: '16px', marginBottom: '8px', fontWeight: 600 }}>
+              Popup Control
+            </h3>
+            <p style={{ margin: '0 0 12px', fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
+              Use <code>showPopup={'{false}'}</code> to disable marker popup bubbles when using external
+              UI like Inspector panels or sidebars for location details.
+            </p>
+            <div style={{ fontSize: '13px', color: 'var(--ai-color-text-secondary)' }}>
+              <strong>See:</strong> "CompactMap" story → "Popup Control" section for side-by-side
+              comparison of maps with and without popups.
+            </div>
+          </div>
+
+          {/* Scroll Wheel Zoom */}
+          <div
+            style={{
+              padding: '16px',
+              background: 'var(--ai-color-bg-secondary)',
+              borderRadius: '12px',
+              border: '1px solid var(--ai-color-border-default)',
+            }}
+          >
+            <h3 style={{ fontSize: '16px', marginBottom: '8px', fontWeight: 600 }}>
+              Scroll Wheel Zoom
+            </h3>
+            <p style={{ margin: '0', fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
+              Control zoom behavior with <code>scrollWheelZoom</code> prop. Set to <code>true</code> for
+              native Leaflet scroll zoom (best for fullscreen), or <code>false</code> (default) for
+              custom pinch-to-zoom in embedded maps.
+            </p>
+          </div>
+
+          {/* Auto-Expand Carousel */}
+          <div
+            style={{
+              padding: '16px',
+              background: 'var(--ai-color-bg-secondary)',
+              borderRadius: '12px',
+              border: '1px solid var(--ai-color-border-default)',
+            }}
+          >
+            <h3 style={{ fontSize: '16px', marginBottom: '8px', fontWeight: 600 }}>
+              Auto-Expand on Carousel Click
+            </h3>
+            <p style={{ margin: '0 0 12px', fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
+              Set <code>autoExpandOnCarouselClick={'{true}'}</code> on <code>CompactMap</code> to
+              automatically expand to fullscreen when users click a carousel card. This provides faster
+              access to detailed location information (one click instead of two).
+            </p>
+            <div style={{ fontSize: '13px', color: 'var(--ai-color-text-secondary)' }}>
+              <strong>Default:</strong> <code>false</code> (users must click expand button manually)
+            </div>
+          </div>
         </div>
       </section>
 
