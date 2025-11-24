@@ -2,6 +2,7 @@ import React from 'react';
 import { CompactMap, type CompactMapProps } from './CompactMap';
 import { FullscreenMap, type FullscreenMapProps } from './FullscreenMap';
 import type { MapViewProps } from './MapView';
+import { useDisplayMode } from '../../hooks/openai';
 
 export interface MapProps extends Omit<MapViewProps, 'className' | 'style'> {
   /**
@@ -80,9 +81,22 @@ export const Map: React.FC<MapProps> = ({
 }) => {
   const [internalIsFullscreen, setInternalIsFullscreen] = React.useState(false);
 
+  // Listen to ChatGPT's displayMode changes
+  const displayMode = useDisplayMode();
+
   // Use controlled state if provided, otherwise use internal state
   const isControlled = controlledIsFullscreen !== undefined;
   const isFullscreen = isControlled ? controlledIsFullscreen : internalIsFullscreen;
+
+  // Sync internal state with ChatGPT's displayMode when not controlled
+  React.useEffect(() => {
+    if (!isControlled && displayMode) {
+      const shouldBeFullscreen = displayMode === 'fullscreen';
+      if (shouldBeFullscreen !== internalIsFullscreen) {
+        setInternalIsFullscreen(shouldBeFullscreen);
+      }
+    }
+  }, [displayMode, isControlled, internalIsFullscreen]);
 
   const handleExpand = async () => {
     // Request fullscreen mode from ChatGPT host

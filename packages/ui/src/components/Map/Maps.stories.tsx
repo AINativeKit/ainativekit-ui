@@ -491,11 +491,18 @@ const MapSystemComponent: React.FC = () => {
             Use controlled mode to let ChatGPT manage the iframe expansion based on user
             interaction.
           </p>
-          <p style={{ margin: 0 }}>
+          <p style={{ margin: '0 0 12px 0' }}>
             When user clicks expand button → Map calls <code>onToggleFullscreen(true)</code> → Your
             app expands the iframe → User sees FullscreenMap. When user clicks collapse → Map calls{' '}
             <code>onToggleFullscreen(false)</code> → Your app collapses iframe → User sees
             CompactMap.
+          </p>
+          <p style={{ margin: 0 }}>
+            <strong>🔄 Display Mode Sync:</strong> The Map component automatically listens to ChatGPT's{' '}
+            <code>displayMode</code> changes using the <code>useDisplayMode()</code> hook. This means
+            clicking ChatGPT's close button (X) will automatically collapse the map back to compact view
+            without requiring manual interaction. Two-way sync ensures your map stays in sync with
+            ChatGPT's UI state.
           </p>
         </div>
 
@@ -552,6 +559,10 @@ const handleMapToggle = (fullscreen: boolean) => {
             <li>CompactMap height: 478px (standard ChatGPT Apps size)</li>
             <li>Expand/collapse buttons automatically shown in both views</li>
             <li>Buttons automatically disabled if callbacks not provided</li>
+            <li>
+              <strong>Automatic sync with ChatGPT's display mode</strong> - clicking ChatGPT's X button
+              automatically collapses the map
+            </li>
             <li>Responsive design works on all device sizes</li>
           </ul>
         </div>

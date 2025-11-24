@@ -420,7 +420,8 @@ const MapsComponent: React.FC = () => {
           }}
         >
           The Map component is designed specifically for ChatGPT Apps SDK integration. Use the controlled mode pattern
-          shown below to let ChatGPT manage the iframe expansion when users click the expand button.
+          shown below to let ChatGPT manage the iframe expansion when users click the expand button. The component
+          automatically syncs with ChatGPT's display mode changes, so clicking ChatGPT's X button will collapse the map.
         </p>
 
         <div style={codeBlockStyles.primary}>
@@ -478,6 +479,10 @@ function MyMapApp() {
             <li>
               <strong>isFullscreen + onToggleFullscreen:</strong> Map calls your callback when user clicks expand/collapse
               button
+            </li>
+            <li>
+              <strong>Automatic Display Mode Sync:</strong> Map listens to ChatGPT's display mode changes - clicking
+              ChatGPT's X button automatically collapses the map
             </li>
             <li>
               <strong>Default Size:</strong> CompactMap uses 478px height (ChatGPT Apps SDK standard)
