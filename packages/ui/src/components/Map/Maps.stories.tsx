@@ -171,7 +171,7 @@ const MapSystemComponent: React.FC = () => {
           A comprehensive map-based location system with three complementary components:{' '}
           <strong>Map</strong> (orchestrator),
           <strong> CompactMap</strong> (inline experience), and <strong>FullscreenMap</strong>{' '}
-          (full-featured view). Built on Leaflet with interactive markers, location cards, multiple
+          (full-featured view). Built on Leaflet with interactive markers, map place cards, multiple
           layout options, and integrated support for ChatGPT Apps SDK.
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '14px' }}>
@@ -798,7 +798,7 @@ const handleMapToggle = (fullscreen: boolean) => {
             },
             {
               name: 'thumbnail',
-              description: 'Image URL for location card (required)',
+              description: 'Image URL for map place card (required)',
             },
             {
               name: 'subtitle',

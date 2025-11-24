@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { MapPlaceCard } from './MapPlaceCard';
 
 const meta: Meta<typeof MapPlaceCard> = {
-  title: 'Composed Components/Cards/Location Cards',
+  title: 'Composed Components/Cards/Map Place Cards',
   component: MapPlaceCard,
   parameters: {
     layout: 'padded',
@@ -57,8 +57,8 @@ const MapPlaceCardShowcase: React.FC = () => {
             lineHeight: '1.6',
           }}
         >
-          Location cards display places with thumbnail images, titles, and configurable features.
-          Perfect for maps, location lists, and place pickers with full state management support.
+          Map place cards display places with thumbnail images, titles, and configurable features.
+          Perfect for maps, map place lists, and place pickers with full state management support.
         </p>
       </section>
 

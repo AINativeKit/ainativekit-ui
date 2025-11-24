@@ -13,12 +13,12 @@ export interface LocationCarouselProps {
   locations: LocationData[];
 
   /**
-   * ID of the currently selected location.
+   * ID of the currently selected map place card.
    */
   selectedId?: string;
 
   /**
-   * Callback when a location card is clicked.
+   * Callback when a map place card is clicked.
    */
   onLocationSelect?: (id: string | undefined) => void;
 
@@ -28,7 +28,7 @@ export interface LocationCarouselProps {
   className?: string;
 
   /**
-   * Loading state - renders skeleton location cards
+   * Loading state - renders skeleton map place cards
    * @default false
    */
   loading?: boolean;

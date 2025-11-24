@@ -431,7 +431,7 @@ const CompactMapDoc: FC = () => {
             {
               name: 'onLocationSelect',
               description:
-                'Callback when a location card or marker is selected: (id: string) => void.',
+                'Callback when a map place card or marker is selected: (id: string) => void.',
             },
             {
               name: 'onLocationActive',
