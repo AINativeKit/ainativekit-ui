@@ -110,9 +110,6 @@ export const TileProviders: FC = () => {
   const [selectedId1, setSelectedId1] = useState<string | undefined>(undefined);
   const [selectedId2, setSelectedId2] = useState<string | undefined>(undefined);
   const [selectedId3, setSelectedId3] = useState<string | undefined>(undefined);
-  const [selectedId4, setSelectedId4] = useState<string | undefined>(undefined);
-  const [selectedId5, setSelectedId5] = useState<string | undefined>(undefined);
-  const [selectedId6, setSelectedId6] = useState<string | undefined>(undefined);
   const [selectedId7, setSelectedId7] = useState<string | undefined>(undefined);
   const [selectedId8, setSelectedId8] = useState<string | undefined>(undefined);
   const [selectedId9, setSelectedId9] = useState<string | undefined>(undefined);
@@ -134,9 +131,10 @@ export const TileProviders: FC = () => {
             lineHeight: 1.6,
           }}
         >
-          The Map component supports 15+ tile provider styles powered by OpenStreetMap data. Choose
-          from CARTO basemaps, Stamen artistic styles, specialized maps, and more. Simply pass the{' '}
-          <code>tileProvider</code> prop to any Map component.
+          The Map component supports 18+ tile provider styles powered by OpenStreetMap data. Choose
+          from CARTO basemaps, OSM variants, specialized maps, and more. Simply pass the{' '}
+          <code>tileProvider</code> prop to any Map component. Examples below show free providers that
+          work without API keys.
         </p>
 
         <div
@@ -230,81 +228,6 @@ export const TileProviders: FC = () => {
         </div>
       </section>
 
-      {/* Stamen Design Maps */}
-      <section style={{ paddingTop: '32px', borderTop: '1px solid var(--ai-color-border-default)' }}>
-        <h2 style={{ marginBottom: '8px', fontSize: '28px', fontWeight: 600 }}>
-          Stamen Design Maps
-        </h2>
-        <p
-          style={{
-            margin: '0 0 32px',
-            color: 'var(--ai-color-text-secondary)',
-            lineHeight: 1.6,
-          }}
-        >
-          Distinctive artistic map styles by Stamen Design. Served via Stadia Maps with no API key
-          required.
-        </p>
-
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '64px' }}>
-          <ExampleSection
-            title="Stamen Toner"
-            description="High-contrast black and white with print-like effect."
-            code={`<Map
-  locations={locations}
-  tileProvider="stamen-toner"
-/>`}
-          >
-            <CompactMap
-              key="stamen-toner"
-              locations={locations}
-              selectedId={selectedId4}
-              onLocationSelect={setSelectedId4}
-              tileProvider="stamen-toner"
-              defaultCenter={[37.7849, -122.4194]}
-              defaultZoom={13}
-            />
-          </ExampleSection>
-
-          <ExampleSection
-            title="Stamen Terrain"
-            description="Topographic terrain style with hillshading. Perfect for outdoor and regional context."
-            code={`<Map
-  locations={locations}
-  tileProvider="stamen-terrain"
-/>`}
-          >
-            <CompactMap
-              key="stamen-terrain"
-              locations={locations}
-              selectedId={selectedId5}
-              onLocationSelect={setSelectedId5}
-              tileProvider="stamen-terrain"
-              defaultCenter={[37.7849, -122.4194]}
-              defaultZoom={13}
-            />
-          </ExampleSection>
-
-          <ExampleSection
-            title="Stamen Watercolor"
-            description="Artistic watercolor rendition of map data."
-            code={`<Map
-  locations={locations}
-  tileProvider="stamen-watercolor"
-/>`}
-          >
-            <CompactMap
-              key="stamen-watercolor"
-              locations={locations}
-              selectedId={selectedId6}
-              onLocationSelect={setSelectedId6}
-              tileProvider="stamen-watercolor"
-              defaultCenter={[37.7849, -122.4194]}
-              defaultZoom={13}
-            />
-          </ExampleSection>
-        </div>
-      </section>
 
       {/* OpenStreetMap Styles */}
       <section style={{ paddingTop: '32px', borderTop: '1px solid var(--ai-color-border-default)' }}>
@@ -460,18 +383,73 @@ export const TileProviders: FC = () => {
                 lineHeight: 1.6,
               }}
             >
-              Additional tile providers are available that require free API keys. All offer generous
-              free tiers:
+              Additional tile providers are available that require API keys. All offer generous free
+              tiers:
             </p>
+            <ul
+              style={{
+                margin: '0 0 16px',
+                paddingLeft: '20px',
+                color: 'var(--ai-color-text-secondary)',
+                lineHeight: 1.8,
+              }}
+            >
+              <li>
+                <strong>Stamen Design Maps</strong> (via Stadia Maps) -{' '}
+                <a
+                  href="https://client.stadiamaps.com/signup/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: 'var(--ai-color-brand-primary)' }}
+                >
+                  Sign up at Stadia Maps
+                </a>
+                <br />
+                <code>stamen-toner</code>, <code>stamen-terrain</code>, <code>stamen-watercolor</code>
+              </li>
+              <li>
+                <strong>Geoapify</strong> -{' '}
+                <a
+                  href="https://www.geoapify.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: 'var(--ai-color-brand-primary)' }}
+                >
+                  Sign up at Geoapify
+                </a>
+                <br />
+                <code>geoapify-osm-bright-grey</code>, <code>geoapify-osm-bright-smooth</code>
+              </li>
+              <li>
+                <strong>Thunderforest</strong> -{' '}
+                <a
+                  href="https://www.thunderforest.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: 'var(--ai-color-brand-primary)' }}
+                >
+                  Sign up at Thunderforest
+                </a>
+                <br />
+                <code>thunderforest-transport</code>, <code>thunderforest-landscape</code>
+              </li>
+            </ul>
             <CodeBlock
-              code={`// Geoapify OSM Bright styles
+              code={`// Example: Using Stamen Watercolor with API key
+<Map
+  locations={locations}
+  tileProvider="stamen-watercolor"
+  tileApiKey={process.env.REACT_APP_STADIA_MAPS_KEY}
+/>
+
+// Example: Geoapify OSM Bright
 <Map
   locations={locations}
   tileProvider="geoapify-osm-bright-grey"
   tileApiKey={process.env.REACT_APP_GEOAPIFY_KEY}
 />
 
-// Thunderforest Transport
+// Example: Thunderforest Transport
 <Map
   locations={locations}
   tileProvider="thunderforest-transport"

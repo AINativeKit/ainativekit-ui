@@ -51,6 +51,9 @@ export interface TileProviderConfig {
 export type TileProviderPreset =
   | 'osm-standard'
   | 'osm-humanitarian'
+  | 'osm-france'
+  | 'osm-bw'
+  | 'wikimedia'
   | 'carto-light'
   | 'carto-dark'
   | 'carto-voyager'
@@ -97,6 +100,43 @@ export const TILE_PROVIDER_PRESETS: Record<TileProviderPreset, TileProviderConfi
   },
 
   /**
+   * OpenStreetMap France - French-language OSM style
+   * Free to use, no API key required
+   */
+  'osm-france': {
+    url: 'https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles by <a href="https://www.openstreetmap.fr">OpenStreetMap France</a>',
+    subdomains: ['a', 'b', 'c'],
+    maxZoom: 20,
+    detectRetina: true,
+  },
+
+  /**
+   * OpenStreetMap Black & White - Monochrome OSM style
+   * Free to use, no API key required
+   */
+  'osm-bw': {
+    url: 'https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 18,
+    detectRetina: true,
+  },
+
+  /**
+   * Wikimedia Maps - Wikimedia Foundation tile service
+   * Free to use, no API key required
+   */
+  wikimedia: {
+    url: 'https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png',
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use">Wikimedia maps</a>',
+    maxZoom: 19,
+    detectRetina: true,
+  },
+
+  /**
    * CARTO Light (Positron) - Clean, minimal light theme
    * Free to use, no API key required
    */
@@ -138,38 +178,44 @@ export const TILE_PROVIDER_PRESETS: Record<TileProviderPreset, TileProviderConfi
 
   /**
    * Stamen Toner - High contrast black & white
-   * Free to use via Stadia Maps, no API key required
+   * Requires Stadia Maps API key (free tier available at https://client.stadiamaps.com/signup/)
+   * Note: These tiles are hosted by Stadia Maps and require authentication
    */
   'stamen-toner': {
-    url: 'https://tiles.stadiamaps.com/tiles/stamen_toner/{z}/{x}/{y}.png',
+    url: 'https://tiles.stadiamaps.com/tiles/stamen_toner/{z}/{x}/{y}.png?api_key={apiKey}',
     attribution:
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://stamen.com">Stamen Design</a>',
     maxZoom: 18,
     detectRetina: true,
+    requiresApiKey: true,
   },
 
   /**
    * Stamen Terrain - Topographic terrain style with hillshading
-   * Free to use via Stadia Maps, no API key required
+   * Requires Stadia Maps API key (free tier available at https://client.stadiamaps.com/signup/)
+   * Note: These tiles are hosted by Stadia Maps and require authentication
    */
   'stamen-terrain': {
-    url: 'https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}.png',
+    url: 'https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}.png?api_key={apiKey}',
     attribution:
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://stamen.com">Stamen Design</a>',
     maxZoom: 18,
     detectRetina: true,
+    requiresApiKey: true,
   },
 
   /**
    * Stamen Watercolor - Artistic watercolor style
-   * Free to use via Stadia Maps, no API key required
+   * Requires Stadia Maps API key (free tier available at https://client.stadiamaps.com/signup/)
+   * Note: These tiles are hosted by Stadia Maps and require authentication
    */
   'stamen-watercolor': {
-    url: 'https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg',
+    url: 'https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg?api_key={apiKey}',
     attribution:
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://stamen.com">Stamen Design</a>',
     maxZoom: 16,
     detectRetina: false, // Watercolor doesn't benefit from retina
+    requiresApiKey: true,
   },
 
   /**
