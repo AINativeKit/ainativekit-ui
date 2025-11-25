@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Icon } from '../Icon';
 import { MapPlaceCard } from './MapPlaceCard';
 import { cn } from '../../utils/cn';
 import type { LocationData } from './types';
@@ -77,7 +76,6 @@ export const MapSidebar: React.FC<MapSidebarProps> = ({
       <div ref={scrollRef} className={styles.scrollContainer}>
         <div className={styles.header}>
           <span className={styles.resultsCount}>{locations.length} results</span>
-          <Icon name="settings-cog" size={20} className={styles.settingsIcon} />
         </div>
         <div className={styles.list}>
           {locations.map((location) => (

@@ -46,16 +46,6 @@
   font-weight: var(--ai-font-weight-medium);
 }
 
-.settingsIcon {
-  cursor: pointer;
-  opacity: 0.7;
-  transition: opacity 0.2s;
-}
-
-.settingsIcon:hover {
-  opacity: 1;
-}
-
 .list {
   padding-bottom: var(--ai-spacing-8);
 }
