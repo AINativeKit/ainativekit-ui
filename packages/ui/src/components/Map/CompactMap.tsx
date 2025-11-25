@@ -85,6 +85,8 @@ export const CompactMap: React.FC<CompactMapProps> = ({
   carouselProps,
   onExpand,
   autoExpandOnCarouselClick = false,
+  tileProvider,
+  tileApiKey,
 }) => {
   const containerStyle: React.CSSProperties = {
     ...style,
@@ -111,6 +113,8 @@ export const CompactMap: React.FC<CompactMapProps> = ({
           showPopup={showPopup}
           loading={loading}
           error={error}
+          tileProvider={tileProvider}
+          tileApiKey={tileApiKey}
           className={cn(styles.mapView, mapClassName)}
           style={mapStyle}
         />

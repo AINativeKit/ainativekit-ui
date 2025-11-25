@@ -4,6 +4,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import type { MapViewProps } from './MapView';
 import type { LocationData, RenderMarkerParams } from './types';
+import { TILE_PROVIDER_PRESETS, type TileProviderConfig } from './tileProviders';
 import { Features } from '../Feature/Features';
 import { ThemeContext } from '../../providers/ThemeProvider';
 import type { ThemeContextValue } from '../../providers/ThemeProvider';
@@ -244,8 +245,58 @@ const PinchZoomHandler: React.FC = () => {
   return null;
 };
 
-const DEFAULT_TILE_URL =
-  'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png';
+/**
+ * Resolve tile provider configuration from prop value.
+ * Supports both preset names and custom configurations.
+ */
+function resolveTileProviderConfig(
+  tileProvider: string | TileProviderConfig | undefined,
+  apiKey?: string
+): TileProviderConfig {
+  // Default to CARTO Voyager
+  if (!tileProvider) {
+    return TILE_PROVIDER_PRESETS['carto-voyager'];
+  }
+
+  // If it's a string, look up the preset
+  if (typeof tileProvider === 'string') {
+    const config = TILE_PROVIDER_PRESETS[tileProvider as keyof typeof TILE_PROVIDER_PRESETS];
+    if (!config) {
+      console.warn(
+        `Unknown tile provider preset: "${tileProvider}". Falling back to carto-voyager.`
+      );
+      return TILE_PROVIDER_PRESETS['carto-voyager'];
+    }
+
+    // Interpolate API key if needed
+    if (config.requiresApiKey && apiKey) {
+      return {
+        ...config,
+        url: config.url.replace('{apiKey}', apiKey),
+      };
+    }
+
+    // Warn if API key is required but not provided
+    if (config.requiresApiKey && !apiKey) {
+      console.warn(
+        `Tile provider "${tileProvider}" requires an API key. Please provide the tileApiKey prop.`
+      );
+    }
+
+    return config;
+  }
+
+  // It's a custom configuration object - use as-is
+  // Interpolate API key if present in URL
+  if (apiKey && tileProvider.url.includes('{apiKey}')) {
+    return {
+      ...tileProvider,
+      url: tileProvider.url.replace('{apiKey}', apiKey),
+    };
+  }
+
+  return tileProvider;
+}
 
 const DEFAULT_ICON_SIZE: [number, number] = [28, 40];
 const DEFAULT_ICON_ANCHOR: [number, number] = [14, 40];
@@ -367,10 +418,18 @@ export const MapContent: React.FC<MapViewProps> = ({
   isInspectorOpen,
   scrollWheelZoom = false,
   showPopup = true,
+  tileProvider,
+  tileApiKey,
 }) => {
   const containerClassName = className
     ? `${styles.mapContainer} ${className}`
     : styles.mapContainer;
+
+  // Resolve tile provider configuration
+  const tileConfig = useMemo(
+    () => resolveTileProviderConfig(tileProvider, tileApiKey),
+    [tileProvider, tileApiKey]
+  );
 
   const markerRefs = useRef<Map<string, L.Marker>>(new Map());
 
@@ -524,9 +583,12 @@ export const MapContent: React.FC<MapViewProps> = ({
         <MapFlyer selectedId={selectedId} locations={locations} isInspectorOpen={isInspectorOpen} />
         {!scrollWheelZoom && <PinchZoomHandler />}
         <TileLayer
-          url={DEFAULT_TILE_URL}
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-          subdomains={['a', 'b', 'c', 'd']}
+          url={tileConfig.url}
+          attribution={tileConfig.attribution}
+          {...(tileConfig.subdomains && { subdomains: tileConfig.subdomains })}
+          {...(tileConfig.maxZoom && { maxZoom: tileConfig.maxZoom })}
+          {...(tileConfig.minZoom && { minZoom: tileConfig.minZoom })}
+          detectRetina={tileConfig.detectRetina ?? true}
         />
         {locations.map((location) => {
           const isSelected = location.id === selectedId;

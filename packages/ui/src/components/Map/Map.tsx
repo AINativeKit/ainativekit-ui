@@ -78,6 +78,8 @@ export const Map: React.FC<MapProps> = ({
   onToggleFullscreen,
   compactMapProps,
   fullscreenMapProps,
+  tileProvider,
+  tileApiKey,
 }) => {
   const [internalIsFullscreen, setInternalIsFullscreen] = React.useState(false);
 
@@ -146,6 +148,8 @@ export const Map: React.FC<MapProps> = ({
     showPopup,
     loading,
     error,
+    tileProvider,
+    tileApiKey,
   };
 
   return (

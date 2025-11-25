@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import type { LocationData, RenderMarkerParams } from './types';
+import type { TileProviderConfig, TileProviderPreset } from './tileProviders';
 import { Skeleton } from '../Skeleton';
 import styles from './Map.module.css';
 
@@ -133,6 +134,52 @@ export interface MapViewProps {
    * @default true
    */
   showPopup?: boolean;
+
+  /**
+   * Tile provider configuration.
+   *
+   * Can be either:
+   * 1. A preset name (e.g., 'osm-standard', 'carto-dark', 'carto-voyager')
+   * 2. A custom TileProviderConfig object for full control
+   *
+   * @default 'carto-voyager'
+   *
+   * @example
+   * // Using preset
+   * <Map tileProvider="osm-standard" />
+   *
+   * @example
+   * // Using preset with API key
+   * <Map
+   *   tileProvider="geoapify-osm-bright-grey"
+   *   tileApiKey="your-api-key-here"
+   * />
+   *
+   * @example
+   * // Custom configuration
+   * <Map
+   *   tileProvider={{
+   *     url: 'https://your-tiles.com/{z}/{x}/{y}.png',
+   *     attribution: '© Your Attribution',
+   *     maxZoom: 19,
+   *     detectRetina: true,
+   *   }}
+   * />
+   */
+  tileProvider?: TileProviderPreset | TileProviderConfig;
+
+  /**
+   * API key for tile providers that require authentication.
+   * Only needed for providers like Geoapify, Thunderforest, etc.
+   * Will be interpolated into the tile URL using {apiKey} placeholder.
+   *
+   * @example
+   * <Map
+   *   tileProvider="thunderforest-transport"
+   *   tileApiKey={process.env.REACT_APP_THUNDERFOREST_KEY}
+   * />
+   */
+  tileApiKey?: string;
 
   // Additional map configuration props can be introduced over time.
 }

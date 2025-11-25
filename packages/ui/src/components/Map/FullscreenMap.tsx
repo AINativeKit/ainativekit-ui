@@ -162,6 +162,7 @@ export const FullscreenMap: React.FC<FullscreenMapProps> = ({
             loading={false}
             error={false}
             scrollWheelZoom={scrollWheelZoom}
+            {...mapProps}
             className={styles.fallbackMap}
           />
           <div className={styles.fallbackOverlay}>
