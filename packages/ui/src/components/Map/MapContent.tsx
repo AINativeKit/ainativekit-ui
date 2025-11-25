@@ -8,6 +8,7 @@ import { TILE_PROVIDER_PRESETS, type TileProviderConfig } from './tileProviders'
 import { Features } from '../Feature/Features';
 import { ThemeContext } from '../../providers/ThemeProvider';
 import type { ThemeContextValue } from '../../providers/ThemeProvider';
+import { cn } from '../../utils/cn';
 import styles from './Map.module.css';
 
 /**
@@ -418,12 +419,15 @@ export const MapContent: React.FC<MapViewProps> = ({
   isInspectorOpen,
   scrollWheelZoom = false,
   showPopup = true,
+  hideAttribution = true,
   tileProvider,
   tileApiKey,
 }) => {
-  const containerClassName = className
-    ? `${styles.mapContainer} ${className}`
-    : styles.mapContainer;
+  const containerClassName = cn(
+    styles.mapContainer,
+    !hideAttribution && 'show-attribution',
+    className
+  );
 
   // Resolve tile provider configuration
   const tileConfig = useMemo(

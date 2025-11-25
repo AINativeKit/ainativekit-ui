@@ -1020,6 +1020,51 @@ const handleMapToggle = (fullscreen: boolean) => {
 />`}</code>
             </pre>
           </div>
+
+          {/* Attribution Control */}
+          <div
+            style={{
+              padding: '16px',
+              background: 'var(--ai-color-bg-secondary)',
+              borderRadius: '12px',
+              border: '1px solid var(--ai-color-border-default)',
+            }}
+          >
+            <h3 style={{ fontSize: '16px', marginBottom: '8px', fontWeight: 600 }}>
+              Attribution Control
+            </h3>
+            <p style={{ margin: '0 0 12px', fontSize: '14px', color: 'var(--ai-color-text-secondary)' }}>
+              Control the visibility of Leaflet attribution using the <code>hideAttribution</code> prop.
+              By default, attribution is hidden. Set to <code>false</code> to display tile provider
+              credits in the bottom-right corner.
+            </p>
+            <div style={{ fontSize: '13px', color: 'var(--ai-color-text-secondary)', marginBottom: '12px' }}>
+              <strong>Note:</strong> Attribution is required by most tile providers' terms of service.
+            </div>
+            <pre
+              style={{
+                margin: 0,
+                padding: '12px',
+                background: 'var(--ai-color-bg-tertiary)',
+                borderRadius: '6px',
+                fontSize: '12px',
+                lineHeight: '1.5',
+                fontFamily: 'Monaco, Menlo, monospace',
+              }}
+            >
+              <code>{`// Show attribution (licensing compliant)
+<Map
+  locations={locations}
+  hideAttribution={false}
+/>
+
+// Hide attribution (default)
+<Map
+  locations={locations}
+  hideAttribution={true}
+/>`}</code>
+            </pre>
+          </div>
         </div>
       </section>
 

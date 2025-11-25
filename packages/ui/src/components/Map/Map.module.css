@@ -177,7 +177,16 @@
   display: none !important;
 }
 
-/* Hide Leaflet attribution */
-:global(.leaflet-control-attribution) {
-  display: none !important;
+/* Hide Leaflet attribution by default */
+.mapContainer :global(.leaflet-control-attribution) {
+  display: none;
+}
+
+/* Show attribution when hideAttribution is false */
+.mapContainer:global(.show-attribution) :global(.leaflet-control-attribution) {
+  display: block !important;
+}
+
+:global(.show-attribution) .mapContainer :global(.leaflet-control-attribution) {
+  display: block !important;
 }

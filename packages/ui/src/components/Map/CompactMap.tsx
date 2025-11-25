@@ -75,6 +75,7 @@ export const CompactMap: React.FC<CompactMapProps> = ({
   isInspectorOpen,
   scrollWheelZoom,
   showPopup,
+  hideAttribution,
   loading = false,
   error = false,
   height = DEFAULT_HEIGHT,
@@ -111,6 +112,7 @@ export const CompactMap: React.FC<CompactMapProps> = ({
           isInspectorOpen={isInspectorOpen}
           scrollWheelZoom={scrollWheelZoom}
           showPopup={showPopup}
+          hideAttribution={hideAttribution}
           loading={loading}
           error={error}
           tileProvider={tileProvider}
