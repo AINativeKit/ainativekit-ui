@@ -5,7 +5,7 @@ import styles from './ExpandableText.module.css';
 
 export interface ExpandableTextProps {
   /**
-   * Text content to display
+   * Text content to display. Supports HTML <br> tags for line breaks.
    */
   text: string;
 
@@ -54,6 +54,15 @@ export interface ExpandableTextProps {
  *   maxLines={3}
  *   expandLabel="Read more"
  *   collapseLabel="Read less"
+ * />
+ * ```
+ *
+ * @example
+ * // With HTML line breaks
+ * ```tsx
+ * <ExpandableText
+ *   text="First paragraph<br/><br/>Second paragraph with line breaks"
+ *   maxLines={3}
  * />
  * ```
  */
