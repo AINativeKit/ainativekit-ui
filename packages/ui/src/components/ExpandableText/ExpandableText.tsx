@@ -11,7 +11,7 @@ export interface ExpandableTextProps {
 
   /**
    * Maximum number of lines to show when collapsed
-   * @default 3
+   * @default 5
    */
   maxLines?: number;
 
@@ -68,7 +68,7 @@ export interface ExpandableTextProps {
  */
 export const ExpandableText: React.FC<ExpandableTextProps> = ({
   text,
-  maxLines = 3,
+  maxLines = 5,
   expandLabel = 'View more',
   collapseLabel = 'View less',
   className,
@@ -77,7 +77,7 @@ export const ExpandableText: React.FC<ExpandableTextProps> = ({
 }) => {
   const [internalExpanded, setInternalExpanded] = useState(false);
   const [needsTruncation, setNeedsTruncation] = useState(false);
-  const textRef = useRef<HTMLParagraphElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
 
   const isControlled = controlledExpanded !== undefined;
   const expanded = isControlled ? controlledExpanded : internalExpanded;
@@ -103,7 +103,7 @@ export const ExpandableText: React.FC<ExpandableTextProps> = ({
 
   return (
     <div className={cn(styles.expandableText, className)}>
-      <p
+      <div
         ref={textRef}
         className={cn(styles.text, !expanded && styles.clamped)}
         style={{
@@ -111,17 +111,17 @@ export const ExpandableText: React.FC<ExpandableTextProps> = ({
         }}
       >
         <SafeBrText text={text} />
-        {needsTruncation && (
-          <button
-            className={styles.toggleButton}
-            onClick={handleToggle}
-            type="button"
-            aria-expanded={expanded}
-          >
-            {expanded ? collapseLabel : expandLabel}
-          </button>
-        )}
-      </p>
+      </div>
+      {needsTruncation && (
+        <button
+          className={styles.toggleButton}
+          onClick={handleToggle}
+          type="button"
+          aria-expanded={expanded}
+        >
+          {expanded ? collapseLabel : expandLabel}
+        </button>
+      )}
     </div>
   );
 };
