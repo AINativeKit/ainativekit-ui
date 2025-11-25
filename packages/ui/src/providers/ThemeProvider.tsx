@@ -332,6 +332,9 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   // Ref to track injected style element for brand colors
   const styleElementRef = useRef<HTMLStyleElement | null>(null);
 
+  // Ref to track if this is the initial mount
+  const isInitialMount = useRef(true);
+
   // Memoize CSS generation to avoid unnecessary recalculation
   const brandColorCSS = useMemo(() => {
     if (!brandColors) return '';
@@ -346,11 +349,17 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   }, [chatGPTTheme]);
 
   // Sync with defaultTheme prop changes (for Storybook and external control)
+  // Skip on initial mount to preserve theme from localStorage/system preference
   useEffect(() => {
-    if (!chatGPTTheme && defaultTheme && defaultTheme !== theme) {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
+
+    if (!chatGPTTheme && defaultTheme) {
       setThemeState(defaultTheme);
     }
-  }, [defaultTheme, chatGPTTheme, theme]);
+  }, [defaultTheme, chatGPTTheme]);
 
   // Apply theme to DOM
   useEffect(() => {

@@ -7,6 +7,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.16.0] - 2025-11-25
+
+### Added
+
+- **Map Component Features**:
+  - **Multi-Tile Provider Support**: Added 15+ built-in tile provider presets
+    - OpenStreetMap variants (Standard, HOT, France, Black & White)
+    - CartoDB variants (Positron, Voyager, Dark Matter)
+    - Stadia Maps (OSM Bright, Outdoors, Alidade Smooth)
+    - Stamen terrain maps
+    - USGS topographic maps
+    - Easily switch between providers with `tileProvider` prop
+  - **Attribution Control**: New `hideAttribution` prop to hide tile provider attribution
+    - Default: `false` (attribution shown)
+    - Useful for screenshots or when attribution is provided elsewhere
+
+### Changed
+
+- **ExpandableText Component**:
+  - Enhanced text truncation logic for more accurate line counting
+  - Updated default labels: "view more" → "View more", "view less" → "View less" (capitalized)
+  - Improved HTML tag support documentation with `<br>` tag examples
+  - Increased default `maxLines` from 3 to 4 for better content preview
+
+### Fixed
+
+- **Map Component**:
+  - Cleaner attribution display with proper spacing and formatting
+- **ExpandableText Component**:
+  - Fixed text rendering to properly handle browser default line heights
+  - Improved expand/collapse behavior for edge cases
+- **MapInspector Component**:
+  - Fixed literal `<br>` tags displaying in descriptions instead of line breaks
+  - Now properly renders HTML line breaks in location descriptions
+- **Storybook**:
+  - Fixed dark mode toggle functionality in Storybook environment
+  - Theme switching now works correctly for development and documentation
+
 ## [0.15.0] - 2025-11-25
 
 ### Added
