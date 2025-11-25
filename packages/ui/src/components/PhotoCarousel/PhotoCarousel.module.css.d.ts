@@ -5,9 +5,9 @@ declare const styles: {
   readonly emblaSlide: string;
   readonly photo: string;
   readonly overlayContainer: string;
-  readonly arrowButton: string;
-  readonly arrowPrev: string;
-  readonly arrowNext: string;
+  readonly navButton: string;
+  readonly navButtonPrev: string;
+  readonly navButtonNext: string;
   readonly dotsContainer: string;
   readonly dot: string;
   readonly dotActive: string;

@@ -46,42 +46,38 @@
   pointer-events: auto;
 }
 
-/* Navigation Arrows */
-.arrowButton {
+/* Navigation Buttons */
+.navButton {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
   z-index: 3;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  background-color: var(--ai-color-bg-primary);
   border-radius: 50%;
-  border: none;
-  background-color: rgba(255, 255, 255, 0.9);
-  color: var(--ai-color-text-primary);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--ai-elevation-1-shadow);
+  transition:
+    background-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
-.arrowButton:hover:not(:disabled) {
-  background-color: rgba(255, 255, 255, 1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+.navButton:hover {
+  background-color: var(--ai-color-bg-secondary);
 }
 
-.arrowButton:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
+.navButton:active {
+  background-color: var(--ai-color-bg-tertiary);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
-.arrowPrev {
-  left: 16px;
+.navButtonPrev {
+  left: var(--ai-spacing-4);
 }
 
-.arrowNext {
-  right: 16px;
+.navButtonNext {
+  right: var(--ai-spacing-4);
 }
 
 /* Navigation Dots */
@@ -102,19 +98,21 @@
   height: 8px;
   border-radius: 50%;
   border: none;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: var(--ai-color-bg-primary);
+  opacity: 0.6;
   cursor: pointer;
   padding: 0;
   transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .dot:hover {
-  background-color: rgba(255, 255, 255, 0.8);
+  opacity: 0.85;
   transform: scale(1.2);
 }
 
 .dotActive {
-  background-color: rgba(255, 255, 255, 1);
+  opacity: 1;
   width: 10px;
   height: 10px;
 }

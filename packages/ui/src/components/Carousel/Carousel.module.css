@@ -155,16 +155,17 @@
   border-radius: 50%;
   box-shadow: var(--ai-elevation-1-shadow);
   transition:
-    background-color 0.2s ease,
-    box-shadow 0.2s ease;
+    background-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .navButton:hover {
-  opacity: 0.9;
+  background-color: var(--ai-color-bg-secondary);
 }
 
 .navButton:active {
-  opacity: 1;
+  background-color: var(--ai-color-bg-tertiary);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
 .navButtonPrev {

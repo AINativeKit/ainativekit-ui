@@ -19,6 +19,12 @@ const sampleLocations: LocationData[] = [
     description:
       'Award-winning Neapolitan pies in North Beach.<br/><br/>A San Francisco institution serving authentic Italian pizza with locally-sourced ingredients.',
     thumbnail: 'https://persistent.oaistatic.com/pizzaz/pizzaz-1.png',
+    images: [
+      'https://persistent.oaistatic.com/pizzaz/pizzaz-1.png',
+      'https://persistent.oaistatic.com/pizzaz/pizzaz-2.png',
+      'https://persistent.oaistatic.com/pizzaz/pizzaz-3.png',
+      'https://persistent.oaistatic.com/pizzaz/pizzaz-4.png',
+    ],
     features: [{ icon: 'star', label: '4.8' }, { label: '$$$' }],
     actions: [
       { label: 'Add to favorites', variant: 'primary' },
@@ -261,6 +267,11 @@ const FullscreenMapDoc: FC = () => {
           <li>
             Fullscreen maps use native scroll wheel zoom by default (`scrollWheelZoom=true`) for the
             best desktop experience, while compact maps use custom pinch-to-zoom handlers.
+          </li>
+          <li>
+            Add an `images` array to LocationData for multi-photo locations—the inspector
+            automatically renders a PhotoCarousel with dots and arrows when multiple images are
+            present, falling back to a single thumbnail otherwise.
           </li>
         </ul>
       </section>

@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { Overlay } from '../Overlay';
-import { Icon } from '../Icon';
+import { Button } from '../Button';
 import { cn } from '../../utils/cn';
 import styles from './PhotoCarousel.module.css';
 
@@ -171,27 +171,23 @@ export const PhotoCarousel: React.FC<PhotoCarouselProps> = ({
       {topOverlay && <div className={styles.overlayContainer}>{topOverlay}</div>}
 
       {/* Navigation Arrows */}
-      {showArrows && images.length > 1 && (
-        <>
-          <button
-            className={cn(styles.arrowButton, styles.arrowPrev)}
-            onClick={scrollPrev}
-            disabled={!hasPrev}
-            aria-label="Previous photo"
-            type="button"
-          >
-            <Icon name="chevron-left-lg" size={24} />
-          </button>
-          <button
-            className={cn(styles.arrowButton, styles.arrowNext)}
-            onClick={scrollNext}
-            disabled={!hasNext}
-            aria-label="Next photo"
-            type="button"
-          >
-            <Icon name="chevron-right-lg" size={24} />
-          </button>
-        </>
+      {showArrows && images.length > 1 && hasPrev && (
+        <Button
+          variant="ghost"
+          iconOnly="chevron-left-md"
+          onClick={scrollPrev}
+          aria-label="Previous photo"
+          className={cn(styles.navButton, styles.navButtonPrev)}
+        />
+      )}
+      {showArrows && images.length > 1 && hasNext && (
+        <Button
+          variant="ghost"
+          iconOnly="chevron-right-md"
+          onClick={scrollNext}
+          aria-label="Next photo"
+          className={cn(styles.navButton, styles.navButtonNext)}
+        />
       )}
 
       {/* Navigation Dots */}
