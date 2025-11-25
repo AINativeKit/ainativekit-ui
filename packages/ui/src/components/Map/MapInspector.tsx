@@ -154,7 +154,7 @@ export const MapInspector: React.FC<MapInspectorProps> = ({ location, onClose, c
               {location.description && (
                 <ExpandableText
                   text={location.description}
-                  maxLines={3}
+                  maxLines={5}
                   className={styles.description}
                 />
               )}
