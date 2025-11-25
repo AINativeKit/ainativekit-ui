@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.17.0] - 2025-11-26
+
+### Fixed
+
+- **Map Component**:
+  - Resolved Stamen tile 401 errors by adding free tile provider alternatives
+  - Removed non-functional settings icon from sidebar header
+
+- **PhotoCarousel Component**:
+  - Navigation arrows now use Button component for consistent styling
+  - Added dark mode support to navigation dots using design tokens
+  - Improved nav button hover/active states to match Carousel component
+
+### Changed
+
+- **Carousel Component**:
+  - Updated nav button hover/active states for consistency with PhotoCarousel
+
+### Documentation
+
+- Added `images` array example to FullscreenMap stories showing multi-photo locations
+- Documented PhotoCarousel integration with MapInspector
+
 ## [0.16.0] - 2025-11-25
 
 ### Added
@@ -417,6 +440,12 @@ This library follows [Semantic Versioning](https://semver.org/):
 
 ---
 
+[0.17.0]: https://github.com/AINativeKit/chatgpt-apps-sdk-ui/releases/tag/v0.17.0
+[0.16.0]: https://github.com/AINativeKit/chatgpt-apps-sdk-ui/releases/tag/v0.16.0
+[0.15.0]: https://github.com/AINativeKit/chatgpt-apps-sdk-ui/releases/tag/v0.15.0
+[0.14.0]: https://github.com/AINativeKit/chatgpt-apps-sdk-ui/releases/tag/v0.14.0
+[0.12.0]: https://github.com/AINativeKit/chatgpt-apps-sdk-ui/releases/tag/v0.12.0
+[0.11.0]: https://github.com/AINativeKit/chatgpt-apps-sdk-ui/releases/tag/v0.11.0
 [0.10.0]: https://github.com/AINativeKit/chatgpt-apps-sdk-ui/releases/tag/v0.10.0
 [0.9.0]: https://github.com/AINativeKit/chatgpt-apps-sdk-ui/releases/tag/v0.9.0
 [0.8.0]: https://github.com/AINativeKit/chatgpt-apps-sdk-ui/releases/tag/v0.8.0
