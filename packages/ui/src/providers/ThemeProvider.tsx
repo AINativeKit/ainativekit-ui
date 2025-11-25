@@ -345,6 +345,13 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     }
   }, [chatGPTTheme]);
 
+  // Sync with defaultTheme prop changes (for Storybook and external control)
+  useEffect(() => {
+    if (!chatGPTTheme && defaultTheme && defaultTheme !== theme) {
+      setThemeState(defaultTheme);
+    }
+  }, [defaultTheme, chatGPTTheme, theme]);
+
   // Apply theme to DOM
   useEffect(() => {
     if (typeof window === 'undefined') return;

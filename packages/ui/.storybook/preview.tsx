@@ -11,6 +11,15 @@ if (typeof reactWithUse.use !== 'function') {
 const withTheme: Decorator = (Story, context) => {
   const theme = (context.globals.theme as 'light' | 'dark') ?? 'light';
 
+  // Apply background color to Storybook canvas for dark mode
+  React.useEffect(() => {
+    const docsRoot = document.querySelector('.sb-show-main') as HTMLElement;
+    if (docsRoot) {
+      docsRoot.style.backgroundColor = theme === 'dark' ? '#1a1a1a' : '#ffffff';
+      docsRoot.style.transition = 'background-color 0.3s ease';
+    }
+  }, [theme]);
+
   return (
     <ThemeProvider defaultTheme={theme} brandColors={{ primary: '#0285ff' }}>
       <Story />
