@@ -112,6 +112,21 @@ function serializeSVGChild(element: React.ReactElement): string {
   return `<${tagName} ${attrString}>${childrenHTML}</${tagName}>`;
 }
 
+// Component to show only tile provider attribution
+const AttributionCustomizer: React.FC = () => {
+  const map = useMap();
+
+  useEffect(() => {
+    // Show only tile provider attribution (no framework branding)
+    const attributionControl = map.attributionControl;
+    if (attributionControl) {
+      attributionControl.setPrefix('');
+    }
+  }, [map]);
+
+  return null;
+};
+
 // Component to handle map flying to selected location
 const MapFlyer: React.FC<{
   selectedId?: string;
@@ -584,6 +599,7 @@ export const MapContent: React.FC<MapViewProps> = ({
         touchZoom={scrollWheelZoom}
         dragging={true}
       >
+        <AttributionCustomizer />
         <MapFlyer selectedId={selectedId} locations={locations} isInspectorOpen={isInspectorOpen} />
         {!scrollWheelZoom && <PinchZoomHandler />}
         <TileLayer
